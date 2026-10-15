@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "library": "librdkafka",
+  "version": "2.5.3",
+  "extraction": {
+    "extractor": "B",
+    "model": "haiku",
+    "notes": "Coordinator-side removal logging is not stated in the vendored files (broker group coordinator is not vendored), so no removal-signal fact is reported. The client-side removal lines (SESSTMOUT at src/rdkafka_cgrp.c:5724, MAXPOLL at :4984) are the client's own detections and are recorded as failure-detector facts. Heartbeat is suppressed once max.poll.interval.ms is exceeded (src/rdkafka_cgrp.c:3287)."
+  },
+  "sources": {
+    "obsplacement": {
+      "path": ".",
+      "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+    }
+  },
+  "facts": [
+    {
+      "kind": "config-default",
+      "subject": "session.timeout.ms",
+      "value": 45000,
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 110,
+      "quotedToken": "45000"
+    },
+    {
+      "kind": "config-default",
+      "subject": "heartbeat.interval.ms",
+      "value": 3000,
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 111,
+      "quotedToken": "3000"
+    },
+    {
+      "kind": "config-default",
+      "subject": "max.poll.interval.ms",
+      "value": 300000,
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 116,
+      "quotedToken": "300000"
+    },
+    {
+      "kind": "config-default",
+      "subject": "coordinator.query.interval.ms",
+      "value": 600000,
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 115,
+      "quotedToken": "600000"
+    },
+    {
+      "kind": "failure-detector",
+      "subject": "session.timeout.ms",
+      "value": "group-coordinator",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 110,
+      "quotedToken": "the broker will remove the consumer from the group",
+      "note": "Stated in the config description: the broker's group coordinator removes a member after no heartbeats within session.timeout.ms and triggers a rebalance."
+    },
+    {
+      "kind": "failure-detector",
+      "subject": "session.timeout.ms",
+      "value": "client",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 5724,
+      "quotedToken": "SESSTMOUT",
+      "note": "rd_kafka_cgrp_session_timeout_check (src/rdkafka_cgrp.c:5699-5711) computes the timeout from group_session_timeout_ms (line 5711), which is the session.timeout.ms setting; on expiry the client revokes its assignment and rejoins."
+    },
+    {
+      "kind": "failure-detector",
+      "subject": "max.poll.interval.ms",
+      "value": "client",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 4984,
+      "quotedToken": "MAXPOLL",
+      "note": "rd_kafka_cgrp_max_poll_interval_check_tmr_cb (src/rdkafka_cgrp.c:4973) detects the overrun using rk->rk_conf.max_poll_interval_ms (line 4990) and then leaves the group."
+    },
+    {
+      "kind": "heartbeat-thread-independent",
+      "subject": "rd_kafka_cgrp_heartbeat",
+      "value": true,
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 5811,
+      "quotedToken": "rd_kafka_cgrp_heartbeat(rkcg);",
+      "note": "Called from rd_kafka_cgrp_join_state_serve (src/rdkafka_cgrp.c:5771-5814), which runs from rd_kafka_cgrp_serve; that function is documented 'Called from main thread' (line 6229). Application message processing enters via the consume queue (rd_kafka_consumer_err enqueues to rkcg_q, line 4992). Heartbeats stop once RD_KAFKA_CGRP_F_MAX_POLL_EXCEEDED is set (line 3287)."
+    }
+  ]
+}

@@ -1,0 +1,461 @@
+{
+  "r1": {
+    "T-C": {
+      "holds": true,
+      "k": 10,
+      "n": 10
+    },
+    "T-L1_k": 0,
+    "T-L2_k": 10,
+    "T-OFF": {
+      "countedLedgerFires": [
+        {
+          "block": 5,
+          "fires": [
+            {
+              "bcFlags": [],
+              "counts": true,
+              "rule": "spike",
+              "sensor": "ledger:webui:login-only-v1",
+              "ttd": 5.0673167034983635
+            }
+          ],
+          "rate": 10.0
+        }
+      ],
+      "episodesWithCountedLedgerFire": 1,
+      "okShareK": 10,
+      "okTotals": [
+        [
+          60,
+          60
+        ],
+        [
+          61,
+          61
+        ],
+        [
+          603,
+          603
+        ]
+      ]
+    },
+    "auth": {
+      "coordinator_rate1": {
+        "detected": 5,
+        "median": 10.9047691822052,
+        "n": 5,
+        "ttdAny": [
+          9.825291395187378,
+          10.551646709442139,
+          10.9047691822052,
+          11.496739864349365,
+          12.298864841461182
+        ]
+      },
+      "coordinator_rate10": {
+        "detected": 5,
+        "median": 11.285514831542969,
+        "n": 5,
+        "ttdAny": [
+          9.799993991851807,
+          10.07525110244751,
+          11.285514831542969,
+          11.44215989112854,
+          11.939517498016357
+        ]
+      },
+      "ledger_rate1": {
+        "detected": 5,
+        "median": 0.8703492600470781,
+        "n": 5,
+        "ttdAny": [
+          0.4712948687374592,
+          0.6085338275879622,
+          0.8703492600470781,
+          0.9249071832746267,
+          1.1312190778553486
+        ]
+      },
+      "ledger_rate10": {
+        "detected": 5,
+        "median": 0.5361882718279958,
+        "n": 5,
+        "ttdAny": [
+          0.5071318736299872,
+          0.5332484757527709,
+          0.5361882718279958,
+          0.538632639683783,
+          0.6126355370506644
+        ]
+      },
+      "ownEpisodesWithAnyFireByRate": {
+        "1": 5,
+        "10": 5
+      },
+      "ownSensors(counted fires, all)": [
+        "metric:auth:sys_cpu/median",
+        "metric:auth:sys_cpu/run3",
+        "metric:auth:sys_cpu/spike",
+        "metric:auth:sys_io/median",
+        "metric:auth:sys_psi_cpu/median",
+        "metric:auth:sys_psi_cpu/run3",
+        "span:auth:AuthUserActionsRest.isLoggedIn/absent",
+        "span:auth:AuthUserActionsRest.login/absent",
+        "span:auth:BCryptProvider.checkPassword/absent",
+        "span:auth:RandomSessionIdGenerator.getSessionId/absent",
+        "span:auth:ShaSecurityProvider.blobToString/absent",
+        "span:auth:ShaSecurityProvider.getKeyProvider/absent",
+        "span:auth:ShaSecurityProvider.getSha512/absent",
+        "span:auth:ShaSecurityProvider.secure/absent",
+        "span:auth:ShaSecurityProvider.validate/absent"
+      ],
+      "own_rate1": {
+        "detected": 5,
+        "median": 0.8065366744995117,
+        "n": 5,
+        "ttdAny": [
+          0.41051554679870605,
+          0.5595803260803223,
+          0.8065366744995117,
+          0.8687722682952881,
+          1.0764734745025635
+        ]
+      },
+      "own_rate10": {
+        "detected": 5,
+        "median": 0.36243271827697754,
+        "n": 5,
+        "ttdAny": [
+          0.33339953422546387,
+          0.357743501663208,
+          0.36243271827697754,
+          0.3649601936340332,
+          0.4363405704498291
+        ]
+      }
+    },
+    "campaignsRead": [
+      "tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1"
+    ],
+    "rec": {
+      "coordinator_rate1": {
+        "detected": 5,
+        "median": 10.235307931900024,
+        "n": 5,
+        "ttdAny": [
+          9.45079779624939,
+          10.218829870223999,
+          10.235307931900024,
+          10.531571865081787,
+          11.3147451877594
+        ]
+      },
+      "coordinator_rate10": {
+        "detected": 5,
+        "median": 9.695236206054688,
+        "n": 5,
+        "ttdAny": [
+          8.37147331237793,
+          9.075531482696533,
+          9.695236206054688,
+          9.833694458007812,
+          12.033676624298096
+        ]
+      },
+      "ledger_rate1": {
+        "detected": 0,
+        "median": null,
+        "n": 5,
+        "ttdAny": []
+      },
+      "ledger_rate10": {
+        "detected": 1,
+        "median": 5.0673167034983635,
+        "n": 5,
+        "ttdAny": [
+          5.0673167034983635
+        ]
+      },
+      "ownEpisodesWithAnyFireByRate": {
+        "1": 0,
+        "10": 5
+      },
+      "ownSensors(counted fires, all)": [
+        "metric:recommender:sys_io/median",
+        "metric:recommender:sys_io/run3",
+        "metric:recommender:sys_psi_cpu/median",
+        "metric:recommender:sys_psi_cpu/run3"
+      ],
+      "own_rate1": {
+        "detected": 0,
+        "median": null,
+        "n": 5,
+        "ttdAny": []
+      },
+      "own_rate10": {
+        "detected": 5,
+        "median": 14.915381908416748,
+        "n": 5,
+        "ttdAny": [
+          14.85563063621521,
+          14.914939880371094,
+          14.915381908416748,
+          14.916129112243652,
+          14.916921377182007
+        ]
+      },
+      "webui_ribbon_counted_ttd": [
+        9.52092957496643,
+        10.199076175689697,
+        10.601208686828613,
+        10.836936950683594,
+        10.954348802566528,
+        11.212427854537964,
+        11.731925010681152,
+        12.091792583465576,
+        12.527433156967163,
+        14.117427587509155
+      ]
+    },
+    "sources": [
+      "research/traffic-sweep/readout-teastore-offpath-r1-v3.3/sweep_analysis_v3_3.json",
+      "research/lanes/out-ts-offpath-posthoc/posthoc_lanes_v33_teastore.json"
+    ]
+  },
+  "rep2": {
+    "T-C": {
+      "holds": true,
+      "k": 10,
+      "n": 10
+    },
+    "T-L1_k": 0,
+    "T-L2_k": 10,
+    "T-OFF": {
+      "countedLedgerFires": [
+        {
+          "block": 3,
+          "fires": [
+            {
+              "bcFlags": [],
+              "counts": true,
+              "rule": "spike",
+              "sensor": "ledger:webui:login-only-v1",
+              "ttd": 27.86002754792571
+            }
+          ],
+          "rate": 1.0
+        }
+      ],
+      "episodesWithCountedLedgerFire": 1,
+      "okShareK": 10,
+      "okTotals": [
+        [
+          60,
+          60
+        ],
+        [
+          61,
+          61
+        ],
+        [
+          602,
+          602
+        ],
+        [
+          603,
+          603
+        ]
+      ]
+    },
+    "auth": {
+      "coordinator_rate1": {
+        "detected": 5,
+        "median": 9.969064235687256,
+        "n": 5,
+        "ttdAny": [
+          9.858073234558105,
+          9.960562944412231,
+          9.969064235687256,
+          11.839979410171509,
+          12.191408634185791
+        ]
+      },
+      "coordinator_rate10": {
+        "detected": 5,
+        "median": 10.113093852996826,
+        "n": 5,
+        "ttdAny": [
+          10.015746831893921,
+          10.090089559555054,
+          10.113093852996826,
+          10.399467706680298,
+          11.982378005981445
+        ]
+      },
+      "ledger_rate1": {
+        "detected": 5,
+        "median": 1.395432754419744,
+        "n": 5,
+        "ttdAny": [
+          1.0115733789280057,
+          1.2033298993483186,
+          1.395432754419744,
+          1.4442378310486674,
+          1.6269509987905622
+        ]
+      },
+      "ledger_rate10": {
+        "detected": 5,
+        "median": 0.4999300967901945,
+        "n": 5,
+        "ttdAny": [
+          0.44167095609009266,
+          0.48366932943463326,
+          0.4999300967901945,
+          0.5018071308732033,
+          0.5087639931589365
+        ]
+      },
+      "ownEpisodesWithAnyFireByRate": {
+        "1": 5,
+        "10": 5
+      },
+      "ownSensors(counted fires, all)": [
+        "metric:auth:sys_cpu/median",
+        "metric:auth:sys_cpu/run3",
+        "metric:auth:sys_cpu/spike",
+        "metric:auth:sys_io/median",
+        "metric:auth:sys_psi_cpu/median",
+        "metric:auth:sys_psi_cpu/run3",
+        "metric:auth:sys_psi_cpu/spike",
+        "span:auth:AuthUserActionsRest.isLoggedIn/absent",
+        "span:auth:AuthUserActionsRest.login/absent",
+        "span:auth:BCryptProvider.checkPassword/absent",
+        "span:auth:RandomSessionIdGenerator.getSessionId/absent",
+        "span:auth:ShaSecurityProvider.blobToString/absent",
+        "span:auth:ShaSecurityProvider.getKeyProvider/absent",
+        "span:auth:ShaSecurityProvider.getSha512/absent",
+        "span:auth:ShaSecurityProvider.secure/absent",
+        "span:auth:ShaSecurityProvider.validate/absent"
+      ],
+      "own_rate1": {
+        "detected": 5,
+        "median": 1.3134379386901855,
+        "n": 5,
+        "ttdAny": [
+          0.9227383136749268,
+          1.1202828884124756,
+          1.3134379386901855,
+          1.3568236827850342,
+          1.536977767944336
+        ]
+      },
+      "own_rate10": {
+        "detected": 5,
+        "median": 0.4537477493286133,
+        "n": 5,
+        "ttdAny": [
+          0.3991425037384033,
+          0.4388859272003174,
+          0.4537477493286133,
+          0.45810842514038086,
+          0.45879459381103516
+        ]
+      }
+    },
+    "campaignsRead": [
+      "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1"
+    ],
+    "rec": {
+      "coordinator_rate1": {
+        "detected": 5,
+        "median": 10.336305141448975,
+        "n": 5,
+        "ttdAny": [
+          9.118203401565552,
+          9.268453359603882,
+          10.336305141448975,
+          11.759441137313843,
+          11.808310270309448
+        ]
+      },
+      "coordinator_rate10": {
+        "detected": 5,
+        "median": 9.480126857757568,
+        "n": 5,
+        "ttdAny": [
+          9.09001111984253,
+          9.278493642807007,
+          9.480126857757568,
+          10.399309396743774,
+          12.471067667007446
+        ]
+      },
+      "ledger_rate1": {
+        "detected": 1,
+        "median": 27.86002754792571,
+        "n": 5,
+        "ttdAny": [
+          27.86002754792571
+        ]
+      },
+      "ledger_rate10": {
+        "detected": 0,
+        "median": null,
+        "n": 5,
+        "ttdAny": []
+      },
+      "ownEpisodesWithAnyFireByRate": {
+        "1": 5,
+        "10": 5
+      },
+      "ownSensors(counted fires, all)": [
+        "metric:recommender:sys_io/median",
+        "metric:recommender:sys_memory/median",
+        "metric:recommender:sys_memory/run3",
+        "metric:recommender:sys_memory/spike"
+      ],
+      "own_rate1": {
+        "detected": 5,
+        "median": 14.472641468048096,
+        "n": 5,
+        "ttdAny": [
+          4.152919054031372,
+          14.128252267837524,
+          14.472641468048096,
+          14.721235513687134,
+          14.966671228408813
+        ]
+      },
+      "own_rate10": {
+        "detected": 5,
+        "median": 14.91939401626587,
+        "n": 5,
+        "ttdAny": [
+          14.841520309448242,
+          14.877506732940674,
+          14.91939401626587,
+          14.92274022102356,
+          14.927413940429688
+        ]
+      },
+      "webui_ribbon_counted_ttd": [
+        10.06054139137268,
+        10.3494553565979,
+        10.946966886520386,
+        10.951574563980103,
+        11.32062816619873,
+        11.328682899475098,
+        11.345354318618774,
+        13.130501747131348,
+        13.288263320922852,
+        13.97489309310913
+      ]
+    },
+    "sources": [
+      "research/traffic-sweep/readout-teastore-offpath-rep2-v3.3/sweep_analysis_v3_3.json",
+      "research/lanes/out-ts-rep2-posthoc/posthoc_lanes_v33_teastore.json"
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "run": "run1-20261014",
+    "system": "otel",
+    "service": "loadgenerator",
+    "extractor": "B",
+    "entryIndex": 55,
+    "notes": [
+      "syncEdges: two stated. (a) HTTP to the frontend proxy: locustfile.py:111 self.client.get(\"/\") runs on HttpUser (locustfile.py:106 class WebsiteUser(HttpUser)); the host is LOCUST_HOST (compose docker-compose.yml:403, value .env:94 LOCUST_HOST=http://${FRONTEND_PROXY_ADDR}, FRONTEND_PROXY_ADDR=frontend-proxy:${ENVOY_PORT} at .env:83). Browser traffic (Playwright, locustfile.py:181-210, enabled by LOCUST_BROWSER_TRAFFIC_ENABLED=true at docker-compose.yml:406) also navigates relative to the same host. (b) flagd: locustfile.py:72 FlagdProvider(host=os.environ.get('FLAGD_HOST', 'flagd'), port=os.environ.get('FLAGD_PORT', 8013)); the flag read at locustfile.py:171 is inside the flood_home task. Protocol of the flagd provider is not set in these files: library default, not in these files (openfeature-provider-flagd==0.1.5 pinned at src/loadgenerator/requirements.txt:34).",
+      "publishesTo: none stated. No producer code in locustfile.py or the Dockerfile.",
+      "consumes: none stated. No consumer code and no topic or broker reference in the service files.",
+      "registersWith: none stated. No registry or discovery client in locustfile.py, requirements.txt or the Dockerfile, and no registry block in the deployment files.",
+      "consumer group liveness, coordinator, heartbeat, failure timeout and cleanup interval: none stated (no registry, consumer group or coordinator in these files).",
+      "healthcheck: no healthcheck key in the loadgenerator block (docker-compose.yml:385-420). The schema has no service-level healthcheck field, so it is recorded here only.",
+      "replicas: no deploy.replicas or scale key in docker-compose.yml:385-420 or in modules/otel-demo/deployment/compose.candidate-postures.yml:85-91; the deploy block sets only resources.limits.memory (docker-compose.yml:393-396). Compose default 1; library default, not in these files.",
+      "telemetry, traces: locustfile.py:60-62 TracerProvider with BatchSpanProcessor(OTLPSpanExporter()), OTLP gRPC (locustfile.py:23). No schedule_delay argument: batch interval is library default, not in these files.",
+      "telemetry, metrics: locustfile.py:57-58 OTLPMetricExporter(insecure=True) inside PeriodicExportingMetricReader(exporter) with no exportIntervalMillis argument: export interval is library default, not in these files. SystemMetricsInstrumentor().instrument() at locustfile.py:67.",
+      "telemetry, logs: locustfile.py:49-55 OTLPLogExporter(insecure=True) inside BatchLogRecordProcessor (locustfile.py:50) with a root-logger handler at INFO (locustfile.py:51-55). No schedule argument: batch interval is library default, not in these files.",
+      "telemetry destination: the exporters are built without an endpoint argument, so the endpoint comes from OTEL_EXPORTER_OTLP_ENDPOINT (docker-compose.yml:407 pass-through; .env:32 http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}, host otelcol at .env:27).",
+      "posture: docker-compose.yml passes no OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER or OTEL_LOGS_EXPORTER. In the harness, modules/otel-demo/deployment/compose.candidate-postures.yml:88-91 sets them from OTEL_CANDIDATE_LOADGENERATOR_* posture variables. locustfile.py reads none of these variables; its exporters are constructed unconditionally at locustfile.py:49-62."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "loadgenerator",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 385,
+        "quotedToken": "loadgenerator:"
+      },
+      "container": {
+        "value": "load-generator",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 387,
+        "quotedToken": "container_name: load-generator"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "no deploy.replicas or scale key for loadgenerator in upstream:docker-compose.yml:385-420 or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:85-91; Compose default 1; library default, not in these files"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol"
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "loadgenerator",
+        "callee": "frontendproxy"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 111,
+      "quotedToken": "self.client.get(\"/\")",
+      "note": "HTTP (HttpUser, locustfile.py:106); host from LOCUST_HOST (docker-compose.yml:403; .env:94, .env:83)"
+    },
+    {
+      "value": {
+        "caller": "loadgenerator",
+        "callee": "flagd"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 171,
+      "quotedToken": "get_flagd_value(\"loadgeneratorFloodHomepage\")",
+      "note": "OpenFeature flagd provider, host and port from FLAGD_HOST and FLAGD_PORT (locustfile.py:72); protocol not set in these files: library default, not in these files"
+    }
+  ]
+}

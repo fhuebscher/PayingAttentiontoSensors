@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/control-observation.schema.json",
+  "title": "Terminal observation for one control-universe microtest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "controlUniverseId", "microtestId", "terminal", "teardownClean", "runIdentity", "semanticBinding", "evidenceItems", "activationSettings", "stages", "transitions", "couplings", "blindRegions", "perturbationAssessment"],
+  "properties": {
+    "$schema": {"type": "string"}, "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "controlUniverseId": {"type": "string", "minLength": 1},
+    "microtestId": {"type": "string", "minLength": 1},
+    "terminal": {"const": true}, "teardownClean": {"const": true},
+    "runIdentity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["frameworkCommit", "sutCommit", "startedAt", "endedAt", "artifactRoot", "artifactSha256"],
+      "properties": {
+        "frameworkCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "sutCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "startedAt": {"type": "string", "minLength": 1}, "endedAt": {"type": "string", "minLength": 1},
+        "artifactRoot": {"type": "string", "minLength": 1},
+        "artifactSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "evidenceItems": {"type": "array", "minItems": 1, "items": {"$ref": "control-universe.schema.json#/$defs/evidence"}},
+    "semanticBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contextId", "scenarioId", "channelId", "nativeSemanticUnit", "nativeIdentityFields", "targetSet", "backgroundPolicy", "completeness", "evidenceItems"],
+      "properties": {
+        "contextId": {"type": "string", "minLength": 1},
+        "scenarioId": {"type": "string", "minLength": 1},
+        "channelId": {"type": "string", "minLength": 1},
+        "nativeSemanticUnit": {"type": "string", "minLength": 1},
+        "nativeIdentityFields": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "targetSet": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "backgroundPolicy": {
+          "type": "object", "additionalProperties": false,
+          "required": ["mode", "backgroundSet", "evidenceItems"],
+          "properties": {
+            "mode": {"enum": ["forbid", "exclude", "separate", "include"]},
+            "backgroundSet": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+            "evidenceItems": {"$ref": "#/$defs/evidenceRefs"}
+          }
+        },
+        "completeness": {"enum": ["complete", "incomplete", "unknown"]},
+        "evidenceItems": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "activationSettings": {"type": "object"},
+    "stages": {
+      "type": "object", "additionalProperties": false,
+      "required": ["declared", "enabled", "emitted", "transported", "retained"],
+      "properties": {
+        "declared": {"$ref": "#/$defs/stage"}, "enabled": {"$ref": "#/$defs/stage"},
+        "emitted": {"$ref": "#/$defs/stage"}, "transported": {"$ref": "#/$defs/stage"},
+        "retained": {"$ref": "#/$defs/stage"}
+      }
+    },
+    "transitions": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/transition"}},
+    "couplings": {"type": "array", "items": {"$ref": "#/$defs/coupling"}},
+    "blindRegions": {"type": "array", "items": {"$ref": "#/$defs/blind"}},
+    "perturbationAssessment": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["baselineObservationId", "classification", "changedStages", "reason", "evidenceItems"],
+          "properties": {
+            "baselineObservationId": {"type": "string", "minLength": 1},
+            "classification": {"enum": ["observed-delta", "structured-no-effect"]},
+            "changedStages": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/stageName"}},
+            "reason": {"type": "string", "minLength": 1},
+            "evidenceItems": {"$ref": "#/$defs/evidenceRefs"}
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "evidenceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "stageName": {"enum": ["declared", "enabled", "emitted", "transported", "retained"]},
+    "stage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["state", "count", "semanticUnit", "identityNamespace", "identityPolicy", "denominatorKind", "targetScope", "targetPopulation", "measurementPoint", "evidenceItems"],
+      "properties": {
+        "state": {"enum": ["on", "off", "unknown", "unsupported", "not-applicable"]},
+        "count": {"type": ["integer", "null"], "minimum": 0},
+        "semanticUnit": {"type": "string", "minLength": 1},
+        "identityNamespace": {"type": "string", "minLength": 1},
+        "identityPolicy": {"type": "string", "minLength": 1},
+        "denominatorKind": {"type": "string", "minLength": 1},
+        "targetScope": {"enum": ["target-set", "background-set", "combined", "global"]},
+        "targetPopulation": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "measurementPoint": {"type": "string", "minLength": 1},
+        "evidenceItems": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "transition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["from", "to", "relation", "evidenceItems"],
+      "properties": {
+        "from": {"$ref": "#/$defs/stageName"}, "to": {"$ref": "#/$defs/stageName"},
+        "relation": {"enum": ["preserved", "reduced", "eliminated", "amplified", "not-comparable", "indeterminate", "unsupported", "not-applicable"]},
+        "evidenceItems": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "coupling": {
+      "type": "object", "additionalProperties": false,
+      "required": ["groupIds", "stages", "reason", "evidenceItems"],
+      "properties": {
+        "groupIds": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "stages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/stageName"}},
+        "reason": {"type": "string", "minLength": 1}, "evidenceItems": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "blind": {
+      "type": "object", "additionalProperties": false,
+      "required": ["stages", "reason", "evidenceItems", "abstentionId"],
+      "properties": {
+        "stages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/stageName"}},
+        "reason": {"type": "string", "minLength": 1},
+        "evidenceItems": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "abstentionId": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

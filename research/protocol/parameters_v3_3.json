@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "title": "Parameter registry of analysis v3.3 (research/detection-time/sweep_analysis_v3_3.py, research/placement/celf_v3_3.py, research/placement/score_test_v3_3.py): the values and rules v3.3 ADDS to v3.2 for OTel campaign F and the TeaStore off-path epoch (BUDGET_F.md, BUDGET_TEASTORE_OFFPATH.md, step 4; research/PLAN_LANES_20261014.md). parameters_v3_2.json (v3.2) and parameters_v3.json (v3.1) are not changed; v3.3 reads them as they are.",
+  "provenanceRule": "Protocol decision 37: every hyperparameter is traced to its origin. A separate file, so that parameters_v3_2.json (sha256 ab4a5af7..., FREEZE_V32_20261013.md) stays byte-identical. Re-pinned 2026-10-14 (before any cell of either epoch was read; none fetched) to the committed harnesses: OTel observability-placement-runtime-otel-protocol at 715d57b (campaign F, plan 30aa2484, declaration DECLARATION_F_OTEL.md 8845721) and TeaStore observability-placement-runtime-teastore-protocol at f74b29b (plan 5a8e385e, declaration DECLARATION_TEASTORE_OFFPATH.md f40e786); every entry is `active`.",
+  "originTypes": [
+    "decision",
+    "literature",
+    "measured",
+    "upstream",
+    "engineering default",
+    "unknown"
+  ],
+  "parameters": [
+    {
+      "name": "V33_EPOCH_PROFILES",
+      "value": {
+        "otel-offpath-f-v1": {
+          "system": "otel",
+          "role": "campaign-E",
+          "shape": "campaign-B",
+          "ledgerKind": "otel-demo-mix-ledger-v1",
+          "noFaultRegime": "no-fault-calibration",
+          "faultRegimes": {
+            "frontend-pause-effect": [
+              "frontend",
+              "pause"
+            ],
+            "fraud-pause-effect": [
+              "frauddetectionservice",
+              "pause"
+            ],
+            "accounting-pause-effect": [
+              "accountingservice",
+              "pause"
+            ]
+          },
+          "design": {
+            "blocks": 5,
+            "cells": 25,
+            "noFaultCellsPerBlock": 2,
+            "requestsPerSecond": 25.0,
+            "noFaultReplicateKey": "runKey.replicate (1 or 2; 1 for every other cell)",
+            "note": "informational, not enforced by the reader"
+          }
+        },
+        "teastore-offpath-v1": {
+          "system": "teastore",
+          "role": "offpath-teastore",
+          "shape": "campaign-B",
+          "ledgerKind": null,
+          "noFaultRegime": "no-fault-cost",
+          "faultRegimes": {
+            "recommender-pause-effect": [
+              "recommender",
+              "pause"
+            ],
+            "auth-freeze-effect": [
+              "auth",
+              "pause"
+            ]
+          },
+          "design": {
+            "blocks": 5,
+            "cellsPerBlock": 6,
+            "cells": 30,
+            "journeysPerSecond": [
+              10.0,
+              1.0
+            ],
+            "note": "informational, not enforced by the reader"
+          }
+        }
+      },
+      "unit": "study-epoch name -> cell profile, in V32_EPOCH_PROFILES's shape (regimes with [target service, fault kind]); these entries are ADDED to v3.2's three",
+      "origin_type": "decision",
+      "origin_ref": "BUDGET_F.md and BUDGET_TEASTORE_OFFPATH.md (user, 2026-10-13; deadlines extended by one day by their amendments 1) and the two declarations committed alone before launch: DECLARATION_F_OTEL.md (8845721) and DECLARATION_TEASTORE_OFFPATH.md (f40e786). Re-pinned 2026-10-14 to the committed harness, read-only. OTel: observability-placement-runtime-otel-protocol 715d57b, pipelines/campaigns/otel-offpath-f-v1.json (id otel-offpath-f-v1; design.regimes no-fault-calibration, fraud-pause-effect, accounting-pause-effect, frontend-pause-effect; design.blocks 5, cellsPerBlock 5, noFaultCellsPerBlock 2, rates [25.0], totalRuns 25; faultDesign.scenarios fraud-pause -> frauddetectionservice, accounting-pause -> accountingservice, frontend-pause -> frontend, all pause; workload equal to otel-offpath-e-v1's, so the ledger kind and the routes are E's) and modules/otel-demo/execution/candidate_offpath_f.py (EPOCH, NO_FAULT_REGIME, REGIME_OF_FAULT, KEPT_FAULTS; the two no-fault cells of a block share the regime and differ by runKey.replicate 1 or 2; artifactRoot runs/<class>/r25-bBB-NN-full, NN the ordinal, so the two cells are separate directories). Role campaign-E: v3.2's block selection, registry split V32_E_SPLIT (split_f_otel.json is the same content), held-out rule and two-epochs refusal apply unchanged; E and F are never read in one run. TeaStore: observability-placement-runtime-teastore-protocol f74b29b, pipelines/campaigns/teastore-offpath-v1.json (id teastore-offpath-v1; design.regimes no-fault-cost, recommender-pause-effect (pathRelation off-path), auth-freeze-effect (on-path-control); blocks 5, cellsPerBlock 6, rates [10.0, 1.0], totalRuns 30; faultParameters recommender-pause target recommender and auth-freeze target auth, both docker compose pause) and modules/teastore/execution/candidate_offpath_ts.py (REGIMES, FAULT_TARGETS {auth-freeze: auth, recommender-pause: recommender}, runKey studyEpoch). Role offpath-teastore: no registry split is declared for it, so `--blocks` is refused for it (v3.2's REQUIRE_E_FOR_BLOCKS); it is read as one readout of all cells. Both rates are on v2.4's RATES grid (10, 1, 0.2, 0.05). The TeaStore epoch is read as campaign-B shaped (harness tag B, decision 69's H4 record, V3_B_RECORD_KEYS unchanged: the epoch's cell shape is campaign B's, per its descriptor design.cellShape, as campaign C's was by decision 92); a record of another key set stops the run.",
+      "status": "active"
+    },
+    {
+      "name": "V33_ROUTE_MODEL_TEASTORE",
+      "value": {
+        "pauseRegimes": {
+          "recommender-pause-effect": "recommender",
+          "auth-freeze-effect": "auth"
+        },
+        "p1p2Regime": "auth-freeze-effect",
+        "affectedPath": {
+          "recommender": [
+            "recommender"
+          ]
+        },
+        "syncServices": [],
+        "edges": [],
+        "asyncEdges": []
+      },
+      "unit": "TeaStore pause regimes with their explicit target services, the one regime P1 and P2 are declared for, the declared affected path of the off-path target",
+      "origin_type": "engineering default",
+      "origin_ref": "research/PLAN_LANES_20261014.md S2 ('reader: second pause regime trips pause_regime() assert'). v2.4's pause_regime() asserts exactly one stopping regime per system (sweep_analysis_v2.py:2836-2839); with the off-path epoch TeaStore has two (recommender pause, auth freeze). The reader accepts exactly this pair with these targets and refuses any other set of stopping regimes or any other target for either (UnknownSchema), and P1 and P2 stay declared for the request-path pause (auth-freeze), as v3.2 did for OTel (V32_ROUTE_MODEL_OTEL.p1p2Regime). The off-path target's affected path is the target alone (the project map's route graph is restricted to webui/auth/persistence/image, so v1.path_of already returns {target} for a service off the route); the registry service is deliberately NOT added to it: that would change which registry spikes count (a rule), and this version is admission and reporting only. The coordinator may decide otherwise before the freeze. syncServices, edges and asyncEdges are empty because no TeaStore call graph is declared here (the project map's is used, as for every TeaStore epoch). Re-pinned 2026-10-14: the pause regimes and their targets are those of teastore-offpath-v1.json at f74b29b (faultParameters, candidate_offpath_ts.FAULT_TARGETS) and DECLARATION_TEASTORE_OFFPATH.md (f40e786); the registry service stays off the recommender's declared path, as in the draft (not a rule change); the lanes block reports its fires.",
+      "status": "active"
+    },
+    {
+      "name": "V33_LANE_RULES",
+      "value": {
+        "otel": {
+          "own": {
+            "rule": "the fire's `own` flag (decision 84: the sensor's service is the episode's target); the ledger is never a lane sensor"
+          },
+          "coordinator": {
+            "service": "kafka",
+            "channels": [
+              "log"
+            ],
+            "tokenPrefixes": [
+              ""
+            ],
+            "family": "log ids of the kafka service (the broker and its group coordinator)"
+          },
+          "lag": {
+            "service": "kafka",
+            "channels": [
+              "metric"
+            ],
+            "tokenPrefixes": [
+              "kafka.consumer_group.lag"
+            ],
+            "family": "metric ids of the kafka service whose name starts kafka.consumer_group.lag (lag, lag_sum), from the collector's kafkametrics receiver"
+          }
+        },
+        "teastore": {
+          "own": {
+            "rule": "the fire's `own` flag (decision 84: the sensor's service is the episode's target); the ledger is never a lane sensor"
+          },
+          "coordinator": {
+            "service": "registry",
+            "channels": [
+              "log"
+            ],
+            "tokenPrefixes": [
+              ""
+            ],
+            "family": "log ids of the registry service (heartbeat removal)"
+          },
+          "lag": null
+        }
+      },
+      "unit": "per system: the rule that assigns a counted fire to a lane (own / coordinator / lag) by service name, channel and metric-name family",
+      "origin_type": "engineering default",
+      "origin_ref": "research/PLAN_LANES_20261014.md directions S1 and S2 and the lane table (lane 1 own silence, lane 2 coordinator side, lane 3 backlog/lag); lead's brief of 2026-10-14. Ids are matched by RULE (service name, channel, metric-name prefix), never by hard-coded hash: a log id is a template hash and changes with the log text. `coordinator` is therefore every log id of the service, a SUPERSET of the Kafka group-coordinator lines (a rule by service, not by message text: frozen regexes were a major prior failure, memory no-narrow-regex-heuristics). `kafka` and `registry` are the service names the catalog and the TeaStore log layout give; `kafka` is in research/otel-offpath/adapter.py APP_SERVICES, so a resource with service.name=kafka is admitted without an adapter edit (BUDGET_F.md change 3 upserts that name on the kafkametrics resources; a resource WITHOUT service.name is dropped by the adapter, `nonServiceResources`). Own fires are reported in `own` only; a fire is in at most one lane (own first, then coordinator, then lag). Only COUNTED fires enter the counted field of a lane: `counts` (the spike path filter) and no BC flag, which is celf_v3's `counted` for a sensor under decision 72 (a by-construction fire is a miss); a fire with `counts` True and a non-empty BC flag list is reported beside it as `earliestByConstruction` with its flags, labelled 'by construction, not counted' (added 2026-10-14 on the coordinator's request: the TeaStore registry heartbeat-removal log id fires in every auth-freeze episode but is BC-caller-log flagged, so a counted-only row would read miss by rule). TeaStore has no consumer-group lag lane (`null`): its lag cell reads `—`. The lanes are a report only; they change no calibration, rule, placement or score. Re-pinned 2026-10-14: the OTel `kafka` service name is the harness's kafkametrics resourceServiceName (candidate_offpath_f.KAFKAMETRICS, 715d57b); the TeaStore `registry` is the compose service whose lines application.log keeps (candidate_offpath_ts.py collection.registryLog, f74b29b); lane predictions are in the two declarations (F-L1/L2/L3/M, T-L1/T-L2/T-OFF/T-C).",
+      "status": "active"
+    },
+    {
+      "name": "V33_LANES_REPORT_RULE",
+      "value": "Per regime (and per rate), for every fault episode, the earliest COUNTED fire of each lane: (a) own = sensors of the episode's target (excluded from the placement by decisions 84/111; this is a separate report row, the exclusion is unchanged), (b) coordinator = log ids of the system's coordinator service, (c) lag = consumer-group lag metric ids. A lane's cell reads `—` (JSON null) when no sensor of the lane was collected in the cell (`collectedSensors` 0) and 0 fires when sensors were collected and none fired; the summary counts episodes with a fire over episodes with collected sensors, never over all episodes. Beside the counted fire, each lane carries the earliest fire dropped ONLY by a BC flag (`earliestByConstruction`, with `bcFlags`, label 'by construction, not counted'); counting, placement and the pass rule are unchanged. The time is the fire's `ttd` in seconds after the onset command, the readout's conservative time (a whole-second log stamp is timed at the end of its second, detection_time.log_ttd); `ttdLo` is the lower end. Scope: instance (one SUT, one host, one campaign); nothing is a mechanism claim.",
+      "unit": "rule",
+      "origin_type": "engineering default",
+      "origin_ref": "lead's brief of 2026-10-14, change 3 ('reporting only'); CLAUDE.md claims rules (absence is not zero, name the denominator, scope label).",
+      "status": "active"
+    }
+  ]
+}

@@ -1,0 +1,1619 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "6897a5d921c3fd8f2df642bece7315589c426f45"
+  }
+ },
+ "extraction": {
+  "stage": "final",
+  "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+  "runId": "run1-20261014-otel",
+  "judge": "opus (Opus 5.5)",
+  "accepted": {
+   "agreed": 124,
+   "supported": 36
+  },
+  "rebuildLog": {
+   "incomplete": [
+    {
+     "entity": "architecture",
+     "reason": "no accepted fact"
+    },
+    {
+     "entity": "service",
+     "subject": "accountingservice",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "adservice",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "cartservice",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "emailservice",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "flagd",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "flagd-ui",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "frontendproxy",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "imageprovider",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "loadgenerator",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "opensearch",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "valkey-cart",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "consumerGroups",
+     "subject": "accountingservice",
+     "missing": [
+      "coordinatedBy"
+     ]
+    },
+    {
+     "entity": "coordinator",
+     "subject": "kafka",
+     "missing": [
+      "name",
+      "type"
+     ]
+    }
+   ],
+   "orphaned": [
+    {
+     "id": "31c073ae74a83d3f",
+     "key": [
+      "accountingservice",
+      "consumes",
+      "orders"
+     ]
+    },
+    {
+     "id": "533d5e16d0029d83",
+     "key": [
+      "accountingservice",
+      "consumesWithGroup",
+      [
+       "orders",
+       "accountingservice"
+      ]
+     ]
+    },
+    {
+     "id": "4c25b600df0cc341",
+     "key": [
+      "accountingservice",
+      "container",
+      "accountingservice"
+     ]
+    },
+    {
+     "id": "21a59c72fc8047e9",
+     "key": [
+      "accountingservice",
+      "exportsTelemetryTo",
+      "otelcol"
+     ]
+    },
+    {
+     "id": "e7d8974334f4d4b8",
+     "key": [
+      "accountingservice",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "e8fef816628bb001",
+     "key": [
+      "accountingservice",
+      "service",
+      "accountingservice"
+     ]
+    },
+    {
+     "id": "652609c8cd478070",
+     "key": [
+      "adservice",
+      "container",
+      "adservice"
+     ]
+    },
+    {
+     "id": "3fb81271951a5ace",
+     "key": [
+      "adservice",
+      "exportsTelemetryTo",
+      "otelcol"
+     ]
+    },
+    {
+     "id": "14236f690e96a0c0",
+     "key": [
+      "adservice",
+      "service",
+      "adservice"
+     ]
+    },
+    {
+     "id": "6b8784bc9b6b6fef",
+     "key": [
+      "cartservice",
+      "container",
+      "cartservice"
+     ]
+    },
+    {
+     "id": "427128a203a31710",
+     "key": [
+      "cartservice",
+      "exportsTelemetryTo",
+      "otelcol"
+     ]
+    },
+    {
+     "id": "a05cd89918a7d2d3",
+     "key": [
+      "cartservice",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "1040eec287a6630d",
+     "key": [
+      "cartservice",
+      "service",
+      "cartservice"
+     ]
+    },
+    {
+     "id": "20cf5fe96600e449",
+     "key": [
+      "emailservice",
+      "container",
+      "emailservice"
+     ]
+    },
+    {
+     "id": "a823ee7a6982a370",
+     "key": [
+      "emailservice",
+      "exportsTelemetryTo",
+      "otelcol"
+     ]
+    },
+    {
+     "id": "e6351c6fd6146c48",
+     "key": [
+      "emailservice",
+      "service",
+      "emailservice"
+     ]
+    },
+    {
+     "id": "c25169e6be0e8aa0",
+     "key": [
+      "flagd",
+      "container",
+      "flagd"
+     ]
+    },
+    {
+     "id": "ca4175cbd1b83e01",
+     "key": [
+      "flagd",
+      "exportsTelemetryTo",
+      "otelcol"
+     ]
+    },
+    {
+     "id": "cf56b1d4087ccdbd",
+     "key": [
+      "flagd",
+      "service",
+      "flagd"
+     ]
+    },
+    {
+     "id": "918b90cd89fbf4fb",
+     "key": [
+      "flagd-ui",
+      "container",
+      "flagd-ui"
+     ]
+    },
+    {
+     "id": "29a6dce844cf047c",
+     "key": [
+      "flagd-ui",
+      "exportsTelemetryTo",
+      "otelcol"
+     ]
+    },
+    {
+     "id": "37cb46597404caac",
+     "key": [
+      "flagd-ui",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "9de3f5c3d5e61b2b",
+     "key": [
+      "flagd-ui",
+      "service",
+      "flagd-ui"
+     ]
+    },
+    {
+     "id": "949ad6755f8db927",
+     "key": [
+      "frontendproxy",
+      "container",
+      "frontendproxy"
+     ]
+    },
+    {
+     "id": "fefe7417a786f37f",
+     "key": [
+      "frontendproxy",
+      "exportsTelemetryTo",
+      "otelcol"
+     ]
+    },
+    {
+     "id": "1cabe4a53dd8ae32",
+     "key": [
+      "frontendproxy",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "42e2afb16a082d6f",
+     "key": [
+      "frontendproxy",
+      "service",
+      "frontendproxy"
+     ]
+    },
+    {
+     "id": "608fed0c388dab97",
+     "key": [
+      "imageprovider",
+      "container",
+      "imageprovider"
+     ]
+    },
+    {
+     "id": "8574934d55b7e442",
+     "key": [
+      "imageprovider",
+      "exportsTelemetryTo",
+      "otelcol"
+     ]
+    },
+    {
+     "id": "153bdd4d350acf11",
+     "key": [
+      "imageprovider",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "3a75353af77b68dc",
+     "key": [
+      "imageprovider",
+      "service",
+      "imageprovider"
+     ]
+    },
+    {
+     "id": "372fb42f0c6dfdde",
+     "key": [
+      "loadgenerator",
+      "container",
+      "loadgenerator"
+     ]
+    },
+    {
+     "id": "8cb8fedb3504a099",
+     "key": [
+      "loadgenerator",
+      "exportsTelemetryTo",
+      "otelcol"
+     ]
+    },
+    {
+     "id": "9c7f65a1095b823b",
+     "key": [
+      "loadgenerator",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "6a2c08cd57ad694d",
+     "key": [
+      "loadgenerator",
+      "service",
+      "loadgenerator"
+     ]
+    },
+    {
+     "id": "0d3bf178522fe18a",
+     "key": [
+      "accountingservice",
+      "consumerGroup",
+      "accountingservice"
+     ]
+    },
+    {
+     "id": "28e37d96cba54e9e",
+     "key": [
+      "imageprovider",
+      "emits:span",
+      "imageprovider"
+     ]
+    },
+    {
+     "id": "76f131b1a28947de",
+     "key": [
+      "kafka",
+      "hostedBy",
+      "kafka"
+     ]
+    },
+    {
+     "id": "4c82bb1af4ef4f2d",
+     "key": [
+      "opensearch",
+      "container",
+      "opensearch"
+     ]
+    },
+    {
+     "id": "75bce974a5afbaa9",
+     "key": [
+      "opensearch",
+      "service",
+      "opensearch"
+     ]
+    },
+    {
+     "id": "59e62ff44a3b7f7f",
+     "key": [
+      "valkey-cart",
+      "container",
+      "valkey-cart"
+     ]
+    },
+    {
+     "id": "940610579387fc7e",
+     "key": [
+      "valkey-cart",
+      "service",
+      "valkey-cart"
+     ]
+    },
+    {
+     "id": "428847f6021c2ad6",
+     "key": [
+      [
+       "kafka",
+       "session"
+      ],
+      "monitors",
+      "accountingservice"
+     ]
+    }
+   ]
+  }
+ },
+ "host": {
+  "id": {
+   "value": "fb14srv6",
+   "repo": "obsplacement",
+   "sourceFile": "research/host-topology.json",
+   "line": 422,
+   "quotedToken": "\"hostId\": \"fb14srv6\"",
+   "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "checkoutservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 114,
+    "quotedToken": "checkoutservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/main.go",
+    "line": 219,
+    "quotedToken": "RegisterCheckoutServiceServer",
+    "note": "serves the CheckoutService gRPC API (pb/demo.proto:224 service CheckoutService)"
+   },
+   "container": {
+    "value": "checkoutservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 116,
+    "quotedToken": "container_name: checkout-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "note": "library default, not in these files: no deploy.replicas or scale for checkoutservice in upstream:docker-compose.yml:114-163 (deploy block at lines 122-125 sets only resources.limits.memory) or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:39-45; Compose default 1",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "repo": "upstream",
+     "sourceFile": "docker-compose.yml",
+     "line": 140,
+     "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT",
+     "note": "traces: otlptracegrpc.New (src/checkoutservice/main.go:93) with sdktrace.WithBatcher (main.go:98); metrics: otlpmetricgrpc.New (main.go:109) with NewPeriodicReader (main.go:115); endpoint value is .env:32 OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} with .env:27 OTEL_COLLECTOR_HOST=otelcol. Export interval not stated in these files (library default, not in these files). Logs: stdout only (main.go:70)."
+    }
+   ],
+   "publishesTo": [
+    {
+     "value": "orders",
+     "repo": "upstream",
+     "sourceFile": "src/checkoutservice/kafka/producer.go",
+     "line": 11,
+     "quotedToken": "\"orders\"",
+     "note": "kafka.Topic used as the sarama.ProducerMessage Topic at src/checkoutservice/main.go:500; published only when KAFKA_SERVICE_ADDR is non-empty (main.go:320)"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "currencyservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 166,
+    "quotedToken": "currencyservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/currencyservice/src/server.cpp",
+    "line": 103,
+    "quotedToken": "oteldemo::CurrencyService::Service"
+   },
+   "container": {
+    "value": "currencyservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 168,
+    "quotedToken": "container_name: currency-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "note": "library default, not in these files: no deploy.replicas or scale for currencyservice in docker-compose.yml:166-189 or compose.candidate-postures.yml:46-52; Compose default 1",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "repo": "upstream",
+     "sourceFile": ".env",
+     "line": 27,
+     "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+     "note": "traces, metrics and logs all via OTLP/gRPC; docker-compose.yml:184 passes OTEL_EXPORTER_OTLP_ENDPOINT, .env:32 defines it as http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "frauddetectionservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 219,
+    "quotedToken": "frauddetectionservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/frauddetectionservice/Dockerfile",
+    "line": 15,
+    "quotedToken": "gcr.io/distroless/java17-debian11",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM gcr.io/distroless/java17-debian11"
+   },
+   "container": {
+    "value": "frauddetectionservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 221,
+    "quotedToken": "container_name: frauddetection-service",
+    "note": "no healthcheck: key in the service block docker-compose.yml:219-247 (health check: none configured; restart: unless-stopped at line 231)"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "note": "no deploy.replicas or scale in the service block docker-compose.yml:229-230 (deploy only sets resources.limits.memory) nor in compose.candidate-postures.yml:59-65; Compose default 1",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "repo": "upstream",
+     "sourceFile": "docker-compose.yml",
+     "line": 236,
+     "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}",
+     "note": "OTLP over HTTP (port 4318 via .env:29) for traces, metrics and logs; the export interval is not stated in the service's files (library default, not in these files); the java agent is attached at Dockerfile:22 JAVA_TOOL_OPTIONS"
+    }
+   ],
+   "consumes": [
+    {
+     "topic": {
+      "value": "orders",
+      "repo": "upstream",
+      "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+      "line": 26,
+      "quotedToken": "const val topic = \"orders\""
+     },
+     "group": {
+      "value": "frauddetectionservice",
+      "repo": "upstream",
+      "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+      "line": 27,
+      "quotedToken": "const val groupID = \"frauddetectionservice\""
+     }
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "frontend",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 250,
+    "quotedToken": "frontend:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/Dockerfile",
+    "line": 23,
+    "quotedToken": "node:20-alpine",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM node:20-alpine"
+   },
+   "container": {
+    "value": "frontend",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 252,
+    "quotedToken": "container_name: frontend",
+    "note": "memory limit 250M at docker-compose.yml:261; restart: unless-stopped at :262; no healthcheck key in the frontend block (docker-compose.yml:250-309), only kafka (:652) and opensearch (:801) have one"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "quotedToken": "replicas",
+    "note": "library default, not in these files: the frontend block at docker-compose.yml:250-309 has no deploy.replicas key (its deploy block sets only resources.limits.memory), so the Compose default of one container applies",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": ".env",
+     "line": 32,
+     "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}",
+     "note": "server-side (Node) traces and metrics over OTLP gRPC: host otelcol (.env:27), gRPC port 4317 (.env:28); passed to the container at docker-compose.yml:275 (OTEL_EXPORTER_OTLP_ENDPOINT); exporters constructed with no arguments at src/frontend/utils/telemetry/Instrumentation.js:16 (OTLPTraceExporter) and :26 (OTLPMetricExporter). Metric export interval: PeriodicExportingMetricReader at Instrumentation.js:25 sets no interval, library default, not in these files. Logs: no log exporter in the frontend files. The candidate-postures overlay sets OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER and OTEL_SDK_DISABLED from unresolved OTEL_CANDIDATE_FRONTEND_* variables (compose.candidate-postures.yml:66-73), so the effective posture is not determined by these files"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "grafana",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 701,
+    "quotedToken": "grafana:"
+   },
+   "role": {
+    "value": "telemetry-backend",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "src/grafana/provisioning/datasources/default.yaml",
+    "line": 10,
+    "quotedToken": "type: prometheus",
+    "note": "Role inferred from provisioned datasources (Prometheus, Jaeger, OpenSearch) that Grafana queries; no file states a role."
+   },
+   "container": {
+    "value": "grafana",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 703,
+    "quotedToken": "container_name: grafana"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "stats.grafana.org",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "src/grafana/grafana.ini",
+     "line": 197,
+     "quotedToken": "stats.grafana.org",
+     "note": "Usage counters, sent every 24 hours (line 197 comment, 'every 24 hours' on the same line). Not OTel traces, metrics or logs. The enable switch ';reporting_enabled = true' (line 201) is commented out, so the effective value is the library default (true), not in these files."
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "jaeger",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 679,
+    "quotedToken": "jaeger:"
+   },
+   "role": {
+    "value": "telemetry-backend",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 680,
+    "quotedToken": "image: ${JAEGERTRACING_IMAGE}",
+    "note": "stage-1 rule D1: image-only service, image jaegertracing/all-in-one:1.60"
+   },
+   "container": {
+    "value": "jaeger",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 681,
+    "quotedToken": "container_name: jaeger"
+   }
+  },
+  {
+   "name": {
+    "value": "kafka",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 632,
+    "quotedToken": "kafka:"
+   },
+   "role": {
+    "value": "broker",
+    "repo": "upstream",
+    "sourceFile": "src/kafka/Dockerfile",
+    "line": 19,
+    "quotedToken": "KAFKA_PROCESS_ROLES=controller,broker"
+   },
+   "container": {
+    "value": "kafka",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 634,
+    "quotedToken": "container_name: kafka"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "note": "library default, not in these files: the deploy block for kafka (upstream docker-compose.yml:640-643) sets only resources.limits.memory 600M, no replicas or scale; compose.candidate-postures.yml:145-151 sets only environment. Compose default is 1.",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "repo": "upstream",
+     "sourceFile": "docker-compose.yml",
+     "line": 647,
+     "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}",
+     "note": "OTEL_COLLECTOR_HOST=otelcol at .env:27, OTLP over HTTP port 4318 (.env:29); traces, metrics and logs exporters are set per posture in compose.candidate-postures.yml:149-151"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "otelcol",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 719,
+    "quotedToken": "otelcol:"
+   },
+   "role": {
+    "value": "collector",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 720,
+    "quotedToken": "image: ${COLLECTOR_CONTRIB_IMAGE}",
+    "note": "image is otel/opentelemetry-collector-contrib:0.108.0 per .env:9"
+   },
+   "container": {
+    "value": "otelcol",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 721,
+    "quotedToken": "container_name: otel-col"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "note": "library default, not in these files: the otelcol block (docker-compose.yml:719-748) has a deploy: block (line 722) with resources only and no replicas; Compose default is 1",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "repo": "upstream",
+     "sourceFile": "src/otelcollector/otelcol-config.yml",
+     "line": 94,
+     "quotedToken": "jaeger:4317",
+     "note": "traces, OTLP exporter 'otlp' (gRPC port 4317), used in traces pipeline line 127"
+    },
+    {
+     "value": "opensearch",
+     "repo": "upstream",
+     "sourceFile": "src/otelcollector/otelcol-config.yml",
+     "line": 104,
+     "quotedToken": "http://opensearch:9200",
+     "note": "logs, exporter opensearch, used in logs pipeline line 135"
+    },
+    {
+     "value": "prometheus",
+     "repo": "upstream",
+     "sourceFile": "src/otelcollector/otelcol-config.yml",
+     "line": 98,
+     "quotedToken": "http://prometheus:9090/api/v1/otlp",
+     "note": "metrics, exporter otlphttp/prometheus, used in metrics pipeline line 131"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "paymentservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 423,
+    "quotedToken": "paymentservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/paymentservice/index.js",
+    "line": 46,
+    "quotedToken": "PaymentService.service"
+   },
+   "container": {
+    "value": "paymentservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 425,
+    "quotedToken": "container_name: payment-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "note": "library default, not in these files: no deploy.replicas or scale for paymentservice in docker-compose.yml:423-451 (deploy block has only resources.limits.memory) or compose.candidate-postures.yml:92-102; Compose default 1",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "repo": "upstream",
+     "sourceFile": ".env",
+     "line": 27,
+     "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+     "note": "traces and metrics via OTLP/gRPC (opentelemetry.js:16, :25-26); docker-compose.yml:442 passes OTEL_EXPORTER_OTLP_ENDPOINT, .env:32 defines it as http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}; no OTLP log exporter configured"
+    }
+   ],
+   "emits": [
+    {
+     "kind": "log",
+     "id": {
+      "value": "Charge request received.",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/paymentservice/index.js",
+      "line": 19,
+      "quotedToken": "Charge request received."
+     }
+    },
+    {
+     "kind": "log",
+     "id": {
+      "value": "Transaction complete.",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/paymentservice/charge.js",
+      "line": 65,
+      "quotedToken": "Transaction complete."
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "charge",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/paymentservice/charge.js",
+      "line": 17,
+      "quotedToken": "tracer.startSpan('charge')"
+     }
+    },
+    {
+     "kind": "metric",
+     "id": {
+      "value": "app.payment.transactions",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/paymentservice/charge.js",
+      "line": 14,
+      "quotedToken": "app.payment.transactions"
+     }
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "productcatalogservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 454,
+    "quotedToken": "productcatalogservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "src/productcatalogservice/main.go",
+    "line": 159,
+    "quotedToken": "RegisterProductCatalogServiceServer",
+    "note": "gRPC server implementing oteldemo.ProductCatalogService (pb/demo.proto:71); it makes one outbound call, to flagd (syncEdges)"
+   },
+   "container": {
+    "value": "productcatalogservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 456,
+    "quotedToken": "container_name: product-catalog-service",
+    "note": "Image ${IMAGE_NAME}:${DEMO_VERSION}-productcatalogservice (docker-compose.yml:455); Dockerfile release stage FROM alpine (src/productcatalogservice/Dockerfile:26), ENTRYPOINT ./productcatalogservice (Dockerfile:34). The compose block (lines 454-482) has no healthcheck key, so no container health check is configured by these files. The process does register a gRPC health server (src/productcatalogservice/main.go:160 healthpb.RegisterHealthServer, Check returns SERVING at main.go:230-231), but no file given here probes it. memory limit 20M (docker-compose.yml:465), restart: unless-stopped (docker-compose.yml:466)."
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "quotedToken": "container_name: product-catalog-service",
+    "note": "Compose default 1; library default, not in these files. The block docker-compose.yml:454-482 has a deploy: key (line 462) with resources.limits only and no replicas or scale key; compose.candidate-postures.yml:103-109 sets only environment for this service.",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "docker-compose.yml",
+     "line": 473,
+     "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT",
+     "note": "Traces and metrics, over OTLP gRPC: otlptracegrpc.New at src/productcatalogservice/main.go:86 and otlpmetricgrpc.New at main.go:102. Endpoint is OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} (.env:32) with OTEL_COLLECTOR_HOST=otelcol (.env:27) and OTEL_COLLECTOR_PORT_GRPC=4317 (.env:28). Traces use sdktrace.WithBatcher(exporter) with no options (main.go:91); metrics use sdkmetric.NewPeriodicReader(exporter) with no interval option (main.go:108); no OTEL_METRIC_EXPORT_INTERVAL, OTEL_BSP_SCHEDULE_DELAY or similar is set in docker-compose.yml, .env or compose.candidate-postures.yml, so the export intervals are library default, not in these files. Logs: logrus (main.go:57 logrus.New()) with no OTLP log exporter in main.go; container stdout goes to the json-file driver (docker-compose.yml:482 logging: *logging, defined docker-compose.yml:4-9). Harness override compose.candidate-postures.yml:105-109 sets OTEL_PLACEMENT_ENABLED, OTEL_SDK_DISABLED and OTEL_TRACES_EXPORTER/OTEL_METRICS_EXPORTER/OTEL_LOGS_EXPORTER from OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_* variables that are unresolved in these files; whether the exporter is otlp or none per posture is not stated here (the Go code in main.go does not read OTEL_TRACES_EXPORTER or OTEL_METRICS_EXPORTER)."
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "prometheus",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 751,
+    "quotedToken": "prometheus:"
+   },
+   "role": {
+    "value": "telemetry-backend",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 752,
+    "quotedToken": "image: ${PROMETHEUS_IMAGE}",
+    "note": "stage-1 rule D1: image-only service, image quay.io/prometheus/prometheus:v2.54.1"
+   },
+   "container": {
+    "value": "prometheus",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 753,
+    "quotedToken": "container_name: prometheus"
+   }
+  },
+  {
+   "name": {
+    "value": "quoteservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 485,
+    "quotedToken": "quoteservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "src/quoteservice/app/routes.php",
+    "line": 52,
+    "quotedToken": "$app->post('/getquote'"
+   },
+   "container": {
+    "value": "quoteservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 487,
+    "quotedToken": "container_name: quote-service"
+   }
+  },
+  {
+   "name": {
+    "value": "recommendationservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 537,
+    "quotedToken": "OTEL_SERVICE_NAME=recommendationservice"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 513,
+    "quotedToken": "recommendationservice:",
+    "note": "service block that builds src/recommendationservice/Dockerfile and runs recommendation_server.py (Dockerfile:43)"
+   },
+   "container": {
+    "value": "recommendationservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 515,
+    "quotedToken": "container_name: recommendation-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "note": "no deploy.replicas or scale key in the recommendationservice block (docker-compose.yml:513-546, deploy block at 521-524 sets only a memory limit) or in compose.candidate-postures.yml:117-123; library default, not in these files",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": ".env",
+     "line": 32,
+     "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}",
+     "note": "traces and metrics: opentelemetry-instrument entrypoint (Dockerfile:43) reads OTEL_EXPORTER_OTLP_ENDPOINT passed at docker-compose.yml:534; OTEL_COLLECTOR_HOST=otelcol at .env:27, port 4317 at .env:28"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "shippingservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 549,
+    "quotedToken": "shippingservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/shippingservice/Dockerfile",
+    "line": 47,
+    "quotedToken": "debian:bookworm-slim",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM debian:bookworm-slim"
+   },
+   "container": {
+    "value": "shippingservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 551,
+    "quotedToken": "container_name: shipping-service",
+    "note": "Image is ${IMAGE_NAME}:${DEMO_VERSION}-shippingservice (docker-compose.yml:550). Compose block lines 549-573 has no healthcheck key, so no container health check is configured in compose. The Dockerfile installs /bin/grpc_health_probe (src/shippingservice/Dockerfile:44) and main.rs:22-25 registers a tonic-health serving status, but no file in the given set invokes the probe. restart: unless-stopped (line 561), memory limit 20M (line 560)."
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 551,
+    "quotedToken": "container_name: shipping-service",
+    "note": "No deploy.replicas or scale key in docker-compose.yml:549-573; a fixed container_name admits one container. The count is not stated explicitly."
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "docker-compose.yml",
+     "line": 567,
+     "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}",
+     "note": "OTLP over gRPC: OTEL_COLLECTOR_HOST=otelcol (.env:27), OTEL_COLLECTOR_PORT_GRPC=4317 (.env:28); the collector's otlp receiver has a grpc protocol (src/otelcollector/otelcol-config.yml:6-7). Traces: src/shippingservice/src/telemetry/traces_conf.rs:16 opentelemetry_otlp::new_exporter().tonic() with install_batch(runtime::Tokio) at traces_conf.rs:18; no export interval or batch setting is set in these files (library default, not in these files). Metrics: Cargo.toml:22 enables only the opentelemetry 'trace' feature and no metrics pipeline is built in the given src files, so no metric export is stated. Logs: telemetry/logs_conf.rs:7 CombinedLogger of SimpleLogger only, no OTLP log exporter in code, so no log export to the collector is stated (logs go to the container stdout via the json-file driver, docker-compose.yml:573 'logging: *logging'). Harness override compose.candidate-postures.yml:126-130 sets OTEL_PLACEMENT_ENABLED, OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER from ${OTEL_CANDIDATE_SHIPPINGSERVICE_*}; whether the Rust SDK reads these is not stated in the given files."
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "adservice",
+    "callee": "flagd"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/adservice/src/main/java/oteldemo/AdService.java",
+   "line": 92,
+   "quotedToken": "new FlagdProvider(options)",
+   "note": "feature-flag evaluation client; target FLAGD_HOST/FLAGD_PORT from docker-compose.yml:65-66, .env:129-130 (flagd:8013); protocol not stated in these files (library default, not in these files)"
+  },
+  {
+   "value": {
+    "caller": "cartservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/cartservice/src/Program.cs",
+   "line": 42,
+   "quotedToken": "new FlagdProvider()",
+   "note": "Flag evaluation GetBooleanValueAsync(\"cartServiceFailure\") at src/cartservice/src/services/CartService.cs:84. Callee host from env FLAGD_HOST (docker-compose.yml:97, .env:129 FLAGD_HOST=flagd). Wire protocol is not stated in these files (library default of the OpenFeature flagd provider, not in these files)."
+  },
+  {
+   "value": {
+    "caller": "cartservice",
+    "callee": "valkey-cart"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 144,
+   "quotedToken": "VALKEY_ADDR=valkey-cart:${VALKEY_PORT}",
+   "note": "Protocol: Redis client (StackExchange.Redis) via ConnectionMultiplexer.Connect, src/cartservice/src/cartstore/ValkeyCartStore.cs:72; address read from env VALKEY_ADDR at Program.cs:23 and passed through compose at docker-compose.yml:99"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "cartservice"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/checkoutservice/main.go",
+   "line": 180,
+   "quotedToken": "CART_SERVICE_ADDR",
+   "note": "gRPC: pb.NewCartServiceClient (main.go:182); address .env:54 cartservice:${CART_SERVICE_PORT}; calls GetCart main.go:400, EmptyCart main.go:408"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "currencyservice"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/checkoutservice/main.go",
+   "line": 185,
+   "quotedToken": "CURRENCY_SERVICE_ADDR",
+   "note": "gRPC: pb.NewCurrencyServiceClient (main.go:187); address .env:64 currencyservice:${CURRENCY_SERVICE_PORT}; call Convert main.go:434"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "emailservice"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/checkoutservice/main.go",
+   "line": 469,
+   "quotedToken": "otelhttp.Post",
+   "note": "HTTP POST to cs.emailSvcAddr+\"/send_order_confirmation\" (main.go:469); address env EMAIL_SERVICE_ADDR main.go:190, value .env:69 http://emailservice:${EMAIL_SERVICE_PORT}. Protocol HTTP, not gRPC (pb.NewEmailServiceClient at main.go:192 is created but the call at line 469 is HTTP)."
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "paymentservice"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/checkoutservice/main.go",
+   "line": 195,
+   "quotedToken": "PAYMENT_SERVICE_ADDR",
+   "note": "gRPC: pb.NewPaymentServiceClient (main.go:197); address .env:102 paymentservice:${PAYMENT_SERVICE_PORT}; call Charge main.go:451 (main.go:446 swaps in badAddress:50051 when feature flag paymentServiceUnreachable is on)"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "productcatalogservice"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/checkoutservice/main.go",
+   "line": 175,
+   "quotedToken": "PRODUCT_CATALOG_SERVICE_ADDR",
+   "note": "gRPC: pb.NewProductCatalogServiceClient (main.go:177); address .env:107 productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}; call GetProduct main.go:418"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "shippingservice"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/checkoutservice/main.go",
+   "line": 170,
+   "quotedToken": "SHIPPING_SERVICE_ADDR",
+   "note": "gRPC: pb.NewShippingServiceClient (main.go:172) over grpc.NewClient (main.go:377); address .env:122 shippingservice:${SHIPPING_SERVICE_PORT}; calls GetQuote main.go:389, ShipOrder main.go:483"
+  },
+  {
+   "value": {
+    "caller": "frauddetectionservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+   "line": 35,
+   "quotedToken": "FlagdProvider(options)",
+   "note": "feature-flag evaluation (getIntegerValue, main.kt:86) via the flagd OpenFeature provider; host from FLAGD_HOST at docker-compose.yml:233; wire protocol not stated in these files"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "adservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Ad.gateway.ts",
+   "line": 9,
+   "quotedToken": "new AdServiceClient(AD_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Ad.gateway.ts:4, rpc getAds at :14); callee host from .env:49 AD_SERVICE_ADDR=adservice:${AD_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "cartservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Cart.gateway.ts",
+   "line": 9,
+   "quotedToken": "new CartServiceClient(CART_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Cart.gateway.ts:4, rpcs getCart/addItem/emptyCart at :14, :19, :24); callee host from .env:54 CART_SERVICE_ADDR=cartservice:${CART_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "checkoutservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Checkout.gateway.ts",
+   "line": 9,
+   "quotedToken": "new CheckoutServiceClient(CHECKOUT_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Checkout.gateway.ts:4, rpc placeOrder at :14); callee host from .env:59 CHECKOUT_SERVICE_ADDR=checkoutservice:${CHECKOUT_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "currencyservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Currency.gateway.ts",
+   "line": 9,
+   "quotedToken": "new CurrencyServiceClient(CURRENCY_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Currency.gateway.ts:4, rpcs convert/getSupportedCurrencies at :14, :19); callee host from .env:64 CURRENCY_SERVICE_ADDR=currencyservice:${CURRENCY_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "productcatalogservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/ProductCatalog.gateway.ts",
+   "line": 9,
+   "quotedToken": "new ProductCatalogServiceClient(PRODUCT_CATALOG_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at ProductCatalog.gateway.ts:4, rpcs listProducts/getProduct at :14, :19); callee host from .env:107 PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "recommendationservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Recommendations.gateway.ts",
+   "line": 9,
+   "quotedToken": "new RecommendationServiceClient(RECOMMENDATION_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Recommendations.gateway.ts:4, rpc listRecommendations at :14); callee host from .env:117 RECOMMENDATION_SERVICE_ADDR=recommendationservice:${RECOMMENDATION_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "shippingservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Shipping.gateway.ts",
+   "line": 9,
+   "quotedToken": "new ShippingServiceClient(SHIPPING_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Shipping.gateway.ts:4, rpc getQuote at :14); callee host from .env:122 SHIPPING_SERVICE_ADDR=shippingservice:${SHIPPING_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 51,
+   "quotedToken": "cluster: flagservice",
+   "note": "HTTP; prefix /flagservice/ with timeout 0s; cluster address ${FLAGD_HOST} (envoy.tmpl.yaml:133) = flagd (.env:129)"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "flagd-ui"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 53,
+   "quotedToken": "cluster: flagd-ui",
+   "note": "HTTP; prefix /feature; cluster address ${FLAGD_UI_HOST} (envoy.tmpl.yaml:145) = flagd-ui (.env:133)"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "frontend"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 55,
+   "quotedToken": "cluster: frontend",
+   "note": "HTTP; default route prefix '/'; cluster address ${FRONTEND_HOST} (envoy.tmpl.yaml:109) = frontend (.env:81)"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "grafana"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 47,
+   "quotedToken": "cluster: grafana",
+   "note": "HTTP; prefix /grafana; cluster address ${GRAFANA_SERVICE_HOST} (envoy.tmpl.yaml:169) = grafana (.env:151)"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "imageprovider"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 49,
+   "quotedToken": "cluster: imageprovider",
+   "note": "HTTP; prefix /images/; cluster address ${IMAGE_PROVIDER_HOST} (envoy.tmpl.yaml:121) = imageprovider (.env:87)"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "jaeger"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 45,
+   "quotedToken": "cluster: jaeger",
+   "note": "HTTP; prefix /jaeger; cluster address ${JAEGER_SERVICE_HOST} (envoy.tmpl.yaml:181) = jaeger (.env:155)"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "loadgenerator"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 41,
+   "quotedToken": "cluster: loadgen",
+   "note": "HTTP; prefix /loadgen; cluster address ${LOCUST_WEB_HOST} (envoy.tmpl.yaml:157) = loadgenerator (.env:95)"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 43,
+   "quotedToken": "opentelemetry_collector_http",
+   "note": "HTTP; prefix /otlp-http/ forwarded to the collector OTLP/HTTP port; cluster address ${OTEL_COLLECTOR_HOST} (envoy.tmpl.yaml:97) = otelcol (.env:27)"
+  },
+  {
+   "value": {
+    "caller": "grafana",
+    "callee": "jaeger"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/grafana/provisioning/datasources/jaeger.yaml",
+   "line": 11,
+   "quotedToken": "http://jaeger:16686/jaeger/ui",
+   "note": "HTTP datasource query (type: jaeger, line 10)."
+  },
+  {
+   "value": {
+    "caller": "grafana",
+    "callee": "opensearch"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/grafana/provisioning/datasources/opensearch.yaml",
+   "line": 9,
+   "quotedToken": "http://opensearch:9200/",
+   "note": "HTTP datasource query (type grafana-opensearch-datasource, line 8; access: proxy, line 10)."
+  },
+  {
+   "value": {
+    "caller": "grafana",
+    "callee": "prometheus"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/grafana/provisioning/datasources/default.yaml",
+   "line": 11,
+   "quotedToken": "http://prometheus:9090",
+   "note": "HTTP datasource query (type: prometheus, line 10)."
+  },
+  {
+   "value": {
+    "caller": "loadgenerator",
+    "callee": "flagd"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/loadgenerator/locustfile.py",
+   "line": 72,
+   "quotedToken": "FlagdProvider(host=os.environ.get('FLAGD_HOST', 'flagd')",
+   "note": "OpenFeature flag evaluation (get_integer_value at locustfile.py:78, flag loadgeneratorFloodHomepage at line 171). FLAGD_HOST=flagd and FLAGD_PORT=8013 (.env:129, .env:130; docker-compose.yml:413-414). Wire protocol is not stated in these files (library default of openfeature-provider-flagd==0.1.5, requirements.txt:34, not in these files)."
+  },
+  {
+   "value": {
+    "caller": "loadgenerator",
+    "callee": "frontendproxy"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 94,
+   "quotedToken": "LOCUST_HOST=http://${FRONTEND_PROXY_ADDR}",
+   "note": "HTTP. FRONTEND_PROXY_ADDR=frontend-proxy:${ENVOY_PORT} (.env:83); the compose block passes LOCUST_HOST through (docker-compose.yml:403). Requests are issued with self.client.get (src/loadgenerator/locustfile.py:111, HttpUser at line 106) to paths such as /api/checkout (locustfile.py:157). Callee is the frontend-proxy service, not frontend directly."
+  },
+  {
+   "value": {
+    "caller": "otelcol",
+    "callee": "frontendproxy"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/otelcollector/otelcol-config.yml",
+   "line": 17,
+   "quotedToken": "http://frontendproxy:${env:ENVOY_PORT}",
+   "note": "HTTP, httpcheck/frontendproxy receiver target"
+  },
+  {
+   "value": {
+    "caller": "otelcol",
+    "callee": "valkey-cart"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/otelcollector/otelcol-config.yml",
+   "line": 21,
+   "quotedToken": "valkey-cart:6379",
+   "note": "redis receiver scrape, collection_interval 10s (line 23)"
+  },
+  {
+   "value": {
+    "caller": "paymentservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/paymentservice/charge.js",
+   "line": 9,
+   "quotedToken": "new FlagdProvider()",
+   "note": "flag evaluation at charge.js:20 (getBooleanValue paymentServiceFailure); target host FLAGD_HOST at docker-compose.yml:440"
+  },
+  {
+   "value": {
+    "caller": "productcatalogservice",
+    "callee": "flagd"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/productcatalogservice/main.go",
+   "line": 132,
+   "quotedToken": "flagd.NewProvider()",
+   "note": "Feature-flag evaluation: openfeature.SetProvider(flagd.NewProvider()) at main.go:132, evaluated per GetProduct for product id OLJCESPC7Z via client.BooleanValue at main.go:306-307 (flag productCatalogFailure). Target host/port come from FLAGD_HOST and FLAGD_PORT (docker-compose.yml:471-472; .env:129-130 flagd and 8013). The wire protocol is not stated in these files (flagd provider v0.2.1, go.mod:8; NewProvider is called with no options): protocol library default, not in these files. depends_on flagd service_started at docker-compose.yml:480. createClient (main.go:312, grpc.DialContext) is defined but has no call site in the given files, so it is not reported as an edge."
+  },
+  {
+   "value": {
+    "caller": "recommendationservice",
+    "callee": "flagd"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/recommendationservice/recommendation_server.py",
+   "line": 131,
+   "quotedToken": "FlagdProvider(host=os.environ.get('FLAGD_HOST', 'flagd'), port=os.environ.get('FLAGD_PORT', 8013))",
+   "note": "feature-flag evaluation via openfeature flagd provider (check_feature_flag line 126); FLAGD_HOST=flagd at .env:129, FLAGD_PORT=8013 at .env:130; wire protocol is the provider library default, not in these files"
+  },
+  {
+   "value": {
+    "caller": "recommendationservice",
+    "callee": "productcatalogservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/recommendationservice/recommendation_server.py",
+   "line": 158,
+   "quotedToken": "ProductCatalogServiceStub",
+   "note": "gRPC (grpc.insecure_channel line 157; ListProducts call at line 95); address from PRODUCT_CATALOG_SERVICE_ADDR (line 156), .env:107 productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "shippingservice",
+    "callee": "quoteservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/shippingservice/src/shipping_service/quote.rs",
+   "line": 44,
+   "quotedToken": "http://quoteservice:8090",
+   "note": "HTTP POST (quote.rs:58 client.post(quote_service_addr)) to QUOTE_SERVICE_ADDR + \"/getquote\" (quote.rs:43,47); default http://quoteservice:8090, and docker-compose.yml:566 passes QUOTE_SERVICE_ADDR, set to http://quoteservice:${QUOTE_SERVICE_PORT} at .env:112 (QUOTE_SERVICE_PORT=8090, .env:111). The service makes no other outgoing call in the given files. No Kafka topic is published or consumed in these files. No registry, discovery service or coordinator registration appears in these files (no heartbeat, failure timeout or cleanup interval)."
+  },
+  {
+   "value": {
+    "caller": "jaeger",
+    "callee": "prometheus"
+   },
+   "repo": "upstream",
+   "sourceFile": "docker-compose.yml",
+   "line": 697,
+   "quotedToken": "- METRICS_STORAGE_TYPE=prometheus",
+   "note": "stage-1 rule D4: environment METRICS_STORAGE_TYPE=prometheus"
+  },
+  {
+   "value": {
+    "caller": "otelcol",
+    "callee": "jaeger"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/otelcollector/otelcol-config.yml",
+   "line": 94,
+   "quotedToken": "jaeger:4317",
+   "note": "OTLP gRPC exporter (protocol: OTLP/gRPC by port 4317 in the exporter key 'otlp'; tls insecure line 96)"
+  },
+  {
+   "value": {
+    "caller": "otelcol",
+    "callee": "opensearch"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/otelcollector/otelcol-config.yml",
+   "line": 104,
+   "quotedToken": "http://opensearch:9200",
+   "note": "HTTP, opensearch exporter"
+  },
+  {
+   "value": {
+    "caller": "otelcol",
+    "callee": "prometheus"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/otelcollector/otelcol-config.yml",
+   "line": 98,
+   "quotedToken": "http://prometheus:9090/api/v1/otlp",
+   "note": "OTLP/HTTP exporter"
+  },
+  {
+   "value": {
+    "caller": "prometheus",
+    "callee": "otelcol"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/prometheus/prometheus-config.yaml",
+   "line": 14,
+   "quotedToken": "otelcol:8888",
+   "note": "HTTP scrape (pull) of job_name otel-collector (line 11) every scrape_interval 5s (line 6); protocol inferred from Prometheus scrape semantics, the file states only the target host:port"
+  }
+ ],
+ "topics": [
+  {
+   "name": {
+    "value": "orders",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 12,
+    "quotedToken": "TopicName = \"orders\""
+   },
+   "broker": {
+    "value": "kafka",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": ".env",
+    "line": 139,
+    "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}",
+    "note": "Bootstrap address read from env KAFKA_SERVICE_ADDR (Consumer.cs:22); passed through in docker-compose.yml:35."
+   }
+  }
+ ]
+}

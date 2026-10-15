@@ -1,0 +1,57 @@
+$ /usr/bin/python3 -B research/otel-offpath/adapter.py --self-check
+  parser: frontend-proxy -> frontendproxy, otelcol and unknown excluded    ok
+  parser: span name, error status, duration from integer nanoseconds       ok
+  parser: monotonic cumulative sum -> rate 2.0/s at the second export      ok
+  parser: histogram -> ~rate (20/60 s) and ~mean (400/20)                  ok
+  parser: level from SeverityNumber, not body text; SeverityText ignored when the number is set ok
+  ledger: failed in-window requests show                                   ok
+  ledger: the same cell with the window moved to a quiet period does not show ok
+  G2: the target's own missing span is own, never outside                  ok
+  G3: cartservice GetCart (slow in 1 of 9 no-fault windows) is inadmissible and dropped ok
+  missing carrier: families of that cell are unknown (None), not zero      ok
+  grid: a planted shift fires at K=3 and not at K=5                        ok
+  grid: K2 reads no at K=3 (sensor in 3/3) and yes at K=5                  ok
+  symbol kind: the K=3 catch is a latency symbol                           ok
+  K4 by construction: target's own span missing in 3/3 under async and full (G3 kept) ok
+  absent regime reads `—`, never no: C1 without frontend-pause episodes    ok
+  K1 with a ledger that fails in-window in every cell reads no             ok
+  margins: max shift/threshold over selected's outside sensors is reported (checkout, 6.5/5.93 at K=4) ok
+  planted G2 defect (target relabelled) is caught: target sensors appear outside ok
+  grid restores symptoms.K and LAT_FLOOR_S                                 ok
+  absent export: two missed 60 s slots inside the window are reported      ok
+  absent export: the same series with the window before the gap reports nothing ok
+  absent export: fewer than 3 pre-window exports is unknown, not absent    ok
+  absent export is not a frozen firing: metric:<x>:missing never fires a sensor ok
+  a non-fraud regime is read with its own target and no by-construction labels ok
+  two off-path regimes: top level reads fraud-pause, both under offPath    ok
+self-check: pass
+exit 0
+
+$ planted defect: G3 disabled (adapter.TAU = 1.0), same self-check
+  parser: frontend-proxy -> frontendproxy, otelcol and unknown excluded    ok
+  parser: span name, error status, duration from integer nanoseconds       ok
+  parser: monotonic cumulative sum -> rate 2.0/s at the second export      ok
+  parser: histogram -> ~rate (20/60 s) and ~mean (400/20)                  ok
+  parser: level from SeverityNumber, not body text; SeverityText ignored when the number is set ok
+  ledger: failed in-window requests show                                   ok
+  ledger: the same cell with the window moved to a quiet period does not show ok
+  G2: the target's own missing span is own, never outside                  ok
+  G3: cartservice GetCart (slow in 1 of 9 no-fault windows) is inadmissible and dropped FAILED
+  missing carrier: families of that cell are unknown (None), not zero      ok
+  grid: a planted shift fires at K=3 and not at K=5                        ok
+  grid: K2 reads no at K=3 (sensor in 3/3) and yes at K=5                  ok
+  symbol kind: the K=3 catch is a latency symbol                           FAILED
+  K4 by construction: target's own span missing in 3/3 under async and full (G3 kept) ok
+  absent regime reads `—`, never no: C1 without frontend-pause episodes    ok
+  K1 with a ledger that fails in-window in every cell reads no             ok
+  margins: max shift/threshold over selected's outside sensors is reported (checkout, 6.5/5.93 at K=4) ok
+  planted G2 defect (target relabelled) is caught: target sensors appear outside ok
+  grid restores symptoms.K and LAT_FLOOR_S                                 ok
+  absent export: two missed 60 s slots inside the window are reported      ok
+  absent export: the same series with the window before the gap reports nothing ok
+  absent export: fewer than 3 pre-window exports is unknown, not absent    ok
+  absent export is not a frozen firing: metric:<x>:missing never fires a sensor ok
+  a non-fraud regime is read with its own target and no by-construction labels ok
+  two off-path regimes: top level reads fraud-pause, both under offPath    ok
+self-check: FAILED 2: ['G3: cartservice GetCart (slow in 1 of 9 no-fault windows) is inadmissible and dropped', 'symbol kind: the K=3 catch is a latency symbol']
+exit 1

@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "run": "run1-20261014",
+    "system": "otel",
+    "service": "frontendproxy",
+    "extractor": "B",
+    "entryIndex": 51,
+    "notes": [
+      "syncEdges: eight Envoy routes proxy to upstream clusters, each read at the route line (envoy.tmpl.yaml:40-55). Protocol for all eight is HTTP: the HTTP connection manager is codec_type AUTO (envoy.tmpl.yaml:15-16), and none of these clusters sets an HTTP/2 option (cluster blocks envoy.tmpl.yaml:99-158). Upstream HTTP/1.1 is a library default, not in these files. The only HTTP/2 option is on opentelemetry_collector_grpc (envoy.tmpl.yaml:73-77), which is telemetry export, not a synchronous call edge. Callee host names come from the .env lines cited in each edge's note.",
+      "syncEdges callee names: the flagservice cluster (envoy.tmpl.yaml:123-134) resolves to FLAGD_HOST=flagd (.env:129), so the callee is flagd. The loadgen cluster (envoy.tmpl.yaml:147-158) resolves to LOCUST_WEB_HOST=loadgenerator (.env:95).",
+      "publishesTo: none stated. No Kafka or message-broker configuration in the frontendproxy files.",
+      "consumes: none stated.",
+      "registersWith: none stated. No registry, discovery or coordinator client in the frontendproxy files, and no registry block in the deployment files.",
+      "liveness: none stated for this service. The schema places liveness only on coordinators, and no coordinator is defined here.",
+      "replicas: no deploy.replicas or scale key in docker-compose.yml:311-355 or in modules/otel-demo/deployment/compose.candidate-postures.yml:74-76. Compose default of 1; library default, not in these files.",
+      "health check: no healthcheck key in docker-compose.yml:311-355 and none in compose.candidate-postures.yml:74-76. Not configured in these files. The Envoy admin listener at envoy.tmpl.yaml:183-187 is not a health check configuration.",
+      "container: Dockerfile:4 sets FROM envoyproxy/envoy:v1.30-latest and Dockerfile:11 runs envsubst on envoy.tmpl.yaml, then envoy -c envoy.yaml. compose.candidate-postures.yml:76 mounts OTEL_CANDIDATE_ENVOY_CONFIG over /home/envoy/envoy.tmpl.yaml, so the posture overlay can replace the template.",
+      "telemetry, traces: the Envoy OpenTelemetry tracer (envoy.tmpl.yaml:18-28, provider at line 21) exports over gRPC to cluster opentelemetry_collector_grpc (envoy.tmpl.yaml:70-86), which resolves to OTEL_COLLECTOR_HOST=otelcol (.env:27) and OTEL_COLLECTOR_PORT_GRPC (compose environment line 337). Export timeout is 0.250s (envoy.tmpl.yaml:27). The export frequency or batch interval is not stated in these files; any default is a library default, not in these files.",
+      "telemetry, metrics: no metrics exporter or stats sink is configured in envoy.tmpl.yaml. The otelcol httpcheck/frontendproxy receiver at otelcol-config.yml:15-17 probes this service from the collector side. That is inbound to this service, not sent by it, and is not reported as an export.",
+      "telemetry, logs: no access_log or log exporter is configured in envoy.tmpl.yaml. Not stated in these files.",
+      "compose.yml:322-324 publishes ports ${ENVOY_PORT}:${ENVOY_PORT} and 10000:10000. Port 10000 matches the admin listener at envoy.tmpl.yaml:186-187."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "frontendproxy",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 311,
+        "quotedToken": "frontendproxy:"
+      },
+      "container": {
+        "value": "frontend-proxy",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 313,
+        "quotedToken": "container_name: frontend-proxy"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "Library default, not in these files: no deploy.replicas or scale in upstream docker-compose.yml:311-355 or harness modules/otel-demo/deployment/compose.candidate-postures.yml:74-76; Compose default 1. Sourced from the Compose documentation, not fetched."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol"
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "frontendproxy",
+        "callee": "loadgenerator"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+      "line": 41,
+      "quotedToken": "cluster: loadgen",
+      "note": "Protocol: HTTP (Envoy HTTP connection manager, envoy.tmpl.yaml:15-16). Route /loadgen at line 40 with prefix rewrite. Cluster loadgen at envoy.tmpl.yaml:147-158; host LOCUST_WEB_HOST=loadgenerator at upstream .env:95."
+    },
+    {
+      "value": {
+        "caller": "frontendproxy",
+        "callee": "otelcol"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+      "line": 43,
+      "quotedToken": "cluster: opentelemetry_collector_http",
+      "note": "Protocol: HTTP (Envoy HTTP connection manager, envoy.tmpl.yaml:15-16). Route /otlp-http/ at line 42. Cluster at envoy.tmpl.yaml:87-98; host OTEL_COLLECTOR_HOST=otelcol at upstream .env:27, port OTEL_COLLECTOR_PORT_HTTP=4318 at .env:29."
+    },
+    {
+      "value": {
+        "caller": "frontendproxy",
+        "callee": "jaeger"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+      "line": 45,
+      "quotedToken": "cluster: jaeger",
+      "note": "Protocol: HTTP (Envoy HTTP connection manager, envoy.tmpl.yaml:15-16). Route /jaeger at line 44. Cluster jaeger at envoy.tmpl.yaml:171-182; host JAEGER_SERVICE_HOST=jaeger at upstream .env:155."
+    },
+    {
+      "value": {
+        "caller": "frontendproxy",
+        "callee": "grafana"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+      "line": 47,
+      "quotedToken": "cluster: grafana",
+      "note": "Protocol: HTTP (Envoy HTTP connection manager, envoy.tmpl.yaml:15-16). Route /grafana at line 46. Cluster grafana at envoy.tmpl.yaml:159-170; host GRAFANA_SERVICE_HOST=grafana at upstream .env:151."
+    },
+    {
+      "value": {
+        "caller": "frontendproxy",
+        "callee": "imageprovider"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+      "line": 49,
+      "quotedToken": "cluster: imageprovider",
+      "note": "Protocol: HTTP (Envoy HTTP connection manager, envoy.tmpl.yaml:15-16). Route /images/ at line 48. Cluster at envoy.tmpl.yaml:111-122; host IMAGE_PROVIDER_HOST=imageprovider at upstream .env:87."
+    },
+    {
+      "value": {
+        "caller": "frontendproxy",
+        "callee": "flagd"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+      "line": 51,
+      "quotedToken": "cluster: flagservice",
+      "note": "Protocol: HTTP (Envoy HTTP connection manager, envoy.tmpl.yaml:15-16). Route /flagservice/ at line 50, timeout 0s on the route. Cluster flagservice at envoy.tmpl.yaml:123-134 resolves to FLAGD_HOST=flagd at upstream .env:129."
+    },
+    {
+      "value": {
+        "caller": "frontendproxy",
+        "callee": "flagd-ui"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+      "line": 53,
+      "quotedToken": "cluster: flagd-ui",
+      "note": "Protocol: HTTP (Envoy HTTP connection manager, envoy.tmpl.yaml:15-16). Route /feature at line 52. Cluster flagd-ui at envoy.tmpl.yaml:135-146; host FLAGD_UI_HOST=flagd-ui at upstream .env:133."
+    },
+    {
+      "value": {
+        "caller": "frontendproxy",
+        "callee": "frontend"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+      "line": 55,
+      "quotedToken": "cluster: frontend",
+      "note": "Protocol: HTTP (Envoy HTTP connection manager, envoy.tmpl.yaml:15-16). Catch-all route / at line 54. Cluster frontend at envoy.tmpl.yaml:99-110; host FRONTEND_HOST=frontend at upstream .env:81."
+    }
+  ]
+}

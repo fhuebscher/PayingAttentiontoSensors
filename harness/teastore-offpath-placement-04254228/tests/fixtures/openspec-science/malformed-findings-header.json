@@ -1,0 +1,12 @@
+{
+  "fixtureId": "malformed-findings-header",
+  "checkId": "findings-ledger",
+  "expectedStatus": "fail",
+  "expectedDiagnostic": "findings header differs",
+  "mutation": {
+    "kind": "replace-text",
+    "path": "findings/change-one.csv",
+    "old": "finding_id,change_id,reviewer_context,classification,severity,status,artifact_path,summary,evidence,disposition",
+    "new": "finding_id,change_id,status,summary"
+  }
+}

@@ -1,0 +1,19 @@
+conforms: False
+
+Validation Report
+Conforms: False
+Results (2):
+Constraint Violation in ClassConstraintComponent (http://www.w3.org/ns/shacl#ClassConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:class ops:ConsumerGroup ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path ops:memberOf ]
+	Focus Node: sut:svc-accountingservice
+	Value Node: sut:group-accountingservice
+	Result Path: ops:memberOf
+	Message: Value does not have class ops:ConsumerGroup
+Constraint Violation in ClassConstraintComponent (http://www.w3.org/ns/shacl#ClassConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:class ops:ConsumerGroup ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path ops:memberOf ]
+	Focus Node: sut:svc-frauddetectionservice
+	Value Node: sut:group-frauddetectionservice
+	Result Path: ops:memberOf
+	Message: Value does not have class ops:ConsumerGroup

@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "sut": "teastore",
+  "extraction": {
+    "procedure": "ontology run1-20261014 stage 2, extractor B",
+    "system": "teastore",
+    "service": "registry",
+    "extractor": "B",
+    "notes": [
+      "syncEdges: none. Registry.java, RegistryREST.java, RegistryStartup.java, HeartbeatInfo.java and IndexServlet.java in these files define inbound REST and a timer and make no outgoing call. No syncEdges emitted for this service.",
+      "publishesTo / consumes: none in these files. The Kieker AMQP queue 'kieker' (kieker.monitoring.properties:28) is telemetry, not an application message, and it is inactive for this service (next note).",
+      "telemetry: none sent. The registry block sets neither RABBITMQ_HOST nor LOG_TO_FILE (docker-compose_kieker.yaml:41-49). The base image sets ENV LOG_TO_FILE false and ENV RABBITMQ_HOST unset (dockerbase Dockerfile:30-31). start.sh:39-41 then runs sed on kieker.monitoring.enabled=true to set kieker.monitoring.enabled=false. exportsTelemetryTo is therefore omitted. The Kieker writer lines in kieker.monitoring.properties are present but inactive. taskRunInterval=20 (kieker.monitoring.properties:36) has no unit in the file and is not reported as a frequency.",
+      "replicas: no replicas or deploy key in the registry block (docker-compose_kieker.yaml:41-49). Library default, not in these files. Not reported.",
+      "registersWith: none. The registry registers with no coordinator. Other services' PUT calls to it are outside these files (RegistryREST.java:41-44).",
+      "Instance heartbeats: the registry refreshes an instance's heartbeat on each PUT re-registration on the request path (Registry.java:135 updateHeartbeatMap, called from register). The cleanup sweep runs on its own scheduler thread (RegistryStartup.java:67-73).",
+      "heartbeatIntervalSeconds: the constant HEARTBEAT_INTERVAL_MS is named as the heartbeat interval at RegistryStartup.java:38-40, but line 73 uses it as the cleanup period. The comment at line 38 says RegistryClientStartup sets it too, and that file is not among this service's files. The client send period is therefore not reported as a fact of this service."
+    ]
+  },
+  "sources": {
+    "teastore-upstream": {
+      "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement-runtime-teastore-protocol/upstream/teastore",
+      "commit": "34b37f7e7be433ce72d5f9455e66922a13116749",
+      "upstreamUrl": "https://github.com/DescartesResearch/TeaStore.git"
+    },
+    "runtime-teastore-protocol": {
+      "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement-runtime-teastore-protocol",
+      "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "registry",
+        "basis": "cited",
+        "repo": "runtime-teastore-protocol",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 41,
+        "quotedToken": "registry:"
+      },
+      "role": {
+        "value": "registry",
+        "basis": "cited",
+        "repo": "teastore-upstream",
+        "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/Registry.java",
+        "line": 29,
+        "quotedToken": "Registry for the services"
+      },
+      "container": {
+        "value": "descartesresearch/teastore-registry",
+        "basis": "cited",
+        "repo": "runtime-teastore-protocol",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 42,
+        "quotedToken": "descartesresearch/teastore-registry"
+      }
+    }
+  ],
+  "coordinators": [
+    {
+      "name": {
+        "value": "registry",
+        "basis": "cited",
+        "repo": "teastore-upstream",
+        "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/Registry.java",
+        "line": 34,
+        "quotedToken": "class Registry"
+      },
+      "type": {
+        "value": "ServiceRegistry",
+        "basis": "cited",
+        "repo": "teastore-upstream",
+        "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/Registry.java",
+        "line": 34,
+        "quotedToken": "class Registry",
+        "note": "Type inferred from the class's role: it maps service names to instance locations (Registry.java:57-150). The class declaration line is the cited token."
+      },
+      "hostedBy": {
+        "value": "registry",
+        "basis": "cited",
+        "repo": "runtime-teastore-protocol",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 41,
+        "quotedToken": "registry:"
+      },
+      "liveness": [
+        {
+          "mechanism": {
+            "value": "heartbeat",
+            "basis": "cited",
+            "repo": "teastore-upstream",
+            "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+            "line": 68,
+            "quotedToken": "scheduleAtFixedRate",
+            "note": "Sweep that removes instances whose heartbeat has lapsed (Registry.java:155-171, called from RegistryStartup.java:71)."
+          },
+          "monitors": [
+            {
+              "value": "registered service instances",
+              "basis": "cited",
+              "repo": "teastore-upstream",
+              "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/Registry.java",
+              "line": 161,
+              "quotedToken": "isAlive()"
+            }
+          ],
+          "heartbeatIntervalSeconds": {
+            "value": 2.5,
+            "basis": "cited",
+            "repo": "teastore-upstream",
+            "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+            "line": 40,
+            "quotedToken": "HEARTBEAT_INTERVAL_MS = 2500",
+            "note": "2500 ms converted to seconds. The constant is named as the heartbeat interval here; see the stage-2 note on its use as the cleanup period at line 73."
+          },
+          "failureTimeoutSeconds": {
+            "value": 10,
+            "basis": "cited",
+            "repo": "teastore-upstream",
+            "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/HeartbeatInfo.java",
+            "line": 32,
+            "quotedToken": "10000",
+            "note": "10000 ms converted to seconds. An instance is alive while currentTimeMillis minus lastHeartbeat is below 10000 (HeartbeatInfo.java:31-33)."
+          },
+          "cleanupIntervalSeconds": {
+            "value": 2.5,
+            "basis": "cited",
+            "repo": "teastore-upstream",
+            "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+            "line": 73,
+            "quotedToken": "HEARTBEAT_INTERVAL_MS, HEARTBEAT_INTERVAL_MS",
+            "note": "Initial delay and period are both HEARTBEAT_INTERVAL_MS, 2500 ms converted to seconds (RegistryStartup.java:67-73)."
+          },
+          "heartbeatThreadIndependentOfWork": {
+            "value": true,
+            "basis": "cited",
+            "repo": "teastore-upstream",
+            "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+            "line": 67,
+            "quotedToken": "newSingleThreadScheduledExecutor",
+            "note": "Applies to the cleanup sweep on its own scheduler thread. The registry sends no heartbeat of its own; instance heartbeats arrive as PUT re-registrations (RegistryREST.java:41-44, Registry.java:135)."
+          }
+        },
+        {
+          "mechanism": {
+            "value": "health-check (not configured)",
+            "basis": "cited",
+            "repo": "runtime-teastore-protocol",
+            "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+            "line": 41,
+            "quotedToken": "registry:",
+            "note": "Absence: no healthcheck key in the registry service block (lines 41-49). Library default, not in these files."
+          },
+          "monitors": [
+            {
+              "value": "registry",
+              "basis": "cited",
+              "repo": "runtime-teastore-protocol",
+              "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+              "line": 41,
+              "quotedToken": "registry:"
+            }
+          ],
+          "healthCheckConfigured": {
+            "value": false,
+            "basis": "cited",
+            "repo": "runtime-teastore-protocol",
+            "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+            "line": 41,
+            "quotedToken": "registry:",
+            "note": "Absence, not a stated setting: the registry block (lines 41-49) has no healthcheck key, and the registry Dockerfile has no HEALTHCHECK. Library default, not in these files."
+          }
+        }
+      ]
+    }
+  ]
+}

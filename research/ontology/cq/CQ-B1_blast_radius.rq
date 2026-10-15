@@ -1,0 +1,23 @@
+# CQ-B1. Blast radius of ?target (stopping or slowing it):
+#   sync-caller  services whose synchronous requests reach ?target (transitive callers over ops:callsSync)
+#   backlog      (consumer group of ?target): its input backs up while ?target does not consume
+#   starved      consumers of topics published by ?target or by any transitive sync caller of ?target (their input dries up)
+#   broker-client producers and consumers of topics on ?target when ?target is a Broker
+# Parameter (optional): ?target.
+PREFIX ops:   <http://obsplacement.example/ops#>
+PREFIX omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#>
+SELECT DISTINCT ?arch ?target ?effect ?affected ?via WHERE {
+  ?arch a omsac:MicroserviceArchitecture ; omsac:isComposedOf ?target .
+  {
+    ?affected ops:callsSync+ ?target . BIND ("sync-caller" AS ?effect) BIND (?target AS ?via)
+  } UNION {
+    ?target ops:consumesFrom ?via ; ops:memberOf ?affected . BIND ("backlog" AS ?effect)
+  } UNION {
+    { ?target ops:publishesTo ?via } UNION { ?p ops:callsSync+ ?target ; ops:publishesTo ?via }
+    ?affected ops:consumesFrom ?via . FILTER (?affected != ?target) BIND ("starved" AS ?effect)
+  } UNION {
+    ?via ops:onBroker ?target . { ?affected ops:publishesTo ?via } UNION { ?affected ops:consumesFrom ?via }
+    BIND ("broker-client" AS ?effect)
+  }
+}
+ORDER BY ?arch ?target ?effect ?affected

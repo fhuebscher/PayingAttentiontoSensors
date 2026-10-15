@@ -1,0 +1,5629 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "stage": 1,
+  "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+  "tool": "research/ontology/extract_stage1.py",
+  "services": [
+   "accountingservice",
+   "adservice",
+   "cartservice",
+   "checkoutservice",
+   "currencyservice",
+   "emailservice",
+   "frauddetectionservice",
+   "frontend",
+   "frontendproxy",
+   "imageprovider",
+   "loadgenerator",
+   "paymentservice",
+   "productcatalogservice",
+   "quoteservice",
+   "recommendationservice",
+   "shippingservice",
+   "flagd",
+   "flagd-ui",
+   "kafka",
+   "valkey-cart",
+   "jaeger",
+   "grafana",
+   "otelcol",
+   "prometheus",
+   "opensearch"
+  ],
+  "rules": "extract_stage1.py D1-D5, inputs.py R1-R7",
+  "astStats": {
+   "filesParsed": 166,
+   "filesSkippedByExtension": {
+    ".proto": 2,
+    ".csproj": 2,
+    ".sln": 2,
+    "Dockerfile": 18,
+    ".gradle": 2,
+    ".properties": 3,
+    "gradlew": 2,
+    ".bat": 2,
+    ".xml": 2,
+    ".config": 1,
+    ".json": 15,
+    ".mod": 2,
+    ".txt": 3,
+    "Gemfile": 1,
+    ".erb": 1,
+    ".yaml": 6,
+    ".ini": 1,
+    ".template": 1,
+    ".yml": 2,
+    ".toml": 1
+   },
+   "languages": [
+    "cpp",
+    "csharp",
+    "go",
+    "java",
+    "javascript",
+    "kotlin",
+    "php",
+    "python",
+    "ruby",
+    "rust",
+    "tsx",
+    "typescript"
+   ],
+   "callSites": 76,
+   "byCategory": {
+    "config": 25,
+    "grpc": 21,
+    "http": 20,
+    "kafka": 12
+   },
+   "grammarCache": "/Users/fhuebscher/Library/Caches/tree-sitter-language-pack/v1.22.1/libs"
+  },
+  "observations": [
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 24,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 23,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 20,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 21,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 22,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "accountingservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 41,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "accountingservice",
+    "value": {
+     "service": "kafka",
+     "condition": "service_healthy"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 43,
+    "quotedToken": "kafka:"
+   },
+   {
+    "kind": "image",
+    "service": "accountingservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-accountingservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 22,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-accountingservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "accountingservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 25,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "accountingservice",
+    "value": "./src/accountingservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 26,
+    "quotedToken": "dockerfile: ${ACCOUNTING_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "entrypoint",
+    "service": "accountingservice",
+    "value": [
+     "/bin/sh",
+     "-c",
+     "if [ \"$$OTEL_PLACEMENT_ENABLED\" = \"false\" ]; then exec dotnet AccountingService.dll; else exec ./instrument.sh dotnet AccountingService.dll; fi"
+    ],
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 16,
+    "quotedToken": "- /bin/sh"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "adservice",
+    "value": "JAVA_TOOL_OPTIONS=${OTEL_CANDIDATE_ADSERVICE_JAVA_TOOL_OPTIONS?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ADSERVICE_JAVA_TOOL_OPTIONS",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 27,
+    "quotedToken": "JAVA_TOOL_OPTIONS: \"${OTEL_CANDIDATE_ADSERVICE_JAVA_TOOL_OPTIONS?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "adservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_ADSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ADSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 31,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_ADSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "adservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_ADSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ADSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 30,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_ADSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "adservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_ADSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ADSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 28,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_ADSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "adservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_ADSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ADSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 29,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_ADSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "adservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 73,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "adservice",
+    "value": {
+     "service": "flagd",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 75,
+    "quotedToken": "flagd:"
+   },
+   {
+    "kind": "image",
+    "service": "adservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-adservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 49,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-adservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "adservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 52,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "adservice",
+    "value": "./src/adservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 53,
+    "quotedToken": "dockerfile: ${AD_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "cartservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_CARTSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CARTSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 38,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_CARTSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "cartservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_CARTSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CARTSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 37,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_CARTSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "cartservice",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_CARTSERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CARTSERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 34,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_CARTSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "cartservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_CARTSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CARTSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 35,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_CARTSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "cartservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_CARTSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CARTSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 36,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_CARTSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "cartservice",
+    "value": {
+     "service": "valkey-cart",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 105,
+    "quotedToken": "valkey-cart:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "cartservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 107,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "cartservice",
+    "value": {
+     "service": "flagd",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 109,
+    "quotedToken": "flagd:"
+   },
+   {
+    "kind": "image",
+    "service": "cartservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-cartservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 81,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-cartservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "cartservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 84,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "cartservice",
+    "value": "./src/cartservice/src/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 85,
+    "quotedToken": "dockerfile: ${CART_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "checkoutservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 45,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "checkoutservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 44,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "checkoutservice",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_CHECKOUTSERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CHECKOUTSERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 41,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_CHECKOUTSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "checkoutservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_CHECKOUTSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CHECKOUTSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 42,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_CHECKOUTSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "checkoutservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 43,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "checkoutservice",
+    "value": {
+     "service": "cartservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 145,
+    "quotedToken": "cartservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "checkoutservice",
+    "value": {
+     "service": "currencyservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 147,
+    "quotedToken": "currencyservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "checkoutservice",
+    "value": {
+     "service": "emailservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 149,
+    "quotedToken": "emailservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "checkoutservice",
+    "value": {
+     "service": "paymentservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 151,
+    "quotedToken": "paymentservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "checkoutservice",
+    "value": {
+     "service": "productcatalogservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 153,
+    "quotedToken": "productcatalogservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "checkoutservice",
+    "value": {
+     "service": "shippingservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 155,
+    "quotedToken": "shippingservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "checkoutservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 157,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "checkoutservice",
+    "value": {
+     "service": "kafka",
+     "condition": "service_healthy"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 159,
+    "quotedToken": "kafka:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "checkoutservice",
+    "value": {
+     "service": "flagd",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 161,
+    "quotedToken": "flagd:"
+   },
+   {
+    "kind": "image",
+    "service": "checkoutservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-checkoutservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 115,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-checkoutservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "checkoutservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 118,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "checkoutservice",
+    "value": "./src/checkoutservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 119,
+    "quotedToken": "dockerfile: ${CHECKOUT_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "currencyservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 52,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "currencyservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 51,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "currencyservice",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_CURRENCYSERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CURRENCYSERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 48,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_CURRENCYSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "currencyservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_CURRENCYSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CURRENCYSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 49,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_CURRENCYSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "currencyservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 50,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "currencyservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 187,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "image",
+    "service": "currencyservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-currencyservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 167,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-currencyservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "currencyservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 170,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "currencyservice",
+    "value": "./src/currencyservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 171,
+    "quotedToken": "dockerfile: ${CURRENCY_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "emailservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_EMAILSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_EMAILSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 58,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_EMAILSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "emailservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_EMAILSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_EMAILSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 57,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_EMAILSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "emailservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_EMAILSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_EMAILSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 55,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_EMAILSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "emailservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_EMAILSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_EMAILSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 56,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_EMAILSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "emailservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 214,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "image",
+    "service": "emailservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-emailservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 193,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-emailservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "emailservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 196,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "emailservice",
+    "value": "./src/emailservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 197,
+    "quotedToken": "dockerfile: ${EMAIL_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frauddetectionservice",
+    "value": "JAVA_TOOL_OPTIONS=${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_JAVA_TOOL_OPTIONS?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_JAVA_TOOL_OPTIONS",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 61,
+    "quotedToken": "JAVA_TOOL_OPTIONS: \"${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_JAVA_TOOL_OPTIONS?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frauddetectionservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 65,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frauddetectionservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 64,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frauddetectionservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 62,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frauddetectionservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 63,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "frauddetectionservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 243,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frauddetectionservice",
+    "value": {
+     "service": "kafka",
+     "condition": "service_healthy"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 245,
+    "quotedToken": "kafka:"
+   },
+   {
+    "kind": "image",
+    "service": "frauddetectionservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-frauddetectionservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 220,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-frauddetectionservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "frauddetectionservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 223,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "frauddetectionservice",
+    "value": "./src/frauddetectionservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 224,
+    "quotedToken": "dockerfile: ${FRAUD_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frontend",
+    "value": "NEXT_PUBLIC_OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_FRONTEND_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRONTEND_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 70,
+    "quotedToken": "NEXT_PUBLIC_OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_FRONTEND_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frontend",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_FRONTEND_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRONTEND_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 73,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_FRONTEND_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frontend",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_FRONTEND_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRONTEND_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 72,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_FRONTEND_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frontend",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_FRONTEND_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRONTEND_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 69,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_FRONTEND_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frontend",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_FRONTEND_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRONTEND_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 68,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_FRONTEND_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "frontend",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_FRONTEND_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FRONTEND_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 71,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_FRONTEND_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "adservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 286,
+    "quotedToken": "adservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "cartservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 288,
+    "quotedToken": "cartservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "checkoutservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 290,
+    "quotedToken": "checkoutservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "currencyservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 292,
+    "quotedToken": "currencyservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "productcatalogservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 294,
+    "quotedToken": "productcatalogservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "quoteservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 296,
+    "quotedToken": "quoteservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "recommendationservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 298,
+    "quotedToken": "recommendationservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "shippingservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 300,
+    "quotedToken": "shippingservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 302,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "imageprovider",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 304,
+    "quotedToken": "imageprovider:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontend",
+    "value": {
+     "service": "flagd",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 306,
+    "quotedToken": "flagd:"
+   },
+   {
+    "kind": "image",
+    "service": "frontend",
+    "value": "ghcr.io/open-telemetry/demo:latest-frontend",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 251,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-frontend"
+   },
+   {
+    "kind": "build_context",
+    "service": "frontend",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 254,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "frontend",
+    "value": "./src/frontend/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 255,
+    "quotedToken": "dockerfile: ${FRONTEND_DOCKERFILE}"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontendproxy",
+    "value": {
+     "service": "frontend",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 346,
+    "quotedToken": "frontend:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontendproxy",
+    "value": {
+     "service": "loadgenerator",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 348,
+    "quotedToken": "loadgenerator:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontendproxy",
+    "value": {
+     "service": "jaeger",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 350,
+    "quotedToken": "jaeger:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontendproxy",
+    "value": {
+     "service": "grafana",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 352,
+    "quotedToken": "grafana:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "frontendproxy",
+    "value": {
+     "service": "flagd-ui",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 354,
+    "quotedToken": "flagd-ui:"
+   },
+   {
+    "kind": "image",
+    "service": "frontendproxy",
+    "value": "ghcr.io/open-telemetry/demo:latest-frontendproxy",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 312,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-frontendproxy"
+   },
+   {
+    "kind": "build_context",
+    "service": "frontendproxy",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 315,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "frontendproxy",
+    "value": "./src/frontendproxy/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 316,
+    "quotedToken": "dockerfile: ${FRONTEND_PROXY_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "imageprovider",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 84,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "imageprovider",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 83,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "imageprovider",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_IMAGEPROVIDER_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_IMAGEPROVIDER_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 81,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_IMAGEPROVIDER_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "imageprovider",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 82,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "imageprovider",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 380,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "image",
+    "service": "imageprovider",
+    "value": "ghcr.io/open-telemetry/demo:latest-imageprovider",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 359,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-imageprovider"
+   },
+   {
+    "kind": "build_context",
+    "service": "imageprovider",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 362,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "imageprovider",
+    "value": "./src/imageprovider/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 363,
+    "quotedToken": "dockerfile: ${IMAGE_PROVIDER_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "loadgenerator",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_LOADGENERATOR_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_LOADGENERATOR_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 91,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_LOADGENERATOR_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "loadgenerator",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_LOADGENERATOR_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_LOADGENERATOR_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 90,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_LOADGENERATOR_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "loadgenerator",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_LOADGENERATOR_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_LOADGENERATOR_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 88,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_LOADGENERATOR_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "loadgenerator",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_LOADGENERATOR_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_LOADGENERATOR_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 89,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_LOADGENERATOR_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "loadgenerator",
+    "value": {
+     "service": "frontend",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 416,
+    "quotedToken": "frontend:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "loadgenerator",
+    "value": {
+     "service": "flagd",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 418,
+    "quotedToken": "flagd:"
+   },
+   {
+    "kind": "image",
+    "service": "loadgenerator",
+    "value": "ghcr.io/open-telemetry/demo:latest-loadgenerator",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 386,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-loadgenerator"
+   },
+   {
+    "kind": "build_context",
+    "service": "loadgenerator",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 389,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "loadgenerator",
+    "value": "./src/loadgenerator/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 390,
+    "quotedToken": "dockerfile: ${LOAD_GENERATOR_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "paymentservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 102,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "paymentservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 101,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "paymentservice",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_PAYMENTSERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PAYMENTSERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 98,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_PAYMENTSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "paymentservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_PAYMENTSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PAYMENTSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 99,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_PAYMENTSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "paymentservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 100,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "paymentservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 447,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "paymentservice",
+    "value": {
+     "service": "flagd",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 449,
+    "quotedToken": "flagd:"
+   },
+   {
+    "kind": "image",
+    "service": "paymentservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-paymentservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 424,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-paymentservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "paymentservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 427,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "paymentservice",
+    "value": "./src/paymentservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 428,
+    "quotedToken": "dockerfile: ${PAYMENT_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "entrypoint",
+    "service": "paymentservice",
+    "value": [
+     "/bin/sh",
+     "-c",
+     "if [ \"$$OTEL_PLACEMENT_ENABLED\" = \"false\" ]; then exec node index.js; else exec node --require ./opentelemetry.js index.js; fi"
+    ],
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 94,
+    "quotedToken": "- /bin/sh"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "productcatalogservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 109,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "productcatalogservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 108,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "productcatalogservice",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 105,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "productcatalogservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 106,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "productcatalogservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 107,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "productcatalogservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 478,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "productcatalogservice",
+    "value": {
+     "service": "flagd",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 480,
+    "quotedToken": "flagd:"
+   },
+   {
+    "kind": "image",
+    "service": "productcatalogservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-productcatalogservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 455,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-productcatalogservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "productcatalogservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 458,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "productcatalogservice",
+    "value": "./src/productcatalogservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 459,
+    "quotedToken": "dockerfile: ${PRODUCT_CATALOG_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "quoteservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_QUOTESERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_QUOTESERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 116,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_QUOTESERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "quoteservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_QUOTESERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_QUOTESERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 115,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_QUOTESERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "quoteservice",
+    "value": "OTEL_PHP_AUTOLOAD_ENABLED=${OTEL_CANDIDATE_QUOTESERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_QUOTESERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 113,
+    "quotedToken": "OTEL_PHP_AUTOLOAD_ENABLED: \"${OTEL_CANDIDATE_QUOTESERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "quoteservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_QUOTESERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_QUOTESERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 112,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_QUOTESERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "quoteservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_QUOTESERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_QUOTESERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 114,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_QUOTESERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "quoteservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 508,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "image",
+    "service": "quoteservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-quoteservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 486,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-quoteservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "quoteservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 489,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "quoteservice",
+    "value": "./src/quoteservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 490,
+    "quotedToken": "dockerfile: ${QUOTE_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "recommendationservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 123,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "recommendationservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 122,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "recommendationservice",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_RECOMMENDATIONSERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 120,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "recommendationservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_RECOMMENDATIONSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 119,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "recommendationservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 121,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "recommendationservice",
+    "value": {
+     "service": "productcatalogservice",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 540,
+    "quotedToken": "productcatalogservice:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "recommendationservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 542,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "recommendationservice",
+    "value": {
+     "service": "flagd",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 544,
+    "quotedToken": "flagd:"
+   },
+   {
+    "kind": "image",
+    "service": "recommendationservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-recommendationservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 514,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-recommendationservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "recommendationservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 517,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "recommendationservice",
+    "value": "./src/recommendationservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 518,
+    "quotedToken": "dockerfile: ${RECOMMENDATION_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "shippingservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 130,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "shippingservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 129,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "shippingservice",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_SHIPPINGSERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_SHIPPINGSERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 126,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_SHIPPINGSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "shippingservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_SHIPPINGSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_SHIPPINGSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 127,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_SHIPPINGSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "shippingservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 128,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "shippingservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 571,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "image",
+    "service": "shippingservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-shippingservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 550,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-shippingservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "shippingservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 553,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "shippingservice",
+    "value": "./src/shippingservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 554,
+    "quotedToken": "dockerfile: ${SHIPPING_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd",
+    "value": "FLAGD_METRICS_EXPORTER=${OTEL_CANDIDATE_FLAGD_METRICS_EXPORTER?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_METRICS_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 134,
+    "quotedToken": "FLAGD_METRICS_EXPORTER: \"${OTEL_CANDIDATE_FLAGD_METRICS_EXPORTER?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd",
+    "value": "FLAGD_OTEL_COLLECTOR_URI=${OTEL_CANDIDATE_FLAGD_OTEL_COLLECTOR_URI?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_OTEL_COLLECTOR_URI",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 133,
+    "quotedToken": "FLAGD_OTEL_COLLECTOR_URI: \"${OTEL_CANDIDATE_FLAGD_OTEL_COLLECTOR_URI?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_FLAGD_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 138,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_FLAGD_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_FLAGD_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 137,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_FLAGD_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_FLAGD_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 135,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_FLAGD_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_FLAGD_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 136,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_FLAGD_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "image",
+    "service": "flagd",
+    "value": "ghcr.io/open-feature/flagd:v0.11.2",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 580,
+    "quotedToken": "image: ${FLAGD_IMAGE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd-ui",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_FLAGD_UI_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_UI_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 144,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_FLAGD_UI_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd-ui",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_FLAGD_UI_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_UI_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 143,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_FLAGD_UI_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd-ui",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_FLAGD_UI_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_UI_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 141,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_FLAGD_UI_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "flagd-ui",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_FLAGD_UI_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_FLAGD_UI_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 142,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_FLAGD_UI_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "flagd-ui",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 624,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "flagd-ui",
+    "value": {
+     "service": "flagd",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 626,
+    "quotedToken": "flagd:"
+   },
+   {
+    "kind": "image",
+    "service": "flagd-ui",
+    "value": "ghcr.io/open-telemetry/demo:latest-flagd-ui",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 606,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-flagd-ui"
+   },
+   {
+    "kind": "build_context",
+    "service": "flagd-ui",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 609,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "flagd-ui",
+    "value": "./src/flagd-ui/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 610,
+    "quotedToken": "dockerfile: ${FLAGD_UI_DOCKERFILE}"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "kafka",
+    "value": "KAFKA_OPTS=${OTEL_CANDIDATE_KAFKA_KAFKA_OPTS?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_KAFKA_KAFKA_OPTS",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 147,
+    "quotedToken": "KAFKA_OPTS: \"${OTEL_CANDIDATE_KAFKA_KAFKA_OPTS?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "kafka",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_KAFKA_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_KAFKA_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 151,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_KAFKA_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "kafka",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_KAFKA_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_KAFKA_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 150,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_KAFKA_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "kafka",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_KAFKA_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_KAFKA_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 148,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_KAFKA_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "kafka",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_KAFKA_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_KAFKA_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 149,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_KAFKA_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "healthcheck",
+    "service": "kafka",
+    "value": "nc -z kafka 9092",
+    "params": {
+     "interval": "5s",
+     "timeout": "10s",
+     "retries": "10",
+     "start_period": "10s"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 653,
+    "quotedToken": "test: nc -z kafka 9092"
+   },
+   {
+    "kind": "image",
+    "service": "kafka",
+    "value": "ghcr.io/open-telemetry/demo:latest-kafka",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 633,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-kafka"
+   },
+   {
+    "kind": "build_context",
+    "service": "kafka",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 636,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "kafka",
+    "value": "./src/kafka/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 637,
+    "quotedToken": "dockerfile: ${KAFKA_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "image",
+    "service": "valkey-cart",
+    "value": "valkey/valkey:8.0-alpine",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 662,
+    "quotedToken": "image: ${VALKEY_IMAGE}"
+   },
+   {
+    "kind": "image",
+    "service": "jaeger",
+    "value": "jaegertracing/all-in-one:1.60",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 680,
+    "quotedToken": "image: ${JAEGERTRACING_IMAGE}"
+   },
+   {
+    "kind": "image",
+    "service": "grafana",
+    "value": "grafana/grafana:11.2.0",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 702,
+    "quotedToken": "image: ${GRAFANA_IMAGE}"
+   },
+   {
+    "kind": "depends_on",
+    "service": "otelcol",
+    "value": {
+     "service": "jaeger",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 738,
+    "quotedToken": "jaeger:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "otelcol",
+    "value": {
+     "service": "opensearch",
+     "condition": "service_healthy"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 740,
+    "quotedToken": "opensearch:"
+   },
+   {
+    "kind": "image",
+    "service": "otelcol",
+    "value": "otel/opentelemetry-collector-contrib:0.108.0",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 720,
+    "quotedToken": "image: ${COLLECTOR_CONTRIB_IMAGE}"
+   },
+   {
+    "kind": "image",
+    "service": "prometheus",
+    "value": "quay.io/prometheus/prometheus:v2.54.1",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 752,
+    "quotedToken": "image: ${PROMETHEUS_IMAGE}"
+   },
+   {
+    "kind": "healthcheck",
+    "service": "opensearch",
+    "value": "curl -s http://localhost:9200/_cluster/health | grep -E '\"status\":\"(green|yellow)\"'",
+    "params": {
+     "interval": "5s",
+     "timeout": "10s",
+     "retries": "10",
+     "start_period": "10s"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 802,
+    "quotedToken": "test: curl -s http://localhost:9200/_cluster/health | grep -E '\"status\":\"(green|yellow)\"'"
+   },
+   {
+    "kind": "image",
+    "service": "opensearch",
+    "value": "opensearchproject/opensearch:2.17.1",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 777,
+    "quotedToken": "image: ${OPENSEARCH_IMAGE}"
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "csharp",
+    "value": "Environment.GetEnvironmentVariable",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 22,
+    "quotedToken": "Environment.GetEnvironmentVariable",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"KAFKA_SERVICE_ADDR\"",
+      "repo": "upstream",
+      "sourceFile": "src/accountingservice/Consumer.cs",
+      "line": 22,
+      "quotedToken": "\"KAFKA_SERVICE_ADDR\""
+     }
+    ],
+    "services": [
+     "accountingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "Confluent.Kafka",
+      "match": "method"
+     }
+    ],
+    "language": "csharp",
+    "value": "_consumer.Subscribe",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 26,
+    "quotedToken": "_consumer.Subscribe",
+    "literals": [
+     {
+      "kind": "resolvedConstant",
+      "value": "\"orders\"",
+      "repo": "upstream",
+      "sourceFile": "src/accountingservice/Consumer.cs",
+      "line": 12,
+      "quotedToken": "\"orders\"",
+      "note": "identifier TopicName at line 26"
+     }
+    ],
+    "services": [
+     "accountingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "Confluent.Kafka",
+      "match": "method"
+     }
+    ],
+    "language": "csharp",
+    "value": "_consumer.Consume",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 41,
+    "quotedToken": "_consumer.Consume",
+    "literals": [],
+    "services": [
+     "accountingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "Confluent.Kafka",
+      "match": "type"
+     }
+    ],
+    "language": "csharp",
+    "value": "ConsumerConfig",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 75,
+    "quotedToken": "ConsumerConfig",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "$\"accountingservice\"",
+      "repo": "upstream",
+      "sourceFile": "src/accountingservice/Consumer.cs",
+      "line": 77,
+      "quotedToken": "$\"accountingservice\""
+     },
+     {
+      "kind": "literal",
+      "value": "true",
+      "repo": "upstream",
+      "sourceFile": "src/accountingservice/Consumer.cs",
+      "line": 81,
+      "quotedToken": "true"
+     }
+    ],
+    "services": [
+     "accountingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "Confluent.Kafka",
+      "match": "type"
+     }
+    ],
+    "language": "csharp",
+    "value": "ConsumerBuilder",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 84,
+    "quotedToken": "ConsumerBuilder<string, byte[]>",
+    "literals": [],
+    "services": [
+     "accountingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "java",
+    "value": "System.getenv",
+    "repo": "upstream",
+    "sourceFile": "src/adservice/src/main/java/oteldemo/AdService.java",
+    "line": 79,
+    "quotedToken": "System",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"AD_SERVICE_PORT\"",
+      "repo": "upstream",
+      "sourceFile": "src/adservice/src/main/java/oteldemo/AdService.java",
+      "line": 79,
+      "quotedToken": "\"AD_SERVICE_PORT\""
+     }
+    ],
+    "services": [
+     "adservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "github.com/IBM/sarama",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "sarama.NewConfig",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/kafka/producer.go",
+    "line": 18,
+    "quotedToken": "sarama.NewConfig",
+    "literals": [],
+    "services": [
+     "checkoutservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "github.com/IBM/sarama",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "sarama.NewAsyncProducer",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/kafka/producer.go",
+    "line": 31,
+    "quotedToken": "sarama.NewAsyncProducer",
+    "literals": [],
+    "services": [
+     "checkoutservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "os.Getenv",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/main.go",
+    "line": 200,
+    "quotedToken": "os.Getenv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"KAFKA_SERVICE_ADDR\"",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 200,
+      "quotedToken": "\"KAFKA_SERVICE_ADDR\""
+     }
+    ],
+    "services": [
+     "checkoutservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "in-tree:src/checkoutservice/kafka",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "go",
+    "value": "kafka.CreateKafkaProducer",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/main.go",
+    "line": 203,
+    "quotedToken": "kafka.CreateKafkaProducer",
+    "literals": [],
+    "services": [
+     "checkoutservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "os.Getenv",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/main.go",
+    "line": 227,
+    "quotedToken": "os.Getenv",
+    "literals": [],
+    "services": [
+     "checkoutservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "google.golang.org/grpc",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "grpc.NewClient",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/main.go",
+    "line": 377,
+    "quotedToken": "grpc.NewClient",
+    "literals": [],
+    "services": [
+     "checkoutservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "github.com/IBM/sarama",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "sarama.ProducerMessage",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/main.go",
+    "line": 499,
+    "quotedToken": "sarama.ProducerMessage",
+    "literals": [],
+    "services": [
+     "checkoutservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "github.com/IBM/sarama",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "sarama.ByteEncoder",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/main.go",
+    "line": 501,
+    "quotedToken": "sarama.ByteEncoder",
+    "literals": [],
+    "services": [
+     "checkoutservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "github.com/IBM/sarama",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "sarama.RecordHeader",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/main.go",
+    "line": 579,
+    "quotedToken": "sarama.RecordHeader",
+    "literals": [],
+    "services": [
+     "checkoutservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "cpp",
+    "value": "std::getenv",
+    "repo": "upstream",
+    "sourceFile": "src/currencyservice/src/server.cpp",
+    "line": 85,
+    "quotedToken": "std::getenv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"VERSION\"",
+      "repo": "upstream",
+      "sourceFile": "src/currencyservice/src/server.cpp",
+      "line": 85,
+      "quotedToken": "\"VERSION\""
+     }
+    ],
+    "services": [
+     "currencyservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "tsx",
+    "value": "fetch",
+    "repo": "upstream",
+    "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+    "line": 23,
+    "quotedToken": "fetch",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "`/feature/api/read-file?${file_name}`",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+      "line": 23,
+      "quotedToken": "`/feature/api/read-file?${file_name}`"
+     },
+     {
+      "kind": "literal",
+      "value": "\"GET\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+      "line": 24,
+      "quotedToken": "\"GET\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"Content-Type\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+      "line": 25,
+      "quotedToken": "\"Content-Type\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"application/json\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+      "line": 25,
+      "quotedToken": "\"application/json\""
+     }
+    ],
+    "services": [
+     "flagd-ui"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "tsx",
+    "value": "fetch",
+    "repo": "upstream",
+    "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+    "line": 65,
+    "quotedToken": "fetch",
+    "literals": [],
+    "services": [
+     "flagd-ui"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "tsx",
+    "value": "fetch",
+    "repo": "upstream",
+    "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+    "line": 98,
+    "quotedToken": "fetch",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/feature/api/write-to-file\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+      "line": 98,
+      "quotedToken": "\"/feature/api/write-to-file\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"POST\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+      "line": 99,
+      "quotedToken": "\"POST\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"Content-Type\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+      "line": 100,
+      "quotedToken": "\"Content-Type\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"application/json\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+      "line": 100,
+      "quotedToken": "\"application/json\""
+     }
+    ],
+    "services": [
+     "flagd-ui"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "tsx",
+    "value": "fetch",
+    "repo": "upstream",
+    "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+    "line": 21,
+    "quotedToken": "fetch",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/feature/api/read-file\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+      "line": 21,
+      "quotedToken": "\"/feature/api/read-file\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"GET\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+      "line": 22,
+      "quotedToken": "\"GET\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"Content-Type\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+      "line": 23,
+      "quotedToken": "\"Content-Type\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"application/json\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+      "line": 23,
+      "quotedToken": "\"application/json\""
+     }
+    ],
+    "services": [
+     "flagd-ui"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "tsx",
+    "value": "fetch",
+    "repo": "upstream",
+    "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+    "line": 60,
+    "quotedToken": "fetch",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/feature/api/write-to-file\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+      "line": 60,
+      "quotedToken": "\"/feature/api/write-to-file\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"POST\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+      "line": 61,
+      "quotedToken": "\"POST\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"Content-Type\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+      "line": 62,
+      "quotedToken": "\"Content-Type\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"application/json\"",
+      "repo": "upstream",
+      "sourceFile": "src/flagd-ui/src/components/basic/BasicView.tsx",
+      "line": 62,
+      "quotedToken": "\"application/json\""
+     }
+    ],
+    "services": [
+     "flagd-ui"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "kotlin",
+    "value": "System.getenv",
+    "repo": "upstream",
+    "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+    "line": 42,
+    "quotedToken": "System.getenv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"KAFKA_SERVICE_ADDR\"",
+      "repo": "upstream",
+      "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+      "line": 42,
+      "quotedToken": "\"KAFKA_SERVICE_ADDR\""
+     }
+    ],
+    "services": [
+     "frauddetectionservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "org.apache.kafka.clients",
+      "match": "type"
+     }
+    ],
+    "language": "kotlin",
+    "value": "KafkaConsumer(props).apply",
+    "repo": "upstream",
+    "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+    "line": 48,
+    "quotedToken": "KafkaConsumer<String, ByteArray>(props).apply",
+    "literals": [],
+    "services": [
+     "frauddetectionservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "org.apache.kafka.clients",
+      "match": "method"
+     }
+    ],
+    "language": "kotlin",
+    "value": "consumer.poll",
+    "repo": "upstream",
+    "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+    "line": 56,
+    "quotedToken": "consumer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "100",
+      "repo": "upstream",
+      "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+      "line": 57,
+      "quotedToken": "100"
+     }
+    ],
+    "services": [
+     "frauddetectionservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "tsx",
+    "value": "fetch",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/components/ProductCard/ProductCard.tsx",
+    "line": 16,
+    "quotedToken": "fetch",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "typescript",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Ad.gateway.ts",
+    "line": 7,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "typescript",
+    "value": "ChannelCredentials.createInsecure",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Ad.gateway.ts",
+    "line": 9,
+    "quotedToken": "ChannelCredentials.createInsecure",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "typescript",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Cart.gateway.ts",
+    "line": 7,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "typescript",
+    "value": "ChannelCredentials.createInsecure",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Cart.gateway.ts",
+    "line": 9,
+    "quotedToken": "ChannelCredentials.createInsecure",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "typescript",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Checkout.gateway.ts",
+    "line": 7,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "typescript",
+    "value": "ChannelCredentials.createInsecure",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Checkout.gateway.ts",
+    "line": 9,
+    "quotedToken": "ChannelCredentials.createInsecure",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "typescript",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Currency.gateway.ts",
+    "line": 7,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "typescript",
+    "value": "ChannelCredentials.createInsecure",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Currency.gateway.ts",
+    "line": 9,
+    "quotedToken": "ChannelCredentials.createInsecure",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "typescript",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/ProductCatalog.gateway.ts",
+    "line": 7,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "typescript",
+    "value": "ChannelCredentials.createInsecure",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/ProductCatalog.gateway.ts",
+    "line": 9,
+    "quotedToken": "ChannelCredentials.createInsecure",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "typescript",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Recommendations.gateway.ts",
+    "line": 7,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "typescript",
+    "value": "ChannelCredentials.createInsecure",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Recommendations.gateway.ts",
+    "line": 9,
+    "quotedToken": "ChannelCredentials.createInsecure",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "typescript",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Shipping.gateway.ts",
+    "line": 7,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "typescript",
+    "value": "ChannelCredentials.createInsecure",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/gateways/rpc/Shipping.gateway.ts",
+    "line": 9,
+    "quotedToken": "ChannelCredentials.createInsecure",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "javascript",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/next.config.js",
+    "line": 27,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "tsx",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/pages/_document.tsx",
+    "line": 8,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "typescript",
+    "value": "fetch",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/utils/Request.ts",
+    "line": 21,
+    "quotedToken": "fetch",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "`${url}?${new URLSearchParams(queryParams).toString()}`",
+      "repo": "upstream",
+      "sourceFile": "src/frontend/utils/Request.ts",
+      "line": 21,
+      "quotedToken": "`${url}?${new URLSearchParams(queryParams).toString()}`"
+     }
+    ],
+    "services": [
+     "frontend"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config+http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     },
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "os.environ.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 72,
+    "quotedToken": "os.environ.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "'FLAGD_HOST'",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 72,
+      "quotedToken": "'FLAGD_HOST'"
+     },
+     {
+      "kind": "literal",
+      "value": "'flagd'",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 72,
+      "quotedToken": "'flagd'"
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config+http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     },
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "os.environ.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 72,
+    "quotedToken": "os.environ.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "'FLAGD_PORT'",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 72,
+      "quotedToken": "'FLAGD_PORT'"
+     },
+     {
+      "kind": "literal",
+      "value": "8013",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 72,
+      "quotedToken": "8013"
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 111,
+    "quotedToken": "self.client.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 111,
+      "quotedToken": "\"/\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 115,
+    "quotedToken": "self.client.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/api/products/\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 115,
+      "quotedToken": "\"/api/products/\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 122,
+    "quotedToken": "self.client.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/api/recommendations\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 122,
+      "quotedToken": "\"/api/recommendations\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 129,
+    "quotedToken": "self.client.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/api/data/\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 129,
+      "quotedToken": "\"/api/data/\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 133,
+    "quotedToken": "self.client.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/api/cart\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 133,
+      "quotedToken": "\"/api/cart\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 140,
+    "quotedToken": "self.client.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/api/products/\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 140,
+      "quotedToken": "\"/api/products/\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.post",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 148,
+    "quotedToken": "self.client.post",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/api/cart\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 148,
+      "quotedToken": "\"/api/cart\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.post",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 157,
+    "quotedToken": "self.client.post",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/api/checkout\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 157,
+      "quotedToken": "\"/api/checkout\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.post",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 167,
+    "quotedToken": "self.client.post",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/api/checkout\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 167,
+      "quotedToken": "\"/api/checkout\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "self.client.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 172,
+    "quotedToken": "self.client.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"/\"",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 172,
+      "quotedToken": "\"/\""
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "os.environ.get(\"LOCUST_BROWSER_TRAFFIC_ENABLED\",\"\").lower",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 181,
+    "quotedToken": "os.environ.get(\"LOCUST_BROWSER_TRAFFIC_ENABLED\", \"\").lower",
+    "literals": [],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "locust",
+      "match": "method"
+     }
+    ],
+    "language": "python",
+    "value": "request.headers.get",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/locustfile.py",
+    "line": 214,
+    "quotedToken": "request.headers.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "'baggage'",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 214,
+      "quotedToken": "'baggage'"
+     },
+     {
+      "kind": "literal",
+      "value": "''",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 214,
+      "quotedToken": "''"
+     }
+    ],
+    "services": [
+     "loadgenerator"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "javascript",
+    "value": "grpc.loadPackageDefinition",
+    "repo": "upstream",
+    "sourceFile": "src/paymentservice/index.js",
+    "line": 39,
+    "quotedToken": "grpc.loadPackageDefinition",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "'demo.proto'",
+      "repo": "upstream",
+      "sourceFile": "src/paymentservice/index.js",
+      "line": 39,
+      "quotedToken": "'demo.proto'"
+     }
+    ],
+    "services": [
+     "paymentservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "javascript",
+    "value": "grpc.Server",
+    "repo": "upstream",
+    "sourceFile": "src/paymentservice/index.js",
+    "line": 40,
+    "quotedToken": "grpc.Server",
+    "literals": [],
+    "services": [
+     "paymentservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "javascript",
+    "value": "grpc.Server",
+    "repo": "upstream",
+    "sourceFile": "src/paymentservice/index.js",
+    "line": 40,
+    "quotedToken": "grpc.Server",
+    "literals": [],
+    "services": [
+     "paymentservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "javascript",
+    "value": "process.env",
+    "repo": "upstream",
+    "sourceFile": "src/paymentservice/index.js",
+    "line": 48,
+    "quotedToken": "process.env",
+    "literals": [],
+    "services": [
+     "paymentservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "@grpc/grpc-js",
+      "match": "qualified"
+     }
+    ],
+    "language": "javascript",
+    "value": "grpc.ServerCredentials.createInsecure",
+    "repo": "upstream",
+    "sourceFile": "src/paymentservice/index.js",
+    "line": 48,
+    "quotedToken": "grpc.ServerCredentials.createInsecure",
+    "literals": [],
+    "services": [
+     "paymentservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "os.LookupEnv",
+    "repo": "upstream",
+    "sourceFile": "src/productcatalogservice/main.go",
+    "line": 223,
+    "quotedToken": "os.LookupEnv",
+    "literals": [],
+    "services": [
+     "productcatalogservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "google.golang.org/grpc",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "grpc.DialContext",
+    "repo": "upstream",
+    "sourceFile": "src/productcatalogservice/main.go",
+    "line": 313,
+    "quotedToken": "grpc.DialContext",
+    "literals": [],
+    "services": [
+     "productcatalogservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "php",
+    "value": "getenv",
+    "repo": "upstream",
+    "sourceFile": "src/quoteservice/public/index.php",
+    "line": 90,
+    "quotedToken": "getenv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "'QUOTE_SERVICE_PORT'",
+      "repo": "upstream",
+      "sourceFile": "src/quoteservice/public/index.php",
+      "line": 90,
+      "quotedToken": "'QUOTE_SERVICE_PORT'"
+     }
+    ],
+    "services": [
+     "quoteservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "os.environ.get",
+    "repo": "upstream",
+    "sourceFile": "src/recommendationservice/recommendation_server.py",
+    "line": 117,
+    "quotedToken": "os.environ.get",
+    "literals": [],
+    "services": [
+     "recommendationservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "os.environ.get",
+    "repo": "upstream",
+    "sourceFile": "src/recommendationservice/recommendation_server.py",
+    "line": 131,
+    "quotedToken": "os.environ.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "'FLAGD_HOST'",
+      "repo": "upstream",
+      "sourceFile": "src/recommendationservice/recommendation_server.py",
+      "line": 131,
+      "quotedToken": "'FLAGD_HOST'"
+     },
+     {
+      "kind": "literal",
+      "value": "'flagd'",
+      "repo": "upstream",
+      "sourceFile": "src/recommendationservice/recommendation_server.py",
+      "line": 131,
+      "quotedToken": "'flagd'"
+     }
+    ],
+    "services": [
+     "recommendationservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "os.environ.get",
+    "repo": "upstream",
+    "sourceFile": "src/recommendationservice/recommendation_server.py",
+    "line": 131,
+    "quotedToken": "os.environ.get",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "'FLAGD_PORT'",
+      "repo": "upstream",
+      "sourceFile": "src/recommendationservice/recommendation_server.py",
+      "line": 131,
+      "quotedToken": "'FLAGD_PORT'"
+     },
+     {
+      "kind": "literal",
+      "value": "8013",
+      "repo": "upstream",
+      "sourceFile": "src/recommendationservice/recommendation_server.py",
+      "line": 131,
+      "quotedToken": "8013"
+     }
+    ],
+    "services": [
+     "recommendationservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "grpc",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "grpc.insecure_channel",
+    "repo": "upstream",
+    "sourceFile": "src/recommendationservice/recommendation_server.py",
+    "line": 157,
+    "quotedToken": "grpc.insecure_channel",
+    "literals": [],
+    "services": [
+     "recommendationservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "_pb2_grpc",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "demo_pb2_grpc.ProductCatalogServiceStub",
+    "repo": "upstream",
+    "sourceFile": "src/recommendationservice/recommendation_server.py",
+    "line": 158,
+    "quotedToken": "demo_pb2_grpc.ProductCatalogServiceStub",
+    "literals": [],
+    "services": [
+     "recommendationservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "_pb2_grpc",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "demo_pb2_grpc.add_RecommendationServiceServicer_to_server",
+    "repo": "upstream",
+    "sourceFile": "src/recommendationservice/recommendation_server.py",
+    "line": 165,
+    "quotedToken": "demo_pb2_grpc.add_RecommendationServiceServicer_to_server",
+    "literals": [],
+    "services": [
+     "recommendationservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "_pb2_grpc",
+      "match": "qualified"
+     }
+    ],
+    "language": "python",
+    "value": "health_pb2_grpc.add_HealthServicer_to_server",
+    "repo": "upstream",
+    "sourceFile": "src/recommendationservice/recommendation_server.py",
+    "line": 166,
+    "quotedToken": "health_pb2_grpc.add_HealthServicer_to_server",
+    "literals": [],
+    "services": [
+     "recommendationservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "rust",
+    "value": "env::var",
+    "repo": "upstream",
+    "sourceFile": "src/shippingservice/src/main.rs",
+    "line": 31,
+    "quotedToken": "env::var",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"SHIPPING_SERVICE_PORT\"",
+      "repo": "upstream",
+      "sourceFile": "src/shippingservice/src/main.rs",
+      "line": 31,
+      "quotedToken": "\"SHIPPING_SERVICE_PORT\""
+     }
+    ],
+    "services": [
+     "shippingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "tonic",
+      "match": "qualified"
+     }
+    ],
+    "language": "rust",
+    "value": "Server::builder().add_service(ShippingServiceServer::new(shipper)).add_service(health_service).serve",
+    "repo": "upstream",
+    "sourceFile": "src/shippingservice/src/main.rs",
+    "line": 36,
+    "quotedToken": "Server::builder()",
+    "literals": [],
+    "services": [
+     "shippingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "tonic",
+      "match": "qualified"
+     }
+    ],
+    "language": "rust",
+    "value": "Response::new",
+    "repo": "upstream",
+    "sourceFile": "src/shippingservice/src/shipping_service.rs",
+    "line": 116,
+    "quotedToken": "Response::new",
+    "literals": [],
+    "services": [
+     "shippingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "tonic",
+      "match": "qualified"
+     }
+    ],
+    "language": "rust",
+    "value": "Response::new",
+    "repo": "upstream",
+    "sourceFile": "src/shippingservice/src/shipping_service.rs",
+    "line": 152,
+    "quotedToken": "Response::new",
+    "literals": [],
+    "services": [
+     "shippingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "tonic",
+      "match": "qualified"
+     }
+    ],
+    "language": "rust",
+    "value": "Request::new",
+    "repo": "upstream",
+    "sourceFile": "src/shippingservice/src/shipping_service.rs",
+    "line": 169,
+    "quotedToken": "Request::new",
+    "literals": [],
+    "services": [
+     "shippingservice"
+    ]
+   }
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "6897a5d921c3fd8f2df642bece7315589c426f45"
+  }
+ },
+ "architecture": {
+  "name": {
+   "value": "otel",
+   "repo": "upstream",
+   "sourceFile": "docker-compose.yml",
+   "line": 16,
+   "quotedToken": "services:",
+   "note": "architecture = the services of the compose files upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml"
+  }
+ },
+ "host": {
+  "id": {
+   "value": "fb14srv6",
+   "repo": "obsplacement",
+   "sourceFile": "research/host-topology.json",
+   "line": 422,
+   "quotedToken": "\"hostId\": \"fb14srv6\"",
+   "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "accountingservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 21,
+    "quotedToken": "accountingservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Dockerfile",
+    "line": 22,
+    "quotedToken": "base",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM base"
+   },
+   "container": {
+    "value": "accounting-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 23,
+    "quotedToken": "container_name: accounting-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for accountingservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "adservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 48,
+    "quotedToken": "adservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/adservice/Dockerfile",
+    "line": 21,
+    "quotedToken": "eclipse-temurin:21-jre",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM eclipse-temurin:21-jre"
+   },
+   "container": {
+    "value": "ad-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 50,
+    "quotedToken": "container_name: ad-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for adservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "cartservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 80,
+    "quotedToken": "cartservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/cartservice/src/Dockerfile",
+    "line": 33,
+    "quotedToken": "mcr.microsoft.com/dotnet/runtime-deps:8.0.10-alpine3.20",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM mcr.microsoft.com/dotnet/runtime-deps:8.0.10-alpine3.20"
+   },
+   "container": {
+    "value": "cart-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 82,
+    "quotedToken": "container_name: cart-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for cartservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "checkoutservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 114,
+    "quotedToken": "checkoutservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/checkoutservice/Dockerfile",
+    "line": 26,
+    "quotedToken": "alpine",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM alpine"
+   },
+   "container": {
+    "value": "checkout-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 116,
+    "quotedToken": "container_name: checkout-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for checkoutservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "currencyservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 166,
+    "quotedToken": "currencyservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/currencyservice/Dockerfile",
+    "line": 42,
+    "quotedToken": "alpine:3.18",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM alpine:3.18"
+   },
+   "container": {
+    "value": "currency-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 168,
+    "quotedToken": "container_name: currency-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for currencyservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "emailservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 192,
+    "quotedToken": "emailservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/emailservice/Dockerfile",
+    "line": 15,
+    "quotedToken": "base",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM base"
+   },
+   "container": {
+    "value": "email-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 194,
+    "quotedToken": "container_name: email-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for emailservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "frauddetectionservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 219,
+    "quotedToken": "frauddetectionservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/frauddetectionservice/Dockerfile",
+    "line": 15,
+    "quotedToken": "gcr.io/distroless/java17-debian11",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM gcr.io/distroless/java17-debian11"
+   },
+   "container": {
+    "value": "frauddetection-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 221,
+    "quotedToken": "container_name: frauddetection-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for frauddetectionservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "frontend",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 250,
+    "quotedToken": "frontend:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/frontend/Dockerfile",
+    "line": 23,
+    "quotedToken": "node:20-alpine",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM node:20-alpine"
+   },
+   "container": {
+    "value": "frontend",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 252,
+    "quotedToken": "container_name: frontend"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for frontend in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "frontendproxy",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 311,
+    "quotedToken": "frontendproxy:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/frontendproxy/Dockerfile",
+    "line": 4,
+    "quotedToken": "envoyproxy/envoy:v1.30-latest",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM envoyproxy/envoy:v1.30-latest"
+   },
+   "container": {
+    "value": "frontend-proxy",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 313,
+    "quotedToken": "container_name: frontend-proxy"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for frontendproxy in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "imageprovider",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 358,
+    "quotedToken": "imageprovider:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/imageprovider/Dockerfile",
+    "line": 4,
+    "quotedToken": "nginx:1.27.0-otel",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM nginx:1.27.0-otel"
+   },
+   "container": {
+    "value": "imageprovider",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 360,
+    "quotedToken": "container_name: imageprovider"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for imageprovider in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "loadgenerator",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 385,
+    "quotedToken": "loadgenerator:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/loadgenerator/Dockerfile",
+    "line": 15,
+    "quotedToken": "base",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM base"
+   },
+   "container": {
+    "value": "load-generator",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 387,
+    "quotedToken": "container_name: load-generator"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for loadgenerator in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "paymentservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 423,
+    "quotedToken": "paymentservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/paymentservice/Dockerfile",
+    "line": 15,
+    "quotedToken": "node:21-alpine",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM node:21-alpine"
+   },
+   "container": {
+    "value": "payment-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 425,
+    "quotedToken": "container_name: payment-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for paymentservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "productcatalogservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 454,
+    "quotedToken": "productcatalogservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/productcatalogservice/Dockerfile",
+    "line": 26,
+    "quotedToken": "alpine",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM alpine"
+   },
+   "container": {
+    "value": "product-catalog-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 456,
+    "quotedToken": "container_name: product-catalog-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for productcatalogservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "quoteservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 485,
+    "quotedToken": "quoteservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/quoteservice/Dockerfile",
+    "line": 33,
+    "quotedToken": "base",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM base"
+   },
+   "container": {
+    "value": "quote-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 487,
+    "quotedToken": "container_name: quote-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for quoteservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "recommendationservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 513,
+    "quotedToken": "recommendationservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/recommendationservice/Dockerfile",
+    "line": 34,
+    "quotedToken": "base",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM base"
+   },
+   "container": {
+    "value": "recommendation-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 515,
+    "quotedToken": "container_name: recommendation-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for recommendationservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "shippingservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 549,
+    "quotedToken": "shippingservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/shippingservice/Dockerfile",
+    "line": 47,
+    "quotedToken": "debian:bookworm-slim",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM debian:bookworm-slim"
+   },
+   "container": {
+    "value": "shipping-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 551,
+    "quotedToken": "container_name: shipping-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for shippingservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "flagd",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 579,
+    "quotedToken": "flagd:"
+   },
+   "role": {
+    "value": "other",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 580,
+    "quotedToken": "image: ${FLAGD_IMAGE}",
+    "note": "stage-1 rule D1: image-only service, image ghcr.io/open-feature/flagd:v0.11.2"
+   },
+   "container": {
+    "value": "flagd",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 581,
+    "quotedToken": "container_name: flagd"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for flagd in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "flagd-ui",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 605,
+    "quotedToken": "flagd-ui:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/flagd-ui/Dockerfile",
+    "line": 18,
+    "quotedToken": "node:20-alpine",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM node:20-alpine"
+   },
+   "container": {
+    "value": "flagd-ui",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 607,
+    "quotedToken": "container_name: flagd-ui"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for flagd-ui in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "kafka",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 632,
+    "quotedToken": "kafka:"
+   },
+   "role": {
+    "value": "broker",
+    "repo": "upstream",
+    "sourceFile": "src/kafka/Dockerfile",
+    "line": 5,
+    "quotedToken": "apache/kafka:3.7.0",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM apache/kafka:3.7.0"
+   },
+   "container": {
+    "value": "kafka",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 634,
+    "quotedToken": "container_name: kafka"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for kafka in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "valkey-cart",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 661,
+    "quotedToken": "valkey-cart:"
+   },
+   "role": {
+    "value": "cache",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 662,
+    "quotedToken": "image: ${VALKEY_IMAGE}",
+    "note": "stage-1 rule D1: image-only service, image valkey/valkey:8.0-alpine"
+   },
+   "container": {
+    "value": "valkey-cart",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 663,
+    "quotedToken": "container_name: valkey-cart"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for valkey-cart in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "jaeger",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 679,
+    "quotedToken": "jaeger:"
+   },
+   "role": {
+    "value": "telemetry-backend",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 680,
+    "quotedToken": "image: ${JAEGERTRACING_IMAGE}",
+    "note": "stage-1 rule D1: image-only service, image jaegertracing/all-in-one:1.60"
+   },
+   "container": {
+    "value": "jaeger",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 681,
+    "quotedToken": "container_name: jaeger"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for jaeger in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "grafana",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 701,
+    "quotedToken": "grafana:"
+   },
+   "role": {
+    "value": "telemetry-backend",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 702,
+    "quotedToken": "image: ${GRAFANA_IMAGE}",
+    "note": "stage-1 rule D1: image-only service, image grafana/grafana:11.2.0"
+   },
+   "container": {
+    "value": "grafana",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 703,
+    "quotedToken": "container_name: grafana"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for grafana in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "otelcol",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 719,
+    "quotedToken": "otelcol:"
+   },
+   "role": {
+    "value": "collector",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 720,
+    "quotedToken": "image: ${COLLECTOR_CONTRIB_IMAGE}",
+    "note": "stage-1 rule D1: image-only service, image otel/opentelemetry-collector-contrib:0.108.0"
+   },
+   "container": {
+    "value": "otel-col",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 721,
+    "quotedToken": "container_name: otel-col"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for otelcol in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "prometheus",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 751,
+    "quotedToken": "prometheus:"
+   },
+   "role": {
+    "value": "telemetry-backend",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 752,
+    "quotedToken": "image: ${PROMETHEUS_IMAGE}",
+    "note": "stage-1 rule D1: image-only service, image quay.io/prometheus/prometheus:v2.54.1"
+   },
+   "container": {
+    "value": "prometheus",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 753,
+    "quotedToken": "container_name: prometheus"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for prometheus in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  },
+  {
+   "name": {
+    "value": "opensearch",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 776,
+    "quotedToken": "opensearch:"
+   },
+   "role": {
+    "value": "telemetry-backend",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 777,
+    "quotedToken": "image: ${OPENSEARCH_IMAGE}",
+    "note": "stage-1 rule D1: image-only service, image opensearchproject/opensearch:2.17.1"
+   },
+   "container": {
+    "value": "opensearch",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 778,
+    "quotedToken": "container_name: opensearch"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for opensearch in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "accountingservice",
+    "callee": "kafka"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 139,
+   "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:35 passes KAFKA_SERVICE_ADDR=kafka:9092 to accountingservice"
+  },
+  {
+   "value": {
+    "caller": "accountingservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: entry docker-compose.yml:36 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4318 to accountingservice"
+  },
+  {
+   "value": {
+    "caller": "adservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:65 passes FLAGD_HOST=flagd to adservice"
+  },
+  {
+   "value": {
+    "caller": "adservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: entry docker-compose.yml:67 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4318 to adservice"
+  },
+  {
+   "value": {
+    "caller": "cartservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:97 passes FLAGD_HOST=flagd to cartservice"
+  },
+  {
+   "value": {
+    "caller": "cartservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:100 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 to cartservice"
+  },
+  {
+   "value": {
+    "caller": "cartservice",
+    "callee": "valkey-cart"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 144,
+   "quotedToken": "VALKEY_ADDR=valkey-cart:${VALKEY_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:99 passes VALKEY_ADDR=valkey-cart:6379 to cartservice"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "cartservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 54,
+   "quotedToken": "CART_SERVICE_ADDR=cartservice:${CART_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:133 passes CART_SERVICE_ADDR=cartservice:7070 to checkoutservice"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "currencyservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 64,
+   "quotedToken": "CURRENCY_SERVICE_ADDR=currencyservice:${CURRENCY_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:134 passes CURRENCY_SERVICE_ADDR=currencyservice:7001 to checkoutservice"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "emailservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 69,
+   "quotedToken": "EMAIL_SERVICE_ADDR=http://emailservice:${EMAIL_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:135 passes EMAIL_SERVICE_ADDR=http://emailservice:6060 to checkoutservice"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:130 passes FLAGD_HOST=flagd to checkoutservice"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "kafka"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 139,
+   "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:139 passes KAFKA_SERVICE_ADDR=kafka:9092 to checkoutservice"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:140 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 to checkoutservice"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "paymentservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 102,
+   "quotedToken": "PAYMENT_SERVICE_ADDR=paymentservice:${PAYMENT_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:136 passes PAYMENT_SERVICE_ADDR=paymentservice:50051 to checkoutservice"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "productcatalogservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 107,
+   "quotedToken": "PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:137 passes PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550 to checkoutservice"
+  },
+  {
+   "value": {
+    "caller": "checkoutservice",
+    "callee": "shippingservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 122,
+   "quotedToken": "SHIPPING_SERVICE_ADDR=shippingservice:${SHIPPING_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:138 passes SHIPPING_SERVICE_ADDR=shippingservice:50050 to checkoutservice"
+  },
+  {
+   "value": {
+    "caller": "currencyservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:184 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 to currencyservice"
+  },
+  {
+   "value": {
+    "caller": "emailservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: entry docker-compose.yml:210 passes OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://otelcol:4318/v1/traces to emailservice"
+  },
+  {
+   "value": {
+    "caller": "frauddetectionservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:233 passes FLAGD_HOST=flagd to frauddetectionservice"
+  },
+  {
+   "value": {
+    "caller": "frauddetectionservice",
+    "callee": "kafka"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 139,
+   "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:235 passes KAFKA_SERVICE_ADDR=kafka:9092 to frauddetectionservice"
+  },
+  {
+   "value": {
+    "caller": "frauddetectionservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: entry docker-compose.yml:236 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4318 to frauddetectionservice"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "adservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 49,
+   "quotedToken": "AD_SERVICE_ADDR=adservice:${AD_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:268 passes AD_SERVICE_ADDR=adservice:9555 to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "cartservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 54,
+   "quotedToken": "CART_SERVICE_ADDR=cartservice:${CART_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:269 passes CART_SERVICE_ADDR=cartservice:7070 to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "checkoutservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 59,
+   "quotedToken": "CHECKOUT_SERVICE_ADDR=checkoutservice:${CHECKOUT_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:270 passes CHECKOUT_SERVICE_ADDR=checkoutservice:5050 to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "currencyservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 64,
+   "quotedToken": "CURRENCY_SERVICE_ADDR=currencyservice:${CURRENCY_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:271 passes CURRENCY_SERVICE_ADDR=currencyservice:7001 to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:283 passes FLAGD_HOST=flagd to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:282 passes OTEL_COLLECTOR_HOST=otelcol to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:275 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "productcatalogservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 107,
+   "quotedToken": "PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:272 passes PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550 to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "recommendationservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 117,
+   "quotedToken": "RECOMMENDATION_SERVICE_ADDR=recommendationservice:${RECOMMENDATION_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:273 passes RECOMMENDATION_SERVICE_ADDR=recommendationservice:9001 to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "shippingservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 122,
+   "quotedToken": "SHIPPING_SERVICE_ADDR=shippingservice:${SHIPPING_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:274 passes SHIPPING_SERVICE_ADDR=shippingservice:50050 to frontend"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:341 passes FLAGD_HOST=flagd to frontendproxy"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "flagd-ui"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 133,
+   "quotedToken": "FLAGD_UI_HOST=flagd-ui",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:343 passes FLAGD_UI_HOST=flagd-ui to frontendproxy"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "frontend"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 81,
+   "quotedToken": "FRONTEND_HOST=frontend",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:327 passes FRONTEND_HOST=frontend to frontendproxy"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "grafana"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 151,
+   "quotedToken": "GRAFANA_SERVICE_HOST=grafana",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:331 passes GRAFANA_SERVICE_HOST=grafana to frontendproxy"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "imageprovider"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 87,
+   "quotedToken": "IMAGE_PROVIDER_HOST=imageprovider",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:335 passes IMAGE_PROVIDER_HOST=imageprovider to frontendproxy"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "jaeger"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 155,
+   "quotedToken": "JAEGER_SERVICE_HOST=jaeger",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:333 passes JAEGER_SERVICE_HOST=jaeger to frontendproxy"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "loadgenerator"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 95,
+   "quotedToken": "LOCUST_WEB_HOST=loadgenerator",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:328 passes LOCUST_WEB_HOST=loadgenerator to frontendproxy"
+  },
+  {
+   "value": {
+    "caller": "frontendproxy",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:334 passes OTEL_COLLECTOR_HOST=otelcol to frontendproxy"
+  },
+  {
+   "value": {
+    "caller": "imageprovider",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:375 passes OTEL_COLLECTOR_HOST=otelcol to imageprovider"
+  },
+  {
+   "value": {
+    "caller": "loadgenerator",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:413 passes FLAGD_HOST=flagd to loadgenerator"
+  },
+  {
+   "value": {
+    "caller": "loadgenerator",
+    "callee": "frontendproxy"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 83,
+   "quotedToken": "FRONTEND_PROXY_ADDR=frontend-proxy:${ENVOY_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:403 passes LOCUST_HOST=http://frontend-proxy:8080 to loadgenerator"
+  },
+  {
+   "value": {
+    "caller": "loadgenerator",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:407 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 to loadgenerator"
+  },
+  {
+   "value": {
+    "caller": "paymentservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:440 passes FLAGD_HOST=flagd to paymentservice"
+  },
+  {
+   "value": {
+    "caller": "paymentservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:442 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 to paymentservice"
+  },
+  {
+   "value": {
+    "caller": "productcatalogservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:471 passes FLAGD_HOST=flagd to productcatalogservice"
+  },
+  {
+   "value": {
+    "caller": "productcatalogservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:473 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 to productcatalogservice"
+  },
+  {
+   "value": {
+    "caller": "quoteservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: entry docker-compose.yml:501 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4318 to quoteservice"
+  },
+  {
+   "value": {
+    "caller": "recommendationservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 129,
+   "quotedToken": "FLAGD_HOST=flagd",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:531 passes FLAGD_HOST=flagd to recommendationservice"
+  },
+  {
+   "value": {
+    "caller": "recommendationservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:534 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 to recommendationservice"
+  },
+  {
+   "value": {
+    "caller": "recommendationservice",
+    "callee": "productcatalogservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 107,
+   "quotedToken": "PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:530 passes PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550 to recommendationservice"
+  },
+  {
+   "value": {
+    "caller": "shippingservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: entry docker-compose.yml:567 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 to shippingservice"
+  },
+  {
+   "value": {
+    "caller": "shippingservice",
+    "callee": "quoteservice"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 112,
+   "quotedToken": "QUOTE_SERVICE_ADDR=http://quoteservice:${QUOTE_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:566 passes QUOTE_SERVICE_ADDR=http://quoteservice:8090 to shippingservice"
+  },
+  {
+   "value": {
+    "caller": "flagd-ui",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: entry docker-compose.yml:617 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4318 to flagd-ui"
+  },
+  {
+   "value": {
+    "caller": "kafka",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: entry docker-compose.yml:647 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4318 to kafka"
+  },
+  {
+   "value": {
+    "caller": "jaeger",
+    "callee": "prometheus"
+   },
+   "repo": "upstream",
+   "sourceFile": "docker-compose.yml",
+   "line": 697,
+   "quotedToken": "- METRICS_STORAGE_TYPE=prometheus",
+   "note": "stage-1 rule D4: environment METRICS_STORAGE_TYPE=prometheus"
+  }
+ ]
+}

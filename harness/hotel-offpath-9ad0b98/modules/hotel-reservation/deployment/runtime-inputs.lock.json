@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+  "images": {
+    "builder": "docker.io/library/golang:1.21@sha256:4746d26432a9117a5f58e95cb9f954ddf0de128e9d5816886514199316e4a2fb",
+    "consul": "docker.io/hashicorp/consul:1.13@sha256:6e5a8c4b337e01ce42aad09bf67579988a45e23ca397d7eb267f5cc04b2c8550",
+    "jaeger": "docker.io/jaegertracing/all-in-one:1.60@sha256:4fd2d70fa347d6a47e79fcb06b1c177e6079f92cba88b083153d56263082135e",
+    "memcached": "docker.io/library/memcached:1.6.24@sha256:9232f48174d2e94252ef10af60ed5482a1fd81293acd6079b7a221c856e5b24c",
+    "mongo": "docker.io/library/mongo:5.0@sha256:41108d183e972dcbf98d09ed83f6cfc89a471a3f15d06f9d64a95e45d9db8dd2"
+  },
+  "applicationEnvironment": {
+    "TLS": "0",
+    "GC": "100",
+    "LOG_LEVEL": "info",
+    "MEMC_TIMEOUT": "2"
+  },
+  "policy": {
+    "pullByDigestOnly": true,
+    "mutableTagFallbackAllowed": false,
+    "builtApplicationImageMustBindPatchedTreeSha256": true
+  }
+}

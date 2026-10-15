@@ -1,0 +1,8 @@
+services:
+  webui: &selected
+    volumes:
+      - ../../postures/auth-subset.aop.xml:/usr/local/tomcat/lib/aop.xml:ro
+  auth: *selected
+  persistence: *selected
+  image: *selected
+  recommender: *selected

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Matched instrumentation performance receipt",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "sut", "posture", "source", "window", "workload", "latencyMs", "resources", "telemetry", "queue", "canonicality"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "runId": {"type": "string", "minLength": 1},
+    "sut": {"const": "teastore"},
+    "posture": {"enum": ["none", "full", "selected"]},
+    "source": {
+      "type": "object",
+      "required": ["frameworkCommit", "sutCommit", "dirty", "activationManifestSha256"],
+      "properties": {
+        "frameworkCommit": {"type": "string", "minLength": 7},
+        "sutCommit": {"type": "string", "minLength": 40, "maxLength": 40},
+        "dirty": {"type": "boolean"},
+        "activationManifestSha256": {"type": ["string", "null"]}
+      }
+    },
+    "window": {"type": "object", "required": ["startedAt", "endedAt", "warmupSeconds", "measurementSeconds"]},
+    "workload": {"type": "object", "required": ["offered", "completed", "failed", "concurrency"]},
+    "latencyMs": {"type": "object", "required": ["count", "p50", "p95", "p99"]},
+    "resources": {"type": "object", "required": ["applicationCpuSeconds", "applicationMemoryPeakBytes", "hostCpuSeconds"]},
+    "telemetry": {"type": "object", "required": ["records", "bytes", "uniqueSignatures", "parseFailures"]},
+    "queue": {"type": "object", "required": ["purgedBefore", "messagesBefore", "messagesAfter", "exclusiveConsumer"]},
+    "canonicality": {"type": "object", "required": ["label", "blockers"]}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,31 @@
+# CQ-C1. For a fault of kind ?kind on target ?target, which coordinator-failure class applies?
+# Parameters (optional; unbound = every (architecture member, fault kind) pair): ?target, ?kind.
+# Classes, first match:
+#   no-coordinator            the architecture has no Coordinator at all
+#   not-a-member              coordinators exist, but ?target neither registersWith one nor is memberOf a group one coordinates
+#   no-liveness-check         ?target is tracked by a coordinator, but no LivenessMechanism of it monitors ?target with
+#                             healthCheckConfigured not false (a registration nothing ever expires)
+#   tracked                   the fault kind stopsHeartbeat
+#   heartbeat-coupled-to-work the kind slowsWork and the monitoring mechanism's heartbeat is not independent of work
+#                             (structure cannot decide whether the stall exceeds the timeout)
+#   heartbeat-stays-alive     otherwise (slow work, independent heartbeat)
+PREFIX ops:   <http://obsplacement.example/ops#>
+PREFIX omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#>
+SELECT ?arch ?target ?kind ?class WHERE {
+  ?arch a omsac:MicroserviceArchitecture ; omsac:isComposedOf ?target .
+  ?kind a ops:FaultKind ; ops:stopsHeartbeat ?stops ; ops:slowsWork ?slows .
+  BIND (EXISTS { ?arch omsac:isComposedOf ?h . ?anyc ops:hostedBy ?h } AS ?hasCoord)
+  BIND (EXISTS { { ?target ops:registersWith ?c1 } UNION { ?target ops:memberOf ?g1 . ?g1 ops:coordinatedBy ?c1 } } AS ?member)
+  BIND (EXISTS { { ?target ops:registersWith ?c2 } UNION { ?target ops:memberOf ?g2 . ?g2 ops:coordinatedBy ?c2 } .
+                 ?l2 ops:enforcedBy ?c2 ; ops:monitors ?target .
+                 FILTER NOT EXISTS { ?l2 ops:healthCheckConfigured false } } AS ?live)
+  BIND (EXISTS { { ?target ops:registersWith ?c3 } UNION { ?target ops:memberOf ?g3 . ?g3 ops:coordinatedBy ?c3 } .
+                 ?l3 ops:enforcedBy ?c3 ; ops:monitors ?target ; ops:heartbeatThreadIndependentOfWork false .
+                 FILTER NOT EXISTS { ?l3 ops:healthCheckConfigured false } } AS ?coupled)
+  BIND (IF(!?hasCoord, "no-coordinator",
+        IF(!?member, "not-a-member",
+        IF(!?live, "no-liveness-check",
+        IF(?stops, "tracked",
+        IF(?slows && ?coupled, "heartbeat-coupled-to-work", "heartbeat-stays-alive"))))) AS ?class)
+}
+ORDER BY ?arch ?target ?kind

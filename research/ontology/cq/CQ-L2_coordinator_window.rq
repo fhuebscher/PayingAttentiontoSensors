@@ -1,0 +1,22 @@
+# CQ-L2. Predicted coordinator detection-time window (seconds after fault onset) for ?target under a heartbeat-stopping
+# fault kind ?kind: nominal [failureTimeout, failureTimeout + cleanupInterval] (cleanup absent = 0, expiry acts at once).
+# phaseLow = failureTimeout - heartbeatInterval: the earliest expiry if the last renewal happened one interval before
+# onset (renewal phase is uniform in [0, heartbeatInterval)). Rows only where CQ-C1 says tracked.
+# Parameters (optional): ?target, ?kind.
+PREFIX ops:   <http://obsplacement.example/ops#>
+PREFIX omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#>
+SELECT ?arch ?target ?kind ?coordinator ?liveness ?failureTimeout ?cleanup ?heartbeat ?low ?high ?phaseLow WHERE {
+  ?arch a omsac:MicroserviceArchitecture ; omsac:isComposedOf ?target .
+  ?kind a ops:FaultKind ; ops:stopsHeartbeat true .
+  { ?target ops:registersWith ?coordinator } UNION { ?target ops:memberOf ?g . ?g ops:coordinatedBy ?coordinator }
+  ?liveness ops:enforcedBy ?coordinator ; ops:monitors ?target ; ops:failureTimeoutSeconds ?failureTimeout .
+  FILTER NOT EXISTS { ?liveness ops:healthCheckConfigured false }
+  OPTIONAL { ?liveness ops:cleanupIntervalSeconds ?c0 }
+  OPTIONAL { ?liveness ops:heartbeatIntervalSeconds ?h0 }
+  BIND (COALESCE(?c0, 0.0) AS ?cleanup)
+  BIND (?h0 AS ?heartbeat)
+  BIND (?failureTimeout AS ?low)
+  BIND (?failureTimeout + ?cleanup AS ?high)
+  BIND (IF(BOUND(?h0), ?failureTimeout - ?h0, ?failureTimeout) AS ?phaseLow)
+}
+ORDER BY ?arch ?target ?kind ?coordinator

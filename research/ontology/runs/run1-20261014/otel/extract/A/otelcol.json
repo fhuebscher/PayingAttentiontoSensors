@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "extractor": "A",
+    "service": "otelcol",
+    "notes": [
+      "No registry, discovery service, coordinator, topic or consumer group is stated for otelcol in the given files; none reported.",
+      "No healthcheck key in the otelcol block of upstream docker-compose.yml (lines 719-748); only restart: unless-stopped (line 726). No health check reported.",
+      "The batch processor (otelcol-config.yml:109) sets no send_batch_size or timeout; export interval is library default, not in these files.",
+      "Stated intervals: prometheus scrape_interval 10s (otelcol-config.yml:87, scrapes the collector's own metrics at 0.0.0.0:8888), redis collection_interval 10s (otelcol-config.yml:23).",
+      "otelcol-config-extras.yml contains only commented-out examples; it adds no exporter or pipeline.",
+      "Traces: otlp receiver -> transform, batch -> exporters otlp (jaeger:4317), debug, spanmetrics (otelcol-config.yml:125-127). Metrics: exporters otlphttp/prometheus, debug (line 131). Logs: exporters opensearch, debug (line 135)."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "otelcol",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 719,
+        "quotedToken": "otelcol:"
+      },
+      "role": {
+        "value": "collector",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 720,
+        "quotedToken": "image: ${COLLECTOR_CONTRIB_IMAGE}",
+        "note": "image is otel/opentelemetry-collector-contrib:0.108.0 per .env:9"
+      },
+      "container": {
+        "value": "otel-col",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 721,
+        "quotedToken": "container_name: otel-col"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "library default, not in these files: the otelcol block (docker-compose.yml:719-748) has a deploy: block (line 722) with resources only and no replicas; Compose default is 1"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "jaeger",
+          "repo": "upstream",
+          "sourceFile": "src/otelcollector/otelcol-config.yml",
+          "line": 94,
+          "quotedToken": "jaeger:4317",
+          "note": "traces, OTLP exporter 'otlp' (gRPC port 4317), used in traces pipeline line 127"
+        },
+        {
+          "value": "prometheus",
+          "repo": "upstream",
+          "sourceFile": "src/otelcollector/otelcol-config.yml",
+          "line": 98,
+          "quotedToken": "http://prometheus:9090/api/v1/otlp",
+          "note": "metrics, exporter otlphttp/prometheus, used in metrics pipeline line 131"
+        },
+        {
+          "value": "opensearch",
+          "repo": "upstream",
+          "sourceFile": "src/otelcollector/otelcol-config.yml",
+          "line": 104,
+          "quotedToken": "http://opensearch:9200",
+          "note": "logs, exporter opensearch, used in logs pipeline line 135"
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "otelcol",
+        "callee": "jaeger"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/otelcollector/otelcol-config.yml",
+      "line": 94,
+      "quotedToken": "jaeger:4317",
+      "note": "OTLP gRPC exporter (protocol: OTLP/gRPC by port 4317 in the exporter key 'otlp'; tls insecure line 96)"
+    },
+    {
+      "value": {
+        "caller": "otelcol",
+        "callee": "prometheus"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/otelcollector/otelcol-config.yml",
+      "line": 98,
+      "quotedToken": "http://prometheus:9090/api/v1/otlp",
+      "note": "OTLP/HTTP exporter"
+    },
+    {
+      "value": {
+        "caller": "otelcol",
+        "callee": "opensearch"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/otelcollector/otelcol-config.yml",
+      "line": 104,
+      "quotedToken": "http://opensearch:9200",
+      "note": "HTTP, opensearch exporter"
+    },
+    {
+      "value": {
+        "caller": "otelcol",
+        "callee": "frontendproxy"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/otelcollector/otelcol-config.yml",
+      "line": 17,
+      "quotedToken": "http://frontendproxy:${env:ENVOY_PORT}",
+      "note": "HTTP, httpcheck/frontendproxy receiver target"
+    },
+    {
+      "value": {
+        "caller": "otelcol",
+        "callee": "valkey-cart"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/otelcollector/otelcol-config.yml",
+      "line": 21,
+      "quotedToken": "valkey-cart:6379",
+      "note": "redis receiver scrape, collection_interval 10s (line 23)"
+    }
+  ]
+}

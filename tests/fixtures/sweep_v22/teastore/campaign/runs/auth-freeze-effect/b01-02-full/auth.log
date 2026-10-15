@@ -1,0 +1,48 @@
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000000", "observedAtUtc": "2026-10-03T01:00:50.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000001", "observedAtUtc": "2026-10-03T01:00:55.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000002", "observedAtUtc": "2026-10-03T01:01:00.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000003", "observedAtUtc": "2026-10-03T01:01:05.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000004", "observedAtUtc": "2026-10-03T01:01:10.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000005", "observedAtUtc": "2026-10-03T01:01:15.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000006", "observedAtUtc": "2026-10-03T01:01:20.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000007", "observedAtUtc": "2026-10-03T01:01:25.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000008", "observedAtUtc": "2026-10-03T01:01:30.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000009", "observedAtUtc": "2026-10-03T01:01:35.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-0000000000000000000000000000000a", "observedAtUtc": "2026-10-03T01:01:40.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-0000000000000000000000000000000b", "observedAtUtc": "2026-10-03T01:01:45.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-0000000000000000000000000000000c", "observedAtUtc": "2026-10-03T01:01:50.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000019", "observedAtUtc": "2026-10-03T01:02:55.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-0000000000000000000000000000001a", "observedAtUtc": "2026-10-03T01:03:00.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-0000000000000000000000000000001b", "observedAtUtc": "2026-10-03T01:03:05.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-0000000000000000000000000000001c", "observedAtUtc": "2026-10-03T01:03:10.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-0000000000000000000000000000001d", "observedAtUtc": "2026-10-03T01:03:15.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-0000000000000000000000000000001e", "observedAtUtc": "2026-10-03T01:03:20.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-0000000000000000000000000000001f", "observedAtUtc": "2026-10-03T01:03:25.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000020", "observedAtUtc": "2026-10-03T01:03:30.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000021", "observedAtUtc": "2026-10-03T01:03:35.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000022", "observedAtUtc": "2026-10-03T01:03:40.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_APP_WITNESS {"event": "login-persistence-request", "journeyId": "journey-00000000000000000000000000000023", "observedAtUtc": "2026-10-03T01:03:45.021000Z", "schema": "teastore.app-witness-observation", "schemaVersion": 1, "service": "auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000000","nativeTraceId":"10000","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000001","nativeTraceId":"10001","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000002","nativeTraceId":"10002","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000003","nativeTraceId":"10003","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000004","nativeTraceId":"10004","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000005","nativeTraceId":"10005","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000006","nativeTraceId":"10006","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000007","nativeTraceId":"10007","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000008","nativeTraceId":"10008","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000009","nativeTraceId":"10009","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-0000000000000000000000000000000a","nativeTraceId":"10010","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-0000000000000000000000000000000b","nativeTraceId":"10011","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-0000000000000000000000000000000c","nativeTraceId":"10012","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000019","nativeTraceId":"10025","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-0000000000000000000000000000001a","nativeTraceId":"10026","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-0000000000000000000000000000001b","nativeTraceId":"10027","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-0000000000000000000000000000001c","nativeTraceId":"10028","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-0000000000000000000000000000001d","nativeTraceId":"10029","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-0000000000000000000000000000001e","nativeTraceId":"10030","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-0000000000000000000000000000001f","nativeTraceId":"10031","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000020","nativeTraceId":"10032","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000021","nativeTraceId":"10033","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000022","nativeTraceId":"10034","service":"auth"}
+OBSERVABILITY_NATIVE_TRACE_BRIDGE {"token":"journey-00000000000000000000000000000023","nativeTraceId":"10035","service":"auth"}

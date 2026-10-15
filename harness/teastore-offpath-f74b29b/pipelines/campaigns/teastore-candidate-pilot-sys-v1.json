@@ -1,0 +1,478 @@
+{
+  "analysis": {
+    "comparativeUnit": "complete-(regime,block)",
+    "descriptiveOnly": true,
+    "directedCarryoverBalancedClaim": false,
+    "forbidden": [
+      "p-value",
+      "confirmatory-interval",
+      "carryover-adjusted-effect",
+      "optimizer-front",
+      "generality-claim",
+      "observation-count-as-replication"
+    ],
+    "independentSequentialBlocksClaim": false,
+    "materialOrderOrThermalTrendResult": "unsupported",
+    "report": [
+      "raw-blocks",
+      "paired-deltas",
+      "ranges",
+      "order-time-thermal-diagnostics"
+    ]
+  },
+  "continuation": {
+    "earlySuccessStopAllowed": false,
+    "outcomeTriggeredExtensionAllowed": false,
+    "selectedRecompilationAllowed": false,
+    "sixBlockContinuationRequiresNewPreOutcomeEpoch": true
+  },
+  "design": {
+    "blocksPerRegime": 3,
+    "coldStartEachRun": true,
+    "costAndEffectPoolable": false,
+    "deploymentQueueAttemptArtifactReuse": false,
+    "postures": [
+      "none",
+      "selected",
+      "full"
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "cost",
+        "fault": null,
+        "id": "no-fault-cost",
+        "kind": "cost"
+      },
+      {
+        "artifactRootClass": "effect/auth-freeze",
+        "fault": "auth-freeze",
+        "id": "auth-freeze-effect",
+        "kind": "effect"
+      },
+      {
+        "artifactRootClass": "effect/persistence-crash",
+        "fault": "persistence-crash",
+        "id": "persistence-crash-effect",
+        "kind": "effect"
+      }
+    ],
+    "runsPerBlock": 3,
+    "selectedSource": "fault-qualification",
+    "totalRuns": 27
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "diagnosticLabel": "smoke-validation",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "functionalOutageWithoutContinuousWitness": null,
+      "intervalLabel": "intervention-exposure",
+      "requiredReceiptFields": [
+        "schemaVersion",
+        "scenario",
+        "service",
+        "independentOfKieker",
+        "intervalLabel",
+        "functionalOutage",
+        "measurementBarrier",
+        "requestedHoldSeconds",
+        "targetContainerId",
+        "targetImage",
+        "preState",
+        "commandVector",
+        "commandResult",
+        "actualOnsetWall",
+        "actualOnsetMonotonicOffsetSeconds",
+        "actualOffsetWall",
+        "actualOffsetMonotonicOffsetSeconds",
+        "duringStateSamples",
+        "recoveryAction",
+        "sameTargetIdentity",
+        "readiness",
+        "postState",
+        "interventionThreadJoined",
+        "laterInterventionMutationObserved",
+        "manifested",
+        "recovered",
+        "outageHeld",
+        "successful",
+        "error",
+        "operational"
+      ],
+      "scenarioContracts": [
+        {
+          "commandFamily": "docker-pause-unpause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "postPredicate": "running-and-unpaused",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "auth-freeze",
+          "service": "auth"
+        },
+        {
+          "commandFamily": "docker-stop-start",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "stopped",
+          "postPredicate": "running-and-ready",
+          "prePredicate": "running",
+          "scenario": "persistence-crash",
+          "service": "persistence"
+        }
+      ],
+      "source": "controller-and-target-state-probes-independent-of-kieker"
+    },
+    "path": {
+      "correlation": "pre-outcome-opaque-token-one-to-one-original-native-trace",
+      "crossTraceAssemblyAllowed": false,
+      "directEdgePredicate": "persistence.parentId == auth.spanId in same original native trace",
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "executedDenominator": "independent-application-side-witness",
+      "expectedOpportunityIsExecutionProof": false,
+      "missingWitnessOrCorrelationState": "unsupported",
+      "missingWitnessOrCorrelationValue": null,
+      "noneZeroRequires": [
+        "independently-proven-executed-opportunity",
+        "terminal-complete-hash-reconciled-empty-capture"
+      ],
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "opportunityWorkload": "login-browse-v1",
+      "requiredEdge": "auth->persistence",
+      "requiredSensors": [
+        "operation:auth",
+        "operation:persistence"
+      ],
+      "scoredPhases": [
+        "pre",
+        "post-readiness"
+      ],
+      "tokenContractFrozenBeforeOutcomes": true,
+      "tokenContractRequiredCoverage": [
+        "generation",
+        "login-request-injection",
+        "application-witness-extraction",
+        "native-trace-extraction",
+        "uniqueness",
+        "one-to-one-mapping"
+      ]
+    }
+  },
+  "id": "teastore-candidate-pilot-sys-v1",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "teastore",
+  "outcomes": {
+    "collectorTailUse": "diagnostic-only",
+    "costRegimeOnly": "no-fault-cost",
+    "effectResourcesAreCostEstimates": false,
+    "emptyLatencyValue": null,
+    "latencyPopulation": "successful-journeys-only",
+    "offeredJourneysAreDenominator": true,
+    "primaryCostEndpoint": "sampled-application-cpu-seconds-proxy-per-offered-journey",
+    "retainedTraceBytesAreWireBytes": false,
+    "windowMembership": "native-event-timestamps-clipped-to-shared-interval"
+  },
+  "postureProof": {
+    "full": {
+      "requires": [
+        "all-declared-groups-active",
+        "exact-aop-bytes",
+        "goal-and-catalog-digests"
+      ]
+    },
+    "none": {
+      "fixedSupportDisclosed": true,
+      "requires": [
+        "kieker-disabled-before-jvm-start-all-application-services",
+        "exact-aop-bytes"
+      ],
+      "zeroOperationalCostClaim": false
+    },
+    "selected": {
+      "requires": [
+        "goal-and-catalog-digests",
+        "dependency-closure",
+        "activation-manifest",
+        "exact-aop-bytes",
+        "required-groups-present",
+        "forbidden-groups-absent"
+      ],
+      "selectionId": "fault-qualification"
+    }
+  },
+  "queueProof": {
+    "manyRowsPerMessageAllowed": true,
+    "postureLabelAloneProvesMaterialization": false,
+    "requires": [
+      "purge-with-zero-consumers",
+      "zero-messages-at-measurement-barrier",
+      "exactly-one-collector",
+      "settled-drain",
+      "complete-message-sha1",
+      "complete-signature-sha1",
+      "no-redelivered-message-body",
+      "terminal-reconciliation"
+    ]
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "diagnosticRerunMayRestoreComparativeEligibility": false,
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "maximumLaterDiagnosticAttempts": 1,
+    "retryMayReplaceCell": false
+  },
+  "schedule": {
+    "candidateRule": "six-first-rows-each-left-then-right-rotation",
+    "collisionRule": "increment-modulo-12-until-unused",
+    "firstRows": [
+      [
+        "N",
+        "S",
+        "F"
+      ],
+      [
+        "N",
+        "F",
+        "S"
+      ],
+      [
+        "S",
+        "N",
+        "F"
+      ],
+      [
+        "S",
+        "F",
+        "N"
+      ],
+      [
+        "F",
+        "N",
+        "S"
+      ],
+      [
+        "F",
+        "S",
+        "N"
+      ]
+    ],
+    "integerEncoding": "unsigned-big-endian",
+    "receipts": [
+      {
+        "blocks": [
+          [
+            "full",
+            "none",
+            "selected"
+          ],
+          [
+            "selected",
+            "full",
+            "none"
+          ],
+          [
+            "none",
+            "selected",
+            "full"
+          ]
+        ],
+        "collisionIncrements": 0,
+        "initialCandidateIndex": 9,
+        "regime": "no-fault-cost",
+        "selectedCandidateIndex": 9,
+        "selectorSha256": "49dce5c55c33d6f5dbbb864fc7cef0c89af74a067d8f47e5d7e7f01cc83c7429"
+      },
+      {
+        "blocks": [
+          [
+            "selected",
+            "full",
+            "none"
+          ],
+          [
+            "none",
+            "selected",
+            "full"
+          ],
+          [
+            "full",
+            "none",
+            "selected"
+          ]
+        ],
+        "collisionIncrements": 0,
+        "initialCandidateIndex": 7,
+        "regime": "auth-freeze-effect",
+        "selectedCandidateIndex": 7,
+        "selectorSha256": "c84e7290a894b14522df38e894386d8e79d0ec8d2361cc98e306f73ef5e99243"
+      },
+      {
+        "blocks": [
+          [
+            "none",
+            "full",
+            "selected"
+          ],
+          [
+            "selected",
+            "none",
+            "full"
+          ],
+          [
+            "full",
+            "selected",
+            "none"
+          ]
+        ],
+        "collisionIncrements": 0,
+        "initialCandidateIndex": 3,
+        "regime": "persistence-crash-effect",
+        "selectedCandidateIndex": 3,
+        "selectorSha256": "efd0b6deecaa19b3c372c1a0ed873fddfd3977417bd913bcb30f46f34906031f"
+      }
+    ],
+    "regimeOrder": [
+      "no-fault-cost",
+      "auth-freeze-effect",
+      "persistence-crash-effect"
+    ],
+    "selectorEncoding": "UTF-8(epoch || NUL || regime || NUL || schedule-v1)",
+    "version": "schedule-v1"
+  },
+  "schemaVersion": 1,
+  "source": {
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "status": "method-design-only",
+  "systemSamples": {
+    "artifact": "system-samples.json",
+    "cells": "every-cell-cost-and-effect",
+    "collector": "modules/teastore/collectors/system_probe.py",
+    "faultWindowSamplesAreCostEstimates": false,
+    "intervalSeconds": 5,
+    "kind": "teastore-system-samples-v1",
+    "noFaultNullSampleAllowed": false,
+    "requiredServicesAtFirstSample": [
+      "auth",
+      "image",
+      "persistence",
+      "recommender",
+      "webui"
+    ],
+    "samplesPerRun": 121,
+    "sharedBarrierParticipant": false,
+    "source": "cgroup-v2-per-container-scope-and-docker-containerd-units",
+    "stoppedContainerValue": null,
+    "use": "detection-signal-only-in-effect-cells"
+  },
+  "targetHost": "fb14srv5",
+  "timing": {
+    "faultOnsetSeconds": 180,
+    "interventionHoldSeconds": 150,
+    "lifecycleIncludedInMinimum": false,
+    "measurementSeconds": 600,
+    "minimumActualJourneyStartsPerPhase": 20,
+    "minimumTimedHours": 5.4,
+    "minimumTimedSeconds": 19440,
+    "offeredJourneysPerRun": 90,
+    "offeredJourneysTotal": 2430,
+    "operationalEstimateSeconds": {
+      "lower": 21600,
+      "upper": 28800
+    },
+    "phaseAssignmentSource": "observed-intervention-and-readiness-monotonic-times",
+    "phaseNames": [
+      "pre",
+      "during",
+      "post"
+    ],
+    "sharedBarrierParticipants": [
+      "workload",
+      "resource-probe",
+      "collector",
+      "intervention"
+    ],
+    "warmupSeconds": 120
+  },
+  "workload": {
+    "concurrency": 8,
+    "excludedActions": [
+      "cart",
+      "checkout",
+      "confirmation"
+    ],
+    "id": "login-browse-v1",
+    "journeyLedger": {
+      "appendOnly": true,
+      "oneRowPerOfferedJourney": true,
+      "requestRequiredFields": [
+        "sequence",
+        "step",
+        "routeId",
+        "target",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "latencyMs",
+        "statusCode",
+        "outcome",
+        "error"
+      ],
+      "requiredFields": [
+        "recordType",
+        "recordSequence",
+        "previousRecordSha256",
+        "recordSha256",
+        "planSha256",
+        "workloadId",
+        "barrierId",
+        "sequence",
+        "journeyId",
+        "opportunityId",
+        "opaqueToken",
+        "tokenAllocatedAt",
+        "scheduledAt",
+        "scheduledMonotonicOffsetSeconds",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "expectedPath",
+        "requests",
+        "requestCount",
+        "outcome",
+        "errors",
+        "terminalSettled",
+        "endedAfterNominalWindow"
+      ]
+    },
+    "journeysPerSecond": 0.15,
+    "kind": "fixed-open-loop",
+    "population": "login, home, up-to-3-categories, up-to-3-products-per-category, home"
+  }
+}

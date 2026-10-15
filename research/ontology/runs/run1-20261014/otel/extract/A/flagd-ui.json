@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "extractor": "A",
+    "service": "flagd-ui",
+    "notes": [
+      "Synchronous calls: no call from flagd-ui to another service of the system is stated in these files. Its server-side API routes only read and write a local file (src/app/api/read-file/route.ts:13 fs.readFileSync; src/app/api/write-to-file/route.ts:12 fs.writeFile) under process.cwd()/data (read-file/route.ts:12, write-to-file/route.ts:10), which docker-compose.yml:629 bind-mounts from ./src/flagd (the directory flagd also mounts at docker-compose.yml:600 and reads via --uri file:./etc/flagd/demo.flagd.json, line 595): a shared file, not a call. The browser code fetches only flagd-ui's own routes (src/components/basic/BasicView.tsx:21 and :60, src/components/advanced/AdvancedView.tsx:23 and :98 under basePath /feature, next.config.mjs:6) and, client-side, the external JSON schemas https://flagd.dev/schema/v0/flags.json (AdvancedView.tsx:45); these are not edges to a service of this system. No edge reported. depends_on flagd service_started (docker-compose.yml:626-627) is start ordering, not a call.",
+      "Messages: no topics, producers, consumers or consumer groups in these files (no kafka dependency in package.json:11-17, no kafka env in docker-compose.yml:616-620).",
+      "Registry/discovery/coordinator: none stated in these files. flagd-ui does not register with or heartbeat to any registry; heartbeat interval, failure timeout, cleanup interval and heartbeat independence: not applicable, not stated.",
+      "Container, replicas, health check: container_name flagd-ui (docker-compose.yml:607), image ${IMAGE_NAME}:${DEMO_VERSION}-flagd-ui (line 606), memory limit 150M (line 614), restart: unless-stopped (line 615), listens on port 4000 (Dockerfile:31 EXPOSE 4000; package.json:8 next start -p 4000; .env:134 FLAGD_UI_PORT=4000). No deploy.replicas or scale in docker-compose.yml:605-629 or modules/otel-demo/deployment/compose.candidate-postures.yml:139-144 (Compose default 1). No healthcheck key in the flagd-ui compose block (docker-compose.yml:605-629) and no HEALTHCHECK in src/flagd-ui/Dockerfile (lines 1-33): no container health check configured.",
+      "Telemetry: instrumentation.ts:6 registerOTel({ serviceName: \"flagd-ui\" }) from @vercel/otel (package.json:12), enabled by next.config.mjs:4 instrumentationHook: true. docker-compose.yml:617 OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP} (OTLP/HTTP to otelcol, .env:27 OTEL_COLLECTOR_HOST=otelcol, .env:29 OTEL_COLLECTOR_PORT_HTTP=4318); docker-compose.yml:618 sets OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE without a value in these files (taken from the environment). Which of traces, metrics and logs the @vercel/otel library exports by default is not stated in these files: library default, not in these files. The candidate-posture overlay (compose.candidate-postures.yml:139-144) sets OTEL_SDK_DISABLED and OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER per posture from OTEL_CANDIDATE_FLAGD_UI_* variables whose values are not in these files. Export interval: not set in these files (no OTEL_BSP_*, OTEL_METRIC_EXPORT_INTERVAL), library default, not in these files. Stdout logging: no logging: *logging key in the flagd-ui block (docker-compose.yml:605-629), unlike e.g. line 601-602 for flagd."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "flagd-ui",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 605,
+        "quotedToken": "flagd-ui:"
+      },
+      "container": {
+        "value": "flagd-ui",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 607,
+        "quotedToken": "container_name: flagd-ui"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "no deploy.replicas or scale for flagd-ui in upstream:docker-compose.yml:605-629 or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:139-144; Compose default 1; library default, not in these files"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "docker-compose.yml",
+          "line": 617,
+          "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}",
+          "note": "OTLP/HTTP; host otelcol from .env:27 OTEL_COLLECTOR_HOST=otelcol, port 4318 from .env:29; signals exported by @vercel/otel (instrumentation.ts:6) not stated in these files; export interval not set in these files (library default, not in these files)"
+        }
+      ]
+    }
+  ],
+  "syncEdges": []
+}

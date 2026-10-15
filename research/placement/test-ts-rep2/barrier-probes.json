@@ -1,0 +1,712 @@
+{
+  "cellDetail": [
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2358737085014582,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 1,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2358737085014582,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.014590684324502945
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b01/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3166809845715761,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 1,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3166809845715761,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015117621049284935
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b01/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 3.6287786066532135,
+        "consumers": 1,
+        "index": 2,
+        "messages": 0
+      },
+      "block": 1,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 2,
+      "probes": [
+        {
+          "completedOffsetS": 1.39332733489573,
+          "consumers": 1,
+          "messages": 1,
+          "startOffsetS": 0.012272054329514503
+        },
+        {
+          "completedOffsetS": 3.6287786066532135,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 2.3945339117199183
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b01/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3134564347565174,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 1,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3134564347565174,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.002154359593987465
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b01/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2845988031476736,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 1,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2845988031476736,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.014953002333641052
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b01/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3452597670257092,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 1,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3452597670257092,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.014822442084550858
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b01/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3389691729098558,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 2,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3389691729098558,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.011263623833656311
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b02/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3490167539566755,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 2,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3490167539566755,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.00782894529402256
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b02/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.38946402259171,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 2,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.38946402259171,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.012840382754802704
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b02/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2862749826163054,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 2,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2862749826163054,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.01537972129881382
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b02/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2482258714735508,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 2,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2482258714735508,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.014284733682870865
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b02/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2283314913511276,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 2,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2283314913511276,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015019631013274193
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b02/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3286894094198942,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 3,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3286894094198942,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015461498871445656
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b03/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2799291387200356,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 3,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2799291387200356,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015524463728070259
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b03/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2328441850841045,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 3,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2328441850841045,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.018161024898290634
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b03/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3007985912263393,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 3,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3007985912263393,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.012903111055493355
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b03/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3285684175789356,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 3,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3285684175789356,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015156848356127739
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b03/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.360238866880536,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 3,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.360238866880536,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.011448480188846588
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b03/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.295461369678378,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 4,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.295461369678378,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.0002629421651363373
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b04/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2717294991016388,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 4,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2717294991016388,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015089817345142365
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b04/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2595914471894503,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 4,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2595914471894503,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.014019068330526352
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b04/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3521714601665735,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 4,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3521714601665735,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015424389392137527
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b04/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3079160191118717,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 4,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3079160191118717,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015270126983523369
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b04/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3155820202082396,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 4,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3155820202082396,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.01491040363907814
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b04/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2807253189384937,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 5,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2807253189384937,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.01516580581665039
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b05/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.2971245851367712,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 5,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.2971245851367712,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.01319614052772522
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b05/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.300577426329255,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 5,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.300577426329255,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015297913923859596
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b05/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.3941619992256165,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 5,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.3941619992256165,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.009014900773763657
+        }
+      ],
+      "regime": "no-fault-cost",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b05/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.4285675045102835,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 5,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.4285675045102835,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.006477786228060722
+        }
+      ],
+      "regime": "recommender-pause-effect",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b05/full/a01"
+    },
+    {
+      "acknowledgingProbe": {
+        "completedOffsetS": 1.1988286450505257,
+        "consumers": 1,
+        "index": 1,
+        "messages": 0
+      },
+      "block": 5,
+      "consumerAtStartConsumers": 1,
+      "consumerAtStartMessages": 0,
+      "posture": "full",
+      "probeCount": 1,
+      "probes": [
+        {
+          "completedOffsetS": 1.1988286450505257,
+          "consumers": 1,
+          "messages": 0,
+          "startOffsetS": 0.015334207564592361
+        }
+      ],
+      "regime": "auth-freeze-effect",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b05/full/a01"
+    }
+  ],
+  "cells": 30,
+  "cellsAckConsumersOne": 30,
+  "cellsAckMessagesZero": 30,
+  "cellsConsumerAtStartMessagesZero": 30,
+  "cellsWithMoreThanOneProbe": 1,
+  "kind": "teastore-offpath-rep2-barrier-probes",
+  "maxAckCompletedOffsetS": 3.6287786066532135,
+  "minAckCompletedOffsetS": 1.1988286450505257,
+  "probeCountDistribution": {
+    "1": 29,
+    "2": 1
+  }
+}

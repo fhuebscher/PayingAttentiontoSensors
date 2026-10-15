@@ -1,0 +1,11 @@
+{
+  "completedAt": "2026-10-04T13:23:18.264333Z",
+  "ownedResourcesClean": true,
+  "project": "otel_candidate_v4_otel_traffic_sweep_v1",
+  "remainingResources": {
+    "containers": [],
+    "networks": [],
+    "volumes": []
+  },
+  "schemaVersion": 1
+}

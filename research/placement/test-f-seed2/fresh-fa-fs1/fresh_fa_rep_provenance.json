@@ -1,0 +1,26 @@
+{
+ "campaign": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/fs1-fetch2/x",
+ "freshFaF": "research/placement/test-f/fresh-fa/fresh_fa_f.py",
+ "freshFaFSha256": "df6d4a98dd8d31d228c1fea40044a742732a158c4911b0cbfc922aa414f94093",
+ "heldOutCells": [
+  "r25-b04-16-full",
+  "r25-b04-17-full",
+  "r25-b05-21-full",
+  "r25-b05-22-full"
+ ],
+ "label": "POST HOC fresh false alarms, R2, campaign F with a new seed (attempt 4); instance scope",
+ "note": "fresh_fa_f's own output files say 'after RESULT_F.md' and name F; their rows are the replicate's",
+ "readoutDir": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/fresh-fa-fs1/readout-v3.3-validation",
+ "readoutSha256": "b57cca6166b396013bb559f3fd9ec1479742879c35fc05bf24772139666b0f2b",
+ "sets": {
+  "@3/T_r": "metric:kafka:kafka.request.count",
+  "@6/T_r": "metric:kafka:kafka.consumer_group.lag"
+ },
+ "setsAre": "F's frozen sets",
+ "split": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/protocol/split_f_otel.json",
+ "splitSha256": "107cb13aeb52e009754744b136f33b63af69c67d9a2b50e8d9bce14a0e719844",
+ "trainReadout": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/traffic-sweep/readout-otel-fs1-train-v3.3/sweep_analysis_v3_3.json",
+ "trainReadoutSha256": "bcc4cd34901011b25c4c489ddfd9ef67111950ba0f9fd5b430b3ce3f36d95300",
+ "wrapper": "research/placement/test-f-seed2/fresh_fa_fs1.py",
+ "wrapperSha256": "60c4fe82011be24083c1a1e64ab47d4a2d4edb23f56a19db7347b17075716cd5"
+}

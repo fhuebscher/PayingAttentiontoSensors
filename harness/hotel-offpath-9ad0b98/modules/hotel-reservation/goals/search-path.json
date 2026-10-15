@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "hotel-search-path-visibility",
+  "source": {
+    "kind": "source-audited-static-ground-truth",
+    "upstreamCommit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+    "entrypoint": "GET /hotels",
+    "handler": "services/frontend/server.go:searchHandler"
+  },
+  "scenario": {
+    "id": "hotel-search",
+    "method": "GET",
+    "path": "/hotels",
+    "requiredSensors": [
+      "span:frontend:HTTP GET /hotels",
+      "span:search:/search.Search/Nearby",
+      "span:geo:/geo.Geo/Nearby",
+      "span:rate:/rate.Rate/GetRates",
+      "span:reservation:/reservation.Reservation/CheckAvailability",
+      "span:profile:/profile.Profile/GetProfiles"
+    ],
+    "requiredServiceEdges": [
+      ["frontend", "search"],
+      ["search", "geo"],
+      ["search", "rate"],
+      ["frontend", "reservation"],
+      ["frontend", "profile"]
+    ],
+    "representativeFaults": [
+      {"id": "search-pause", "targetService": "search", "expectedRouteImpact": "failure"},
+      {"id": "reservation-pause", "targetService": "reservation", "expectedRouteImpact": "failure"}
+    ]
+  },
+  "objectives": {
+    "maximize": ["required_sensor_retention", "required_edge_retention", "successful_requests"],
+    "minimize": ["p95_latency_ms", "application_cpu", "emitted_bytes"]
+  },
+  "constraints": {
+    "fixedOfferedLoad": true,
+    "sourceSideDisableRequiredForCostClaim": true,
+    "runLevelRandomization": true,
+    "explicitGroundTruthRequired": true
+  },
+  "claimBoundary": "This goal can validate path visibility under stock full sampling. Stock sample-zero is not evidence of request-path cost removal, and the six logical sensors are coupled by one root sampling decision."
+}

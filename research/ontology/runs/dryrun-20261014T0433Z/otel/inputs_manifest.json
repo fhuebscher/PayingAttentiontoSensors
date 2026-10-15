@@ -1,0 +1,3500 @@
+{
+ "manifestVersion": 1,
+ "system": "otel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d",
+   "pinnedAs": "2d4661e4897a"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c",
+   "pinnedAs": "715d57b"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67",
+   "pinnedAs": "HEAD"
+  }
+ },
+ "rules": "research/ontology/inputs.py module docstring, R1-R7",
+ "deploymentFiles": [
+  {
+   "role": "compose",
+   "repo": "upstream",
+   "path": "docker-compose.yml",
+   "sha256": "31a8acb3fa19360eb92965face044ee86c95b5f072d21b05a931bd84ca93c507",
+   "bytes": 21987
+  },
+  {
+   "role": "compose",
+   "repo": "harness",
+   "path": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+   "sha256": "c5fd860fd2c303a8cfdb7335d2cc9eb12fdde189db4f8076ef86919472394429",
+   "bytes": 10758
+  },
+  {
+   "role": "env",
+   "repo": "upstream",
+   "path": ".env",
+   "sha256": "364acbd7bfaa8396775c3af33f2cb0136c2e4a3b897225c3a91e000606733056",
+   "bytes": 4688
+  },
+  {
+   "role": "deployment",
+   "repo": "upstream",
+   "path": "src/otelcollector/otelcol-config.yml",
+   "sha256": "2dd111a8a75b8aef3d11e5416857b687ad5d0dfe0f3083a8ddf466bdedbaa1f9",
+   "bytes": 3266
+  },
+  {
+   "role": "host-topology",
+   "repo": "obsplacement",
+   "path": "research/host-topology.json",
+   "sha256": "a259d0ccb0470155c032616fd2dbb7e4e8b941ce5cf2d103a5195c01faa30d15",
+   "bytes": 23283
+  }
+ ],
+ "services": {
+  "accountingservice": {
+   "service": "accountingservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/accountingservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/accountingservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/accountingservice/AccountingService.csproj",
+     "sha256": "af591b386193bda449f6d3db3211c7e9b606cacd8ba3f721c9076a958e90c9e0",
+     "bytes": 1204
+    },
+    {
+     "repo": "upstream",
+     "path": "src/accountingservice/AccountingService.sln",
+     "sha256": "36c988a5280d3b9dee528f7b21de6e0e3790c0b523b61a16c7fd70f2a1e47d14",
+     "bytes": 1110
+    },
+    {
+     "repo": "upstream",
+     "path": "src/accountingservice/Consumer.cs",
+     "sha256": "71d73eb16dc7b4b47b46e2163d006bdc5d3f7bd6654044da84d2823a1aedb97e",
+     "bytes": 2403
+    },
+    {
+     "repo": "upstream",
+     "path": "src/accountingservice/Dockerfile",
+     "sha256": "d81e2edb22c354dd938eb6522cf0966e9fb22de0f90d4484526be2055a695c82",
+     "bytes": 998
+    },
+    {
+     "repo": "upstream",
+     "path": "src/accountingservice/Helpers.cs",
+     "sha256": "4e91891f4d58fd7512e8d13efd9ff6e3aac28d1b8b4e98e8fa327f609f26e0ba",
+     "bytes": 996
+    },
+    {
+     "repo": "upstream",
+     "path": "src/accountingservice/Log.cs",
+     "sha256": "43a0f8b7c6c28934e24eb816f0053531546339ee54e0d5c9c41160dec3c1ae15",
+     "bytes": 435
+    },
+    {
+     "repo": "upstream",
+     "path": "src/accountingservice/Program.cs",
+     "sha256": "3d53a98c7bf3fd4f7d0cd38c61f5b45cfe4785580c7e7a09f438f1fee9d6cf36",
+     "bytes": 572
+    }
+   ],
+   "fileCount": 8,
+   "bytes": 14831
+  },
+  "adservice": {
+   "service": "adservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/adservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/adservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/Dockerfile",
+     "sha256": "7f42c38424c4b36d514427a860759c51f7d36764f2653ee004350aa66e26048e",
+     "bytes": 961
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/build.gradle",
+     "sha256": "6ca259c8981a0fe533d2a77a76e3abb4a1f409211b251a6855eefe2bae125bc8",
+     "bytes": 4383
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/gradle/wrapper/gradle-wrapper.properties",
+     "sha256": "3d91f0932da99885c41e9dc4e85c9f9a2d3bfef4f0ad87473014dc0827a94884",
+     "bytes": 250
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/gradlew",
+     "sha256": "fc977a94723af68aaffa4e5d60496fb4aeed1884b6b19e5e2f2fd7612673313d",
+     "bytes": 8692
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/gradlew.bat",
+     "sha256": "8e327fcb99d29ce0fe3ee2fec6e6a25de815a2df83a6a44a553dea89ffc92955",
+     "bytes": 2868
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/settings.gradle",
+     "sha256": "100c22649569a9360389a7bef6c51cd25526bc440cfed1c3aaadfa6afa9c41f8",
+     "bytes": 52
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/src/main/java/oteldemo/AdService.java",
+     "sha256": "47807823956b45eb57dfb24432cb9e630ba7f12323974a766bd6fca95aeaa3f4",
+     "bytes": 12321
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/src/main/java/oteldemo/problempattern/CPULoad.java",
+     "sha256": "03616559c1bdbabb6367e3b049200506a7cf1e19283904649e820f5d5ce9d2c1",
+     "bytes": 3581
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/src/main/java/oteldemo/problempattern/GarbageCollectionTrigger.java",
+     "sha256": "9e0d9305538655af713ea89bbd0e47e77a0547e11431d6a831ef812a25538007",
+     "bytes": 2781
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/src/main/java/oteldemo/problempattern/MemoryUtils.java",
+     "sha256": "d14880c7a7566a1632cd06cd37666c76921daeb2a5699ac4449f7a23990c153f",
+     "bytes": 1804
+    },
+    {
+     "repo": "upstream",
+     "path": "src/adservice/src/main/resources/log4j2.xml",
+     "sha256": "3d8db3e4b5481790f0768c5d4b46c77f541a849fe5970085ca8015bf40e93b28",
+     "bytes": 542
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 45348
+  },
+  "cartservice": {
+   "service": "cartservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/cartservice/src/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/cartservice/src/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/cartservice/NuGet.config",
+     "sha256": "60d4246cae527e3d38b92ab1f227ee2f420846724bf895f6c4ab401f728b78fa",
+     "bytes": 222
+    },
+    {
+     "repo": "upstream",
+     "path": "src/cartservice/cartservice.sln",
+     "sha256": "5441a4749f82326525f1137a6dfdae7d9a0d68896f1059c6dbcdaa5ffcf8dc69",
+     "bytes": 2809
+    },
+    {
+     "repo": "upstream",
+     "path": "src/cartservice/src/Dockerfile",
+     "sha256": "5e6a7edf2414dafba7ab2b9ce3add735773a6af16ff4deca3f2c9befe2e488b7",
+     "bytes": 1423
+    },
+    {
+     "repo": "upstream",
+     "path": "src/cartservice/src/Program.cs",
+     "sha256": "c45db99d9a0ff17ed0f0a28d4fdbb1c1b4d281bfc09eb6cf4694fc9788c76703",
+     "bytes": 3095
+    },
+    {
+     "repo": "upstream",
+     "path": "src/cartservice/src/appsettings.json",
+     "sha256": "8ecd6805243f91b3e62e1aebee3bbc7df4df1fbfb46183a105714b2ffddfb8dc",
+     "bytes": 260
+    },
+    {
+     "repo": "upstream",
+     "path": "src/cartservice/src/cartservice.csproj",
+     "sha256": "628f34accab8be273c644583248440fa8efedc89b6646e89cbbff263d52738ae",
+     "bytes": 2060
+    },
+    {
+     "repo": "upstream",
+     "path": "src/cartservice/src/cartstore/ICartStore.cs",
+     "sha256": "2c307f508ef0e0e6f5f0b15e9cdbc0f2868426c671323337b6ffa720f00fb31f",
+     "bytes": 381
+    },
+    {
+     "repo": "upstream",
+     "path": "src/cartservice/src/cartstore/ValkeyCartStore.cs",
+     "sha256": "aca03f3a372293ea1f5e4f7c1ed26c71f5671dfd7f8526b94d9eb4f70ed0c26a",
+     "bytes": 6768
+    },
+    {
+     "repo": "upstream",
+     "path": "src/cartservice/src/services/CartService.cs",
+     "sha256": "56e442df36f5013ee428843636847b3c6e08682d6ef139249a5b3d80df8259d8",
+     "bytes": 3137
+    }
+   ],
+   "fileCount": 10,
+   "bytes": 27268
+  },
+  "checkoutservice": {
+   "service": "checkoutservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/checkoutservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/checkoutservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/checkoutservice/Dockerfile",
+     "sha256": "b8cd035def454667146eb09e56de0d2f1cf1761c81910c4045cacfbe111fdbc6",
+     "bytes": 1102
+    },
+    {
+     "repo": "upstream",
+     "path": "src/checkoutservice/go.mod",
+     "sha256": "2d12ff055120e4dfcdaffdadf15d2aa309e4ddbf4162b8941acc5ea3558b32dc",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "src/checkoutservice/kafka/producer.go",
+     "sha256": "3e0c1482a7b8f44318e48ea873424fe851390958d6155bcf1a8134c8f5666163",
+     "bytes": 1168
+    },
+    {
+     "repo": "upstream",
+     "path": "src/checkoutservice/main.go",
+     "sha256": "b673ea1c19ea4304bbf5451fa524a9dfe78a30317a62cb4469c32b220f2136eb",
+     "bytes": 19912
+    },
+    {
+     "repo": "upstream",
+     "path": "src/checkoutservice/money/money.go",
+     "sha256": "a231d92439797fef26c5aed3e7e4a3407954e9854456be5f90c4759f8b95dfa7",
+     "bytes": 3502
+    },
+    {
+     "repo": "upstream",
+     "path": "src/checkoutservice/tools.go",
+     "sha256": "9280adae9ab37b71e4bb4e5faa03ae2050a7729f118430ec3ded5a00fcd10c6c",
+     "bytes": 518
+    }
+   ],
+   "fileCount": 7,
+   "bytes": 38033
+  },
+  "currencyservice": {
+   "service": "currencyservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/currencyservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/currencyservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/currencyservice/CMakeLists.txt",
+     "sha256": "c3f76c8360a9f5a4aef74fc186322eba7594d5c0a3aa692b268ca407638299e5",
+     "bytes": 2979
+    },
+    {
+     "repo": "upstream",
+     "path": "src/currencyservice/Dockerfile",
+     "sha256": "44c899164aa0e73e0ff5b1cc142e5a13889d8a7f7a71dc12754853e1bc4cb67f",
+     "bytes": 1789
+    },
+    {
+     "repo": "upstream",
+     "path": "src/currencyservice/data/currency_conversion.json",
+     "sha256": "19a38bb8616729b4562c0319a7d2e4f4d99cc2eddf2e56fab7006c6e46f5c23e",
+     "bytes": 635
+    },
+    {
+     "repo": "upstream",
+     "path": "src/currencyservice/proto/grpc/health/v1/health.proto",
+     "sha256": "e3dcdb0521341163897c6b87b3c92dd559a44a7cb1330f8f3bbcc2b0027fdd67",
+     "bytes": 1288
+    },
+    {
+     "repo": "upstream",
+     "path": "src/currencyservice/src/logger_common.h",
+     "sha256": "3544d08687edb6cad2b835b3de904a9e071020a92892b86e23f7ad66bc1e142d",
+     "bytes": 1595
+    },
+    {
+     "repo": "upstream",
+     "path": "src/currencyservice/src/meter_common.h",
+     "sha256": "019206c3dc46d7d65e25ec0e59ce8577be16b2d1d61524919bdcbddfc8eb209f",
+     "bytes": 1787
+    },
+    {
+     "repo": "upstream",
+     "path": "src/currencyservice/src/server.cpp",
+     "sha256": "251a53046c52fba11f6f2ecc0a2a878133e867fd290cd43afa2b56ced79e52c6",
+     "bytes": 8179
+    },
+    {
+     "repo": "upstream",
+     "path": "src/currencyservice/src/tracer_common.h",
+     "sha256": "defcbf6abb07c81442c0203acd2e9a03367166ee90b0fc56c935972ffa016835",
+     "bytes": 3445
+    }
+   ],
+   "fileCount": 9,
+   "bytes": 28810
+  },
+  "emailservice": {
+   "service": "emailservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/emailservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/emailservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/emailservice/Dockerfile",
+     "sha256": "232561a5606c3ee47fbc07f67594fc1de75cc81df22dd89c8713dbecbe9fa069",
+     "bytes": 607
+    },
+    {
+     "repo": "upstream",
+     "path": "src/emailservice/Gemfile",
+     "sha256": "ba92e0a1f2552fd17d7f089dc443e7d3488d77ea2968e30304252ece8cab34ec",
+     "bytes": 271
+    },
+    {
+     "repo": "upstream",
+     "path": "src/emailservice/email_server.rb",
+     "sha256": "3f0eaa497ff932b432d5fd6f43baf883c1c6f0958d958278ba271249d7b1ca61",
+     "bytes": 1501
+    },
+    {
+     "repo": "upstream",
+     "path": "src/emailservice/views/confirmation.erb",
+     "sha256": "69c3499569241786fffe5e1f338dcd9879b8f5d7a2b07005c4146fc99994244f",
+     "bytes": 1885
+    }
+   ],
+   "fileCount": 4,
+   "bytes": 4264
+  },
+  "frauddetectionservice": {
+   "service": "frauddetectionservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/frauddetectionservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/frauddetectionservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frauddetectionservice/Dockerfile",
+     "sha256": "af442ce732816cab1fe98c2542a40a5137ac1e3af83c14a2a0d5612344e69ec0",
+     "bytes": 772
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frauddetectionservice/build.gradle.kts",
+     "sha256": "e56005a063f8d958e3a49e2ba5535554c781da2cbb9767c323c539c5c583df64",
+     "bytes": 2756
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frauddetectionservice/gradle.properties",
+     "sha256": "128850cfeb97f9b41f9680ffdafb077355d60ca904798e5975c7754f43d9bd31",
+     "bytes": 27
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frauddetectionservice/gradle/wrapper/gradle-wrapper.properties",
+     "sha256": "27d72993a6890cbc1583f332ebbd13cb8412f0a7dbeb24943e2f7ee14601201d",
+     "bytes": 250
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frauddetectionservice/gradlew",
+     "sha256": "e0108761fee312b7b373ee96c0870cab5c167e664ac507776814b1d59e9b3bad",
+     "bytes": 8527
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frauddetectionservice/gradlew.bat",
+     "sha256": "18774a0ac0203f6893bf1db3291a0d77f06cd1b4dca2a43b51e7009da3e28cfa",
+     "bytes": 2776
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frauddetectionservice/settings.gradle.kts",
+     "sha256": "862999b9414b6c5084f4469b4f530519ea7ba966a2a1f8fe4c8eec39641217ac",
+     "bytes": 45
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+     "sha256": "ac6d50c12d4ca80f8eca12eba79149cbf28f94ff960f63ab8e6518962a0e80b3",
+     "bytes": 3193
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frauddetectionservice/src/main/resources/log4j2.xml",
+     "sha256": "3d8db3e4b5481790f0768c5d4b46c77f541a849fe5970085ca8015bf40e93b28",
+     "bytes": 542
+    }
+   ],
+   "fileCount": 10,
+   "bytes": 26001
+  },
+  "frontend": {
+   "service": "frontend",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/frontend/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/frontend/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/Dockerfile",
+     "sha256": "d2bd442c894edf25a90bf6b5016293867941be2ef68262253848e5a2c42a2c1d",
+     "bytes": 1071
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Ad/Ad.styled.ts",
+     "sha256": "53f0ac40a701a07728a7d055f09f7ccc043fb8f40c759a7407b3976457d3e442",
+     "bytes": 550
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Ad/Ad.tsx",
+     "sha256": "9d3546544cc0bdc627a350e641cf80e4fa95f1abb174d2c2094a3b3502718408",
+     "bytes": 547
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Ad/index.ts",
+     "sha256": "6cb748a2245bc181d95d78cf6eedc9564d36588a3c7c9207ccfe3fd880a90368",
+     "bytes": 111
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Banner/Banner.styled.ts",
+     "sha256": "4d3f1bae00d152ff89e00fba4123896964d7eb33a0eb42cd39e5f40d8512a8d7",
+     "bytes": 1289
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Banner/Banner.tsx",
+     "sha256": "3d37df1f3d34a35bd8b68626798fe1fde993c1c25bca2ec927ab37a42f02620b",
+     "bytes": 535
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Banner/index.ts",
+     "sha256": "f79d9bd26f5b9653299c31be9ab5e2d26fb9b18c5b8d6416e42bc41aef923fbd",
+     "bytes": 115
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Button/Button.tsx",
+     "sha256": "d513940eb4be772d3b81570cee5d09a31621ced526dc3f6003b3c9d8a95aa42c",
+     "bytes": 750
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Button/index.ts",
+     "sha256": "ffba4d0c99b79bfeef45f1cd27a1f0e3b25637c053110e92f8478a86eb98441d",
+     "bytes": 115
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Cart/CartDetail.tsx",
+     "sha256": "8402c62e1bb2f1d5a40f573288cee4a329331c530922ce1f4e6dff1835507222",
+     "bytes": 2021
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Cart/EmptyCart.tsx",
+     "sha256": "893447238e3cd5372fc497fb63a3aa80fad48c73f577736d0def48aa5b42da12",
+     "bytes": 608
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartDropdown/CartDropdown.styled.ts",
+     "sha256": "b3a1a8ab220c6139f07c851c16164f0e4ce5b45ab2f37349879f4e336fbf01b7",
+     "bytes": 2205
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartDropdown/CartDropdown.tsx",
+     "sha256": "152a68acecf2377640e633d49be1a543ebe738134e715832f21fd6097575cfeb",
+     "bytes": 2155
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartDropdown/index.ts",
+     "sha256": "c600af8d5631c2f52146e3a818a8eb4cbcaf456e53f0488a98401107e4f17a08",
+     "bytes": 121
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartIcon/CartIcon.styled.ts",
+     "sha256": "04b18a65e05b64a7e35ac09683323f8d0e8ed5b68301ca4a0623ea80a56e426c",
+     "bytes": 879
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartIcon/CartIcon.tsx",
+     "sha256": "081f9bf69c5d49eeed94d20efdf58cf9c345e3435e74e117b4a0d92d75f08eb9",
+     "bytes": 869
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartIcon/index.ts",
+     "sha256": "df9c39a44e5e04b8bd0337c546ac7a2b96ab729387e9b6dc32f2d4af3ebd5219",
+     "bytes": 117
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartItems/CartItem.tsx",
+     "sha256": "cb24f4d6080190138aab499a83b08f216e04052e84155cdf046913b3fd17f693",
+     "bytes": 987
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartItems/CartItems.styled.ts",
+     "sha256": "760f634290771081c9a22428739f9752962bbfad9b848ba71abcfd51f2f83be2",
+     "bytes": 1574
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartItems/CartItems.tsx",
+     "sha256": "4adc12d05fb5ae29b7fdf4c46653672c494942270297f7f7026169e2b5dccb62",
+     "bytes": 2655
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CartItems/index.ts",
+     "sha256": "01cb155ab42f21563e2bbe38b123e26d652060d858805766f60e753b032d208e",
+     "bytes": 118
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CheckoutForm/CheckoutForm.styled.ts",
+     "sha256": "4c001beebaa8aad7f1be9ad902a96d83477e5c3e8a38880f4bda531cce722c6c",
+     "bytes": 1239
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CheckoutForm/CheckoutForm.tsx",
+     "sha256": "c84d888da18bffa93af025263b8606e9e04892658f861123589256505024fd4c",
+     "bytes": 5288
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CheckoutForm/index.ts",
+     "sha256": "c161fbc04b20071530477beffd85ef2f5694c09c267a6119efb756c5db183367",
+     "bytes": 121
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CheckoutItem/CheckoutItem.styled.ts",
+     "sha256": "9a5bfc2c1534796807dbc60b48817b1b0cec0e8eb2b5b5b3aa4cbac7bc6644ac",
+     "bytes": 1958
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CheckoutItem/CheckoutItem.tsx",
+     "sha256": "8055e9819e2818f3bf193c60a05a469d7c8754faa754fb27a95ffcfa3eb9fb60",
+     "bytes": 1808
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CheckoutItem/index.ts",
+     "sha256": "cf517fdd7d475b0e4309341bbe900adead7da7745f163c95f06bc54a4bcf1103",
+     "bytes": 121
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CurrencySwitcher/CurrencySwitcher.styled.ts",
+     "sha256": "11188f385c2db6a084b954a29704254cd34ea6f41083174999f6efe689dcf2ae",
+     "bytes": 1392
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CurrencySwitcher/CurrencySwitcher.tsx",
+     "sha256": "ce7cc3ec7ab55cc3f29714b537f0c3a8af0604ea8d2555df564dd78c77174ba0",
+     "bytes": 1240
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/CurrencySwitcher/index.ts",
+     "sha256": "598691c43602e56f764a3b61444be6610bc351fde8ce4f14af80e1ec85eb6c7d",
+     "bytes": 125
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Footer/Footer.styled.ts",
+     "sha256": "6a6b81bcd54e31967f9c6886cb38548c83d18aa0d04bd61957243413ed2cc58b",
+     "bytes": 432
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Footer/Footer.tsx",
+     "sha256": "2f09ba1a0a528f49ba1789c2bf8d0a501af4981420cf01da9b91c465098a9a3d",
+     "bytes": 1003
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Footer/index.ts",
+     "sha256": "8f7baaf7b39d98a16a71d9b302e47cf99f9c840d1a94104c5b87ed374c64fc2a",
+     "bytes": 115
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Header/Header.styled.ts",
+     "sha256": "026c3514af4fc19508e34316e297dcc442866d7ffd37d2f295b5539048a83d2f",
+     "bytes": 1065
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Header/Header.tsx",
+     "sha256": "11c84ab9f1409a11754fa3060553c721cdeb7edfe536043f5fff493a0fd99116",
+     "bytes": 577
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Header/index.ts",
+     "sha256": "6ad03524d690b09cef3be41f260127c2f712bc2649d76346867701e19439615f",
+     "bytes": 113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Input/Input.styled.ts",
+     "sha256": "86609a1271f2613d4a0de9e4c55ed73d40486e4ed8eb19ad89258930b40d52ba",
+     "bytes": 1137
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Input/Input.tsx",
+     "sha256": "f3ac68e9b6637db4a1b15b4af5ecc05b2fed7390fe2469db6b4e64c5e0fbd2a4",
+     "bytes": 789
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Input/index.ts",
+     "sha256": "e181b26b4aa1b6638aeec5a396fe424a2ff84d63ba3ec0aa64d30a7383df3143",
+     "bytes": 112
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Layout/Layout.tsx",
+     "sha256": "0d3fb3c80abc41231e544071f97dda486e7ee0a3e911d7836315d893f8767872",
+     "bytes": 311
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Layout/index.ts",
+     "sha256": "346f04e3d8a4e8684a944f23d57acf948111f35e93e6ee08d49c3b231f6a4692",
+     "bytes": 113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/PlatformFlag/PlatformFlag.styled.ts",
+     "sha256": "ebee4168884ebd0d2fd715383e2753dbe6c12646350e006695bcffb7f28785f6",
+     "bytes": 653
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/PlatformFlag/PlatformFlag.tsx",
+     "sha256": "c29e9056dc8327425260651e259e4716245021db4e71bf98cc72ee9a15e956a9",
+     "bytes": 369
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/PlatformFlag/index.ts",
+     "sha256": "6341974f20c92a30087bd1413263b2ee5881d9071531d050900f20816ff8b1c2",
+     "bytes": 121
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/ProductCard/ProductCard.styled.ts",
+     "sha256": "c82a3b9eafd5e29d9dda712a3f2c78611283f80cb0fdcf0c3e5b24dd307458a4",
+     "bytes": 817
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/ProductCard/ProductCard.tsx",
+     "sha256": "4933878987405dd4deb4349266f215c93dc8e7f7a64a7a5f0cd746847ee1c475",
+     "bytes": 1736
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/ProductCard/index.ts",
+     "sha256": "0f3a9cdefcfdaef842fd86343df573ea114b584a67d7061b4bbc0d5fe9613f6a",
+     "bytes": 120
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/ProductList/ProductList.styled.ts",
+     "sha256": "1daff33fc17b9f5e728c8844fdd03ad96b36b33eb66c24013e8c35dc23762521",
+     "bytes": 319
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/ProductList/ProductList.tsx",
+     "sha256": "30d0b43c752f6c6851fcab78a27add2381a6385cec738ee238910c9f1984979e",
+     "bytes": 592
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/ProductList/index.ts",
+     "sha256": "3c86e8c02e9ee1668c8cf5f9c62f6136b407216e1534856424207fd30b835282",
+     "bytes": 120
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/ProductPrice/ProductPrice.tsx",
+     "sha256": "94b2536c69e4afa2211794326874e3e61a0aa797c7bec9e16660e51ebe65b5b2",
+     "bytes": 834
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/ProductPrice/index.ts",
+     "sha256": "224cefa8e6d076c504246ea7c751fe48c83900872fe153745dc6f250d5199101",
+     "bytes": 121
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Recommendations/Recommendations.styled.ts",
+     "sha256": "e708e25dedf1547829d016fa0f9a962afcdc65d74d590d726737fc8bc84a7a16",
+     "bytes": 824
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Recommendations/Recommendations.tsx",
+     "sha256": "85badf8c22fd8dc47f8d863d9aaf34d4981ab44becf7edcb2245d67413ffbbb6",
+     "bytes": 761
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Recommendations/index.ts",
+     "sha256": "3082dc4ca543b160d76f1ee8da24b848ac11f9a628aca1d7c8f46c2b7f9705fe",
+     "bytes": 124
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Select/Select.styled.ts",
+     "sha256": "3deb90e88fc2376589ebc8f601b8331c33d7af258618e4f589e580a91bec8801",
+     "bytes": 620
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Select/Select.tsx",
+     "sha256": "0790daa0007f3961014d8733dcf0d6d9a0b99aad2c945ed2a048375dd33c46a6",
+     "bytes": 473
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/components/Select/index.ts",
+     "sha256": "b5b214cf250172adf7c92b656b85961bdb3196289d465f47807fe1dc15987371",
+     "bytes": 115
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/gateways/Api.gateway.ts",
+     "sha256": "6e319827220878d6d07d9192d0af5ae5bd824d780dc2e0d106d9e351e7380ad2",
+     "bytes": 3421
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/gateways/Session.gateway.ts",
+     "sha256": "a57fa82d75d660728bd3957a78212bd3291996d29af5ecec41112c82f677a24d",
+     "bytes": 874
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/gateways/rpc/Ad.gateway.ts",
+     "sha256": "fe27d797f04eacd8ed96d7d3c8ab43c53b64437d274a5feddc58590a9e3ab0a5",
+     "bytes": 614
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/gateways/rpc/Cart.gateway.ts",
+     "sha256": "a1eb65623b634d55d644f3c67540a2ecae92fab7a6624f02a6341b5464c22435",
+     "bytes": 1013
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/gateways/rpc/Checkout.gateway.ts",
+     "sha256": "cd811d73c94a9bc701746022a8215cac8ce04459464243d4d56321f6dbac4384",
+     "bytes": 672
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/gateways/rpc/Currency.gateway.ts",
+     "sha256": "3081e5060e589d248d510dc6a44f240b74e708a7c98d555a4c74f0255f987dc1",
+     "bytes": 890
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/gateways/rpc/ProductCatalog.gateway.ts",
+     "sha256": "63a89e1ee0d056a308bfea4fb4578bdb8bb10eafdd4ece79f8080253e9febd3b",
+     "bytes": 871
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/gateways/rpc/Recommendations.gateway.ts",
+     "sha256": "51aa5d160347dd93a61b0e9c6f7ec0a436919337bb9ac89e2a6a3d639230adfe",
+     "bytes": 769
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/gateways/rpc/Shipping.gateway.ts",
+     "sha256": "52b90dd6350f725bfa0a0e0bce3732ee4a4412d7843ef6a3856dbbb7b67634c8",
+     "bytes": 730
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/next.config.js",
+     "sha256": "16847daeed414388ec2bb8fbaf85705baee88fca05b762823d1a92b6ea58e106",
+     "bytes": 1722
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/package.json",
+     "sha256": "29c77ef0ea1dd019db5cff0468f3da4faa8fc7ba8ab6e9af00fd789fd8f9d20b",
+     "bytes": 2546
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/_app.tsx",
+     "sha256": "f43d6c53d6300a55a29d26d9722e170b6b96936d0206d43604072a3df4fa6eba",
+     "bytes": 2632
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/_document.tsx",
+     "sha256": "7a7077e08cedd3f7817d56a90aa14abf560e831059313ae2f1707be5be722cb1",
+     "bytes": 2354
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/api/cart.ts",
+     "sha256": "baddb1546b9132f54928a87b789bdaf66170380492a0a69d8c479b35b9a273b5",
+     "bytes": 1687
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/api/checkout.ts",
+     "sha256": "48d272678bdee3a1a0e707453598d1fd8f8edc1896a8f2872166241ea3143983",
+     "bytes": 1518
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/api/currency.ts",
+     "sha256": "22e651578a4346675e5eb807f24cdf5683acf57ce699aae3be228a508049c7ba",
+     "bytes": 756
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/api/data.ts",
+     "sha256": "a40106be0ee89f55970ea56cf2be2f7fe0aa91303833317f0f5960f2d53ef902",
+     "bytes": 832
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/api/products/[productId]/index.ts",
+     "sha256": "d8a106c1c9587461ae2486b23b96108baffac4dbaa2f2a1c589584d06af8185a",
+     "bytes": 881
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/api/products/index.ts",
+     "sha256": "0ff6bd0617b7431c65df84406eeebe5ad79492e794b3589d65213e068daec439",
+     "bytes": 847
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/api/recommendations.ts",
+     "sha256": "7221771fc2abc29c9329da8de3e002141bb97e75a2240132d67518430f27781b",
+     "bytes": 1201
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/api/shipping.ts",
+     "sha256": "c4567cb41e3b72e27ea947aec2a4a181e580f3481e53da80f1c7811585f203cb",
+     "bytes": 1082
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/cart/checkout/[orderId]/index.tsx",
+     "sha256": "de0796899a04d83040ca6d7f6be5b246cf0acf9fe28f6f44eacbe874b14ec092",
+     "bytes": 1916
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/cart/index.tsx",
+     "sha256": "1cad6c267b8e0af8c47ec983912a1b37a031bcd43dddd6d1c9e903d78b257eba",
+     "bytes": 1027
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/index.tsx",
+     "sha256": "696488451048364a97e63e8c48e861a10f47a5b29f85b692d68324d07cd9ace8",
+     "bytes": 1371
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/pages/product/[productId]/index.tsx",
+     "sha256": "6004e298daa4b251e1e5bdc5c2da73f974bc4e90ef1890aa89859f8f4e8f7af4",
+     "bytes": 3513
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/providers/Ad.provider.tsx",
+     "sha256": "076599bc70086d99123251e11033fc4b6a2a35e899bb32b65d52b89eafb385ff",
+     "bytes": 1553
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/providers/Cart.provider.tsx",
+     "sha256": "c91a879c2c3e156f606f6e1b5d8ae2c256b117b45b291524c3bf58a4ca061e63",
+     "bytes": 2287
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/providers/Currency.provider.tsx",
+     "sha256": "fbbeef44914edc83b4e99e4a525a3f82cc23524808e2c12c7c72806e01e2972f",
+     "bytes": 1671
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/services/ProductCatalog.service.ts",
+     "sha256": "e9e716da6575beb15b43828e79b46f30978f50b47da47b581b76777039653724",
+     "bytes": 1198
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/styles/Cart.styled.ts",
+     "sha256": "f06270b47efcd1b5345f7762d954164073e0c09366db221a6d768259ae8868ee",
+     "bytes": 1888
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/styles/Checkout.styled.ts",
+     "sha256": "997548622c7fd4c570ca1cc3b0f311e57ec289829206e4a92cf70c58d4950e7a",
+     "bytes": 1597
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/styles/Home.styled.ts",
+     "sha256": "dc869f385ef01995be96f59cb0348fc2347b33db29a72ca6b549686e3f7ba269",
+     "bytes": 997
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/styles/ProductDetail.styled.ts",
+     "sha256": "350e90c9f2b02c08d54c778c3cd84d75d5b915c556c8b9fc90f90b2e1336f52d",
+     "bytes": 1962
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/styles/Theme.ts",
+     "sha256": "295c9f6e58acc7bc3178e788f7fd1da76679b5500682b6bde1f6a33798d2b424",
+     "bytes": 853
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/styles/style.d.ts",
+     "sha256": "b8320cfc9b085041103824ea766ba6c94b806e32f726871dd2dc7d03ee20f41e",
+     "bytes": 842
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/tsconfig.json",
+     "sha256": "e6c76155a187777832acf5def8c24e487e6523d3541a135988277defbd432d52",
+     "bytes": 512
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/types/Cart.ts",
+     "sha256": "a7cf18e63516d59ed936777f0c8b59e1d4345e42278ef7ff076c9c08c72f184f",
+     "bytes": 542
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/utils/Request.ts",
+     "sha256": "d6d2bd0d04988fcc785e50c86c713cfdec4438d658f75ea638f6283abf92b7bb",
+     "bytes": 781
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/utils/enums/AttributeNames.ts",
+     "sha256": "37cc1293487d58dc8a88ddee18f72c4e8117852a225e7c3b153524ca9ff58994",
+     "bytes": 140
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/utils/imageLoader.js",
+     "sha256": "e870062398a1c7b2d7da8a375b3c2c2fe9f935a64a1eb18170bdf2e244f2d62e",
+     "bytes": 1039
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/utils/telemetry/FrontendTracer.ts",
+     "sha256": "c4aa37c35e46b110d68f4c640432e47d264680f85c1df29b039e27c0b0c59ed5",
+     "bytes": 2496
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/utils/telemetry/Instrumentation.js",
+     "sha256": "d8d919d85c62052b2bdadb3094fb175fdb4e8c77bb17afc3ed701359bcea3296",
+     "bytes": 1516
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/utils/telemetry/InstrumentationMiddleware.ts",
+     "sha256": "e666b3121d8b161bfd3d0db8f3fc21fae4971e471a294023685adc9a01ae001a",
+     "bytes": 1400
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontend/utils/telemetry/SessionIdProcessor.ts",
+     "sha256": "2a2ed2cbd2e2ef0080c1ef3d112694049189ae53ba6996f821f4382ebf7d6aa0",
+     "bytes": 919
+    }
+   ],
+   "fileCount": 103,
+   "bytes": 114215
+  },
+  "frontendproxy": {
+   "service": "frontendproxy",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/frontendproxy/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/frontendproxy/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/frontendproxy/Dockerfile",
+     "sha256": "a01718be5c5ca4fedcd0094b1656eed1bb540e0980fe43de558206c963a514db",
+     "bytes": 400
+    },
+    {
+     "repo": "upstream",
+     "path": "src/frontendproxy/envoy.tmpl.yaml",
+     "sha256": "4cd8db9d06bfc7befe6d08c1e692598951c1c69994258605e381afeeb3002467",
+     "bytes": 7189
+    }
+   ],
+   "fileCount": 2,
+   "bytes": 7589
+  },
+  "imageprovider": {
+   "service": "imageprovider",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/imageprovider/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/imageprovider/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/imageprovider/Dockerfile",
+     "sha256": "05669f17b67c9ce489b076604fa652ea245dfae40ea8d62532697fe36ab2bed6",
+     "bytes": 963
+    },
+    {
+     "repo": "upstream",
+     "path": "src/imageprovider/nginx.conf.template",
+     "sha256": "842e9db33921200865ea9aff904d707891344eecc818bc3a9a67a43f21baea5e",
+     "bytes": 613
+    }
+   ],
+   "fileCount": 2,
+   "bytes": 1576
+  },
+  "loadgenerator": {
+   "service": "loadgenerator",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/loadgenerator/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/loadgenerator/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/loadgenerator/Dockerfile",
+     "sha256": "29c106a2cbb6ad916359d2f90974be501d0fce4b17a4cf8a7fdc32ed45f1347d",
+     "bytes": 652
+    },
+    {
+     "repo": "upstream",
+     "path": "src/loadgenerator/locustfile.py",
+     "sha256": "84815ac2e778192ebd6e56e428271b8568a261e87df6658ed87cdbf37e71328e",
+     "bytes": 7295
+    },
+    {
+     "repo": "upstream",
+     "path": "src/loadgenerator/people.json",
+     "sha256": "2e780c99cd1950213c798ba086c184b6ae89a98af8a6df4bb190b2e19bcf77ab",
+     "bytes": 4572
+    },
+    {
+     "repo": "upstream",
+     "path": "src/loadgenerator/requirements.txt",
+     "sha256": "1ca91b3acaeb26f552efe941328125a545cde27c77e55e06910466a301aae2c6",
+     "bytes": 1134
+    }
+   ],
+   "fileCount": 4,
+   "bytes": 13653
+  },
+  "paymentservice": {
+   "service": "paymentservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/paymentservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/paymentservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/paymentservice/Dockerfile",
+     "sha256": "781d5085212ec6405d04a223774bb65727079a66500876be8cffce93a51a0163",
+     "bytes": 598
+    },
+    {
+     "repo": "upstream",
+     "path": "src/paymentservice/charge.js",
+     "sha256": "58e02fbb9a79977d56390d067871a6436b14120cb2633af440abb7abf485b978",
+     "bytes": 2540
+    },
+    {
+     "repo": "upstream",
+     "path": "src/paymentservice/index.js",
+     "sha256": "34ac44c8daf6f333d5360453abe24d1439f3fae174d38e2253c6e2695edf9b81",
+     "bytes": 1696
+    },
+    {
+     "repo": "upstream",
+     "path": "src/paymentservice/logger.js",
+     "sha256": "ee7a286f273be4b750ac52347f33e53b6c35fdd19549a067d1b0a50adb2c0277",
+     "bytes": 135
+    },
+    {
+     "repo": "upstream",
+     "path": "src/paymentservice/opentelemetry.js",
+     "sha256": "c513998a6151217be34246db32ee4108caa8a8393372a9d8284e3a736203806c",
+     "bytes": 1519
+    },
+    {
+     "repo": "upstream",
+     "path": "src/paymentservice/package.json",
+     "sha256": "b5aea1193be9ffebf76b4c2c1a911e77d0a812aa9259491cb11d357cb2e4378d",
+     "bytes": 1304
+    }
+   ],
+   "fileCount": 7,
+   "bytes": 14905
+  },
+  "productcatalogservice": {
+   "service": "productcatalogservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/productcatalogservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/productcatalogservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/productcatalogservice/Dockerfile",
+     "sha256": "81d18617227c46fbf0a43ff1551bbce8e139460dd21616375a1c58bf80fb4ffb",
+     "bytes": 1209
+    },
+    {
+     "repo": "upstream",
+     "path": "src/productcatalogservice/go.mod",
+     "sha256": "b6550424dc8743e2a0afc7c23e492acaa6cf853cbb67af5dbf73a52218330a0f",
+     "bytes": 3615
+    },
+    {
+     "repo": "upstream",
+     "path": "src/productcatalogservice/main.go",
+     "sha256": "dd12cef4f87cd8683c77407b9d02580f18aaced954c25defeeade0cb94af1fde",
+     "bytes": 8768
+    },
+    {
+     "repo": "upstream",
+     "path": "src/productcatalogservice/products/products.json",
+     "sha256": "903e71a7042f99d0c68ed4dde6e3fa9dd2fe981f4f8b7584d8ab501b377ff82e",
+     "bytes": 7131
+    },
+    {
+     "repo": "upstream",
+     "path": "src/productcatalogservice/tools.go",
+     "sha256": "9280adae9ab37b71e4bb4e5faa03ae2050a7729f118430ec3ded5a00fcd10c6c",
+     "bytes": 518
+    }
+   ],
+   "fileCount": 6,
+   "bytes": 28354
+  },
+  "quoteservice": {
+   "service": "quoteservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/quoteservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/quoteservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/quoteservice/Dockerfile",
+     "sha256": "d756f1a474abd3fdf9e5c99aff402d0f9a1c680caeac476c605f2a5ccfe6f04d",
+     "bytes": 786
+    },
+    {
+     "repo": "upstream",
+     "path": "src/quoteservice/app/dependencies.php",
+     "sha256": "97ff53efa49ab4a5dae669fc95c9429f03d349901832871023a72ec8392a4164",
+     "bytes": 870
+    },
+    {
+     "repo": "upstream",
+     "path": "src/quoteservice/app/routes.php",
+     "sha256": "7527478d587114ab84c8e7a13ad45befbd487c6abe6c5e0c33245fcda74d1709",
+     "bytes": 2416
+    },
+    {
+     "repo": "upstream",
+     "path": "src/quoteservice/app/settings.php",
+     "sha256": "a88d5c709a88e81120863a8c199127bf5f6655ace2c29df67320e7dc53b11286",
+     "bytes": 862
+    },
+    {
+     "repo": "upstream",
+     "path": "src/quoteservice/composer.json",
+     "sha256": "44bc152431124e350dee7471db326293b565d504ebd94ef2ba82a60386e09ac1",
+     "bytes": 1010
+    },
+    {
+     "repo": "upstream",
+     "path": "src/quoteservice/public/index.php",
+     "sha256": "86660f07817d9d80225c0bc7d1261202bbea83f0b8d4a4f2a8eadfd7ff9325ca",
+     "bytes": 2945
+    },
+    {
+     "repo": "upstream",
+     "path": "src/quoteservice/src/Application/Settings/Settings.php",
+     "sha256": "69693ddf1e8e48409715c39f6b616eb64df8aec8799fb5bf62bb41702ca2efd9",
+     "bytes": 490
+    },
+    {
+     "repo": "upstream",
+     "path": "src/quoteservice/src/Application/Settings/SettingsInterface.php",
+     "sha256": "be6bdc4fdfeb8e7a4ba492b644f69d9cfee532dfba85b6448ececaf4289344e4",
+     "bytes": 288
+    }
+   ],
+   "fileCount": 8,
+   "bytes": 9667
+  },
+  "recommendationservice": {
+   "service": "recommendationservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/recommendationservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/recommendationservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/recommendationservice/Dockerfile",
+     "sha256": "3d46f41ab272d966a5fceeb1518bca123d450106e18380b733205090dfd78fce",
+     "bytes": 1012
+    },
+    {
+     "repo": "upstream",
+     "path": "src/recommendationservice/logger.py",
+     "sha256": "3a5c699fdfbe74264b3ffd98e5ea009fb183a22b31bd766ba0d730dd6e18f0d7",
+     "bytes": 1140
+    },
+    {
+     "repo": "upstream",
+     "path": "src/recommendationservice/metrics.py",
+     "sha256": "e3261cffe9c1e67036ae6d7d983a3cfc3ce6f69260fbb2be49bb9f92154d2e8d",
+     "bytes": 467
+    },
+    {
+     "repo": "upstream",
+     "path": "src/recommendationservice/recommendation_server.py",
+     "sha256": "6745df46f4db654742d43f08467daf54d086627825a7dcede4afb53dd7898570",
+     "bytes": 6232
+    },
+    {
+     "repo": "upstream",
+     "path": "src/recommendationservice/requirements.txt",
+     "sha256": "eb8af7480519c6538f3c0017b5e2f5193eec3985e0a4ca3eaa675cabb4df4ad5",
+     "bytes": 396
+    }
+   ],
+   "fileCount": 6,
+   "bytes": 16360
+  },
+  "shippingservice": {
+   "service": "shippingservice",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/shippingservice/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/shippingservice/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "pb/demo.proto",
+     "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+     "bytes": 7113
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/Cargo.toml",
+     "sha256": "3aefb90a63fdc988a27e0d6548a48b6a094228f1025ce430360c019a6d69d472",
+     "bytes": 1282
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/Dockerfile",
+     "sha256": "a8756bc497f5dcb85408f030fca3a031aaaf0e60688a59bea5a78a5ac531da1e",
+     "bytes": 2269
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/build.rs",
+     "sha256": "f6eec41a82b40c54b8afd04a50efda25b611e87b0d202d904d40e68e76ddd821",
+     "bytes": 339
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/src/main.rs",
+     "sha256": "10ab4e85b962892e46d4cc7203f8c580f8cc0d9fc48cb368d8c37d0086a1b80f",
+     "bytes": 1148
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/src/shipping_service.rs",
+     "sha256": "592f991861783964531dacf22544085db427697f1dfc44f0b475fa0b6a5c62c9",
+     "bytes": 6523
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/src/shipping_service/quote.rs",
+     "sha256": "fdacaef2e6541d3495983632c401ec26487ec7e018d01154bc090e8f748baa76",
+     "bytes": 2414
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/src/shipping_service/tracking.rs",
+     "sha256": "9e03c8c284a91eaad2327a37ff7e8e819d3d718940ff736eb8a11105b9fa0913",
+     "bytes": 195
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/src/telemetry.rs",
+     "sha256": "4bbba2d17233461343d38bdad644823806be11128e3b69963cdce497cd4119e9",
+     "bytes": 285
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/src/telemetry/logs_conf.rs",
+     "sha256": "81f466f3b285700269e293d86f90cdac1981e46599bf0fd14263b62c626dbbb5",
+     "bytes": 392
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/src/telemetry/resources_conf.rs",
+     "sha256": "5a306d46fffb2ad2ab273578b5e04ef5c5813e628c452b6382883c70e8064c66",
+     "bytes": 924
+    },
+    {
+     "repo": "upstream",
+     "path": "src/shippingservice/src/telemetry/traces_conf.rs",
+     "sha256": "d3319763b713fd0fc9481600aee9c38a9ef45d92e8cd24e854dccd83306ca92c",
+     "bytes": 1021
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 23905
+  },
+  "flagd": {
+   "service": "flagd",
+   "kind": "image-only",
+   "image": "ghcr.io/open-feature/flagd:v0.11.2",
+   "rules": [
+    "R6",
+    "R3e:volume:./src/flagd"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/flagd/demo.flagd.json",
+     "sha256": "e8bfe8150277dea7d8cfa4203c5d468c8670f307fd4d2eedf6c024b40962a581",
+     "bytes": 2623
+    }
+   ],
+   "fileCount": 1,
+   "bytes": 2623
+  },
+  "flagd-ui": {
+   "service": "flagd-ui",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/flagd-ui/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:src/flagd-ui/Dockerfile",
+    "R3e:volume:./src/flagd"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/Dockerfile",
+     "sha256": "8a3a7c5aa8fd17b96d6d6da5f57c1a8e4100c842a7d4f26cef573998461dcf4c",
+     "bytes": 598
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/next.config.mjs",
+     "sha256": "19787a090d90d70742b2d5795030fe6f3c5a846fcd87b890f9961286bac0ab3c",
+     "bytes": 171
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/package.json",
+     "sha256": "5781ac67085f9c461fbf9f19ce331c44ed3b50cabbb1d3771c5b50597a5fd5c3",
+     "bytes": 756
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/postcss.config.mjs",
+     "sha256": "ac31e2a95ef64fe27ceb4124e101675273107aae2e33bc490b01d919e7f03646",
+     "bytes": 135
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/app/advanced/page.tsx",
+     "sha256": "3957197b8e1e7aaa8d98a16cf6ee231af0eb4b883b5a705a586b6d29a434c63b",
+     "bytes": 223
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/app/api/read-file/route.ts",
+     "sha256": "543ca32a00aa0d08313aff7166c0ccac517c9cb9af291a228a16769acf5d4996",
+     "bytes": 706
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/app/api/write-to-file/route.ts",
+     "sha256": "937eb07f1cf47bb18d761b8a152f22c3d9e1d13ec8bbc75ee7b09a3e11bf273c",
+     "bytes": 715
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/app/layout.tsx",
+     "sha256": "1bcd03139c0bbf914347a2c4ef452db48dd36d488122ac28c55e2ed38634daa4",
+     "bytes": 503
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/app/page.tsx",
+     "sha256": "b7c926e20f530d34d2a1260104ae036229fa554e055eabb2f4320b94128920ae",
+     "bytes": 283
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/components/Layout.tsx",
+     "sha256": "d28e012d620d349cbe8a31f973767c144dd963fda4f502b90022b738554a21c0",
+     "bytes": 1045
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+     "sha256": "9c17c0aa80db6437e034147225a92316fe6b1ee0d4266a8bc20461daec1355e9",
+     "bytes": 4540
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/components/advanced/FileEditor.tsx",
+     "sha256": "1766408421dc643da7589d165315c1a5bb0f0f9bcca9ffa8397a8b6ba7725dce",
+     "bytes": 782
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/components/basic/BasicView.tsx",
+     "sha256": "c905dad371267a8d68b0786875c43428ab3ee38842e1a17ef1421285f7b1a0c8",
+     "bytes": 2943
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/components/basic/DefaultVariantSelect.tsx",
+     "sha256": "83add0638275d3c71bf8f805313058fcfb41148744e0221990402221e9c2f774",
+     "bytes": 924
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/components/basic/FeatureFlag.tsx",
+     "sha256": "2ad16e39883bf9d3bd205f707202ce4e7be9ba4d025b14d9e3a785d73290d12b",
+     "bytes": 1555
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/components/nav/NavBar.tsx",
+     "sha256": "46936724cab5d2cd9771a6b925e78709546201494a805fa55c6c10f3e54a0a8c",
+     "bytes": 1452
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/components/utils/Spinner.tsx",
+     "sha256": "891df3f749151a70c8b7fe78af06b4be4c6c9cb4a484f10d660b751c6a0c7231",
+     "bytes": 389
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/instrumentation.ts",
+     "sha256": "91979bd24776d46d595ccb0ddea66dea17feb7f34040145152e1b7e3e7c0740e",
+     "bytes": 200
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/src/utils/types.ts",
+     "sha256": "71f2c8a7ff4b58cf9dba4fd7e9e0c670435147503d2b74b22da6997f8aa99fe7",
+     "bytes": 391
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/tailwind.config.ts",
+     "sha256": "4d4c4f1a4858c42eaa66d6fa3096aa09945b93de416d24ca52689f05730ec465",
+     "bytes": 626
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd-ui/tsconfig.json",
+     "sha256": "53f96418e60724de8c624de8d7d1b549f64a6c34a5f40f07a7596af4380c92f6",
+     "bytes": 578
+    },
+    {
+     "repo": "upstream",
+     "path": "src/flagd/demo.flagd.json",
+     "sha256": "e8bfe8150277dea7d8cfa4203c5d468c8670f307fd4d2eedf6c024b40962a581",
+     "bytes": 2623
+    }
+   ],
+   "fileCount": 22,
+   "bytes": 22138
+  },
+  "kafka": {
+   "service": "kafka",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "."
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "src/kafka/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/kafka/Dockerfile",
+     "sha256": "dc8ccc9d4e942b772a87d5567590537f8d70827548620bce7a9fb453637d6d8a",
+     "bytes": 1113
+    }
+   ],
+   "fileCount": 1,
+   "bytes": 1113
+  },
+  "valkey-cart": {
+   "service": "valkey-cart",
+   "kind": "image-only",
+   "image": "valkey/valkey:8.0-alpine",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "jaeger": {
+   "service": "jaeger",
+   "kind": "image-only",
+   "image": "jaegertracing/all-in-one:1.60",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "grafana": {
+   "service": "grafana",
+   "kind": "image-only",
+   "image": "grafana/grafana:11.2.0",
+   "rules": [
+    "R6",
+    "R3e:volume:./src/grafana/grafana.ini",
+    "R3e:volume:./src/grafana/provisioning/"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/grafana/grafana.ini",
+     "sha256": "19bc2c954f21e4a4cdc9b88bc4c7145a2e95cf994a6929c02dbf911898a83787",
+     "bytes": 47066
+    },
+    {
+     "repo": "upstream",
+     "path": "src/grafana/provisioning/dashboards/demo.yaml",
+     "sha256": "3c915b0bd8af3dc0a7facbe363535453ec47ac22b640a73be6a2d83717f49b61",
+     "bytes": 294
+    },
+    {
+     "repo": "upstream",
+     "path": "src/grafana/provisioning/dashboards/demo/demo-dashboard.json",
+     "sha256": "7f4b7339b074f49660c7a59236ab66821cbea0f4fd012a156b68bd9e41db40b7",
+     "bytes": 25486
+    },
+    {
+     "repo": "upstream",
+     "path": "src/grafana/provisioning/dashboards/demo/opentelemetry-collector-data-flow.json",
+     "sha256": "c82b2c119f1c2acf71303c72ca4ac21a91253d33638951d1b164e6c4fa31f6b1",
+     "bytes": 58651
+    },
+    {
+     "repo": "upstream",
+     "path": "src/grafana/provisioning/dashboards/demo/opentelemetry-collector.json",
+     "sha256": "52a71f6ae65dcad6cfbdfcff0d87d067f76a6c7e3672dbedcc0179d99688844d",
+     "bytes": 92758
+    },
+    {
+     "repo": "upstream",
+     "path": "src/grafana/provisioning/dashboards/demo/spanmetrics-dashboard.json",
+     "sha256": "6a63e9b60b798dd02411232dc52da845f7801fe3a876c81e3d58440b75d1ef8d",
+     "bytes": 25761
+    },
+    {
+     "repo": "upstream",
+     "path": "src/grafana/provisioning/datasources/default.yaml",
+     "sha256": "8d3d9e1c7d0b253f53b82701923552d04b38f2dc4dd4d5ddb01ea1193bcdff46",
+     "bytes": 500
+    },
+    {
+     "repo": "upstream",
+     "path": "src/grafana/provisioning/datasources/jaeger.yaml",
+     "sha256": "2d2f7afef3352bbaaf4e91ece75e7fd0575a2ff0a443f8640d8eac7119eb023e",
+     "bytes": 244
+    },
+    {
+     "repo": "upstream",
+     "path": "src/grafana/provisioning/datasources/opensearch.yaml",
+     "sha256": "a20b668bf7838568165c2144187caabae48106fa5974a3875aa0cbf56f1ebc1d",
+     "bytes": 455
+    }
+   ],
+   "fileCount": 9,
+   "bytes": 251215
+  },
+  "otelcol": {
+   "service": "otelcol",
+   "kind": "image-only",
+   "image": "otel/opentelemetry-collector-contrib:0.108.0",
+   "rules": [
+    "R6",
+    "R3e:volume:./src/otelcollector/otelcol-config.yml",
+    "R3e:volume:./src/otelcollector/otelcol-config-extras.yml"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/otelcollector/otelcol-config-extras.yml",
+     "sha256": "da1af0e9f3d54a8a2f7376d4431cfaf3fc3a3884b1d1e602c6a68fc0f18f0cbf",
+     "bytes": 535
+    },
+    {
+     "repo": "upstream",
+     "path": "src/otelcollector/otelcol-config.yml",
+     "sha256": "2dd111a8a75b8aef3d11e5416857b687ad5d0dfe0f3083a8ddf466bdedbaa1f9",
+     "bytes": 3266
+    }
+   ],
+   "fileCount": 2,
+   "bytes": 3801
+  },
+  "prometheus": {
+   "service": "prometheus",
+   "kind": "image-only",
+   "image": "quay.io/prometheus/prometheus:v2.54.1",
+   "rules": [
+    "R6",
+    "R3e:volume:./src/prometheus/prometheus-config.yaml"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "src/prometheus/prometheus-config.yaml",
+     "sha256": "eea80c1df6f1a872ad56f4865be34aa6e446b780a6f182df518e67b9e87e1cc8",
+     "bytes": 280
+    }
+   ],
+   "fileCount": 1,
+   "bytes": 280
+  },
+  "opensearch": {
+   "service": "opensearch",
+   "kind": "image-only",
+   "image": "opensearchproject/opensearch:2.17.1",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  }
+ },
+ "files": [
+  {
+   "repo": "harness",
+   "path": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+   "sha256": "c5fd860fd2c303a8cfdb7335d2cc9eb12fdde189db4f8076ef86919472394429",
+   "bytes": 10758
+  },
+  {
+   "repo": "obsplacement",
+   "path": "research/host-topology.json",
+   "sha256": "a259d0ccb0470155c032616fd2dbb7e4e8b941ce5cf2d103a5195c01faa30d15",
+   "bytes": 23283
+  },
+  {
+   "repo": "upstream",
+   "path": ".env",
+   "sha256": "364acbd7bfaa8396775c3af33f2cb0136c2e4a3b897225c3a91e000606733056",
+   "bytes": 4688
+  },
+  {
+   "repo": "upstream",
+   "path": "docker-compose.yml",
+   "sha256": "31a8acb3fa19360eb92965face044ee86c95b5f072d21b05a931bd84ca93c507",
+   "bytes": 21987
+  },
+  {
+   "repo": "upstream",
+   "path": "pb/demo.proto",
+   "sha256": "28e2c4badedcbed88543afdafc8c60f9d9e9e5cc499ee3b7098a6438d3deaf85",
+   "bytes": 7113
+  },
+  {
+   "repo": "upstream",
+   "path": "src/accountingservice/AccountingService.csproj",
+   "sha256": "af591b386193bda449f6d3db3211c7e9b606cacd8ba3f721c9076a958e90c9e0",
+   "bytes": 1204
+  },
+  {
+   "repo": "upstream",
+   "path": "src/accountingservice/AccountingService.sln",
+   "sha256": "36c988a5280d3b9dee528f7b21de6e0e3790c0b523b61a16c7fd70f2a1e47d14",
+   "bytes": 1110
+  },
+  {
+   "repo": "upstream",
+   "path": "src/accountingservice/Consumer.cs",
+   "sha256": "71d73eb16dc7b4b47b46e2163d006bdc5d3f7bd6654044da84d2823a1aedb97e",
+   "bytes": 2403
+  },
+  {
+   "repo": "upstream",
+   "path": "src/accountingservice/Dockerfile",
+   "sha256": "d81e2edb22c354dd938eb6522cf0966e9fb22de0f90d4484526be2055a695c82",
+   "bytes": 998
+  },
+  {
+   "repo": "upstream",
+   "path": "src/accountingservice/Helpers.cs",
+   "sha256": "4e91891f4d58fd7512e8d13efd9ff6e3aac28d1b8b4e98e8fa327f609f26e0ba",
+   "bytes": 996
+  },
+  {
+   "repo": "upstream",
+   "path": "src/accountingservice/Log.cs",
+   "sha256": "43a0f8b7c6c28934e24eb816f0053531546339ee54e0d5c9c41160dec3c1ae15",
+   "bytes": 435
+  },
+  {
+   "repo": "upstream",
+   "path": "src/accountingservice/Program.cs",
+   "sha256": "3d53a98c7bf3fd4f7d0cd38c61f5b45cfe4785580c7e7a09f438f1fee9d6cf36",
+   "bytes": 572
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/Dockerfile",
+   "sha256": "7f42c38424c4b36d514427a860759c51f7d36764f2653ee004350aa66e26048e",
+   "bytes": 961
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/build.gradle",
+   "sha256": "6ca259c8981a0fe533d2a77a76e3abb4a1f409211b251a6855eefe2bae125bc8",
+   "bytes": 4383
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/gradle/wrapper/gradle-wrapper.properties",
+   "sha256": "3d91f0932da99885c41e9dc4e85c9f9a2d3bfef4f0ad87473014dc0827a94884",
+   "bytes": 250
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/gradlew",
+   "sha256": "fc977a94723af68aaffa4e5d60496fb4aeed1884b6b19e5e2f2fd7612673313d",
+   "bytes": 8692
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/gradlew.bat",
+   "sha256": "8e327fcb99d29ce0fe3ee2fec6e6a25de815a2df83a6a44a553dea89ffc92955",
+   "bytes": 2868
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/settings.gradle",
+   "sha256": "100c22649569a9360389a7bef6c51cd25526bc440cfed1c3aaadfa6afa9c41f8",
+   "bytes": 52
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/src/main/java/oteldemo/AdService.java",
+   "sha256": "47807823956b45eb57dfb24432cb9e630ba7f12323974a766bd6fca95aeaa3f4",
+   "bytes": 12321
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/src/main/java/oteldemo/problempattern/CPULoad.java",
+   "sha256": "03616559c1bdbabb6367e3b049200506a7cf1e19283904649e820f5d5ce9d2c1",
+   "bytes": 3581
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/src/main/java/oteldemo/problempattern/GarbageCollectionTrigger.java",
+   "sha256": "9e0d9305538655af713ea89bbd0e47e77a0547e11431d6a831ef812a25538007",
+   "bytes": 2781
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/src/main/java/oteldemo/problempattern/MemoryUtils.java",
+   "sha256": "d14880c7a7566a1632cd06cd37666c76921daeb2a5699ac4449f7a23990c153f",
+   "bytes": 1804
+  },
+  {
+   "repo": "upstream",
+   "path": "src/adservice/src/main/resources/log4j2.xml",
+   "sha256": "3d8db3e4b5481790f0768c5d4b46c77f541a849fe5970085ca8015bf40e93b28",
+   "bytes": 542
+  },
+  {
+   "repo": "upstream",
+   "path": "src/cartservice/NuGet.config",
+   "sha256": "60d4246cae527e3d38b92ab1f227ee2f420846724bf895f6c4ab401f728b78fa",
+   "bytes": 222
+  },
+  {
+   "repo": "upstream",
+   "path": "src/cartservice/cartservice.sln",
+   "sha256": "5441a4749f82326525f1137a6dfdae7d9a0d68896f1059c6dbcdaa5ffcf8dc69",
+   "bytes": 2809
+  },
+  {
+   "repo": "upstream",
+   "path": "src/cartservice/src/Dockerfile",
+   "sha256": "5e6a7edf2414dafba7ab2b9ce3add735773a6af16ff4deca3f2c9befe2e488b7",
+   "bytes": 1423
+  },
+  {
+   "repo": "upstream",
+   "path": "src/cartservice/src/Program.cs",
+   "sha256": "c45db99d9a0ff17ed0f0a28d4fdbb1c1b4d281bfc09eb6cf4694fc9788c76703",
+   "bytes": 3095
+  },
+  {
+   "repo": "upstream",
+   "path": "src/cartservice/src/appsettings.json",
+   "sha256": "8ecd6805243f91b3e62e1aebee3bbc7df4df1fbfb46183a105714b2ffddfb8dc",
+   "bytes": 260
+  },
+  {
+   "repo": "upstream",
+   "path": "src/cartservice/src/cartservice.csproj",
+   "sha256": "628f34accab8be273c644583248440fa8efedc89b6646e89cbbff263d52738ae",
+   "bytes": 2060
+  },
+  {
+   "repo": "upstream",
+   "path": "src/cartservice/src/cartstore/ICartStore.cs",
+   "sha256": "2c307f508ef0e0e6f5f0b15e9cdbc0f2868426c671323337b6ffa720f00fb31f",
+   "bytes": 381
+  },
+  {
+   "repo": "upstream",
+   "path": "src/cartservice/src/cartstore/ValkeyCartStore.cs",
+   "sha256": "aca03f3a372293ea1f5e4f7c1ed26c71f5671dfd7f8526b94d9eb4f70ed0c26a",
+   "bytes": 6768
+  },
+  {
+   "repo": "upstream",
+   "path": "src/cartservice/src/services/CartService.cs",
+   "sha256": "56e442df36f5013ee428843636847b3c6e08682d6ef139249a5b3d80df8259d8",
+   "bytes": 3137
+  },
+  {
+   "repo": "upstream",
+   "path": "src/checkoutservice/Dockerfile",
+   "sha256": "b8cd035def454667146eb09e56de0d2f1cf1761c81910c4045cacfbe111fdbc6",
+   "bytes": 1102
+  },
+  {
+   "repo": "upstream",
+   "path": "src/checkoutservice/go.mod",
+   "sha256": "2d12ff055120e4dfcdaffdadf15d2aa309e4ddbf4162b8941acc5ea3558b32dc",
+   "bytes": 4718
+  },
+  {
+   "repo": "upstream",
+   "path": "src/checkoutservice/kafka/producer.go",
+   "sha256": "3e0c1482a7b8f44318e48ea873424fe851390958d6155bcf1a8134c8f5666163",
+   "bytes": 1168
+  },
+  {
+   "repo": "upstream",
+   "path": "src/checkoutservice/main.go",
+   "sha256": "b673ea1c19ea4304bbf5451fa524a9dfe78a30317a62cb4469c32b220f2136eb",
+   "bytes": 19912
+  },
+  {
+   "repo": "upstream",
+   "path": "src/checkoutservice/money/money.go",
+   "sha256": "a231d92439797fef26c5aed3e7e4a3407954e9854456be5f90c4759f8b95dfa7",
+   "bytes": 3502
+  },
+  {
+   "repo": "upstream",
+   "path": "src/checkoutservice/tools.go",
+   "sha256": "9280adae9ab37b71e4bb4e5faa03ae2050a7729f118430ec3ded5a00fcd10c6c",
+   "bytes": 518
+  },
+  {
+   "repo": "upstream",
+   "path": "src/currencyservice/CMakeLists.txt",
+   "sha256": "c3f76c8360a9f5a4aef74fc186322eba7594d5c0a3aa692b268ca407638299e5",
+   "bytes": 2979
+  },
+  {
+   "repo": "upstream",
+   "path": "src/currencyservice/Dockerfile",
+   "sha256": "44c899164aa0e73e0ff5b1cc142e5a13889d8a7f7a71dc12754853e1bc4cb67f",
+   "bytes": 1789
+  },
+  {
+   "repo": "upstream",
+   "path": "src/currencyservice/data/currency_conversion.json",
+   "sha256": "19a38bb8616729b4562c0319a7d2e4f4d99cc2eddf2e56fab7006c6e46f5c23e",
+   "bytes": 635
+  },
+  {
+   "repo": "upstream",
+   "path": "src/currencyservice/proto/grpc/health/v1/health.proto",
+   "sha256": "e3dcdb0521341163897c6b87b3c92dd559a44a7cb1330f8f3bbcc2b0027fdd67",
+   "bytes": 1288
+  },
+  {
+   "repo": "upstream",
+   "path": "src/currencyservice/src/logger_common.h",
+   "sha256": "3544d08687edb6cad2b835b3de904a9e071020a92892b86e23f7ad66bc1e142d",
+   "bytes": 1595
+  },
+  {
+   "repo": "upstream",
+   "path": "src/currencyservice/src/meter_common.h",
+   "sha256": "019206c3dc46d7d65e25ec0e59ce8577be16b2d1d61524919bdcbddfc8eb209f",
+   "bytes": 1787
+  },
+  {
+   "repo": "upstream",
+   "path": "src/currencyservice/src/server.cpp",
+   "sha256": "251a53046c52fba11f6f2ecc0a2a878133e867fd290cd43afa2b56ced79e52c6",
+   "bytes": 8179
+  },
+  {
+   "repo": "upstream",
+   "path": "src/currencyservice/src/tracer_common.h",
+   "sha256": "defcbf6abb07c81442c0203acd2e9a03367166ee90b0fc56c935972ffa016835",
+   "bytes": 3445
+  },
+  {
+   "repo": "upstream",
+   "path": "src/emailservice/Dockerfile",
+   "sha256": "232561a5606c3ee47fbc07f67594fc1de75cc81df22dd89c8713dbecbe9fa069",
+   "bytes": 607
+  },
+  {
+   "repo": "upstream",
+   "path": "src/emailservice/Gemfile",
+   "sha256": "ba92e0a1f2552fd17d7f089dc443e7d3488d77ea2968e30304252ece8cab34ec",
+   "bytes": 271
+  },
+  {
+   "repo": "upstream",
+   "path": "src/emailservice/email_server.rb",
+   "sha256": "3f0eaa497ff932b432d5fd6f43baf883c1c6f0958d958278ba271249d7b1ca61",
+   "bytes": 1501
+  },
+  {
+   "repo": "upstream",
+   "path": "src/emailservice/views/confirmation.erb",
+   "sha256": "69c3499569241786fffe5e1f338dcd9879b8f5d7a2b07005c4146fc99994244f",
+   "bytes": 1885
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/Dockerfile",
+   "sha256": "8a3a7c5aa8fd17b96d6d6da5f57c1a8e4100c842a7d4f26cef573998461dcf4c",
+   "bytes": 598
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/next.config.mjs",
+   "sha256": "19787a090d90d70742b2d5795030fe6f3c5a846fcd87b890f9961286bac0ab3c",
+   "bytes": 171
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/package.json",
+   "sha256": "5781ac67085f9c461fbf9f19ce331c44ed3b50cabbb1d3771c5b50597a5fd5c3",
+   "bytes": 756
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/postcss.config.mjs",
+   "sha256": "ac31e2a95ef64fe27ceb4124e101675273107aae2e33bc490b01d919e7f03646",
+   "bytes": 135
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/app/advanced/page.tsx",
+   "sha256": "3957197b8e1e7aaa8d98a16cf6ee231af0eb4b883b5a705a586b6d29a434c63b",
+   "bytes": 223
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/app/api/read-file/route.ts",
+   "sha256": "543ca32a00aa0d08313aff7166c0ccac517c9cb9af291a228a16769acf5d4996",
+   "bytes": 706
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/app/api/write-to-file/route.ts",
+   "sha256": "937eb07f1cf47bb18d761b8a152f22c3d9e1d13ec8bbc75ee7b09a3e11bf273c",
+   "bytes": 715
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/app/layout.tsx",
+   "sha256": "1bcd03139c0bbf914347a2c4ef452db48dd36d488122ac28c55e2ed38634daa4",
+   "bytes": 503
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/app/page.tsx",
+   "sha256": "b7c926e20f530d34d2a1260104ae036229fa554e055eabb2f4320b94128920ae",
+   "bytes": 283
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/components/Layout.tsx",
+   "sha256": "d28e012d620d349cbe8a31f973767c144dd963fda4f502b90022b738554a21c0",
+   "bytes": 1045
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/components/advanced/AdvancedView.tsx",
+   "sha256": "9c17c0aa80db6437e034147225a92316fe6b1ee0d4266a8bc20461daec1355e9",
+   "bytes": 4540
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/components/advanced/FileEditor.tsx",
+   "sha256": "1766408421dc643da7589d165315c1a5bb0f0f9bcca9ffa8397a8b6ba7725dce",
+   "bytes": 782
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/components/basic/BasicView.tsx",
+   "sha256": "c905dad371267a8d68b0786875c43428ab3ee38842e1a17ef1421285f7b1a0c8",
+   "bytes": 2943
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/components/basic/DefaultVariantSelect.tsx",
+   "sha256": "83add0638275d3c71bf8f805313058fcfb41148744e0221990402221e9c2f774",
+   "bytes": 924
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/components/basic/FeatureFlag.tsx",
+   "sha256": "2ad16e39883bf9d3bd205f707202ce4e7be9ba4d025b14d9e3a785d73290d12b",
+   "bytes": 1555
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/components/nav/NavBar.tsx",
+   "sha256": "46936724cab5d2cd9771a6b925e78709546201494a805fa55c6c10f3e54a0a8c",
+   "bytes": 1452
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/components/utils/Spinner.tsx",
+   "sha256": "891df3f749151a70c8b7fe78af06b4be4c6c9cb4a484f10d660b751c6a0c7231",
+   "bytes": 389
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/instrumentation.ts",
+   "sha256": "91979bd24776d46d595ccb0ddea66dea17feb7f34040145152e1b7e3e7c0740e",
+   "bytes": 200
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/src/utils/types.ts",
+   "sha256": "71f2c8a7ff4b58cf9dba4fd7e9e0c670435147503d2b74b22da6997f8aa99fe7",
+   "bytes": 391
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/tailwind.config.ts",
+   "sha256": "4d4c4f1a4858c42eaa66d6fa3096aa09945b93de416d24ca52689f05730ec465",
+   "bytes": 626
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd-ui/tsconfig.json",
+   "sha256": "53f96418e60724de8c624de8d7d1b549f64a6c34a5f40f07a7596af4380c92f6",
+   "bytes": 578
+  },
+  {
+   "repo": "upstream",
+   "path": "src/flagd/demo.flagd.json",
+   "sha256": "e8bfe8150277dea7d8cfa4203c5d468c8670f307fd4d2eedf6c024b40962a581",
+   "bytes": 2623
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frauddetectionservice/Dockerfile",
+   "sha256": "af442ce732816cab1fe98c2542a40a5137ac1e3af83c14a2a0d5612344e69ec0",
+   "bytes": 772
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frauddetectionservice/build.gradle.kts",
+   "sha256": "e56005a063f8d958e3a49e2ba5535554c781da2cbb9767c323c539c5c583df64",
+   "bytes": 2756
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frauddetectionservice/gradle.properties",
+   "sha256": "128850cfeb97f9b41f9680ffdafb077355d60ca904798e5975c7754f43d9bd31",
+   "bytes": 27
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frauddetectionservice/gradle/wrapper/gradle-wrapper.properties",
+   "sha256": "27d72993a6890cbc1583f332ebbd13cb8412f0a7dbeb24943e2f7ee14601201d",
+   "bytes": 250
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frauddetectionservice/gradlew",
+   "sha256": "e0108761fee312b7b373ee96c0870cab5c167e664ac507776814b1d59e9b3bad",
+   "bytes": 8527
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frauddetectionservice/gradlew.bat",
+   "sha256": "18774a0ac0203f6893bf1db3291a0d77f06cd1b4dca2a43b51e7009da3e28cfa",
+   "bytes": 2776
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frauddetectionservice/settings.gradle.kts",
+   "sha256": "862999b9414b6c5084f4469b4f530519ea7ba966a2a1f8fe4c8eec39641217ac",
+   "bytes": 45
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+   "sha256": "ac6d50c12d4ca80f8eca12eba79149cbf28f94ff960f63ab8e6518962a0e80b3",
+   "bytes": 3193
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frauddetectionservice/src/main/resources/log4j2.xml",
+   "sha256": "3d8db3e4b5481790f0768c5d4b46c77f541a849fe5970085ca8015bf40e93b28",
+   "bytes": 542
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/Dockerfile",
+   "sha256": "d2bd442c894edf25a90bf6b5016293867941be2ef68262253848e5a2c42a2c1d",
+   "bytes": 1071
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Ad/Ad.styled.ts",
+   "sha256": "53f0ac40a701a07728a7d055f09f7ccc043fb8f40c759a7407b3976457d3e442",
+   "bytes": 550
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Ad/Ad.tsx",
+   "sha256": "9d3546544cc0bdc627a350e641cf80e4fa95f1abb174d2c2094a3b3502718408",
+   "bytes": 547
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Ad/index.ts",
+   "sha256": "6cb748a2245bc181d95d78cf6eedc9564d36588a3c7c9207ccfe3fd880a90368",
+   "bytes": 111
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Banner/Banner.styled.ts",
+   "sha256": "4d3f1bae00d152ff89e00fba4123896964d7eb33a0eb42cd39e5f40d8512a8d7",
+   "bytes": 1289
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Banner/Banner.tsx",
+   "sha256": "3d37df1f3d34a35bd8b68626798fe1fde993c1c25bca2ec927ab37a42f02620b",
+   "bytes": 535
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Banner/index.ts",
+   "sha256": "f79d9bd26f5b9653299c31be9ab5e2d26fb9b18c5b8d6416e42bc41aef923fbd",
+   "bytes": 115
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Button/Button.tsx",
+   "sha256": "d513940eb4be772d3b81570cee5d09a31621ced526dc3f6003b3c9d8a95aa42c",
+   "bytes": 750
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Button/index.ts",
+   "sha256": "ffba4d0c99b79bfeef45f1cd27a1f0e3b25637c053110e92f8478a86eb98441d",
+   "bytes": 115
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Cart/CartDetail.tsx",
+   "sha256": "8402c62e1bb2f1d5a40f573288cee4a329331c530922ce1f4e6dff1835507222",
+   "bytes": 2021
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Cart/EmptyCart.tsx",
+   "sha256": "893447238e3cd5372fc497fb63a3aa80fad48c73f577736d0def48aa5b42da12",
+   "bytes": 608
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartDropdown/CartDropdown.styled.ts",
+   "sha256": "b3a1a8ab220c6139f07c851c16164f0e4ce5b45ab2f37349879f4e336fbf01b7",
+   "bytes": 2205
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartDropdown/CartDropdown.tsx",
+   "sha256": "152a68acecf2377640e633d49be1a543ebe738134e715832f21fd6097575cfeb",
+   "bytes": 2155
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartDropdown/index.ts",
+   "sha256": "c600af8d5631c2f52146e3a818a8eb4cbcaf456e53f0488a98401107e4f17a08",
+   "bytes": 121
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartIcon/CartIcon.styled.ts",
+   "sha256": "04b18a65e05b64a7e35ac09683323f8d0e8ed5b68301ca4a0623ea80a56e426c",
+   "bytes": 879
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartIcon/CartIcon.tsx",
+   "sha256": "081f9bf69c5d49eeed94d20efdf58cf9c345e3435e74e117b4a0d92d75f08eb9",
+   "bytes": 869
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartIcon/index.ts",
+   "sha256": "df9c39a44e5e04b8bd0337c546ac7a2b96ab729387e9b6dc32f2d4af3ebd5219",
+   "bytes": 117
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartItems/CartItem.tsx",
+   "sha256": "cb24f4d6080190138aab499a83b08f216e04052e84155cdf046913b3fd17f693",
+   "bytes": 987
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartItems/CartItems.styled.ts",
+   "sha256": "760f634290771081c9a22428739f9752962bbfad9b848ba71abcfd51f2f83be2",
+   "bytes": 1574
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartItems/CartItems.tsx",
+   "sha256": "4adc12d05fb5ae29b7fdf4c46653672c494942270297f7f7026169e2b5dccb62",
+   "bytes": 2655
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CartItems/index.ts",
+   "sha256": "01cb155ab42f21563e2bbe38b123e26d652060d858805766f60e753b032d208e",
+   "bytes": 118
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CheckoutForm/CheckoutForm.styled.ts",
+   "sha256": "4c001beebaa8aad7f1be9ad902a96d83477e5c3e8a38880f4bda531cce722c6c",
+   "bytes": 1239
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CheckoutForm/CheckoutForm.tsx",
+   "sha256": "c84d888da18bffa93af025263b8606e9e04892658f861123589256505024fd4c",
+   "bytes": 5288
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CheckoutForm/index.ts",
+   "sha256": "c161fbc04b20071530477beffd85ef2f5694c09c267a6119efb756c5db183367",
+   "bytes": 121
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CheckoutItem/CheckoutItem.styled.ts",
+   "sha256": "9a5bfc2c1534796807dbc60b48817b1b0cec0e8eb2b5b5b3aa4cbac7bc6644ac",
+   "bytes": 1958
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CheckoutItem/CheckoutItem.tsx",
+   "sha256": "8055e9819e2818f3bf193c60a05a469d7c8754faa754fb27a95ffcfa3eb9fb60",
+   "bytes": 1808
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CheckoutItem/index.ts",
+   "sha256": "cf517fdd7d475b0e4309341bbe900adead7da7745f163c95f06bc54a4bcf1103",
+   "bytes": 121
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CurrencySwitcher/CurrencySwitcher.styled.ts",
+   "sha256": "11188f385c2db6a084b954a29704254cd34ea6f41083174999f6efe689dcf2ae",
+   "bytes": 1392
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CurrencySwitcher/CurrencySwitcher.tsx",
+   "sha256": "ce7cc3ec7ab55cc3f29714b537f0c3a8af0604ea8d2555df564dd78c77174ba0",
+   "bytes": 1240
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/CurrencySwitcher/index.ts",
+   "sha256": "598691c43602e56f764a3b61444be6610bc351fde8ce4f14af80e1ec85eb6c7d",
+   "bytes": 125
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Footer/Footer.styled.ts",
+   "sha256": "6a6b81bcd54e31967f9c6886cb38548c83d18aa0d04bd61957243413ed2cc58b",
+   "bytes": 432
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Footer/Footer.tsx",
+   "sha256": "2f09ba1a0a528f49ba1789c2bf8d0a501af4981420cf01da9b91c465098a9a3d",
+   "bytes": 1003
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Footer/index.ts",
+   "sha256": "8f7baaf7b39d98a16a71d9b302e47cf99f9c840d1a94104c5b87ed374c64fc2a",
+   "bytes": 115
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Header/Header.styled.ts",
+   "sha256": "026c3514af4fc19508e34316e297dcc442866d7ffd37d2f295b5539048a83d2f",
+   "bytes": 1065
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Header/Header.tsx",
+   "sha256": "11c84ab9f1409a11754fa3060553c721cdeb7edfe536043f5fff493a0fd99116",
+   "bytes": 577
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Header/index.ts",
+   "sha256": "6ad03524d690b09cef3be41f260127c2f712bc2649d76346867701e19439615f",
+   "bytes": 113
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Input/Input.styled.ts",
+   "sha256": "86609a1271f2613d4a0de9e4c55ed73d40486e4ed8eb19ad89258930b40d52ba",
+   "bytes": 1137
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Input/Input.tsx",
+   "sha256": "f3ac68e9b6637db4a1b15b4af5ecc05b2fed7390fe2469db6b4e64c5e0fbd2a4",
+   "bytes": 789
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Input/index.ts",
+   "sha256": "e181b26b4aa1b6638aeec5a396fe424a2ff84d63ba3ec0aa64d30a7383df3143",
+   "bytes": 112
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Layout/Layout.tsx",
+   "sha256": "0d3fb3c80abc41231e544071f97dda486e7ee0a3e911d7836315d893f8767872",
+   "bytes": 311
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Layout/index.ts",
+   "sha256": "346f04e3d8a4e8684a944f23d57acf948111f35e93e6ee08d49c3b231f6a4692",
+   "bytes": 113
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/PlatformFlag/PlatformFlag.styled.ts",
+   "sha256": "ebee4168884ebd0d2fd715383e2753dbe6c12646350e006695bcffb7f28785f6",
+   "bytes": 653
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/PlatformFlag/PlatformFlag.tsx",
+   "sha256": "c29e9056dc8327425260651e259e4716245021db4e71bf98cc72ee9a15e956a9",
+   "bytes": 369
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/PlatformFlag/index.ts",
+   "sha256": "6341974f20c92a30087bd1413263b2ee5881d9071531d050900f20816ff8b1c2",
+   "bytes": 121
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/ProductCard/ProductCard.styled.ts",
+   "sha256": "c82a3b9eafd5e29d9dda712a3f2c78611283f80cb0fdcf0c3e5b24dd307458a4",
+   "bytes": 817
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/ProductCard/ProductCard.tsx",
+   "sha256": "4933878987405dd4deb4349266f215c93dc8e7f7a64a7a5f0cd746847ee1c475",
+   "bytes": 1736
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/ProductCard/index.ts",
+   "sha256": "0f3a9cdefcfdaef842fd86343df573ea114b584a67d7061b4bbc0d5fe9613f6a",
+   "bytes": 120
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/ProductList/ProductList.styled.ts",
+   "sha256": "1daff33fc17b9f5e728c8844fdd03ad96b36b33eb66c24013e8c35dc23762521",
+   "bytes": 319
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/ProductList/ProductList.tsx",
+   "sha256": "30d0b43c752f6c6851fcab78a27add2381a6385cec738ee238910c9f1984979e",
+   "bytes": 592
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/ProductList/index.ts",
+   "sha256": "3c86e8c02e9ee1668c8cf5f9c62f6136b407216e1534856424207fd30b835282",
+   "bytes": 120
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/ProductPrice/ProductPrice.tsx",
+   "sha256": "94b2536c69e4afa2211794326874e3e61a0aa797c7bec9e16660e51ebe65b5b2",
+   "bytes": 834
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/ProductPrice/index.ts",
+   "sha256": "224cefa8e6d076c504246ea7c751fe48c83900872fe153745dc6f250d5199101",
+   "bytes": 121
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Recommendations/Recommendations.styled.ts",
+   "sha256": "e708e25dedf1547829d016fa0f9a962afcdc65d74d590d726737fc8bc84a7a16",
+   "bytes": 824
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Recommendations/Recommendations.tsx",
+   "sha256": "85badf8c22fd8dc47f8d863d9aaf34d4981ab44becf7edcb2245d67413ffbbb6",
+   "bytes": 761
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Recommendations/index.ts",
+   "sha256": "3082dc4ca543b160d76f1ee8da24b848ac11f9a628aca1d7c8f46c2b7f9705fe",
+   "bytes": 124
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Select/Select.styled.ts",
+   "sha256": "3deb90e88fc2376589ebc8f601b8331c33d7af258618e4f589e580a91bec8801",
+   "bytes": 620
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Select/Select.tsx",
+   "sha256": "0790daa0007f3961014d8733dcf0d6d9a0b99aad2c945ed2a048375dd33c46a6",
+   "bytes": 473
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/components/Select/index.ts",
+   "sha256": "b5b214cf250172adf7c92b656b85961bdb3196289d465f47807fe1dc15987371",
+   "bytes": 115
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/gateways/Api.gateway.ts",
+   "sha256": "6e319827220878d6d07d9192d0af5ae5bd824d780dc2e0d106d9e351e7380ad2",
+   "bytes": 3421
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/gateways/Session.gateway.ts",
+   "sha256": "a57fa82d75d660728bd3957a78212bd3291996d29af5ecec41112c82f677a24d",
+   "bytes": 874
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/gateways/rpc/Ad.gateway.ts",
+   "sha256": "fe27d797f04eacd8ed96d7d3c8ab43c53b64437d274a5feddc58590a9e3ab0a5",
+   "bytes": 614
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/gateways/rpc/Cart.gateway.ts",
+   "sha256": "a1eb65623b634d55d644f3c67540a2ecae92fab7a6624f02a6341b5464c22435",
+   "bytes": 1013
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/gateways/rpc/Checkout.gateway.ts",
+   "sha256": "cd811d73c94a9bc701746022a8215cac8ce04459464243d4d56321f6dbac4384",
+   "bytes": 672
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/gateways/rpc/Currency.gateway.ts",
+   "sha256": "3081e5060e589d248d510dc6a44f240b74e708a7c98d555a4c74f0255f987dc1",
+   "bytes": 890
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/gateways/rpc/ProductCatalog.gateway.ts",
+   "sha256": "63a89e1ee0d056a308bfea4fb4578bdb8bb10eafdd4ece79f8080253e9febd3b",
+   "bytes": 871
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/gateways/rpc/Recommendations.gateway.ts",
+   "sha256": "51aa5d160347dd93a61b0e9c6f7ec0a436919337bb9ac89e2a6a3d639230adfe",
+   "bytes": 769
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/gateways/rpc/Shipping.gateway.ts",
+   "sha256": "52b90dd6350f725bfa0a0e0bce3732ee4a4412d7843ef6a3856dbbb7b67634c8",
+   "bytes": 730
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/next.config.js",
+   "sha256": "16847daeed414388ec2bb8fbaf85705baee88fca05b762823d1a92b6ea58e106",
+   "bytes": 1722
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/package.json",
+   "sha256": "29c77ef0ea1dd019db5cff0468f3da4faa8fc7ba8ab6e9af00fd789fd8f9d20b",
+   "bytes": 2546
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/_app.tsx",
+   "sha256": "f43d6c53d6300a55a29d26d9722e170b6b96936d0206d43604072a3df4fa6eba",
+   "bytes": 2632
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/_document.tsx",
+   "sha256": "7a7077e08cedd3f7817d56a90aa14abf560e831059313ae2f1707be5be722cb1",
+   "bytes": 2354
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/api/cart.ts",
+   "sha256": "baddb1546b9132f54928a87b789bdaf66170380492a0a69d8c479b35b9a273b5",
+   "bytes": 1687
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/api/checkout.ts",
+   "sha256": "48d272678bdee3a1a0e707453598d1fd8f8edc1896a8f2872166241ea3143983",
+   "bytes": 1518
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/api/currency.ts",
+   "sha256": "22e651578a4346675e5eb807f24cdf5683acf57ce699aae3be228a508049c7ba",
+   "bytes": 756
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/api/data.ts",
+   "sha256": "a40106be0ee89f55970ea56cf2be2f7fe0aa91303833317f0f5960f2d53ef902",
+   "bytes": 832
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/api/products/[productId]/index.ts",
+   "sha256": "d8a106c1c9587461ae2486b23b96108baffac4dbaa2f2a1c589584d06af8185a",
+   "bytes": 881
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/api/products/index.ts",
+   "sha256": "0ff6bd0617b7431c65df84406eeebe5ad79492e794b3589d65213e068daec439",
+   "bytes": 847
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/api/recommendations.ts",
+   "sha256": "7221771fc2abc29c9329da8de3e002141bb97e75a2240132d67518430f27781b",
+   "bytes": 1201
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/api/shipping.ts",
+   "sha256": "c4567cb41e3b72e27ea947aec2a4a181e580f3481e53da80f1c7811585f203cb",
+   "bytes": 1082
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/cart/checkout/[orderId]/index.tsx",
+   "sha256": "de0796899a04d83040ca6d7f6be5b246cf0acf9fe28f6f44eacbe874b14ec092",
+   "bytes": 1916
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/cart/index.tsx",
+   "sha256": "1cad6c267b8e0af8c47ec983912a1b37a031bcd43dddd6d1c9e903d78b257eba",
+   "bytes": 1027
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/index.tsx",
+   "sha256": "696488451048364a97e63e8c48e861a10f47a5b29f85b692d68324d07cd9ace8",
+   "bytes": 1371
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/pages/product/[productId]/index.tsx",
+   "sha256": "6004e298daa4b251e1e5bdc5c2da73f974bc4e90ef1890aa89859f8f4e8f7af4",
+   "bytes": 3513
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/providers/Ad.provider.tsx",
+   "sha256": "076599bc70086d99123251e11033fc4b6a2a35e899bb32b65d52b89eafb385ff",
+   "bytes": 1553
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/providers/Cart.provider.tsx",
+   "sha256": "c91a879c2c3e156f606f6e1b5d8ae2c256b117b45b291524c3bf58a4ca061e63",
+   "bytes": 2287
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/providers/Currency.provider.tsx",
+   "sha256": "fbbeef44914edc83b4e99e4a525a3f82cc23524808e2c12c7c72806e01e2972f",
+   "bytes": 1671
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/services/ProductCatalog.service.ts",
+   "sha256": "e9e716da6575beb15b43828e79b46f30978f50b47da47b581b76777039653724",
+   "bytes": 1198
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/styles/Cart.styled.ts",
+   "sha256": "f06270b47efcd1b5345f7762d954164073e0c09366db221a6d768259ae8868ee",
+   "bytes": 1888
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/styles/Checkout.styled.ts",
+   "sha256": "997548622c7fd4c570ca1cc3b0f311e57ec289829206e4a92cf70c58d4950e7a",
+   "bytes": 1597
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/styles/Home.styled.ts",
+   "sha256": "dc869f385ef01995be96f59cb0348fc2347b33db29a72ca6b549686e3f7ba269",
+   "bytes": 997
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/styles/ProductDetail.styled.ts",
+   "sha256": "350e90c9f2b02c08d54c778c3cd84d75d5b915c556c8b9fc90f90b2e1336f52d",
+   "bytes": 1962
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/styles/Theme.ts",
+   "sha256": "295c9f6e58acc7bc3178e788f7fd1da76679b5500682b6bde1f6a33798d2b424",
+   "bytes": 853
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/styles/style.d.ts",
+   "sha256": "b8320cfc9b085041103824ea766ba6c94b806e32f726871dd2dc7d03ee20f41e",
+   "bytes": 842
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/tsconfig.json",
+   "sha256": "e6c76155a187777832acf5def8c24e487e6523d3541a135988277defbd432d52",
+   "bytes": 512
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/types/Cart.ts",
+   "sha256": "a7cf18e63516d59ed936777f0c8b59e1d4345e42278ef7ff076c9c08c72f184f",
+   "bytes": 542
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/utils/Request.ts",
+   "sha256": "d6d2bd0d04988fcc785e50c86c713cfdec4438d658f75ea638f6283abf92b7bb",
+   "bytes": 781
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/utils/enums/AttributeNames.ts",
+   "sha256": "37cc1293487d58dc8a88ddee18f72c4e8117852a225e7c3b153524ca9ff58994",
+   "bytes": 140
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/utils/imageLoader.js",
+   "sha256": "e870062398a1c7b2d7da8a375b3c2c2fe9f935a64a1eb18170bdf2e244f2d62e",
+   "bytes": 1039
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/utils/telemetry/FrontendTracer.ts",
+   "sha256": "c4aa37c35e46b110d68f4c640432e47d264680f85c1df29b039e27c0b0c59ed5",
+   "bytes": 2496
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/utils/telemetry/Instrumentation.js",
+   "sha256": "d8d919d85c62052b2bdadb3094fb175fdb4e8c77bb17afc3ed701359bcea3296",
+   "bytes": 1516
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/utils/telemetry/InstrumentationMiddleware.ts",
+   "sha256": "e666b3121d8b161bfd3d0db8f3fc21fae4971e471a294023685adc9a01ae001a",
+   "bytes": 1400
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontend/utils/telemetry/SessionIdProcessor.ts",
+   "sha256": "2a2ed2cbd2e2ef0080c1ef3d112694049189ae53ba6996f821f4382ebf7d6aa0",
+   "bytes": 919
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontendproxy/Dockerfile",
+   "sha256": "a01718be5c5ca4fedcd0094b1656eed1bb540e0980fe43de558206c963a514db",
+   "bytes": 400
+  },
+  {
+   "repo": "upstream",
+   "path": "src/frontendproxy/envoy.tmpl.yaml",
+   "sha256": "4cd8db9d06bfc7befe6d08c1e692598951c1c69994258605e381afeeb3002467",
+   "bytes": 7189
+  },
+  {
+   "repo": "upstream",
+   "path": "src/grafana/grafana.ini",
+   "sha256": "19bc2c954f21e4a4cdc9b88bc4c7145a2e95cf994a6929c02dbf911898a83787",
+   "bytes": 47066
+  },
+  {
+   "repo": "upstream",
+   "path": "src/grafana/provisioning/dashboards/demo.yaml",
+   "sha256": "3c915b0bd8af3dc0a7facbe363535453ec47ac22b640a73be6a2d83717f49b61",
+   "bytes": 294
+  },
+  {
+   "repo": "upstream",
+   "path": "src/grafana/provisioning/dashboards/demo/demo-dashboard.json",
+   "sha256": "7f4b7339b074f49660c7a59236ab66821cbea0f4fd012a156b68bd9e41db40b7",
+   "bytes": 25486
+  },
+  {
+   "repo": "upstream",
+   "path": "src/grafana/provisioning/dashboards/demo/opentelemetry-collector-data-flow.json",
+   "sha256": "c82b2c119f1c2acf71303c72ca4ac21a91253d33638951d1b164e6c4fa31f6b1",
+   "bytes": 58651
+  },
+  {
+   "repo": "upstream",
+   "path": "src/grafana/provisioning/dashboards/demo/opentelemetry-collector.json",
+   "sha256": "52a71f6ae65dcad6cfbdfcff0d87d067f76a6c7e3672dbedcc0179d99688844d",
+   "bytes": 92758
+  },
+  {
+   "repo": "upstream",
+   "path": "src/grafana/provisioning/dashboards/demo/spanmetrics-dashboard.json",
+   "sha256": "6a63e9b60b798dd02411232dc52da845f7801fe3a876c81e3d58440b75d1ef8d",
+   "bytes": 25761
+  },
+  {
+   "repo": "upstream",
+   "path": "src/grafana/provisioning/datasources/default.yaml",
+   "sha256": "8d3d9e1c7d0b253f53b82701923552d04b38f2dc4dd4d5ddb01ea1193bcdff46",
+   "bytes": 500
+  },
+  {
+   "repo": "upstream",
+   "path": "src/grafana/provisioning/datasources/jaeger.yaml",
+   "sha256": "2d2f7afef3352bbaaf4e91ece75e7fd0575a2ff0a443f8640d8eac7119eb023e",
+   "bytes": 244
+  },
+  {
+   "repo": "upstream",
+   "path": "src/grafana/provisioning/datasources/opensearch.yaml",
+   "sha256": "a20b668bf7838568165c2144187caabae48106fa5974a3875aa0cbf56f1ebc1d",
+   "bytes": 455
+  },
+  {
+   "repo": "upstream",
+   "path": "src/imageprovider/Dockerfile",
+   "sha256": "05669f17b67c9ce489b076604fa652ea245dfae40ea8d62532697fe36ab2bed6",
+   "bytes": 963
+  },
+  {
+   "repo": "upstream",
+   "path": "src/imageprovider/nginx.conf.template",
+   "sha256": "842e9db33921200865ea9aff904d707891344eecc818bc3a9a67a43f21baea5e",
+   "bytes": 613
+  },
+  {
+   "repo": "upstream",
+   "path": "src/kafka/Dockerfile",
+   "sha256": "dc8ccc9d4e942b772a87d5567590537f8d70827548620bce7a9fb453637d6d8a",
+   "bytes": 1113
+  },
+  {
+   "repo": "upstream",
+   "path": "src/loadgenerator/Dockerfile",
+   "sha256": "29c106a2cbb6ad916359d2f90974be501d0fce4b17a4cf8a7fdc32ed45f1347d",
+   "bytes": 652
+  },
+  {
+   "repo": "upstream",
+   "path": "src/loadgenerator/locustfile.py",
+   "sha256": "84815ac2e778192ebd6e56e428271b8568a261e87df6658ed87cdbf37e71328e",
+   "bytes": 7295
+  },
+  {
+   "repo": "upstream",
+   "path": "src/loadgenerator/people.json",
+   "sha256": "2e780c99cd1950213c798ba086c184b6ae89a98af8a6df4bb190b2e19bcf77ab",
+   "bytes": 4572
+  },
+  {
+   "repo": "upstream",
+   "path": "src/loadgenerator/requirements.txt",
+   "sha256": "1ca91b3acaeb26f552efe941328125a545cde27c77e55e06910466a301aae2c6",
+   "bytes": 1134
+  },
+  {
+   "repo": "upstream",
+   "path": "src/otelcollector/otelcol-config-extras.yml",
+   "sha256": "da1af0e9f3d54a8a2f7376d4431cfaf3fc3a3884b1d1e602c6a68fc0f18f0cbf",
+   "bytes": 535
+  },
+  {
+   "repo": "upstream",
+   "path": "src/otelcollector/otelcol-config.yml",
+   "sha256": "2dd111a8a75b8aef3d11e5416857b687ad5d0dfe0f3083a8ddf466bdedbaa1f9",
+   "bytes": 3266
+  },
+  {
+   "repo": "upstream",
+   "path": "src/paymentservice/Dockerfile",
+   "sha256": "781d5085212ec6405d04a223774bb65727079a66500876be8cffce93a51a0163",
+   "bytes": 598
+  },
+  {
+   "repo": "upstream",
+   "path": "src/paymentservice/charge.js",
+   "sha256": "58e02fbb9a79977d56390d067871a6436b14120cb2633af440abb7abf485b978",
+   "bytes": 2540
+  },
+  {
+   "repo": "upstream",
+   "path": "src/paymentservice/index.js",
+   "sha256": "34ac44c8daf6f333d5360453abe24d1439f3fae174d38e2253c6e2695edf9b81",
+   "bytes": 1696
+  },
+  {
+   "repo": "upstream",
+   "path": "src/paymentservice/logger.js",
+   "sha256": "ee7a286f273be4b750ac52347f33e53b6c35fdd19549a067d1b0a50adb2c0277",
+   "bytes": 135
+  },
+  {
+   "repo": "upstream",
+   "path": "src/paymentservice/opentelemetry.js",
+   "sha256": "c513998a6151217be34246db32ee4108caa8a8393372a9d8284e3a736203806c",
+   "bytes": 1519
+  },
+  {
+   "repo": "upstream",
+   "path": "src/paymentservice/package.json",
+   "sha256": "b5aea1193be9ffebf76b4c2c1a911e77d0a812aa9259491cb11d357cb2e4378d",
+   "bytes": 1304
+  },
+  {
+   "repo": "upstream",
+   "path": "src/productcatalogservice/Dockerfile",
+   "sha256": "81d18617227c46fbf0a43ff1551bbce8e139460dd21616375a1c58bf80fb4ffb",
+   "bytes": 1209
+  },
+  {
+   "repo": "upstream",
+   "path": "src/productcatalogservice/go.mod",
+   "sha256": "b6550424dc8743e2a0afc7c23e492acaa6cf853cbb67af5dbf73a52218330a0f",
+   "bytes": 3615
+  },
+  {
+   "repo": "upstream",
+   "path": "src/productcatalogservice/main.go",
+   "sha256": "dd12cef4f87cd8683c77407b9d02580f18aaced954c25defeeade0cb94af1fde",
+   "bytes": 8768
+  },
+  {
+   "repo": "upstream",
+   "path": "src/productcatalogservice/products/products.json",
+   "sha256": "903e71a7042f99d0c68ed4dde6e3fa9dd2fe981f4f8b7584d8ab501b377ff82e",
+   "bytes": 7131
+  },
+  {
+   "repo": "upstream",
+   "path": "src/productcatalogservice/tools.go",
+   "sha256": "9280adae9ab37b71e4bb4e5faa03ae2050a7729f118430ec3ded5a00fcd10c6c",
+   "bytes": 518
+  },
+  {
+   "repo": "upstream",
+   "path": "src/prometheus/prometheus-config.yaml",
+   "sha256": "eea80c1df6f1a872ad56f4865be34aa6e446b780a6f182df518e67b9e87e1cc8",
+   "bytes": 280
+  },
+  {
+   "repo": "upstream",
+   "path": "src/quoteservice/Dockerfile",
+   "sha256": "d756f1a474abd3fdf9e5c99aff402d0f9a1c680caeac476c605f2a5ccfe6f04d",
+   "bytes": 786
+  },
+  {
+   "repo": "upstream",
+   "path": "src/quoteservice/app/dependencies.php",
+   "sha256": "97ff53efa49ab4a5dae669fc95c9429f03d349901832871023a72ec8392a4164",
+   "bytes": 870
+  },
+  {
+   "repo": "upstream",
+   "path": "src/quoteservice/app/routes.php",
+   "sha256": "7527478d587114ab84c8e7a13ad45befbd487c6abe6c5e0c33245fcda74d1709",
+   "bytes": 2416
+  },
+  {
+   "repo": "upstream",
+   "path": "src/quoteservice/app/settings.php",
+   "sha256": "a88d5c709a88e81120863a8c199127bf5f6655ace2c29df67320e7dc53b11286",
+   "bytes": 862
+  },
+  {
+   "repo": "upstream",
+   "path": "src/quoteservice/composer.json",
+   "sha256": "44bc152431124e350dee7471db326293b565d504ebd94ef2ba82a60386e09ac1",
+   "bytes": 1010
+  },
+  {
+   "repo": "upstream",
+   "path": "src/quoteservice/public/index.php",
+   "sha256": "86660f07817d9d80225c0bc7d1261202bbea83f0b8d4a4f2a8eadfd7ff9325ca",
+   "bytes": 2945
+  },
+  {
+   "repo": "upstream",
+   "path": "src/quoteservice/src/Application/Settings/Settings.php",
+   "sha256": "69693ddf1e8e48409715c39f6b616eb64df8aec8799fb5bf62bb41702ca2efd9",
+   "bytes": 490
+  },
+  {
+   "repo": "upstream",
+   "path": "src/quoteservice/src/Application/Settings/SettingsInterface.php",
+   "sha256": "be6bdc4fdfeb8e7a4ba492b644f69d9cfee532dfba85b6448ececaf4289344e4",
+   "bytes": 288
+  },
+  {
+   "repo": "upstream",
+   "path": "src/recommendationservice/Dockerfile",
+   "sha256": "3d46f41ab272d966a5fceeb1518bca123d450106e18380b733205090dfd78fce",
+   "bytes": 1012
+  },
+  {
+   "repo": "upstream",
+   "path": "src/recommendationservice/logger.py",
+   "sha256": "3a5c699fdfbe74264b3ffd98e5ea009fb183a22b31bd766ba0d730dd6e18f0d7",
+   "bytes": 1140
+  },
+  {
+   "repo": "upstream",
+   "path": "src/recommendationservice/metrics.py",
+   "sha256": "e3261cffe9c1e67036ae6d7d983a3cfc3ce6f69260fbb2be49bb9f92154d2e8d",
+   "bytes": 467
+  },
+  {
+   "repo": "upstream",
+   "path": "src/recommendationservice/recommendation_server.py",
+   "sha256": "6745df46f4db654742d43f08467daf54d086627825a7dcede4afb53dd7898570",
+   "bytes": 6232
+  },
+  {
+   "repo": "upstream",
+   "path": "src/recommendationservice/requirements.txt",
+   "sha256": "eb8af7480519c6538f3c0017b5e2f5193eec3985e0a4ca3eaa675cabb4df4ad5",
+   "bytes": 396
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/Cargo.toml",
+   "sha256": "3aefb90a63fdc988a27e0d6548a48b6a094228f1025ce430360c019a6d69d472",
+   "bytes": 1282
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/Dockerfile",
+   "sha256": "a8756bc497f5dcb85408f030fca3a031aaaf0e60688a59bea5a78a5ac531da1e",
+   "bytes": 2269
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/build.rs",
+   "sha256": "f6eec41a82b40c54b8afd04a50efda25b611e87b0d202d904d40e68e76ddd821",
+   "bytes": 339
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/src/main.rs",
+   "sha256": "10ab4e85b962892e46d4cc7203f8c580f8cc0d9fc48cb368d8c37d0086a1b80f",
+   "bytes": 1148
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/src/shipping_service.rs",
+   "sha256": "592f991861783964531dacf22544085db427697f1dfc44f0b475fa0b6a5c62c9",
+   "bytes": 6523
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/src/shipping_service/quote.rs",
+   "sha256": "fdacaef2e6541d3495983632c401ec26487ec7e018d01154bc090e8f748baa76",
+   "bytes": 2414
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/src/shipping_service/tracking.rs",
+   "sha256": "9e03c8c284a91eaad2327a37ff7e8e819d3d718940ff736eb8a11105b9fa0913",
+   "bytes": 195
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/src/telemetry.rs",
+   "sha256": "4bbba2d17233461343d38bdad644823806be11128e3b69963cdce497cd4119e9",
+   "bytes": 285
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/src/telemetry/logs_conf.rs",
+   "sha256": "81f466f3b285700269e293d86f90cdac1981e46599bf0fd14263b62c626dbbb5",
+   "bytes": 392
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/src/telemetry/resources_conf.rs",
+   "sha256": "5a306d46fffb2ad2ab273578b5e04ef5c5813e628c452b6382883c70e8064c66",
+   "bytes": 924
+  },
+  {
+   "repo": "upstream",
+   "path": "src/shippingservice/src/telemetry/traces_conf.rs",
+   "sha256": "d3319763b713fd0fc9481600aee9c38a9ef45d92e8cd24e854dccd83306ca92c",
+   "bytes": 1021
+  }
+ ],
+ "fileCount": 239,
+ "bytes": 682912,
+ "excluded": {
+  "asset": {
+   "count": 21,
+   "files": [
+    "upstream:src/adservice/gradle/wrapper/gradle-wrapper.jar",
+    "upstream:src/flagd-ui/src/app/globals.css",
+    "upstream:src/frauddetectionservice/gradle/wrapper/gradle-wrapper.jar",
+    "upstream:src/frontend/public/favicon.ico",
+    "upstream:src/frontend/public/icons/Cart.svg",
+    "upstream:src/frontend/public/icons/CartIcon.svg",
+    "upstream:src/frontend/public/icons/Check.svg",
+    "upstream:src/frontend/public/icons/Chevron.svg",
+    "upstream:src/frontend/styles/globals.css",
+    "upstream:src/imageprovider/static/Banner.png",
+    "upstream:src/imageprovider/static/opentelemetry-demo-logo.png",
+    "upstream:src/imageprovider/static/products/EclipsmartTravelRefractorTelescope.jpg",
+    "upstream:src/imageprovider/static/products/LensCleaningKit.jpg",
+    "upstream:src/imageprovider/static/products/NationalParkFoundationExplorascope.jpg",
+    "upstream:src/imageprovider/static/products/OpticalTubeAssembly.jpg",
+    "upstream:src/imageprovider/static/products/RedFlashlight.jpg",
+    "upstream:src/imageprovider/static/products/RoofBinoculars.jpg",
+    "upstream:src/imageprovider/static/products/SolarFilter.jpg",
+    "upstream:src/imageprovider/static/products/SolarSystemColorImager.jpg",
+    "upstream:src/imageprovider/static/products/StarsenseExplorer.jpg",
+    "upstream:src/imageprovider/static/products/TheCometBook.jpg"
+   ]
+  },
+  "lockfile": {
+   "count": 7,
+   "files": [
+    "upstream:src/checkoutservice/go.sum",
+    "upstream:src/emailservice/Gemfile.lock",
+    "upstream:src/flagd-ui/package-lock.json",
+    "upstream:src/frontend/package-lock.json",
+    "upstream:src/paymentservice/package-lock.json",
+    "upstream:src/productcatalogservice/go.sum",
+    "upstream:src/shippingservice/Cargo.lock"
+   ]
+  },
+  "test": {
+   "count": 9,
+   "files": [
+    "upstream:src/cartservice/tests/CartServiceTests.cs",
+    "upstream:src/cartservice/tests/cartservice.tests.csproj",
+    "upstream:src/checkoutservice/money/money_test.go",
+    "upstream:src/frontend/Dockerfile.cypress",
+    "upstream:src/frontend/cypress.config.ts",
+    "upstream:src/frontend/cypress/e2e/Checkout.cy.ts",
+    "upstream:src/frontend/cypress/e2e/Home.cy.ts",
+    "upstream:src/frontend/cypress/e2e/ProductDetail.cy.ts",
+    "upstream:src/frontend/utils/Cypress.ts"
+   ]
+  },
+  "tooling-dotfile": {
+   "count": 18,
+   "files": [
+    "upstream:src/adservice/.java-version",
+    "upstream:src/cartservice/src/.dockerignore",
+    "upstream:src/currencyservice/.dockerignore",
+    "upstream:src/emailservice/.dockerignore",
+    "upstream:src/emailservice/.ruby-version",
+    "upstream:src/flagd-ui/.dockerignore",
+    "upstream:src/flagd-ui/.eslintrc.json",
+    "upstream:src/flagd-ui/.gitignore",
+    "upstream:src/flagd-ui/.prettierrc",
+    "upstream:src/frauddetectionservice/.dockerignore",
+    "upstream:src/frontend/.dockerignore",
+    "upstream:src/frontend/.eslintrc",
+    "upstream:src/frontend/.prettierignore",
+    "upstream:src/frontend/.prettierrc",
+    "upstream:src/paymentservice/.dockerignore",
+    "upstream:src/quoteservice/.dockerignore",
+    "upstream:src/quoteservice/.gitignore",
+    "upstream:src/shippingservice/.dockerignore"
+   ]
+  }
+ },
+ "unresolvedVariables": []
+}

@@ -1,0 +1,9 @@
+{
+  "captureTool": "tshark",
+  "emittedTelemetryBytes": 300,
+  "filter": "tcp dst port 4317 or tcp dst port 4318",
+  "onWireTelemetryBytes": 300,
+  "pcapSha256": "8e6cc22f2fe46fa12f7f4a2c808d0f4a488672a10679fb31f0b68167f74916d4",
+  "retransmissionsExcludedFromEmitted": true,
+  "schemaVersion": 1
+}

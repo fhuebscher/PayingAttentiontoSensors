@@ -1,0 +1,23 @@
+{
+  "afterRemoval": {
+    "observedAt": "2026-10-04T13:23:02.665201Z",
+    "services": {
+      "loadgenerator": {
+        "containers": [],
+        "returnCode": 0
+      }
+    }
+  },
+  "afterWindow": {
+    "observedAt": "2026-10-04T13:23:10.298876Z",
+    "services": {
+      "loadgenerator": {
+        "containers": [],
+        "returnCode": 0
+      }
+    }
+  },
+  "kind": "otel-demo-upstream-generator-off-v1",
+  "mechanism": "docker compose rm --stop --force loadgenerator after up, before readiness",
+  "schemaVersion": 1
+}

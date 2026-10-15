@@ -1,0 +1,73 @@
+{
+ "inputs": {
+  "research/lanes/out-fs1-posthoc/posthoc_lanes_v33_otel.json": "89dfe63075df4726bda3739a8c91d8bdd24b087cf77aba45aef9dd94927bd367",
+  "research/placement/test-f-seed2/fresh-fa-fs1-flagd.json": "51c241e3246383acde4b54bf1f56de11a65722fecf43cad055a57c352aae6fea",
+  "research/placement/test-f-seed2/fresh-fa-fs1/fresh_fa_f.json": "b0de2d64268d29d6beb72372e2e566ea41d651ea5dfdb3cfad2438777d1cecaa",
+  "research/placement/test-f-seed2/otel-fs1.json": "5831cb0d5269d63403c0f67e51b82059740edf9e4eddc8456ab04ecb93c88d03"
+ },
+ "rows": [
+  {
+   "id": "FS-V1",
+   "numbers": {
+    "accounting-pause-effect": "PASS",
+    "fraud-pause-effect": "PASS"
+   },
+   "result": "hit"
+  },
+  {
+   "id": "FS-V2",
+   "numbers": {
+    "members": [
+     "metric:flagd:feature_flag.flagd.impression",
+     "metric:kafka:kafka.consumer_group.lag"
+    ]
+   },
+   "result": "miss"
+  },
+  {
+   "id": "FS-L1",
+   "numbers": {
+    "ledgerDetected": 0,
+    "of": 4
+   },
+   "result": "hit"
+  },
+  {
+   "id": "FS-L2",
+   "numbers": {
+    "countedTtd": [
+     43.27,
+     42.5,
+     43.55,
+     43.79
+    ]
+   },
+   "result": "hit"
+  },
+  {
+   "id": "FS-C",
+   "numbers": {
+    "gFrontend": 0.0,
+    "ledgerTtd": [
+     0.455,
+     0.389
+    ]
+   },
+   "result": "hit"
+  },
+  {
+   "id": "FS-FA",
+   "numbers": {
+    "hours": 0.2,
+    "perMember": {
+     "metric:flagd:feature_flag.flagd.impression": 1,
+     "metric:kafka:kafka.consumer_group.lag": 0
+    },
+    "total": 1
+   },
+   "result": "hit"
+  }
+ ],
+ "scope": "instance",
+ "scriptSha256": "573ec8d4b6a34bac5973765b1d1dec3ff2e37479318ea8d69bad17ee5baf7c0b"
+}

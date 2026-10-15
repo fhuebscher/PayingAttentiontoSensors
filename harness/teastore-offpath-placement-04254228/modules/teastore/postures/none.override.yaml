@@ -1,0 +1,11 @@
+services:
+  webui: &disabled
+    environment:
+      RABBITMQ_HOST: unset
+      LOG_TO_FILE: "false"
+    volumes:
+      - ../../../../.local/compiled/teastore/none.aop.xml:/usr/local/tomcat/lib/aop.xml:ro
+  auth: *disabled
+  persistence: *disabled
+  image: *disabled
+  recommender: *disabled

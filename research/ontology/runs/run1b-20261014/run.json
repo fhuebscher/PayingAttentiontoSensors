@@ -1,0 +1,44 @@
+{
+ "runId": "run1b-20261014",
+ "label": "stages 3-5 re-run of run1-20261014 under EXTRACTION_PROTOCOL Amendment 2",
+ "createdAt": "2026-10-14T06:29:23Z",
+ "protocol": {
+  "path": "research/ontology/EXTRACTION_PROTOCOL.md",
+  "sha256": "21cf44026000b62652187e9f6156f2874c02265f96913ff98dfc79e8da3b68ba",
+  "lastCommit": "21f2830b0163b8ca06d33d496f21f1fe71e8e7a6"
+ },
+ "promptSha256": "d29393e563c713440288700e6956dd33ec3c01b7e2a4d217cef08300edae00f7",
+ "promptSha256Pinned": "d29393e563c713440288700e6956dd33ec3c01b7e2a4d217cef08300edae00f7",
+ "checkout": {
+  "head": "db46076c2c09666997db979b2b071c60625a3f01",
+  "ontologyDirty": [
+   "M research/ontology/run_record.py"
+  ]
+ },
+ "tools": {
+  "inputs.py": "9a04a20b23a6a3fae96bff4f232e3a89b31bf4cdf23569267567cd2db29d6113",
+  "extract_stage1.py": "de89d75fc5139cb91c254a35182e9ed1aa89fcfe4deec4788080c3ca5465e21b",
+  "check_citations.py": "27f22db1a3249d4942255121ff0134036e0a89f54a9d7e8e2ad8362cfcd8b48e",
+  "merge.py": "7172c258f19f80b8bd9d9d1c27933cd64729388dc78fd37e97df6ed9683b4b4c",
+  "judge_inputs.py": "cd51650e9b85108f2acdd55522477faa5c072aadb6eb43c91c0b21e98d1d4c13",
+  "apply_judge.py": "61bf39e298c3219f5de634ab38c4a1947406bc9809f61febdc2a2dec08f810c8",
+  "run_record.py": "07065746f443dad8f090d5747525083890d95e400518aae99bfca051335d15c1",
+  "spec_to_ttl.py": "0d16aceccb7e05392093e02c94842a74067cce189129a06bb077736323bbbc47",
+  "query.py": "b72732d0e21be5a1940e252b1774f533ba266b2e7345d8f89026ff4728a73743",
+  "extraction.schema.json": "30116e269a55999995a688abd6085d5a040f0b799b37c159b6d125ea10241dc5",
+  "ops.ttl": "2a669ea30af1330610db2c089c9a9bb7e580e5117dc89d0943abecfdf7fb2049",
+  "omsac.ttl": "f382e2d0ed608f7e7c907c1fb7265d8c4dca73057862b8f3107c70cf93387170",
+  "shapes.ttl": "2a5350e0c48730e500ad9f2bc7994b2aeca9138affcc9839b68315be3f6db90a"
+ },
+ "python": "3.13.12",
+ "packages": {
+  "tree-sitter": "0.26.0",
+  "tree-sitter-language-pack": "1.22.1",
+  "pyyaml": "6.0.3",
+  "jsonschema": "4.25.1",
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.1"
+ },
+ "grammars": {},
+ "reusesRun": "run1-20261014"
+}

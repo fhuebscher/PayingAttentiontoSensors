@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "sut": "hotel",
+  "extraction": {
+    "procedure": "run1-20261014 stage 2",
+    "extractor": "B",
+    "model": "haiku (Haiku 5.5)",
+    "system": "hotel",
+    "service": "profile"
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+      "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-hotel-protocol",
+      "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+    },
+    "obsplacement": {
+      "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+      "commit": "6897a5d921c3fd8f2df642bece7315589c426f45"
+    }
+  },
+  "syncEdges": [
+    {
+      "value": {"caller": "profile", "callee": "consul"},
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/config.json",
+      "line": 2,
+      "quotedToken": "consul:8500",
+      "note": "HTTP agent API via consul client; registration at services/profile/server.go:78 through registry/registry.go:92; HTTP is the consul client default (library default, not in these files)"
+    },
+    {
+      "value": {"caller": "profile", "callee": "memcached-profile"},
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/config.json",
+      "line": 9,
+      "quotedToken": "memcached-profile:11211",
+      "note": "memcache protocol; GetMulti at services/profile/server.go:109, Set at services/profile/server.go:155"
+    },
+    {
+      "value": {"caller": "profile", "callee": "mongodb-profile"},
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/config.json",
+      "line": 8,
+      "quotedToken": "mongodb-profile:27017",
+      "note": "MongoDB wire protocol to a datastore; FindOne at services/profile/server.go:137"
+    }
+  ],
+  "services": [
+    {
+      "name": {
+        "value": "profile",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 39,
+        "quotedToken": "profile:"
+      },
+      "container": {
+        "value": "profile",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 39,
+        "quotedToken": "profile:",
+        "note": "no container_name in the profile block (lines 39-59); Compose default container naming, library default, not in these files"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 57,
+        "quotedToken": "replicas: 1"
+      },
+      "registersWith": [
+        {
+          "value": "consul",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "hotelReservation/config.json",
+          "line": 2,
+          "quotedToken": "consul:8500",
+          "note": "registers once at startup (services/profile/server.go:78); registered under the name srv-profile (services/profile/server.go:25)"
+        }
+      ],
+      "exportsTelemetryTo": [
+        {
+          "value": "jaeger",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "hotelReservation/config.json",
+          "line": 3,
+          "quotedToken": "jaeger:6831",
+          "note": "traces via jaeger-client probabilistic sampler; default ratio 0.01 at hotelReservation/tracing/tracer.go:14, overridden by JAEGER_SAMPLE_RATIO (harness overlay compose.observability-placement.yml:35, default 1); span buffer flush every 1 s (tracer.go:36); no metrics or log exporter to a backend in these files"
+        }
+      ],
+      "emits": [
+        {
+          "kind": "span",
+          "id": {
+            "value": "memcached_get_profile",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/services/profile/server.go",
+            "line": 107,
+            "quotedToken": "memcached_get_profile"
+          }
+        },
+        {
+          "kind": "span",
+          "id": {
+            "value": "mongo_profile",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/services/profile/server.go",
+            "line": 135,
+            "quotedToken": "mongo_profile"
+          }
+        }
+      ]
+    }
+  ],
+  "coordinators": [
+    {
+      "name": {
+        "value": "consul",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 4,
+        "quotedToken": "consul:"
+      },
+      "type": {
+        "value": "ServiceRegistry",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/registry/registry.go",
+        "line": 92,
+        "quotedToken": "ServiceRegister(reg)",
+        "note": "service registration API (agent ServiceRegister); profile does not call a discovery API in these files"
+      },
+      "hostedBy": {
+        "value": "consul",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 4,
+        "quotedToken": "consul:"
+      },
+      "liveness": [
+        {
+          "mechanism": {
+            "value": "no liveness check registered (registration only)",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/registry/registry.go",
+            "line": 85,
+            "quotedToken": "consul.AgentServiceRegistration{",
+            "note": "registration struct has no Check or TTL field (registry.go:85-90); no heartbeat, no failure timeout and no cleanup interval is set in these files (library default, not in these files); Deregister exists only in Shutdown (server.go:89), which main does not call (cmd/profile/main.go:77-78)"
+          },
+          "monitors": [
+            {
+              "value": "profile",
+              "basis": "cited",
+              "repo": "upstream",
+              "sourceFile": "hotelReservation/services/profile/server.go",
+              "line": 78,
+              "quotedToken": "Register(name, s.uuid",
+              "note": "registered name is srv-profile (services/profile/server.go:25)"
+            }
+          ],
+          "healthCheckConfigured": {
+            "value": false,
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/registry/registry.go",
+            "line": 85,
+            "quotedToken": "consul.AgentServiceRegistration{",
+            "note": "no Check in the consul registration (registry.go:85-90); profile block in hotelReservation/docker-compose.yml:39-59 has no healthcheck key"
+          }
+        }
+      ]
+    }
+  ]
+}

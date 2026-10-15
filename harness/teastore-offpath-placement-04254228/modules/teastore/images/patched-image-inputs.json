@@ -1,0 +1,270 @@
+{
+  "schema": "teastore.patched-image-inputs",
+  "schemaVersion": 2,
+  "claimCeiling": "local-build-input-verification-only",
+  "platform": "linux/amd64",
+  "source": {
+    "repositoryPath": "upstream/teastore",
+    "commit": "34b37f7e7be433ce72d5f9455e66922a13116749",
+    "sourceLockPath": "modules/teastore/source.lock",
+    "sourceLockSha256": "55a48c1ed866403d727dd235fbadee5c1faf827ab99b574a9a16c51da9f14048"
+  },
+  "patch": {
+    "manifestPath": "modules/teastore/witness/patch-manifest-v3.json",
+    "manifestSha256": "94645d471331bdee9fabce89930276e828ad227dfc115e39492395a35e1ec0ee",
+    "path": "modules/teastore/witness/teastore-app-witness-v3.patch",
+    "sha256": "2199c0f6e9ab1098afcac3c6b5a68d7860ad1b94b70019d790862eb1a7d60094"
+  },
+  "sourcePreparation": {
+    "strategy": "detached-git-worktree",
+    "ephemeralPathPlaceholder": "<EPHEMERAL_SOURCE>",
+    "patchPathPlaceholder": "<PATCH_FILE>",
+    "placeholderRequirements": {
+      "ephemeralSource": "absolute non-existing child of a dedicated temporary directory; never the repository root, pinned checkout, or an ancestor of either",
+      "patchFile": "absolute resolved path of modules/teastore/witness/teastore-app-witness-v3.patch"
+    },
+    "preservePinnedCheckoutClean": true,
+    "materializedByValidator": false,
+    "networkAccessByValidator": false,
+    "beforeBuild": [
+      {
+        "id": "verify-base-head",
+        "argv": [
+          "git",
+          "-C",
+          "upstream/teastore",
+          "rev-parse",
+          "HEAD"
+        ],
+        "expectedExitCode": 0,
+        "expectedStdout": "34b37f7e7be433ce72d5f9455e66922a13116749\n"
+      },
+      {
+        "id": "verify-base-clean",
+        "argv": [
+          "git",
+          "-C",
+          "upstream/teastore",
+          "status",
+          "--porcelain",
+          "--untracked-files=no"
+        ],
+        "expectedExitCode": 0,
+        "expectedStdout": ""
+      },
+      {
+        "id": "create-ephemeral-worktree",
+        "argv": [
+          "git",
+          "-C",
+          "upstream/teastore",
+          "worktree",
+          "add",
+          "--detach",
+          "<EPHEMERAL_SOURCE>",
+          "34b37f7e7be433ce72d5f9455e66922a13116749"
+        ],
+        "expectedExitCode": 0
+      },
+      {
+        "id": "check-witness-patch",
+        "argv": [
+          "git",
+          "-C",
+          "<EPHEMERAL_SOURCE>",
+          "apply",
+          "--check",
+          "--ignore-space-change",
+          "<PATCH_FILE>"
+        ],
+        "expectedExitCode": 0
+      },
+      {
+        "id": "apply-witness-patch",
+        "argv": [
+          "git",
+          "-C",
+          "<EPHEMERAL_SOURCE>",
+          "apply",
+          "--index",
+          "--ignore-space-change",
+          "<PATCH_FILE>"
+        ],
+        "expectedExitCode": 0
+      },
+      {
+        "id": "verify-ephemeral-head",
+        "argv": [
+          "git",
+          "-C",
+          "<EPHEMERAL_SOURCE>",
+          "rev-parse",
+          "HEAD"
+        ],
+        "expectedExitCode": 0,
+        "expectedStdout": "34b37f7e7be433ce72d5f9455e66922a13116749\n"
+      },
+      {
+        "id": "verify-patched-paths",
+        "argv": [
+          "git",
+          "-C",
+          "<EPHEMERAL_SOURCE>",
+          "diff",
+          "--cached",
+          "--name-only",
+          "--"
+        ],
+        "expectedExitCode": 0,
+        "expectedStdout": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java\nservices/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java\nservices/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java\nutilities/tools.descartes.teastore.dockerbase/aop.xml\nutilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/observability/ObservabilityJourney.java\nutilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java\nutilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java\nutilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java\n"
+      },
+      {
+        "id": "verify-no-unstaged-diff",
+        "argv": [
+          "git",
+          "-C",
+          "<EPHEMERAL_SOURCE>",
+          "diff",
+          "--quiet",
+          "--"
+        ],
+        "expectedExitCode": 0
+      }
+    ],
+    "buildRequiresCompletedStep": "verify-no-unstaged-diff",
+    "ephemeralLifetime": "retain through WAR validation and image construction; cleanup in an outer finally block",
+    "cleanupFinally": [
+      {
+        "id": "remove-ephemeral-worktree",
+        "argv": [
+          "git",
+          "-C",
+          "upstream/teastore",
+          "worktree",
+          "remove",
+          "--force",
+          "<EPHEMERAL_SOURCE>"
+        ],
+        "expectedExitCode": 0
+      },
+      {
+        "id": "verify-base-head-after",
+        "argv": [
+          "git",
+          "-C",
+          "upstream/teastore",
+          "rev-parse",
+          "HEAD"
+        ],
+        "expectedExitCode": 0,
+        "expectedStdout": "34b37f7e7be433ce72d5f9455e66922a13116749\n"
+      },
+      {
+        "id": "verify-base-clean-after",
+        "argv": [
+          "git",
+          "-C",
+          "upstream/teastore",
+          "status",
+          "--porcelain",
+          "--untracked-files=no"
+        ],
+        "expectedExitCode": 0,
+        "expectedStdout": ""
+      }
+    ]
+  },
+  "toolchain": {
+    "workingDirectory": "<EPHEMERAL_SOURCE>",
+    "command": [
+      "mvn",
+      "-B",
+      "-ntp",
+      "-pl",
+      "utilities/tools.descartes.teastore.registryclient,services/tools.descartes.teastore.webui,services/tools.descartes.teastore.auth,services/tools.descartes.teastore.persistence",
+      "-am",
+      "clean",
+      "verify"
+    ],
+    "requiresCompletedPreparationStep": "verify-no-unstaged-diff",
+    "executedByValidator": false,
+    "networkAccessByValidator": false,
+    "reproducibleBuildClaim": false,
+    "blocker": "Maven wrapper, dependency closure, and build toolchain image are not frozen"
+  },
+  "kiekerApi": {
+    "jarPath": "upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar",
+    "jarSha256": "c3bf5b6b4ff7b765885cdef88507e73ab63cea7bd58562a2175d5a6f43fc6ff1",
+    "javaTarget": 11,
+    "imports": [
+      "kieker.monitoring.core.controller.MonitoringController",
+      "kieker.monitoring.core.registry.ControlFlowRegistry"
+    ],
+    "requiredMethods": [
+      "getInstance",
+      "isMonitoringEnabled",
+      "recallThreadLocalTraceId"
+    ],
+    "verification": "read-only pinned-JAR classfile inspection",
+    "javaCompilationClaim": false
+  },
+  "registryClient": {
+    "warEntry": "WEB-INF/lib/registryclient-1.4.2.jar",
+    "expectedClasses": [
+      "tools/descartes/teastore/registryclient/observability/ObservabilityJourney.class",
+      "tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.class",
+      "tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.class",
+      "tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.class"
+    ],
+    "requiredUtf8Markers": [
+      "OBSERVABILITY_APP_WITNESS ",
+      "OBSERVABILITY_NATIVE_TRACE_BRIDGE ",
+      "X-Observability-Journey-Id",
+      "journey-[0-9a-f]{32}",
+      "emitNativeTraceBridge",
+      "kieker/monitoring/core/controller/MonitoringController",
+      "kieker/monitoring/core/registry/ControlFlowRegistry"
+    ]
+  },
+  "services": {
+    "auth": {
+      "artifactPath": "services/tools.descartes.teastore.auth/target/tools.descartes.teastore.auth.war",
+      "dockerfilePath": "modules/teastore/images/Dockerfile.auth",
+      "parentImage": "descartesresearch/teastore-auth@sha256:1babe5ca10bda103daa03f52db3e2357e0d3ec32a9ed549c4b2e2020152b0dac",
+      "outputRepository": "observability-placement/teastore-auth-witness",
+      "overlayPath": "/usr/local/tomcat/webapps/tools.descartes.teastore.auth.war",
+      "serviceClass": "WEB-INF/classes/tools/descartes/teastore/auth/rest/AuthUserActionsRest.class",
+      "requiredUtf8Markers": [
+        "login-persistence-request",
+        "emitNativeTraceBridge"
+      ]
+    },
+    "persistence": {
+      "artifactPath": "services/tools.descartes.teastore.persistence/target/tools.descartes.teastore.persistence.war",
+      "dockerfilePath": "modules/teastore/images/Dockerfile.persistence",
+      "parentImage": "descartesresearch/teastore-persistence@sha256:ac6b0fe9aeca04ee31fea20caed0b49af2ddf709c28a2cf1f4b9b041af05279b",
+      "outputRepository": "observability-placement/teastore-persistence-witness",
+      "overlayPath": "/usr/local/tomcat/webapps/tools.descartes.teastore.persistence.war",
+      "serviceClass": "WEB-INF/classes/tools/descartes/teastore/persistence/rest/UserEndpoint.class",
+      "requiredUtf8Markers": [
+        "login-user-lookup"
+      ]
+    },
+    "webui": {
+      "artifactPath": "services/tools.descartes.teastore.webui/target/tools.descartes.teastore.webui.war",
+      "dockerfilePath": "modules/teastore/images/Dockerfile.webui",
+      "parentImage": "descartesresearch/teastore-webui@sha256:d0e490bd025167fefaf84d43f978c3c6d14fad9bf3cba9bc49ef902a0d106078",
+      "outputRepository": "observability-placement/teastore-webui-witness",
+      "overlayPath": "/usr/local/tomcat/webapps/tools.descartes.teastore.webui.war",
+      "serviceClass": "WEB-INF/classes/tools/descartes/teastore/webui/servlet/LoginActionServlet.class",
+      "requiredUtf8Markers": [
+        "X-Observability-Journey-Id"
+      ]
+    }
+  },
+  "postBuild": {
+    "lockSchema": "teastore.patched-image-lock",
+    "composeOverridePolicy": "exact-repository-digest-and-platform-only",
+    "dockerInspectionRequiredForRuntime": true
+  }
+}

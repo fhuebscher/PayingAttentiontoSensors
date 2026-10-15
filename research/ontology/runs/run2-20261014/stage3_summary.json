@@ -1,0 +1,142 @@
+{
+ "libraries": {
+  "Confluent.Kafka@2.5.3": {
+   "agreed": 7,
+   "contested": 0,
+   "agreement": 1.0,
+   "dropped": {
+    "A": 0,
+    "B": 0
+   },
+   "schemaRejected": 0,
+   "packets": 0
+  },
+  "consul-api@1.26.1": {
+   "agreed": 0,
+   "contested": 1,
+   "agreement": 0.0,
+   "dropped": {
+    "A": 0,
+    "B": 0
+   },
+   "schemaRejected": 0,
+   "packets": 1
+  },
+  "grpc-consul-resolver@1.5.3": {
+   "agreed": 0,
+   "contested": 3,
+   "agreement": 0.0,
+   "dropped": {
+    "A": 0,
+    "B": 0
+   },
+   "schemaRejected": 0,
+   "packets": 3
+  },
+  "kafka-clients@3.6.0": {
+   "agreed": 7,
+   "contested": 2,
+   "agreement": 0.7777777777777778,
+   "dropped": {
+    "A": 0,
+    "B": 0
+   },
+   "schemaRejected": 0,
+   "packets": 2
+  },
+  "librdkafka@2.5.3": {
+   "agreed": 8,
+   "contested": 4,
+   "agreement": 0.6666666666666666,
+   "dropped": {
+    "A": 0,
+    "B": 0
+   },
+   "schemaRejected": 0,
+   "packets": 4
+  },
+  "ribbon@2.7.18": {
+   "agreed": 5,
+   "contested": 12,
+   "agreement": 0.29411764705882354,
+   "dropped": {
+    "A": 0,
+    "B": 0
+   },
+   "schemaRejected": 0,
+   "packets": 12
+  },
+  "sarama@1.43.2": {
+   "agreed": 9,
+   "contested": 3,
+   "agreement": 0.75,
+   "dropped": {
+    "A": 0,
+    "B": 0
+   },
+   "schemaRejected": 0,
+   "packets": 3
+  }
+ },
+ "systems": {
+  "teastore": {
+   "agreed": 51,
+   "deterministic": 16,
+   "contested": 18,
+   "agreementAll": 0.6,
+   "agreementReportable": 0.6666666666666666,
+   "unmappedIdentifiers": 0,
+   "usesFacts": 15,
+   "attachmentCandidates": 0,
+   "attachmentByRelation": {},
+   "attachmentNoRule": 15,
+   "attachmentSkipped": [],
+   "packets": 18,
+   "reused": 16,
+   "new": 2
+  },
+  "hotel": {
+   "agreed": 67,
+   "deterministic": 44,
+   "contested": 61,
+   "agreementAll": 0.38953488372093026,
+   "agreementReportable": 0.4452054794520548,
+   "unmappedIdentifiers": 0,
+   "usesFacts": 20,
+   "attachmentCandidates": 0,
+   "attachmentByRelation": {},
+   "attachmentNoRule": 20,
+   "attachmentSkipped": [],
+   "packets": 61,
+   "reused": 57,
+   "new": 4
+  },
+  "otel": {
+   "agreed": 124,
+   "deterministic": 35,
+   "contested": 57,
+   "agreementAll": 0.5740740740740741,
+   "agreementReportable": 0.6507936507936508,
+   "unmappedIdentifiers": 0,
+   "usesFacts": 3,
+   "attachmentCandidates": 34,
+   "attachmentByRelation": {
+    "consumerGroup": 3,
+    "coordinatedBy": 3,
+    "coordinator": 3,
+    "coordinatorType": 3,
+    "failureTimeoutSeconds": 5,
+    "heartbeatIntervalSeconds": 5,
+    "heartbeatThreadIndependentOfWork": 3,
+    "hostedBy": 3,
+    "liveness": 3,
+    "monitors": 3
+   },
+   "attachmentNoRule": 0,
+   "attachmentSkipped": [],
+   "packets": 57,
+   "reused": 47,
+   "new": 10
+  }
+ }
+}

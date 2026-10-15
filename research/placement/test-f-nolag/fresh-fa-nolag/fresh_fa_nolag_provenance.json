@@ -1,0 +1,30 @@
+{
+ "attempt": 1,
+ "campaign": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/nolag1-fetch/x",
+ "freshFaF": "research/placement/test-f/fresh-fa/fresh_fa_f.py",
+ "freshFaFSha256": "df6d4a98dd8d31d228c1fea40044a742732a158c4911b0cbfc922aa414f94093",
+ "heldOutCells": [
+  "r25-b04-16-full",
+  "r25-b04-17-full",
+  "r25-b05-21-full",
+  "r25-b05-22-full"
+ ],
+ "label": "POST HOC fresh false alarms, F ablation otel-offpath-f-nolag-v1; instance scope",
+ "note": "fresh_fa_f's own output files say 'after RESULT_F.md' and name F (fresh_fa_f.json/.md); their rows are the ablation's",
+ "readoutDir": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/fresh-fa-nolag/readout-v3.5-validation",
+ "readoutSha256": "c5611183dd375bf9c23c1ebcded911de57dcb4d8d9eb30f223de275b336f0ec4",
+ "readoutViewForFreshFaF": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/fresh-fa-nolag/readout-v3.5-validation.fresh_fa_f_view",
+ "readoutViewNote": "a symlink named sweep_analysis_v3_3.json (the name fresh_fa_f reads) to the v3.5 readout; no copy",
+ "sets": {
+  "@3/T_r": "metric:cartservice:calls",
+  "@6/T_r": "metric:kafka:kafka.request.count"
+ },
+ "setsAre": "the ablation's frozen @6/T_r and @3/T_r sets from research/placement/test-f-nolag/placement-nolag.json",
+ "setsFromPlacementSha256": "8263bfd0b16659e82c8d43f9835772c4f279918262b84a37f1c0e5d3e5425085",
+ "split": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/protocol/split_f_otel.json",
+ "splitSha256": "107cb13aeb52e009754744b136f33b63af69c67d9a2b50e8d9bce14a0e719844",
+ "trainReadout": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/traffic-sweep/readout-otel-f-nolag-train-v3.5/sweep_analysis_v3_5.json",
+ "trainReadoutSha256": "e4f81b81f85f2655342cf561595fb6d3736f0714ead060073bfeb9b1c15ef558",
+ "wrapper": "research/placement/test-f-nolag/fresh_fa_nolag.py",
+ "wrapperSha256": "5b015dbe6981accc36411d5c54ca1602632559ce90a216f74b0946bd4c98be77"
+}

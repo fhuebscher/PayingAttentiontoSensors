@@ -1,0 +1,80 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "stage": 2,
+  "extractor": "A",
+  "service": "paymentservice",
+  "taskIndex": 56,
+  "notes": [
+   "Synchronous calls made by this service: one outbound dependency, flagd, via the OpenFeature FlagdProvider (charge.js:9 constructs it, charge.js:20 reads the boolean flag paymentServiceFailure on every charge). Host and port come from FLAGD_HOST / FLAGD_PORT in the compose environment (docker-compose.yml:440-441, values .env:129-130 flagd and 8013). The wire protocol of FlagdProvider is not stated in these files (library default, not in these files). index.js serves oteldemo.PaymentService (rpc Charge, demo.proto:177-178) and grpc.health.v1 on a grpc-js server; it makes no other client calls.",
+   "Messages published or consumed: none found in the given files (no Kafka or other broker client in package.json or the sources).",
+   "Registry/discovery/coordinator: none found in the given files; no heartbeat, failure timeout or cleanup interval stated. flagd is a feature-flag provider, not reported as a registry.",
+   "Health check: no healthcheck block for paymentservice in docker-compose.yml:423-451 and no HEALTHCHECK in src/paymentservice/Dockerfile (library default, not in these files: Compose defines none). index.js:42-44 registers a grpc-js-health-check service returning SERVING unconditionally, but no file configures a probe that calls it. Compose sets restart: unless-stopped (docker-compose.yml:435) and depends_on otelcol and flagd with condition service_started (docker-compose.yml:446-450).",
+   "Telemetry: traces via OTLPTraceExporter (opentelemetry.js:16, OTLP/gRPC package exporter-trace-otlp-grpc, package.json:24); metrics via PeriodicExportingMetricReader with OTLPMetricExporter (opentelemetry.js:25-26), no exportIntervalMillis set so the export interval is library default, not in these files; the service creates counter app.payment.transactions (charge.js:14). Logs: pino writes to stdout (logger.js:6); no OTLP log exporter is configured in opentelemetry.js, so no log export to the collector is stated in these files. Container stdout goes to the json-file logging driver (docker-compose.yml:451 logging: *logging, anchor docker-compose.yml:4-9).",
+   "Endpoint: exporter constructors take no options; the endpoint is supplied by OTEL_EXPORTER_OTLP_ENDPOINT in the compose environment (docker-compose.yml:442), value from .env:32 resolving to otelcol port 4317 (.env:27-28). The collector pipelines (otelcol-config.yml:123-135) route traces to otlp/debug/spanmetrics, metrics to otlphttp/prometheus/debug, logs to opensearch/debug.",
+   "compose.candidate-postures.yml:92-102 overrides the entrypoint (node index.js without --require ./opentelemetry.js when OTEL_PLACEMENT_ENABLED is false) and sets OTEL_SDK_DISABLED / OTEL_*_EXPORTER from OTEL_CANDIDATE_PAYMENTSERVICE_* posture variables; their values are not in these files.",
+   "Container resources: memory limit 120M (docker-compose.yml:434); image node:21-alpine (Dockerfile:15); port ${PAYMENT_SERVICE_PORT}=50051 (.env:101)."
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "paymentservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 423,
+    "quotedToken": "paymentservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/paymentservice/index.js",
+    "line": 46,
+    "quotedToken": "PaymentService.service"
+   },
+   "container": {
+    "value": "payment-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 425,
+    "quotedToken": "container_name: payment-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "library default, not in these files: no deploy.replicas or scale for paymentservice in docker-compose.yml:423-451 (deploy block has only resources.limits.memory) or compose.candidate-postures.yml:92-102; Compose default 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "repo": "upstream",
+     "sourceFile": ".env",
+     "line": 27,
+     "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+     "note": "traces and metrics via OTLP/gRPC (opentelemetry.js:16, :25-26); docker-compose.yml:442 passes OTEL_EXPORTER_OTLP_ENDPOINT, .env:32 defines it as http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}; no OTLP log exporter configured"
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "paymentservice",
+    "callee": "flagd"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/paymentservice/charge.js",
+   "line": 9,
+   "quotedToken": "new FlagdProvider()",
+   "note": "flag evaluation at charge.js:20 (getBooleanValue paymentServiceFailure); target host FLAGD_HOST at docker-compose.yml:440"
+  }
+ ]
+}

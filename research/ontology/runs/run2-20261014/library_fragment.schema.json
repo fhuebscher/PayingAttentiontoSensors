@@ -1,0 +1,226 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "http://obsplacement.example/library_facts.schema.json",
+ "title": "Library facts (one client library at one pinned version; EXTRACTION_PROTOCOL Amendment 3, change 1)",
+ "description": "Extractor output for one library. Every fact is cited to a vendored file (sourceFile relative to the observability-placement checkout, under research/ontology/vendor/libs/) at the commit given in `sources`, checked by check_citations.py (+-2 lines). value: config-default = the default as the file states it; failure-detector = the detecting component; heartbeat-thread-independent = true/false; removal-signal = the logged text or exposed name.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schemaVersion",
+  "library",
+  "version",
+  "sources",
+  "facts"
+ ],
+ "properties": {
+  "schemaVersion": {
+   "const": 1
+  },
+  "library": {
+   "type": "string",
+   "minLength": 1
+  },
+  "version": {
+   "type": "string",
+   "minLength": 1
+  },
+  "extraction": {
+   "type": "object",
+   "additionalProperties": true
+  },
+  "sources": {
+   "type": "object",
+   "required": [
+    "obsplacement"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "obsplacement": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "path",
+      "commit"
+     ],
+     "properties": {
+      "path": {
+       "const": "."
+      },
+      "commit": {
+       "type": "string",
+       "pattern": "^[0-9a-f]{40}$"
+      }
+     }
+    }
+   }
+  },
+  "facts": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/fact"
+   }
+  }
+ },
+ "$defs": {
+  "cited": {
+   "type": "object",
+   "required": [
+    "repo",
+    "sourceFile",
+    "line",
+    "quotedToken"
+   ],
+   "properties": {
+    "repo": {
+     "const": "obsplacement"
+    },
+    "sourceFile": {
+     "type": "string",
+     "pattern": "^research/ontology/vendor/libs/"
+    },
+    "line": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "quotedToken": {
+     "type": "string",
+     "minLength": 1
+    },
+    "note": {
+     "type": "string"
+    }
+   }
+  },
+  "fact": {
+   "allOf": [
+    {
+     "$ref": "#/$defs/cited"
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "config-default"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "subject",
+       "scope"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "failure-detector"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "value": {
+        "enum": [
+         "client",
+         "group-coordinator",
+         "registry-server",
+         "registry-agent",
+         "other"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "heartbeat-thread-independent"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "value": {
+        "type": "boolean"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "removal-signal"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "subject",
+       "signal"
+      ],
+      "properties": {
+       "value": {
+        "type": "string"
+       }
+      }
+     }
+    }
+   ],
+   "required": [
+    "kind",
+    "value"
+   ],
+   "properties": {
+    "kind": {
+     "enum": [
+      "config-default",
+      "failure-detector",
+      "heartbeat-thread-independent",
+      "removal-signal"
+     ]
+    },
+    "subject": {
+     "type": "string",
+     "minLength": 1,
+     "description": "config-default: the configuration key exactly as named in the file; failure-detector: the timeout key; heartbeat-thread-independent: the class or function running the heartbeat; removal-signal: the component that emits it"
+    },
+    "value": {
+     "type": [
+      "string",
+      "number",
+      "boolean"
+     ]
+    },
+    "unit": {
+     "enum": [
+      "ms",
+      "s",
+      "count",
+      "bytes",
+      "none"
+     ]
+    },
+    "scope": {
+     "enum": [
+      "group-membership",
+      "registration",
+      "liveness"
+     ]
+    },
+    "signal": {
+     "enum": [
+      "log",
+      "metric",
+      "api",
+      "event"
+     ]
+    }
+   },
+   "unevaluatedProperties": false
+  }
+ }
+}

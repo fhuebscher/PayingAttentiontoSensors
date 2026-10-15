@@ -1,0 +1,119 @@
+{
+ "schemaVersion": 1,
+ "sut": "hotel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+   "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-hotel-protocol",
+   "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+  }
+ },
+ "syncEdges": [
+  {
+   "value": {"caller": "frontend", "callee": "search"},
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 241,
+   "quotedToken": "s.searchClient.Nearby",
+   "note": "gRPC (search.SearchClient, server.go:35); consul name srv-search (server.go:64)"
+  },
+  {
+   "value": {"caller": "frontend", "callee": "reservation"},
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 263,
+   "quotedToken": "s.reservationClient.CheckAvailability",
+   "note": "gRPC (reservation.ReservationClient, server.go:41); consul name srv-reservation (server.go:80)"
+  },
+  {
+   "value": {"caller": "frontend", "callee": "profile"},
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 280,
+   "quotedToken": "s.profileClient.GetProfiles",
+   "note": "gRPC (profile.ProfileClient, server.go:36); consul name srv-profile (server.go:68)"
+  },
+  {
+   "value": {"caller": "frontend", "callee": "recommendation"},
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 316,
+   "quotedToken": "s.recommendationClient.GetRecommendations",
+   "note": "gRPC (recommendation.RecommendationClient, server.go:37); consul name srv-recommendation (server.go:72)"
+  },
+  {
+   "value": {"caller": "frontend", "callee": "user"},
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 356,
+   "quotedToken": "s.userClient.CheckUser",
+   "note": "gRPC (user.UserClient, server.go:38); consul name srv-user (server.go:76)"
+  },
+  {
+   "value": {"caller": "frontend", "callee": "review"},
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 378,
+   "quotedToken": "s.reviewClient.GetReviews",
+   "note": "gRPC (review.ReviewClient, server.go:39); consul name srv-review (server.go:84)"
+  },
+  {
+   "value": {"caller": "frontend", "callee": "attractions"},
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 430,
+   "quotedToken": "s.attractionsClient.NearbyRest",
+   "note": "gRPC (attractions.AttractionsClient, server.go:40); consul name srv-attractions (server.go:88)"
+  }
+ ],
+ "services": [
+  {
+   "name": {
+    "value": "frontend",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 17,
+    "quotedToken": "frontend:"
+   },
+   "container": {
+    "value": "frontend",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 17,
+    "quotedToken": "frontend:",
+    "note": "no container_name in block lines 17-37; container name is the compose service key, library default, not in these files"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 35,
+    "quotedToken": "replicas: 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "\"jaegerAddress\": \"jaeger:6831\"",
+     "note": "traces: Jaeger agent address read as flag default (cmd/frontend/main.go:40) and used by tracing/tracer.go:37"
+    }
+   ]
+  }
+ ]
+}

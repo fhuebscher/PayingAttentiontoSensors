@@ -1,0 +1,345 @@
+{
+  "baseline": [
+    {
+      "containerId": "cid-accountingservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "accountingservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-adservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "adservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-cartservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "cartservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-checkoutservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "checkoutservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-currencyservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "currencyservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-emailservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "emailservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-flagd",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "flagd",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-flagd-ui",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "flagd-ui",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-frauddetectionservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "frauddetectionservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-frontend",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "frontend",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-frontendproxy",
+      "memoryBytes": 268435456,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "frontendproxy",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-imageprovider",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "imageprovider",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-kafka",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "kafka",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-otelcol",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "otelcol",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-paymentservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "paymentservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-productcatalogservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "productcatalogservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-quoteservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "quoteservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-recommendationservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "recommendationservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-shippingservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "shippingservice",
+      "status": "running"
+    }
+  ],
+  "baselineAt": "after readiness, before the warm-up",
+  "final": [
+    {
+      "containerId": "cid-accountingservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "accountingservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-adservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "adservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-cartservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "cartservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-checkoutservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "checkoutservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-currencyservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "currencyservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-emailservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "emailservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-flagd",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "flagd",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-flagd-ui",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "flagd-ui",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-frauddetectionservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "frauddetectionservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-frontend",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "frontend",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-frontendproxy",
+      "memoryBytes": 268435456,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "frontendproxy",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-imageprovider",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "imageprovider",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-kafka",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "kafka",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-otelcol",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "otelcol",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-paymentservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "paymentservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-productcatalogservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "productcatalogservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-quoteservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "quoteservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-recommendationservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "recommendationservice",
+      "status": "running"
+    },
+    {
+      "containerId": "cid-shippingservice",
+      "memoryBytes": 0,
+      "oomKilled": false,
+      "restartCount": 0,
+      "service": "shippingservice",
+      "status": "running"
+    }
+  ],
+  "finalAt": "after the captures, before cleanup",
+  "inspectionError": null,
+  "kind": "otel-demo-sweep-container-health-v1",
+  "memoryLimitUpdates": [
+    {
+      "after": {
+        "memory": 268435456,
+        "memorySwap": 536870912
+      },
+      "argv": [
+        "docker",
+        "update",
+        "--memory",
+        "268435456",
+        "--memory-swap",
+        "536870912",
+        "cid-frontendproxy"
+      ],
+      "before": {
+        "memory": 52428800,
+        "memorySwap": 104857600
+      },
+      "containerId": "cid-frontendproxy",
+      "service": "frontendproxy"
+    }
+  ],
+  "memoryLimitsNotInEffect": [],
+  "missingApplicationServices": [],
+  "oomKilled": [],
+  "reasons": [],
+  "restartedApplicationServices": [],
+  "runId": "60f669fb6a4f16d86dfa53db",
+  "schemaVersion": 1,
+  "valid": true
+}

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "title": "Parameter registry of analysis v3.5 (research/detection-time/sweep_analysis_v3_5.py, research/placement/celf_v3_5.py, research/placement/score_test_v3_5.py): the one epoch v3.5 ADDS to v3.3's admission, OTel campaign F's ablation otel-offpath-f-nolag-v1 (F without the collector's kafkametrics receiver; research/traffic-sweep/BUDGET_OVERNIGHT_20261014.md item 2). parameters_v3_3.json (v3.3), parameters_v3_2.json (v3.2) and parameters_v3.json (v3.1) are not changed; v3.5 reads them as they are. v3.4 (Hotel) is a different branch of the chain and is not read.",
+  "provenanceRule": "Protocol decision 37: every hyperparameter is traced to its origin. A separate file, so that parameters_v3_3.json (sha256 a85daa48..., FREEZE_V33_20261014.md) stays byte-identical. Pinned 2026-10-15 (before any cell of the epoch was fetched or read) to the committed ablation harness: observability-placement-runtime-otel-ablation, branch otel-ablation-20261014 at 4ab4433352e17818d19851434b8ffe73a1b26700; pipelines/campaigns/otel-offpath-f-nolag-v1.json sha256 365e3c98e51a69735855cd0ea4fb989bdb28377b0b9f0744598fdca8c88bfdc2 (its canonical descriptor digest, candidate_offpath_f_nolag.EXPECTED_DESCRIPTOR_SHA256_BY_VARIANT, is a65f4e33ae7698cfc6bd43829857bfda02030af546e712a471687031f1ca4dd8) and modules/otel-demo/execution/candidate_offpath_f_nolag.py sha256 e07ad8a8a14f7ae8842c26c7506fadf7ea1cce339d3edd8afbd9f0d7b7a19d12, read-only. Every entry is `active`. The declaration of the epoch (DECLARATION_F_NOLAG_OTEL.md) is not committed at this writing and is not an input of this file.",
+  "originTypes": [
+    "decision",
+    "literature",
+    "measured",
+    "upstream",
+    "engineering default",
+    "unknown"
+  ],
+  "parameters": [
+    {
+      "name": "V35_EPOCH_PROFILES",
+      "value": {
+        "otel-offpath-f-nolag-v1": {
+          "system": "otel",
+          "role": "campaign-E",
+          "shape": "campaign-B",
+          "ledgerKind": "otel-demo-mix-ledger-v1",
+          "noFaultRegime": "no-fault-calibration",
+          "faultRegimes": {
+            "frontend-pause-effect": [
+              "frontend",
+              "pause"
+            ],
+            "fraud-pause-effect": [
+              "frauddetectionservice",
+              "pause"
+            ],
+            "accounting-pause-effect": [
+              "accountingservice",
+              "pause"
+            ]
+          },
+          "design": {
+            "blocks": 5,
+            "cells": 25,
+            "noFaultCellsPerBlock": 2,
+            "requestsPerSecond": 25.0,
+            "noFaultReplicateKey": "runKey.replicate (1 or 2; 1 for every other cell)",
+            "note": "informational, not enforced by the reader"
+          }
+        }
+      },
+      "unit": "study-epoch name -> cell profile, in V33_EPOCH_PROFILES's shape; this entry is ADDED to v3.2's and v3.3's. The profile is campaign F's, byte for byte (a test asserts equality with parameters_v3_3.json's otel-offpath-f-v1 entry): same system, role campaign-E, shape campaign-B, ledger kind otel-demo-mix-ledger-v1, regimes no-fault-calibration / fraud-pause-effect / accounting-pause-effect / frontend-pause-effect with targets frauddetectionservice / accountingservice / frontend (all pause), 5 blocks, 25 cells, two no-fault cells per block (runKey.replicate 1 or 2), rate 25 req/s.",
+      "origin_type": "decision",
+      "origin_ref": "BUDGET_OVERNIGHT_20261014.md item 2 (user, 2026-10-14): 'F ablation on fb14srv6: a new epoch otel-offpath-f-nolag-v1 = F without the kafkametrics receiver'. Read, read-only, from the ablation harness at 4ab4433: pipelines/campaigns/otel-offpath-f-nolag-v1.json (id otel-offpath-f-nolag-v1; design.regimes no-fault-calibration, fraud-pause-effect, accounting-pause-effect, frontend-pause-effect; design.blocks 5, cellsPerBlock 5, noFaultCellsPerBlock 2, episodesPerRegimeAndRate {accounting 5, fraud 5, frontend 5, no-fault 10}, workload.ledger kind otel-demo-mix-ledger-v1, faultDesign scenarios fraud-pause -> frauddetectionservice, accounting-pause -> accountingservice, frontend-pause -> frontend, all docker compose pause; design.ablation.designEpoch otel-offpath-f-v1) and modules/otel-demo/execution/candidate_offpath_f_nolag.py (EPOCH, NO_FAULT_REGIME, REGIME_OF_FAULT, KEPT_FAULTS identical to candidate_offpath_f.py at 715d57b; a diff of the two compilers, wording aside, shows the epoch id, schedule context and seed (20261015 against 20261014), the descriptor's design.ablation record, and the absent kafkametrics receiver / processor / pipeline / otelcol dependency rows and their descriptor notes; regimes, targets, rate, kept faults, no-fault count, workload and block rule are the same lines). Role campaign-E: v3.2's block selection, registry split V32_E_SPLIT (split_f_otel.json is the same content), held-out rule and one-new-epoch refusal apply unchanged, so the ablation is never read in one run with F, E or any other epoch of the registries.",
+      "status": "active"
+    },
+    {
+      "name": "V35_ABLATION",
+      "value": {
+        "otel-offpath-f-nolag-v1": {
+          "designEpoch": "otel-offpath-f-v1",
+          "removed": [
+            "receivers.kafkametrics (brokers kafka:9092, scrapers consumers, collection_interval 5s)",
+            "processors.resource/kafka (service.name upsert kafka)",
+            "pipelines.metrics/kafka (kafkametrics -> resource/kafka, batch -> debug)",
+            "otelcol depends_on kafka service_healthy"
+          ],
+          "keptInTheReader": "every rule of the reader: calibration, level rules, appear/absent, pass rule, cost model, lane rules (V33_LANE_RULES otel, unchanged; the `lag` lane is defined by service kafka, channel metric, metric-name prefix kafka.consumer_group.lag and is simply empty here)",
+          "integrityCheck": "no sensor of the V33_LANE_RULES otel `lag` lane is collected in any valid cell of the epoch (a cell's prep keys); reported as `ablationHolds`, never a refusal"
+        }
+      },
+      "unit": "per ablation epoch: the design epoch it copies, what the harness removed, and the integrity check the reader reports",
+      "origin_type": "decision",
+      "origin_ref": "design.ablation of pipelines/campaigns/otel-offpath-f-nolag-v1.json at 4ab4433 (designEpoch, removed, kept) and candidate_offpath_f_nolag.ABLATION_REMOVED. The integrity check is an engineering default of this file (a reporting row; it changes no calibration, rule, placement or score): the lag lane of v3.3 is the only lane the removed receiver fed, so a lag-lane sensor in an ablation cell would mean the receiver ran and the cell is not an ablation cell. Declared prediction FNL-L3 (PREDICTIONS_OVERNIGHT_20261014.json): the lag lane reads `—`, a lag id in the calibration would mean the ablation did not remove the receiver.",
+      "status": "active"
+    },
+    {
+      "name": "V35_REPORT_RULE",
+      "value": "Admission and reporting only. v3.5 admits otel-offpath-f-nolag-v1 beside the epochs v3.3 admits (v3.2's, v3.3's) as a campaign-E-role epoch with F's profile; any other epoch is refused as in v3.3 (UnknownSchema), the epochs of the registries are never read two in one run (v3.2 ONE_NEW_EPOCH), and any system but otel is refused (Hotel is v3.4's, TeaStore's off-path epoch v3.3's). The readout carries, per ablation epoch read, the lag-lane integrity record: valid cells of the epoch, cells with a collected lag-lane sensor, the sensor keys, and `ablationHolds` (true iff no cell collected one); the coordinator lane (kafka log ids) and every other lane are v3.3's `v33.lanes` block, unchanged. Scope: method; no number is produced by the reader and no ablation claim is made by this rule.",
+      "unit": "rule",
+      "origin_type": "engineering default",
+      "origin_ref": "lead's brief of 2026-10-15 (v3.5 layered on v3.3 exactly as v3.3 admitted F); CLAUDE.md claims rules (scope label, absence is not zero, name the denominator).",
+      "status": "active"
+    }
+  ]
+}

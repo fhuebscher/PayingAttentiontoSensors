@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+    "stage": 2,
+    "extractor": "B",
+    "model": "haiku",
+    "entry": 47,
+    "notes": [
+      "Synchronous edges: only the flagd feature-flag call is a synchronous call from this service (main.kt:60 calls getFeatureFlagValue per record, main.kt:86 calls the flagd client). Kafka consumption is asynchronous and OTLP export is telemetry; neither is in syncEdges.",
+      "Protocol of the flagd call is not stated in these files: FlagdProvider is built from default FlagdOptions (main.kt:33-35), so the transport is a library default, not in these files. Target host FLAGD_HOST=flagd (upstream .env:129) and port FLAGD_PORT=8013 (upstream .env:130) are passed to the service at docker-compose.yml:233-234.",
+      "Registry, discovery and coordinator: none stated in these files. registersWith is empty and coordinators is empty. The Kafka group coordinator tracks membership of group frauddetectionservice (main.kt:41, GROUP_ID_CONFIG); heartbeat and session settings are not set in main.kt:38-47, so the Kafka client defaults apply (library default, not in these files). No heartbeat, failure timeout or cleanup interval is stated for this service.",
+      "Consumer group coordinator is not named in these files, so no consumerGroups entry is reported.",
+      "Container health check: docker-compose.yml:218-247 (frauddetectionservice block) has no healthcheck key, and src/frauddetectionservice/Dockerfile:1-24 has no HEALTHCHECK instruction; no container health check is configured in these files (library default). The service schema has no health-check field.",
+      "Replicas: docker-compose.yml:218-247 has no replicas or scale key (the deploy block at lines 227-230 sets only resources.limits.memory); the value 1 is the Compose default, library default, not in these files.",
+      "Telemetry frequency: not stated. The docker-compose.yml:218-247 block sets no batch or export interval; the OpenTelemetry Java agent loaded via Dockerfile:22 (JAVA_TOOL_OPTIONS=-javaagent:/app/opentelemetry-javaagent.jar) uses library defaults, not in these files.",
+      "Telemetry protocol: the endpoint scheme is http and the port is OTEL_COLLECTOR_PORT_HTTP=4318 (upstream .env:29, docker-compose.yml:236). The agent's exporter protocol default is not stated in these files.",
+      "Telemetry signals: the exporter variables for traces, metrics and logs are set per posture in modules/otel-demo/deployment/compose.candidate-postures.yml:61-65; their values are not in these files, so no per-signal destination beyond otelcol is reported.",
+      "Logs: src/frauddetectionservice/src/main/resources/log4j2.xml:9-16 configures a Console appender (STDOUT) only; no OTLP log appender appears in these files.",
+      "Consumption: the service subscribes to topic orders (main.kt:49) with group.id frauddetectionservice (main.kt:41) and deserialises OrderResult from the record value (main.kt:64). The producer of orders is outside this entry's files and is not reported here."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "frauddetectionservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 219,
+        "quotedToken": "frauddetectionservice:"
+      },
+      "container": {
+        "value": "frauddetection-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 221,
+        "quotedToken": "container_name: frauddetection-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "No replicas or scale key in the frauddetectionservice block (docker-compose.yml:218-247); the Compose default is 1. Library default, not in these files."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Endpoint http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP} set at docker-compose.yml:236 (token OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}); port 4318 from .env:29. Signals and frequency: see extraction.notes."
+        }
+      ],
+      "consumes": [
+        {
+          "topic": {
+            "value": "orders",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+            "line": 26,
+            "quotedToken": "const val topic = \"orders\""
+          },
+          "group": {
+            "value": "frauddetectionservice",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+            "line": 27,
+            "quotedToken": "const val groupID = \"frauddetectionservice\"",
+            "note": "Set as GROUP_ID_CONFIG at main.kt:41."
+          }
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": {
+        "value": "orders",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+        "line": 26,
+        "quotedToken": "const val topic = \"orders\""
+      },
+      "broker": {
+        "value": "kafka",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": ".env",
+        "line": 139,
+        "quotedToken": "KAFKA_SERVICE_ADDR=kafka",
+        "note": "Bootstrap address read from KAFKA_SERVICE_ADDR at main.kt:42 and set for the service at docker-compose.yml:235."
+      }
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "frauddetectionservice",
+        "callee": "flagd"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt",
+      "line": 86,
+      "quotedToken": "client.getIntegerValue(ff, 0)",
+      "note": "Feature-flag evaluation through the OpenFeature client backed by FlagdProvider (main.kt:35), invoked per consumed record (main.kt:60). Callee flagd: compose service flagd at docker-compose.yml:580; FLAGD_HOST=flagd at upstream .env:129. Protocol not stated in these files (library default)."
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "library": "kafka-clients",
+  "version": "3.6.0",
+  "extraction": {
+    "extractor": "B",
+    "model": "haiku",
+    "notes": [
+      "Files read: CommonClientConfigs.java, consumer/ConsumerConfig.java, consumer/internals/AbstractCoordinator.java, consumer/internals/ConsumerCoordinator.java, consumer/internals/Heartbeat.java (all under research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/).",
+      "Config keys: the key names are defined in CommonClientConfigs.java (lines 162, 171, 177, 185); ConsumerConfig.java aliases them. The defaults are the define() literals in ConsumerConfig.java.",
+      "rebalance.timeout.ms: no default is stated in the vendored files (no define() in ConsumerConfig.java; GroupRebalanceConfig is not vendored), so no config-default fact is reported. Heartbeat.java:49-50 computes the poll timer from config.rebalanceTimeoutMs, and the mapping from max.poll.interval.ms to that field is not in the vendored files.",
+      "group.instance.id: default is null (ConsumerConfig.java:372). The schema value types cannot express null, so no config-default fact is reported for it. Static membership (non-null group.instance.id) is covered by the note on the CommonClientConfigs.java:169 fact, and by AbstractCoordinator.java:1127-1128, which says a static member never sends LeaveGroup and its membership expires only by session timeout.",
+      "session.timeout.ms: the Heartbeat.java sessionTimer uses config.sessionTimeoutMs (Heartbeat.java:48). The mapping from the session.timeout.ms key to that field is not in the vendored files; the key name is taken from CommonClientConfigs.java:177.",
+      "Removal signal: no coordinator-side log, exception or exposed name for removing a member is stated in these five files. The only removal-related text in ConsumerCoordinator.java (lines 347, 370) concerns pause flags. AbstractCoordinator.java:1133-1134 logs the client's own LeaveGroup request, which is not a coordinator removal, so it is not reported as a removal-signal fact.",
+      "The broker and group coordinator are not vendored. Facts that name the group-coordinator as the failure detector cite the documentation string in CommonClientConfigs.java and state that as the file's own description of broker behaviour."
+    ]
+  },
+  "sources": {
+    "obsplacement": {
+      "path": ".",
+      "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+    }
+  },
+  "facts": [
+    {
+      "kind": "config-default",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/ConsumerConfig.java",
+      "line": 378,
+      "quotedToken": "45000",
+      "subject": "session.timeout.ms",
+      "value": 45000,
+      "unit": "ms",
+      "scope": "liveness",
+      "note": "Default is the 45000 literal in define(SESSION_TIMEOUT_MS_CONFIG, Type.INT, 45000, ...), ConsumerConfig.java:376-378."
+    },
+    {
+      "kind": "config-default",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/ConsumerConfig.java",
+      "line": 383,
+      "quotedToken": "3000",
+      "subject": "heartbeat.interval.ms",
+      "value": 3000,
+      "unit": "ms",
+      "scope": "liveness",
+      "note": "Default is the 3000 literal in define(HEARTBEAT_INTERVAL_MS_CONFIG, Type.INT, 3000, ...), ConsumerConfig.java:381-383. Heartbeat.java:47 and 75 use config.heartbeatIntervalMs for the heartbeat timer."
+    },
+    {
+      "kind": "config-default",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/ConsumerConfig.java",
+      "line": 563,
+      "quotedToken": "300000",
+      "subject": "max.poll.interval.ms",
+      "value": 300000,
+      "unit": "ms",
+      "scope": "liveness",
+      "note": "Default is the 300000 literal in define(MAX_POLL_INTERVAL_MS_CONFIG, Type.INT, 300000, ...), ConsumerConfig.java:561-563. Documented at CommonClientConfigs.java:163-169."
+    },
+    {
+      "kind": "config-default",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/ConsumerConfig.java",
+      "line": 469,
+      "quotedToken": "100L",
+      "subject": "retry.backoff.ms",
+      "value": 100,
+      "unit": "ms",
+      "scope": "liveness",
+      "note": "Default is the 100L literal in define(RETRY_BACKOFF_MS_CONFIG, Type.LONG, 100L, ...), ConsumerConfig.java:467-469. Used as the heartbeat retry interval: Heartbeat.java:85 (failHeartbeat resets the heartbeat timer to retryBackoffMs) and AbstractCoordinator.java:1472 and 1491 (waits on it)."
+    },
+    {
+      "kind": "failure-detector",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/CommonClientConfigs.java",
+      "line": 181,
+      "quotedToken": "then the broker will remove this client from the group",
+      "subject": "session.timeout.ms",
+      "value": "group-coordinator",
+      "scope": "liveness",
+      "note": "The documentation string at CommonClientConfigs.java:178-181 says the broker removes the client when no heartbeat arrives before session.timeout.ms expires. The broker source is not vendored, so this is the file's own description of broker behaviour."
+    },
+    {
+      "kind": "failure-detector",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/CommonClientConfigs.java",
+      "line": 169,
+      "quotedToken": "after expiration of <code>session.timeout.ms</code>",
+      "subject": "session.timeout.ms",
+      "value": "group-coordinator",
+      "scope": "liveness",
+      "note": "Static-member path. For a consumer with non-null group.instance.id that reaches max.poll.interval.ms, the doc at CommonClientConfigs.java:166-169 says it stops sending heartbeats and partitions are reassigned only after session.timeout.ms expires. The doc does not name the component; value is extractor-assigned from the coordinator-side reassignment described there. Broker source not vendored."
+    },
+    {
+      "kind": "failure-detector",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/internals/AbstractCoordinator.java",
+      "line": 1478,
+      "quotedToken": "heartbeat.pollTimeoutExpired(now)",
+      "subject": "max.poll.interval.ms",
+      "value": "client",
+      "scope": "liveness",
+      "note": "Detected by the client's HeartbeatThread (AbstractCoordinator.java:1398-1487), not the broker. The timer is set from config.rebalanceTimeoutMs (Heartbeat.java:49-50). On expiry it logs a warning (AbstractCoordinator.java:1481) and calls maybeLeaveGroup (AbstractCoordinator.java:1487). The doc at CommonClientConfigs.java:163-166 says the consumer is then considered failed."
+    },
+    {
+      "kind": "failure-detector",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/internals/AbstractCoordinator.java",
+      "line": 1473,
+      "quotedToken": "heartbeat.sessionTimeoutExpired(now)",
+      "subject": "session.timeout.ms",
+      "value": "client",
+      "scope": "liveness",
+      "note": "This is the client's own session timer (Heartbeat.java:48, reset on each received heartbeat at Heartbeat.java:93). It detects that this client's session has lapsed, not another member's failure. On expiry it marks the coordinator unknown (AbstractCoordinator.java:1476-1477) and does not itself remove any member."
+    },
+    {
+      "kind": "heartbeat-thread-independent",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/internals/AbstractCoordinator.java",
+      "line": 1398,
+      "quotedToken": "HeartbeatThread extends KafkaThread",
+      "subject": "HeartbeatThread",
+      "value": true,
+      "note": "The HeartbeatThread is a separate KafkaThread, started by heartbeatThread.start() at AbstractCoordinator.java:394-395. The foreground poll path only resets the poll timer (Heartbeat.java:62-65, pollTimer.reset at line 64). The heartbeat thread also runs the poll-timeout check (AbstractCoordinator.java:1478), so a stalled foreground thread is detected from that thread."
+    }
+  ]
+}

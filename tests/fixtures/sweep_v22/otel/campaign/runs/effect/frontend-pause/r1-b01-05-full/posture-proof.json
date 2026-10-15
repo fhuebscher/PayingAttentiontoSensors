@@ -1,0 +1,591 @@
+{
+  "exact": true,
+  "expectedActiveApplicationServices": [
+    "accountingservice",
+    "adservice",
+    "cartservice",
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "flagd",
+    "flagd-ui",
+    "frauddetectionservice",
+    "frontend",
+    "frontendproxy",
+    "imageprovider",
+    "kafka",
+    "loadgenerator",
+    "paymentservice",
+    "productcatalogservice",
+    "quoteservice",
+    "recommendationservice",
+    "shippingservice"
+  ],
+  "loadedServices": [
+    "accountingservice",
+    "adservice",
+    "cartservice",
+    "checkoutservice",
+    "currencyservice",
+    "flagd",
+    "frauddetectionservice",
+    "frontend",
+    "frontendproxy",
+    "imageprovider",
+    "kafka",
+    "paymentservice",
+    "productcatalogservice",
+    "quoteservice",
+    "recommendationservice",
+    "shippingservice"
+  ],
+  "notStartedServices": [
+    "loadgenerator"
+  ],
+  "observedSignalServices": [
+    "frontend",
+    "frontendproxy",
+    "productcatalogservice"
+  ],
+  "posture": "full",
+  "postureConfigSha256": "fb581299a40375feb341e51bc6bc1e6582b666fe898fa866e136e5e9ec61f56c",
+  "renderedComposeConfigSha256": "1218c95d39eb8dc0a486f00b501f5bb25b4222cf56a9904814c28b18ff939c94",
+  "schemaVersion": 2,
+  "services": {
+    "accountingservice": {
+      "containerId": "cid-accountingservice",
+      "expectedActive": true,
+      "imageId": "sha256:a082b0a1c49933685deb0e4be9b8f1eaedf400d9d287358ec37ebda85cdc3d76",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "entrypoint": null,
+          "otelPlacementEnabled": "true",
+          "pid1Environ": {
+            "CORECLR_ENABLE_PROFILING": "1",
+            "attempts": 1,
+            "available": true
+          }
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "auto-instrumentation-shim",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "pid1-environ",
+          "loadedWhenEquals": "1",
+          "variable": "CORECLR_ENABLE_PROFILING"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "adservice": {
+      "containerId": "cid-adservice",
+      "expectedActive": true,
+      "imageId": "sha256:46b4ff1a244a218964aac42e9be2973b21f57ca230eee4726624af575ab053e3",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "JAVA_TOOL_OPTIONS": "x-javaagent:y"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "jvm-javaagent-via-JAVA_TOOL_OPTIONS",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenContains": "-javaagent:",
+          "notLoadedWhenEquals": "",
+          "variable": "JAVA_TOOL_OPTIONS"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "cartservice": {
+      "containerId": "cid-cartservice",
+      "expectedActive": true,
+      "imageId": "sha256:90cc2446c2ed25bd142b03dd85f609362426837f32519b1d61a657201f845443",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "OTEL_PLACEMENT_ENABLED": "true"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "in-code-sdk",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenEquals": "true",
+          "notLoadedWhenEquals": "false",
+          "variable": "OTEL_PLACEMENT_ENABLED"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "checkoutservice": {
+      "containerId": "cid-checkoutservice",
+      "expectedActive": true,
+      "imageId": "sha256:a8942a8de524ed22c35f90aa9f11a2d958f2b14c51d16699128bb723c16efd97",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "OTEL_PLACEMENT_ENABLED": "true"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "in-code-sdk",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenEquals": "true",
+          "notLoadedWhenEquals": "false",
+          "variable": "OTEL_PLACEMENT_ENABLED"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "currencyservice": {
+      "containerId": "cid-currencyservice",
+      "expectedActive": true,
+      "imageId": "sha256:2a6c4d7dac23ca1974df03cc84289477be6da06e88a2d07156270c42b8f45eca",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "OTEL_PLACEMENT_ENABLED": "true"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "in-code-sdk",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenEquals": "true",
+          "notLoadedWhenEquals": "false",
+          "variable": "OTEL_PLACEMENT_ENABLED"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "emailservice": {
+      "containerId": "cid-emailservice",
+      "expectedActive": true,
+      "imageId": "sha256:96f4b698ce55779d9a566baafa1d50752c46c0dedcb3040289c5a9c4ec6ade0f",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "in-code-sdk",
+        "observedControl": "not-probed",
+        "observedLoadState": "not-probed",
+        "probe": null
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "flagd": {
+      "containerId": "cid-flagd",
+      "expectedActive": true,
+      "imageId": "sha256:6f468e4f5efa3a54d12508ebef8080cf3f590c2f15cd77482c661f24aea0bc4d",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "FLAGD_OTEL_COLLECTOR_URI": "x:y"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "in-code-sdk",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenContains": ":",
+          "notLoadedWhenEquals": "",
+          "variable": "FLAGD_OTEL_COLLECTOR_URI"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "flagd-ui": {
+      "containerId": "cid-flagd-ui",
+      "expectedActive": true,
+      "imageId": "sha256:4d72be9bfab3afcb6efc5a942856f8b7b4a3aa5ff24bf1f9a7dbb279d6340371",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "in-code-sdk",
+        "observedControl": "not-probed",
+        "observedLoadState": "not-probed",
+        "probe": null
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "frauddetectionservice": {
+      "containerId": "cid-frauddetectionservice",
+      "expectedActive": true,
+      "imageId": "sha256:5fe5204fcaa058604a2362f389cd3e301149b7eac87a874f1bf462f2e091bad8",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "JAVA_TOOL_OPTIONS": "x-javaagent:y"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "jvm-javaagent-via-JAVA_TOOL_OPTIONS",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenContains": "-javaagent:",
+          "notLoadedWhenEquals": "",
+          "variable": "JAVA_TOOL_OPTIONS"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "frontend": {
+      "containerId": "cid-frontend",
+      "expectedActive": true,
+      "imageId": "sha256:1cf387c012cd2d02f1923e589f86df4a4802427057dbc90f47b87f04d29d54bc",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "OTEL_PLACEMENT_ENABLED": "true"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "node-require-preload",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenEquals": "true",
+          "notLoadedWhenEquals": "false",
+          "variable": "OTEL_PLACEMENT_ENABLED"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "frontendproxy": {
+      "containerId": "cid-frontendproxy",
+      "expectedActive": true,
+      "imageId": "sha256:bd00d6af09db3540cca5180983a0af2b7102ee6b8f0b17414c4f151a29471ba6",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerFile": {
+            "attempts": 1,
+            "available": true,
+            "containsLoadedMarker": true,
+            "path": "/home/envoy/envoy.tmpl.yaml",
+            "sha256": "dd159ed8ccaf3a693b7fee4c73cae950cc3e0d83ee2309a0358b8ddfd5ac0756"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "envoy-tracing-config",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-file",
+          "loadedWhenContains": "                tracing:\n",
+          "path": "/home/envoy/envoy.tmpl.yaml"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "imageprovider": {
+      "containerId": "cid-imageprovider",
+      "expectedActive": true,
+      "imageId": "sha256:616295be27aff277571c35ea4751aa706c31cca192ea31119fa63ffc062ed570",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerFile": {
+            "attempts": 1,
+            "available": true,
+            "containsLoadedMarker": true,
+            "path": "/etc/nginx/nginx.conf",
+            "sha256": "8684efe52db12660fc56b50d11c9d037c09271573af5b75429365cb76eab40e6"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "nginx-otel-module",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-file",
+          "loadedWhenContains": "load_module modules/ngx_otel_module.so;",
+          "path": "/etc/nginx/nginx.conf"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "kafka": {
+      "containerId": "cid-kafka",
+      "expectedActive": true,
+      "imageId": "sha256:cbbf241eebedba6fd5e657b3c560fc9dd63c0d3e0de6f816be60e86157ec872c",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "entrypoint": null,
+          "otelPlacementEnabled": "true",
+          "processArgs": {
+            "available": true,
+            "lines": [
+              "1 prog -javaagent: main"
+            ]
+          }
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "jvm-javaagent-via-KAFKA_OPTS",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "process-args",
+          "loadedWhenContains": "-javaagent:"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "paymentservice": {
+      "containerId": "cid-paymentservice",
+      "expectedActive": true,
+      "imageId": "sha256:6f87b9077c22e35752d3db3831275970a66fcc3b7e174069e47fa170dedc9263",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "entrypoint": null,
+          "otelPlacementEnabled": "true",
+          "processArgs": {
+            "available": true,
+            "lines": [
+              "1 prog --require ./opentelemetry.js main"
+            ]
+          }
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "node-require-preload",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "process-args",
+          "loadedWhenContains": "--require ./opentelemetry.js"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "productcatalogservice": {
+      "containerId": "cid-productcatalogservice",
+      "expectedActive": true,
+      "imageId": "sha256:cc3194b34da0b8bde51f113c811969c7bcf7e44d842619e8d5124d5b11d1710b",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "OTEL_PLACEMENT_ENABLED": "true"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "in-code-sdk",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenEquals": "true",
+          "notLoadedWhenEquals": "false",
+          "variable": "OTEL_PLACEMENT_ENABLED"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "quoteservice": {
+      "containerId": "cid-quoteservice",
+      "expectedActive": true,
+      "imageId": "sha256:48725583ed08b8d1c9e423bd4a33238c59e4f32e86f56327d1d18ea479dab537",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "OTEL_PHP_AUTOLOAD_ENABLED": "true"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "php-sdk-autoload",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenEquals": "true",
+          "notLoadedWhenEquals": "false",
+          "variable": "OTEL_PHP_AUTOLOAD_ENABLED"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "recommendationservice": {
+      "containerId": "cid-recommendationservice",
+      "expectedActive": true,
+      "imageId": "sha256:a0bda13d0e113b5c4ba434adacd0bd4eccc821c76fa026244b15d5b2444ebcc7",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "entrypoint": null,
+          "otelPlacementEnabled": "true",
+          "pid1Environ": {
+            "PYTHONPATH": "opentelemetry/instrumentation/auto_instrumentation",
+            "attempts": 1,
+            "available": true
+          }
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "opentelemetry-instrument-wrapper",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "pid1-environ",
+          "loadedWhenContains": "opentelemetry/instrumentation/auto_instrumentation",
+          "variable": "PYTHONPATH"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    },
+    "shippingservice": {
+      "containerId": "cid-shippingservice",
+      "expectedActive": true,
+      "imageId": "sha256:cf6d3c921ec4ea1283378142045b9bc1fac64b03caede0e1f1b3d62e283d6d95",
+      "instrumentation": {
+        "evidence": {
+          "cmd": null,
+          "containerEnv": {
+            "OTEL_PLACEMENT_ENABLED": "true"
+          },
+          "entrypoint": null,
+          "otelPlacementEnabled": "true"
+        },
+        "expectedControl": "enabled",
+        "expectedLoadState": "loaded",
+        "mechanism": "in-code-sdk",
+        "observedControl": "enabled",
+        "observedLoadState": "loaded",
+        "probe": {
+          "kind": "container-env",
+          "loadedWhenEquals": "true",
+          "notLoadedWhenEquals": "false",
+          "variable": "OTEL_PLACEMENT_ENABLED"
+        }
+      },
+      "logsExporter": null,
+      "metricsExporter": null,
+      "otelSdkDisabled": "false",
+      "tracesExporter": "otlp"
+    }
+  },
+  "unexpectedSignalServices": []
+}

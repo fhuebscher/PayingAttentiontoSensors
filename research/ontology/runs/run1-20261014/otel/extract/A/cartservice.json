@@ -1,0 +1,55 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "extractor": "A",
+  "service": "cartservice",
+  "notes": [
+   "Publishes/consumes: none stated. No Kafka, topic or consumer-group reference in Program.cs, CartService.cs, ValkeyCartStore.cs or the compose environment block (docker-compose.yml:80-110).",
+   "Registry/discovery/coordinator: none stated. No registration call, heartbeat, failure timeout or cleanup interval for cartservice in its files; cartservice is not tracked by a registry in these files. ValkeyCartStore.cs:42 KeepAlive = 180 is a StackExchange.Redis client keep-alive to valkey-cart, not a registry heartbeat.",
+   "Health check: the service exposes a gRPC health endpoint (src/cartservice/src/Program.cs:77 AddGrpcHealthChecks, :86 MapGrpcHealthChecksService), but docker-compose.yml:80-110 (cartservice block) has no healthcheck key, so no container health check is configured for cartservice in the deployment files.",
+   "Telemetry frequency: no export interval, batch delay or metric reader interval is set in Program.cs or compose; library default, not in these files. Per-signal exporter and SDK switches are overridden per posture at modules/otel-demo/deployment/compose.candidate-postures.yml:34-38 (OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER from OTEL_CANDIDATE_CARTSERVICE_* variables, values not in these files).",
+   "Program.cs:51 builds a second ValkeyCartStore against the literal address badhost:1234 (used by CartService.cs:86 when flag cartServiceFailure is true); not a service of the system, so not reported as an edge.",
+   "Memory limit 160M at docker-compose.yml:91; restart policy unless-stopped at :92 (not requested fields, listed for context only)."
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+  }
+ },
+ "services": [
+  {
+   "name": {"value": "cartservice", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 80, "quotedToken": "cartservice:"},
+   "container": {"value": "cart-service", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 82, "quotedToken": "container_name: cart-service"},
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "No deploy.replicas or scale key in the cartservice block (docker-compose.yml:80-110; deploy block at :88-91 sets only resources.limits.memory) nor in compose.candidate-postures.yml:32-38; Compose default is 1. Library default, not in these files."
+   },
+   "exportsTelemetryTo": [
+    {"value": "otelcol", "repo": "upstream", "sourceFile": "src/cartservice/src/Program.cs", "line": 69, "quotedToken": ".AddOtlpExporter())", "note": "traces: WithTracing(...AddOtlpExporter) at Program.cs:63-69; OTLP endpoint from env OTEL_EXPORTER_OTLP_ENDPOINT (docker-compose.yml:100), value http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} at .env:32 with OTEL_COLLECTOR_HOST=otelcol at .env:27; this fact cites the exporter call, the target host is .env:27"},
+    {"value": "otelcol", "repo": "upstream", "sourceFile": "src/cartservice/src/Program.cs", "line": 74, "quotedToken": ".AddOtlpExporter());", "note": "metrics: WithMetrics(...AddOtlpExporter) at Program.cs:70-74 (process, runtime, ASP.NET Core instrumentation); same OTLP endpoint env as traces"},
+    {"value": "otelcol", "repo": "upstream", "sourceFile": "src/cartservice/src/Program.cs", "line": 31, "quotedToken": "options.AddOtlpExporter()", "note": "logs: builder.Logging.AddOpenTelemetry(... AddOtlpExporter) at Program.cs:30-32; same OTLP endpoint env as traces"}
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {"caller": "cartservice", "callee": "valkey-cart"},
+   "repo": "upstream", "sourceFile": ".env", "line": 144, "quotedToken": "VALKEY_ADDR=valkey-cart:${VALKEY_PORT}",
+   "note": "Protocol: Redis client (StackExchange.Redis) via ConnectionMultiplexer.Connect, src/cartservice/src/cartstore/ValkeyCartStore.cs:72; address read from env VALKEY_ADDR at Program.cs:23 and passed through compose at docker-compose.yml:99"
+  },
+  {
+   "value": {"caller": "cartservice", "callee": "flagd"},
+   "repo": "upstream", "sourceFile": "src/cartservice/src/Program.cs", "line": 42, "quotedToken": "new FlagdProvider()",
+   "note": "Flag evaluation GetBooleanValueAsync(\"cartServiceFailure\") at src/cartservice/src/services/CartService.cs:84. Callee host from env FLAGD_HOST (docker-compose.yml:97, .env:129 FLAGD_HOST=flagd). Wire protocol is not stated in these files (library default of the OpenFeature flagd provider, not in these files)."
+  }
+ ]
+}

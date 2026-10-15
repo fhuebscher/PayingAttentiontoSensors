@@ -1,0 +1,82 @@
+{
+  "blocking": [
+    "G1",
+    "G2",
+    "G4"
+  ],
+  "canFire": true,
+  "failedGates": [],
+  "g4ChannelScope": "ledger-only",
+  "kind": "otel-demo-sweep-protocol-gates-v1",
+  "module": "modules/otel-demo/validation/protocol_gates.py",
+  "moduleSha256": "1b3c8a3b1e9ea1f4013aa372beafc8fe0b2be14e835e114ebd9b65a69a416590",
+  "notEvaluated": [
+    "P0",
+    "R1",
+    "R2"
+  ],
+  "runId": "60f669fb6a4f16d86dfa53db",
+  "schemaVersion": 1,
+  "valid": true,
+  "verdicts": [
+    {
+      "detail": {
+        "minDispatched": 1,
+        "rate": 1.0,
+        "startedInWindow": 60,
+        "window": [
+          60.879255,
+          120.879255
+        ]
+      },
+      "gate": "G1",
+      "reason": "60 scheduled opportunities in [60.88, 120.88] vs floor 30; 60 dispatched (min 1)",
+      "threshold": 30,
+      "value": 60,
+      "verdict": "pass"
+    },
+    {
+      "detail": {
+        "costCell": false,
+        "failures": 0,
+        "window": [
+          0.0,
+          60.879255
+        ]
+      },
+      "gate": "G2",
+      "reason": "healthy: 61 successes, failure share 0.000 over [0.00, 60.88)",
+      "threshold": {
+        "failureShareMax": 0.05,
+        "successes": 31
+      },
+      "value": {
+        "failureShare": 0.0,
+        "successes": 61
+      },
+      "verdict": "pass"
+    },
+    {
+      "detail": {
+        "channelsWithoutScopeCounts": [],
+        "offered": 180,
+        "planOffered": 180,
+        "scopeShares": {
+          "ledger": 1.0
+        }
+      },
+      "gate": "G4",
+      "reason": "provenance complete",
+      "threshold": "all of ['faultTiming', 'ledger', 'offeredEqualsPlan', 'planConsistent', 'rateEqualsProfile', 'scope', 'validityRecorded']; scope >= 0.95",
+      "value": [],
+      "verdict": "pass"
+    },
+    {
+      "gate": "R2.recovery",
+      "reason": "not a fault cell",
+      "threshold": null,
+      "value": null,
+      "verdict": "\u2014"
+    }
+  ]
+}

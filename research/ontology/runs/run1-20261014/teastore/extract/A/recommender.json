@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "sut": "teastore",
+  "extraction": {
+    "stage": 2,
+    "extractor": "A",
+    "service": "recommender",
+    "notes": [
+      "Sync calls: recommender -> persistence over load-balanced HTTP REST/JSON (ServiceLoadBalancer.loadBalanceRESTOperation, LoadBalancedCRUDOperations.getEntities) at TrainingSynchronizer.java:138 (generatedb/finished poll), :184 (orderitems), :194 (orders). recommender -> recommender multicast of GET train/timestamp at TrainingSynchronizer.java:214-215 (ServiceLoadBalancer.multicastRESTOperation; the comment at :213 says 'since we are not registered ourselves, we can multicast to all services'). recommender -> registry over HTTP: RegistryClient.java:244-245 (PUT register/heartbeat), :264-265 (DELETE), :193-195 (GET server list).",
+      "Messages: no topic or consumer group is published or consumed by recommender application code in the given files. Kieker monitoring records go to a RabbitMQ queue named 'kieker' (kieker.monitoring.properties:28,32) via ChunkingCollector chunkSize=32 (:33), deferredWriteDelay=500 (:34), taskRunInterval=20 (:36); this is telemetry, not application messaging.",
+      "Writer selection: kieker.monitoring.properties:40 defaults to FileWriter; start.sh:33-36 switches to ChunkingCollector/AMQP when RABBITMQ_HOST != unset; compose sets RABBITMQ_HOST: \"rabbitmq\" for recommender (docker-compose_kieker.yaml:103). Kieker AMQP connection heartbeat is overridden to KIEKER_AMQP_HEARTBEAT_SECONDS=900 (docker-compose_kieker.yaml:19,104,28); that is the Kieker-to-RabbitMQ connection heartbeat, not the registry heartbeat.",
+      "Traces: Tracing.init (Tracing.java:42, called from RecommenderStartup.java:70) builds a JaegerTracer with ConstSampler(true) and no reporter or sender configured; the Jaeger destination and flush interval are library default, not in these files. No metrics or log shipper is configured in these files.",
+      "Registry timings: heartbeat interval 2500 ms (RegistryClient.java:65, scheduleAtFixedRate :159-160). Registry failure timeout and cleanup interval are not stated in the given files (registry service files not provided): library default, not in these files. Load balancer refresh 2500 ms, initial delay 1000 ms (RegistryClient.java:64,161-162).",
+      "Registration timing: register() (and thus the heartbeat) is only called inside the runAfterServiceIsAvailable(PERSISTENCE) callback after TrainingSynchronizer.retrieveDataAndRetrain() returns (RecommenderStartup.java:73-76); retrieveDataAndRetrain -> waitForPersistence loops forever with waits 1000..60000 ms then 120000 ms (TrainingSynchronizer.java:58-61,135-164). Until then the recommender does not heartbeat. The heartbeat itself runs on a dedicated single-thread ScheduledExecutorService (RegistryClient.java:69-70), separate from servlet request threads.",
+      "Periodic retraining: RetrainDaemon (RetrainDaemon.java:25) started only if recommenderLoopTime > 0 (RecommenderStartup.java:80-81); image default RECOMMENDER_RETRAIN_LOOP_TIME 0 (dockerbase/Dockerfile:25), compose sets none for recommender, so disabled by default.",
+      "Health: no healthcheck key in the recommender compose block (docker-compose_kieker.yaml:96-107) and no HEALTHCHECK in the recommender Dockerfile (services/tools.descartes.teastore.recommender/Dockerfile:1-4) or the base image Dockerfile (dockerbase/Dockerfile:1-55). The service exposes GET train/isready (TrainEndpoint.java:99-100) but nothing in the given files polls it as a container health check.",
+      "Replica count not stated (no deploy.replicas in docker-compose_kieker.yaml:96-107); Compose default applies."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+      "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-teastore-protocol",
+      "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "recommender",
+        "basis": "cited",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 96,
+        "quotedToken": "recommender:"
+      },
+      "container": {
+        "value": "descartesresearch/teastore-recommender",
+        "basis": "cited",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 97,
+        "quotedToken": "image: descartesresearch/teastore-recommender"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "quotedToken": "replicas",
+        "note": "library default, not in these files: the recommender service block (docker-compose_kieker.yaml:96-107) sets no deploy.replicas; Compose runs one container per service by default."
+      },
+      "registersWith": [
+        {
+          "value": "registry",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+          "line": 75,
+          "quotedToken": "RegistryClient.getClient().register(",
+          "note": "registry host from REGISTRY_HOST: \"registry\" (harness docker-compose_kieker.yaml:102); registry URL placeholder in web.xml:31 registryURL. Called only after persistence is available and initial training finished (RecommenderStartup.java:73-76)."
+        }
+      ],
+      "exportsTelemetryTo": [
+        {
+          "value": "rabbitmq",
+          "basis": "cited",
+          "repo": "harness",
+          "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+          "line": 103,
+          "quotedToken": "RABBITMQ_HOST: \"rabbitmq\"",
+          "note": "Kieker ChunkingAmqpWriter to queue 'kieker' (kieker.monitoring.properties:28,32), chunkSize=32 (:33), deferredWriteDelay=500 (:34), taskRunInterval=20 (:36). Jaeger tracer destination: library default, not in these files."
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "recommender",
+        "callee": "persistence"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+      "line": 138,
+      "quotedToken": "Service.PERSISTENCE",
+      "note": "HTTP REST/JSON, load-balanced via ServiceLoadBalancer/LoadBalancedCRUDOperations (REST client built with Jersey in RESTClient.java:71,128). Other call sites: TrainingSynchronizer.java:184,194."
+    },
+    {
+      "value": {
+        "caller": "recommender",
+        "callee": "recommender"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+      "line": 214,
+      "quotedToken": "Service.RECOMMENDER",
+      "note": "HTTP REST GET train/timestamp multicast to all registered recommender instances (TrainingSynchronizer.java:214-217); instance-to-instance call, self is not yet registered at that point."
+    },
+    {
+      "value": {
+        "caller": "recommender",
+        "callee": "registry"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 244,
+      "quotedToken": "getRESTClient(5000).target(registryRESTURL).path(service.getServiceName())",
+      "note": "HTTP PUT register/heartbeat (RegistryClient.java:244-245); also DELETE :264-265 and GET :193-195."
+    }
+  ],
+  "coordinators": [
+    {
+      "name": {
+        "value": "registry",
+        "basis": "cited",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 102,
+        "quotedToken": "REGISTRY_HOST: \"registry\""
+      },
+      "type": {
+        "value": "ServiceRegistry",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+        "line": 44,
+        "quotedToken": "registering with the registry"
+      },
+      "hostedBy": {
+        "value": "registry",
+        "basis": "cited",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 102,
+        "quotedToken": "REGISTRY_HOST: \"registry\""
+      },
+      "liveness": [
+        {
+          "mechanism": {
+            "value": "heartbeat",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+            "line": 159,
+            "quotedToken": "new RegistryClientHeartbeatDaemon(service, host)",
+            "note": "heartbeat re-PUTs the registration (RegistryClientHeartbeatDaemon.java:40 registerOnce; RegistryClient.java:244-245)."
+          },
+          "monitors": [
+            {
+              "value": "recommender",
+              "basis": "cited",
+              "repo": "upstream",
+              "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+              "line": 75,
+              "quotedToken": "RegistryClient.getClient().register("
+            }
+          ],
+          "heartbeatIntervalSeconds": {
+            "value": 2.5,
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+            "line": 65,
+            "quotedToken": "HEARTBEAT_INTERVAL_MS = 2500",
+            "note": "scheduleAtFixedRate at RegistryClient.java:159-160 with unit MILLISECONDS."
+          },
+          "heartbeatThreadIndependentOfWork": {
+            "value": true,
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+            "line": 69,
+            "quotedToken": "heartbeatScheduler = Executors",
+            "note": "dedicated newSingleThreadScheduledExecutor (RegistryClient.java:69-70) started in register() (:159), not a request-handling thread; RegistryClientHeartbeatDaemon.java:40 does only registerOnce. Heartbeat starts only after initial training completes (RecommenderStartup.java:73-76). failureTimeoutSeconds and cleanupIntervalSeconds are not stated in the given files."
+          },
+          "healthCheckConfigured": {
+            "value": false,
+            "basis": "cited",
+            "repo": "harness",
+            "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+            "line": 105,
+            "quotedToken": "command: *kieker-heartbeat-start",
+            "note": "absence: recommender service block lines 96-107 has no healthcheck key; recommender and base Dockerfiles have no HEALTHCHECK."
+          }
+        }
+      ]
+    }
+  ]
+}

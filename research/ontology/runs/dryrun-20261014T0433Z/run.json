@@ -1,0 +1,54 @@
+{
+ "runId": "dryrun-20261014T0433Z",
+ "label": "DRY RUN (protocol: 'built and dry-run on one service of each system'); stage 1 + merge with empty extractor A/B + SHACL on the stage-1 spec; no model was run",
+ "createdAt": "2026-10-14T04:33:35Z",
+ "protocol": {
+  "path": "research/ontology/EXTRACTION_PROTOCOL.md",
+  "sha256": "1c25a05054708078a8a524518086f365d9d20bb4e7914a2647f96722602120bd",
+  "lastCommit": "3b8c20f9f1a1bcf85cd09667671e98fa31a2f556"
+ },
+ "promptSha256": "d29393e563c713440288700e6956dd33ec3c01b7e2a4d217cef08300edae00f7",
+ "promptSha256Pinned": "d29393e563c713440288700e6956dd33ec3c01b7e2a4d217cef08300edae00f7",
+ "checkout": {
+  "head": "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67",
+  "ontologyDirty": []
+ },
+ "tools": {
+  "inputs.py": "9a04a20b23a6a3fae96bff4f232e3a89b31bf4cdf23569267567cd2db29d6113",
+  "extract_stage1.py": "de89d75fc5139cb91c254a35182e9ed1aa89fcfe4deec4788080c3ca5465e21b",
+  "check_citations.py": "27f22db1a3249d4942255121ff0134036e0a89f54a9d7e8e2ad8362cfcd8b48e",
+  "merge.py": "e0340a0aca42e00b8a91efaa82f65f2de748193e8817f5d2fb9b028687c89f0e",
+  "judge_inputs.py": "cd51650e9b85108f2acdd55522477faa5c072aadb6eb43c91c0b21e98d1d4c13",
+  "apply_judge.py": "e9de405c12b9bd21967f91fff083250840743736d863b4ac6255d2520e30ec8b",
+  "run_record.py": "96af8b6a1884d5c341371758e9ad967f5db6fe06a0e010de61aad67e96b3d642",
+  "spec_to_ttl.py": "5d106e8c4442d4a980f5f3a745a68bc0ebd711dc6df226fd2872a5576e66d574",
+  "query.py": "b72732d0e21be5a1940e252b1774f533ba266b2e7345d8f89026ff4728a73743",
+  "extraction.schema.json": "bbbb496731d4327f056e36c82fe77495edd393a34e21f009239c3d177763e28d",
+  "ops.ttl": "9e477c4cf63de59e0c40a6e854495ae859a8bef4818117fb9769e83951411dfb",
+  "omsac.ttl": "f382e2d0ed608f7e7c907c1fb7265d8c4dca73057862b8f3107c70cf93387170",
+  "shapes.ttl": "2a5350e0c48730e500ad9f2bc7994b2aeca9138affcc9839b68315be3f6db90a"
+ },
+ "python": "3.13.12",
+ "packages": {
+  "tree-sitter": "0.26.0",
+  "tree-sitter-language-pack": "1.22.1",
+  "pyyaml": "6.0.3",
+  "jsonschema": "4.25.1",
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.1"
+ },
+ "grammars": {
+  "csharp": {
+   "file": "libtree_sitter_c_sharp.dylib",
+   "sha256": "5a78c560c9546a838eae6b9be0e61bc23961f58d5e264149d176bf7ae8ded801"
+  },
+  "go": {
+   "file": "libtree_sitter_go.dylib",
+   "sha256": "5755ac6b818062040543b51884cc2dd33f8d9770343aae32eb5dfbe654bbe20e"
+  },
+  "java": {
+   "file": "libtree_sitter_java.dylib",
+   "sha256": "737b4eae30e399e10cb4906fefb7df4b6c6a247fb102196ab63eda8ff61b74d1"
+  }
+ }
+}

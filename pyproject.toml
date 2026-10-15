@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "goal-conditioned-observability-placement"
+version = "0.1.0"
+description = "Discovery, compilation, and validation of realizable observability configurations"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "jsonschema==4.25.1",
+  "pika==1.4.2",
+]
+
+[dependency-groups]
+dev = [
+  "pytest==8.4.2",
+]
+ontology = [
+  "pyshacl==0.40.1",
+  "pyyaml==6.0.3",
+  "rdflib==7.6.0",
+  "tree-sitter==0.26.0",
+  "tree-sitter-language-pack==1.22.1",
+]
+tracking = [
+  "mlflow==3.5.1",
+  "wandb==0.30.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/obsplacement"]
+
+[tool.uv]
+# ontology: research/ontology (rdflib + pyshacl), installed by default so tests/test_ontology.py runs under `uv run pytest`.
+default-groups = ["dev", "ontology"]

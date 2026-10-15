@@ -1,0 +1,3367 @@
+@prefix ev: <http://obsplacement.example/evidence#> .
+@prefix omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#> .
+@prefix ops: <http://obsplacement.example/ops#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sut: <http://obsplacement.example/sut/hotel#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sut:ev-009822bb2b12a229 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-memcached-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-02b69bcc5bd2dca6 a ev:Evidence ;
+    ev:aboutObject sut:ctr-memcached-rate ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-memcached-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-memcached-rate-<n>" ;
+    ev:quotedToken "memcached-rate:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 238 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-045b1c7e5f253615 a ev:Evidence ;
+    ev:aboutObject sut:svc-srv-geo ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-search ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "gRPC: geo.NewGeoClient (server.go:101), Geo.Nearby call (server.go:136, proto geo.proto:9); dialled with grpc.Dial (dialer/dialer.go:55). Callee is the Consul service name passed to the dialer; compose key is geo (docker-compose.yml:81)." ;
+    ev:quotedToken "s.initGeoClient(\"srv-geo\")" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/search/server.go" ;
+    ev:sourceLine 70 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0661fc09feae4a54 a ev:Evidence ;
+    ev:aboutObject sut:svc-consul ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-reservation ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "startup registration call; callee address from config.json:2 consulAddress via main.go:62" ;
+    ev:quotedToken "s.Registry.Register(" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/reservation/server.go" ;
+    ev:sourceLine 79 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0686f75bb99ff516 a ev:Evidence ;
+    ev:aboutObject sut:ctr-mongodb-rate ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-mongodb-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-rate-<n>" ;
+    ev:quotedToken "mongodb-rate:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 317 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-08e6b8bb7d1c8fb5 a ev:Evidence ;
+    ev:aboutObject sut:svc-stdout ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-search ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "Logs: zerolog ConsoleWriter to stdout. No log shipping and no log flush interval in these files." ;
+    ev:quotedToken "Out: os.Stdout" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/search/main.go" ;
+    ev:sourceLine 22 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-08eddc9928f4865c a ev:Evidence ;
+    ev:aboutObject omsac:Cache ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-memcached-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image memcached:1.6.24" ;
+    ev:quotedToken "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 60 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-09e6811d00807c1f a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 217 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0be6254951eeedc8 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-user ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongodb-user:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 372 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0cabbd49fb653057 a ev:Evidence ;
+    ev:aboutObject sut:sensor-mongo_museum ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongo_museum" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/attractions/server.go" ;
+    ev:sourceLine 151 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0ea423a0b362a474 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-geo ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 98 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-108fc730307c16a4 a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-mongo_restaurant ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongo_restaurant" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/attractions/server.go" ;
+    ev:sourceLine 114 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-10c337bffa95aed8 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-mongodb-review ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 335 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-10fbfe7197d7da8d a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-memcached-reserve ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-12e9c4dcf69811b3 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-mongodb-rate ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 324 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-149d44ee6624d0ca a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-search ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-search-<n>" ;
+    ev:quotedToken "search:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 61 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-155f059c8e786e9e a ev:Evidence ;
+    ev:aboutObject sut:svc-reservation ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "reservation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 199 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1667c20e87de52e5 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-mongodb-profile ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 313 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-18a90ce905d60b8f a ev:Evidence ;
+    ev:aboutObject sut:svc-rate ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "rate:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 102 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-19976cb06669c138 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-rate ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "container_name not set; Compose names the container <project>-rate-<n>" ;
+    ev:quotedToken "rate:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 102 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-20296f163acbf38a a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-mongodb-attractions ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 346 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-209264ade66b5a7d a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-geo ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-mongodb-geo ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 302 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-2400d7160ea7c017 a ev:Evidence ;
+    ev:aboutObject sut:sensor-mongo_cinema ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongo_cinema" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/attractions/server.go" ;
+    ev:sourceLine 188 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-24939a7f48dde81b a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-mongodb-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-260734512cf36e8c a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-search ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21" ;
+    ev:quotedToken "golang:1.21" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-261a78eff1e64ce7 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-review ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongodb-review:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 328 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-29ee9b55a2b0ac14 a ev:Evidence ;
+    ev:aboutObject sut:svc-attractions ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC" ;
+    ev:quotedToken "attractionsClient.NearbyRest" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/frontend/server.go" ;
+    ev:sourceLine 430 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-2a5ffebfd824c838 a ev:Evidence ;
+    ev:aboutObject sut:ctr-attractions ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: 'hotel_reserv_attractions'" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 151 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-2bf2c39e8255f756 a ev:Evidence ;
+    ev:aboutObject sut:svc-profile ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC" ;
+    ev:quotedToken "profileClient.GetProfiles" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/frontend/server.go" ;
+    ev:sourceLine 280 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-2cc8a5c6b374f6e6 a ev:Evidence ;
+    ev:aboutObject omsac:Database ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-mongodb-geo ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image mongo:5.0" ;
+    ev:quotedToken "image: ${HR_MONGO_IMAGE:-mongo:5.0}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 68 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-2d8f1466b93cbb75 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-review ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21" ;
+    ev:quotedToken "golang:1.21" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-2e8c2267d559b619 a ev:Evidence ;
+    ev:aboutObject omsac:Database ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-mongodb-recommendation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image mongo:5.0" ;
+    ev:quotedToken "image: ${HR_MONGO_IMAGE:-mongo:5.0}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 78 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-2fd443422e3e8b40 a ev:Evidence ;
+    ev:aboutObject sut:coord-consul_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-geo ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "consul address from hotelReservation/config.json:2 (consulAddress). Registration (registry/registry.go:85-90) sets only ID, Name, Port, Address: no Check, no TTL, no heartbeat call, no deregister timeout; heartbeat interval, failure timeout and cleanup interval are not set in these files (library default, not in these files). Only Deregister on Shutdown (server.go:92). The gRPC keepalive Timeout 120s (server.go:57) is a transport setting, not a registry heartbeat." ;
+    ev:quotedToken "s.Registry.Register(name" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/geo/server.go" ;
+    ev:sourceLine 81 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-30ade31306dd2814 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-attractions ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-mongodb-attractions ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 346 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-31349f67c86d279c a ev:Evidence ;
+    ev:aboutObject sut:sensor-mongo_restaurant ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongo_restaurant" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/attractions/server.go" ;
+    ev:sourceLine 114 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-32224c9d7fc7f71d a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-mongodb-profile ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 313 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-33db131b81e3a974 a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-mongo_cinema ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongo_cinema" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/attractions/server.go" ;
+    ev:sourceLine 188 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3432581bafb9a47d a ev:Evidence ;
+    ev:aboutObject sut:svc-rate ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-rate ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 120 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3456b7ea9e7c6125 a ev:Evidence ;
+    ev:aboutObject ops:Host ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:host-fb14srv4 ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-350b3896edb52538 a ev:Evidence ;
+    ev:aboutObject sut:ctr-consul ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-consul ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-consul-<n>" ;
+    ev:quotedToken "consul:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 4 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-357076d56913bcfc a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-geo ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-3603fadbfd356ef1 a ev:Evidence ;
+    ev:aboutObject sut:ctr-recommendation ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-recommendation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-recommendation-<n>" ;
+    ev:quotedToken "recommendation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 157 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-369a6481eac15ac4 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 217 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-38882a8dbfd69814 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-review ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for review in upstream:hotelReservation/docker-compose.yml, harness:modules/hotel-reservation/deployment/compose.observability-placement.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-3b0d989fa2519781 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-reservation ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongodb-reservation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 361 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3c269393b21e17b9 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-attractions ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: 'hotel_reserv_attractions'" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 151 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3e1cee56cdce5391 a ev:Evidence ;
+    ev:aboutObject sut:svc-search ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC" ;
+    ev:quotedToken "searchClient.Nearby" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/frontend/server.go" ;
+    ev:sourceLine 241 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3ed9953ec9df59e2 a ev:Evidence ;
+    ev:aboutObject sut:svc-user ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "user:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 178 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3ffbb3d5d785e95b a ev:Evidence ;
+    ev:aboutObject sut:svc-profile ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-profile ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 57 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-41705753575d9a6e a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-mongodb-review ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-42699b09ca07ca09 a ev:Evidence ;
+    ev:aboutObject sut:sensor-otgrpc_server_interceptor_gRPC_server_spans_ ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-geo ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "otgrpc.OpenTracingServerInterceptor(s.Tracer)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/geo/server.go" ;
+    ev:sourceLine 63 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-42e5e3c7759ad993 a ev:Evidence ;
+    ev:aboutObject sut:ctr-memcached-profile ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-memcached-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-memcached-profile-<n>" ;
+    ev:quotedToken "memcached-profile:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 265 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-432a376d79a1e9a1 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-consul ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-consul-<n>" ;
+    ev:quotedToken "consul:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 4 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4687536e88127747 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-mongodb-user ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-4858916b53816793 a ev:Evidence ;
+    ev:aboutObject sut:ctr-mongodb-geo ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-mongodb-geo ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-geo-<n>" ;
+    ev:quotedToken "mongodb-geo:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 295 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-48ce0eb765bc7836 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-review ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-4936d7e5c6ca91a6 a ev:Evidence ;
+    ev:aboutObject sut:svc-srv-rate ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-search ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "gRPC: rate.NewRateClient (server.go:110), Rate.GetRates call (server.go:149, proto rate.proto:9). Callee is the Consul service name; compose key is rate (docker-compose.yml:102)." ;
+    ev:quotedToken "s.initRateClient(\"srv-rate\")" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/search/server.go" ;
+    ev:sourceLine 73 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4a18d9dbfe47025d a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21" ;
+    ev:quotedToken "golang:1.21" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4a5276355d2c1a6e a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-profile ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 57 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4bdddef17cb559ed a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-mongodb-reservation ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 368 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4c2cb785e1819400 a ev:Evidence ;
+    ev:aboutObject omsac:Cache ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-memcached-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image memcached:1.6.24" ;
+    ev:quotedToken "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 64 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-4dc3da68ebbe1831 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-review ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces only, via jaeger-client-go reporter with LocalAgentHostPort (tracing/tracer.go:37, called from cmd/review/main.go:67); BufferFlushInterval 1s (tracing/tracer.go:36, token '1 * time.Second'); sampler probabilistic, default ratio 0.01 (tracing/tracer.go:14) overridden by harness env JAEGER_SAMPLE_RATIO default 1 (compose.observability-placement.yml:50); JAEGER_DISABLED default false (compose.observability-placement.yml:51). No metrics export found. Logs: zerolog to os.Stdout (cmd/review/main.go:24), no log shipper in these files." ;
+    ev:quotedToken "\"jaegerAddress\": \"jaeger:6831\"" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4ecd02896c5cb715 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-mongodb-reservation ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 368 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4f35ca5d5ebc79c9 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-mongodb-recommendation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-4f3cf4c6a91ee2d1 a ev:Evidence ;
+    ev:aboutObject sut:svc-consul ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-review ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "HTTP agent API via consul client (registry/registry.go:92 c.Agent().ServiceRegister); HTTP is the consul client default (library default, not in these files); consul address config.json:2" ;
+    ev:quotedToken "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/review/server.go" ;
+    ev:sourceLine 84 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-50503c5bdac0d8fe a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-consul ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 13 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-529e3731c0aa450d a ev:Evidence ;
+    ev:aboutObject sut:svc-recommendation ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "recommendation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 157 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-537edfe6264c56f0 a ev:Evidence ;
+    ev:aboutObject sut:svc-review ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-review ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for review in upstream:hotelReservation/docker-compose.yml, harness:modules/hotel-reservation/deployment/compose.observability-placement.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-538ef7ed5ef95111 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-mongodb-user ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-user-<n>" ;
+    ev:quotedToken "mongodb-user:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 372 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-53e48eb03c3dedb4 a ev:Evidence ;
+    ev:aboutObject sut:svc-reservation ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC" ;
+    ev:quotedToken "reservationClient.CheckAvailability" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/frontend/server.go" ;
+    ev:sourceLine 263 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-542ccf84ca3a96be a ev:Evidence ;
+    ev:aboutObject sut:ctr-frontend ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-frontend-<n>" ;
+    ev:quotedToken "frontend:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 17 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-545b7e2b7b6d4e13 a ev:Evidence ;
+    ev:aboutObject sut:coord-consul_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-recommendation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "consul address consul:8500 from config.json:2; registered under name srv-recommendation (server.go:24); no Check/TTL set (registry/registry.go:85-90); heartbeat/failure-timeout/cleanup intervals not stated in these files" ;
+    ev:quotedToken "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/recommendation/server.go" ;
+    ev:sourceLine 77 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-54ccbe3a5a466918 a ev:Evidence ;
+    ev:aboutObject sut:coord-consul_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registers as srv-reservation (server.go:26) once at startup via Consul agent API (registry.go:92 ServiceRegister) at consul:8500 (config.json:2). The AgentServiceRegistration (registry.go:85) sets only ID, Name, Port, Address: no Check, TTL, heartbeat interval, failure timeout or cleanup interval in these files; no periodic heartbeat is scheduled in this service's code" ;
+    ev:quotedToken "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/reservation/server.go" ;
+    ev:sourceLine 79 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-55c1947f25533f26 a ev:Evidence ;
+    ev:aboutObject sut:ctr-mongodb-attractions ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-mongodb-attractions ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-attractions-<n>" ;
+    ev:quotedToken "mongodb-attractions:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 339 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-567a27b9953105bd a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-user ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-mongodb-user ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 379 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5682276bbad0bf37 a ev:Evidence ;
+    ev:aboutObject sut:svc-attractions ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "attractions:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 141 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5823718dbc9c57b5 a ev:Evidence ;
+    ev:aboutObject sut:svc-consul ;
+    ev:aboutPredicate ops:hostedBy ;
+    ev:aboutSubject sut:coord-consul_registry-heartbeat ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "consul:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 4 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-59ea9949e84f720a a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-recommendation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-59f88aa4d9563a7e a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21" ;
+    ev:quotedToken "golang:1.21" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5ae077b32fe00d2f a ev:Evidence ;
+    ev:aboutObject omsac:Database ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-mongodb-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image mongo:5.0" ;
+    ev:quotedToken "image: ${HR_MONGO_IMAGE:-mongo:5.0}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 70 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-5bc4603d558fb72a a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-mongodb-review ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 335 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5c1f8134f1858b0c a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-mongodb-attractions ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 346 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5c51be1660a07174 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "jaegerAddress read in cmd/attractions/main.go:57 and passed to tracing.Init at main.go:67; reporter LocalAgentHostPort at tracing/tracer.go:37; flush interval 1s at tracing/tracer.go:36" ;
+    ev:quotedToken "jaeger:6831" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5cf2cdc047e74864 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-mongodb-rate ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 324 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5d00bff5ca439d51 a ev:Evidence ;
+    ev:aboutObject ops:LogTemplate ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-zerolog_console_writer_to_stdout ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "zerolog.ConsoleWriter{Out: os.Stdout" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/recommendation/main.go" ;
+    ev:sourceLine 22 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5f8ae9d67418422e a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-mongodb-geo ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-605d0bac7ae08561 a ev:Evidence ;
+    ev:aboutObject sut:ctr-jaeger ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-jaeger ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-jaeger-<n>" ;
+    ev:quotedToken "jaeger:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 221 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-606283bf95b12363 a ev:Evidence ;
+    ev:aboutObject sut:sensor-zerolog_console_writer_to_stdout ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-geo ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "zerolog.ConsoleWriter{Out: os.Stdout" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/geo/main.go" ;
+    ev:sourceLine 21 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-60b3122fda53f4c0 a ev:Evidence ;
+    ev:aboutObject sut:svc-geo ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "geo:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 81 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-62dfa6b64bf9f73a a ev:Evidence ;
+    ev:aboutObject sut:ctr-mongodb-user ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-mongodb-user ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-user-<n>" ;
+    ev:quotedToken "mongodb-user:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 372 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-63f58c44c98a12a2 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-attractions ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the attractions block (upstream docker-compose.yml:141-155) has no deploy.replicas or scale, and neither has compose.observability-placement.yml:52-56; Compose default is 1." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-66753499da86f703 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-mongodb-geo ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 302 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-66aab3c3f318e41a a ev:Evidence ;
+    ev:aboutObject omsac:Database ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-mongodb-reservation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image mongo:5.0" ;
+    ev:quotedToken "image: ${HR_MONGO_IMAGE:-mongo:5.0}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 80 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-6711be49fdca3461 a ev:Evidence ;
+    ev:aboutObject sut:svc-search ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-search ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 77 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6a7a35f9b58455a8 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-review ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Replica count: no deploy/replicas key in the review block (lines 124-139) and none in the harness overlay (compose.observability-placement.yml:47-51); not stated in these files, so no replicas fact is reported. Health check: no healthcheck key in the review block and no HEALTHCHECK in hotelReservation/Dockerfile; none configured in these files. Block sets restart: always (docker-compose.yml:139). Harness overlay only overrides image and JAEGER_* env." ;
+    ev:quotedToken "container_name: 'hotel_reserv_review'" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 134 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6be96b3d9602e33f a ev:Evidence ;
+    ev:aboutObject sut:svc-memcached-reserve ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "memcached-reserve:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 280 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6ca61503c63c6881 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-frontend ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-frontend-<n>" ;
+    ev:quotedToken "frontend:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 17 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6e40fbd54635aafe a ev:Evidence ;
+    ev:aboutObject sut:ctr-search ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-search ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-search-<n>" ;
+    ev:quotedToken "search:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 61 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6ea513ea400edfc4 a ev:Evidence ;
+    ev:aboutObject sut:sensor-otgrpc_server_interceptor_gRPC_unary_server_spans ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-recommendation ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "otgrpc.OpenTracingServerInterceptor(s.Tracer)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/recommendation/server.go" ;
+    ev:sourceLine 60 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6fb7742576dbfab9 a ev:Evidence ;
+    ev:aboutObject ops:ServiceRegistry ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:coord-consul_registry-heartbeat ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "c.Agent().ServiceRegister(reg)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/registry/registry.go" ;
+    ev:sourceLine 92 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7067146afa0e701f a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-mongodb-recommendation ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 357 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-706d6a0797de4792 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-memcached-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-memcached-rate-<n>" ;
+    ev:quotedToken "memcached-rate:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 238 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7143c107b8b13bbb a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-user ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 195 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7297b3c35d1362a2 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-rate ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces to Jaeger agent, BufferFlushInterval 1s (tracing/tracer.go:36)" ;
+    ev:quotedToken "jaeger:6831" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-72ac86f631cd7720 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-rate ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 120 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-747ca47ceca59de7 a ev:Evidence ;
+    ev:aboutObject sut:coord-consul_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-profile ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registered once at startup as srv-profile (server.go:25); consul address consul:8500 at config.json:2; no check/heartbeat configured (registry/registry.go:85-90)" ;
+    ev:quotedToken "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/profile/server.go" ;
+    ev:sourceLine 78 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-75b50ef0548db359 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-762b57b56bbd1548 a ev:Evidence ;
+    ev:aboutObject sut:ctr-geo ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-geo ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "no container_name in the geo block (lines 81-100). Health check: no healthcheck key in that block and no HEALTHCHECK in hotelReservation/Dockerfile; none configured in these files. The harness overlay only overrides image and JAEGER_* env (compose.observability-placement.yml:17-21)." ;
+    ev:quotedToken "geo:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 81 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-773edbc7dea92d3c a ev:Evidence ;
+    ev:aboutObject omsac:Database ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-mongodb-review ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image mongo:5.0" ;
+    ev:quotedToken "image: ${HR_MONGO_IMAGE:-mongo:5.0}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 74 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-78ffc18d3255b84b a ev:Evidence ;
+    ev:aboutObject sut:coord-consul_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-review ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "consul address from hotelReservation/config.json:2 (consulAddress). Registration (registry/registry.go:85-90) sets only ID, Name, Port, Address: no Check, no TTL, no heartbeat call, no deregister timeout; heartbeat interval, failure timeout and cleanup interval are not set in these files (library default, not in these files). Only Deregister on Shutdown (server.go:95). The gRPC keepalive Timeout 120s (server.go:61) is a transport setting, not a registry heartbeat." ;
+    ev:quotedToken "s.Registry.Register(name" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/review/server.go" ;
+    ev:sourceLine 84 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7b2c74e2423de359 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-recommendation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "role read from the entrypoint binary built by cmd/recommendation/main.go; gRPC server on RecommendPort (config.json:18)" ;
+    ev:quotedToken "entrypoint: recommendation" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 168 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7c6f9d2302325fca a ev:Evidence ;
+    ev:aboutObject sut:sensor-zerolog ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-user ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "console log writer to stdout; no log exporter in these files. Level from env LOG_LEVEL (tune/setting.go:34), default info (tune/setting.go:19). Log emission frequency not stated in these files. No metric emitter stated in these files." ;
+    ev:quotedToken "zerolog.ConsoleWriter{Out: os.Stdout" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/user/main.go" ;
+    ev:sourceLine 22 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7ccd6a3ab65da711 a ev:Evidence ;
+    ev:aboutObject omsac:Database ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-mongodb-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image mongo:5.0" ;
+    ev:quotedToken "image: ${HR_MONGO_IMAGE:-mongo:5.0}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 72 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-80460df7a5a6ab8d a ev:Evidence ;
+    ev:aboutObject sut:svc-profile ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "profile:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 39 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-81a06d4edb7f488d a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-user ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces, Jaeger agent address read as jaegerAddress in cmd/user/main.go:45; flush every 1 s per tracing/tracer.go:36" ;
+    ev:quotedToken "jaeger:6831" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-82331d9edb3fd345 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-review ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-mongodb-review ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 335 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-82520afc62711e2f a ev:Evidence ;
+    ev:aboutObject sut:ctr-mongodb-review ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-mongodb-review ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-review-<n>" ;
+    ev:quotedToken "mongodb-review:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 328 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-82f70cdf8c1293d7 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommendation ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC" ;
+    ev:quotedToken "recommendationClient.GetRecommendations" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/frontend/server.go" ;
+    ev:sourceLine 316 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-836905358293b27c a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-mongodb-recommendation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-recommendation-<n>" ;
+    ev:quotedToken "mongodb-recommendation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 350 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-83eafb76898921bd a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-rate ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-rate ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "call site services/rate/server.go:141 Collection(\"inventory\"); MongoDB driver, datastore not an application service" ;
+    ev:quotedToken "mongodb-rate:27017" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 16 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-85e9cdfd936657d9 a ev:Evidence ;
+    ev:aboutObject sut:coord-consul_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-rate ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registers as srv-rate at services/rate/server.go:78; consul address config.json:2" ;
+    ev:quotedToken "registry.NewClient" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/rate/main.go" ;
+    ev:sourceLine 63 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-887b4d82e279e792 a ev:Evidence ;
+    ev:aboutObject ops:LogTemplate ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-zerolog ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "console log writer to stdout; no log exporter in these files. Level from env LOG_LEVEL (tune/setting.go:34), default info (tune/setting.go:19). Log emission frequency not stated in these files. No metric emitter stated in these files." ;
+    ev:quotedToken "zerolog.ConsoleWriter{Out: os.Stdout" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/user/main.go" ;
+    ev:sourceLine 22 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-88f74e407f23eb22 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-user ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 195 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-89710296e969a919 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-recommendation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 174 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8a29f8b8d0b4613e a ev:Evidence ;
+    ev:aboutObject sut:coord-consul_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-user ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registered once at startup as srv-user (server.go:23); consul address consul:8500 at config.json:2; no check/heartbeat configured (registry/registry.go:85-90)" ;
+    ev:quotedToken "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/user/server.go" ;
+    ev:sourceLine 76 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8a8ad108e7764d53 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-mongodb-user ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 379 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8adc2174efa1a7de a ev:Evidence ;
+    ev:aboutObject sut:svc-user ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-user ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 195 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8ae9a2b917ed4ffa a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-geo ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongodb-geo:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 295 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8b302a78ffad72cf a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-mongodb-reservation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-8f694ced2fa0b8bd a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-otgrpc.OpenTracingServerInterceptor ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "Server span per gRPC call from the interceptor; span names and tags are set by the grpc-opentracing library, not in these files." ;
+    ev:quotedToken "otgrpc.OpenTracingServerInterceptor(s.Tracer)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/attractions/server.go" ;
+    ev:sourceLine 78 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9036eb08bd764ec2 a ev:Evidence ;
+    ev:aboutObject sut:ctr-profile ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-profile-<n>" ;
+    ev:quotedToken "profile:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 39 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-907866285440a7fd a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-review ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-review ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol MongoDB (mongodb:// URI, cmd/review/db.go:84); address mongodb-review:27017 at config.json:11" ;
+    ev:quotedToken "result[\"ReviewMongoAddress\"]" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/review/main.go" ;
+    ev:sourceLine 41 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9159e66a9570895b a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 35 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-91cdccd1f0774955 a ev:Evidence ;
+    ev:aboutObject sut:ctr-reservation ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "compose service name; container_name not set in the files. No healthcheck key appears anywhere in the compose files for this service" ;
+    ev:quotedToken "reservation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 199 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-936d959ca95d03dc a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-attractions ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongodb-attractions:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 339 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-93a104dede556348 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-geo ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "no container_name in the geo block (lines 81-100). Health check: no healthcheck key in that block and no HEALTHCHECK in hotelReservation/Dockerfile; none configured in these files. The harness overlay only overrides image and JAEGER_* env (compose.observability-placement.yml:17-21)." ;
+    ev:quotedToken "geo:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 81 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9420ceae222e6fa2 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-mongodb-user ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 379 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-944beef57fd877e4 a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-mongo_profile ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongo_profile" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/profile/server.go" ;
+    ev:sourceLine 135 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9605851842c48ccd a ev:Evidence ;
+    ev:aboutObject sut:sensor-memcached_get_profile ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-profile ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "memcached_get_profile" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/profile/server.go" ;
+    ev:sourceLine 107 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9695a19f3815b802 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-frontend ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-9719ccff604f2397 a ev:Evidence ;
+    ev:aboutObject sut:ctr-mongodb-profile ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-mongodb-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-profile-<n>" ;
+    ev:quotedToken "mongodb-profile:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 306 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-97947c269e3f9ca4 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-recommendation ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongodb-recommendation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 350 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-97ffc2935fc494f6 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-jaeger ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-jaeger-<n>" ;
+    ev:quotedToken "jaeger:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 221 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9811213990276246 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-search ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 77 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-98317c50e74eff14 a ev:Evidence ;
+    ev:aboutObject sut:ctr-mongodb-reservation ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-mongodb-reservation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-reservation-<n>" ;
+    ev:quotedToken "mongodb-reservation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 361 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-984b6d831b35dad9 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-reservation ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol: MongoDB wire protocol via mongo-driver (cmd/reservation/db.go:55 mongodb://%s, db.go:59 mongo.Connect); address read at main.go:37 ReserveMongoAddress" ;
+    ev:quotedToken "mongodb-reservation:27017" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 21 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9b5691cbdfc970a6 a ev:Evidence ;
+    ev:aboutObject omsac:Technology ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-jaeger ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image jaegertracing/all-in-one:1.60" ;
+    ev:quotedToken "image: ${HR_JAEGER_IMAGE:-jaegertracing/all-in-one:1.60}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 58 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-9e19248d9a0e4679 a ev:Evidence ;
+    ev:aboutObject sut:sensor-zerolog_console_writer_to_stdout ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-recommendation ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "zerolog.ConsoleWriter{Out: os.Stdout" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/recommendation/main.go" ;
+    ev:sourceLine 22 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9e60c0a98cd4b46e a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-reservation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-9ee793538574e2ed a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21" ;
+    ev:quotedToken "golang:1.21" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9ff24c35c97fa7e5 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-search ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-a0f09daeabb8597f a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-search ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces, Jaeger agent address read as jaegerAddress in cmd/search/main.go:42; flush every 1 s per tracing/tracer.go:36" ;
+    ev:quotedToken "jaeger:6831" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a1def79173cf2ca4 a ev:Evidence ;
+    ev:aboutObject sut:svc-user ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC" ;
+    ev:quotedToken "userClient.CheckUser" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/frontend/server.go" ;
+    ev:sourceLine 356 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a2bd886437c12c92 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-attractions ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the attractions block (upstream docker-compose.yml:141-155) has no deploy.replicas or scale, and neither has compose.observability-placement.yml:52-56; Compose default is 1." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-a83e581121572e24 a ev:Evidence ;
+    ev:aboutObject sut:ctr-rate ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-rate ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "container_name not set; Compose names the container <project>-rate-<n>" ;
+    ev:quotedToken "rate:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 102 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a887659156e590ec a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-otgrpc_server_interceptor_gRPC_server_spans_ ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "otgrpc.OpenTracingServerInterceptor(s.Tracer)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/geo/server.go" ;
+    ev:sourceLine 63 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a88fa55a5895e12e a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-otgrpc_server_interceptor_gRPC_unary_server_spans ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "otgrpc.OpenTracingServerInterceptor(s.Tracer)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/recommendation/server.go" ;
+    ev:sourceLine 60 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a9575e48217e0bc6 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-recommendation ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-mongodb-recommendation ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 357 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-aa1b8a16079ff0fd a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces: main.go:55 tracing.Init(\"reservation\", *jaegerAddr) passes this address as LocalAgentHostPort (tracer.go:37); Reporter BufferFlushInterval is 1 second (tracer.go:36); sampler probabilistic, code default ratio 0.01 (tracer.go:14) overridden by JAEGER_SAMPLE_RATIO (compose overlay line 30, default 1). No metrics or log export is stated in the files; logs go to stdout (main.go:21)" ;
+    ev:quotedToken "jaeger:6831" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ab6111df1ae8c012 a ev:Evidence ;
+    ev:aboutObject sut:svc-consul ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-consul ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 13 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ab91ca27c33b5b71 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-attractions ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-ac8656fc96e9faba a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-user ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-user-<n>" ;
+    ev:quotedToken "user:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 178 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-acaa204b15f00bae a ev:Evidence ;
+    ev:aboutObject sut:svc-attractions ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-attractions ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the attractions block (upstream docker-compose.yml:141-155) has no deploy.replicas or scale, and neither has compose.observability-placement.yml:52-56; Compose default is 1." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-acd38c2e9ffbbd99 a ev:Evidence ;
+    ev:aboutObject sut:ctr-user ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-user ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-user-<n>" ;
+    ev:quotedToken "user:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 178 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ae533c3ea8086630 a ev:Evidence ;
+    ev:aboutObject sut:ctr-review ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-review ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Replica count: no deploy/replicas key in the review block (lines 124-139) and none in the harness overlay (compose.observability-placement.yml:47-51); not stated in these files, so no replicas fact is reported. Health check: no healthcheck key in the review block and no HEALTHCHECK in hotelReservation/Dockerfile; none configured in these files. Block sets restart: always (docker-compose.yml:139). Harness overlay only overrides image and JAEGER_* env." ;
+    ev:quotedToken "container_name: 'hotel_reserv_review'" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 134 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ae5992cef87e5fb9 a ev:Evidence ;
+    ev:aboutObject sut:ctr-memcached-reserve ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-memcached-reserve ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-memcached-reserve-<n>" ;
+    ev:quotedToken "memcached-reserve:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 280 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-aff4b6ef945e92f1 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-user ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21" ;
+    ev:quotedToken "golang:1.21" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-aff990a139e5bd35 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-mongodb-attractions ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-attractions-<n>" ;
+    ev:quotedToken "mongodb-attractions:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 339 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b0216e1bd1288b24 a ev:Evidence ;
+    ev:aboutObject sut:svc-reservation ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 217 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b051efb0137f1c8e a ev:Evidence ;
+    ev:aboutObject omsac:Database ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-mongodb-user ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image mongo:5.0" ;
+    ev:quotedToken "image: ${HR_MONGO_IMAGE:-mongo:5.0}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 82 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-b1c6a593e7a966a9 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-geo ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21" ;
+    ev:quotedToken "golang:1.21" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b2b628ec5eb61ff1 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommendation ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-recommendation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 174 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b32bf5734fc37d43 a ev:Evidence ;
+    ev:aboutObject sut:sensor-mongo_profile ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-profile ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongo_profile" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/profile/server.go" ;
+    ev:sourceLine 135 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b3431a12ac6f2153 a ev:Evidence ;
+    ev:aboutObject sut:svc-memcached-profile ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "memcached-profile:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 265 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b47a4d63795e7f93 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces, Jaeger agent UDP address read as jaegerAddress in cmd/frontend/main.go:40; flush every 1 s per tracing/tracer.go:36" ;
+    ev:quotedToken "jaeger:6831" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b60c5000262955da a ev:Evidence ;
+    ev:aboutObject sut:svc-memcached-reserve ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol: memcached via gomemcache (main.go:42 tune.NewMemCClient2(result[\"ReserveMemcAddress\"]); calls at services/reservation/server.go:123 s.MemcClient.Get)" ;
+    ev:quotedToken "memcached-reserve:11211" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 22 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b628432410e7218f a ev:Evidence ;
+    ev:aboutObject ops:LogTemplate ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-zerolog_console_writer_to_stdout ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "zerolog.ConsoleWriter{Out: os.Stdout" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/geo/main.go" ;
+    ev:sourceLine 21 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b79c1580be372887 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC server binary built from cmd/reservation; the role label itself is not stated in the files" ;
+    ev:quotedToken "entrypoint: reservation" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 210 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-bbc4ef09656b5ed9 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-search ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 77 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-bc35de6d443bd1a8 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-rate ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 120 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-bfe7ee953439bc97 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-rate ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongodb-rate:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 317 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c21b915aebe6640c a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-user ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-user ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "MongoDB wire protocol; address mongodb-user:27017 at config.json:25; users read once at startup (services/user/server.go:112), not per request" ;
+    ev:quotedToken "initializeDatabase(result[\"UserMongoAddress\"])" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/user/main.go" ;
+    ev:sourceLine 38 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c2f08e9bd386e8f3 a ev:Evidence ;
+    ev:aboutObject sut:coord-consul_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-search ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registered once at startup as srv-search (server.go:24); consul address consul:8500 at config.json:2; no check/heartbeat configured (registry/registry.go:85-90)" ;
+    ev:quotedToken "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/search/server.go" ;
+    ev:sourceLine 82 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c357633b07c879cd a ev:Evidence ;
+    ev:aboutObject omsac:Database ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-mongodb-attractions ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image mongo:5.0" ;
+    ev:quotedToken "image: ${HR_MONGO_IMAGE:-mongo:5.0}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 76 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-c3cdb306df30af97 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-consul ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 13 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c40a1625eb6591b6 a ev:Evidence ;
+    ev:aboutObject sut:svc-memcached-rate ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-rate ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "call site services/rate/server.go:108 GetMulti; memcached client, cache not an application service" ;
+    ev:quotedToken "memcached-rate:11211" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 17 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c417ce869589b0cd a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-reservation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "compose service name; container_name not set in the files. No healthcheck key appears anywhere in the compose files for this service" ;
+    ev:quotedToken "reservation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 199 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c48a51c3d28b0b7f a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-rate ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-mongodb-rate ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 324 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c4eea6d73dc4342d a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-mongodb-review ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-review-<n>" ;
+    ev:quotedToken "mongodb-review:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 328 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c51789303b45d5b7 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-consul ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-c5a90939fa4e251c a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "jaeger:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 221 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c62c57d0ecb4dcb9 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-mongodb-attractions ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-c7b396ca05986c02 a ev:Evidence ;
+    ev:aboutObject sut:svc-memcached-review ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-review ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol memcached (gomemcache client, tune/setting.go:89; Get at services/review/server.go:121); address memcached-review:11211 at config.json:12" ;
+    ev:quotedToken "result[\"ReviewMemcAddress\"]" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/review/main.go" ;
+    ev:sourceLine 50 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ca829bf14fa95094 a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-mongo_museum ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongo_museum" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/attractions/server.go" ;
+    ev:sourceLine 151 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cb55a99694304d3b a ev:Evidence ;
+    ev:aboutObject sut:svc-review ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC" ;
+    ev:quotedToken "reviewClient.GetReviews" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/frontend/server.go" ;
+    ev:sourceLine 378 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cba20ccb8de5de2b a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-profile-<n>" ;
+    ev:quotedToken "profile:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 39 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cbf4ffe5b2cb2b09 a ev:Evidence ;
+    ev:aboutObject sut:svc-geo ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-search ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "gRPC; client initialised at server.go:70 with consul name srv-geo" ;
+    ev:quotedToken "s.geoClient.Nearby(ctx, &geo.Request{" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/search/server.go" ;
+    ev:sourceLine 136 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cef57208b33605f0 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-mongodb-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-rate-<n>" ;
+    ev:quotedToken "mongodb-rate:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 317 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cf7aab7ac0a8867a a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-memcached-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-cfca20008fb1ab32 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21" ;
+    ev:quotedToken "golang:1.21" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cff19976e9b8d56a a ev:Evidence ;
+    ev:aboutObject sut:svc-memcached-profile ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-profile ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "memcached protocol via gomemcache (GetMulti at services/profile/server.go:109)" ;
+    ev:quotedToken "memcached-profile:11211" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d068985352be70ea a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-rate ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-d0f82a6767a7f8f1 a ev:Evidence ;
+    ev:aboutObject ops:LogTemplate ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-stdout ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "zerolog ConsoleWriter to stdout. Level from LOG_LEVEL; when LOG_LEVEL is unset the level is info (tune/setting.go:19, 33-34). The comment at setting.go:38 says ERROR, which applies only to an empty value." ;
+    ev:quotedToken "Out: os.Stdout" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/attractions/main.go" ;
+    ev:sourceLine 24 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d147d468c97f7777 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-mongodb-reservation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-reservation-<n>" ;
+    ev:quotedToken "mongodb-reservation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 361 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d1ddbd49f23d88fe a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-profile ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-mongodb-profile ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 313 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d34c30fa733844e8 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-reservation ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-mongodb-reservation ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 368 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d71e3ff362e4ca61 a ev:Evidence ;
+    ev:aboutObject sut:svc-memcached-rate ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "memcached-rate:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 238 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d72cae950c6b8300 a ev:Evidence ;
+    ev:aboutObject sut:svc-geo ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-geo ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 98 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d7dca6d44d436236 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-geo ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces only, via jaeger-client-go reporter with LocalAgentHostPort (tracing/tracer.go:37); BufferFlushInterval 1s (tracing/tracer.go:36, token '1 * time.Second'); sampler probabilistic, default ratio 0.01 (tracing/tracer.go:14) overridden by harness env JAEGER_SAMPLE_RATIO default 1 (compose.observability-placement.yml:20). No metrics export found. Logs: zerolog to os.Stdout (cmd/geo/main.go:21), no log shipper in these files." ;
+    ev:quotedToken "\"jaegerAddress\": \"jaeger:6831\"" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-dc2d64f804c67208 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-memcached-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-memcached-profile-<n>" ;
+    ev:quotedToken "memcached-profile:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 265 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-dd630fd957f54e73 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-review ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for review in upstream:hotelReservation/docker-compose.yml, harness:modules/hotel-reservation/deployment/compose.observability-placement.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-ddf0f67edbcd39b8 a ev:Evidence ;
+    ev:aboutObject sut:svc-frontend ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "frontend:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 17 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ddf8d5c34fe1fcc9 a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-memcached_get_profile ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "memcached_get_profile" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/profile/server.go" ;
+    ev:sourceLine 107 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e11e71cc2c06321d a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-mongodb-recommendation ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 357 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e1d8de8aa2580da7 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-profile ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "mongodb-profile:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 306 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e3c5e9749c3fb573 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-user ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-e513eb937b398eea a ev:Evidence ;
+    ev:aboutObject sut:svc-review ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "review:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 124 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e85a69da342f7bec a ev:Evidence ;
+    ev:aboutObject sut:svc-rate ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-search ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "gRPC; client initialised at server.go:73 with consul name srv-rate" ;
+    ev:quotedToken "s.rateClient.GetRates(ctx, &rate.Request{" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/search/server.go" ;
+    ev:sourceLine 149 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e90de6285d8bb0d4 a ev:Evidence ;
+    ev:aboutObject sut:sensor-stdout ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "zerolog ConsoleWriter to stdout. Level from LOG_LEVEL; when LOG_LEVEL is unset the level is info (tune/setting.go:19, 33-34). The comment at setting.go:38 says ERROR, which applies only to an empty value." ;
+    ev:quotedToken "Out: os.Stdout" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/attractions/main.go" ;
+    ev:sourceLine 24 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ea94629ee736c605 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-jaeger ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-eb75e80739146448 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-memcached-reserve ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-memcached-reserve-<n>" ;
+    ev:quotedToken "memcached-reserve:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 280 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-eb7f98763827a6fd a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-mongodb-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-profile-<n>" ;
+    ev:quotedToken "mongodb-profile:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 306 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-eba73fff7a97c88c a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-recommendation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 174 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ec98db48cf3a2e7f a ev:Evidence ;
+    ev:aboutObject sut:svc-consul ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "consul:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 4 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ed8dc77d04a7fd2c a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-recommendation ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces, Jaeger agent UDP address read as jaegerAddress in cmd/recommendation/main.go:45; flush every 1 s per tracing/tracer.go:36" ;
+    ev:quotedToken "jaeger:6831" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ee76be66b8dc6e4c a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 35 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-eeeec3979c21bbd0 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-mongodb-geo ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-geo-<n>" ;
+    ev:quotedToken "mongodb-geo:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 295 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f10debd26db2dd27 a ev:Evidence ;
+    ev:aboutObject omsac:Cache ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-memcached-reserve ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image memcached:1.6.24" ;
+    ev:quotedToken "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 66 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-f13d1f9c2c3a2679 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-attractions ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol MongoDB (mongodb:// URI at db.go:63); address from config.json:14 AttractionsMongoAddress mongodb-attractions:27017" ;
+    ev:quotedToken "mongo.Connect(context.TODO(), opts)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/cmd/attractions/db.go" ;
+    ev:sourceLine 67 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f2d452efb26b2d05 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-consul ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image hashicorp/consul:1.13" ;
+    ev:quotedToken "image: ${HR_CONSUL_IMAGE:-hashicorp/consul:1.13}" ;
+    ev:sourceCommit "e9d35f7fffcab4134b53a864cd36613cc628cb4d" ;
+    ev:sourceFile "modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-f3995e498986dc94 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-geo ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 98 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f41acb2eeabfed04 a ev:Evidence ;
+    ev:aboutObject sut:svc-search ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "search:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 61 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f5c5782aadc1196d a ev:Evidence ;
+    ev:aboutObject sut:coord-consul_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registers once at startup as name srv-attractions (server.go:24); consul address from config.json:2 consulAddress (consul:8500)" ;
+    ev:quotedToken "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/attractions/server.go" ;
+    ev:sourceLine 96 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f77c002251ccfd54 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-recommendation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-recommendation-<n>" ;
+    ev:quotedToken "recommendation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 157 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f7e2ade8af7abfde a ev:Evidence ;
+    ev:aboutObject sut:svc-frontend ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 35 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f84f7c94c35c7261 a ev:Evidence ;
+    ev:aboutObject sut:sensor-otgrpc.OpenTracingServerInterceptor ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-attractions ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "Server span per gRPC call from the interceptor; span names and tags are set by the grpc-opentracing library, not in these files." ;
+    ev:quotedToken "otgrpc.OpenTracingServerInterceptor(s.Tracer)" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/services/attractions/server.go" ;
+    ev:sourceLine 78 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f9ff62299c030132 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-mongodb-geo ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 302 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-fa884fb826602d66 a ev:Evidence ;
+    ev:aboutObject sut:svc-mongodb-profile ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-profile ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "MongoDB (mongodb:// URI, cmd/profile/db.go:162; FindOne at services/profile/server.go:137)" ;
+    ev:quotedToken "mongodb-profile:27017" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 8 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-faa8b1dd4eee3f44 a ev:Evidence ;
+    ev:aboutObject omsac:MicroserviceArchitecture ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "architecture = the services of the compose files upstream:hotelReservation/docker-compose.yml, harness:modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:quotedToken "services:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-fbdadda41fd87d09 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-profile ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 57 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-fc59d899b414eaaa a ev:Evidence ;
+    ev:aboutObject sut:ctr-mongodb-recommendation ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-mongodb-recommendation ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-recommendation-<n>" ;
+    ev:quotedToken "mongodb-recommendation:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 350 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-fc67eb317f80bb29 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-mongodb-profile ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-fd7a1e10676b1777 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-profile ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces, Jaeger agent address read as jaegerAddress in cmd/profile/main.go:49; flush every 1 s per tracing/tracer.go:36" ;
+    ev:quotedToken "jaeger:6831" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/config.json" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:rs-attractions a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-attractions .
+
+sut:rs-consul a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-consul .
+
+sut:rs-frontend a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-frontend .
+
+sut:rs-geo a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-geo .
+
+sut:rs-mongodb-attractions a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-mongodb-attractions .
+
+sut:rs-mongodb-geo a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-mongodb-geo .
+
+sut:rs-mongodb-profile a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-mongodb-profile .
+
+sut:rs-mongodb-rate a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-mongodb-rate .
+
+sut:rs-mongodb-recommendation a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-mongodb-recommendation .
+
+sut:rs-mongodb-reservation a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-mongodb-reservation .
+
+sut:rs-mongodb-review a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-mongodb-review .
+
+sut:rs-mongodb-user a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-mongodb-user .
+
+sut:rs-profile a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-profile .
+
+sut:rs-rate a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-rate .
+
+sut:rs-recommendation a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-recommendation .
+
+sut:rs-reservation a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-reservation .
+
+sut:rs-review a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-review .
+
+sut:rs-search a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-search .
+
+sut:rs-user a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-user .
+
+sut:sensor-memcached_get_profile a ops:Span .
+
+sut:sensor-mongo_cinema a ops:Span .
+
+sut:sensor-mongo_museum a ops:Span .
+
+sut:sensor-mongo_profile a ops:Span .
+
+sut:sensor-mongo_restaurant a ops:Span .
+
+sut:sensor-otgrpc.OpenTracingServerInterceptor a ops:Span .
+
+sut:sensor-otgrpc_server_interceptor_gRPC_server_spans_ a ops:Span .
+
+sut:sensor-otgrpc_server_interceptor_gRPC_unary_server_spans a ops:Span .
+
+sut:sensor-stdout a ops:LogTemplate .
+
+sut:sensor-zerolog a ops:LogTemplate .
+
+sut:ctr-attractions a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-consul a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-frontend a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-geo a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-jaeger a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-memcached-profile a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-memcached-rate a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-memcached-reserve a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-mongodb-attractions a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-mongodb-geo a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-mongodb-profile a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-mongodb-rate a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-mongodb-recommendation a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-mongodb-reservation a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-mongodb-review a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-mongodb-user a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-profile a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-rate a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-recommendation a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-reservation a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-review a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-search a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:ctr-user a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:sensor-zerolog_console_writer_to_stdout a ops:LogTemplate .
+
+sut:svc-memcached-profile a omsac:Cache ;
+    ops:runsIn sut:ctr-memcached-profile .
+
+sut:svc-memcached-rate a omsac:Cache ;
+    ops:runsIn sut:ctr-memcached-rate .
+
+sut:svc-memcached-reserve a omsac:Cache ;
+    ops:runsIn sut:ctr-memcached-reserve .
+
+sut:svc-mongodb-geo a omsac:Database ;
+    ops:runsIn sut:ctr-mongodb-geo .
+
+sut:svc-mongodb-recommendation a omsac:Database ;
+    ops:runsIn sut:ctr-mongodb-recommendation .
+
+sut:svc-mongodb-attractions a omsac:Database ;
+    ops:runsIn sut:ctr-mongodb-attractions .
+
+sut:svc-mongodb-profile a omsac:Database ;
+    ops:runsIn sut:ctr-mongodb-profile .
+
+sut:svc-mongodb-rate a omsac:Database ;
+    ops:runsIn sut:ctr-mongodb-rate .
+
+sut:svc-mongodb-reservation a omsac:Database ;
+    ops:runsIn sut:ctr-mongodb-reservation .
+
+sut:svc-mongodb-review a omsac:Database ;
+    ops:runsIn sut:ctr-mongodb-review .
+
+sut:svc-mongodb-user a omsac:Database ;
+    ops:runsIn sut:ctr-mongodb-user .
+
+sut:svc-consul a omsac:Microservice ;
+    ops:runsIn sut:ctr-consul .
+
+sut:svc-geo a omsac:Microservice ;
+    ops:emits sut:sensor-otgrpc_server_interceptor_gRPC_server_spans_,
+        sut:sensor-zerolog_console_writer_to_stdout ;
+    ops:exportsTelemetryTo sut:svc-jaeger ;
+    ops:registersWith sut:coord-consul_registry-heartbeat ;
+    ops:runsIn sut:ctr-geo .
+
+sut:svc-rate a omsac:Microservice ;
+    ops:callsSync sut:svc-memcached-rate,
+        sut:svc-mongodb-rate ;
+    ops:exportsTelemetryTo sut:svc-jaeger ;
+    ops:registersWith sut:coord-consul_registry-heartbeat ;
+    ops:runsIn sut:ctr-rate .
+
+sut:svc-recommendation a omsac:Microservice ;
+    ops:emits sut:sensor-otgrpc_server_interceptor_gRPC_unary_server_spans,
+        sut:sensor-zerolog_console_writer_to_stdout ;
+    ops:exportsTelemetryTo sut:svc-jaeger ;
+    ops:registersWith sut:coord-consul_registry-heartbeat ;
+    ops:runsIn sut:ctr-recommendation .
+
+sut:svc-user a omsac:Microservice ;
+    ops:callsSync sut:svc-mongodb-user ;
+    ops:emits sut:sensor-zerolog ;
+    ops:exportsTelemetryTo sut:svc-jaeger ;
+    ops:registersWith sut:coord-consul_registry-heartbeat ;
+    ops:runsIn sut:ctr-user .
+
+sut:svc-reservation a omsac:Microservice ;
+    ops:callsSync sut:svc-consul,
+        sut:svc-memcached-reserve,
+        sut:svc-mongodb-reservation ;
+    ops:exportsTelemetryTo sut:svc-jaeger ;
+    ops:registersWith sut:coord-consul_registry-heartbeat ;
+    ops:runsIn sut:ctr-reservation .
+
+sut:svc-review a omsac:Microservice ;
+    ops:callsSync sut:svc-consul,
+        sut:svc-memcached-review,
+        sut:svc-mongodb-review ;
+    ops:exportsTelemetryTo sut:svc-jaeger ;
+    ops:registersWith sut:coord-consul_registry-heartbeat ;
+    ops:runsIn sut:ctr-review .
+
+sut:svc-frontend a omsac:Microservice ;
+    ops:callsSync sut:svc-attractions,
+        sut:svc-profile,
+        sut:svc-recommendation,
+        sut:svc-reservation,
+        sut:svc-review,
+        sut:svc-search,
+        sut:svc-user ;
+    ops:exportsTelemetryTo sut:svc-jaeger ;
+    ops:runsIn sut:ctr-frontend .
+
+sut:svc-profile a omsac:Microservice ;
+    ops:callsSync sut:svc-memcached-profile,
+        sut:svc-mongodb-profile ;
+    ops:emits sut:sensor-memcached_get_profile,
+        sut:sensor-mongo_profile ;
+    ops:exportsTelemetryTo sut:svc-jaeger ;
+    ops:registersWith sut:coord-consul_registry-heartbeat ;
+    ops:runsIn sut:ctr-profile .
+
+sut:svc-search a omsac:Microservice ;
+    ops:callsSync sut:svc-geo,
+        sut:svc-rate,
+        sut:svc-srv-geo,
+        sut:svc-srv-rate ;
+    ops:exportsTelemetryTo sut:svc-jaeger,
+        sut:svc-stdout ;
+    ops:registersWith sut:coord-consul_registry-heartbeat ;
+    ops:runsIn sut:ctr-search .
+
+sut:svc-attractions a omsac:Microservice ;
+    ops:callsSync sut:svc-mongodb-attractions ;
+    ops:emits sut:sensor-mongo_cinema,
+        sut:sensor-mongo_museum,
+        sut:sensor-mongo_restaurant,
+        sut:sensor-otgrpc.OpenTracingServerInterceptor,
+        sut:sensor-stdout ;
+    ops:exportsTelemetryTo sut:svc-jaeger ;
+    ops:registersWith sut:coord-consul_registry-heartbeat ;
+    ops:runsIn sut:ctr-attractions .
+
+sut:coord-consul_registry-heartbeat a ops:ServiceRegistry ;
+    ops:hostedBy sut:svc-consul .
+
+sut:arch-hotel a omsac:MicroserviceArchitecture ;
+    omsac:isComposedOf sut:svc-attractions,
+        sut:svc-consul,
+        sut:svc-frontend,
+        sut:svc-geo,
+        sut:svc-jaeger,
+        sut:svc-memcached-profile,
+        sut:svc-memcached-rate,
+        sut:svc-memcached-reserve,
+        sut:svc-mongodb-attractions,
+        sut:svc-mongodb-geo,
+        sut:svc-mongodb-profile,
+        sut:svc-mongodb-rate,
+        sut:svc-mongodb-recommendation,
+        sut:svc-mongodb-reservation,
+        sut:svc-mongodb-review,
+        sut:svc-mongodb-user,
+        sut:svc-profile,
+        sut:svc-rate,
+        sut:svc-recommendation,
+        sut:svc-reservation,
+        sut:svc-review,
+        sut:svc-search,
+        sut:svc-user .
+
+sut:svc-jaeger a omsac:Technology ;
+    ops:runsIn sut:ctr-jaeger .
+
+sut:host-fb14srv4 a ops:Host .
+

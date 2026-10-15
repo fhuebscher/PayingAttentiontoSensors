@@ -1,0 +1,49 @@
+@prefix omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+
+# Re-declaration of the OMSAC terms this project uses. OMSAC = Morais, Bork, Adda, "Towards an Ontology-driven Approach to
+# Model and Analyze Microservices Architectures", MEDES'21, pp. 79-86, doi 10.1145/3444757.3485108 (OWL 2 DL).
+# Why re-declared: the companion repository (vendor/omsac/PROVENANCE.json, commit 92ca7f76) ships no TBox file.
+# What is verified: the namespace (vendor/omsac/CQ-1_request.sparql:1) and every property name marked "companion" below
+# (the file:line where the companion's own queries use it). What is NOT verified: the class names and the subclass
+# structure, which follow the paper's Fig. 1 as quoted in the task brief (user, 2026-10-14); the paper's full text was
+# not retrievable (dl.acm.org HTTP 403). No domain/range axioms are declared, so nothing is inferred from them.
+
+<http://www.semanticweb.org/ontologyOfMicroservicesArchitecture>
+    a owl:Ontology ;
+    rdfs:label "OMSAC (re-declared subset)" ;
+    dct:source <https://doi.org/10.1145/3444757.3485108> ;
+    rdfs:comment "Subset re-declared by research/ontology; classes per the paper's Fig. 1 (unverified here), properties checked against the companion's SPARQL files." .
+
+# --------------------------------------------------------------------------- classes (paper Fig. 1, unverified)
+omsac:MicroserviceArchitecture a owl:Class ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:Microservice             a owl:Class ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:Functionality            a owl:Class ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:Protocol                 a owl:Class ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:Technology               a owl:Class ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:Cache        a owl:Class ; rdfs:subClassOf omsac:Technology ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:Message      a owl:Class ; rdfs:subClassOf omsac:Technology ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:Database     a owl:Class ; rdfs:subClassOf omsac:Technology ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:ConfigServer a owl:Class ; rdfs:subClassOf omsac:Technology ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:Infrastructure           a owl:Class ; rdfs:comment "Paper Fig. 1 (unverified)." .
+omsac:Provider                 a owl:Class ; rdfs:comment "Paper Fig. 1 (unverified)." .
+
+# --------------------------------------------------------------------------- object properties
+omsac:isComposedOf a owl:ObjectProperty ;
+    rdfs:comment "companion: vendor/omsac/CQ-1_request.sparql:6 (architecture isComposedOf microservice). The brief's 'composedOf' is spelled isComposedOf in the companion." .
+omsac:interactsWith a owl:ObjectProperty ;
+    rdfs:comment "companion: vendor/omsac/CQ-4_request.sparql:5,11 (microservice interactsWith microservice)." .
+omsac:dependsOn a owl:ObjectProperty ;
+    rdfs:comment "companion: vendor/omsac/CQ-4_request.sparql:6,11." .
+omsac:communicatesThrough a owl:ObjectProperty ;
+    rdfs:comment "companion: vendor/omsac/CQ-6_request1.sparql:7,11 (microservice communicatesThrough protocol)." .
+omsac:exploits a owl:ObjectProperty ;
+    rdfs:comment "companion: vendor/omsac/CQ-6_request1.sparql:5,12 (microservice exploits technology, e.g. a cache)." .
+omsac:deployedOn a owl:ObjectProperty ;
+    rdfs:comment "companion: vendor/omsac/CQ-7_request.sparql:6 (microservice deployedOn infrastructure)." .
+omsac:implements a owl:ObjectProperty ;
+    rdfs:comment "companion: vendor/omsac/CQ-4_request.sparql:4,10,12 (microservice implements functionality)." .
+omsac:providedBy a owl:ObjectProperty ;
+    rdfs:comment "Paper Fig. 1 per the brief (infrastructure providedBy provider); not used in the companion's queries (unverified)." .

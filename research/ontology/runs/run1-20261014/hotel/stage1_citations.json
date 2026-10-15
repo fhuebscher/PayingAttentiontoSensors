@@ -1,0 +1,2568 @@
+{
+ "facts": {
+  "facts": 98,
+  "counts": {
+   "ok": 95,
+   "unchecked-default": 3
+  },
+  "ok": true,
+  "rows": [
+   {
+    "status": "ok",
+    "matchedLine": 3,
+    "offset": 0,
+    "path": "$.architecture.name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 3,
+    "quotedToken": "services:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 184,
+    "offset": 0,
+    "path": "$.host.id",
+    "repo": "obsplacement",
+    "sourceFile": "research/host-topology.json",
+    "line": 184,
+    "quotedToken": "\"hostId\": \"fb14srv4\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 4,
+    "offset": 0,
+    "path": "$.services[0].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 4,
+    "quotedToken": "consul:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 4,
+    "offset": 0,
+    "path": "$.services[0].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 4,
+    "quotedToken": "consul:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 13,
+    "offset": 0,
+    "path": "$.services[0].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 13,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 3,
+    "offset": 0,
+    "path": "$.services[0].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 3,
+    "quotedToken": "image: ${HR_CONSUL_IMAGE:-hashicorp/consul:1.13}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 17,
+    "offset": 0,
+    "path": "$.services[1].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 17,
+    "quotedToken": "frontend:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 17,
+    "offset": 0,
+    "path": "$.services[1].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 17,
+    "quotedToken": "frontend:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 35,
+    "offset": 0,
+    "path": "$.services[1].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 35,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[1].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 39,
+    "offset": 0,
+    "path": "$.services[2].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 39,
+    "quotedToken": "profile:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 39,
+    "offset": 0,
+    "path": "$.services[2].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 39,
+    "quotedToken": "profile:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 57,
+    "offset": 0,
+    "path": "$.services[2].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 57,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[2].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 61,
+    "offset": 0,
+    "path": "$.services[3].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 61,
+    "quotedToken": "search:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 61,
+    "offset": 0,
+    "path": "$.services[3].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 61,
+    "quotedToken": "search:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 77,
+    "offset": 0,
+    "path": "$.services[3].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 77,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[3].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 81,
+    "offset": 0,
+    "path": "$.services[4].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 81,
+    "quotedToken": "geo:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 81,
+    "offset": 0,
+    "path": "$.services[4].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 81,
+    "quotedToken": "geo:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 98,
+    "offset": 0,
+    "path": "$.services[4].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 98,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[4].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 102,
+    "offset": 0,
+    "path": "$.services[5].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 102,
+    "quotedToken": "rate:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 102,
+    "offset": 0,
+    "path": "$.services[5].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 102,
+    "quotedToken": "rate:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 120,
+    "offset": 0,
+    "path": "$.services[5].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 120,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[5].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 134,
+    "offset": 0,
+    "path": "$.services[6].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 134,
+    "quotedToken": "container_name: 'hotel_reserv_review'"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 124,
+    "offset": 0,
+    "path": "$.services[6].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 124,
+    "quotedToken": "review:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[6].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[6].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 151,
+    "offset": 0,
+    "path": "$.services[7].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 151,
+    "quotedToken": "container_name: 'hotel_reserv_attractions'"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 141,
+    "offset": 0,
+    "path": "$.services[7].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 141,
+    "quotedToken": "attractions:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[7].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[7].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 157,
+    "offset": 0,
+    "path": "$.services[8].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 157,
+    "quotedToken": "recommendation:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 157,
+    "offset": 0,
+    "path": "$.services[8].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 157,
+    "quotedToken": "recommendation:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 174,
+    "offset": 0,
+    "path": "$.services[8].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 174,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[8].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 178,
+    "offset": 0,
+    "path": "$.services[9].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 178,
+    "quotedToken": "user:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 178,
+    "offset": 0,
+    "path": "$.services[9].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 178,
+    "quotedToken": "user:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 195,
+    "offset": 0,
+    "path": "$.services[9].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 195,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[9].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 199,
+    "offset": 0,
+    "path": "$.services[10].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 199,
+    "quotedToken": "reservation:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 199,
+    "offset": 0,
+    "path": "$.services[10].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 199,
+    "quotedToken": "reservation:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 217,
+    "offset": 0,
+    "path": "$.services[10].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 217,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[10].role",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 221,
+    "offset": 0,
+    "path": "$.services[11].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 221,
+    "quotedToken": "jaeger:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 221,
+    "offset": 0,
+    "path": "$.services[11].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 221,
+    "quotedToken": "jaeger:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 234,
+    "offset": 0,
+    "path": "$.services[11].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 234,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 58,
+    "offset": 0,
+    "path": "$.services[11].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 58,
+    "quotedToken": "image: ${HR_JAEGER_IMAGE:-jaegertracing/all-in-one:1.60}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 238,
+    "offset": 0,
+    "path": "$.services[12].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 238,
+    "quotedToken": "memcached-rate:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 238,
+    "offset": 0,
+    "path": "$.services[12].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 238,
+    "quotedToken": "memcached-rate:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 249,
+    "offset": 0,
+    "path": "$.services[12].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 249,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.services[12].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 60,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 256,
+    "offset": 0,
+    "path": "$.services[13].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 256,
+    "quotedToken": "container_name: 'hotel_reserv_review_mmc'"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 253,
+    "offset": 0,
+    "path": "$.services[13].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 253,
+    "quotedToken": "memcached-review:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[13].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 62,
+    "offset": 0,
+    "path": "$.services[13].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 62,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 265,
+    "offset": 0,
+    "path": "$.services[14].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 265,
+    "quotedToken": "memcached-profile:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 265,
+    "offset": 0,
+    "path": "$.services[14].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 265,
+    "quotedToken": "memcached-profile:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 276,
+    "offset": 0,
+    "path": "$.services[14].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 276,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.services[14].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 64,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 280,
+    "offset": 0,
+    "path": "$.services[15].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 280,
+    "quotedToken": "memcached-reserve:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 280,
+    "offset": 0,
+    "path": "$.services[15].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 280,
+    "quotedToken": "memcached-reserve:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 291,
+    "offset": 0,
+    "path": "$.services[15].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 291,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 66,
+    "offset": 0,
+    "path": "$.services[15].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 66,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 295,
+    "offset": 0,
+    "path": "$.services[16].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 295,
+    "quotedToken": "mongodb-geo:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 295,
+    "offset": 0,
+    "path": "$.services[16].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 295,
+    "quotedToken": "mongodb-geo:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 302,
+    "offset": 0,
+    "path": "$.services[16].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 302,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 68,
+    "offset": 0,
+    "path": "$.services[16].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 68,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 306,
+    "offset": 0,
+    "path": "$.services[17].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 306,
+    "quotedToken": "mongodb-profile:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 306,
+    "offset": 0,
+    "path": "$.services[17].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 306,
+    "quotedToken": "mongodb-profile:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 313,
+    "offset": 0,
+    "path": "$.services[17].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 313,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 70,
+    "offset": 0,
+    "path": "$.services[17].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 70,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 317,
+    "offset": 0,
+    "path": "$.services[18].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 317,
+    "quotedToken": "mongodb-rate:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 317,
+    "offset": 0,
+    "path": "$.services[18].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 317,
+    "quotedToken": "mongodb-rate:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 324,
+    "offset": 0,
+    "path": "$.services[18].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 324,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 72,
+    "offset": 0,
+    "path": "$.services[18].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 72,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 328,
+    "offset": 0,
+    "path": "$.services[19].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 328,
+    "quotedToken": "mongodb-review:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 328,
+    "offset": 0,
+    "path": "$.services[19].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 328,
+    "quotedToken": "mongodb-review:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 335,
+    "offset": 0,
+    "path": "$.services[19].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 335,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 74,
+    "offset": 0,
+    "path": "$.services[19].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 74,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 339,
+    "offset": 0,
+    "path": "$.services[20].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 339,
+    "quotedToken": "mongodb-attractions:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 339,
+    "offset": 0,
+    "path": "$.services[20].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 339,
+    "quotedToken": "mongodb-attractions:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 346,
+    "offset": 0,
+    "path": "$.services[20].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 346,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 76,
+    "offset": 0,
+    "path": "$.services[20].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 76,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 350,
+    "offset": 0,
+    "path": "$.services[21].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 350,
+    "quotedToken": "mongodb-recommendation:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 350,
+    "offset": 0,
+    "path": "$.services[21].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 350,
+    "quotedToken": "mongodb-recommendation:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 357,
+    "offset": 0,
+    "path": "$.services[21].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 357,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 78,
+    "offset": 0,
+    "path": "$.services[21].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 78,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 361,
+    "offset": 0,
+    "path": "$.services[22].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 361,
+    "quotedToken": "mongodb-reservation:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 361,
+    "offset": 0,
+    "path": "$.services[22].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 361,
+    "quotedToken": "mongodb-reservation:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 368,
+    "offset": 0,
+    "path": "$.services[22].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 368,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 80,
+    "offset": 0,
+    "path": "$.services[22].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 80,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 372,
+    "offset": 0,
+    "path": "$.services[23].container",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 372,
+    "quotedToken": "mongodb-user:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 372,
+    "offset": 0,
+    "path": "$.services[23].name",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 372,
+    "quotedToken": "mongodb-user:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 379,
+    "offset": 0,
+    "path": "$.services[23].replicas",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 379,
+    "quotedToken": "replicas: 1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 82,
+    "offset": 0,
+    "path": "$.services[23].role",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 82,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   }
+  ]
+ },
+ "observations": {
+  "facts": 157,
+  "counts": {
+   "ok": 157
+  },
+  "ok": true,
+  "rows": [
+   {
+    "status": "ok",
+    "matchedLine": 3,
+    "offset": 0,
+    "path": "$.obs[0]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 3,
+    "quotedToken": "image: ${HR_CONSUL_IMAGE:-hashicorp/consul:1.13}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 23,
+    "offset": 0,
+    "path": "$.obs[1]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 23,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 11,
+    "offset": 0,
+    "path": "$.obs[2]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 11,
+    "quotedToken": "JAEGER_DISABLED: ${HR_FRONTEND_JAEGER_DISABLED:?set HR_FRONTEND_JAEGER_DISABLED}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 10,
+    "offset": 0,
+    "path": "$.obs[3]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 10,
+    "quotedToken": "JAEGER_SAMPLE_RATIO: ${HR_FRONTEND_JAEGER_SAMPLE_RATIO:?set HR_FRONTEND_JAEGER_SAMPLE_RATIO}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 25,
+    "offset": 0,
+    "path": "$.obs[4]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 25,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 22,
+    "offset": 0,
+    "path": "$.obs[5]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 22,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 32,
+    "offset": 0,
+    "path": "$.obs[6]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 32,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 5,
+    "offset": 0,
+    "path": "$.obs[7]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 5,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 26,
+    "offset": 0,
+    "path": "$.obs[8]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 26,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 28,
+    "offset": 0,
+    "path": "$.obs[9]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 28,
+    "quotedToken": "entrypoint: frontend"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 45,
+    "offset": 0,
+    "path": "$.obs[10]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 45,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 47,
+    "offset": 0,
+    "path": "$.obs[11]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 47,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 44,
+    "offset": 0,
+    "path": "$.obs[12]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 44,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 52,
+    "offset": 0,
+    "path": "$.obs[13]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 52,
+    "quotedToken": "- mongodb-profile"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 53,
+    "offset": 0,
+    "path": "$.obs[14]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 53,
+    "quotedToken": "- memcached-profile"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 54,
+    "offset": 0,
+    "path": "$.obs[15]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 54,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 33,
+    "offset": 0,
+    "path": "$.obs[16]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 33,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 48,
+    "offset": 0,
+    "path": "$.obs[17]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 48,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 50,
+    "offset": 0,
+    "path": "$.obs[18]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 50,
+    "quotedToken": "entrypoint: profile"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 67,
+    "offset": 0,
+    "path": "$.obs[19]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 67,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 69,
+    "offset": 0,
+    "path": "$.obs[20]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 69,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 66,
+    "offset": 0,
+    "path": "$.obs[21]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 66,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 74,
+    "offset": 0,
+    "path": "$.obs[22]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 74,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 13,
+    "offset": 0,
+    "path": "$.obs[23]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 13,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 70,
+    "offset": 0,
+    "path": "$.obs[24]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 70,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 72,
+    "offset": 0,
+    "path": "$.obs[25]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 72,
+    "quotedToken": "entrypoint: search"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 87,
+    "offset": 0,
+    "path": "$.obs[26]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 87,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 89,
+    "offset": 0,
+    "path": "$.obs[27]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 89,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 86,
+    "offset": 0,
+    "path": "$.obs[28]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 86,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 94,
+    "offset": 0,
+    "path": "$.obs[29]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 94,
+    "quotedToken": "- mongodb-geo"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 95,
+    "offset": 0,
+    "path": "$.obs[30]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 95,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 18,
+    "offset": 0,
+    "path": "$.obs[31]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 18,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 90,
+    "offset": 0,
+    "path": "$.obs[32]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 90,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 92,
+    "offset": 0,
+    "path": "$.obs[33]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 92,
+    "quotedToken": "entrypoint: geo"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 108,
+    "offset": 0,
+    "path": "$.obs[34]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 108,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 110,
+    "offset": 0,
+    "path": "$.obs[35]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 110,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 107,
+    "offset": 0,
+    "path": "$.obs[36]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 107,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 115,
+    "offset": 0,
+    "path": "$.obs[37]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 115,
+    "quotedToken": "- mongodb-rate"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 116,
+    "offset": 0,
+    "path": "$.obs[38]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 116,
+    "quotedToken": "- memcached-rate"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 117,
+    "offset": 0,
+    "path": "$.obs[39]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 117,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 23,
+    "offset": 0,
+    "path": "$.obs[40]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 23,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 111,
+    "offset": 0,
+    "path": "$.obs[41]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 111,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 113,
+    "offset": 0,
+    "path": "$.obs[42]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 113,
+    "quotedToken": "entrypoint: rate"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 127,
+    "offset": 0,
+    "path": "$.obs[43]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 127,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 130,
+    "offset": 0,
+    "path": "$.obs[44]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 130,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 129,
+    "offset": 0,
+    "path": "$.obs[45]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 129,
+    "quotedToken": "- MEMC_TIMEOUT"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 126,
+    "offset": 0,
+    "path": "$.obs[46]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 126,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 136,
+    "offset": 0,
+    "path": "$.obs[47]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 136,
+    "quotedToken": "- mongodb-review"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 137,
+    "offset": 0,
+    "path": "$.obs[48]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 137,
+    "quotedToken": "- memcached-review"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 138,
+    "offset": 0,
+    "path": "$.obs[49]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 138,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 48,
+    "offset": 0,
+    "path": "$.obs[50]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 48,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 131,
+    "offset": 0,
+    "path": "$.obs[51]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 131,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 133,
+    "offset": 0,
+    "path": "$.obs[52]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 133,
+    "quotedToken": "entrypoint: review"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 144,
+    "offset": 0,
+    "path": "$.obs[53]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 144,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 147,
+    "offset": 0,
+    "path": "$.obs[54]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 147,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 146,
+    "offset": 0,
+    "path": "$.obs[55]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 146,
+    "quotedToken": "- MEMC_TIMEOUT"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 143,
+    "offset": 0,
+    "path": "$.obs[56]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 143,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 153,
+    "offset": 0,
+    "path": "$.obs[57]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 153,
+    "quotedToken": "- mongodb-attractions"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 154,
+    "offset": 0,
+    "path": "$.obs[58]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 154,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 53,
+    "offset": 0,
+    "path": "$.obs[59]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 53,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 148,
+    "offset": 0,
+    "path": "$.obs[60]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 148,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 150,
+    "offset": 0,
+    "path": "$.obs[61]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 150,
+    "quotedToken": "entrypoint: attractions"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 163,
+    "offset": 0,
+    "path": "$.obs[62]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 163,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 165,
+    "offset": 0,
+    "path": "$.obs[63]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 165,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 162,
+    "offset": 0,
+    "path": "$.obs[64]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 162,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 170,
+    "offset": 0,
+    "path": "$.obs[65]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 170,
+    "quotedToken": "- mongodb-recommendation"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 171,
+    "offset": 0,
+    "path": "$.obs[66]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 171,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 43,
+    "offset": 0,
+    "path": "$.obs[67]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 43,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 166,
+    "offset": 0,
+    "path": "$.obs[68]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 166,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 168,
+    "offset": 0,
+    "path": "$.obs[69]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 168,
+    "quotedToken": "entrypoint: recommendation"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 184,
+    "offset": 0,
+    "path": "$.obs[70]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 184,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 186,
+    "offset": 0,
+    "path": "$.obs[71]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 186,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 183,
+    "offset": 0,
+    "path": "$.obs[72]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 183,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 191,
+    "offset": 0,
+    "path": "$.obs[73]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 191,
+    "quotedToken": "- mongodb-user"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 192,
+    "offset": 0,
+    "path": "$.obs[74]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 192,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 38,
+    "offset": 0,
+    "path": "$.obs[75]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 38,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 187,
+    "offset": 0,
+    "path": "$.obs[76]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 187,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 189,
+    "offset": 0,
+    "path": "$.obs[77]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 189,
+    "quotedToken": "entrypoint: user"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 205,
+    "offset": 0,
+    "path": "$.obs[78]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 205,
+    "quotedToken": "- GC"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 207,
+    "offset": 0,
+    "path": "$.obs[79]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 207,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 204,
+    "offset": 0,
+    "path": "$.obs[80]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 204,
+    "quotedToken": "- TLS"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 212,
+    "offset": 0,
+    "path": "$.obs[81]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 212,
+    "quotedToken": "- mongodb-reservation"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 213,
+    "offset": 0,
+    "path": "$.obs[82]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 213,
+    "quotedToken": "- memcached-reserve"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 214,
+    "offset": 0,
+    "path": "$.obs[83]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 214,
+    "quotedToken": "- consul"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 28,
+    "offset": 0,
+    "path": "$.obs[84]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 28,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 208,
+    "offset": 0,
+    "path": "$.obs[85]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 208,
+    "quotedToken": "build: ."
+   },
+   {
+    "status": "ok",
+    "matchedLine": 210,
+    "offset": 0,
+    "path": "$.obs[86]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 210,
+    "quotedToken": "entrypoint: reservation"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 58,
+    "offset": 0,
+    "path": "$.obs[87]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 58,
+    "quotedToken": "image: ${HR_JAEGER_IMAGE:-jaegertracing/all-in-one:1.60}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.obs[88]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 60,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 62,
+    "offset": 0,
+    "path": "$.obs[89]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 62,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.obs[90]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 64,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 66,
+    "offset": 0,
+    "path": "$.obs[91]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 66,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 68,
+    "offset": 0,
+    "path": "$.obs[92]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 68,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 70,
+    "offset": 0,
+    "path": "$.obs[93]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 70,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 72,
+    "offset": 0,
+    "path": "$.obs[94]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 72,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 74,
+    "offset": 0,
+    "path": "$.obs[95]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 74,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 76,
+    "offset": 0,
+    "path": "$.obs[96]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 76,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 78,
+    "offset": 0,
+    "path": "$.obs[97]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 78,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 80,
+    "offset": 0,
+    "path": "$.obs[98]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 80,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 82,
+    "offset": 0,
+    "path": "$.obs[99]",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 82,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 74,
+    "offset": 0,
+    "path": "$.obs[100]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/attractions/main.go",
+    "line": 74,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 52,
+    "offset": 0,
+    "path": "$.obs[101]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/frontend/main.go",
+    "line": 52,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 57,
+    "offset": 0,
+    "path": "$.obs[102]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/geo/main.go",
+    "line": 57,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 62,
+    "offset": 0,
+    "path": "$.obs[103]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/profile/main.go",
+    "line": 62,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 63,
+    "offset": 0,
+    "path": "$.obs[104]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/rate/main.go",
+    "line": 63,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 58,
+    "offset": 0,
+    "path": "$.obs[105]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/recommendation/main.go",
+    "line": 58,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 62,
+    "offset": 0,
+    "path": "$.obs[106]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/reservation/main.go",
+    "line": 62,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 74,
+    "offset": 0,
+    "path": "$.obs[107]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/review/main.go",
+    "line": 74,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 55,
+    "offset": 0,
+    "path": "$.obs[108]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/search/main.go",
+    "line": 55,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 58,
+    "offset": 0,
+    "path": "$.obs[109]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/user/main.go",
+    "line": 58,
+    "quotedToken": "registry.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 55,
+    "offset": 0,
+    "path": "$.obs[110]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/dialer/dialer.go",
+    "line": 55,
+    "quotedToken": "grpc.Dial"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 14,
+    "offset": 0,
+    "path": "$.obs[111]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 14,
+    "quotedToken": "consul.DefaultConfig"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 17,
+    "offset": 0,
+    "path": "$.obs[112]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 17,
+    "quotedToken": "consul.NewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 55,
+    "offset": 0,
+    "path": "$.obs[113]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 55,
+    "quotedToken": "os.Getenv"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 55,
+    "offset": 0,
+    "path": "$.obs[114]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 55,
+    "quotedToken": "\"DSB_GRPC_NETWORK\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 85,
+    "offset": 0,
+    "path": "$.obs[115]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 85,
+    "quotedToken": "consul.AgentServiceRegistration"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 92,
+    "offset": 0,
+    "path": "$.obs[116]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 92,
+    "quotedToken": "c.Agent().ServiceRegister"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 97,
+    "offset": 0,
+    "path": "$.obs[117]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 97,
+    "quotedToken": "c.Agent().ServiceDeregister"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 128,
+    "offset": 0,
+    "path": "$.obs[118]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 128,
+    "quotedToken": "search.NewSearchClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 133,
+    "offset": 0,
+    "path": "$.obs[119]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 133,
+    "quotedToken": "dialer.Dial"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 135,
+    "offset": 0,
+    "path": "$.obs[120]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 135,
+    "quotedToken": "dialer.WithTracer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 136,
+    "offset": 0,
+    "path": "$.obs[121]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 136,
+    "quotedToken": "dialer.WithBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 141,
+    "offset": 0,
+    "path": "$.obs[122]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 141,
+    "quotedToken": "review.NewReviewClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 146,
+    "offset": 0,
+    "path": "$.obs[123]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 146,
+    "quotedToken": "dialer.Dial"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 148,
+    "offset": 0,
+    "path": "$.obs[124]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 148,
+    "quotedToken": "dialer.WithTracer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 149,
+    "offset": 0,
+    "path": "$.obs[125]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 149,
+    "quotedToken": "dialer.WithBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 154,
+    "offset": 0,
+    "path": "$.obs[126]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 154,
+    "quotedToken": "attractions.NewAttractionsClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 163,
+    "offset": 0,
+    "path": "$.obs[127]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 163,
+    "quotedToken": "profile.NewProfileClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 172,
+    "offset": 0,
+    "path": "$.obs[128]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 172,
+    "quotedToken": "recommendation.NewRecommendationClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 181,
+    "offset": 0,
+    "path": "$.obs[129]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 181,
+    "quotedToken": "user.NewUserClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 190,
+    "offset": 0,
+    "path": "$.obs[130]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 190,
+    "quotedToken": "reservation.NewReservationClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 200,
+    "offset": 0,
+    "path": "$.obs[131]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 200,
+    "quotedToken": "dialer.Dial"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 201,
+    "offset": 0,
+    "path": "$.obs[132]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 201,
+    "quotedToken": "\"consul://%s/%s.%s\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 202,
+    "offset": 0,
+    "path": "$.obs[133]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 202,
+    "quotedToken": "dialer.WithTracer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 204,
+    "offset": 0,
+    "path": "$.obs[134]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 204,
+    "quotedToken": "dialer.Dial"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 205,
+    "offset": 0,
+    "path": "$.obs[135]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 205,
+    "quotedToken": "\"consul://%s/%s\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 206,
+    "offset": 0,
+    "path": "$.obs[136]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 206,
+    "quotedToken": "dialer.WithTracer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 207,
+    "offset": 0,
+    "path": "$.obs[137]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/frontend/server.go",
+    "line": 207,
+    "quotedToken": "dialer.WithBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 101,
+    "offset": 0,
+    "path": "$.obs[138]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 101,
+    "quotedToken": "geo.NewGeoClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 110,
+    "offset": 0,
+    "path": "$.obs[139]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 110,
+    "quotedToken": "rate.NewRateClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 116,
+    "offset": 0,
+    "path": "$.obs[140]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 116,
+    "quotedToken": "dialer.Dial"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 117,
+    "offset": 0,
+    "path": "$.obs[141]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 117,
+    "quotedToken": "\"consul://%s/%s.%s\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 118,
+    "offset": 0,
+    "path": "$.obs[142]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 118,
+    "quotedToken": "dialer.WithTracer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 120,
+    "offset": 0,
+    "path": "$.obs[143]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 120,
+    "quotedToken": "dialer.Dial"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 121,
+    "offset": 0,
+    "path": "$.obs[144]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 121,
+    "quotedToken": "\"consul://%s/%s\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 122,
+    "offset": 0,
+    "path": "$.obs[145]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 122,
+    "quotedToken": "dialer.WithTracer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 123,
+    "offset": 0,
+    "path": "$.obs[146]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 123,
+    "quotedToken": "dialer.WithBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 57,
+    "offset": 0,
+    "path": "$.obs[147]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tls/options.go",
+    "line": 57,
+    "quotedToken": "os.LookupEnv"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 57,
+    "offset": 0,
+    "path": "$.obs[148]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tls/options.go",
+    "line": 57,
+    "quotedToken": "\"TLS\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 20,
+    "offset": 0,
+    "path": "$.obs[149]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tracing/tracer.go",
+    "line": 20,
+    "quotedToken": "os.LookupEnv"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 20,
+    "offset": 0,
+    "path": "$.obs[150]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tracing/tracer.go",
+    "line": 20,
+    "quotedToken": "\"JAEGER_SAMPLE_RATIO\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 24,
+    "offset": 0,
+    "path": "$.obs[151]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tune/setting.go",
+    "line": 24,
+    "quotedToken": "os.LookupEnv"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 24,
+    "offset": 0,
+    "path": "$.obs[152]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tune/setting.go",
+    "line": 24,
+    "quotedToken": "\"GC\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 34,
+    "offset": 0,
+    "path": "$.obs[153]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tune/setting.go",
+    "line": 34,
+    "quotedToken": "os.LookupEnv"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 34,
+    "offset": 0,
+    "path": "$.obs[154]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tune/setting.go",
+    "line": 34,
+    "quotedToken": "\"LOG_LEVEL\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 57,
+    "offset": 0,
+    "path": "$.obs[155]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tune/setting.go",
+    "line": 57,
+    "quotedToken": "os.LookupEnv"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 57,
+    "offset": 0,
+    "path": "$.obs[156]",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tune/setting.go",
+    "line": 57,
+    "quotedToken": "\"MEMC_TIMEOUT\""
+   }
+  ]
+ }
+}

@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "extractor": "A",
+    "service": "accountingservice",
+    "entry": 34
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "accountingservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 21,
+        "quotedToken": "accountingservice:"
+      },
+      "container": {
+        "value": "accounting-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 23,
+        "quotedToken": "container_name: accounting-service",
+        "note": "Image is ${IMAGE_NAME}:${DEMO_VERSION}-accountingservice (docker-compose.yml:22). The compose block (lines 21-45) has no healthcheck key, so no container health check is configured for this service; it is a consumer and exposes no port. restart: unless-stopped (line 33), memory limit 120M (line 32)."
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 23,
+        "quotedToken": "container_name: accounting-service",
+        "note": "No deploy.replicas or scale key in the block (docker-compose.yml:21-45); a fixed container_name admits one container. Replica count is not stated explicitly."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "docker-compose.yml",
+          "line": 36,
+          "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}",
+          "note": "OTLP over HTTP; OTEL_COLLECTOR_HOST=otelcol and OTEL_COLLECTOR_PORT_HTTP=4318 in .env:27 and .env:29. Instrumentation is OpenTelemetry.AutoInstrumentation 1.8.0 (AccountingService.csproj:20) launched through ./instrument.sh (Dockerfile:32). No export interval is set in these files (library default, not in these files). Harness override compose.candidate-postures.yml:22-24 sets OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER from ${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER}, unresolved in these files; whether the exporter is otlp or none per posture is not stated here."
+        }
+      ],
+      "consumes": [
+        {
+          "topic": {
+            "value": "orders",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "src/accountingservice/Consumer.cs",
+            "line": 12,
+            "quotedToken": "TopicName = \"orders\"",
+            "note": "Subscribed at Consumer.cs:26 (_consumer.Subscribe(TopicName))."
+          },
+          "group": {
+            "value": "accountingservice",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "src/accountingservice/Consumer.cs",
+            "line": 77,
+            "quotedToken": "GroupId = $\"accountingservice\"",
+            "note": "EnableAutoCommit = true and AutoOffsetReset.Earliest at Consumer.cs:80-81."
+          }
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": {
+        "value": "orders",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "src/accountingservice/Consumer.cs",
+        "line": 12,
+        "quotedToken": "TopicName = \"orders\""
+      },
+      "broker": {
+        "value": "kafka",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": ".env",
+        "line": 139,
+        "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}",
+        "note": "Bootstrap address read from env KAFKA_SERVICE_ADDR (Consumer.cs:22); passed through in docker-compose.yml:35."
+      }
+    }
+  ],
+  "consumerGroups": [
+    {
+      "name": {
+        "value": "accountingservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "src/accountingservice/Consumer.cs",
+        "line": 77,
+        "quotedToken": "GroupId = $\"accountingservice\""
+      },
+      "coordinator": {
+        "value": "kafka",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": ".env",
+        "line": 139,
+        "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}",
+        "note": "The only broker this consumer is configured against (BootstrapServers = servers, Consumer.cs:78). The group coordinator role of the broker is Kafka protocol behaviour, not stated in these files."
+      }
+    }
+  ],
+  "coordinators": [
+    {
+      "name": {
+        "value": "kafka",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": ".env",
+        "line": 139,
+        "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}"
+      },
+      "type": {
+        "value": "ConsumerGroupCoordinator",
+        "basis": "documented-default",
+        "sourceUrl": "https://kafka.apache.org/documentation/#consumerconfigs_group.id",
+        "quotedToken": "group.id",
+        "note": "Consumer sets GroupId (Consumer.cs:77) so the group protocol applies; type is the library/protocol behaviour, not stated in these files."
+      },
+      "hostedBy": {
+        "value": "kafka",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": ".env",
+        "line": 139,
+        "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}"
+      },
+      "liveness": [
+        {
+          "mechanism": {
+            "value": "session",
+            "basis": "documented-default",
+            "sourceUrl": "https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
+            "quotedToken": "session.timeout.ms",
+            "note": "library default, not in these files: the ConsumerConfig block (Consumer.cs:75-82) sets GroupId, BootstrapServers, AutoOffsetReset and EnableAutoCommit only; no SessionTimeoutMs, HeartbeatIntervalMs or MaxPollIntervalMs."
+          },
+          "monitors": [
+            {
+              "value": "accountingservice",
+              "basis": "cited",
+              "repo": "upstream",
+              "sourceFile": "src/accountingservice/Consumer.cs",
+              "line": 77,
+              "quotedToken": "GroupId = $\"accountingservice\"",
+              "note": "Group member tracked by the group coordinator."
+            }
+          ],
+          "heartbeatIntervalSeconds": {
+            "value": 3,
+            "basis": "documented-default",
+            "sourceUrl": "https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
+            "quotedToken": "heartbeat.interval.ms",
+            "note": "library default, not in these files (librdkafka heartbeat.interval.ms 3000; Confluent.Kafka 2.5.3 per AccountingService.csproj:12). Config block Consumer.cs:75."
+          },
+          "failureTimeoutSeconds": {
+            "value": 45,
+            "basis": "documented-default",
+            "sourceUrl": "https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md",
+            "quotedToken": "session.timeout.ms",
+            "note": "library default, not in these files (librdkafka session.timeout.ms 45000). Config block Consumer.cs:75."
+          },
+          "heartbeatThreadIndependentOfWork": {
+            "value": true,
+            "basis": "documented-default",
+            "sourceUrl": "https://github.com/confluentinc/librdkafka/blob/master/INTRODUCTION.md",
+            "quotedToken": "heartbeat",
+            "note": "library behaviour, not in these files: librdkafka sends heartbeats from its own background thread; the service only calls _consumer.Consume() in a loop (Consumer.cs:41), and max.poll.interval.ms (library default, not in these files) still bounds time between Consume calls. Cleanup interval is a broker setting, not stated in these files."
+          }
+        }
+      ]
+    }
+  ]
+}

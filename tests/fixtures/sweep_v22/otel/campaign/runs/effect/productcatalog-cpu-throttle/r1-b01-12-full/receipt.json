@@ -1,0 +1,34 @@
+{
+  "error": null,
+  "kind": "otel-demo-candidate-cell-receipt-v1",
+  "promotionAuthorized": false,
+  "result": {
+    "completed": 180,
+    "failed": 0,
+    "offered": 180
+  },
+  "runId": "7c56c9161957c584bf4d7dfc",
+  "runKey": {
+    "attempt": 1,
+    "block": 1,
+    "posture": "full",
+    "regime": "productcatalog-cpu-throttle-effect",
+    "requestsPerSecond": 1.0,
+    "studyEpoch": "otel-traffic-sweep-v1"
+  },
+  "schemaVersion": 1,
+  "state": "valid",
+  "target": {
+    "executionIdentity": {
+      "gid": 1016,
+      "supplementalGids": [
+        998
+      ],
+      "uid": 1016,
+      "user": "stig"
+    },
+    "host": "fb14srv6",
+    "setupUser": "root",
+    "transportUser": "root"
+  }
+}

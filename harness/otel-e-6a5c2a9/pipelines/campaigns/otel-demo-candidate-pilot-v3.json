@@ -1,0 +1,318 @@
+{
+  "analysis": {
+    "comparativeUnit": "complete-(regime,block)",
+    "costAndEffectPoolable": false,
+    "descriptiveOnly": true,
+    "forbidden": [
+      "observation-count-as-replication",
+      "source-off-as-none",
+      "unsupported-posture-imputation",
+      "cross-family-replication-from-channel-alias"
+    ],
+    "report": [
+      "raw-blocks",
+      "paired-deltas",
+      "ranges",
+      "order-time-thermal-diagnostics",
+      "typed-abstentions"
+    ]
+  },
+  "design": {
+    "blocksPerRegime": 3,
+    "coldStartEachRun": true,
+    "postures": [
+      "none",
+      "selected",
+      "async",
+      "full"
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "cost",
+        "fault": null,
+        "id": "no-fault-cost",
+        "kind": "cost"
+      },
+      {
+        "artifactRootClass": "effect/frontend-pause",
+        "fault": "frontend-pause",
+        "id": "frontend-pause-effect",
+        "kind": "effect"
+      }
+    ],
+    "runsPerBlock": 4,
+    "totalRuns": 24
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true,
+    "runtimeSuccessDoesNotPromote": true
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "independentOfScoredTelemetry": true,
+      "intervalLabel": "intervention-exposure",
+      "requiredReceiptFields": [
+        "scenario",
+        "service",
+        "targetContainerId",
+        "targetImageId",
+        "preState",
+        "duringStateSamples",
+        "postState",
+        "actualOnsetMonotonicOffsetSeconds",
+        "actualOffsetMonotonicOffsetSeconds",
+        "manifested",
+        "recovered",
+        "successful",
+        "error"
+      ],
+      "scenarioContracts": [
+        {
+          "commandFamily": "container-pause-unpause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "postPredicate": "running-and-unpaused-and-ready",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "frontend-pause",
+          "service": "frontend"
+        }
+      ],
+      "source": "controller-and-target-state-probes"
+    },
+    "path": {
+      "crossTraceAssemblyAllowed": false,
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "executedDenominator": "application-side-request-witness",
+      "expectedNoFaultPath": [
+        "frontendproxy",
+        "frontend",
+        "recommendationservice"
+      ],
+      "faultSpecificTruth": {
+        "frontend-pause": {
+          "duringFaultExpectedOutcome": "offered-request-with-frontend-unavailable",
+          "duringFaultFullPathRequired": false,
+          "postRecoveryFullPathRequired": true,
+          "preFaultFullPathRequired": true
+        }
+      },
+      "missingWitnessOrCorrelationState": "unsupported",
+      "numericMissingValue": null,
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "requiredCorrelation": [
+        "opaque-request-token",
+        "application-side-request-witness",
+        "original-trace-id",
+        "one-to-one-token-trace-mapping"
+      ],
+      "scoredPhases": [
+        "pre-fault",
+        "during-fault",
+        "post-readiness"
+      ]
+    }
+  },
+  "id": "otel-demo-candidate-pilot-v3",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "otel-demo",
+  "outcomes": {
+    "costRegimeOnly": "no-fault-cost",
+    "effectResourcesAreCostEstimates": false,
+    "offeredRequestsAreDenominator": true,
+    "primaryCostEndpoint": "application-cpu-seconds-per-offered-request",
+    "retainedTraceBytesAreWireBytes": false,
+    "windowMembership": "monotonic-shared-barrier"
+  },
+  "postureRealization": {
+    "async": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "emailservice",
+          "flagd",
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "closureDecision": "instrumentation is activated on the selected closure plus accountingservice, checkoutservice, frauddetectionservice, kafka (the order path and its Kafka consumers); every other application service still runs in async, uninstrumented, exactly as under none and selected. Running is not the posture; instrumentation activation is, so the order path's dependencies (cartservice, currencyservice, emailservice, paymentservice, productcatalogservice, quoteservice, shippingservice) run but are not instrumented",
+      "currentControl": "materialized-posture-controls-async-closure",
+      "reason": null,
+      "status": "implemented",
+      "workloadCaveat": "the offered request is /api/recommendations (frontendproxy, frontend, recommendationservice); it does not traverse checkout or Kafka, so the four added services are exercised only by their own background work in every regime"
+    },
+    "full": {
+      "claimBoundary": null,
+      "currentControl": "upstream-all-services-enabled",
+      "reason": null,
+      "status": "implemented"
+    },
+    "none": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "emailservice",
+          "flagd",
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "currentControl": "materialized-posture-controls",
+      "reason": null,
+      "status": "implemented"
+    },
+    "selected": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "emailservice",
+          "flagd",
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "currentControl": "materialized-posture-controls-selected-closure",
+      "reason": null,
+      "status": "implemented"
+    }
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "retryMayReplaceCell": false
+  },
+  "schedule": {
+    "algorithm": "sha256-regime-indexed-latin-rotation-v1",
+    "context": "schedule-v1",
+    "positionBalance": "latin-rectangle: 3 blocks x 4 postures per regime; each posture occupies 3 of the 4 ordinal positions once and none twice; a full 4x4 Latin square would need 4 blocks, which the declaration does not grant",
+    "postureCodes": {
+      "A": "async",
+      "F": "full",
+      "N": "none",
+      "S": "selected"
+    },
+    "seedSource": "study-epoch-and-regime-only"
+  },
+  "setupPreconditions": [
+    {
+      "enforcedBy": "modules/otel-demo/drivers/campaign_setup.py: auto refuses without a recorded posture-probe receipt bound to the pinned upstream commit and the probe script bytes",
+      "id": "posture-connection-probe-ok",
+      "requiredCounts": {
+        "disabledOtlpConnections": 0,
+        "enabledOtlpConnectionsMinimum": 1
+      },
+      "requiredOutput": "PROBE OK",
+      "stage": "before-gate-setup-and-after-every-upstream-repin",
+      "tool": "modules/otel-demo/tools/posture_connection_probe.sh",
+      "why": "text-level guard proofs missed currencyservice's unguarded initLogger() on 2026-09-06; only counting OTLP connections per posture sees a missed SDK init"
+    },
+    {
+      "detail": "the standing teastore-demo Compose project on fb14srv6 (WebUI :8080, DB :3306) must be removed by its owner: docker compose -p teastore-demo down",
+      "enforcedBy": "candidate_setup.assert_no_active_foreign refuses any running container or active Compose project at install and at readiness",
+      "id": "demo-stack-torn-down",
+      "ports": [
+        8080,
+        3306
+      ],
+      "stage": "before-gate-setup"
+    },
+    {
+      "detail": "ports 18080-18084 free and /home/stig/observability-placement-candidate-v4-runs/.srv6-runtime.lock absent",
+      "enforcedBy": "candidate_setup.ports_free and the shared srv6 lease in candidate-target-allocation.json",
+      "id": "reserved-ports-free-and-lease-absent",
+      "ports": [
+        18080,
+        18081,
+        18082,
+        18083,
+        18084
+      ],
+      "stage": "before-gate-setup"
+    }
+  ],
+  "source": {
+    "applicationFamily": "otel-demo",
+    "channel": "compose-otel-collector",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "status": "method-design-only",
+  "supersedes": {
+    "authority": "main repo research/otel-postures/DECLARATION.md at 6221145 (user 2026-09-30: new run, four postures, same regimes; fourth override of OTEL_RUN2_STOPPING_RULE.md)",
+    "descriptorByteSha256": "2fd3ee5501c3f65f3059b4adc55a650ee15643d9b6466f32d97ea9466df41299",
+    "descriptorCanonicalSha256": "c86874e0001544ae3c8289ba76cd54d3432112fcea2b01368775e27d9cc002b2",
+    "descriptorPath": "pipelines/campaigns/otel-demo-candidate-pilot-v2.json",
+    "studyEpoch": "otel-demo-candidate-pilot-v2",
+    "v2Disposition": "runs 1-3 executed under v2; run 3 (attempt 3) is terminal-valid 18/18 and stays thesis material, not pooled with v3; the v2 descriptor's bytes are unchanged",
+    "whatChanged": [
+      "a fourth posture async (selected plus accountingservice, checkoutservice, frauddetectionservice, kafka) nested between selected and full",
+      "runsPerBlock 3 -> 4 and totalRuns 18 -> 24; regimes, blocks, timing, ground truth and outcomes unchanged",
+      "the schedule is a 3x4 Latin rectangle by position, not a square"
+    ]
+  },
+  "target": {
+    "allocationPath": "modules/otel-demo/execution/candidate-target-allocation.json",
+    "dockerGid": 998,
+    "executionGid": 1016,
+    "executionUid": 1016,
+    "executionUser": "stig",
+    "host": "fb14srv6",
+    "leaseScope": "shared-srv6-host-exclusive-otel-then-online-boutique",
+    "setupUser": "root",
+    "transportUser": "root"
+  },
+  "timing": {
+    "faultOnsetSeconds": 180,
+    "interventionHoldSeconds": 150,
+    "measurementSeconds": 600,
+    "offeredRequestsPerRun": 600,
+    "requestsPerSecond": 1.0,
+    "warmupSeconds": 120
+  },
+  "workflow": {
+    "candidateExecutionEnabled": false,
+    "constructionBlockers": [
+      "amd64-source-guard-images-not-built-on-target",
+      "posture-connection-probe-receipt-not-recorded",
+      "gate-plan-pending",
+      "gate-run-not-requested"
+    ],
+    "externalMutationAllowed": false,
+    "runtimeAuthorized": false
+  }
+}

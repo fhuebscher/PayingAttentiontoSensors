@@ -1,0 +1,6 @@
+# Local TeX user tree (tlmgr --usermode; see build.sh) and the unpacked, untrusted template download
+texmf/
+template-src/
+*.xmpi
+*.abs
+*.xmpdata

@@ -1,0 +1,709 @@
+{
+ "mergeVersion": 2,
+ "system": "library:librdkafka@2.5.3",
+ "library": "librdkafka@2.5.3",
+ "sources": {
+  "obsplacement": {
+   "path": ".",
+   "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+  }
+ },
+ "aliases": {},
+ "agreement": {
+  "agreed": 8,
+  "contested": 4,
+  "agreement": 0.6666666666666666,
+  "byRelation": {
+   "library:config-default": {
+    "agreed": 4,
+    "contested": 1
+   },
+   "library:failure-detector": {
+    "agreed": 3,
+    "contested": 0
+   },
+   "library:heartbeat-thread-independent": {
+    "agreed": 1,
+    "contested": 0
+   },
+   "library:removal-signal": {
+    "agreed": 0,
+    "contested": 3
+   }
+  }
+ },
+ "log": {
+  "inputs": [
+   {
+    "origin": "A",
+    "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+    "sha256": "7e7855d5e34cc5e28f39833bbb1e5e8cced4657076a620decf421682eac98cd4"
+   },
+   {
+    "origin": "B",
+    "input": "research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json",
+    "sha256": "ee3c72aafbe76d26aa208060878b803a62cd21782990c950bbeec42ad3ee88f7"
+   }
+  ],
+  "schemaRejected": [],
+  "sourcesReplaced": [],
+  "dropped": [],
+  "droppedCount": {
+   "A": 0,
+   "B": 0
+  },
+  "checkedCount": {
+   "A": 12,
+   "B": 8
+  }
+ },
+ "agreed": [
+  {
+   "key": [
+    "librdkafka@2.5.3|coordinator.query.interval.ms",
+    "library:config-default",
+    "600000.0"
+   ],
+   "relation": "library:config-default",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[3]",
+     "subject": "coordinator.query.interval.ms",
+     "object": 600000,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "coordinator.query.interval.ms",
+      "value": 600000,
+      "unit": "ms",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 115,
+      "quotedToken": "coordinator.query.interval.ms            |  C  | 1 .. 3600000    |        600000",
+      "note": "How often to query for the current group coordinator; divided by ten while the assigned coordinator is down."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json",
+     "path": "$.facts[3]",
+     "subject": "coordinator.query.interval.ms",
+     "object": 600000,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "coordinator.query.interval.ms",
+      "value": 600000,
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 115,
+      "quotedToken": "600000"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "b3965b618f3d202e"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|heartbeat.interval.ms",
+    "library:config-default",
+    "3000.0"
+   ],
+   "relation": "library:config-default",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[1]",
+     "subject": "heartbeat.interval.ms",
+     "object": 3000,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "heartbeat.interval.ms",
+      "value": 3000,
+      "unit": "ms",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 111,
+      "quotedToken": "heartbeat.interval.ms                    |  C  | 1 .. 3600000    |          3000",
+      "note": "Described as 'Group session keepalive heartbeat interval.'"
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json",
+     "path": "$.facts[1]",
+     "subject": "heartbeat.interval.ms",
+     "object": 3000,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "heartbeat.interval.ms",
+      "value": 3000,
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 111,
+      "quotedToken": "3000"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "696c865c964d53af"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|max.poll.interval.ms",
+    "library:config-default",
+    "300000.0"
+   ],
+   "relation": "library:config-default",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[2]",
+     "subject": "max.poll.interval.ms",
+     "object": 300000,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "max.poll.interval.ms",
+      "value": 300000,
+      "unit": "ms",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 116,
+      "quotedToken": "max.poll.interval.ms                     |  C  | 1 .. 86400000   |        300000",
+      "note": "If exceeded the consumer is considered failed and the group rebalances; the same line says the interval is checked two times per second."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json",
+     "path": "$.facts[2]",
+     "subject": "max.poll.interval.ms",
+     "object": 300000,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "max.poll.interval.ms",
+      "value": 300000,
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 116,
+      "quotedToken": "300000"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "fe40de6d1f139aef"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|max.poll.interval.ms",
+    "library:failure-detector",
+    "client"
+   ],
+   "relation": "library:failure-detector",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[7]",
+     "subject": "max.poll.interval.ms",
+     "object": "client",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "max.poll.interval.ms",
+      "value": "client",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 4990,
+      "quotedToken": "rk->rk_conf.max_poll_interval_ms",
+      "note": "rd_kafka_cgrp_max_poll_interval_check_tmr_cb (line 4973) runs in the client; on exceeding it the client logs, flags MAX_POLL_EXCEEDED and leaves the group (line 5023, except static members) and triggers a rebalance (line 5030)."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json",
+     "path": "$.facts[6]",
+     "subject": "max.poll.interval.ms",
+     "object": "client",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "max.poll.interval.ms",
+      "value": "client",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 4984,
+      "quotedToken": "MAXPOLL",
+      "note": "rd_kafka_cgrp_max_poll_interval_check_tmr_cb (src/rdkafka_cgrp.c:4973) detects the overrun using rk->rk_conf.max_poll_interval_ms (line 4990) and then leaves the group."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "97c5905a12f59ae1"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|rd_kafka_cgrp_heartbeat",
+    "library:heartbeat-thread-independent",
+    true
+   ],
+   "relation": "library:heartbeat-thread-independent",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[8]",
+     "subject": "rd_kafka_cgrp_heartbeat",
+     "object": true,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "heartbeat-thread-independent",
+      "subject": "rd_kafka_cgrp_heartbeat",
+      "value": true,
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 5811,
+      "quotedToken": "rd_kafka_cgrp_heartbeat(rkcg)",
+      "note": "Heartbeat is sent from the cgrp serve path, which line 6229 documents as 'Called from main thread to serve the operational aspects of a cgrp' (rdkafka main thread, not the application poll call); it is rate-limited by group_heartbeat_intvl_ms (line 5809) and skipped once max.poll.interval.ms was exceeded (line 3287)."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json",
+     "path": "$.facts[7]",
+     "subject": "rd_kafka_cgrp_heartbeat",
+     "object": true,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "heartbeat-thread-independent",
+      "subject": "rd_kafka_cgrp_heartbeat",
+      "value": true,
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 5811,
+      "quotedToken": "rd_kafka_cgrp_heartbeat(rkcg);",
+      "note": "Called from rd_kafka_cgrp_join_state_serve (src/rdkafka_cgrp.c:5771-5814), which runs from rd_kafka_cgrp_serve; that function is documented 'Called from main thread' (line 6229). Application message processing enters via the consume queue (rd_kafka_consumer_err enqueues to rkcg_q, line 4992). Heartbeats stop once RD_KAFKA_CGRP_F_MAX_POLL_EXCEEDED is set (line 3287)."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "7828a1c7562ab1ff"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|session.timeout.ms",
+    "library:config-default",
+    "45000.0"
+   ],
+   "relation": "library:config-default",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[0]",
+     "subject": "session.timeout.ms",
+     "object": 45000,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "session.timeout.ms",
+      "value": 45000,
+      "unit": "ms",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 110,
+      "quotedToken": "session.timeout.ms                       |  C  | 1 .. 3600000    |         45000",
+      "note": "Consumer-only (C) property; the table row states default 45000."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json",
+     "path": "$.facts[0]",
+     "subject": "session.timeout.ms",
+     "object": 45000,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "session.timeout.ms",
+      "value": 45000,
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 110,
+      "quotedToken": "45000"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "1be3b17852637f2a"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|session.timeout.ms",
+    "library:failure-detector",
+    "client"
+   ],
+   "relation": "library:failure-detector",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[6]",
+     "subject": "session.timeout.ms",
+     "object": "client",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "session.timeout.ms",
+      "value": "client",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 5711,
+      "quotedToken": "group_session_timeout_ms",
+      "note": "Client-side check rd_kafka_cgrp_session_timeout_check: the client itself declares the session timed out after session.timeout.ms without a successful response from the group coordinator, then revokes the assignment and rejoins (line 5725); called from rd_kafka_cgrp_serve at line 6264 only in join state STEADY."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json",
+     "path": "$.facts[5]",
+     "subject": "session.timeout.ms",
+     "object": "client",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "session.timeout.ms",
+      "value": "client",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 5724,
+      "quotedToken": "SESSTMOUT",
+      "note": "rd_kafka_cgrp_session_timeout_check (src/rdkafka_cgrp.c:5699-5711) computes the timeout from group_session_timeout_ms (line 5711), which is the session.timeout.ms setting; on expiry the client revokes its assignment and rejoins."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "8127a4503ffb3f10"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|session.timeout.ms",
+    "library:failure-detector",
+    "group-coordinator"
+   ],
+   "relation": "library:failure-detector",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[5]",
+     "subject": "session.timeout.ms",
+     "object": "group-coordinator",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "session.timeout.ms",
+      "value": "group-coordinator",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 110,
+      "quotedToken": "the broker will remove the consumer from the group",
+      "note": "Property text: if no heartbeats are received by the broker within the session timeout, the broker removes the consumer and triggers a rebalance. Allowed range is set by broker configs group.min.session.timeout.ms and group.max.session.timeout.ms."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json",
+     "path": "$.facts[4]",
+     "subject": "session.timeout.ms",
+     "object": "group-coordinator",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "session.timeout.ms",
+      "value": "group-coordinator",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 110,
+      "quotedToken": "the broker will remove the consumer from the group",
+      "note": "Stated in the config description: the broker's group coordinator removes a member after no heartbeats within session.timeout.ms and triggers a rebalance."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "5a4d0ffe1bebe2a0"
+  }
+ ],
+ "contested": [
+  {
+   "key": [
+    "librdkafka@2.5.3|group.protocol",
+    "library:config-default",
+    "classic"
+   ],
+   "relation": "library:config-default",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[4]",
+     "subject": "group.protocol",
+     "object": "classic",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "group.protocol",
+      "value": "classic",
+      "unit": "none",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+      "line": 113,
+      "quotedToken": "group.protocol                           |  C  | classic, consumer |       classic",
+      "note": "Selects the original (classic) or the KIP-848 (consumer) protocol; the line says the default will change to consumer in next releases."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "dfe3916cba44c616"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|librdkafka client (maxpoll consumer error)",
+    "library:removal-signal",
+    "rd_kafka_resp_err__max_poll_exceeded"
+   ],
+   "relation": "library:removal-signal",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[10]",
+     "subject": "librdkafka client (MAXPOLL consumer error)",
+     "object": "RD_KAFKA_RESP_ERR__MAX_POLL_EXCEEDED",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "librdkafka client (MAXPOLL consumer error)",
+      "value": "RD_KAFKA_RESP_ERR__MAX_POLL_EXCEEDED",
+      "signal": "api",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 4993,
+      "quotedToken": "RD_KAFKA_RESP_ERR__MAX_POLL_EXCEEDED",
+      "note": "Enqueued to the application's consumer queue via rd_kafka_consumer_err (line 4992) with message 'Application maximum poll interval (%dms) exceeded by %dms'."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "15c28496845b3e94"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|librdkafka client (maxpoll log)",
+    "library:removal-signal",
+    "application maximum poll interval (%dms) exceeded by %dms (adjust max.poll.interval.ms for long-running message processing): leaving group"
+   ],
+   "relation": "library:removal-signal",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[9]",
+     "subject": "librdkafka client (MAXPOLL log)",
+     "object": "Application maximum poll interval (%dms) exceeded by %dms (adjust max.poll.interval.ms for long-running message processing): leaving group",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "librdkafka client (MAXPOLL log)",
+      "value": "Application maximum poll interval (%dms) exceeded by %dms (adjust max.poll.interval.ms for long-running message processing): leaving group",
+      "signal": "log",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 4984,
+      "quotedToken": "\"MAXPOLL\"",
+      "note": "Emitted by the client at LOG_WARNING when it removes itself after max.poll.interval.ms; not a group-coordinator log (no broker-side code in these files)."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "448bd29d720f92c2"
+  },
+  {
+   "key": [
+    "librdkafka@2.5.3|librdkafka client (sesstmout log)",
+    "library:removal-signal",
+    "consumer group session timed out (in join-state %s) after %ld ms without a successful response from the group coordinator (broker %d, last error was %s): revoking assignment and rejoining group"
+   ],
+   "relation": "library:removal-signal",
+   "library": "librdkafka@2.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json",
+     "path": "$.facts[11]",
+     "subject": "librdkafka client (SESSTMOUT log)",
+     "object": "Consumer group session timed out (in join-state %s) after %ld ms without a successful response from the group coordinator (broker %d, last error was %s): revoking assignment and rejoining group",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "librdkafka client (SESSTMOUT log)",
+      "value": "Consumer group session timed out (in join-state %s) after %ld ms without a successful response from the group coordinator (broker %d, last error was %s): revoking assignment and rejoining group",
+      "signal": "log",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+      "line": 5724,
+      "quotedToken": "\"SESSTMOUT\"",
+      "note": "Emitted by the client at LOG_WARNING (text assembled at lines 5713-5720 and 5725); the %ld stands for PRId64 in the source. Not a group-coordinator log."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "6612e260621af204"
+  }
+ ],
+ "deterministic": []
+}

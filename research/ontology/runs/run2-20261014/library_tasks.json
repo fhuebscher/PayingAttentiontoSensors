@@ -1,0 +1,390 @@
+[
+ {
+  "system": "library-knowledge",
+  "service": "Confluent.Kafka@2.5.3",
+  "library": "Confluent.Kafka",
+  "version": "2.5.3",
+  "extractor": "A",
+  "model": "sonnet",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Confluent.Kafka.csproj",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/confluentinc/confluent-kafka-dotnet",
+   "tag": "v2.5.3",
+   "commit": "5be2102e271aedc8795e8858a337018095b834c8"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/A/Confluent.Kafka@2.5.3.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "Confluent.Kafka@2.5.3",
+  "library": "Confluent.Kafka",
+  "version": "2.5.3",
+  "extractor": "B",
+  "model": "haiku",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Confluent.Kafka.csproj",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/confluentinc/confluent-kafka-dotnet",
+   "tag": "v2.5.3",
+   "commit": "5be2102e271aedc8795e8858a337018095b834c8"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/B/Confluent.Kafka@2.5.3.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "consul-api@1.26.1",
+  "library": "consul-api",
+  "version": "1.26.1",
+  "extractor": "A",
+  "model": "sonnet",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/consul-api@1.26.1/api/agent.go",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/consul-api@1.26.1/api/api.go"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/hashicorp/consul",
+   "tag": "api/v1.26.1",
+   "commit": "f28c594a16a1aad609ae6070217a188279db3ec3"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/A/consul-api@1.26.1.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "consul-api@1.26.1",
+  "library": "consul-api",
+  "version": "1.26.1",
+  "extractor": "B",
+  "model": "haiku",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/consul-api@1.26.1/api/agent.go",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/consul-api@1.26.1/api/api.go"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/hashicorp/consul",
+   "tag": "api/v1.26.1",
+   "commit": "f28c594a16a1aad609ae6070217a188279db3ec3"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/B/consul-api@1.26.1.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "grpc-consul-resolver@1.5.3",
+  "library": "grpc-consul-resolver",
+  "version": "1.5.3",
+  "extractor": "A",
+  "model": "sonnet",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/consul.go",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/target.go"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/mbobakov/grpc-consul-resolver",
+   "tag": "v1.5.3",
+   "commit": "3fa479d65dc4a5328996598f67993333d65ef364"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/A/grpc-consul-resolver@1.5.3.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "grpc-consul-resolver@1.5.3",
+  "library": "grpc-consul-resolver",
+  "version": "1.5.3",
+  "extractor": "B",
+  "model": "haiku",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/consul.go",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/target.go"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/mbobakov/grpc-consul-resolver",
+   "tag": "v1.5.3",
+   "commit": "3fa479d65dc4a5328996598f67993333d65ef364"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/B/grpc-consul-resolver@1.5.3.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "kafka-clients@3.6.0",
+  "library": "kafka-clients",
+  "version": "3.6.0",
+  "extractor": "A",
+  "model": "sonnet",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/CommonClientConfigs.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/ConsumerConfig.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/internals/AbstractCoordinator.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/internals/ConsumerCoordinator.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/internals/Heartbeat.java"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/apache/kafka",
+   "tag": "3.6.0",
+   "commit": "60e845626d8a465a8cfe68bb2d7d4b88d622634e"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/A/kafka-clients@3.6.0.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "kafka-clients@3.6.0",
+  "library": "kafka-clients",
+  "version": "3.6.0",
+  "extractor": "B",
+  "model": "haiku",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/CommonClientConfigs.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/ConsumerConfig.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/internals/AbstractCoordinator.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/internals/ConsumerCoordinator.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/consumer/internals/Heartbeat.java"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/apache/kafka",
+   "tag": "3.6.0",
+   "commit": "60e845626d8a465a8cfe68bb2d7d4b88d622634e"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/B/kafka-clients@3.6.0.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "librdkafka@2.5.3",
+  "library": "librdkafka",
+  "version": "2.5.3",
+  "extractor": "A",
+  "model": "sonnet",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/confluentinc/librdkafka",
+   "tag": "v2.5.3",
+   "commit": "9416dd80fb0dba71ff73a8cb4d2b919f54651006"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/A/librdkafka@2.5.3.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "librdkafka@2.5.3",
+  "library": "librdkafka",
+  "version": "2.5.3",
+  "extractor": "B",
+  "model": "haiku",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/confluentinc/librdkafka",
+   "tag": "v2.5.3",
+   "commit": "9416dd80fb0dba71ff73a8cb4d2b919f54651006"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/B/librdkafka@2.5.3.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "ribbon@2.7.18",
+  "library": "ribbon",
+  "version": "2.7.18",
+  "extractor": "A",
+  "model": "sonnet",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/LoadBalancerBuilder.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/ribbon@2.7.18/ribbon-core/src/main/java/com/netflix/client/config/CommonClientConfigKey.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/ribbon@2.7.18/ribbon-archaius/src/main/java/com/netflix/client/config/DefaultClientConfigImpl.java"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/Netflix/ribbon",
+   "tag": "v2.7.18",
+   "commit": "e327877cb47a56b68c705a68698ab67ded481aef"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "ribbon@2.7.18",
+  "library": "ribbon",
+  "version": "2.7.18",
+  "extractor": "B",
+  "model": "haiku",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/LoadBalancerBuilder.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/ribbon@2.7.18/ribbon-core/src/main/java/com/netflix/client/config/CommonClientConfigKey.java",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/ribbon@2.7.18/ribbon-archaius/src/main/java/com/netflix/client/config/DefaultClientConfigImpl.java"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/Netflix/ribbon",
+   "tag": "v2.7.18",
+   "commit": "e327877cb47a56b68c705a68698ab67ded481aef"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "sarama@1.43.2",
+  "library": "sarama",
+  "version": "1.43.2",
+  "extractor": "A",
+  "model": "sonnet",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/sarama@1.43.2/consumer_group.go"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/IBM/sarama",
+   "tag": "v1.43.2",
+   "commit": "0ab2bb77aeca321f41a0953a8c6f52472607a59e"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/A/sarama@1.43.2.json"
+ },
+ {
+  "system": "library-knowledge",
+  "service": "sarama@1.43.2",
+  "library": "sarama",
+  "version": "1.43.2",
+  "extractor": "B",
+  "model": "haiku",
+  "files": [
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/vendor/libs/sarama@1.43.2/consumer_group.go"
+  ],
+  "deployment": [],
+  "stage1": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/libraries.json",
+  "sourceFileRoot": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+  "sources": {
+   "obsplacement": {
+    "path": ".",
+    "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+   }
+  },
+  "upstream": {
+   "repository": "https://github.com/IBM/sarama",
+   "tag": "v1.43.2",
+   "commit": "0ab2bb77aeca321f41a0953a8c6f52472607a59e"
+  },
+  "out": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/B/sarama@1.43.2.json"
+ }
+]

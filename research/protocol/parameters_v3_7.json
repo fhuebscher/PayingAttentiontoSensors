@@ -1,0 +1,117 @@
+{
+ "schemaVersion": 1,
+ "title": "Parameter registry of analysis v3.7 (research/detection-time/sweep_analysis_v3_7.py, research/placement/celf_v3_7.py, research/placement/score_test_v3_7.py): Hotel's off-path epoch hotel-offpath-v1, which v3.4 admits for lanes only, admitted as a campaign-E-role epoch (the Hotel arm of R1's analysis, research/traffic-sweep/BUDGET_TS_PLACEMENT_20261015.md, 2501e86; scope extension by the user 2026-10-15 ~07:30Z), and the pass rule it is scored under. parameters_v3_4.json, parameters_v3_3.json, parameters_v3_2.json and parameters_v3_6.json are not changed.",
+ "provenanceRule": "Protocol decision 37: every hyperparameter is traced to its origin. A separate file, so that parameters_v3_4.json (sha256 7b8b921f..., FREEZE_V34_20261015.md) and parameters_v3_6.json (FREEZE_V36_20261015.md) stay byte-identical. Written 2026-10-15 against the Hotel harness 9ad0b98 (DECLARATION_HOTEL_OFFPATH.md 4945293, plan 90b7b621...), read-only. Every entry is `active`.",
+ "originTypes": [
+  "decision",
+  "literature",
+  "measured",
+  "upstream",
+  "engineering default",
+  "unknown"
+ ],
+ "parameters": [
+  {
+   "name": "V37_EPOCH_PROFILES",
+   "value": {
+    "hotel-offpath-v1": {
+     "system": "hotel",
+     "role": "campaign-E",
+     "shape": "hotel-sweep",
+     "noFaultRegime": "no-fault-calibration",
+     "faultRegimes": {
+      "consul-pause-effect": [
+       "consul",
+       "pause"
+      ],
+      "search-pause-effect": [
+       "search",
+       "pause"
+      ]
+     },
+     "regimeRoles": {
+      "no-fault-calibration": "no-fault",
+      "consul-pause-effect": "off-path-pause",
+      "search-pause-effect": "on-path-control"
+     },
+     "rates": [
+      10.0,
+      1.0
+     ],
+     "postures": [
+      "full"
+     ],
+     "extraCollectedServices": [
+      "consul"
+     ],
+     "design": {
+      "blocks": 5,
+      "cellsPerBlock": 6,
+      "cells": 30,
+      "episodesPerRegimeAndRate": 5,
+      "note": "informational except rates, postures and the regimes, which the reader enforces; the block number is read as 1..blocks"
+     },
+     "legacyHotelEpochs": [
+      "hotel-traffic-sweep-v1",
+      "hotel-quiet-calibration-v1"
+     ]
+    }
+   },
+   "unit": "study-epoch name -> cell profile, in V34_EPOCH_PROFILES's shape; ADDED to v3.3's table for the duration of a v3.7 run (v3.4 keeps it out of that table); differs from v3.4's entry in exactly one key, role (offpath-hotel -> campaign-E; asserted at import).",
+   "origin_type": "decision",
+   "origin_ref": "user, 2026-10-15 ~07:30Z ('strengthen it via the last set of runs'): the Hotel off-path epoch analysed like R1's TeaStore epoch, trained on blocks 1-3 and scored on blocks 4-5. Every other key is parameters_v3_4.json's (regimes no-fault-calibration, consul-pause-effect -> consul, search-pause-effect -> search, both pause; rates 10 and 1; posture full; 5 blocks, 6 cells per block, 30 cells).",
+   "status": "active"
+  },
+  {
+   "name": "V37_SPLIT",
+   "value": {
+    "train": [
+     1,
+     2,
+     3
+    ],
+    "test": [
+     4,
+     5
+    ]
+   },
+   "unit": "blocks {train, test}",
+   "origin_type": "decision",
+   "origin_ref": "as V36_SPLIT; equal to V32_E_SPLIT (asserted at import); research/protocol/split_hotel_offpath.json has the same content (byte-identical to split_f_otel.json).",
+   "status": "active"
+  },
+  {
+   "name": "V37_PASS_RULE",
+   "value": [
+    {
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+     "class": "consul-pause-effect",
+     "rate": 10,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "minEpisodes": 2
+    },
+    {
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+     "class": "consul-pause-effect",
+     "rate": 1,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "minEpisodes": 2
+    }
+   ],
+   "unit": "score_test_v3_2 rule list {set, class, rate, minGain, minImprovedEpisodes, minEpisodes}",
+   "origin_type": "decision",
+   "origin_ref": "F's pass rule (V32_PASS_RULE, decisions 99, 110, 112) mapped to this epoch as V36_PASS_RULE is to TeaStore's: the off-path class consul-pause-effect at each rate (10 and 1 req/s) separately; strictly positive g, strict improvement on >= 2 test episodes of the class at that rate, a dash below 2 valid test episodes (decision 91) or with a member absent (decision 90). search-pause-effect (on-path control) carries no verdict. Decision 73 unchanged.",
+   "status": "active"
+  },
+  {
+   "name": "V37_TIERS_RULE",
+   "value": "Hotel has no effort/runtime tier file in celf_v3_2's schema (research/placement/declared/hotel.json is the older family table): celf_v3_7 is run without one (no --tiers), so every candidate is in tiersMissingForGroundSet and only the (effort<=any, runtime<=any) cell admits it. No tier is invented. The pass rule names that cell.",
+   "unit": "text",
+   "origin_type": "engineering default",
+   "origin_ref": "as V36_TIERS_RULE (TeaStore).",
+   "status": "active"
+  }
+ ]
+}

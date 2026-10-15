@@ -1,0 +1,550 @@
+{
+ "condition1": {
+  "campaignsRead": [
+   "tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1"
+  ],
+  "expected": "def272fd4c9050f8226b88d756115e79",
+  "files": {
+   "def272fd4c9050f8226b88d756115e79": [
+    "tmp/teastore-offpath-evidence/r1-fetch/x/.lease-receipts/teastore-offpath-v1.json",
+    "tmp/teastore-offpath-evidence/r1-fetch/x/.packages/teastore-offpath-v1.json",
+    "tmp/teastore-offpath-evidence/r1-fetch/x/.supervisor/teastore-offpath-v1.json"
+   ]
+  },
+  "ok": true,
+  "setupIds": [
+   "def272fd4c9050f8226b88d756115e79"
+  ]
+ },
+ "inputs": {
+  "python": "3.13.12 (main, Mar  6 2026, 04:10:39) [Clang 14.0.3 (clang-1403.0.22.14.1)]",
+  "readout": "research/traffic-sweep/readout-teastore-offpath-r1-v3.3/sweep_analysis_v3_3.json",
+  "readoutSha256": "989b126312d0891653755a4b557828151557d4c74f295ee3d6da1520206633bf",
+  "script": "research/lanes/posthoc_lanes_v33.py",
+  "scriptSha256": "b203c2c3da2859686ac7a5f392d0dca184063870b20864849bbd02644d56b0c8"
+ },
+ "label": "POST HOC (not a preregistered verdict; written under FREEZE_V33_20261014.md addendum, condition 2)",
+ "plumbing": false,
+ "predictions": [
+  {
+   "id": "T-L1",
+   "numbers": {
+    "episodes": [
+     {
+      "below5s": false,
+      "block": 1,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b01-06-full",
+      "earliest": null,
+      "rate": 10.0
+     },
+     {
+      "below5s": false,
+      "block": 2,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b02-03-full",
+      "earliest": null,
+      "rate": 10.0
+     },
+     {
+      "below5s": false,
+      "block": 3,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b03-06-full",
+      "earliest": null,
+      "rate": 10.0
+     },
+     {
+      "below5s": false,
+      "block": 4,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b04-06-full",
+      "earliest": null,
+      "rate": 10.0
+     },
+     {
+      "below5s": false,
+      "block": 5,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b05-05-full",
+      "earliest": null,
+      "rate": 10.0
+     },
+     {
+      "below5s": false,
+      "block": 1,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b01-02-full",
+      "earliest": null,
+      "rate": 1.0
+     },
+     {
+      "below5s": false,
+      "block": 2,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b02-02-full",
+      "earliest": null,
+      "rate": 1.0
+     },
+     {
+      "below5s": false,
+      "block": 3,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b03-03-full",
+      "earliest": null,
+      "rate": 1.0
+     },
+     {
+      "below5s": false,
+      "block": 4,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b04-02-full",
+      "earliest": null,
+      "rate": 1.0
+     },
+     {
+      "below5s": false,
+      "block": 5,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b05-03-full",
+      "earliest": null,
+      "rate": 1.0
+     }
+    ],
+    "k": 0,
+    "n": 10,
+    "need": 9,
+    "samplerCaveat": "system-samples.json is a cgroup v2 sampler every 5 s (teastore_samples): a fire is stamped at a sample time, 0-5 s after the command, so '< 5 s' can fail on sampling phase alone; the actual times are listed, none is rounded to the sampler period"
+   },
+   "prediction": "own silence: the target's cgroup CPU (family S) fires down < 5 s after the pause command in >= 9/10",
+   "reason": "10 episodes of recommender-pause-effect (declared 10)",
+   "result": "miss"
+  },
+  {
+   "id": "T-L2",
+   "numbers": {
+    "byRate": {
+     "1": [
+      5,
+      5
+     ],
+     "10": [
+      5,
+      5
+     ]
+    },
+    "episodes": [
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 9.075531482696533,
+       "present": true
+      },
+      "block": 1,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b01-06-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 9.075531482696533
+      },
+      "rate": 10.0
+     },
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 12.033676624298096,
+       "present": true
+      },
+      "block": 2,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b02-03-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 12.033676624298096
+      },
+      "rate": 10.0
+     },
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 9.695236206054688,
+       "present": true
+      },
+      "block": 3,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b03-06-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 9.695236206054688
+      },
+      "rate": 10.0
+     },
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 9.833694458007812,
+       "present": true
+      },
+      "block": 4,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b04-06-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 9.833694458007812
+      },
+      "rate": 10.0
+     },
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 8.37147331237793,
+       "present": true
+      },
+      "block": 5,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b05-05-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 8.37147331237793
+      },
+      "rate": 10.0
+     },
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 10.531571865081787,
+       "present": true
+      },
+      "block": 1,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b01-02-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 10.531571865081787
+      },
+      "rate": 1.0
+     },
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 11.3147451877594,
+       "present": true
+      },
+      "block": 2,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b02-02-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 11.3147451877594
+      },
+      "rate": 1.0
+     },
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 10.218829870223999,
+       "present": true
+      },
+      "block": 3,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b03-03-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 10.218829870223999
+      },
+      "rate": 1.0
+     },
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 10.235307931900024,
+       "present": true
+      },
+      "block": 4,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b04-02-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 10.235307931900024
+      },
+      "rate": 1.0
+     },
+     {
+      "allCoordinatorFires": 1,
+      "applicationLogRemovalLine": {
+       "lagSeconds": 9.45079779624939,
+       "present": true
+      },
+      "block": 5,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b05-03-full",
+      "inWindow": true,
+      "inWindowFire": {
+       "bcFlags": [
+        "BC-caller-log"
+       ],
+       "field": "by-construction",
+       "rule": "appear",
+       "sensor": "log:registry:c2797874a226",
+       "ttd": 9.45079779624939
+      },
+      "rate": 1.0
+     }
+    ],
+    "k": 10,
+    "n": 10,
+    "need": 9,
+    "window": [
+     7.5,
+     12.5
+    ]
+   },
+   "prediction": "registry-log fire 7.5-12.5 s after the pause command (either field, the field named) in >= 9/10",
+   "reason": "10 episodes of recommender-pause-effect (declared 10)",
+   "result": "hit"
+  },
+  {
+   "id": "T-OFF",
+   "numbers": {
+    "episodes": [
+     {
+      "block": 1,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b01-06-full",
+      "hold": 60.244275748729706,
+      "ledgerFires": [],
+      "ledgerFiresAny": 0,
+      "ledgerFiresCounted": 0,
+      "ok": 603,
+      "okAtLeast95": true,
+      "onset": 60.095990646630526,
+      "rate": 10.0,
+      "share": 1.0,
+      "started": 603
+     },
+     {
+      "block": 2,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b02-03-full",
+      "hold": 60.261658541858196,
+      "ledgerFires": [],
+      "ledgerFiresAny": 0,
+      "ledgerFiresCounted": 0,
+      "ok": 603,
+      "okAtLeast95": true,
+      "onset": 60.159168023616076,
+      "rate": 10.0,
+      "share": 1.0,
+      "started": 603
+     },
+     {
+      "block": 3,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b03-06-full",
+      "hold": 60.253619000315666,
+      "ledgerFires": [],
+      "ledgerFiresAny": 0,
+      "ledgerFiresCounted": 0,
+      "ok": 603,
+      "okAtLeast95": true,
+      "onset": 60.096531042829156,
+      "rate": 10.0,
+      "share": 1.0,
+      "started": 603
+     },
+     {
+      "block": 4,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b04-06-full",
+      "hold": 60.24582777917385,
+      "ledgerFires": [],
+      "ledgerFiresAny": 0,
+      "ledgerFiresCounted": 0,
+      "ok": 603,
+      "okAtLeast95": true,
+      "onset": 60.09462065808475,
+      "rate": 10.0,
+      "share": 1.0,
+      "started": 603
+     },
+     {
+      "block": 5,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b05-05-full",
+      "hold": 60.23428736999631,
+      "ledgerFires": [
+       {
+        "bcFlags": [],
+        "counts": true,
+        "rule": "spike",
+        "sensor": "ledger:webui:login-only-v1",
+        "ttd": 5.0673167034983635
+       }
+      ],
+      "ledgerFiresAny": 1,
+      "ledgerFiresCounted": 1,
+      "ok": 603,
+      "okAtLeast95": true,
+      "onset": 60.09766282513738,
+      "rate": 10.0,
+      "share": 1.0,
+      "started": 603
+     },
+     {
+      "block": 1,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b01-02-full",
+      "hold": 60.22537409886718,
+      "ledgerFires": [],
+      "ledgerFiresAny": 0,
+      "ledgerFiresCounted": 0,
+      "ok": 60,
+      "okAtLeast95": true,
+      "onset": 60.54121242277324,
+      "rate": 1.0,
+      "share": 1.0,
+      "started": 60
+     },
+     {
+      "block": 2,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b02-02-full",
+      "hold": 60.24664454907179,
+      "ledgerFires": [],
+      "ledgerFiresAny": 0,
+      "ledgerFiresCounted": 0,
+      "ok": 61,
+      "okAtLeast95": true,
+      "onset": 60.81711121276021,
+      "rate": 1.0,
+      "share": 1.0,
+      "started": 61
+     },
+     {
+      "block": 3,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b03-03-full",
+      "hold": 60.24481004849076,
+      "ledgerFires": [],
+      "ledgerFiresAny": 0,
+      "ledgerFiresCounted": 0,
+      "ok": 60,
+      "okAtLeast95": true,
+      "onset": 60.24701574072242,
+      "rate": 1.0,
+      "share": 1.0,
+      "started": 60
+     },
+     {
+      "block": 4,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b04-02-full",
+      "hold": 60.22141055762768,
+      "ledgerFires": [],
+      "ledgerFiresAny": 0,
+      "ledgerFiresCounted": 0,
+      "ok": 61,
+      "okAtLeast95": true,
+      "onset": 60.861927431076765,
+      "rate": 1.0,
+      "share": 1.0,
+      "started": 61
+     },
+     {
+      "block": 5,
+      "cell": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r1-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b05-03-full",
+      "hold": 60.212895501405,
+      "ledgerFires": [],
+      "ledgerFiresAny": 0,
+      "ledgerFiresCounted": 0,
+      "ok": 60,
+      "okAtLeast95": true,
+      "onset": 60.063556587323546,
+      "rate": 1.0,
+      "share": 1.0,
+      "started": 60
+     }
+    ],
+    "noCountedLedgerFireClause": false,
+    "okShareClause": {
+     "k": 10,
+     "minShare": 0.95,
+     "n": 10,
+     "need": 9
+    },
+    "window": "journeys started in [onset, onset + hold] on the ledger monotonic clock"
+   },
+   "prediction": "login route stays off the fault: >= 95 % of login journeys ok during the hold in >= 9/10 episodes, and no ledger fire attributable",
+   "reason": "10 episodes of recommender-pause-effect (declared 10)",
+   "result": "miss"
+  },
+  {
+   "id": "T-C",
+   "numbers": {
+    "holds": true,
+    "k": 10,
+    "n": 10,
+    "notEvaluable": 0,
+    "perRate": {
+     "0.05": [
+      0,
+      0
+     ],
+     "0.2": [
+      0,
+      0
+     ],
+     "1": [
+      5,
+      5
+     ],
+     "10": [
+      5,
+      5
+     ]
+    }
+   },
+   "prediction": "on-path control: auth-freeze detected by the ledger (P1 holds, k == n)",
+   "reason": "predictions.P1 over the readout's auth-freeze episodes",
+   "result": "hit"
+  }
+ ],
+ "regime": "recommender-pause-effect",
+ "scope": "instance",
+ "switches": {
+  "EITHER_FIELD": true,
+  "HELD_OUT_ONLY": true,
+  "HOLD_WINDOW_ONLY": true,
+  "PRICE_ZERO_ALARM": true,
+  "REQUIRE_ONE_SETUP": true,
+  "ZERO_ALARM_FACTOR": 2.995732273553991
+ },
+ "system": "teastore",
+ "target": "recommender",
+ "version": "posthoc-lanes-v33"
+}

@@ -1,0 +1,31 @@
+schema_version: 1
+id: teastore-instrumentation-performance
+evidence_label: candidate-evidence
+module: teastore
+target: fb14srv5
+design:
+  postures: [none, selected, full]
+  order: randomized-block
+  repetitions: 5
+  warmup_seconds: 120
+  measurement_seconds: 600
+  offered_load: fixed-open-loop
+  same_host: true
+  cold_start_each_run: true
+measurements:
+  - offered-completed-failed-requests
+  - latency-p50-p95-p99
+  - application-cpu-seconds
+  - application-memory-peak-bytes
+  - host-cpu-seconds
+  - telemetry-records-bytes-unique-signatures
+  - rabbitmq-before-after-purge-consumer-state
+controls:
+  - server-hygiene-pass
+  - fixed-upstream-and-framework-commits
+  - no-concurrent-sut-projects
+  - activation-manifest-hash
+  - shutdown-and-zero-owned-resources-between-runs
+promotion:
+  canonical: false
+  reason: Promote only after all receipts validate, repetitions support uncertainty estimates, and no order or thermal trend is detected.

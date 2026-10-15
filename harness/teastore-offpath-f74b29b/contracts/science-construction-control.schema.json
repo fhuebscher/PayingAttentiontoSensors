@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/science-construction-control.schema.json",
+  "title": "Scientific construction epoch control",
+  "description": "Closed local construction envelope. It cannot authorize runtime, held-out access, canonical qualification, or promotion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema", "schemaVersion", "id", "claimCeiling", "parentEpoch",
+    "adoptedSource", "workflow", "openSpec", "artifacts", "sourceBindings",
+    "protocolBindings", "diagnosticObservations", "permissions", "checkIds",
+    "humanCheckpoints", "pathOwnership", "verification"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://observability-placement.local/contracts/science-construction-control.schema.json"
+    },
+    "schemaVersion": {"const": 2},
+    "id": {"const": "adopt-teastore-diagnostic-harness"},
+    "claimCeiling": {"const": "diagnostic-harness-adoption"},
+    "parentEpoch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["changeId", "commit", "tree"],
+      "properties": {
+        "changeId": {"const": "teastore-candidate-pilot-freeze"},
+        "commit": {"const": "b331aa4d365d7d41accc7d7cf1c20904fab2f622"},
+        "tree": {"const": "998aaba29c8ba43f5f3929aacd9b235ff51b9028"}
+      }
+    },
+    "adoptedSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "commit", "tree", "qualification"],
+      "properties": {
+        "kind": {"const": "diagnostic-harness"},
+        "commit": {"const": "b4a6e053afbd9d2de322e2df6ad43e847a20979a"},
+        "tree": {"const": "fcc1efeb266bf5d351a9f6381eb698ed59d4b57c"},
+        "qualification": {"const": "diagnostic-only"}
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "blockers"],
+      "properties": {
+        "state": {"const": "construction-blocked"},
+        "blockers": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/slug"}
+        }
+      }
+    },
+    "openSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["configPath", "schemaName", "packageName", "version"],
+      "properties": {
+        "configPath": {"const": "openspec/config.yaml"},
+        "schemaName": {"const": "scientific-change"},
+        "packageName": {"const": "@fission-ai/openspec"},
+        "version": {"const": "1.11.0"}
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["proposal", "authority", "specs", "design", "tasks", "verification", "governance", "findings"],
+      "properties": {
+        "proposal": {"$ref": "#/$defs/repositoryFile"},
+        "authority": {"$ref": "#/$defs/repositoryFile"},
+        "specs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryFile"}},
+        "design": {"$ref": "#/$defs/repositoryFile"},
+        "tasks": {"$ref": "#/$defs/repositoryFile"},
+        "verification": {"$ref": "#/$defs/repositoryFile"},
+        "governance": {"$ref": "#/$defs/repositoryFile"},
+        "findings": {"$ref": "#/$defs/repositoryFile"}
+      }
+    },
+    "sourceBindings": {
+      "type": "array", "minItems": 1,
+      "items": {"$ref": "#/$defs/sourceBinding"}
+    },
+    "protocolBindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["studyEpoch", "descriptor", "compiledPlan", "maximumFutureRunEvidenceLabel", "canonical"],
+      "properties": {
+        "studyEpoch": {"const": "teastore-candidate-pilot-v1"},
+        "descriptor": {
+          "type": "object", "additionalProperties": false,
+          "required": ["id", "path", "byteSha256", "canonicalSha256"],
+          "properties": {
+            "id": {"const": "teastore-candidate-pilot-v1"},
+            "path": {"const": "pipelines/campaigns/teastore-candidate-pilot-v1.json"},
+            "byteSha256": {"const": "742a9b0f625e1aea7eb87198b53d7d8a6ff3818cb6dbb3a88512a8cca31d4921"},
+            "canonicalSha256": {"const": "5dcb633f0c0c38255b911779afb8e1737cb87925d76ab0a60a2e9ae382778320"}
+          }
+        },
+        "compiledPlan": {
+          "type": "object", "additionalProperties": false,
+          "required": ["canonicalSha256", "runCount", "timedSeconds", "operationalUpperSeconds"],
+          "properties": {
+            "canonicalSha256": {"const": "de436f23a0f5bc21913025e574bdfe28260161767924d4f8000f65de424b1b94"},
+            "runCount": {"const": 27},
+            "timedSeconds": {"const": 19440},
+            "operationalUpperSeconds": {"const": 28800}
+          }
+        },
+        "maximumFutureRunEvidenceLabel": {"const": "candidate-evidence"},
+        "canonical": {"const": false}
+      }
+    },
+    "diagnosticObservations": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {"$ref": "#/$defs/diagnosticObservation"}
+    },
+    "permissions": {"$ref": "#/$defs/closedPermissions"},
+    "checkIds": {
+      "type": "array", "minItems": 8, "maxItems": 8,
+      "prefixItems": [
+        {"const": "construction-schema"}, {"const": "parent-epoch"},
+        {"const": "source-bindings"}, {"const": "delivery-ownership"},
+        {"const": "protocol-bindings"}, {"const": "observation-ceiling"},
+        {"const": "artifact-completeness"}, {"const": "gate-boundary"}
+      ],
+      "items": false
+    },
+    "humanCheckpoints": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "prefixItems": [
+        {"$ref": "#/$defs/pendingPlan"},
+        {"$ref": "#/$defs/notRequestedRun"},
+        {"$ref": "#/$defs/notRequestedPromotion"}
+      ],
+      "items": false
+    },
+    "pathOwnership": {
+      "type": "object", "additionalProperties": false,
+      "required": ["baseCommit", "allowed", "forbidden"],
+      "properties": {
+        "baseCommit": {"$ref": "#/$defs/gitCommit"},
+        "allowed": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryFile"}},
+        "forbidden": {
+          "type": "array", "minItems": 2, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/repositoryPath"},
+          "allOf": [{"contains": {"const": ".local/"}}, {"contains": {"const": "upstream/"}}]
+        }
+      }
+    },
+    "verification": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "independentReviewerRequired", "reportBinding"],
+      "properties": {
+        "status": {"const": "not-run"},
+        "independentReviewerRequired": {"const": true},
+        "reportBinding": {"type": "null"}
+      }
+    }
+  },
+  "$defs": {
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "repositoryPath": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*//).+$"},
+    "repositoryFile": {"allOf": [{"$ref": "#/$defs/repositoryPath"}, {"not": {"pattern": "/$"}}]},
+    "sourceBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sourceCommit", "sha256", "role", "qualification"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "sourceCommit": {"$ref": "#/$defs/gitCommit"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "role": {"type": "string", "minLength": 1},
+        "qualification": {"enum": ["reviewed-parent", "diagnostic-source", "historical-context"]}
+      }
+    },
+    "diagnosticObservation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["campaignId", "terminalStatus", "manifestSha256", "qualification", "canonical", "candidateCellEligible"],
+      "properties": {
+        "campaignId": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"},
+        "terminalStatus": {"enum": ["pass", "blocked"]},
+        "manifestSha256": {"$ref": "#/$defs/sha256"},
+        "qualification": {"const": "diagnostic-only"},
+        "canonical": {"const": false},
+        "candidateCellEligible": {"const": false}
+      }
+    },
+    "closedPermissions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["runtimeAllowed", "externalMutationAllowed", "heldOutOutcomeAccessAllowed", "aiSelectorAllowed", "evidencePromotionAllowed"],
+      "properties": {
+        "runtimeAllowed": {"const": false}, "externalMutationAllowed": {"const": false},
+        "heldOutOutcomeAccessAllowed": {"const": false}, "aiSelectorAllowed": {"const": false},
+        "evidencePromotionAllowed": {"const": false}
+      }
+    },
+    "checkpointBase": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "scope", "status", "decisionBinding"],
+      "properties": {
+        "id": {"enum": ["GATE-PLAN", "GATE-RUN", "GATE-PROMOTION"]},
+        "scope": {"enum": ["plan-approval", "run-authorization", "evidence-promotion"]},
+        "status": {"enum": ["pending", "not-requested"]},
+        "decisionBinding": {"type": "null"}
+      }
+    },
+    "pendingPlan": {
+      "allOf": [{"$ref": "#/$defs/checkpointBase"}, {"properties": {"id": {"const": "GATE-PLAN"}, "scope": {"const": "plan-approval"}, "status": {"const": "pending"}, "decisionBinding": {"type": "null"}}}]
+    },
+    "notRequestedRun": {
+      "allOf": [{"$ref": "#/$defs/checkpointBase"}, {"properties": {"id": {"const": "GATE-RUN"}, "scope": {"const": "run-authorization"}, "status": {"const": "not-requested"}, "decisionBinding": {"type": "null"}}}]
+    },
+    "notRequestedPromotion": {
+      "allOf": [{"$ref": "#/$defs/checkpointBase"}, {"properties": {"id": {"const": "GATE-PROMOTION"}, "scope": {"const": "evidence-promotion"}, "status": {"const": "not-requested"}, "decisionBinding": {"type": "null"}}}]
+    }
+  }
+}

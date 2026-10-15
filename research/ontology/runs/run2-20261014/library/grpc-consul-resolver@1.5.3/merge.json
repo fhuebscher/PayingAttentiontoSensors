@@ -1,0 +1,172 @@
+{
+ "mergeVersion": 2,
+ "system": "library:grpc-consul-resolver@1.5.3",
+ "library": "grpc-consul-resolver@1.5.3",
+ "sources": {
+  "obsplacement": {
+   "path": ".",
+   "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+  }
+ },
+ "aliases": {},
+ "agreement": {
+  "agreed": 0,
+  "contested": 3,
+  "agreement": 0.0,
+  "byRelation": {
+   "library:failure-detector": {
+    "agreed": 0,
+    "contested": 1
+   },
+   "library:config-default": {
+    "agreed": 0,
+    "contested": 2
+   }
+  }
+ },
+ "log": {
+  "inputs": [
+   {
+    "origin": "A",
+    "input": "research/ontology/runs/run2-20261014/library/A/grpc-consul-resolver@1.5.3.json",
+    "sha256": "839f7800b28ec8f0739ad22c84916c664919a599a6afa64e7946c3a62e27860f"
+   },
+   {
+    "origin": "B",
+    "input": "research/ontology/runs/run2-20261014/library/B/grpc-consul-resolver@1.5.3.json",
+    "sha256": "e87e448584093d780a3a8c1c433fe8fe027f7de46aadfc5c261f7a437aa2d7e9"
+   }
+  ],
+  "schemaRejected": [],
+  "sourcesReplaced": [],
+  "dropped": [],
+  "droppedCount": {
+   "A": 0,
+   "B": 0
+  },
+  "checkedCount": {
+   "A": 1,
+   "B": 2
+  }
+ },
+ "agreed": [],
+ "contested": [
+  {
+   "key": [
+    "grpc-consul-resolver@1.5.3|healthy",
+    "library:failure-detector",
+    "other"
+   ],
+   "relation": "library:failure-detector",
+   "library": "grpc-consul-resolver@1.5.3",
+   "instances": [
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/grpc-consul-resolver@1.5.3.json",
+     "path": "$.facts[1]",
+     "subject": "healthy",
+     "object": "other",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "healthy",
+      "value": "other",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/consul.go",
+      "line": 54,
+      "quotedToken": "tgt.Healthy",
+      "note": "Member health comes from the registry. The resolver only requests healthy instances through this flag and the files state no timeout key for detection. The files do not say whether the Consul agent or server runs the check, so the value is other."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "B"
+   ],
+   "id": "5b774b8fe2ac5a8a"
+  },
+  {
+   "key": [
+    "grpc-consul-resolver@1.5.3|max-backoff",
+    "library:config-default",
+    "1.0"
+   ],
+   "relation": "library:config-default",
+   "library": "grpc-consul-resolver@1.5.3",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/grpc-consul-resolver@1.5.3.json",
+     "path": "$.facts[0]",
+     "subject": "max-backoff",
+     "object": 1,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "max-backoff",
+      "value": 1,
+      "unit": "s",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/target.go",
+      "line": 73,
+      "quotedToken": "tgt.MaxBackoff = time.Second",
+      "note": "URL parameter max-backoff (form tag at line 22); default applied at line 72-73 when the parsed value is 0. It caps the retry sleep after a failed Consul service fetch (consul.go Max: tgt.MaxBackoff), not a heartbeat or session timeout. The files state no default for the wait, timeout or healthy parameters."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "98015aea8c1cc839"
+  },
+  {
+   "key": [
+    "grpc-consul-resolver@1.5.3|max-backoff",
+    "library:config-default",
+    "time.second"
+   ],
+   "relation": "library:config-default",
+   "library": "grpc-consul-resolver@1.5.3",
+   "instances": [
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/grpc-consul-resolver@1.5.3.json",
+     "path": "$.facts[0]",
+     "subject": "max-backoff",
+     "object": "time.Second",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "max-backoff",
+      "value": "time.Second",
+      "unit": "s",
+      "scope": "registration",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/target.go",
+      "line": 73,
+      "quotedToken": "time.Second",
+      "note": "Key is form:\"max-backoff\" at target.go:22. The default is applied when the value is zero, at target.go:72-74 in parseURL. It bounds the retry delay for the registry query that supplies endpoints (consul.go:42-46, 64-75)."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "B"
+   ],
+   "id": "312851cb1aa3b1e5"
+  }
+ ],
+ "deterministic": []
+}

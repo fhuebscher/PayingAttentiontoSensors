@@ -1,0 +1,10 @@
+{
+ "decisions": {
+  "not decidable": 32,
+  "supported": 16,
+  "not supported": 4
+ },
+ "schemaErrors": [
+  "'architecture' is a required property"
+ ]
+}

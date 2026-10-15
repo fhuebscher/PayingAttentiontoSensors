@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "id": "hotel-reservation-opentracing-stock",
+  "sourceAudit": {
+    "upstreamCommit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+    "subdirectory": "hotelReservation",
+    "tracerFactory": "tracing/tracer.go",
+    "httpMiddleware": "tracing/mux.go",
+    "grpcClientInterceptor": "dialer/dialer.go",
+    "grpcServerInterceptorPattern": "services/*/server.go"
+  },
+  "activationGroups": [
+    {
+      "id": "stock-tracer-enablement",
+      "control": "JAEGER_DISABLED on every instrumented service process",
+      "scope": "the tracer object returned by tracing.Init, process-wide",
+      "sourceWorkDisabled": false,
+      "independentlyControllable": false,
+      "warning": "Disabled=true returns opentracing.NoopTracer (vendor config.go:220) before any reporter or agent socket is built: no span allocation, no context injection, no export. The nethttp middleware and otgrpc interceptors are still installed and still called per request, so this is tracer-off, not source-off."
+    },
+    {
+      "id": "stock-root-trace-sampling",
+      "control": "JAEGER_SAMPLE_RATIO on the frontend root process",
+      "scope": "whole distributed trace",
+      "sourceWorkDisabled": false,
+      "independentlyControllable": false,
+      "warning": "A zero ratio suppresses sampled/exported traces but still constructs OpenTracing middleware and interceptors."
+    },
+    {
+      "id": "service-source-guard",
+      "control": "not implemented in pinned upstream",
+      "scope": "whole service process",
+      "sourceWorkDisabled": true,
+      "independentlyControllable": false,
+      "status": "requires-audited-upstream-patch",
+      "warning": "Every inbound middleware, outbound interceptor, server interceptor, and manual span site must honor one service-level guard."
+    }
+  ],
+  "logicalSensors": [
+    {
+      "id": "span:frontend:HTTP GET /hotels",
+      "activationGroup": "stock-root-trace-sampling"
+    },
+    {
+      "id": "span:search:/search.Search/Nearby",
+      "activationGroup": "stock-root-trace-sampling"
+    },
+    {
+      "id": "span:geo:/geo.Geo/Nearby",
+      "activationGroup": "stock-root-trace-sampling"
+    },
+    {
+      "id": "span:rate:/rate.Rate/GetRates",
+      "activationGroup": "stock-root-trace-sampling"
+    },
+    {
+      "id": "span:reservation:/reservation.Reservation/CheckAvailability",
+      "activationGroup": "stock-root-trace-sampling"
+    },
+    {
+      "id": "span:profile:/profile.Profile/GetProfiles",
+      "activationGroup": "stock-root-trace-sampling"
+    }
+  ],
+  "stockPostures": {
+    "none": {
+      "JAEGER_SAMPLE_RATIO": "0",
+      "JAEGER_DISABLED": "true",
+      "classification": "tracer-disabled-not-source-off"
+    },
+    "sample-zero": {
+      "JAEGER_SAMPLE_RATIO": "0",
+      "classification": "emission-off-not-source-off",
+      "JAEGER_DISABLED": "false"
+    },
+    "full": {
+      "JAEGER_SAMPLE_RATIO": "1",
+      "classification": "full-root-sampling",
+      "JAEGER_DISABLED": "false"
+    }
+  },
+  "claimBoundary": "Stock Hotel Reservation supports tracer enablement (JAEGER_DISABLED) and root-trace sampling (JAEGER_SAMPLE_RATIO), not independent logical-operation placement or proven request-path work elimination. `selected` and `source-off` remain unsupported.",
+  "postureFootnote": "All three postures are applied to the six search-path services in APP_SERVICES plus user and recommendation. `review` and `attractions` take JAEGER_SAMPLE_RATIO by pass-through from the compose invocation's environment, which the harness does not set, so they run at the Go default 0.01 in every posture. Constant across postures, so it cancels in every posture delta; it does not cancel in an absolute statement about the whole stack. See the extension ledger."
+}

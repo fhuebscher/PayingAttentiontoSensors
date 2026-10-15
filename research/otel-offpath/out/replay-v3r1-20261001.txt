@@ -1,0 +1,14 @@
+$ rm -rf ~/Library/Caches/com.apple.python/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research; /usr/bin/python3 -B research/otel-offpath/adapter.py tmp/otel-v3-evidence
+layout otel-demo-candidate-pilot-v3; cells 24 valid 24; stop rule frontend-pause ledger-visible 12/12
+  K1: —
+  K2: —
+  K3: —
+  K4: —
+  C1: yes
+  frontend-pause-effect none     ledger 3/3 | L — M — T —
+  frontend-pause-effect selected ledger 3/3 | L 0/3 out, 0/3 own M 3/3 out, 3/3 own T 3/3 out, 3/3 own
+  frontend-pause-effect async    ledger 3/3 | L 3/3 out, 0/3 own M 3/3 out, 3/3 own T 3/3 out, 3/3 own
+  frontend-pause-effect full     ledger 3/3 | L 3/3 out, 0/3 own M 3/3 out, 3/3 own T 3/3 out, 3/3 own
+  visibility.json cross-check: {"against": "research/visibility-map/visibility.json populations.otel-v3", "episodesEqual": [12, 12], "visibilityEpisodes": 12, "noFaultLedgerFalseAlarms": {"mine": [0, 12], "visibility": {"n0": 12, "pseudoWindowBarrierOffsets": [180.30880629643798, 335.8196057379246], "shows": 0, "unknown": 0}}}
+wrote /Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/otel-offpath/out/adapter-otel-v3-evidence-20261001T135051Z.json
+replay assertion (erratum 2): frontend http.server.duration export gap in frontend-pause-effect/b01-01-async: pass (absent kind, own; also after G3)

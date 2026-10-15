@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 2,
+  "studyEpoch": "hotel-offpath-v1",
+  "changeId": "admit-hotel-reservation-candidate-runtime",
+  "allowedTransports": {
+    "ssh-compose": {
+      "target": "fb14srv4",
+      "transportUser": "root",
+      "setupUser": "root",
+      "executionUser": "fhuebscher",
+      "executionUid": 1007,
+      "executionGid": 1007,
+      "supplementalGids": [
+        27,
+        998
+      ],
+      "dockerGid": 998,
+      "dockerVersion": "29.6.1",
+      "authorizedParent": "/home/fhuebscher/observability-placement-candidate-v4-hotel-srv4",
+      "releaseParent": "/home/fhuebscher/observability-placement-candidate-v4-hotel-srv4",
+      "checkoutRoot": "/home/fhuebscher/observability-placement-candidate-v4-hotel-srv4/checkout",
+      "artifactParent": "/home/fhuebscher/observability-placement-candidate-v4-runs/hotel-candidate-v1",
+      "leaseRoot": "/home/fhuebscher/observability-placement-candidate-v4-runs",
+      "leasePath": "/home/fhuebscher/observability-placement-candidate-v4-runs/.hotel-candidate-v1.lock",
+      "controlRoot": "/home/fhuebscher/observability-placement-candidate-v4-hotel-srv4/control",
+      "uploadPath": "/tmp/obsplacement-hotel-srv4-20260830-a53f9c27.tar"
+    }
+  },
+  "targetProjection": {
+    "status": "allocated",
+    "host": "fb14srv4",
+    "transportUsers": [
+      "root"
+    ],
+    "setupUsers": [
+      "root"
+    ],
+    "executionIdentities": [
+      {
+        "user": "fhuebscher",
+        "uid": 1007,
+        "gid": 1007,
+        "supplementalGids": [
+          27,
+          998
+        ]
+      }
+    ],
+    "releaseParent": "/home/fhuebscher/observability-placement-candidate-v4-hotel-srv4",
+    "artifactParent": "/home/fhuebscher/observability-placement-candidate-v4-runs/hotel-candidate-v1",
+    "leasePath": "/home/fhuebscher/observability-placement-candidate-v4-runs/.hotel-candidate-v1.lock",
+    "projectPrefix": "hotel_candidate_v4",
+    "reservedPorts": [
+      35005,
+      36685
+    ],
+    "freshReadinessAfter": null,
+    "readinessRequirements": [
+      "exact non-symlink setup-installed paths owned and traversable by fhuebscher",
+      "artifact root absent before setup",
+      "fixed ports free",
+      "competing lease absent",
+      "no foreign Compose project present: `docker compose ls --all` lists only hotel_candidate_v4 projects and `docker ps -a` shows no container outside them, verified at setup, at readiness and before and after every cell (the dps_training_k co-tenant of campaigns #1-#5 was decommissioned on 2026-09-21; Cells produced under this host condition were measured without the dps_training_k co-tenant that was running throughout Hotel campaigns #1-#5 (103 banked cells); they are a different host condition and must not be pooled with those cells.)",
+      "no deletion or alteration of foreign resources",
+      "absolute cost and latency claims remain noncanonical"
+    ]
+  },
+  "ports": {
+    "frontend": 35005,
+    "jaegerQuery": 36685
+  },
+  "projectPrefix": "hotel_candidate_v4",
+  "foreignProject": null,
+  "claimCeiling": {
+    "maximumEvidenceLabel": "candidate-evidence",
+    "canonical": false,
+    "absoluteCostOrLatencyCanonical": false,
+    "nuisanceRecordedEveryCell": [
+      "host-load",
+      "no-foreign-compose-project"
+    ]
+  },
+  "postureCeiling": {
+    "supportedPostures": [
+      "none",
+      "metrics",
+      "selected",
+      "full"
+    ],
+    "unsupportedPostures": [
+      {
+        "id": "source-off",
+        "state": "unsupported",
+        "numericValue": null
+      }
+    ],
+    "unsupportedReason": "no-upstream-service-level-source-guard",
+    "sourceCostComparisonState": "unsupported",
+    "sourceCostUnsupportedReason": "no-posture-is-source-off",
+    "admissibleContrasts": [
+      [
+        "none",
+        "metrics"
+      ],
+      [
+        "metrics",
+        "selected"
+      ],
+      [
+        "selected",
+        "full"
+      ],
+      [
+        "metrics",
+        "full"
+      ],
+      [
+        "none",
+        "full"
+      ]
+    ],
+    "prohibitedClaims": [
+      "placement-lattice-nesting",
+      "source-off-posture-comparison"
+    ]
+  },
+  "retiredPostureCeilings": [
+    {
+      "version": 1,
+      "compiledPlanCanonicalSha256": "9877376014b7fcd6fb2fc8f5b25b4e3e9bcae00884e49f5437923520deb2c484",
+      "descriptorCanonicalSha256": "050a8677166d4af61b92155f004084455c654deb08695b6b4b5abcd6f307c8e6",
+      "runCount": 24,
+      "retiredAt": "2026-09-21",
+      "reason": "none rung admitted (JAEGER_DISABLED=true -> opentracing.NoopTracer, research/hotel-none-rung/RESULT.md); retained cells bound to this plan digest keep validating under this ceiling verbatim",
+      "postureCeiling": {
+        "supportedPostures": [
+          "full",
+          "sample-zero"
+        ],
+        "unsupportedPostures": [
+          {
+            "id": "none",
+            "state": "unsupported",
+            "numericValue": null
+          },
+          {
+            "id": "selected",
+            "state": "unsupported",
+            "numericValue": null
+          },
+          {
+            "id": "source-off",
+            "state": "unsupported",
+            "numericValue": null
+          }
+        ],
+        "unsupportedReason": "no-upstream-service-level-source-guard",
+        "sourceCostComparisonState": "unsupported",
+        "sourceCostUnsupportedReason": "sample-zero-is-not-source-off",
+        "admissibleContrasts": [
+          [
+            "full",
+            "sample-zero"
+          ]
+        ],
+        "prohibitedClaims": [
+          "none-posture-comparison",
+          "placement-lattice-nesting",
+          "selected-posture-comparison",
+          "source-off-posture-comparison"
+        ]
+      },
+      "hostCondition": {
+        "id": "dps_training_k-co-tenant",
+        "factors": [
+          "host-load",
+          "dps_training_k"
+        ],
+        "foreignProject": "dps_training_k",
+        "foreignConfigPath": "/home/cgade/tests_2/dps.training_k/backend/dps_training_k/docker-compose.yml",
+        "foreignStateCounts": {
+          "running": 5
+        },
+        "foreignIdentityRowCount": 5
+      }
+    }
+  ],
+  "hostCondition": {
+    "id": "no-foreign-compose-project",
+    "factors": [
+      "host-load",
+      "no-foreign-compose-project"
+    ],
+    "foreignProject": null,
+    "poolingBoundary": "Cells produced under this host condition were measured without the dps_training_k co-tenant that was running throughout Hotel campaigns #1-#5 (103 banked cells); they are a different host condition and must not be pooled with those cells."
+  },
+  "maximumCells": 30,
+  "maximumWallSeconds": 10800,
+  "cleanupReserveSeconds": 300,
+  "minimumFirstMutationRemainingSeconds": 10500,
+  "maximumGateAgeSeconds": 900,
+  "maximumClockSkewSeconds": 5,
+  "execution": {
+    "oneControllerOwnsTarget": true,
+    "cellsSequential": true,
+    "coldStartEachCell": true,
+    "retryMayReplaceCell": false,
+    "stopOnFirstInvalidCell": true,
+    "costAndEffectRootsDisjoint": true,
+    "detachedTargetController": true,
+    "terminalReplayLocal": true
+  },
+  "setup": {
+    "oneShot": true,
+    "exactBundleOnly": true,
+    "userOrKeyMutationAllowed": false,
+    "foreignResourceMutationAllowed": false
+  },
+  "cleanup": {
+    "actions": [
+      "unpause-owned-fault-target-if-needed",
+      "docker-compose-down-volumes-remove-orphans",
+      "verify-zero-owned-containers-networks-volumes",
+      "release-exact-campaign-lease-even-if-cleanup-fails"
+    ],
+    "foreignProjectMutationAllowed": false,
+    "artifactDeletionAllowed": false,
+    "leaseReleaseAlwaysAttempted": true
+  }
+}

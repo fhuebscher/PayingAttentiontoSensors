@@ -1,0 +1,26 @@
+# CQ-L1. For a fault of kind ?kind on ?target, which lanes can see it?
+#   ownLane          ?target emits at least one Sensor (own silence for stopping kinds, own change otherwise)
+#   coordinatorLane  CQ-C1 class is "tracked" (same conditions, repeated here so the query stands alone)
+#   coordinatorEmits the component hosting such a coordinator emits a Sensor (the coordinator lane is observable)
+#   lagLane          ?target consumesFrom a Topic and is memberOf a group whose lag Metric is emitted by a component that
+#                    exportsTelemetryTo a Collector
+# Parameters (optional): ?target, ?kind.
+PREFIX ops:   <http://obsplacement.example/ops#>
+PREFIX omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#>
+SELECT ?arch ?target ?kind ?ownLane ?coordinatorLane ?coordinatorEmits ?lagLane WHERE {
+  ?arch a omsac:MicroserviceArchitecture ; omsac:isComposedOf ?target .
+  ?kind a ops:FaultKind ; ops:stopsHeartbeat ?stops .
+  BIND (EXISTS { ?target ops:emits ?s } AS ?ownLane)
+  BIND (EXISTS { { ?target ops:registersWith ?c } UNION { ?target ops:memberOf ?g . ?g ops:coordinatedBy ?c } .
+                 ?l ops:enforcedBy ?c ; ops:monitors ?target .
+                 FILTER NOT EXISTS { ?l ops:healthCheckConfigured false } } AS ?tracked)
+  BIND (?tracked && ?stops AS ?coordinatorLane)
+  BIND (?coordinatorLane && EXISTS {
+          { ?target ops:registersWith ?c4 } UNION { ?target ops:memberOf ?g4 . ?g4 ops:coordinatedBy ?c4 } .
+          ?l4 ops:enforcedBy ?c4 ; ops:monitors ?target .
+          FILTER NOT EXISTS { ?l4 ops:healthCheckConfigured false }
+          ?c4 ops:hostedBy ?hc . ?hc ops:emits ?hs } AS ?coordinatorEmits)
+  BIND (EXISTS { ?target ops:consumesFrom ?t ; ops:memberOf ?g5 .
+                 ?m ops:measuresLagOf ?g5 . ?e ops:emits ?m ; ops:exportsTelemetryTo ?col } AS ?lagLane)
+}
+ORDER BY ?arch ?target ?kind

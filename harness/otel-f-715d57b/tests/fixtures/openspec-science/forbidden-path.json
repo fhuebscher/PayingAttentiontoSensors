@@ -1,0 +1,11 @@
+{
+  "fixtureId": "forbidden-path",
+  "checkId": "path-ownership",
+  "expectedStatus": "fail",
+  "expectedDiagnostic": "changed path is forbidden",
+  "mutation": {
+    "kind": "write-text",
+    "path": "upstream/rogue.txt",
+    "text": "must not be owned\n"
+  }
+}

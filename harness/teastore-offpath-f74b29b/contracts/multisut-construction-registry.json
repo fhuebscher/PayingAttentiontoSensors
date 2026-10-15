@@ -1,0 +1,682 @@
+{
+  "$schema": "https://observability-placement.local/contracts/multisut-construction-registry.schema.json",
+  "schemaVersion": 1,
+  "permissions": {
+    "runtimeAllowed": false,
+    "externalMutationAllowed": false,
+    "heldOutOutcomeAccessAllowed": false,
+    "aiSelectorAllowed": false,
+    "evidencePromotionAllowed": false
+  },
+  "transition": {
+    "parentCommit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+    "parentTree": "034303c37785e29ea5ea6595c18b6411d55525ff",
+    "ownedPaths": [
+      "contracts/multisut-construction-control.schema.json",
+      "contracts/multisut-construction-registry.json",
+      "contracts/multisut-construction-registry.schema.json",
+      "tests/test_multisut_construction.py",
+      "tests/test_openspec_construction.py",
+      "tests/test_science_epoch_router.py",
+      "tests/test_science_epoch_router_v3.py",
+      "tools/run_openspec.py",
+      "tools/validate_multisut_construction.py",
+      "tools/validate_science_epochs_v3.py"
+    ],
+    "commitDerivation": "single-commit-last-change-of-every-owned-path"
+  },
+  "baseEpoch": {
+    "id": "teastore-construction-v2",
+    "commit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+    "tree": "034303c37785e29ea5ea6595c18b6411d55525ff",
+    "router": {
+      "path": "tools/validate_science_epochs.py",
+      "sha256": "bc30b5e7679450d5e6ae10382f1dc31691ee795374e8f2531409792ac7e2ad57"
+    },
+    "activeChangeIds": [
+      "adopt-scientific-openspec",
+      "adopt-teastore-diagnostic-harness",
+      "phase2-method-freeze",
+      "teastore-candidate-pilot-freeze"
+    ]
+  },
+  "children": [
+    {
+      "changeId": "adopt-hotel-reservation-candidate-harness",
+      "required": false,
+      "parentEpoch": {
+        "changeId": "adopt-teastore-diagnostic-harness",
+        "commit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+        "tree": "034303c37785e29ea5ea6595c18b6411d55525ff"
+      },
+      "adoptedSource": {
+        "kind": "candidate-construction-source",
+        "commit": "40515d78551ac5abd26c8efe8aaeaa578bff4b46",
+        "tree": "16ee75850c4560b019e6c529114adc8487a5a31a",
+        "qualification": "local-construction-only"
+      },
+      "module": {
+        "id": "hotel-reservation",
+        "applicationFamily": "deathstarbench-hotel-reservation",
+        "channel": "compose-jaeger",
+        "replicationContribution": "application-family"
+      },
+      "blockers": [
+        "runtime-adapter-absent-by-design",
+        "source-off-and-selected-postures-unsupported",
+        "native-operation-ground-truth-unqualified"
+      ],
+      "sourceBindings": [
+        {
+          "path": "research/five-module-readiness.json",
+          "sourceCommit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+          "sha256": "01d49af9060e8afd892c2b8c921ea2f1082169c86107bcc520cfe82c28389091",
+          "role": "digest-bound current cross-SUT evidence ceiling",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "modules/hotel-reservation/README.md",
+          "sourceCommit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+          "sha256": "c3d25b7c9c56ff62454c4672a1061f1f66a7233eee2bd631373f8c98a5e864d0",
+          "role": "current HotelReservation module boundary",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "modules/hotel-reservation/execution/candidate_pilot.py",
+          "sourceCommit": "40515d78551ac5abd26c8efe8aaeaa578bff4b46",
+          "sha256": "5d56a592b7e723feb7904d9c1b757bd3788fc7c25e5b4e47e8ae3502971c8045",
+          "role": "pure HotelReservation candidate compiler",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "modules/hotel-reservation/extension-ledger.yaml",
+          "sourceCommit": "40515d78551ac5abd26c8efe8aaeaa578bff4b46",
+          "sha256": "fb9655fb4f26cd7b77df8b003b63a734b5c1ad5be0ac69c1b2fa4b5457010c78",
+          "role": "classified HotelReservation extension inventory",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "pipelines/campaigns/hotel-reservation-candidate-pilot-v1.json",
+          "sourceCommit": "40515d78551ac5abd26c8efe8aaeaa578bff4b46",
+          "sha256": "ce55469004ac6ecc5d1ad75aa18b5a0e2ee7dff740b345f9e0466c0efda21563",
+          "role": "exact HotelReservation candidate descriptor",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "tests/test_hotel_candidate_pilot.py",
+          "sourceCommit": "40515d78551ac5abd26c8efe8aaeaa578bff4b46",
+          "sha256": "f8c84b97e7420ef4f59687eac1d7d40f557d01c5f9de65c328415938e8584805",
+          "role": "HotelReservation planted-defect construction checks",
+          "qualification": "local-construction-source"
+        }
+      ],
+      "artifactBindings": [
+        {
+          "path": "openspec/changes/adopt-hotel-reservation-candidate-harness/.openspec.yaml",
+          "sha256": "ade0c3371aaa1a8f17a3467c8dcb6c441828c74cd170b88d58dec4183a9c144d",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-hotel-reservation-candidate-harness/authority.md",
+          "sha256": "48c334458562923e8a65c439a9352b26f5aae21cac2e85215358ddabcddae1ed",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-hotel-reservation-candidate-harness/design.md",
+          "sha256": "46108f0e244a7b45154103248ee5608c2e46a571ee0e0dede3ae03df1c94effd",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-hotel-reservation-candidate-harness/governance.json",
+          "sha256": "337caf5f49f973e1aea65c93a44327bfeb364e85bcfd403d48cea3769e317567",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-hotel-reservation-candidate-harness/proposal.md",
+          "sha256": "0872ad7d3e2eb977916a44bb64d65ebee8ae30894f0fde68ef340f0ee49bf9cd",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-hotel-reservation-candidate-harness/specs/adopt-hotel-reservation-candidate-harness/spec.md",
+          "sha256": "d9512feca27b421a63348cae428a1046c42ccae0219167e546064dda8dac04ae",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-hotel-reservation-candidate-harness/tasks.md",
+          "sha256": "0d86f3214e1d0a6412ebe92065fa5535befd93d773f1ddc164ba02b233721029",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-hotel-reservation-candidate-harness/verification.md",
+          "sha256": "c76e3419ae6c68311ed4f0ccb46f5f66e04362e68e5cf5647018aa19fb376112",
+          "mode": "100644"
+        }
+      ],
+      "protocolBindings": {
+        "studyEpoch": "hotel-reservation-candidate-pilot-v1",
+        "descriptor": {
+          "path": "pipelines/campaigns/hotel-reservation-candidate-pilot-v1.json",
+          "byteSha256": "ce55469004ac6ecc5d1ad75aa18b5a0e2ee7dff740b345f9e0466c0efda21563",
+          "canonicalSha256": "050a8677166d4af61b92155f004084455c654deb08695b6b4b5abcd6f307c8e6"
+        },
+        "compiler": {
+          "path": "modules/hotel-reservation/execution/candidate_pilot.py",
+          "sha256": "5d56a592b7e723feb7904d9c1b757bd3788fc7c25e5b4e47e8ae3502971c8045",
+          "api": "pure-candidate-construction-v1"
+        },
+        "compiledPlan": {
+          "canonicalSha256": "9877376014b7fcd6fb2fc8f5b25b4e3e9bcae00884e49f5437923520deb2c484",
+          "runCount": 24
+        },
+        "maximumFutureRunEvidenceLabel": "candidate-evidence",
+        "canonical": false
+      },
+      "allowedPaths": [
+        "findings/adopt-hotel-reservation-candidate-harness.csv",
+        "modules/hotel-reservation/execution/candidate_pilot.py",
+        "modules/hotel-reservation/extension-ledger.yaml",
+        "openspec/changes/adopt-hotel-reservation-candidate-harness/.openspec.yaml",
+        "openspec/changes/adopt-hotel-reservation-candidate-harness/authority.md",
+        "openspec/changes/adopt-hotel-reservation-candidate-harness/design.md",
+        "openspec/changes/adopt-hotel-reservation-candidate-harness/governance.json",
+        "openspec/changes/adopt-hotel-reservation-candidate-harness/proposal.md",
+        "openspec/changes/adopt-hotel-reservation-candidate-harness/specs/adopt-hotel-reservation-candidate-harness/spec.md",
+        "openspec/changes/adopt-hotel-reservation-candidate-harness/tasks.md",
+        "openspec/changes/adopt-hotel-reservation-candidate-harness/verification.md",
+        "pipelines/campaigns/hotel-reservation-candidate-pilot-v1.json",
+        "tests/test_hotel_candidate_pilot.py"
+      ]
+    },
+    {
+      "changeId": "adopt-online-boutique-candidate-harness",
+      "required": false,
+      "parentEpoch": {
+        "changeId": "adopt-teastore-diagnostic-harness",
+        "commit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+        "tree": "034303c37785e29ea5ea6595c18b6411d55525ff"
+      },
+      "adoptedSource": {
+        "kind": "candidate-construction-source",
+        "commit": "e84cd1538363f5640c68bdf98cfb3047fa705531",
+        "tree": "9e2e3d7d1a8fe95b4dcf40266423c5c2259b727d",
+        "qualification": "local-construction-only"
+      },
+      "module": {
+        "id": "online-boutique",
+        "applicationFamily": "google-online-boutique",
+        "channel": "compose-native-otel",
+        "replicationContribution": "application-family"
+      },
+      "blockers": [
+        "request-trace-correlation-not-implemented",
+        "runtime-readiness-not-implemented"
+      ],
+      "sourceBindings": [
+        {
+          "path": "research/five-module-readiness.json",
+          "sourceCommit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+          "sha256": "01d49af9060e8afd892c2b8c921ea2f1082169c86107bcc520cfe82c28389091",
+          "role": "digest-bound current cross-SUT evidence ceiling",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "modules/online-boutique/README.md",
+          "sourceCommit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+          "sha256": "7422cac1fac41fd39d7dfed065a4e477272bd34a627a7b260f4388cb23043ef8",
+          "role": "current Online Boutique Compose module boundary",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "modules/online-boutique/execution/candidate_orchestrator.py",
+          "sourceCommit": "e84cd1538363f5640c68bdf98cfb3047fa705531",
+          "sha256": "bbd2f27291c03e13e37a511008bd8f2971cf1067a2fc008a8d87367611359244",
+          "role": "construction-only Online Boutique orchestration firewall",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "modules/online-boutique/execution/candidate_pilot.py",
+          "sourceCommit": "e84cd1538363f5640c68bdf98cfb3047fa705531",
+          "sha256": "125cdc32592becf6921ce7cb7dae67f41552d4d8acc90dd92aa50055480952e9",
+          "role": "pure Online Boutique candidate compiler",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "modules/online-boutique/extension-ledger.yaml",
+          "sourceCommit": "e84cd1538363f5640c68bdf98cfb3047fa705531",
+          "sha256": "cbd8cd6cca8c6a50c51376495e8f22550c93b35fe920a6ab6dc0d151bbd2247b",
+          "role": "classified Online Boutique extension inventory",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "modules/online-boutique/validation/candidate_pilot.py",
+          "sourceCommit": "e84cd1538363f5640c68bdf98cfb3047fa705531",
+          "sha256": "c92cdfdf321798d15d0a18825c9579b920eeb553135aeb7f64e9bf1f14533c5b",
+          "role": "Online Boutique construction and missingness validator",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "pipelines/campaigns/online-boutique-candidate-pilot-v1.json",
+          "sourceCommit": "e84cd1538363f5640c68bdf98cfb3047fa705531",
+          "sha256": "f6ef6751715241a2facd438155db0fa7d8cd44cf705cbbe3c0d5aa807a0f8177",
+          "role": "exact Online Boutique Compose candidate descriptor",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "pipelines/campaigns/online-boutique-candidate-pilot-v1.md",
+          "sourceCommit": "e84cd1538363f5640c68bdf98cfb3047fa705531",
+          "sha256": "64e0362e6dbb04886296a0684d0195a2c7ba61ef4a9b46fe08d54cc60ccad1cd",
+          "role": "human-readable Online Boutique protocol boundary",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "tests/test_online_boutique_candidate_pilot.py",
+          "sourceCommit": "e84cd1538363f5640c68bdf98cfb3047fa705531",
+          "sha256": "7aac185703389419186994826b22e682c1dc35e0fd147e4c400eee9b53849bca",
+          "role": "Online Boutique planted-defect construction checks",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "tests/test_online_boutique_module.py",
+          "sourceCommit": "e84cd1538363f5640c68bdf98cfb3047fa705531",
+          "sha256": "081283907cce8b26824cfefe9c1ebfaeeda5653e55daa83f5f2d87b03e8e80fc",
+          "role": "updated exact Online Boutique extension count",
+          "qualification": "local-construction-source"
+        }
+      ],
+      "artifactBindings": [
+        {
+          "path": "openspec/changes/adopt-online-boutique-candidate-harness/.openspec.yaml",
+          "sha256": "a4c120d9e7f666e2634058d44d9b2260872251bccd62656d65446679cd6968a6",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-candidate-harness/authority.md",
+          "sha256": "83af48f9bef8e30b389fbc6ff2a685a7804766d0a2158652c2085a73acca97d9",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-candidate-harness/design.md",
+          "sha256": "53e4b248d4a6d0db6d18c45d73b8a90174462e76f9c90e6f98382e410d60e235",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-candidate-harness/governance.json",
+          "sha256": "88ab28535f309c6f194b427e1e452ffac6341f5f225d8dbbfd20e518e893d6a9",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-candidate-harness/proposal.md",
+          "sha256": "4900febd4c379eebe20179ebe79a6ed39e4b33e1b037efd2877ecda4665cb4b5",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-candidate-harness/specs/adopt-online-boutique-candidate-harness/spec.md",
+          "sha256": "7e144e6de649d54670ecbfb40132c6a9b18224608005939407b5e05f8de4d004",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-candidate-harness/tasks.md",
+          "sha256": "98004f2469a66ab981572d458afce1d9d75b9d2ea231451c5e91755105928749",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-candidate-harness/verification.md",
+          "sha256": "9ce01eaf90d1b878724be43bfdbe21ad9112ab7844eb64a69061ded31c2db581",
+          "mode": "100644"
+        }
+      ],
+      "protocolBindings": {
+        "studyEpoch": "online-boutique-compose-candidate-pilot-v1",
+        "descriptor": {
+          "path": "pipelines/campaigns/online-boutique-candidate-pilot-v1.json",
+          "byteSha256": "f6ef6751715241a2facd438155db0fa7d8cd44cf705cbbe3c0d5aa807a0f8177",
+          "canonicalSha256": "1744dbf8ffa8e3197181794130100fac7671272f4ccb70e4790943c22ea841c5"
+        },
+        "compiler": {
+          "path": "modules/online-boutique/execution/candidate_pilot.py",
+          "sha256": "125cdc32592becf6921ce7cb7dae67f41552d4d8acc90dd92aa50055480952e9",
+          "api": "pure-candidate-construction-v1"
+        },
+        "compiledPlan": {
+          "canonicalSha256": "e847969f547a3f13a8d3080896d488acdce10ba7baf8cd931e16908e2ec9f279",
+          "runCount": 18
+        },
+        "maximumFutureRunEvidenceLabel": "candidate-evidence",
+        "canonical": false
+      },
+      "allowedPaths": [
+        "findings/adopt-online-boutique-candidate-harness.csv",
+        "modules/online-boutique/execution/candidate_orchestrator.py",
+        "modules/online-boutique/execution/candidate_pilot.py",
+        "modules/online-boutique/extension-ledger.yaml",
+        "modules/online-boutique/validation/candidate_pilot.py",
+        "openspec/changes/adopt-online-boutique-candidate-harness/.openspec.yaml",
+        "openspec/changes/adopt-online-boutique-candidate-harness/authority.md",
+        "openspec/changes/adopt-online-boutique-candidate-harness/design.md",
+        "openspec/changes/adopt-online-boutique-candidate-harness/governance.json",
+        "openspec/changes/adopt-online-boutique-candidate-harness/proposal.md",
+        "openspec/changes/adopt-online-boutique-candidate-harness/specs/adopt-online-boutique-candidate-harness/spec.md",
+        "openspec/changes/adopt-online-boutique-candidate-harness/tasks.md",
+        "openspec/changes/adopt-online-boutique-candidate-harness/verification.md",
+        "pipelines/campaigns/online-boutique-candidate-pilot-v1.json",
+        "pipelines/campaigns/online-boutique-candidate-pilot-v1.md",
+        "tests/test_online_boutique_candidate_pilot.py",
+        "tests/test_online_boutique_module.py"
+      ]
+    },
+    {
+      "changeId": "adopt-online-boutique-lgtm-candidate-harness",
+      "required": false,
+      "parentEpoch": {
+        "changeId": "adopt-teastore-diagnostic-harness",
+        "commit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+        "tree": "034303c37785e29ea5ea6595c18b6411d55525ff"
+      },
+      "adoptedSource": {
+        "kind": "candidate-construction-source",
+        "commit": "b01b1b9a6eeee644655183e8fa9f1f793d6f78b6",
+        "tree": "27703d7dd248dbec82139aada513f896df6a0858",
+        "qualification": "local-construction-only"
+      },
+      "module": {
+        "id": "online-boutique-lgtm",
+        "applicationFamily": "google-online-boutique",
+        "channel": "aws-eks-lgtm",
+        "replicationContribution": "execution-channel-only"
+      },
+      "blockers": [
+        "actual AWS EKS executor is not implemented",
+        "the reviewed workload does not yet issue and reconcile W3C trace opportunities",
+        "safe AWS ownership, cost acquisition, and deletion authority are not implemented",
+        "runtime account, region, cluster, plan, chart, and image bindings are unresolved",
+        "GATE-RUN has not authorized AWS or Kubernetes mutation"
+      ],
+      "sourceBindings": [
+        {
+          "path": "research/five-module-readiness.json",
+          "sourceCommit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+          "sha256": "01d49af9060e8afd892c2b8c921ea2f1082169c86107bcc520cfe82c28389091",
+          "role": "digest-bound current cross-SUT evidence ceiling",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "modules/online-boutique-lgtm/README.md",
+          "sourceCommit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+          "sha256": "0747b9f3808a6c30ba4c72079564f61a527e626e23d02dd4dd1769dac34f399b",
+          "role": "current Online Boutique LGTM execution-channel boundary",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "modules/online-boutique-lgtm/extension-ledger.yaml",
+          "sourceCommit": "b01b1b9a6eeee644655183e8fa9f1f793d6f78b6",
+          "sha256": "71774c974b32af6e2e8afab9aec57c42f2a134cc17a880cb66ed4e0ebec959ef",
+          "role": "classified AWS/LGTM extension inventory",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "modules/online-boutique-lgtm/validation/candidate_pilot.py",
+          "sourceCommit": "b01b1b9a6eeee644655183e8fa9f1f793d6f78b6",
+          "sha256": "19715bc5f273a83b48c917edca97dd3f5ca3278a43843876f3aadd925381e79b",
+          "role": "pure AWS/LGTM candidate compiler and validator",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "pipelines/campaigns/online-boutique-aws-eks-candidate-pilot-v1.json",
+          "sourceCommit": "b01b1b9a6eeee644655183e8fa9f1f793d6f78b6",
+          "sha256": "b0349a21d7a9d524a6c8a54b3e2e90a5e99bc569f0368feb2d8a420c51a128ed",
+          "role": "exact AWS/LGTM candidate descriptor",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "tests/test_online_boutique_lgtm_candidate_pilot.py",
+          "sourceCommit": "b01b1b9a6eeee644655183e8fa9f1f793d6f78b6",
+          "sha256": "818ab8311b027f321e7499adc6476e8b5aa3a24d4ff04706dda332ef1830e91d",
+          "role": "AWS/LGTM planted-defect construction checks",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "tests/test_online_boutique_lgtm_module.py",
+          "sourceCommit": "b01b1b9a6eeee644655183e8fa9f1f793d6f78b6",
+          "sha256": "51092fb0ff88435af13c497316613c202e2ca7a8e66b76052e49f8e58f678433",
+          "role": "updated exact AWS/LGTM extension count",
+          "qualification": "local-construction-source"
+        }
+      ],
+      "artifactBindings": [
+        {
+          "path": "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/.openspec.yaml",
+          "sha256": "ade0c3371aaa1a8f17a3467c8dcb6c441828c74cd170b88d58dec4183a9c144d",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/authority.md",
+          "sha256": "573fa95d3818dba7358a3ec891552f685482d047867a3119746052cbc29f63ec",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/design.md",
+          "sha256": "d3736d9654ceac0f6e0a600536b4da8441f7c99ef11df65d16326b5f40262d26",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/governance.json",
+          "sha256": "442a562da0bd9e2eaf5480333652b608a9bcb973fe0eccf317c7d5cbb1bab59c",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/proposal.md",
+          "sha256": "d7adb056ed3d821b156da2867adb8ed5f87663b233e700e6ff2119cd4ebd38d1",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/specs/adopt-online-boutique-lgtm-candidate-harness/spec.md",
+          "sha256": "24b8fb61cd5ad3d00fcd98d25d764c2c339327e50d8a701bcce3553afaf9aabc",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/tasks.md",
+          "sha256": "ed2d6b5d9cfe2719bc6c448177ca19483c60f9781df1143a5a9d2b0373d12f64",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/verification.md",
+          "sha256": "9a2ae93cb28ba21ef0b1879207a0efdfefe4a2355e81e867b5506fe6ee48faff",
+          "mode": "100644"
+        }
+      ],
+      "protocolBindings": {
+        "studyEpoch": "online-boutique-aws-eks-candidate-pilot-v1",
+        "descriptor": {
+          "path": "pipelines/campaigns/online-boutique-aws-eks-candidate-pilot-v1.json",
+          "byteSha256": "b0349a21d7a9d524a6c8a54b3e2e90a5e99bc569f0368feb2d8a420c51a128ed",
+          "canonicalSha256": "a02300e11a4b8a53050ac2dde454a6da41b709a418a44f05c27360036ec900ef"
+        },
+        "compiler": {
+          "path": "modules/online-boutique-lgtm/validation/candidate_pilot.py",
+          "sha256": "19715bc5f273a83b48c917edca97dd3f5ca3278a43843876f3aadd925381e79b",
+          "api": "pure-candidate-construction-v1"
+        },
+        "compiledPlan": {
+          "canonicalSha256": "42b3bdf48f2aeadb82e2094d9b989cdcba61f3a247d58e09588e842a38a32f2f",
+          "runCount": 18
+        },
+        "maximumFutureRunEvidenceLabel": "candidate-evidence",
+        "canonical": false
+      },
+      "allowedPaths": [
+        "findings/adopt-online-boutique-lgtm-candidate-harness.csv",
+        "modules/online-boutique-lgtm/extension-ledger.yaml",
+        "modules/online-boutique-lgtm/validation/candidate_pilot.py",
+        "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/.openspec.yaml",
+        "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/authority.md",
+        "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/design.md",
+        "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/governance.json",
+        "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/proposal.md",
+        "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/specs/adopt-online-boutique-lgtm-candidate-harness/spec.md",
+        "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/tasks.md",
+        "openspec/changes/adopt-online-boutique-lgtm-candidate-harness/verification.md",
+        "pipelines/campaigns/online-boutique-aws-eks-candidate-pilot-v1.json",
+        "tests/test_online_boutique_lgtm_candidate_pilot.py",
+        "tests/test_online_boutique_lgtm_module.py"
+      ]
+    },
+    {
+      "changeId": "adopt-otel-demo-candidate-harness",
+      "required": false,
+      "parentEpoch": {
+        "changeId": "adopt-teastore-diagnostic-harness",
+        "commit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+        "tree": "034303c37785e29ea5ea6595c18b6411d55525ff"
+      },
+      "adoptedSource": {
+        "kind": "candidate-construction-source",
+        "commit": "e3623ed6d2dc98d967d6be312fb93ad1e1685f46",
+        "tree": "9cec4eeb3c16b71d3989a10f66fe9a56db6dd765",
+        "qualification": "local-construction-only"
+      },
+      "module": {
+        "id": "otel-demo",
+        "applicationFamily": "otel-demo",
+        "channel": "compose-otel-collector",
+        "replicationContribution": "application-family"
+      },
+      "blockers": [
+        "none-posture-not-realized",
+        "selected-posture-not-realized",
+        "application-request-witness-not-implemented",
+        "request-token-to-original-trace-correlation-not-implemented",
+        "candidate-terminal-validator-not-implemented",
+        "gate-plan-pending",
+        "gate-run-not-requested"
+      ],
+      "sourceBindings": [
+        {
+          "path": "research/five-module-readiness.json",
+          "sourceCommit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+          "sha256": "01d49af9060e8afd892c2b8c921ea2f1082169c86107bcc520cfe82c28389091",
+          "role": "digest-bound current cross-SUT evidence ceiling",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "modules/otel-demo/README.md",
+          "sourceCommit": "bb29cfb068224173fe05a58a3fd750988f0de004",
+          "sha256": "9ed28fccaeaacf659082f3611ba3e60921a40d3cb037230016e47ec8baa79b06",
+          "role": "current OTel Demo module boundary",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "modules/otel-demo/execution/candidate_pilot.py",
+          "sourceCommit": "e3623ed6d2dc98d967d6be312fb93ad1e1685f46",
+          "sha256": "82bb099668e9cbe35ba8711bee2a13b0e8be34319769d063547c0a9dcfc71403",
+          "role": "pure OTel Demo candidate compiler",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "modules/otel-demo/extension-ledger.yaml",
+          "sourceCommit": "e3623ed6d2dc98d967d6be312fb93ad1e1685f46",
+          "sha256": "40b170fdf36ebb42ad1fa4dd4d906bdd8006d2f9f1566cbcdd218cdac5236c0c",
+          "role": "classified OTel Demo extension inventory",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "pipelines/campaigns/otel-demo-candidate-pilot-v1.json",
+          "sourceCommit": "e3623ed6d2dc98d967d6be312fb93ad1e1685f46",
+          "sha256": "fb43212b38ce0cd53538ee654b825574ee415dc4624fc2cc32bcc6d82504cbaa",
+          "role": "exact OTel Demo candidate descriptor",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "tests/test_otel_candidate_pilot.py",
+          "sourceCommit": "e3623ed6d2dc98d967d6be312fb93ad1e1685f46",
+          "sha256": "88a719beb74e69b16682ecc9a86ce96b240bf3ed6f318fd0148a62698cb8175a",
+          "role": "OTel Demo planted-defect construction checks",
+          "qualification": "local-construction-source"
+        },
+        {
+          "path": "tests/test_otel_materialize.py",
+          "sourceCommit": "e3623ed6d2dc98d967d6be312fb93ad1e1685f46",
+          "sha256": "4323fcb9c40965de7fa0789f00ccea7a592f80c6cdc9fc66666bf13061645b15",
+          "role": "updated exact OTel Demo extension count",
+          "qualification": "local-construction-source"
+        }
+      ],
+      "artifactBindings": [
+        {
+          "path": "openspec/changes/adopt-otel-demo-candidate-harness/.openspec.yaml",
+          "sha256": "a4c120d9e7f666e2634058d44d9b2260872251bccd62656d65446679cd6968a6",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-otel-demo-candidate-harness/authority.md",
+          "sha256": "4128c21167fecea0ee2766ba41f4c7238b2a1ac09791895d5242835616e0b5b5",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-otel-demo-candidate-harness/design.md",
+          "sha256": "a3dd9f363b65351d917b0f00d5a9402dccac2c57c28db1b27a08254193a1dd12",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-otel-demo-candidate-harness/governance.json",
+          "sha256": "375070e791bccb07138c6f94391c2a3eca6d18a5a8dff79127c3198bf338dc3f",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-otel-demo-candidate-harness/proposal.md",
+          "sha256": "cf31c3869374161000013510ea32bdb84244fb96c005efa2a0a56ef1413ec82a",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-otel-demo-candidate-harness/specs/adopt-otel-demo-candidate-harness/spec.md",
+          "sha256": "d84ab927b0b46942b3d6f8cd7f9fe473215ed0a0da49efabd2607954f8a0fbad",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-otel-demo-candidate-harness/tasks.md",
+          "sha256": "3ec1cf86382e209fe8a4e234d0dbce233829f154ee3bcc958ce063984c284c5a",
+          "mode": "100644"
+        },
+        {
+          "path": "openspec/changes/adopt-otel-demo-candidate-harness/verification.md",
+          "sha256": "5b49776ca8fc19d4cd4803d847ad519b112b29c6ac36d387c8c111fc78f7df01",
+          "mode": "100644"
+        }
+      ],
+      "protocolBindings": {
+        "studyEpoch": "otel-demo-candidate-pilot-v1",
+        "descriptor": {
+          "path": "pipelines/campaigns/otel-demo-candidate-pilot-v1.json",
+          "byteSha256": "fb43212b38ce0cd53538ee654b825574ee415dc4624fc2cc32bcc6d82504cbaa",
+          "canonicalSha256": "daffe1cafc502bc0ff79da25d8233cd69c5882091628c2d83fb82e851be5307e"
+        },
+        "compiler": {
+          "path": "modules/otel-demo/execution/candidate_pilot.py",
+          "sha256": "82bb099668e9cbe35ba8711bee2a13b0e8be34319769d063547c0a9dcfc71403",
+          "api": "pure-candidate-construction-v1"
+        },
+        "compiledPlan": {
+          "canonicalSha256": "53b0ac1b6a43c3070dfe8148ec391ef0cc278eca38250f4f926bb14862597e67",
+          "runCount": 18
+        },
+        "maximumFutureRunEvidenceLabel": "candidate-evidence",
+        "canonical": false
+      },
+      "allowedPaths": [
+        "findings/adopt-otel-demo-candidate-harness.csv",
+        "modules/otel-demo/execution/candidate_pilot.py",
+        "modules/otel-demo/extension-ledger.yaml",
+        "openspec/changes/adopt-otel-demo-candidate-harness/.openspec.yaml",
+        "openspec/changes/adopt-otel-demo-candidate-harness/authority.md",
+        "openspec/changes/adopt-otel-demo-candidate-harness/design.md",
+        "openspec/changes/adopt-otel-demo-candidate-harness/governance.json",
+        "openspec/changes/adopt-otel-demo-candidate-harness/proposal.md",
+        "openspec/changes/adopt-otel-demo-candidate-harness/specs/adopt-otel-demo-candidate-harness/spec.md",
+        "openspec/changes/adopt-otel-demo-candidate-harness/tasks.md",
+        "openspec/changes/adopt-otel-demo-candidate-harness/verification.md",
+        "pipelines/campaigns/otel-demo-candidate-pilot-v1.json",
+        "tests/test_otel_candidate_pilot.py",
+        "tests/test_otel_materialize.py"
+      ]
+    }
+  ]
+}

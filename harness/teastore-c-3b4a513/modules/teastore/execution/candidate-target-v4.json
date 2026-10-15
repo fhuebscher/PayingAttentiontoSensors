@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "kind": "teastore-candidate-target-allocation-v4",
+  "host": "fb14srv5",
+  "transportUsers": ["root"],
+  "setupUsers": ["root"],
+  "executionIdentities": [
+    {
+      "user": "stig",
+      "uid": 1015,
+      "gid": 1015,
+      "supplementalGids": [999]
+    }
+  ],
+  "releaseParent": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/releases",
+  "artifactParent": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results",
+  "receiptParent": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/receipts",
+  "leasePath": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/leases/host-exclusive.lock",
+  "projectPrefix": "teastore_candidate_",
+  "reservedPorts": [3306, 5672, 8080, 8082, 15672],
+  "freshReadinessAfter": null,
+  "readinessRequirements": [
+    "exact-installed-release",
+    "installed-controller-byte-replay",
+    "patched-image-digest-lock",
+    "all-positive-seam-checks",
+    "all-planted-defect-witnesses",
+    "docker-access-as-stig",
+    "legacy-roots-not-used",
+    "fresh-installed-runtime-preflight",
+    "reserved-host-ports-free",
+    "stopped-foreign-projects-inventoried-and-preserved"
+  ],
+  "checkoutRootSelector": "gateSetup.authorization.releaseRoot",
+  "artifactRootSelector": "gateRun.authorization.resultsRoot/campaignId",
+  "installerPath": "modules/teastore/execution/candidate_release_installer.py",
+  "controllerPath": "modules/teastore/execution/candidate_remote_controller.py",
+  "legacyRootsAdmitted": false,
+  "runtimeSourceBuildAllowedFromRelease": false,
+  "runtimeEnabledByDefault": false
+}

@@ -1,0 +1,476 @@
+{
+ "inputs": {
+  "research/lanes/out-f-nolag-posthoc/posthoc_lanes_v33_otel.json": "5df8e7d18d61540d25e5fecedeb54fc418d16222c1365eb86496ff751923dfd2",
+  "research/placement/test-f-nolag/fresh-fa-nolag/fresh_fa_f.json": "af765a35f77fca4f75e21156836dac35537d0f53d9da9b24ebf41de8f7c67ac8",
+  "research/placement/test-f-nolag/otel-nolag.json": "13249ac7236ba548821a787df85ee0027b2c8c83b4213aca42b7a674ae6ce398",
+  "research/protocol/PREDICTIONS_OVERNIGHT_20261014.json": "57529300012ea7d52848f10c574e8089596010c5705d01a7f9b13c8d0d743a0d"
+ },
+ "label": "FNL predictions (8b89d43) scored against the ablation's committed outputs; the ablation launched 2026-10-15 01:53:28Z, after 8b89d43",
+ "results": [
+  {
+   "basis": {
+    "measuredRow": {
+     "coordinator": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       43.08,
+       43.12
+      ],
+      "rangeCounted": [
+       43.08,
+       43.12
+      ]
+     },
+     "episodes": 2,
+     "lag": null,
+     "ledger": {
+      "any": 1,
+      "counted": 1,
+      "episodes": 2,
+      "range": [
+       54.87,
+       54.87
+      ]
+     },
+     "own": {
+      "any": 2,
+      "counted": 0,
+      "episodes": 2,
+      "range": [
+       0.55,
+       1.06
+      ]
+     }
+    }
+   },
+   "id": "FNL-ONT-fraud",
+   "items": [
+    {
+     "item": "lane:own",
+     "measured": {
+      "any": 2,
+      "counted": 0,
+      "episodes": 2,
+      "range": [
+       0.55,
+       1.06
+      ]
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "disagree"
+    },
+    {
+     "item": "lane:coordinator",
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       43.08,
+       43.12
+      ],
+      "rangeCounted": [
+       43.08,
+       43.12
+      ]
+     },
+     "note": "",
+     "predicted": true,
+     "verdict": "agree"
+    },
+    {
+     "item": "lane:lag",
+     "measured": null,
+     "note": "",
+     "predicted": false,
+     "verdict": "not comparable"
+    },
+    {
+     "item": "CQ-C1 class",
+     "measured": "coordinator fired",
+     "note": "from the coordinator lane (no class table for this campaign)",
+     "predicted": "tracked",
+     "verdict": "agree"
+    },
+    {
+     "item": "CQ-L2 window",
+     "measured": [
+      43.08,
+      43.12
+     ],
+     "note": "range is the any-field earliest per episode; counted-only range [43.08, 43.12]",
+     "predicted": [
+      45.0,
+      45.0
+     ],
+     "verdict": "disagree"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "measured": {
+      "any": 1,
+      "counted": 1,
+      "episodes": 2,
+      "range": [
+       54.87,
+       54.87
+      ]
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "disagree"
+    }
+   ],
+   "rule": "Scored with the rules of research/ontology/compare.py (docstring, lines 1-24): each lane = detected in >= 1 episode of the row, any field (counted field reported beside it), measured lane not collected -> not comparable; CQ-C1 class by the measured coordinator class map; CQ-L2 window agree iff the measured coordinator range lies inside [low, high], partial if it overlaps, disagree otherwise; CQ-B1 entry-service-reached against the request-ledger lane as a proxy. Each item is scored separately; no item is edited after reading. For the lag lane the measured lane is `\u2014` (no lag metric collected in F-nolag): `not comparable`, not a disagreement.",
+   "verdict": "items"
+  },
+  {
+   "basis": {
+    "measuredRow": {
+     "coordinator": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       43.63,
+       43.87
+      ],
+      "rangeCounted": [
+       43.63,
+       43.87
+      ]
+     },
+     "episodes": 2,
+     "lag": null,
+     "ledger": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "own": {
+      "any": 2,
+      "counted": 0,
+      "episodes": 2,
+      "range": [
+       0.64,
+       0.83
+      ]
+     }
+    }
+   },
+   "id": "FNL-ONT-accounting",
+   "items": [
+    {
+     "item": "lane:own",
+     "measured": {
+      "any": 2,
+      "counted": 0,
+      "episodes": 2,
+      "range": [
+       0.64,
+       0.83
+      ]
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "disagree"
+    },
+    {
+     "item": "lane:coordinator",
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       43.63,
+       43.87
+      ],
+      "rangeCounted": [
+       43.63,
+       43.87
+      ]
+     },
+     "note": "",
+     "predicted": true,
+     "verdict": "agree"
+    },
+    {
+     "item": "lane:lag",
+     "measured": null,
+     "note": "",
+     "predicted": false,
+     "verdict": "not comparable"
+    },
+    {
+     "item": "CQ-C1 class",
+     "measured": "coordinator fired",
+     "note": "from the coordinator lane (no class table for this campaign)",
+     "predicted": "tracked",
+     "verdict": "agree"
+    },
+    {
+     "item": "CQ-L2 window",
+     "measured": [
+      43.63,
+      43.87
+     ],
+     "note": "range is the any-field earliest per episode; counted-only range [43.63, 43.87]",
+     "predicted": [
+      45.0,
+      45.0
+     ],
+     "verdict": "disagree"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "agree"
+    }
+   ],
+   "rule": "Scored with the rules of research/ontology/compare.py (docstring, lines 1-24): each lane = detected in >= 1 episode of the row, any field (counted field reported beside it), measured lane not collected -> not comparable; CQ-C1 class by the measured coordinator class map; CQ-L2 window agree iff the measured coordinator range lies inside [low, high], partial if it overlaps, disagree otherwise; CQ-B1 entry-service-reached against the request-ledger lane as a proxy. Each item is scored separately; no item is edited after reading. For the lag lane the measured lane is `\u2014` (no lag metric collected in F-nolag): `not comparable`, not a disagreement.",
+   "verdict": "items"
+  },
+  {
+   "basis": {
+    "measuredRow": {
+     "coordinator": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "episodes": 2,
+     "lag": null,
+     "ledger": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       0.4,
+       0.48
+      ]
+     },
+     "own": null
+    }
+   },
+   "id": "FNL-ONT-frontend",
+   "items": [
+    {
+     "item": "lane:own",
+     "measured": null,
+     "note": "",
+     "predicted": false,
+     "verdict": "not comparable"
+    },
+    {
+     "item": "lane:coordinator",
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "agree"
+    },
+    {
+     "item": "lane:lag",
+     "measured": null,
+     "note": "",
+     "predicted": false,
+     "verdict": "not comparable"
+    },
+    {
+     "item": "CQ-C1 class",
+     "measured": "coordinator silent",
+     "note": "from the coordinator lane (no class table for this campaign)",
+     "predicted": "not-a-member",
+     "verdict": "agree"
+    },
+    {
+     "item": "CQ-L2 window",
+     "measured": null,
+     "note": "no predicted window; coordinator silent",
+     "predicted": null,
+     "verdict": "agree"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       0.4,
+       0.48
+      ]
+     },
+     "note": "",
+     "predicted": true,
+     "verdict": "agree"
+    }
+   ],
+   "rule": "Scored with the rules of research/ontology/compare.py (docstring, lines 1-24): each lane = detected in >= 1 episode of the row, any field (counted field reported beside it), measured lane not collected -> not comparable; CQ-C1 class by the measured coordinator class map; CQ-L2 window agree iff the measured coordinator range lies inside [low, high], partial if it overlaps, disagree otherwise; CQ-B1 entry-service-reached against the request-ledger lane as a proxy. Each item is scored separately; no item is edited after reading. For the lag lane the measured lane is `\u2014` (no lag metric collected in F-nolag): `not comparable`, not a disagreement.",
+   "verdict": "items"
+  },
+  {
+   "basis": {
+    "k": 4,
+    "n": 4,
+    "ttd": [
+     [
+      "fraud-pause-effect",
+      4,
+      0.550076961517334,
+      "by-construction"
+     ],
+     [
+      "fraud-pause-effect",
+      5,
+      1.064805030822754,
+      "by-construction"
+     ],
+     [
+      "accounting-pause-effect",
+      4,
+      0.6387114524841309,
+      "by-construction"
+     ],
+     [
+      "accounting-pause-effect",
+      5,
+      0.8292624950408936,
+      "by-construction"
+     ]
+    ]
+   },
+   "id": "FNL-L1",
+   "rule": "as F-L1",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "countedTtd": [
+     [
+      "fraud-pause-effect",
+      4,
+      43.07908034324646
+     ],
+     [
+      "fraud-pause-effect",
+      5,
+      43.12495970726013
+     ],
+     [
+      "accounting-pause-effect",
+      4,
+      43.87255644798279
+     ],
+     [
+      "accounting-pause-effect",
+      5,
+      43.627784729003906
+     ]
+    ],
+    "frontendNoFireEitherField": true,
+    "offpathInWindow": 4
+   },
+   "id": "FNL-L2",
+   "rule": "as F-L2",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "armed": 0,
+    "lagIdsInCalibration": 0
+   },
+   "id": "FNL-L3",
+   "rule": "`\u2014` iff numbers.armed is false / lagIdsInCalibration == 0; a miss would be a lag id present in the F-nolag calibration (which would mean the ablation did not remove the receiver)",
+   "verdict": "-"
+  },
+  {
+   "basis": {
+    "placeableNonFlagdSdk": 231,
+    "placeableNonFlagdSpanmetrics": 44
+   },
+   "id": "FNL-M",
+   "rule": "as F-M",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "sensors": [
+     "metric:kafka:kafka.request.count"
+    ],
+    "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+    "size": 1
+   },
+   "id": "FNL-V1",
+   "rule": "hit iff `metric:kafka:kafka.request.count` is in the set; the other members (up to two) are reported; miss if absent",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "episodesInPool": 2,
+    "gE": 51.143910240381956,
+    "improved": 2,
+    "verdict": "PASS"
+   },
+   "id": "FNL-V2",
+   "rule": "hit iff the scorer's verdict for fraud-pause-effect is PASS; miss if FAIL; \u2014 if < 2 valid episodes",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "episodesInPool": 2,
+    "gE": 51.0597237162292,
+    "improved": 2,
+    "verdict": "PASS"
+   },
+   "id": "FNL-V3",
+   "rule": "hit iff the scorer's verdict for accounting-pause-effect is PASS; miss if FAIL; \u2014 if < 2 valid episodes",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "improved": 0,
+    "of": 2
+   },
+   "id": "FNL-V4",
+   "rule": "as FR1-V4",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "ablationOwnSet": [
+     [
+      "metric:kafka:kafka.request.count",
+      0,
+      0.2,
+      15.812881727968593,
+      14.978661367769948
+     ]
+    ],
+    "totalAlarms": 0
+   },
+   "id": "FNL-V5",
+   "rule": "hit iff summed union-of-rules alarms <= 4",
+   "verdict": "hit"
+  }
+ ],
+ "scope": "instance (fb14srv6, one SUT, one host, one pinned harness)",
+ "script": "research/placement/test-f-nolag/score_predictions_fnl.py",
+ "scriptSha256": "4cd5ebce6570a681144546a6752d9dd4fe461831ad4640d0efa11a8daa8911da"
+}

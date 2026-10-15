@@ -1,0 +1,859 @@
+{
+ "label": "Amendment 3 Change 1: 'service S uses library L at version V' facts (mechanical, from build files)",
+ "rules": "libraries.py docstring",
+ "sources": {
+  "teastore": {
+   "upstream": {
+    "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+    "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+   },
+   "harness": {
+    "path": "../observability-placement-runtime-teastore-protocol",
+    "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+   },
+   "obsplacement": {
+    "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+    "commit": "6897a5d921c3fd8f2df642bece7315589c426f45"
+   }
+  },
+  "hotel": {
+   "upstream": {
+    "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+    "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+   },
+   "harness": {
+    "path": "../observability-placement-runtime-hotel-protocol",
+    "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+   },
+   "obsplacement": {
+    "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+    "commit": "6897a5d921c3fd8f2df642bece7315589c426f45"
+   }
+  },
+  "otel": {
+   "upstream": {
+    "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+    "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+   },
+   "harness": {
+    "path": "../observability-placement-runtime-otel-protocol",
+    "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+   },
+   "obsplacement": {
+    "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+    "commit": "6897a5d921c3fd8f2df642bece7315589c426f45"
+   }
+  }
+ },
+ "facts": [
+  {
+   "system": "teastore",
+   "service": "persistence",
+   "value": {
+    "service": "persistence",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-loadbalancer",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 81,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-loadbalancer in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 4,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "persistence",
+   "value": {
+    "service": "persistence",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-core",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 86,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-core in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "persistence",
+   "value": {
+    "service": "persistence",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-archaius",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 91,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-archaius in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "auth",
+   "value": {
+    "service": "auth",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-loadbalancer",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 81,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-loadbalancer in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 4,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "auth",
+   "value": {
+    "service": "auth",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-core",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 86,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-core in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "auth",
+   "value": {
+    "service": "auth",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-archaius",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 91,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-archaius in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "image",
+   "value": {
+    "service": "image",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-loadbalancer",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 81,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-loadbalancer in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 4,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "image",
+   "value": {
+    "service": "image",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-core",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 86,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-core in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "image",
+   "value": {
+    "service": "image",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-archaius",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 91,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-archaius in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "recommender",
+   "value": {
+    "service": "recommender",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-loadbalancer",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 81,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-loadbalancer in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 4,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "recommender",
+   "value": {
+    "service": "recommender",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-core",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 86,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-core in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "recommender",
+   "value": {
+    "service": "recommender",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-archaius",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 91,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-archaius in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "webui",
+   "value": {
+    "service": "webui",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-loadbalancer",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 81,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-loadbalancer in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 4,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "webui",
+   "value": {
+    "service": "webui",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-core",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 86,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-core in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "teastore",
+   "service": "webui",
+   "value": {
+    "service": "webui",
+    "library": "ribbon",
+    "coordinate": "com.netflix.ribbon:ribbon-archaius",
+    "ecosystem": "maven",
+    "version": "2.7.18",
+    "family": "discovery-client (load balancer)"
+   },
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "line": 91,
+   "quotedToken": "<version>2.7.18</version>",
+   "note": "libraries.py detect: maven dependency com.netflix.ribbon:ribbon-archaius in utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "frontend",
+   "value": {
+    "service": "frontend",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "frontend",
+   "value": {
+    "service": "frontend",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "profile",
+   "value": {
+    "service": "profile",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "profile",
+   "value": {
+    "service": "profile",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "search",
+   "value": {
+    "service": "search",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "search",
+   "value": {
+    "service": "search",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "geo",
+   "value": {
+    "service": "geo",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "geo",
+   "value": {
+    "service": "geo",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "rate",
+   "value": {
+    "service": "rate",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "rate",
+   "value": {
+    "service": "rate",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "review",
+   "value": {
+    "service": "review",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "review",
+   "value": {
+    "service": "review",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "attractions",
+   "value": {
+    "service": "attractions",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "attractions",
+   "value": {
+    "service": "attractions",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "recommendation",
+   "value": {
+    "service": "recommendation",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "recommendation",
+   "value": {
+    "service": "recommendation",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "user",
+   "value": {
+    "service": "user",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "user",
+   "value": {
+    "service": "user",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "reservation",
+   "value": {
+    "service": "reservation",
+    "library": "consul-api",
+    "coordinate": "github.com/hashicorp/consul/api",
+    "ecosystem": "go",
+    "version": "1.26.1",
+    "family": "registry-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 10,
+   "quotedToken": "github.com/hashicorp/consul/api v1.26.1",
+   "note": "libraries.py detect: go dependency github.com/hashicorp/consul/api in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "hotel",
+   "service": "reservation",
+   "value": {
+    "service": "reservation",
+    "library": "grpc-consul-resolver",
+    "coordinate": "github.com/mbobakov/grpc-consul-resolver",
+    "ecosystem": "go",
+    "version": "1.5.3",
+    "family": "discovery-client (consul)"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/go.mod",
+   "line": 11,
+   "quotedToken": "github.com/mbobakov/grpc-consul-resolver v1.5.3",
+   "note": "libraries.py detect: go dependency github.com/mbobakov/grpc-consul-resolver in hotelReservation/go.mod",
+   "stage1AstCallSitesForLibrary": 0,
+   "citation": "ok"
+  },
+  {
+   "system": "otel",
+   "service": "accountingservice",
+   "value": {
+    "service": "accountingservice",
+    "library": "Confluent.Kafka",
+    "coordinate": "Confluent.Kafka",
+    "ecosystem": "nuget",
+    "version": "2.5.3",
+    "family": "kafka-client (librdkafka)"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/accountingservice/AccountingService.csproj",
+   "line": 12,
+   "quotedToken": "<PackageReference Include=\"Confluent.Kafka\" Version=\"2.5.3\" />",
+   "note": "libraries.py detect: nuget dependency Confluent.Kafka in src/accountingservice/AccountingService.csproj",
+   "stage1AstCallSitesForLibrary": 4,
+   "citation": "ok"
+  },
+  {
+   "system": "otel",
+   "service": "checkoutservice",
+   "value": {
+    "service": "checkoutservice",
+    "library": "sarama",
+    "coordinate": "github.com/IBM/sarama",
+    "ecosystem": "go",
+    "version": "1.43.2",
+    "family": "kafka-client"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/checkoutservice/go.mod",
+   "line": 6,
+   "quotedToken": "github.com/IBM/sarama v1.43.2",
+   "note": "libraries.py detect: go dependency github.com/IBM/sarama in src/checkoutservice/go.mod",
+   "stage1AstCallSitesForLibrary": 5,
+   "citation": "ok"
+  },
+  {
+   "system": "otel",
+   "service": "frauddetectionservice",
+   "value": {
+    "service": "frauddetectionservice",
+    "library": "kafka-clients",
+    "coordinate": "org.apache.kafka:kafka-clients",
+    "ecosystem": "maven",
+    "version": "3.6.0",
+    "family": "kafka-client"
+   },
+   "repo": "upstream",
+   "sourceFile": "src/frauddetectionservice/build.gradle.kts",
+   "line": 33,
+   "quotedToken": "implementation(\"org.apache.kafka:kafka-clients:3.6.0\")",
+   "note": "libraries.py detect: maven dependency org.apache.kafka:kafka-clients in src/frauddetectionservice/build.gradle.kts",
+   "stage1AstCallSitesForLibrary": 2,
+   "citation": "ok"
+  }
+ ],
+ "citationCounts": {
+  "teastore": {
+   "ok": 15
+  },
+  "hotel": {
+   "ok": 20
+  },
+  "otel": {
+   "ok": 3
+  }
+ },
+ "libraries": [
+  {
+   "library": "Confluent.Kafka",
+   "version": "2.5.3",
+   "usedBy": [
+    "otel/accountingservice"
+   ]
+  },
+  {
+   "library": "consul-api",
+   "version": "1.26.1",
+   "usedBy": [
+    "hotel/attractions",
+    "hotel/frontend",
+    "hotel/geo",
+    "hotel/profile",
+    "hotel/rate",
+    "hotel/recommendation",
+    "hotel/reservation",
+    "hotel/review",
+    "hotel/search",
+    "hotel/user"
+   ]
+  },
+  {
+   "library": "grpc-consul-resolver",
+   "version": "1.5.3",
+   "usedBy": [
+    "hotel/attractions",
+    "hotel/frontend",
+    "hotel/geo",
+    "hotel/profile",
+    "hotel/rate",
+    "hotel/recommendation",
+    "hotel/reservation",
+    "hotel/review",
+    "hotel/search",
+    "hotel/user"
+   ]
+  },
+  {
+   "library": "kafka-clients",
+   "version": "3.6.0",
+   "usedBy": [
+    "otel/frauddetectionservice"
+   ]
+  },
+  {
+   "library": "ribbon",
+   "version": "2.7.18",
+   "usedBy": [
+    "teastore/auth",
+    "teastore/image",
+    "teastore/persistence",
+    "teastore/recommender",
+    "teastore/webui"
+   ]
+  },
+  {
+   "library": "sarama",
+   "version": "1.43.2",
+   "usedBy": [
+    "otel/checkoutservice"
+   ]
+  }
+ ],
+ "derived": [
+  {
+   "library": "librdkafka",
+   "via": "Confluent.Kafka",
+   "rule": "version from Confluent.Kafka's own src/Confluent.Kafka/Confluent.Kafka.csproj at the same tag (PackageReference librdkafka.redist), read from the vendored copy by `vendor`",
+   "confluentKafkaVersions": [
+    "2.5.3"
+   ]
+  }
+ ]
+}

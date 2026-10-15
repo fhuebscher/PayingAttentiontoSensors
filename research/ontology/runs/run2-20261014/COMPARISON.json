@@ -1,0 +1,1259 @@
+{
+ "run": "run2-20261014",
+ "label": "POST HOC: every compared campaign was read before these predictions were made",
+ "scope": "instance",
+ "predictions": "PREDICTIONS.json (committed before this comparison)",
+ "rules": "compare.py docstring",
+ "rows": [
+  {
+   "n": 1,
+   "system": "hotel",
+   "regime": "cpu-throttle",
+   "target": "profile",
+   "source": "pooled",
+   "label": "POST HOC",
+   "measuredCite": "pooled.json `pooled` rows hotel/cpu-throttle summed over rates",
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": true,
+     "measured": {
+      "any": 12,
+      "counted": 6,
+      "episodes": 16,
+      "range": [
+       0.07,
+       27.02
+      ]
+     },
+     "verdict": "agree",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "no-liveness-check",
+     "measured": {
+      "a": 16
+     },
+     "verdict": "not comparable",
+     "note": "measured class map: {\"null\": 16}"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 3,
+      "counted": 3,
+      "episodes": 16,
+      "range": [
+       7.91,
+       30.3
+      ]
+     },
+     "verdict": "agree",
+     "note": "blast radius frontend"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "system": "hotel",
+   "regime": "net-delay",
+   "target": "rate",
+   "source": "pooled",
+   "label": "POST HOC",
+   "measuredCite": "pooled.json `pooled` rows hotel/net-delay summed over rates",
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 16,
+      "counted": 16,
+      "episodes": 16,
+      "range": [
+       0.14,
+       9.94
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "no-liveness-check",
+     "measured": {
+      "a": 16
+     },
+     "verdict": "not comparable",
+     "note": "measured class map: {\"null\": 16}"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 16,
+      "counted": 16,
+      "episodes": 16,
+      "range": [
+       0.14,
+       19.61
+      ]
+     },
+     "verdict": "agree",
+     "note": "blast radius frontend, search"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "system": "hotel",
+   "regime": "search-pause",
+   "target": "search",
+   "source": "pooled",
+   "label": "POST HOC",
+   "measuredCite": "pooled.json `pooled` rows hotel/search-pause summed over rates",
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 16,
+      "counted": 4,
+      "episodes": 16,
+      "range": [
+       0.21,
+       13.21
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "no-liveness-check",
+     "measured": {
+      "a": 16
+     },
+     "verdict": "not comparable",
+     "note": "measured class map: {\"null\": 16}"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 16,
+      "counted": 0,
+      "episodes": 16,
+      "range": [
+       0.22,
+       18.66
+      ]
+     },
+     "verdict": "agree",
+     "note": "blast radius frontend"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "system": "otel",
+   "regime": "accounting-pause",
+   "target": "accountingservice",
+   "source": "pooled",
+   "label": "POST HOC",
+   "measuredCite": "pooled.json `pooled` rows otel/accounting-pause summed over rates",
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 5,
+      "counted": 0,
+      "episodes": 5,
+      "range": [
+       0.88,
+       1.51
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": true,
+     "measured": {
+      "any": 5,
+      "counted": 5,
+      "episodes": 5,
+      "range": [
+       43.71,
+       44.32
+      ]
+     },
+     "verdict": "agree",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "tracked",
+     "measured": {
+      "hit-counted": 5
+     },
+     "verdict": "agree",
+     "note": "measured class map: {\"tracked\": 5}"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": [
+      45.0,
+      45.0
+     ],
+     "measured": [
+      43.71,
+      44.32
+     ],
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": false,
+     "measured": {
+      "any": 1,
+      "counted": 1,
+      "episodes": 5,
+      "range": [
+       37.19,
+       37.19
+      ]
+     },
+     "verdict": "disagree",
+     "note": "blast radius group-accountingservice"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "system": "otel",
+   "regime": "fraud-pause",
+   "target": "frauddetectionservice",
+   "source": "pooled",
+   "label": "POST HOC",
+   "measuredCite": "pooled.json `pooled` rows otel/fraud-pause summed over rates",
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 5,
+      "counted": 0,
+      "episodes": 5,
+      "range": [
+       1.15,
+       1.55
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": true,
+     "measured": {
+      "any": 5,
+      "counted": 5,
+      "episodes": 5,
+      "range": [
+       43.37,
+       43.94
+      ]
+     },
+     "verdict": "agree",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "tracked",
+     "measured": {
+      "hit-counted": 5
+     },
+     "verdict": "agree",
+     "note": "measured class map: {\"tracked\": 5}"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": [
+      45.0,
+      45.0
+     ],
+     "measured": [
+      43.37,
+      43.94
+     ],
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": false,
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 5,
+      "range": [
+       20.25,
+       45.58
+      ]
+     },
+     "verdict": "disagree",
+     "note": "blast radius group-frauddetectionservice"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "system": "otel",
+   "regime": "frontend-pause",
+   "target": "frontend",
+   "source": "pooled",
+   "label": "POST HOC",
+   "measuredCite": "pooled.json `pooled` rows otel/frontend-pause summed over rates",
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 33,
+      "counted": 13,
+      "episodes": 33,
+      "range": [
+       0.29,
+       27.97
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 33,
+      "range": null
+     },
+     "verdict": "agree",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 28,
+      "range": null
+     },
+     "verdict": "agree",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "not-a-member",
+     "measured": {
+      "c": 33
+     },
+     "verdict": "agree",
+     "note": "measured class map: {\"not-a-member\": 33}"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": null,
+     "verdict": "agree",
+     "note": "no predicted window; coordinator silent"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 33,
+      "counted": 0,
+      "episodes": 33,
+      "range": [
+       0.29,
+       27.98
+      ]
+     },
+     "verdict": "agree",
+     "note": "blast radius frontendproxy, grafana, jaeger, loadgenerator, otelcol, prometheus"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "system": "otel",
+   "regime": "productcatalog-cpu-throttle",
+   "target": "productcatalogservice",
+   "source": "pooled",
+   "label": "POST HOC",
+   "measuredCite": "pooled.json `pooled` rows otel/productcatalog-cpu-throttle summed over rates",
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 3,
+      "counted": 3,
+      "episodes": 28,
+      "range": [
+       0.21,
+       58.96
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 28,
+      "range": null
+     },
+     "verdict": "agree",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 28,
+      "range": null
+     },
+     "verdict": "agree",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "not-a-member",
+     "measured": {
+      "c": 28
+     },
+     "verdict": "agree",
+     "note": "measured class map: {\"not-a-member\": 28}"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": null,
+     "verdict": "agree",
+     "note": "no predicted window; coordinator silent"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 1,
+      "counted": 1,
+      "episodes": 28,
+      "range": [
+       58.98,
+       58.98
+      ]
+     },
+     "verdict": "agree",
+     "note": "blast radius accountingservice, checkoutservice, frauddetectionservice, frontend, frontendproxy, grafana, jaeger, loadgenerator, otelcol, prometheus, recommendationservice"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "system": "teastore",
+   "regime": "auth-freeze",
+   "target": "auth",
+   "source": "pooled",
+   "label": "POST HOC",
+   "measuredCite": "pooled.json `pooled` rows teastore/auth-freeze summed over rates",
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 28,
+      "counted": 14,
+      "episodes": 28,
+      "range": [
+       0.45,
+       18.37
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": {
+      "any": 28,
+      "counted": 0,
+      "episodes": 28,
+      "range": [
+       9.07,
+       11.75
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "no-liveness-check",
+     "measured": {
+      "d": 28
+     },
+     "verdict": "disagree",
+     "note": "measured class map: {\"tracked\": 28}"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": [
+      9.07,
+      11.75
+     ],
+     "verdict": "not predicted",
+     "note": "no predicted window; coordinator fired"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 28,
+      "counted": 0,
+      "episodes": 28,
+      "range": [
+       0.48,
+       18.44
+      ]
+     },
+     "verdict": "agree",
+     "note": "blast radius webui"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "system": "teastore",
+   "regime": "persistence-cpu-throttle",
+   "target": "persistence",
+   "source": "pooled",
+   "label": "POST HOC",
+   "measuredCite": "pooled.json `pooled` rows teastore/persistence-cpu-throttle summed over rates",
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 28,
+      "counted": 28,
+      "episodes": 28,
+      "range": [
+       0.26,
+       5.53
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": {
+      "any": 14,
+      "counted": 12,
+      "episodes": 28,
+      "range": [
+       17.56,
+       59.05
+      ]
+     },
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "no-liveness-check",
+     "measured": {
+      "d": 2,
+      "hit-counted": 12,
+      "b": 14
+     },
+     "verdict": "disagree",
+     "note": "measured class map: {\"tracked\": 14, \"heartbeat-stays-alive\": 14}"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": [
+      17.56,
+      59.05
+     ],
+     "verdict": "not predicted",
+     "note": "no predicted window; coordinator fired"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 28,
+      "counted": 28,
+      "episodes": 28,
+      "range": [
+       0.23,
+       57.41
+      ]
+     },
+     "verdict": "agree",
+     "note": "blast radius auth, image, persistence, recommender, webui"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "system": "otel",
+   "regime": "fraud-pause",
+   "target": "frauddetectionservice",
+   "source": "campaign F",
+   "label": "POST HOC",
+   "measuredCite": null,
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 2,
+      "counted": 0,
+      "range": [
+       0.84,
+       1.52
+      ],
+      "cite": "research/placement/test-f/RESULT_F.md:42 (F-L1, 4/4 over both classes, BC field)",
+      "episodes": 2
+     },
+     "verdict": "disagree",
+     "note": "research/placement/test-f/RESULT_F.md:42 (F-L1, 4/4 over both classes, BC field)"
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": true,
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "range": [
+       43.3,
+       44.0
+      ],
+      "cite": "research/placement/test-f/RESULT_F.md:43 (F-L2, 4/4 over both classes, counted)",
+      "episodes": 2
+     },
+     "verdict": "agree",
+     "note": "research/placement/test-f/RESULT_F.md:43 (F-L2, 4/4 over both classes, counted)"
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "range": [
+       4.8,
+       9.3
+      ],
+      "cite": "research/placement/test-f/RESULT_F.md:31-32 (fraud blocks 4, 5)",
+      "episodes": 2
+     },
+     "verdict": "disagree",
+     "note": "research/placement/test-f/RESULT_F.md:31-32 (fraud blocks 4, 5)"
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "tracked",
+     "measured": "coordinator fired",
+     "verdict": "agree",
+     "note": "from the coordinator lane (no class table for this campaign)"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": [
+      45.0,
+      45.0
+     ],
+     "measured": [
+      43.3,
+      44.0
+     ],
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": false,
+     "measured": {
+      "any": 1,
+      "counted": 1,
+      "range": [
+       38.1,
+       38.1
+      ],
+      "cite": "research/placement/test-f/RESULT_F.md:31-32",
+      "episodes": 2
+     },
+     "verdict": "disagree",
+     "note": "blast radius group-frauddetectionservice"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "system": "otel",
+   "regime": "accounting-pause",
+   "target": "accountingservice",
+   "source": "campaign F",
+   "label": "POST HOC",
+   "measuredCite": null,
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 2,
+      "counted": 0,
+      "range": [
+       0.84,
+       1.52
+      ],
+      "cite": "research/placement/test-f/RESULT_F.md:42 (F-L1, 4/4 over both classes, BC field)",
+      "episodes": 2
+     },
+     "verdict": "disagree",
+     "note": "research/placement/test-f/RESULT_F.md:42 (F-L1, 4/4 over both classes, BC field)"
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": true,
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "range": [
+       43.3,
+       44.0
+      ],
+      "cite": "research/placement/test-f/RESULT_F.md:43 (F-L2, 4/4 over both classes, counted)",
+      "episodes": 2
+     },
+     "verdict": "agree",
+     "note": "research/placement/test-f/RESULT_F.md:43 (F-L2, 4/4 over both classes, counted)"
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "range": [
+       4.5,
+       9.2
+      ],
+      "cite": "research/placement/test-f/RESULT_F.md:29-30 (accounting blocks 4, 5)",
+      "episodes": 2
+     },
+     "verdict": "disagree",
+     "note": "research/placement/test-f/RESULT_F.md:29-30 (accounting blocks 4, 5)"
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "tracked",
+     "measured": "coordinator fired",
+     "verdict": "agree",
+     "note": "from the coordinator lane (no class table for this campaign)"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": [
+      45.0,
+      45.0
+     ],
+     "measured": [
+      43.3,
+      44.0
+     ],
+     "verdict": "disagree",
+     "note": ""
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": false,
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "range": null,
+      "cite": "research/placement/test-f/RESULT_F.md:29-30",
+      "episodes": 2
+     },
+     "verdict": "agree",
+     "note": "blast radius group-accountingservice"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "system": "otel",
+   "regime": "frontend-pause",
+   "target": "frontend",
+   "source": "campaign F",
+   "label": "POST HOC",
+   "measuredCite": null,
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "range": null,
+      "cite": "research/placement/test-f/RESULT_F.md:43 (frontend none in either field)",
+      "episodes": 2
+     },
+     "verdict": "agree",
+     "note": "research/placement/test-f/RESULT_F.md:43 (frontend none in either field)"
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "range": [
+       14.6,
+       14.6
+      ],
+      "cite": "research/placement/test-f/RESULT_F.md:36 (lag fires at 14.6 s)",
+      "episodes": 2
+     },
+     "verdict": "disagree",
+     "note": "research/placement/test-f/RESULT_F.md:36 (lag fires at 14.6 s)"
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "not-a-member",
+     "measured": "coordinator silent",
+     "verdict": "agree",
+     "note": "from the coordinator lane (no class table for this campaign)"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": null,
+     "verdict": "agree",
+     "note": "no predicted window; coordinator silent"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "range": [
+       0.3,
+       0.4
+      ],
+      "cite": "research/placement/test-f/RESULT_F.md:33-34",
+      "episodes": 2
+     },
+     "verdict": "agree",
+     "note": "blast radius frontendproxy, grafana, jaeger, loadgenerator, otelcol, prometheus"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "system": "teastore",
+   "regime": "recommender-pause",
+   "target": "recommender",
+   "source": "TeaStore off-path",
+   "label": "POST HOC",
+   "measuredCite": null,
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": {
+      "any": 5,
+      "counted": 5,
+      "range": [
+       14.86,
+       14.92
+      ],
+      "cite": "research/placement/test-ts-offpath/RESULT_TS_OFFPATH.md:19 (5/5 rate 10, none at rate 1)",
+      "episodes": 10
+     },
+     "verdict": "disagree",
+     "note": "research/placement/test-ts-offpath/RESULT_TS_OFFPATH.md:19 (5/5 rate 10, none at rate 1)"
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": {
+      "any": 10,
+      "counted": 0,
+      "range": [
+       8.37,
+       12.03
+      ],
+      "cite": "research/placement/test-ts-offpath/RESULT_TS_OFFPATH.md:18 (T-L2, BC field)",
+      "episodes": 10
+     },
+     "verdict": "disagree",
+     "note": "research/placement/test-ts-offpath/RESULT_TS_OFFPATH.md:18 (T-L2, BC field)"
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "no-liveness-check",
+     "measured": "coordinator fired",
+     "verdict": "disagree",
+     "note": "from the coordinator lane (no class table for this campaign)"
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": [
+      8.37,
+      12.03
+     ],
+     "verdict": "not predicted",
+     "note": "no predicted window; coordinator fired"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 1,
+      "counted": 1,
+      "range": [
+       5.07,
+       5.07
+      ],
+      "cite": "research/placement/test-ts-offpath/RESULT_TS_OFFPATH.md:20 (one counted spike, login ok share 1.0)",
+      "episodes": 10
+     },
+     "verdict": "agree",
+     "note": "blast radius recommender, webui"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "system": "teastore",
+   "regime": "auth-freeze",
+   "target": "auth",
+   "source": "TeaStore off-path",
+   "label": "POST HOC",
+   "measuredCite": null,
+   "items": [
+    {
+     "item": "lane:own",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "lane:coordinator",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "lane:lag",
+     "predicted": false,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-C1 class",
+     "predicted": "no-liveness-check",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-L2 window",
+     "predicted": null,
+     "measured": null,
+     "verdict": "not comparable",
+     "note": ""
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "predicted": true,
+     "measured": {
+      "any": 10,
+      "counted": null,
+      "range": null,
+      "cite": "research/placement/test-ts-offpath/RESULT_TS_OFFPATH.md:21 (T-C: auth-freeze P1 holds 10/10)",
+      "episodes": 10
+     },
+     "verdict": "agree",
+     "note": "blast radius webui"
+    },
+    {
+     "item": "CQ-S1 shared fate",
+     "predicted": "see PREDICTIONS.md",
+     "measured": null,
+     "verdict": "not comparable",
+     "note": "no campaign measures shared fate"
+    }
+   ]
+  }
+ ],
+ "counts": {
+  "lane:own": {
+   "agree": 1,
+   "disagree": 11,
+   "not comparable": 2
+  },
+  "lane:coordinator": {
+   "not comparable": 4,
+   "agree": 7,
+   "disagree": 3
+  },
+  "lane:lag": {
+   "not comparable": 9,
+   "agree": 2,
+   "disagree": 3
+  },
+  "CQ-C1 class": {
+   "not comparable": 4,
+   "agree": 7,
+   "disagree": 3
+  },
+  "CQ-L2 window": {
+   "not comparable": 4,
+   "disagree": 4,
+   "agree": 3,
+   "not predicted": 3
+  },
+  "CQ-B1 entry reached": {
+   "agree": 11,
+   "disagree": 3
+  },
+  "CQ-S1 shared fate": {
+   "not comparable": 14
+  }
+ }
+}

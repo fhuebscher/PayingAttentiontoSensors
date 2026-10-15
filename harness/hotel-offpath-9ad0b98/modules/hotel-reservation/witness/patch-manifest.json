@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "hotel-lmt-pilot-witness-and-log-fatal-v1",
+  "upstreamCommit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+  "patch": "modules/hotel-reservation/witness/hotel-candidate-witness.patch",
+  "patchSha256": "f97b61b2252ab4baf52fb296bc70466a1bdb2eb209cfa5868dfa42261ac0cbf7",
+  "files": [
+    {
+      "path": "Dockerfile",
+      "beforeSha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+      "afterSha256": "4a2be4d1d69222f6c56348282a38542429ef1ff1b6991030b66e0f5326ec6db8"
+    },
+    {
+      "path": "tracing/mux.go",
+      "beforeSha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+      "afterSha256": "e0c2a30cac514a617626d9b8f83a698680f0b3e3fbcca91339aa4d329fb9a4e6"
+    },
+    {
+      "path": "tracing/tracer.go",
+      "beforeSha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+      "afterSha256": "fd2bddbefa8a450c5e45251f6835e779f2519041be0949e61182efa53132d95c"
+    },
+    {
+      "path": "tune/setting.go",
+      "beforeSha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+      "afterSha256": "ada14c66a7de6c3e44f47efc56c3045d4cec8f2068687c2f52cc206e1431c860"
+    }
+  ],
+  "claims": {
+    "applicationWitnessIndependentOfJaeger": true,
+    "opaqueTokenHeader": "X-Obsplacement-Opportunity",
+    "traceCorrelationTag": "obsplacement.opaque_token",
+    "emittedByteMetric": "compact-thrift-span-bytes-before-batching",
+    "wireBytes": false,
+    "sourceWorkDisabledBySampleZero": false
+  }
+}

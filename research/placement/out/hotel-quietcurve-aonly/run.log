@@ -1,0 +1,9 @@
+### ARGV: uv run python research/placement/cells_v3.py schedule tmp/hotelsweep3-evidence/x tmp/hotelquiet1-evidence/x --system hotel --readout research/traffic-sweep/readout-hotel-quietcurve-aonly-v3.1/sweep_analysis_v3.json --out research/placement/out/hotel-quietcurve-aonly/schedule.json
+wrote research/placement/out/hotel-quietcurve-aonly/schedule.json
+### RC: 0
+### ARGV: uv run python research/placement/celf_v3.py research/traffic-sweep/readout-hotel-quietcurve-aonly-v3.1/sweep_analysis_v3.json --schedule research/placement/out/hotel-quietcurve-aonly/schedule.json --declared research/placement/declared/hotel.declared.json --k-max 19 --out research/placement/out/hotel-quietcurve-aonly/placement.json
+wrote research/placement/out/hotel-quietcurve-aonly/placement.json
+### RC: 0
+### ARGV: uv run python research/placement/cells_v3.py far tmp/hotelsweep3-evidence/x tmp/hotelquiet1-evidence/x --system hotel --readout research/traffic-sweep/readout-hotel-quietcurve-aonly-v3.1/sweep_analysis_v3.json --sets research/placement/out/hotel-quietcurve-aonly/placement.json --out research/placement/out/hotel-quietcurve-aonly/far.json
+wrote research/placement/out/hotel-quietcurve-aonly/far.json
+### RC: 0

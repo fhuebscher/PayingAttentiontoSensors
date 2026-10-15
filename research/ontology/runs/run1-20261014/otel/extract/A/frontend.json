@@ -1,0 +1,155 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "stage": 2,
+  "extractor": "A",
+  "service": "frontend",
+  "taskEntry": 48,
+  "note": "no registry, discovery or coordinator registration, no Kafka publish or consume, and no container health check for frontend appear in the given files; nothing reported for those"
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "frontend",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 250,
+    "quotedToken": "frontend:"
+   },
+   "container": {
+    "value": "frontend",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 252,
+    "quotedToken": "container_name: frontend",
+    "note": "memory limit 250M at docker-compose.yml:261; restart: unless-stopped at :262; no healthcheck key in the frontend block (docker-compose.yml:250-309), only kafka (:652) and opensearch (:801) have one"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/",
+    "quotedToken": "replicas",
+    "note": "library default, not in these files: the frontend block at docker-compose.yml:250-309 has no deploy.replicas key (its deploy block sets only resources.limits.memory), so the Compose default of one container applies"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": ".env",
+     "line": 32,
+     "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}",
+     "note": "server-side (Node) traces and metrics over OTLP gRPC: host otelcol (.env:27), gRPC port 4317 (.env:28); passed to the container at docker-compose.yml:275 (OTEL_EXPORTER_OTLP_ENDPOINT); exporters constructed with no arguments at src/frontend/utils/telemetry/Instrumentation.js:16 (OTLPTraceExporter) and :26 (OTLPMetricExporter). Metric export interval: PeriodicExportingMetricReader at Instrumentation.js:25 sets no interval, library default, not in these files. Logs: no log exporter in the frontend files. The candidate-postures overlay sets OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER and OTEL_SDK_DISABLED from unresolved OTEL_CANDIDATE_FRONTEND_* variables (compose.candidate-postures.yml:66-73), so the effective posture is not determined by these files"
+    },
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "src/frontend/pages/_document.tsx",
+     "line": 26,
+     "quotedToken": "http://${OTEL_COLLECTOR_HOST}:4318/v1/traces",
+     "note": "browser-side (web SDK) traces over OTLP HTTP, used only when the request is synthetic (_document.tsx:25 isSyntheticRequest); otherwise the endpoint is PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT (_document.tsx:27), set to http://localhost:8080/otlp-http/v1/traces at .env:33, whose target service is not stated in these files. Batching: BatchSpanProcessor with scheduledDelayMillis 500 at src/frontend/utils/telemetry/FrontendTracer.ts:39"
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "adservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Ad.gateway.ts",
+   "line": 9,
+   "quotedToken": "new AdServiceClient(AD_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Ad.gateway.ts:4, rpc getAds at :14); callee host from .env:49 AD_SERVICE_ADDR=adservice:${AD_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "cartservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Cart.gateway.ts",
+   "line": 9,
+   "quotedToken": "new CartServiceClient(CART_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Cart.gateway.ts:4, rpcs getCart/addItem/emptyCart at :14, :19, :24); callee host from .env:54 CART_SERVICE_ADDR=cartservice:${CART_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "checkoutservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Checkout.gateway.ts",
+   "line": 9,
+   "quotedToken": "new CheckoutServiceClient(CHECKOUT_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Checkout.gateway.ts:4, rpc placeOrder at :14); callee host from .env:59 CHECKOUT_SERVICE_ADDR=checkoutservice:${CHECKOUT_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "currencyservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Currency.gateway.ts",
+   "line": 9,
+   "quotedToken": "new CurrencyServiceClient(CURRENCY_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Currency.gateway.ts:4, rpcs convert/getSupportedCurrencies at :14, :19); callee host from .env:64 CURRENCY_SERVICE_ADDR=currencyservice:${CURRENCY_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "productcatalogservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/ProductCatalog.gateway.ts",
+   "line": 9,
+   "quotedToken": "new ProductCatalogServiceClient(PRODUCT_CATALOG_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at ProductCatalog.gateway.ts:4, rpcs listProducts/getProduct at :14, :19); callee host from .env:107 PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "recommendationservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Recommendations.gateway.ts",
+   "line": 9,
+   "quotedToken": "new RecommendationServiceClient(RECOMMENDATION_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Recommendations.gateway.ts:4, rpc listRecommendations at :14); callee host from .env:117 RECOMMENDATION_SERVICE_ADDR=recommendationservice:${RECOMMENDATION_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "shippingservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/frontend/gateways/rpc/Shipping.gateway.ts",
+   "line": 9,
+   "quotedToken": "new ShippingServiceClient(SHIPPING_SERVICE_ADDR, ChannelCredentials.createInsecure())",
+   "note": "protocol gRPC (@grpc/grpc-js imported at Shipping.gateway.ts:4, rpc getQuote at :14); callee host from .env:122 SHIPPING_SERVICE_ADDR=shippingservice:${SHIPPING_SERVICE_PORT}"
+  }
+ ]
+}

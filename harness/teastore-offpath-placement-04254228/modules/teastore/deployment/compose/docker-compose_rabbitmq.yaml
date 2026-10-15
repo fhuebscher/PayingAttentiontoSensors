@@ -1,0 +1,55 @@
+services:
+  rabbitmq:
+    # mac emulation fails, even with --platform linux/amd64 (qemu: uncaught target signal 11 (Segmentation fault) - core dumped)
+    # image: descartesresearch/teastore-kieker-rabbitmq
+    image: rabbitmq:3-management
+    expose:
+      - "5672"
+    ports:
+      - "8082:8080"  # Changed from 8081 to avoid conflict with cAdvisor
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: nimda
+      # F-ADH-073/F-ADH-075. Keep the server at 0 -- but NOT because "both sides
+      # request 0". That earlier claim was false. The Kieker image ships
+      # kieker.monitoring.writer.amqp.ChunkingAmqpWriter.heartbeat=0, and
+      # ChunkingAmqpWriter's bytecode treats 0 as UNSET, not as "disabled":
+      #     getIntProperty(CONFIG_HEARTBEAT); ifne <use it>; bipush 60; putfield
+      # so hb == 0 is silently replaced by DEFAULT_HEARTBEAT = 60 before
+      # setRequestedHeartbeat(). A client request of 0 is impossible by
+      # construction. The Java client negotiates max(client, server) when either
+      # side is 0, so the effective timeout was max(0, 60) = 60 s. In campaign #6
+      # the broker logged "missed heartbeats from client, timeout: 60s" 132 s
+      # into the 150 s auth pause, closed the connection, and the post-resume
+      # publish hit a broken pipe -- telemetry was lost *after* recovery, outside
+      # the exposure window, which correctly blocked the cell; campaign #7 then
+      # aborted at cell 1 on the same evidence.
+      # The fix inverts the request: docker-compose_kieker.yaml rewrites the
+      # property to 900 before Tomcat starts, and this server-side 0 is exactly
+      # what makes max(0, 900) resolve to 900 s -- far longer than the 150 s
+      # pause, so a frozen JVM keeps its connection. Do not set a nonzero server
+      # value here: with both sides nonzero the negotiation is min(), which would
+      # cap the timeout at the server value and silently reintroduce the
+      # campaign #6 loss. pika (the collector) sends heartbeat=None and so
+      # accepts the broker's 0 unchanged.
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "-rabbit heartbeat 0"
+    command: >
+      bash -c "
+        rabbitmq-server &
+        echo 'Waiting for management API...' &&
+        for i in $$(seq 1 60); do
+          rabbitmqadmin -u admin -p nimda list queues 2>/dev/null && break
+          sleep 2
+        done &&
+        rabbitmqadmin -u admin -p nimda declare queue name=kieker durable=true auto_delete=false arguments='{\"x-max-length\":50000,\"x-overflow\":\"reject-publish\"}' &&
+        echo 'Queue kieker created' &&
+        wait
+      "
+    networks:
+      - teastore-network
+
+networks:
+  teastore-network:
+    external: true

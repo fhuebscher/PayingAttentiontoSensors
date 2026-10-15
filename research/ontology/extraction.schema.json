@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "http://obsplacement.example/extraction.schema.json",
+  "title": "Extracted SUT specification (one system under test)",
+  "description": "Output of the preregistered extraction procedure for one SUT, input of research/ontology/spec_to_ttl.py. Every fact is an object {value, ...provenance}: either cited (repo key, sourceFile, line, quotedToken: checked by research/ontology/check_citations.py against the file at the pinned commit, token on the line or within +-2 lines) or a documented library default (sourceUrl; reported as unchecked). Names are references: a consumer's group, a topic's broker, a coordinator's hostedBy etc. name another entity of the same spec. Dangling references are not rejected here; SHACL (shapes.ttl) rejects the resulting untyped node.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sut", "sources", "architecture", "host", "services"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "sut": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "extraction": {
+      "type": "object",
+      "description": "Procedure metadata (which procedure, extractor, prompt digest, run time); free-form, not converted.",
+      "additionalProperties": true
+    },
+    "sources": {
+      "type": "object",
+      "description": "repo key -> git working copy (path relative to the observability-placement checkout, or absolute) and the pinned commit every citation is read at.",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/source"}
+    },
+    "architecture": {
+      "type": "object", "additionalProperties": false, "required": ["name"],
+      "properties": {"name": {"$ref": "#/$defs/factString"}}
+    },
+    "host": {
+      "type": "object", "additionalProperties": false, "required": ["id"],
+      "properties": {"id": {"$ref": "#/$defs/factString"}}
+    },
+    "services": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/service"}},
+    "syncEdges": {"type": "array", "items": {"$ref": "#/$defs/factEdge"}},
+    "topics": {"type": "array", "items": {"$ref": "#/$defs/topic"}},
+    "consumerGroups": {"type": "array", "items": {"$ref": "#/$defs/consumerGroup"}},
+    "coordinators": {"type": "array", "items": {"$ref": "#/$defs/coordinator"}}
+  },
+  "$defs": {
+    "source": {
+      "type": "object", "additionalProperties": false, "required": ["path", "commit"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "upstreamUrl": {"type": "string"}
+      }
+    },
+    "cited": {
+      "type": "object",
+      "required": ["repo", "sourceFile", "line", "quotedToken"],
+      "properties": {
+        "basis": {"const": "cited"},
+        "repo": {"type": "string", "minLength": 1},
+        "sourceFile": {"type": "string", "minLength": 1, "not": {"pattern": "^/"}},
+        "line": {"type": "integer", "minimum": 1},
+        "quotedToken": {"type": "string", "minLength": 1},
+        "note": {"type": "string"},
+        "acceptance": {"enum": ["agreed", "supported", "deterministic", "library"], "description": "Set only in a final spec (merge.rebuild): how the fact was accepted (EXTRACTION_PROTOCOL Amendment 2)."}
+      }
+    },
+    "documentedDefault": {
+      "type": "object",
+      "required": ["basis", "sourceUrl", "note"],
+      "properties": {
+        "basis": {"const": "documented-default"},
+        "sourceUrl": {"type": "string", "minLength": 1},
+        "quotedToken": {"type": "string"},
+        "note": {"type": "string", "minLength": 1, "description": "Why a default applies, e.g. 'client sets no session.timeout.ms (cite the client config line in a sibling fact)'."},
+        "acceptance": {"enum": ["agreed", "supported", "deterministic", "library"], "description": "Set only in a final spec (merge.rebuild): how the fact was accepted (EXTRACTION_PROTOCOL Amendment 2)."}
+      }
+    },
+    "provenance": {
+      "oneOf": [
+        {"$ref": "#/$defs/cited", "not": {"required": ["sourceUrl"]}},
+        {"$ref": "#/$defs/documentedDefault", "not": {"required": ["sourceFile"]}}
+      ]
+    },
+    "factString": {
+      "allOf": [{"$ref": "#/$defs/provenance"}],
+      "required": ["value"],
+      "properties": {"value": {"type": "string", "minLength": 1}},
+      "unevaluatedProperties": false
+    },
+    "factNumber": {
+      "allOf": [{"$ref": "#/$defs/provenance"}],
+      "required": ["value"],
+      "properties": {"value": {"type": "number", "minimum": 0}},
+      "unevaluatedProperties": false
+    },
+    "factInt": {
+      "allOf": [{"$ref": "#/$defs/provenance"}],
+      "required": ["value"],
+      "properties": {"value": {"type": "integer", "minimum": 0}},
+      "unevaluatedProperties": false
+    },
+    "factBool": {
+      "allOf": [{"$ref": "#/$defs/provenance"}],
+      "required": ["value"],
+      "properties": {"value": {"type": "boolean"}},
+      "unevaluatedProperties": false
+    },
+    "factRole": {
+      "allOf": [{"$ref": "#/$defs/provenance"}],
+      "required": ["value"],
+      "properties": {"value": {"enum": ["microservice", "registry", "broker", "collector", "datastore", "cache", "telemetry-backend", "loadgen", "other"]}},
+      "unevaluatedProperties": false
+    },
+    "factCoordinatorType": {
+      "allOf": [{"$ref": "#/$defs/provenance"}],
+      "required": ["value"],
+      "properties": {"value": {"enum": ["ConsumerGroupCoordinator", "ServiceRegistry", "DiscoveryService"]}},
+      "unevaluatedProperties": false
+    },
+    "factEdge": {
+      "allOf": [{"$ref": "#/$defs/provenance"}],
+      "required": ["value"],
+      "description": "A synchronous call edge read from code (the call site), never from traces.",
+      "properties": {
+        "value": {
+          "type": "object", "additionalProperties": false, "required": ["caller", "callee"],
+          "properties": {"caller": {"type": "string", "minLength": 1}, "callee": {"type": "string", "minLength": 1}}
+        }
+      },
+      "unevaluatedProperties": false
+    },
+    "sensor": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "id"],
+      "properties": {
+        "kind": {"enum": ["log", "span", "metric"]},
+        "id": {"$ref": "#/$defs/factString"},
+        "measuresLagOf": {"$ref": "#/$defs/factString", "description": "consumer-group name (metric only)"}
+      }
+    },
+    "consumption": {
+      "type": "object", "additionalProperties": false, "required": ["topic"],
+      "properties": {
+        "topic": {"$ref": "#/$defs/factString"},
+        "group": {"$ref": "#/$defs/factString", "description": "Optional here on purpose: a consumer without a group is representable and rejected by SHACL (ConsumerShape)."}
+      }
+    },
+    "service": {
+      "type": "object", "additionalProperties": false, "required": ["name", "role", "container"],
+      "properties": {
+        "name": {"$ref": "#/$defs/factString"},
+        "role": {"$ref": "#/$defs/factRole"},
+        "container": {"$ref": "#/$defs/factString"},
+        "replicas": {"$ref": "#/$defs/factInt"},
+        "exportsTelemetryTo": {"type": "array", "items": {"$ref": "#/$defs/factString"}},
+        "registersWith": {"type": "array", "items": {"$ref": "#/$defs/factString"}},
+        "publishesTo": {"type": "array", "items": {"$ref": "#/$defs/factString"}},
+        "consumes": {"type": "array", "items": {"$ref": "#/$defs/consumption"}},
+        "emits": {"type": "array", "items": {"$ref": "#/$defs/sensor"}}
+      }
+    },
+    "topic": {
+      "type": "object", "additionalProperties": false, "required": ["name", "broker"],
+      "properties": {"name": {"$ref": "#/$defs/factString"}, "broker": {"$ref": "#/$defs/factString"}}
+    },
+    "consumerGroup": {
+      "type": "object", "additionalProperties": false, "required": ["name", "coordinator"],
+      "properties": {"name": {"$ref": "#/$defs/factString"}, "coordinator": {"$ref": "#/$defs/factString"}}
+    },
+    "liveness": {
+      "type": "object", "additionalProperties": false, "required": ["mechanism", "monitors"],
+      "properties": {
+        "mechanism": {"$ref": "#/$defs/factString", "description": "e.g. 'heartbeat', 'session', 'health-check', quoting the line that schedules/configures it"},
+        "monitors": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/factString"}},
+        "heartbeatIntervalSeconds": {"$ref": "#/$defs/factNumber"},
+        "failureTimeoutSeconds": {"$ref": "#/$defs/factNumber", "description": "Optional here; SHACL LivenessShape requires it."},
+        "cleanupIntervalSeconds": {"$ref": "#/$defs/factNumber"},
+        "heartbeatThreadIndependentOfWork": {"$ref": "#/$defs/factBool"},
+        "healthCheckConfigured": {"$ref": "#/$defs/factBool"}
+      }
+    },
+    "coordinator": {
+      "type": "object", "additionalProperties": false, "required": ["name", "type", "hostedBy"],
+      "properties": {
+        "name": {"$ref": "#/$defs/factString"},
+        "type": {"$ref": "#/$defs/factCoordinatorType"},
+        "hostedBy": {"$ref": "#/$defs/factString", "description": "service name whose process implements the coordinator"},
+        "liveness": {"type": "array", "items": {"$ref": "#/$defs/liveness"}}
+      }
+    }
+  }
+}

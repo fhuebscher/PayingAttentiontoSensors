@@ -1,0 +1,66 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "stage": 2,
+  "extractor": "A",
+  "service": "currencyservice",
+  "taskIndex": 42,
+  "notes": [
+   "Synchronous calls made by this service: none found in src/currencyservice/src/server.cpp (it only serves oteldemo.CurrencyService gRPC and grpc.health.v1 Health; no client stub, no ClientContext use outside tracer_common.h carrier definition).",
+   "Messages published or consumed: none found in the given files (no Kafka or other broker client).",
+   "Registry/discovery/coordinator: none found in the given files; no heartbeat, failure timeout or cleanup interval stated.",
+   "Health check: no healthcheck block for currencyservice in docker-compose.yml (library default, not in these files: Compose defines none); server.cpp:91 HealthServer implements grpc.health.v1 Check returning SERVING unconditionally, but no file configures a probe calling it.",
+   "Telemetry: traces via OtlpGrpcExporterFactory::Create() with SimpleSpanProcessor (tracer_common.h:75-77, per-span export, no batch interval); logs via OtlpGrpcLogRecordExporterFactory with SimpleLogRecordProcessor (logger_common.h:22-23, per-record export); metrics via OtlpGrpcMetricExporter with PeriodicExportingMetricReaderOptions left at defaults (meter_common.h:26-28); export interval is library default, not in these files.",
+   "Endpoint: exporter options are default-constructed in code; the endpoint is supplied by OTEL_EXPORTER_OTLP_ENDPOINT in the compose environment (docker-compose.yml:184), value from .env:32 resolving to otelcol port 4317 (.env:27-28).",
+   "compose.candidate-postures.yml:46-52 sets OTEL_SDK_DISABLED / OTEL_*_EXPORTER from posture variables for currencyservice; values are not in these files."
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "currencyservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 166,
+    "quotedToken": "currencyservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/currencyservice/src/server.cpp",
+    "line": 103,
+    "quotedToken": "oteldemo::CurrencyService::Service"
+   },
+   "container": {
+    "value": "currency-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 168,
+    "quotedToken": "container_name: currency-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "library default, not in these files: no deploy.replicas or scale for currencyservice in docker-compose.yml:166-189 or compose.candidate-postures.yml:46-52; Compose default 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "repo": "upstream",
+     "sourceFile": ".env",
+     "line": 27,
+     "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+     "note": "traces, metrics and logs all via OTLP/gRPC; docker-compose.yml:184 passes OTEL_EXPORTER_OTLP_ENDPOINT, .env:32 defines it as http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}"
+    }
+   ]
+  }
+ ]
+}

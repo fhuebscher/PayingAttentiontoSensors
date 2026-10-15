@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "library": "Confluent.Kafka",
+  "version": "2.5.3",
+  "extraction": {
+    "extractor": "B",
+    "model": "haiku",
+    "files": [
+      "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Confluent.Kafka.csproj",
+      "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs"
+    ],
+    "notStatedInFiles": [
+      "heartbeat-thread-independent: no statement in either file on which thread sends heartbeats",
+      "removal-signal: no statement in either file on what the coordinator logs or exposes when it removes a member"
+    ],
+    "notes": "Config_gen.cs is generated from librdkafka v2.5.3 (line 1). Defaults are the 'default:' lines in the doc comments; the key name is on the property line, which is cited in the note where it is more than two lines from the default."
+  },
+  "sources": {
+    "obsplacement": {
+      "path": ".",
+      "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+    }
+  },
+  "facts": [
+    {
+      "kind": "config-default",
+      "subject": "session.timeout.ms",
+      "value": 45000,
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+      "line": 1354,
+      "quotedToken": "default: 45000",
+      "note": "Property key is on line 1357: GetInt(\"session.timeout.ms\"). Scope for the group session timeout described on line 1352."
+    },
+    {
+      "kind": "config-default",
+      "subject": "heartbeat.interval.ms",
+      "value": 3000,
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+      "line": 1362,
+      "quotedToken": "default: 3000",
+      "note": "Doc comment on line 1360 reads 'Group session keepalive heartbeat interval.'. Property key is on line 1365: GetInt(\"heartbeat.interval.ms\"). Line 1352 says the consumer sends periodic heartbeats (heartbeat.interval.ms) to the broker."
+    },
+    {
+      "kind": "config-default",
+      "subject": "max.poll.interval.ms",
+      "value": 300000,
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+      "line": 1402,
+      "quotedToken": "default: 300000",
+      "note": "Property key is on line 1405: GetInt(\"max.poll.interval.ms\"). Line 1400 says that if this interval is exceeded 'the consumer is considered failed and the group will rebalance'; line 1400 does not name the component that checks it, so no failure-detector fact is given for it."
+    },
+    {
+      "kind": "config-default",
+      "subject": "group.instance.id",
+      "value": "''",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+      "line": 1338,
+      "quotedToken": "default: ''",
+      "note": "Property key is on line 1341: Get(\"group.instance.id\"). Line 1336 says static group members can leave and rejoin within session.timeout.ms without prompting a rebalance."
+    },
+    {
+      "kind": "config-default",
+      "subject": "group.protocol",
+      "value": "classic",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+      "line": 1378,
+      "quotedToken": "default: classic",
+      "note": "Property key is on line 1381: GetEnum(typeof(GroupProtocol), \"group.protocol\"). Line 1376 names 'consumer' as the KIP-848 alternative."
+    },
+    {
+      "kind": "config-default",
+      "subject": "coordinator.query.interval.ms",
+      "value": 600000,
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+      "line": 1394,
+      "quotedToken": "default: 600000",
+      "note": "Property key is on line 1397: GetInt(\"coordinator.query.interval.ms\"). Line 1392 says the interval is divided by ten while the assigned coordinator is down."
+    },
+    {
+      "kind": "failure-detector",
+      "subject": "session.timeout.ms",
+      "value": "group-coordinator",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+      "line": 1352,
+      "quotedToken": "the broker will remove the consumer from the group",
+      "note": "The file says 'the broker' (line 1352), not 'group coordinator'. The mapping to group-coordinator follows the task's definition of the broker's group coordinator. Line 1392 uses the term 'client group coordinator' for the coordinator lookup. Detection is by absence of heartbeats within session.timeout.ms, the timeout key named on line 1352 and set on line 1357."
+    }
+  ]
+}

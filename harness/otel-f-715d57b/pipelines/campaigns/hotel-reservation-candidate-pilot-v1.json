@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "id": "hotel-reservation-candidate-pilot-v1",
+  "status": "method-design-only",
+  "module": "hotel-reservation",
+  "source": {
+    "sutCommit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization"
+  },
+  "workload": {
+    "id": "hotel-search-v1",
+    "kind": "fixed-open-loop",
+    "method": "GET",
+    "route": "/hotels",
+    "requestsPerSecond": 10,
+    "concurrency": 16,
+    "opportunityLedger": {
+      "appendOnly": true,
+      "oneRowPerOfferedRequest": true,
+      "allocatedBeforeTelemetry": true,
+      "requiredFields": [
+        "recordSequence",
+        "previousRecordSha256",
+        "recordSha256",
+        "planSha256",
+        "workloadId",
+        "barrierId",
+        "sequence",
+        "opportunityId",
+        "opaqueToken",
+        "scheduledAt",
+        "scheduledMonotonicOffsetSeconds",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "outcome",
+        "statusCode",
+        "error",
+        "terminalSettled"
+      ]
+    }
+  },
+  "design": {
+    "postures": ["full", "sample-zero"],
+    "postureRoles": {
+      "full": "visibility-reference",
+      "sample-zero": "acquisition-negative-not-source-off"
+    },
+    "unsupportedPostures": [
+      {"id": "none", "state": "unsupported", "numericValue": null},
+      {"id": "selected", "state": "unsupported", "numericValue": null},
+      {"id": "source-off", "state": "unsupported", "numericValue": null}
+    ],
+    "regimes": [
+      {
+        "id": "no-fault-cost",
+        "kind": "cost-characterization",
+        "fault": null,
+        "artifactRootClass": "cost"
+      },
+      {
+        "id": "search-pause-effect",
+        "kind": "effect",
+        "fault": "search-pause",
+        "artifactRootClass": "effect/search-pause"
+      },
+      {
+        "id": "reservation-pause-effect",
+        "kind": "effect",
+        "fault": "reservation-pause",
+        "artifactRootClass": "effect/reservation-pause"
+      }
+    ],
+    "blocksPerRegime": 4,
+    "runsPerBlock": 2,
+    "totalRuns": 24,
+    "coldStartEachRun": true,
+    "costAndEffectPoolable": false,
+    "faultAppliedToEveryEffectCell": true
+  },
+  "timing": {
+    "warmupSeconds": 30,
+    "measurementSeconds": 120,
+    "offeredRequestsPerRun": 1200,
+    "offeredRequestsTotal": 28800,
+    "faultOnsetSeconds": 45,
+    "faultHoldSeconds": 15,
+    "minimumActualRequestStartsPerPhase": 100,
+    "nominalScheduledStartsByPhase": {
+      "pre": 450,
+      "during": 150,
+      "post-readiness": 600
+    },
+    "phaseNames": ["pre", "during", "post-readiness"],
+    "phaseAssignmentSource": "observed-intervention-and-readiness-monotonic-times",
+    "separateArtifactRootsRequired": true,
+    "costWindowContainsFault": false,
+    "effectWindowMaySupplyCostEstimate": false,
+    "minimumTimedSeconds": 3600,
+    "windowContracts": {
+      "no-fault-cost": {
+        "kind": "single-no-fault-measurement-window",
+        "fault": null,
+        "phaseNames": [],
+        "denominator": "offered-request-ledger-rows-in-shared-window"
+      },
+      "fault-effect": {
+        "kind": "observed-intervention-phase-windows",
+        "regimes": [
+          "search-pause-effect",
+          "reservation-pause-effect"
+        ],
+        "phaseNames": ["pre", "during", "post-readiness"],
+        "denominator": "independently-witnessed-executed-opportunities-per-phase"
+      }
+    }
+  },
+  "schedule": {
+    "version": "schedule-v1",
+    "selectorEncoding": "UTF-8(epoch || NUL || regime || NUL || schedule-v1)",
+    "candidateRule": "all-four-block-two-first-position-each-posture",
+    "collisionRule": "increment-modulo-6-until-unused",
+    "regimeOrder": [
+      "no-fault-cost",
+      "search-pause-effect",
+      "reservation-pause-effect"
+    ],
+    "receipts": [
+      {
+        "regime": "no-fault-cost",
+        "selectorSha256": "45a338decc4db7707632c58b1bd7257d69596dbc2696658e2f5101d2244e3690",
+        "initialCandidateIndex": 0,
+        "selectedCandidateIndex": 0,
+        "collisionIncrements": 0,
+        "blocks": [
+          ["full", "sample-zero"],
+          ["full", "sample-zero"],
+          ["sample-zero", "full"],
+          ["sample-zero", "full"]
+        ]
+      },
+      {
+        "regime": "search-pause-effect",
+        "selectorSha256": "64b3a78a6c28bbd9742c605e1f89bb100ffbefc5b56bb9b15b17bcc82178c0e6",
+        "initialCandidateIndex": 2,
+        "selectedCandidateIndex": 2,
+        "collisionIncrements": 0,
+        "blocks": [
+          ["full", "sample-zero"],
+          ["sample-zero", "full"],
+          ["sample-zero", "full"],
+          ["full", "sample-zero"]
+        ]
+      },
+      {
+        "regime": "reservation-pause-effect",
+        "selectorSha256": "42e16e95798344518a22bf7fb4c76e293915f7ff8e8d235b23230a00539641f5",
+        "initialCandidateIndex": 1,
+        "selectedCandidateIndex": 1,
+        "collisionIncrements": 0,
+        "blocks": [
+          ["full", "sample-zero"],
+          ["sample-zero", "full"],
+          ["full", "sample-zero"],
+          ["sample-zero", "full"]
+        ]
+      }
+    ]
+  },
+  "runIdentity": {
+    "fields": ["studyEpoch", "regime", "block", "posture", "attempt"],
+    "initialAttempt": 1,
+    "attemptBeginsBeforeExternalMutation": true,
+    "retryMayReplaceCell": false,
+    "failedAttemptsRetainedAndCharged": true
+  },
+  "groundTruth": {
+    "fault": {
+      "source": "controller-target-state-and-route-probes-independent-of-jaeger",
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "scenarioContracts": [
+        {
+          "scenario": "search-pause",
+          "service": "search",
+          "prePredicate": "running-and-unpaused",
+          "duringPredicate": "running-and-paused-and-route-fails",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-search-pause-prefix-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        },
+        {
+          "scenario": "reservation-pause",
+          "service": "reservation",
+          "prePredicate": "running-and-unpaused",
+          "duringPredicate": "running-and-paused-and-route-fails",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-reservation-pause-prefix-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        }
+      ]
+    },
+    "path": {
+      "normal": {
+        "id": "hotel-search-normal-v1",
+        "requiredSensors": [
+          "span:frontend:HTTP GET /hotels",
+          "span:search:/search.Search/Nearby",
+          "span:geo:/geo.Geo/Nearby",
+          "span:rate:/rate.Rate/GetRates",
+          "span:reservation:/reservation.Reservation/CheckAvailability",
+          "span:profile:/profile.Profile/GetProfiles"
+        ],
+        "requiredServiceEdges": [
+          ["frontend", "search"],
+          ["search", "geo"],
+          ["search", "rate"],
+          ["frontend", "reservation"],
+          ["frontend", "profile"]
+        ],
+        "oneOriginalNativeTraceRequired": true,
+        "crossTraceAssemblyAllowed": false
+      },
+      "faultSpecific": [
+        {
+          "id": "hotel-search-search-pause-prefix-v1",
+          "fault": "search-pause",
+          "targetService": "search",
+          "requiredAttemptedPrefix": ["frontend", "search"],
+          "downstreamNotRequiredDuringFault": [
+            "search->geo",
+            "search->rate",
+            "frontend->reservation",
+            "frontend->profile"
+          ],
+          "nativeOperationQualification": "unsupported-until-runtime-characterization",
+          "numericValueWhenUnsupported": null
+        },
+        {
+          "id": "hotel-search-reservation-pause-prefix-v1",
+          "fault": "reservation-pause",
+          "targetService": "reservation",
+          "requiredAttemptedPrefix": [
+            "frontend",
+            "search",
+            "geo",
+            "rate",
+            "reservation"
+          ],
+          "downstreamNotRequiredDuringFault": ["frontend->profile"],
+          "nativeOperationQualification": "unsupported-until-runtime-characterization",
+          "numericValueWhenUnsupported": null
+        }
+      ],
+      "opportunitySource": "offered-request-ledger-before-scored-telemetry",
+      "executedDenominator": "independent-application-side-witness",
+      "expectedOpportunityIsExecutionProof": false,
+      "correlation": "opaque-token-one-to-one-original-native-trace",
+      "tokenContractRequiredCoverage": [
+        "generation",
+        "request-injection",
+        "application-witness-extraction",
+        "native-trace-extraction",
+        "uniqueness",
+        "one-to-one-mapping"
+      ],
+      "missingWitnessOrCorrelationState": "unsupported",
+      "missingWitnessOrCorrelationValue": null,
+      "sampleZeroFalseRequires": [
+        "independently-proven-executed-opportunity",
+        "terminal-complete-empty-capture"
+      ]
+    }
+  },
+  "outcomes": {
+    "offeredRequestsAreDenominator": true,
+    "costRegimeOnly": "no-fault-cost",
+    "sourceCostComparisonState": "unsupported",
+    "sourceCostComparisonValue": null,
+    "sourceCostUnsupportedReason": "sample-zero-is-not-source-off",
+    "retainedTraceBytesAreWireBytes": false,
+    "effectResourcesAreCostEstimates": false,
+    "emptyLatencyValue": null,
+    "windowMembership": "native-event-timestamps-clipped-to-shared-interval",
+    "collectorTailUse": "diagnostic-only"
+  },
+  "postureProof": {
+    "full": {
+      "sourceWorkDisabled": false,
+      "requires": [
+        "sample-ratio-one-all-declared-services",
+        "immutable-image-ids"
+      ]
+    },
+    "sample-zero": {
+      "sourceWorkDisabled": false,
+      "classification": "acquisition-negative-not-source-off",
+      "requires": [
+        "sample-ratio-zero-all-declared-services",
+        "terminal-complete-empty-capture"
+      ]
+    }
+  },
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "abstentionState": "unsupported",
+    "abstentionNumericValue": null,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "analysis": {
+    "comparativeUnit": "complete-(regime,block)",
+    "descriptiveOnly": true,
+    "positionBalanced": true,
+    "independentSequentialBlocksClaim": false,
+    "forbidden": [
+      "source-off-claim",
+      "selected-posture-claim",
+      "source-cost-effect",
+      "p-value",
+      "confirmatory-interval",
+      "optimizer-front",
+      "observation-count-as-replication"
+    ]
+  },
+  "evidence": {
+    "designLabel": "method-design-only",
+    "maximumSupportedFutureLabel": "candidate-evidence",
+    "placementOrSourceCostEligible": false,
+    "canonical": false,
+    "promotionRequiresSeparateHumanGate": true
+  },
+  "transport": {
+    "executor": null,
+    "transport": null,
+    "runtimeAllowed": false,
+    "externalMutationAllowed": false,
+    "runtimeAdapterState": "absent-by-design"
+  }
+}

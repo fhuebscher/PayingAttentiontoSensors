@@ -1,0 +1,5 @@
+DRY RUN
+inputs: 49 files, 171986 bytes; 24 services; excluded {'asset': 2, 'generated-stub': 18, 'lockfile': 1, 'vendored': 28}; unresolved vars 0
+stage1 services=search: 6 schema facts {'ok': 6}; 35 observations+literals {'ok': 35}; AST {"filesParsed": 8, "callSites": 20, "byCategory": {"config": 6, "grpc": 8, "registry": 6}}
+merge: A files 0, B files 0; dropped {'A': 0, 'B': 0, 'stage1': 0}; schema-rejected 0; agreed 0, contested 6, agreement 0.0; per relation {"container": "0/1", "id": "0/1", "name": "0/1", "replicas": "0/1", "role": "0/1", "service": "0/1"}; judge packets 6
+SHACL on the stage-1 spec (converter/shapes check, not an ontology): conforms=True, 116 triples

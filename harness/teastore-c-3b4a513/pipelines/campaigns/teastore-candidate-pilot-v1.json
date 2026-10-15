@@ -1,0 +1,370 @@
+{
+  "analysis": {
+    "comparativeUnit": "complete-(regime,block)",
+    "descriptiveOnly": true,
+    "directedCarryoverBalancedClaim": false,
+    "forbidden": [
+      "p-value",
+      "confirmatory-interval",
+      "carryover-adjusted-effect",
+      "optimizer-front",
+      "generality-claim",
+      "observation-count-as-replication"
+    ],
+    "independentSequentialBlocksClaim": false,
+    "materialOrderOrThermalTrendResult": "unsupported",
+    "report": [
+      "raw-blocks",
+      "paired-deltas",
+      "ranges",
+      "order-time-thermal-diagnostics"
+    ]
+  },
+  "continuation": {
+    "earlySuccessStopAllowed": false,
+    "outcomeTriggeredExtensionAllowed": false,
+    "selectedRecompilationAllowed": false,
+    "sixBlockContinuationRequiresNewPreOutcomeEpoch": true
+  },
+  "design": {
+    "blocksPerRegime": 3,
+    "coldStartEachRun": true,
+    "costAndEffectPoolable": false,
+    "deploymentQueueAttemptArtifactReuse": false,
+    "postures": ["none", "selected", "full"],
+    "regimes": [
+      {
+        "artifactRootClass": "cost",
+        "fault": null,
+        "id": "no-fault-cost",
+        "kind": "cost"
+      },
+      {
+        "artifactRootClass": "effect/auth-freeze",
+        "fault": "auth-freeze",
+        "id": "auth-freeze-effect",
+        "kind": "effect"
+      },
+      {
+        "artifactRootClass": "effect/persistence-crash",
+        "fault": "persistence-crash",
+        "id": "persistence-crash-effect",
+        "kind": "effect"
+      }
+    ],
+    "runsPerBlock": 3,
+    "selectedSource": "fault-qualification",
+    "totalRuns": 27
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "diagnosticLabel": "smoke-validation",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true
+  },
+  "groundTruth": {
+    "fault": {
+      "functionalOutageWithoutContinuousWitness": null,
+      "intervalLabel": "intervention-exposure",
+      "requiredReceiptFields": [
+        "schemaVersion",
+        "scenario",
+        "service",
+        "independentOfKieker",
+        "intervalLabel",
+        "functionalOutage",
+        "measurementBarrier",
+        "requestedHoldSeconds",
+        "targetContainerId",
+        "targetImage",
+        "preState",
+        "commandVector",
+        "commandResult",
+        "actualOnsetWall",
+        "actualOnsetMonotonicOffsetSeconds",
+        "actualOffsetWall",
+        "actualOffsetMonotonicOffsetSeconds",
+        "duringStateSamples",
+        "recoveryAction",
+        "sameTargetIdentity",
+        "readiness",
+        "postState",
+        "interventionThreadJoined",
+        "laterInterventionMutationObserved",
+        "manifested",
+        "recovered",
+        "outageHeld",
+        "successful",
+        "error",
+        "operational"
+      ],
+      "scenarioContracts": [
+        {
+          "scenario": "auth-freeze",
+          "service": "auth",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "commandFamily": "docker-pause-unpause",
+          "prePredicate": "running-and-unpaused",
+          "duringPredicate": "running-and-paused",
+          "postPredicate": "running-and-unpaused"
+        },
+        {
+          "scenario": "persistence-crash",
+          "service": "persistence",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "commandFamily": "docker-stop-start",
+          "prePredicate": "running",
+          "duringPredicate": "stopped",
+          "postPredicate": "running-and-ready"
+        }
+      ],
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "source": "controller-and-target-state-probes-independent-of-kieker"
+    },
+    "path": {
+      "correlation": "pre-outcome-opaque-token-one-to-one-original-native-trace",
+      "crossTraceAssemblyAllowed": false,
+      "directEdgePredicate": "persistence.parentId == auth.spanId in same original native trace",
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "executedDenominator": "independent-application-side-witness",
+      "expectedOpportunityIsExecutionProof": false,
+      "missingWitnessOrCorrelationState": "unsupported",
+      "missingWitnessOrCorrelationValue": null,
+      "noneZeroRequires": [
+        "independently-proven-executed-opportunity",
+        "terminal-complete-hash-reconciled-empty-capture"
+      ],
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "opportunityWorkload": "login-browse-v1",
+      "requiredEdge": "auth->persistence",
+      "requiredSensors": ["operation:auth", "operation:persistence"],
+      "scoredPhases": ["pre", "post-readiness"],
+      "tokenContractFrozenBeforeOutcomes": true,
+      "tokenContractRequiredCoverage": [
+        "generation",
+        "login-request-injection",
+        "application-witness-extraction",
+        "native-trace-extraction",
+        "uniqueness",
+        "one-to-one-mapping"
+      ]
+    }
+  },
+  "id": "teastore-candidate-pilot-v1",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "teastore",
+  "outcomes": {
+    "costRegimeOnly": "no-fault-cost",
+    "effectResourcesAreCostEstimates": false,
+    "emptyLatencyValue": null,
+    "latencyPopulation": "successful-journeys-only",
+    "offeredJourneysAreDenominator": true,
+    "primaryCostEndpoint": "sampled-application-cpu-seconds-proxy-per-offered-journey",
+    "retainedTraceBytesAreWireBytes": false,
+    "windowMembership": "native-event-timestamps-clipped-to-shared-interval",
+    "collectorTailUse": "diagnostic-only"
+  },
+  "postureProof": {
+    "selected": {
+      "selectionId": "fault-qualification",
+      "requires": [
+        "goal-and-catalog-digests",
+        "dependency-closure",
+        "activation-manifest",
+        "exact-aop-bytes",
+        "required-groups-present",
+        "forbidden-groups-absent"
+      ]
+    },
+    "none": {
+      "requires": [
+        "kieker-disabled-before-jvm-start-all-application-services",
+        "exact-aop-bytes"
+      ],
+      "fixedSupportDisclosed": true,
+      "zeroOperationalCostClaim": false
+    },
+    "full": {
+      "requires": [
+        "all-declared-groups-active",
+        "exact-aop-bytes",
+        "goal-and-catalog-digests"
+      ]
+    }
+  },
+  "queueProof": {
+    "requires": [
+      "purge-with-zero-consumers",
+      "zero-messages-at-measurement-barrier",
+      "exactly-one-collector",
+      "settled-drain",
+      "complete-message-sha1",
+      "complete-signature-sha1",
+      "no-redelivered-message-body",
+      "terminal-reconciliation"
+    ],
+    "manyRowsPerMessageAllowed": true,
+    "postureLabelAloneProvesMaterialization": false
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "diagnosticRerunMayRestoreComparativeEligibility": false,
+    "fields": ["studyEpoch", "regime", "block", "posture", "attempt"],
+    "initialAttempt": 1,
+    "maximumLaterDiagnosticAttempts": 1,
+    "retryMayReplaceCell": false
+  },
+  "schedule": {
+    "candidateRule": "six-first-rows-each-left-then-right-rotation",
+    "collisionRule": "increment-modulo-12-until-unused",
+    "firstRows": [
+      ["N", "S", "F"],
+      ["N", "F", "S"],
+      ["S", "N", "F"],
+      ["S", "F", "N"],
+      ["F", "N", "S"],
+      ["F", "S", "N"]
+    ],
+    "integerEncoding": "unsigned-big-endian",
+    "receipts": [
+      {
+        "blocks": [
+          ["selected", "none", "full"],
+          ["none", "full", "selected"],
+          ["full", "selected", "none"]
+        ],
+        "collisionIncrements": 0,
+        "initialCandidateIndex": 4,
+        "regime": "no-fault-cost",
+        "selectedCandidateIndex": 4,
+        "selectorSha256": "53361e7ca83e9fb0183c50ba0c99fbe7046a1bde42cdaf816f6d42851dc47664"
+      },
+      {
+        "blocks": [
+          ["selected", "none", "full"],
+          ["full", "selected", "none"],
+          ["none", "full", "selected"]
+        ],
+        "collisionIncrements": 0,
+        "initialCandidateIndex": 5,
+        "regime": "auth-freeze-effect",
+        "selectedCandidateIndex": 5,
+        "selectorSha256": "21e2aee52a8f274721f0ccc6ed94514dd633946f894af4d45dbd23492d94b911"
+      },
+      {
+        "blocks": [
+          ["full", "selected", "none"],
+          ["selected", "none", "full"],
+          ["none", "full", "selected"]
+        ],
+        "collisionIncrements": 0,
+        "initialCandidateIndex": 10,
+        "regime": "persistence-crash-effect",
+        "selectedCandidateIndex": 10,
+        "selectorSha256": "d7d887c81a71799eff4bcbbdf54a0056520940aec2f8622960d4a35dc94f36ee"
+      }
+    ],
+    "regimeOrder": [
+      "no-fault-cost",
+      "auth-freeze-effect",
+      "persistence-crash-effect"
+    ],
+    "selectorEncoding": "UTF-8(epoch || NUL || regime || NUL || schedule-v1)",
+    "version": "schedule-v1"
+  },
+  "schemaVersion": 1,
+  "source": {
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "status": "method-design-only",
+  "targetHost": "fb14srv5",
+  "timing": {
+    "faultOnsetSeconds": 180,
+    "interventionHoldSeconds": 150,
+    "lifecycleIncludedInMinimum": false,
+    "measurementSeconds": 600,
+    "minimumActualJourneyStartsPerPhase": 20,
+    "minimumTimedHours": 5.4,
+    "minimumTimedSeconds": 19440,
+    "offeredJourneysPerRun": 90,
+    "offeredJourneysTotal": 2430,
+    "operationalEstimateSeconds": {"lower": 21600, "upper": 28800},
+    "phaseNames": ["pre", "during", "post"],
+    "phaseAssignmentSource": "observed-intervention-and-readiness-monotonic-times",
+    "sharedBarrierParticipants": [
+      "workload",
+      "resource-probe",
+      "collector",
+      "intervention"
+    ],
+    "warmupSeconds": 120
+  },
+  "workload": {
+    "concurrency": 8,
+    "excludedActions": ["cart", "checkout", "confirmation"],
+    "id": "login-browse-v1",
+    "journeysPerSecond": 0.15,
+    "kind": "fixed-open-loop",
+    "population": "login, home, up-to-3-categories, up-to-3-products-per-category, home",
+    "journeyLedger": {
+      "appendOnly": true,
+      "oneRowPerOfferedJourney": true,
+      "requiredFields": [
+        "recordType",
+        "recordSequence",
+        "previousRecordSha256",
+        "recordSha256",
+        "planSha256",
+        "workloadId",
+        "barrierId",
+        "sequence",
+        "journeyId",
+        "opportunityId",
+        "opaqueToken",
+        "tokenAllocatedAt",
+        "scheduledAt",
+        "scheduledMonotonicOffsetSeconds",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "expectedPath",
+        "requests",
+        "requestCount",
+        "outcome",
+        "errors",
+        "terminalSettled",
+        "endedAfterNominalWindow"
+      ],
+      "requestRequiredFields": [
+        "sequence",
+        "step",
+        "routeId",
+        "target",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "latencyMs",
+        "statusCode",
+        "outcome",
+        "error"
+      ]
+    }
+  }
+}

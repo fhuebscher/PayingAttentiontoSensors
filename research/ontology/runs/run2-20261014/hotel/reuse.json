@@ -1,0 +1,119 @@
+{
+ "stage1": {
+  "path": "research/ontology/runs/run1-20261014/hotel/stage1.json",
+  "sha256": "0ca248cbf91551c71ff2a95c791fb3f7cc57dfb1bd15698b21931b4a05d70f38"
+ },
+ "extractors": [
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/attractions.json",
+   "sha256": "c3ef3ce363e77320d4e1952d81f48eb12f93c8e18a4993ec932fdd8e9f39823d"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/frontend.json",
+   "sha256": "08196332a959a810e09507d2fffeee5b064ce45265b085b07917638b6c039bce"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/geo.json",
+   "sha256": "8fdbc6bf0872c9ca6baac328d27a25fdbfb14a9e3464e844bd1c8c1c7fb3c31c"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/profile.json",
+   "sha256": "3c8fb6610dc0936a0a9afbd67df9ae3c4f6e5d218e394a9c9ba0393658235f44"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/rate.json",
+   "sha256": "0ef58a4131fec376003b652f348c0bc7d186f8c99a8809de2dc28688d6740cd0"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/recommendation.json",
+   "sha256": "58f9f9c3905395734c19a3e87f37dcf7a0539788c8e86a2ea9eba9b749e1e8a9"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/reservation.json",
+   "sha256": "146f13e247ff81478616a3cc4a6f89c25dcd5c55cc399d040eed7b34c03a6622"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/review.json",
+   "sha256": "27005b305653e1ba741be4a0c164c53d870e3f416f71dd0aa1c413c8f465edde"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/search.json",
+   "sha256": "933a11ab4e58802dc15982afe9518596d1e3a8194138ce8765bd0788aa833100"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/user.json",
+   "sha256": "673f862d1539b3fe97dd1fab0ee89249a96227359977677daa9f4f34d7885394"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/attractions.json",
+   "sha256": "c1282f65e0ddb633c73c5990c2159084a6f9b945af1db5cc6d6e53d03463bea6"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/frontend.json",
+   "sha256": "095fc084bf787fdf5f1f7cddab1b5993c80836fe9ba2545f2ad1a4496b85ebd2"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/geo.json",
+   "sha256": "1c31ce414dde699c5289cbea75ed6bd61bf12d6d74160135d9e60d030b3580d1"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/profile.json",
+   "sha256": "ff7c083bad12eb3341425f4ffe6c48fda22680906ad348e2d86768318d48809c"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/rate.json",
+   "sha256": "21ee8a6110b4b0db726d3242298cc1c48d29d799421c417489f76b21cf82975b"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/recommendation.json",
+   "sha256": "d593df10984f795d947c4f97aaafc46dabf931d226c6fc82b370edfdaa777de5"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/reservation.json",
+   "sha256": "25f48bb78aa48582aea6dc8e8e1279469ff72970ef04aa35d727fc59fa2713cb"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/review.json",
+   "sha256": "b78369200e33eae7ba9424ab5e5cf5177f04650479129718ba90dcfe484ce78d"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/search.json",
+   "sha256": "19b4d78712865dce9c3319b392580802463b9d9c8b112771191b8fdbfc976b94"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/user.json",
+   "sha256": "cc21f470164b32f6a0c9c147132136b466ef01fb525298799380b9d651830036"
+  }
+ ],
+ "answers": {
+  "from": "research/ontology/runs/run1-20261014/hotel/judge/answers_all.jsonl",
+  "reused": 57,
+  "new": 4,
+  "newIds": [
+   "b00d4c086a695612",
+   "b2b9cba6d2d421e1",
+   "b89da25b3f5e7170",
+   "bb161ebb62427e34"
+  ]
+ }
+}

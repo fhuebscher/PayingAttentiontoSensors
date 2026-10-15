@@ -1,0 +1,12 @@
+{
+  "fixtureId": "config-wrong-schema",
+  "checkId": "openspec-config",
+  "expectedStatus": "fail",
+  "expectedDiagnostic": "must declare exactly",
+  "mutation": {
+    "kind": "replace-text",
+    "path": "openspec/config.yaml",
+    "old": "schema: scientific-change",
+    "new": "schema: spec-driven"
+  }
+}

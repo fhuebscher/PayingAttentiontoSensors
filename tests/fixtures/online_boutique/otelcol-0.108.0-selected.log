@@ -1,0 +1,1096 @@
+otel-collector-1  | 2026-08-08T16:09:25.186Z	info	TracesExporter	{"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 6}
+otel-collector-1  | 2026-08-08T16:09:25.186Z	info	ResourceSpans #0
+otel-collector-1  | Resource SchemaURL: 
+otel-collector-1  | Resource attributes:
+otel-collector-1  |      -> service.name: Str(productcatalogservice)
+otel-collector-1  | ScopeSpans #0
+otel-collector-1  | ScopeSpans SchemaURL: 
+otel-collector-1  | InstrumentationScope go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc 0.69.0
+otel-collector-1  | Span #0
+otel-collector-1  |     Trace ID       : 228366756c0490dd6565d87f76bb8bb2
+otel-collector-1  |     Parent ID      : 
+otel-collector-1  |     ID             : b7182fc178a22961
+otel-collector-1  |     Name           : opentelemetry.proto.collector.trace.v1.TraceService/Export
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:20.193925735 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:20.196735938 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(opentelemetry.proto.collector.trace.v1.TraceService/Export)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.6)
+otel-collector-1  |      -> server.port: Int(4317)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #1
+otel-collector-1  |     Trace ID       : d97025b2c836ffd3b6a9444fb016d41b
+otel-collector-1  |     Parent ID      : e0fb0a4216f05204
+otel-collector-1  |     ID             : d07c541deedc32b9
+otel-collector-1  |     Name           : hipstershop.ProductCatalogService/ListProducts
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:20.633637657 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:20.633766392 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.ProductCatalogService/ListProducts)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.3)
+otel-collector-1  |      -> server.port: Int(3550)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #2
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : d1fd24a993b19523
+otel-collector-1  |     ID             : 858cd0156d0e5f8d
+otel-collector-1  |     Name           : hipstershop.ProductCatalogService/ListProducts
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.633699958 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.633886788 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.ProductCatalogService/ListProducts)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.3)
+otel-collector-1  |      -> server.port: Int(3550)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #3
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : 36e66ea045ddc91f
+otel-collector-1  |     ID             : 66761f0e8fb550ad
+otel-collector-1  |     Name           : hipstershop.ProductCatalogService/ListProducts
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.632140168 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.632335636 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.ProductCatalogService/ListProducts)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.3)
+otel-collector-1  |      -> server.port: Int(3550)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #4
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : bb59ae7d0e46a9af
+otel-collector-1  |     ID             : 8162bd30c8c8a3a4
+otel-collector-1  |     Name           : hipstershop.ProductCatalogService/ListProducts
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.632816687 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.632982133 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.ProductCatalogService/ListProducts)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.3)
+otel-collector-1  |      -> server.port: Int(3550)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #5
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : 9026230f23347a7a
+otel-collector-1  |     ID             : 01be90f0e403ddaa
+otel-collector-1  |     Name           : hipstershop.ProductCatalogService/ListProducts
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.632597374 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.632771458 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.ProductCatalogService/ListProducts)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.3)
+otel-collector-1  |      -> server.port: Int(3550)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | 	{"kind": "exporter", "data_type": "traces", "name": "debug"}
+otel-collector-1  | 2026-08-08T16:09:25.691Z	info	TracesExporter	{"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 59}
+otel-collector-1  | 2026-08-08T16:09:25.694Z	info	ResourceSpans #0
+otel-collector-1  | Resource SchemaURL: 
+otel-collector-1  | Resource attributes:
+otel-collector-1  |      -> service.name: Str(frontend)
+otel-collector-1  | ScopeSpans #0
+otel-collector-1  | ScopeSpans SchemaURL: 
+otel-collector-1  | InstrumentationScope go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc 0.69.0
+otel-collector-1  | Span #0
+otel-collector-1  |     Trace ID       : dcc4371ddf3803c1ce6ce57a12cea3f6
+otel-collector-1  |     Parent ID      : 
+otel-collector-1  |     ID             : a9792c57cb4626f7
+otel-collector-1  |     Name           : opentelemetry.proto.collector.trace.v1.TraceService/Export
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:20.697276887 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:20.70103314 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(opentelemetry.proto.collector.trace.v1.TraceService/Export)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.6)
+otel-collector-1  |      -> server.port: Int(4317)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #1
+otel-collector-1  |     Trace ID       : d97025b2c836ffd3b6a9444fb016d41b
+otel-collector-1  |     Parent ID      : 5ceb54638a96849a
+otel-collector-1  |     ID             : bb07708a51beecc2
+otel-collector-1  |     Name           : hipstershop.AdService/GetAds
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:20.679790445 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:20.78059273 +0000 UTC
+otel-collector-1  |     Status code    : Error
+otel-collector-1  |     Status message : context deadline exceeded
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.AdService/GetAds)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.4)
+otel-collector-1  |      -> server.port: Int(9555)
+otel-collector-1  |      -> rpc.response.status_code: Str(DEADLINE_EXCEEDED)
+otel-collector-1  | Span #2
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : a382e38a18e1b136
+otel-collector-1  |     Name           : hipstershop.CurrencyService/GetSupportedCurrencies
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.629052729 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.633060056 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/GetSupportedCurrencies)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #3
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : d1fd24a993b19523
+otel-collector-1  |     Name           : hipstershop.ProductCatalogService/ListProducts
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.633124877 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.634267094 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.ProductCatalogService/ListProducts)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.3)
+otel-collector-1  |      -> server.port: Int(3550)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #4
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 00958586c0ce2da8
+otel-collector-1  |     Name           : hipstershop.CartService/GetCart
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.634317708 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.637468133 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CartService/GetCart)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.7)
+otel-collector-1  |      -> server.port: Int(7070)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #5
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 09f663fbbcc05e55
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.637504094 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.639928529 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #6
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : ff45f1d8efddd0b2
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.639961334 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.642365902 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #7
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 09a41bea57cc3b82
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.642404502 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.644427124 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #8
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 9eff422d0c396070
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.644468864 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.646596775 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #9
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 0967cca6157e6cb1
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.646632698 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.648729021 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #10
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 3b67c033e386200d
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.648761287 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.652900919 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #11
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 19dee6c9f7a3bcf2
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.652928597 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.654988159 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #12
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 36ecd813589e1fd3
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.65501393 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.657558558 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #13
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 5275fa6e22fdac4e
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.657590263 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.659667222 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #14
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 10743df5210624ae
+otel-collector-1  |     ID             : 87cbae8ec5148842
+otel-collector-1  |     Name           : hipstershop.AdService/GetAds
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.661735779 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.688244199 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.AdService/GetAds)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.4)
+otel-collector-1  |      -> server.port: Int(9555)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #15
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 32c177de668acadd
+otel-collector-1  |     Name           : hipstershop.CurrencyService/GetSupportedCurrencies
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.628517411 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.631477729 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/GetSupportedCurrencies)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #16
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 36e66ea045ddc91f
+otel-collector-1  |     Name           : hipstershop.ProductCatalogService/ListProducts
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.631521374 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.63274887 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.ProductCatalogService/ListProducts)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.3)
+otel-collector-1  |      -> server.port: Int(3550)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #17
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 7567060270773650
+otel-collector-1  |     Name           : hipstershop.CartService/GetCart
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.632805991 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.635560096 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CartService/GetCart)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.7)
+otel-collector-1  |      -> server.port: Int(7070)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #18
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : ea2b024b9e1244ab
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.635620743 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.639039574 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #19
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 51036c9a315493ff
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.639086265 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.641150134 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #20
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 5a3be5bc3a23b1c1
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.641201449 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.643399631 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #21
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 72569981e0d8b470
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.643445645 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.646297332 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #22
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 518e30ac1c9a8b3f
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.646340253 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.648582879 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #23
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : f6e0b94015920622
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.648634557 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.65062228 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #24
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 54c5db551c151e85
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.650661332 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.652688192 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #25
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 2470518b701e4697
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.65272642 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.655125097 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #26
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 13b65f2538bfa268
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.655160431 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.65752369 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #27
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : d1710708d1a237e6
+otel-collector-1  |     ID             : 1c58875f5f5c6a3a
+otel-collector-1  |     Name           : hipstershop.AdService/GetAds
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.659596525 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.66732223 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.AdService/GetAds)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.4)
+otel-collector-1  |      -> server.port: Int(9555)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #28
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : 47c15773131212ba
+otel-collector-1  |     Name           : hipstershop.CurrencyService/GetSupportedCurrencies
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.628601574 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.632246634 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/GetSupportedCurrencies)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #29
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : bb59ae7d0e46a9af
+otel-collector-1  |     Name           : hipstershop.ProductCatalogService/ListProducts
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.632293641 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.633278497 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.ProductCatalogService/ListProducts)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.3)
+otel-collector-1  |      -> server.port: Int(3550)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #30
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : e48cb3141e509b11
+otel-collector-1  |     Name           : hipstershop.CartService/GetCart
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.633314179 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.635970928 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CartService/GetCart)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.7)
+otel-collector-1  |      -> server.port: Int(7070)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #31
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : 3d144fce0f8ed215
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.636048177 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.638432117 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #32
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : ec0f2d76153699d4
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.638479347 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.64069851 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #33
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : 2fd4ff7e0dd4ce50
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.64072866 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.642800819 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #34
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : 579cff3f35207da9
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.642846384 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.645292959 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #35
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : bb5e4d3ca3c1db27
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.645331049 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.647626893 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #36
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : 47a0e9e32bc66644
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.6476562 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.6496379 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #37
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : 9e88047723fc8dd3
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.649667018 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.651805434 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #38
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : 34698c476403c45c
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.651833682 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.654204058 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #39
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : 14533f87ae0a2161
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.654235916 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.656638725 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #40
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : b4ada86fc130f7f8
+otel-collector-1  |     ID             : a35389ac09b2b04c
+otel-collector-1  |     Name           : hipstershop.AdService/GetAds
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.658848227 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.666789308 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.AdService/GetAds)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.4)
+otel-collector-1  |      -> server.port: Int(9555)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #41
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : 097e575570579006
+otel-collector-1  |     Name           : hipstershop.CurrencyService/GetSupportedCurrencies
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.628816435 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.631987229 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/GetSupportedCurrencies)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #42
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : 9026230f23347a7a
+otel-collector-1  |     Name           : hipstershop.ProductCatalogService/ListProducts
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.632036758 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.633171988 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.ProductCatalogService/ListProducts)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.3)
+otel-collector-1  |      -> server.port: Int(3550)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #43
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : bfd7ab7a6f13c524
+otel-collector-1  |     Name           : hipstershop.CartService/GetCart
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.633222186 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.635660818 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CartService/GetCart)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.7)
+otel-collector-1  |      -> server.port: Int(7070)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #44
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : 9fc6846744e9fc1a
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.635697197 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.637780157 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #45
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : e9c9bcd31e5236c5
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.637809877 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.639971846 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #46
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : 62f883d14e7ceb28
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.639999246 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.642016049 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #47
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : f7b4f0e14a9a975f
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.642041021 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.644103199 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #48
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : 026e2ec27ecc9a16
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.644127738 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.646179514 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #49
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : e4a162f0cec294c0
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.646205353 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.648751176 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #50
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : 8b37f41a28cde09e
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.648775556 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.650786951 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #51
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : 14070b42d0ec0c74
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.650814591 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.652489225 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #52
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : 84dcb24096c53d31
+otel-collector-1  |     Name           : hipstershop.CurrencyService/Convert
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.652517751 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.654365884 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.CurrencyService/Convert)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.2)
+otel-collector-1  |      -> server.port: Int(7000)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | Span #53
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : fd6367cb8f9d6e57
+otel-collector-1  |     ID             : 633c462d9714cf0e
+otel-collector-1  |     Name           : hipstershop.AdService/GetAds
+otel-collector-1  |     Kind           : Client
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.656490298 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.663191156 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> rpc.method: Str(hipstershop.AdService/GetAds)
+otel-collector-1  |      -> rpc.system.name: Str(grpc)
+otel-collector-1  |      -> server.address: Str(172.18.0.4)
+otel-collector-1  |      -> server.port: Int(9555)
+otel-collector-1  |      -> rpc.response.status_code: Str(OK)
+otel-collector-1  | ScopeSpans #1
+otel-collector-1  | ScopeSpans SchemaURL: 
+otel-collector-1  | InstrumentationScope go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp 0.69.0
+otel-collector-1  | Span #0
+otel-collector-1  |     Trace ID       : d97025b2c836ffd3b6a9444fb016d41b
+otel-collector-1  |     Parent ID      : 
+otel-collector-1  |     ID             : 5ceb54638a96849a
+otel-collector-1  |     Name           : GET
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:20.630876533 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:20.781917744 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> server.address: Str(127.0.0.1)
+otel-collector-1  |      -> http.request.method: Str(GET)
+otel-collector-1  |      -> url.scheme: Str(http)
+otel-collector-1  |      -> server.port: Int(18081)
+otel-collector-1  |      -> network.peer.address: Str(172.18.0.1)
+otel-collector-1  |      -> network.peer.port: Int(39680)
+otel-collector-1  |      -> user_agent.original: Str(Python-urllib/3.9)
+otel-collector-1  |      -> client.address: Str(172.18.0.1)
+otel-collector-1  |      -> url.path: Str(/)
+otel-collector-1  |      -> network.protocol.version: Str(1.1)
+otel-collector-1  |      -> http.response.body.size: Int(10383)
+otel-collector-1  |      -> http.response.status_code: Int(200)
+otel-collector-1  | Span #1
+otel-collector-1  |     Trace ID       : 1466e070884a34bd8bdff8e65fde8766
+otel-collector-1  |     Parent ID      : 
+otel-collector-1  |     ID             : 10743df5210624ae
+otel-collector-1  |     Name           : GET
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:21.628746881 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:21.689592311 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> server.address: Str(127.0.0.1)
+otel-collector-1  |      -> http.request.method: Str(GET)
+otel-collector-1  |      -> url.scheme: Str(http)
+otel-collector-1  |      -> server.port: Int(18081)
+otel-collector-1  |      -> network.peer.address: Str(172.18.0.1)
+otel-collector-1  |      -> network.peer.port: Int(39690)
+otel-collector-1  |      -> user_agent.original: Str(Python-urllib/3.9)
+otel-collector-1  |      -> client.address: Str(172.18.0.1)
+otel-collector-1  |      -> url.path: Str(/)
+otel-collector-1  |      -> network.protocol.version: Str(1.1)
+otel-collector-1  |      -> http.response.body.size: Int(10383)
+otel-collector-1  |      -> http.response.status_code: Int(200)
+otel-collector-1  | Span #2
+otel-collector-1  |     Trace ID       : 2bb2ca4fa25510a5156d335b65e87cbb
+otel-collector-1  |     Parent ID      : 
+otel-collector-1  |     ID             : d1710708d1a237e6
+otel-collector-1  |     Name           : GET
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:22.6282642 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:22.669029701 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> server.address: Str(127.0.0.1)
+otel-collector-1  |      -> http.request.method: Str(GET)
+otel-collector-1  |      -> url.scheme: Str(http)
+otel-collector-1  |      -> server.port: Int(18081)
+otel-collector-1  |      -> network.peer.address: Str(172.18.0.1)
+otel-collector-1  |      -> network.peer.port: Int(57162)
+otel-collector-1  |      -> user_agent.original: Str(Python-urllib/3.9)
+otel-collector-1  |      -> client.address: Str(172.18.0.1)
+otel-collector-1  |      -> url.path: Str(/)
+otel-collector-1  |      -> network.protocol.version: Str(1.1)
+otel-collector-1  |      -> http.response.body.size: Int(10383)
+otel-collector-1  |      -> http.response.status_code: Int(200)
+otel-collector-1  | Span #3
+otel-collector-1  |     Trace ID       : 811946ecf416f4e61f5bd34b40836156
+otel-collector-1  |     Parent ID      : 
+otel-collector-1  |     ID             : b4ada86fc130f7f8
+otel-collector-1  |     Name           : GET
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:23.628325501 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:23.671125604 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> server.address: Str(127.0.0.1)
+otel-collector-1  |      -> http.request.method: Str(GET)
+otel-collector-1  |      -> url.scheme: Str(http)
+otel-collector-1  |      -> server.port: Int(18081)
+otel-collector-1  |      -> network.peer.address: Str(172.18.0.1)
+otel-collector-1  |      -> network.peer.port: Int(57178)
+otel-collector-1  |      -> user_agent.original: Str(Python-urllib/3.9)
+otel-collector-1  |      -> client.address: Str(172.18.0.1)
+otel-collector-1  |      -> url.path: Str(/)
+otel-collector-1  |      -> network.protocol.version: Str(1.1)
+otel-collector-1  |      -> http.response.body.size: Int(10383)
+otel-collector-1  |      -> http.response.status_code: Int(200)
+otel-collector-1  | Span #4
+otel-collector-1  |     Trace ID       : bfeb2202def3ac42050d480cb8c15fca
+otel-collector-1  |     Parent ID      : 
+otel-collector-1  |     ID             : fd6367cb8f9d6e57
+otel-collector-1  |     Name           : GET
+otel-collector-1  |     Kind           : Server
+otel-collector-1  |     Start time     : 2026-08-08 16:09:24.628476011 +0000 UTC
+otel-collector-1  |     End time       : 2026-08-08 16:09:24.665442096 +0000 UTC
+otel-collector-1  |     Status code    : Unset
+otel-collector-1  |     Status message : 
+otel-collector-1  | Attributes:
+otel-collector-1  |      -> server.address: Str(127.0.0.1)
+otel-collector-1  |      -> http.request.method: Str(GET)
+otel-collector-1  |      -> url.scheme: Str(http)
+otel-collector-1  |      -> server.port: Int(18081)
+otel-collector-1  |      -> network.peer.address: Str(172.18.0.1)
+otel-collector-1  |      -> network.peer.port: Int(57182)
+otel-collector-1  |      -> user_agent.original: Str(Python-urllib/3.9)
+otel-collector-1  |      -> client.address: Str(172.18.0.1)
+otel-collector-1  |      -> url.path: Str(/)
+otel-collector-1  |      -> network.protocol.version: Str(1.1)
+otel-collector-1  |      -> http.response.body.size: Int(10383)
+otel-collector-1  |      -> http.response.status_code: Int(200)
+otel-collector-1  | 	{"kind": "exporter", "data_type": "traces", "name": "debug"}

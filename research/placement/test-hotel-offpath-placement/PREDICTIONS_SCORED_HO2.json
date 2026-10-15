@@ -1,0 +1,73 @@
+{
+ "HO2-C": {
+  "episodes": 4,
+  "hit": true,
+  "ledgerDetected": 4,
+  "rows": [
+   {
+    "block": 4,
+    "ledgerTtd": 0.3105360195040703,
+    "rate": "1"
+   },
+   {
+    "block": 5,
+    "ledgerTtd": 0.8277751430869102,
+    "rate": "1"
+   },
+   {
+    "block": 4,
+    "ledgerTtd": 0.2608705312013626,
+    "rate": "10"
+   },
+   {
+    "block": 5,
+    "ledgerTtd": 0.28218522667884827,
+    "rate": "10"
+   }
+  ]
+ },
+ "HO2-L": {
+  "episodes": 4,
+  "hit": true,
+  "ledgerDetected": 0,
+  "rows": [
+   {
+    "block": 4,
+    "ledgerTtd": null,
+    "rate": "1"
+   },
+   {
+    "block": 5,
+    "ledgerTtd": null,
+    "rate": "1"
+   },
+   {
+    "block": 4,
+    "ledgerTtd": null,
+    "rate": "10"
+   },
+   {
+    "block": 5,
+    "ledgerTtd": null,
+    "rate": "10"
+   }
+  ]
+ },
+ "HO2-V": {
+  "hit": true,
+  "verdicts": [
+   {
+    "gE": 0.0,
+    "improved": 0,
+    "rate": "1",
+    "verdict": "FAIL"
+   },
+   {
+    "gE": 22.608142007142305,
+    "improved": 1,
+    "rate": "10",
+    "verdict": "FAIL"
+   }
+  ]
+ }
+}

@@ -1,0 +1,2 @@
+PYTHONPYCACHEPREFIX=/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/pycache-rep3r1.Q0w5 PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 research/placement/test-ts-placement/replay_ts_rep3r1.py /Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement-runtime-teastore-protocol tmp/teastore-offpath-evidence/rep3r1-fetch research/placement/test-ts-placement/terminal-replay-rep3r1.json
+Python 3.9.6

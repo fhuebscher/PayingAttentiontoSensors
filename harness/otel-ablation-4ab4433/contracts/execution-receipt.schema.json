@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/obsplacement/execution-receipt.schema.json",
+  "title": "Execution receipt",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "operationId", "parentOperationId", "operation", "target", "startedAt", "endedAt", "status", "source", "ownershipScope", "findings", "artifacts", "toolVersions", "executor", "requested", "observed", "errors", "stateBefore", "stateAfter"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "runId": {"type": "string", "minLength": 1},
+    "operationId": {"type": "string", "minLength": 1},
+    "parentOperationId": {"type": ["string", "null"]},
+    "operation": {"enum": ["preflight", "quarantine", "materialize", "stop", "start", "deploy", "apply_posture", "run_workload", "inject", "collect", "teardown", "fetch", "validate"]},
+    "target": {"type": "string", "minLength": 1},
+    "startedAt": {"type": "string", "format": "date-time"},
+    "endedAt": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["ok", "failed", "blocked", "noncanonical"]},
+    "source": {
+      "type": "object",
+      "required": ["frameworkCommit", "sutCommit", "dirty"],
+      "properties": {
+        "frameworkCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "sutCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "dirty": {"type": "boolean"},
+        "patchSha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {"properties": {"dirty": {"const": true}}},
+          "then": {
+            "required": ["patchSha256"],
+            "properties": {"patchSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+          }
+        }
+      ]
+    },
+    "ownershipScope": {"type": "object"},
+    "findings": {"type": "array", "items": {"type": "object"}},
+    "artifacts": {"type": "array", "items": {"type": "object"}},
+    "toolVersions": {"type": "object"},
+    "executor": {"type": "string", "minLength": 1},
+    "requested": {"type": "object"},
+    "observed": {"type": "object"},
+    "errors": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "stateBefore": {"enum": ["unknown", "inventoried", "quarantined", "stopped", "materialized", "deployed", "ready", "posture-proven", "running", "collected", "fetched", "validated", "failed"]},
+    "stateAfter": {"enum": ["unknown", "inventoried", "quarantined", "stopped", "materialized", "deployed", "ready", "posture-proven", "running", "collected", "fetched", "validated", "failed"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"enum": ["ok", "noncanonical"]}}},
+      "then": {"properties": {"errors": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"status": {"enum": ["failed", "blocked"]}}},
+      "then": {
+        "properties": {
+          "errors": {"minItems": 1},
+          "stateAfter": {"const": "failed"}
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

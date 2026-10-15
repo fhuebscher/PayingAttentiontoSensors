@@ -1,0 +1,174 @@
+{
+ "schemaVersion": 1,
+ "sut": "hotel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+   "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-hotel-protocol",
+   "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+  }
+ },
+ "extraction": {
+  "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+  "extractor": "B",
+  "model": "haiku (Haiku 5.5)",
+  "system": "hotel",
+  "service": "recommendation",
+  "unconverted": [
+   {
+    "item": "synchronous calls made by this service",
+    "note": "none found: no outbound gRPC or HTTP client in these files; the only interface is inbound gRPC Recommendation.GetRecommendations (hotelReservation/services/recommendation/proto/recommendation.proto:7-9; hotelReservation/services/recommendation/server.go:70)"
+   },
+   {
+    "item": "datastore access (not a service call; no syncEdges entry)",
+    "file": "upstream/deathstarbench/hotelReservation/cmd/recommendation/main.go",
+    "line": 38,
+    "token": "mongoClient, mongoClose := initializeDatabase(result[\"RecommendMongoAddress\"])",
+    "note": "MongoDB at mongodb-recommendation:27017 (hotelReservation/config.json:19); read once at startup via loadRecommendations (hotelReservation/services/recommendation/server.go:47, 156 client.Database(\"recommendation-db\"))"
+   },
+   {
+    "item": "messaging (topics, publish, consume)",
+    "note": "none found: no message broker client or topic in these files"
+   },
+   {
+    "item": "registry registration: liveness mechanism, heartbeat interval, failure timeout, cleanup interval",
+    "file": "upstream/deathstarbench/hotelReservation/registry/registry.go",
+    "line": 85,
+    "token": "reg := &consul.AgentServiceRegistration{",
+    "note": "no heartbeat in these files: Register is called once in Run before srv.Serve (hotelReservation/services/recommendation/server.go:77, 83); the registration has no Check field (registry.go:85-90, only ID, Name, Port, Address). Heartbeat interval, failure timeout and cleanup interval: library default, not in these files (Consul agent). No heartbeat thread exists in these files, so heartbeat independence from request processing is not reportable"
+   },
+   {
+    "item": "deregistration",
+    "file": "upstream/deathstarbench/hotelReservation/services/recommendation/server.go",
+    "line": 88,
+    "token": "s.Registry.Deregister(s.uuid)",
+    "note": "Shutdown() calls Deregister (server.go:87-88) but cmd/recommendation/main.go (lines 20-74) never calls Shutdown"
+   },
+   {
+    "item": "health check",
+    "file": "upstream/deathstarbench/hotelReservation/docker-compose.yml",
+    "line": 157,
+    "token": "recommendation:",
+    "note": "library default, not in these files: no healthcheck key in the recommendation block (docker-compose.yml:157-172) nor in the observability overlay recommendation block (modules/hotel-reservation/deployment/compose.observability-placement.yml:42-46)"
+   },
+   {
+    "item": "replicas in overlay",
+    "file": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 42,
+    "token": "recommendation:",
+    "note": "the overlay sets no deploy key for recommendation (lines 42-46); replicas 1 is taken from docker-compose.yml:174"
+   },
+   {
+    "item": "traces: sampling ratio",
+    "file": "upstream/deathstarbench/hotelReservation/tracing/tracer.go",
+    "line": 14,
+    "token": "defaultSampleRatio float64 = 0.01",
+    "note": "overridden by JAEGER_SAMPLE_RATIO (tracer.go:20); the overlay sets JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1} (modules/hotel-reservation/deployment/compose.observability-placement.yml:45), so the ratio is 1 unless HR_JAEGER_SAMPLE_RATIO is set. Sampler type probabilistic (tracer.go:31)"
+   },
+   {
+    "item": "traces: span flush interval",
+    "file": "upstream/deathstarbench/hotelReservation/tracing/tracer.go",
+    "line": 36,
+    "token": "BufferFlushInterval: 1 * time.Second,",
+    "note": "reporter buffer flush interval 1 s; reporter target is LocalAgentHostPort jaeger:6831 (tracer.go:37, config.json:3)"
+   },
+   {
+    "item": "traces: JAEGER_DISABLED",
+    "file": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 46,
+    "token": "JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}",
+    "note": "read by the library config FromEnv (upstream/deathstarbench/hotelReservation/tracing/tracer.go:42); library default, not in these files, for how the variable is interpreted"
+   },
+   {
+    "item": "metrics",
+    "note": "no metrics emitter in these files (no metrics import or collector in cmd/recommendation, services/recommendation, tracing, tune)"
+   },
+   {
+    "item": "logs: destination and level",
+    "file": "upstream/deathstarbench/hotelReservation/tune/setting.go",
+    "line": 33,
+    "token": "logLevel := defaultLogLevel",
+    "note": "logs are written to stdout (cmd/recommendation/main.go:22); level from LOG_LEVEL (setting.go:34), default \"info\" (setting.go:19). The comment at setting.go:38 says an unset level means ERROR, but the code path for unset uses defaultLogLevel (info). LOG_LEVEL is passed through by docker-compose.yml:165; the overlay does not set it for recommendation. No log collector in these files; no log flush interval stated"
+   }
+  ]
+ },
+ "services": [
+  {
+   "name": {
+    "value": "recommendation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 157,
+    "quotedToken": "recommendation:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 168,
+    "quotedToken": "entrypoint: recommendation",
+    "note": "entrypoint names the recommendation binary built from the pinned tree (hotelReservation/Dockerfile:1 FROM golang:1.21)"
+   },
+   "container": {
+    "value": "recommendation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 157,
+    "quotedToken": "recommendation:",
+    "note": "container_name not set in the block (docker-compose.yml:157-172); library default, not in these files: Compose names the container <project>-recommendation-<n>"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 174,
+    "quotedToken": "replicas: 1"
+   },
+   "registersWith": [
+    {
+     "value": "consul",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 2,
+     "quotedToken": "\"consulAddress\": \"consul:8500\"",
+     "note": "registration by Register() at startup (hotelReservation/services/recommendation/server.go:77); consul address from the flag default (hotelReservation/cmd/recommendation/main.go:46)"
+    }
+   ],
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "\"jaegerAddress\": \"jaeger:6831\"",
+     "note": "traces only, via the Jaeger client (hotelReservation/cmd/recommendation/main.go:51 tracing.Init)"
+    }
+   ],
+   "emits": [
+    {
+     "kind": "span",
+     "id": {
+      "value": "otgrpc server interceptor: gRPC unary server spans",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/recommendation/server.go",
+      "line": 60,
+      "quotedToken": "otgrpc.OpenTracingServerInterceptor(s.Tracer)"
+     }
+    },
+    {
+     "kind": "log",
+     "id": {
+      "value": "zerolog console writer to stdout",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/recommendation/main.go",
+      "line": 22,
+      "quotedToken": "zerolog.ConsoleWriter{Out: os.Stdout"
+     }
+    }
+   ]
+  }
+ ]
+}

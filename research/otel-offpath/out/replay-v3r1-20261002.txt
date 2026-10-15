@@ -1,0 +1,36 @@
+  parse frontend-pause-effect/b01-01-async
+  parse frontend-pause-effect/b01-02-none
+  parse frontend-pause-effect/b01-03-full
+  parse frontend-pause-effect/b01-04-selected
+  parse frontend-pause-effect/b02-01-none
+  parse frontend-pause-effect/b02-02-full
+  parse frontend-pause-effect/b02-03-selected
+  parse frontend-pause-effect/b02-04-async
+  parse frontend-pause-effect/b03-01-full
+  parse frontend-pause-effect/b03-02-selected
+  parse frontend-pause-effect/b03-03-async
+  parse frontend-pause-effect/b03-04-none
+  parse no-fault-cost/b01-01-full
+  parse no-fault-cost/b01-02-none
+  parse no-fault-cost/b01-03-async
+  parse no-fault-cost/b01-04-selected
+  parse no-fault-cost/b02-01-none
+  parse no-fault-cost/b02-02-async
+  parse no-fault-cost/b02-03-selected
+  parse no-fault-cost/b02-04-full
+  parse no-fault-cost/b03-01-async
+  parse no-fault-cost/b03-02-selected
+  parse no-fault-cost/b03-03-full
+  parse no-fault-cost/b03-04-none
+layout otel-demo-candidate-pilot-v3; cells 24 valid 24; stop rule frontend-pause ledger-visible 12/12
+  K1: —
+  K2: —
+  K3: —
+  K4: —
+  C1: yes
+  frontend-pause-effect none     ledger 3/3 | L — M — T —
+  frontend-pause-effect selected ledger 3/3 | L 0/3 out, 0/3 own M 3/3 out, 3/3 own T 3/3 out, 3/3 own
+  frontend-pause-effect async    ledger 3/3 | L 3/3 out, 0/3 own M 3/3 out, 3/3 own T 3/3 out, 3/3 own
+  frontend-pause-effect full     ledger 3/3 | L 3/3 out, 0/3 own M 3/3 out, 3/3 own T 3/3 out, 3/3 own
+  visibility.json cross-check: {"against": "research/visibility-map/visibility.json populations.otel-v3", "episodesEqual": [12, 12], "visibilityEpisodes": 12, "noFaultLedgerFalseAlarms": {"mine": [0, 12], "visibility": {"n0": 12, "pseudoWindowBarrierOffsets": [180.30880629643798, 335.8196057379246], "shows": 0, "unknown": 0}}}
+wrote research/otel-offpath/out/adapter-otel-v3-evidence-20261002.json

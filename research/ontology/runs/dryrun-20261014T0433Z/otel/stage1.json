@@ -1,0 +1,378 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "stage": 1,
+  "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+  "tool": "research/ontology/extract_stage1.py",
+  "services": [
+   "accountingservice"
+  ],
+  "rules": "extract_stage1.py D1-D5, inputs.py R1-R7",
+  "astStats": {
+   "filesParsed": 4,
+   "filesSkippedByExtension": {
+    ".proto": 1,
+    ".csproj": 1,
+    ".sln": 1,
+    "Dockerfile": 1
+   },
+   "languages": [
+    "csharp"
+   ],
+   "callSites": 5,
+   "byCategory": {
+    "config": 1,
+    "kafka": 4
+   },
+   "grammarCache": "/Users/fhuebscher/Library/Caches/tree-sitter-language-pack/v1.22.1/libs"
+  },
+  "observations": [
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_LOGS_EXPORTER=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 24,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_METRICS_EXPORTER=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 23,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_PLACEMENT_ENABLED=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_ENABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_ENABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 20,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_SDK_DISABLED=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_DISABLED:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_DISABLED",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 21,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "accountingservice",
+    "value": "OTEL_TRACES_EXPORTER=${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}",
+    "note": "variables not in the pinned .env: OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 22,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "kind": "depends_on",
+    "service": "accountingservice",
+    "value": {
+     "service": "otelcol",
+     "condition": "service_started"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 41,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "kind": "depends_on",
+    "service": "accountingservice",
+    "value": {
+     "service": "kafka",
+     "condition": "service_healthy"
+    },
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 43,
+    "quotedToken": "kafka:"
+   },
+   {
+    "kind": "image",
+    "service": "accountingservice",
+    "value": "ghcr.io/open-telemetry/demo:latest-accountingservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 22,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-accountingservice"
+   },
+   {
+    "kind": "build_context",
+    "service": "accountingservice",
+    "value": "./",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 25,
+    "quotedToken": "context: ./"
+   },
+   {
+    "kind": "dockerfile",
+    "service": "accountingservice",
+    "value": "./src/accountingservice/Dockerfile",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 26,
+    "quotedToken": "dockerfile: ${ACCOUNTING_SERVICE_DOCKERFILE}"
+   },
+   {
+    "kind": "entrypoint",
+    "service": "accountingservice",
+    "value": [
+     "/bin/sh",
+     "-c",
+     "if [ \"$$OTEL_PLACEMENT_ENABLED\" = \"false\" ]; then exec dotnet AccountingService.dll; else exec ./instrument.sh dotnet AccountingService.dll; fi"
+    ],
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 16,
+    "quotedToken": "- /bin/sh"
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "csharp",
+    "value": "Environment.GetEnvironmentVariable",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 22,
+    "quotedToken": "Environment.GetEnvironmentVariable",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"KAFKA_SERVICE_ADDR\"",
+      "repo": "upstream",
+      "sourceFile": "src/accountingservice/Consumer.cs",
+      "line": 22,
+      "quotedToken": "\"KAFKA_SERVICE_ADDR\""
+     }
+    ],
+    "services": [
+     "accountingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "Confluent.Kafka",
+      "match": "method"
+     }
+    ],
+    "language": "csharp",
+    "value": "_consumer.Subscribe",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 26,
+    "quotedToken": "_consumer.Subscribe",
+    "literals": [
+     {
+      "kind": "resolvedConstant",
+      "value": "\"orders\"",
+      "repo": "upstream",
+      "sourceFile": "src/accountingservice/Consumer.cs",
+      "line": 12,
+      "quotedToken": "\"orders\"",
+      "note": "identifier TopicName at line 26"
+     }
+    ],
+    "services": [
+     "accountingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "Confluent.Kafka",
+      "match": "method"
+     }
+    ],
+    "language": "csharp",
+    "value": "_consumer.Consume",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 41,
+    "quotedToken": "_consumer.Consume",
+    "literals": [],
+    "services": [
+     "accountingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "Confluent.Kafka",
+      "match": "type"
+     }
+    ],
+    "language": "csharp",
+    "value": "ConsumerConfig",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 75,
+    "quotedToken": "ConsumerConfig",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "$\"accountingservice\"",
+      "repo": "upstream",
+      "sourceFile": "src/accountingservice/Consumer.cs",
+      "line": 77,
+      "quotedToken": "$\"accountingservice\""
+     },
+     {
+      "kind": "literal",
+      "value": "true",
+      "repo": "upstream",
+      "sourceFile": "src/accountingservice/Consumer.cs",
+      "line": 81,
+      "quotedToken": "true"
+     }
+    ],
+    "services": [
+     "accountingservice"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "kafka",
+    "matches": [
+     {
+      "category": "kafka",
+      "library": "Confluent.Kafka",
+      "match": "type"
+     }
+    ],
+    "language": "csharp",
+    "value": "ConsumerBuilder",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 84,
+    "quotedToken": "ConsumerBuilder<string, byte[]>",
+    "literals": [],
+    "services": [
+     "accountingservice"
+    ]
+   }
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67"
+  }
+ },
+ "architecture": {
+  "name": {
+   "value": "otel",
+   "repo": "upstream",
+   "sourceFile": "docker-compose.yml",
+   "line": 16,
+   "quotedToken": "services:",
+   "note": "architecture = the services of the compose files upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml"
+  }
+ },
+ "host": {
+  "id": {
+   "value": "fb14srv6",
+   "repo": "obsplacement",
+   "sourceFile": "research/host-topology.json",
+   "line": 422,
+   "quotedToken": "\"hostId\": \"fb14srv6\"",
+   "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "accountingservice",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 21,
+    "quotedToken": "accountingservice:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Dockerfile",
+    "line": 22,
+    "quotedToken": "base",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM base"
+   },
+   "container": {
+    "value": "accounting-service",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 23,
+    "quotedToken": "container_name: accounting-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for accountingservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+   }
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "accountingservice",
+    "callee": "kafka"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 139,
+   "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}",
+   "note": "stage-1 rule D4: bare entry docker-compose.yml:35 passes KAFKA_SERVICE_ADDR=kafka:9092 to accountingservice"
+  },
+  {
+   "value": {
+    "caller": "accountingservice",
+    "callee": "otelcol"
+   },
+   "repo": "upstream",
+   "sourceFile": ".env",
+   "line": 27,
+   "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+   "note": "stage-1 rule D4: entry docker-compose.yml:36 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4318 to accountingservice"
+  }
+ ]
+}

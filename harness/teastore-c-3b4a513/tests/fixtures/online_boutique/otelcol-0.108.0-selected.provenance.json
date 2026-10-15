@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "sourceCampaignEvidenceSha256": "3d8078b1c50a390ded2fb361d89c92f7bf25658d8a6e33aa04415da549d888a3",
+  "sourceArtifact": ".local/evidence/online-boutique-srv5-20260809/workspace-v3/evidence/campaign-v3/b01-selected/otelcol.log",
+  "sourceArtifactBytes": 388769,
+  "sourceArtifactSha256": "8180cc6ecf2a596168ce567dbc8f3e7406107497f35ad89a21064f430c806e26",
+  "extraction": "byte-preserving lines 1-1096; first two complete exporter batches",
+  "fixtureBytes": 64384,
+  "fixtureSha256": "57b3da4a92eea5ed309e94586d0537a5bc2dc3068d98a4b415fe433da676883d",
+  "collectorImageTag": "otel/opentelemetry-collector-contrib:0.108.0",
+  "expected": {
+    "exportBatchCount": 2,
+    "exporterDeclaredSpanCount": 65,
+    "rawObservedSpanCount": 65,
+    "normalizedSpanCount": 65,
+    "uniqueSpanIdentityCount": 65,
+    "completePathTraceId": "1466e070884a34bd8bdff8e65fde8766"
+  }
+}

@@ -1,0 +1,9 @@
+### ARGV: uv run python research/placement/cells_v3.py schedule tmp/teastoresweep2-evidence/x/teastore-traffic-sweep-v1 tmp/teastoreb1-evidence/faultview/x/teastore-traffic-sweep-b-v1 tmp/teastorequiet1-evidence/x/teastore-quiet-calibration-v1 --system teastore --readout research/traffic-sweep/readout-teastore-quietcurve-aonly-v3.1/sweep_analysis_v3.json --out research/placement/out/teastore-quietcurve-aonly/schedule.json
+wrote research/placement/out/teastore-quietcurve-aonly/schedule.json
+### RC: 0
+### ARGV: uv run python research/placement/celf_v3.py research/traffic-sweep/readout-teastore-quietcurve-aonly-v3.1/sweep_analysis_v3.json --schedule research/placement/out/teastore-quietcurve-aonly/schedule.json --declared research/placement/declared/teastore.declared.json --k-max 19 --out research/placement/out/teastore-quietcurve-aonly/placement.json
+wrote research/placement/out/teastore-quietcurve-aonly/placement.json
+### RC: 0
+### ARGV: uv run python research/placement/cells_v3.py far tmp/teastoresweep2-evidence/x/teastore-traffic-sweep-v1 tmp/teastoreb1-evidence/faultview/x/teastore-traffic-sweep-b-v1 tmp/teastorequiet1-evidence/x/teastore-quiet-calibration-v1 --system teastore --readout research/traffic-sweep/readout-teastore-quietcurve-aonly-v3.1/sweep_analysis_v3.json --sets research/placement/out/teastore-quietcurve-aonly/placement.json --out research/placement/out/teastore-quietcurve-aonly/far.json
+wrote research/placement/out/teastore-quietcurve-aonly/far.json
+### RC: 0

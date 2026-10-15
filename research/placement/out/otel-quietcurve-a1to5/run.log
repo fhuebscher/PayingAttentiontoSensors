@@ -1,0 +1,9 @@
+### ARGV: uv run python research/placement/cells_v3.py schedule tmp/otel-sweep-evidence/relaunch1-fetch/retained tmp/otel-b-evidence/b1-faultview/retained tmp/otel-quietA-b1to5-view/retained --system otel --readout research/traffic-sweep/readout-otel-quietcurve-a1to5-v3.1/sweep_analysis_v3.json --out research/placement/out/otel-quietcurve-a1to5/schedule.json
+wrote research/placement/out/otel-quietcurve-a1to5/schedule.json
+### RC: 0
+### ARGV: uv run python research/placement/celf_v3.py research/traffic-sweep/readout-otel-quietcurve-a1to5-v3.1/sweep_analysis_v3.json --schedule research/placement/out/otel-quietcurve-a1to5/schedule.json --declared research/placement/declared/otel.declared.json --k-max 19 --out research/placement/out/otel-quietcurve-a1to5/placement.json
+wrote research/placement/out/otel-quietcurve-a1to5/placement.json
+### RC: 0
+### ARGV: uv run python research/placement/cells_v3.py far tmp/otel-sweep-evidence/relaunch1-fetch/retained tmp/otel-b-evidence/b1-faultview/retained tmp/otel-quietA-b1to5-view/retained --system otel --readout research/traffic-sweep/readout-otel-quietcurve-a1to5-v3.1/sweep_analysis_v3.json --sets research/placement/out/otel-quietcurve-a1to5/placement.json --out research/placement/out/otel-quietcurve-a1to5/far.json
+wrote research/placement/out/otel-quietcurve-a1to5/far.json
+### RC: 0

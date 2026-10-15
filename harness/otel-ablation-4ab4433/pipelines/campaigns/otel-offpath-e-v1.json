@@ -1,0 +1,1513 @@
+{
+  "amendments": [],
+  "analysis": {
+    "analysisFreeze": "no E cell is read (validity fields only) before analysis v3.2, the training placement and the pass rule are frozen by digest (BUDGET_E.md stop rule 4); the test blocks are then read only through the frozen placement",
+    "calibration": "decision 102 (user 2026-10-12): the detectors that score the test blocks are calibrated on the training blocks (1-3) only and applied unchanged to the test blocks (4-5)",
+    "comparativeUnit": "(off-path class); 5 blocks of one no-fault cell and one cell per kept fault at one rate; the placement is solved on blocks 1-3 and scored once on blocks 4-5",
+    "duringFaultProbes": "none (H10): the receipt's probes are the post-revert readiness probes only",
+    "forbidden": [
+      "observation-count-as-replication",
+      "source-off-as-none",
+      "unsupported-posture-imputation",
+      "cross-family-replication-from-channel-alias"
+    ],
+    "manifestationCriterion": "per fault and rate, one cell: the frontend pause manifests if at least 90 % of the requests scheduled in the first 45 s of the hold fail and checkout requests sent in them (by send time) succeed in at most 10 % of cases (the pause command takes a moment to bite); an off-path pause manifests if the target service's consumer-side spans started in the hold number at most 10 % of those started in the pre-onset 60 s AND checkout requests scheduled in the hold keep succeeding (at least 95 % ok); in every case the rate's no-fault cell shows neither the effect nor the failure, and a valid no-fault cell that fails its precondition (checkout rows and all rows >= 95 % ok in its pseudo window) makes the verdict '—' for that rate",
+    "manifestationCriterionDefaults": {
+      "frontendPause": "ledger rows scheduled in [onset, onset + 45 s) (the hold minus the client timeout of 15 s: a request scheduled later can be served after the unpause inside its own timeout; request-ledger.json, every route): the share with outcome ok is <= 10 %, and the checkout rows (route=checkout) SENT in it (startedAtEpoch - barrierEpoch in [onset, onset + 45 s), because a checkout waits for its cart POST and can leave its slot by up to 20 s) succeed in <= 10 % (the first requests before the pause bites succeed); the no-fault cell's rows in the same window at its pseudo onset succeed in >= 95 % (each share needs >= 20 rows, else '—')",
+      "hold": "[onset, onset + 60 s)",
+      "minimumSpans": "a segment with fewer than 20 spans of the statistic gives '—' for that statistic",
+      "noFaultCell": "the same statistics at its pseudo onset must show neither the effect nor the failure",
+      "noFaultPrecondition": "a valid no-fault cell must itself be healthy in its pseudo hold [onset, onset + 60 s): checkout rows (route=checkout, scheduled in it) >= 95 % ok and all rows >= 95 % ok, each with >= 20 rows; if it is not, the verdict of every fault at that rate is '—' (the fault's effect cannot be told from a baseline that already fails), not 'does not manifest'; this is a property of the cell, reported with the numbers",
+      "offPathPause": "consumer-side spans of the target service: service.name = the target (frauddetectionservice or accountingservice) and Kind=Consumer; count started in the hold <= 10 % of the count started in the pre-onset 60 s (pre-onset count >= 20, else '—'); AND checkout rows (route=checkout) scheduled in the hold: outcome ok >= 95 % (and >= 20 rows, else '—'); AND the no-fault cell at its pseudo onset has a hold/pre-onset count ratio > 10 % and its checkout rows >= 95 % ok",
+      "onset": "fault cells: intervention.json freeze.commandIssuedOffsetSeconds (= actualOnsetMonotonicOffsetSeconds, pre-command), mapped to wall clock with request-ledger.json barrierEpoch; no-fault cell: its pseudo onset, timing.scoredWindowSeconds[0]",
+      "preOnsetSegment": "[onset - 60 s, onset)",
+      "spanSelection": "by span start time; all spans regardless of status; spans from otelcol.log (Start time, UTC)",
+      "unit": "one cell per (fault, rate); a verdict is per (fault, rate); a fault is kept for campaign E iff it manifests at >= 1 rate",
+      "validCell": "a cell counts iff its host receipt says valid and an offline validate_cell replay of it passes (the witness check runs only in the terminal); the no-fault cell of the rate must be valid too, else the verdict is '—'",
+      "verdict": "manifests / does not manifest / '—' (a statistic below its minimum, an invalid cell, an invalid no-fault cell, or a no-fault cell that fails its precondition, at that rate)"
+    },
+    "passRule": "decision 99 (user 2026-10-12): for each off-path class (frauddetectionservice pause, accountingservice pause) separately, at E's rate, the frozen 6/h set passes if g = D(ledger alone) - D(S_6/h) > 0 over that class's test episodes and it improves at least 2 of them; on-path classes and other cells are reported without a verdict; '—' if a set member is absent from the scoring ground set or fewer than 2 valid test episodes exist (decisions 90-91 carried over)",
+    "probeWindowsExcludedFromSensorScoring": true,
+    "split": {
+      "declaredBeforeLaunch": true,
+      "rule": "decision 100 (user 2026-10-12): 5 blocks; the placement is solved on blocks 1-3, frozen with the pass rule, and scored once on blocks 4-5; the detectors that score the test blocks are calibrated on the training blocks only (decision 102)",
+      "testBlocks": [
+        4,
+        5
+      ],
+      "trainingBlocks": [
+        1,
+        2,
+        3
+      ]
+    },
+    "traceCompleteness": {
+      "authority": "fault cells: research/PROTOCOL_DRAFT_20261002.md decision 25 (user 2026-10-03, as the sweep); no-fault cells: decision 56 (user 2026-10-04, as the quiet epoch)",
+      "faultCells": {
+        "allowanceMinimum": 1,
+        "allowanceShare": 0.01,
+        "authority": "research/PROTOCOL_DRAFT_20261002.md decision 25 (user 2026-10-03, all three sweeps); replaces the M1 99 % rule after OTel attempt 1 stopped at cell 8 (20/21)",
+        "drainRule": "client timeout + 2 s (TeaStore Q3)",
+        "drainSeconds": 17.0,
+        "rule": "windows by request start on the fault receipt's monotonic clock. Fault cells: pre-onset = start before the onset command was issued; fault-and-drain = start in [onset command issued, route ready + drainSeconds]; after-drain = later. No-fault cells: one whole-measurement window. (i) incomplete traces of fault-and-drain requests are counted and recorded (with request tokens) as the fault's effect, never blocking; (ii) the cell is blocked only if the successful requests of the other windows with an incomplete trace number more than max(allowanceMinimum, floor(allowanceShare x their successful requests)). Complete = the request's own trace id observed and every service its route is guaranteed to reach (workload.mix.routes[route].requiredServices, a conservative subset) observed in that trace (a request of the mix has its route's set; services beyond the set, such as flagd or the async consumers, are neither required nor unexpected; C's 'exactly the route's services' was for its single route). Every incomplete trace is counted per window (successful and unsuccessful separately) in trace-completeness.json, evaluated on the target before the next cell and replayed by the terminal"
+      },
+      "noFaultCells": {
+        "allowanceMinimum": 1,
+        "allowanceShare": 0.01,
+        "authority": "research/PROTOCOL_DRAFT_20261002.md decision 56 (user 2026-10-04, round 12, on research/traffic-sweep/STOP_QUIET_OTEL_A1.md); this epoch only, the sweep keeps decision 25",
+        "blocking": false,
+        "decision25Counterfactual": "recorded per cell, not applied: max(allowanceMinimum, floor(allowanceShare x successful requests)) and whether the incomplete count exceeds it",
+        "rule": "one whole-measurement window (every cell is a no-fault cell). Complete = the request's own trace id observed and every service its route is guaranteed to reach (workload.mix.routes[route].requiredServices, a conservative subset) observed in that trace (a request of the mix has its route's set; services beyond the set, such as flagd or the async consumers, are neither required nor unexpected; C's 'exactly the route's services' was for its single route). A successful request without a complete trace is telemetry loss: counted and recorded, never blocking. trace-completeness.json records per window the successful, complete and incomplete requests (unsuccessful separately); for every incomplete request its scheduled offset, whether its own trace id was observed and which required path services were missing; the count of incomplete requests per missing service; and the contiguous runs of consecutively scheduled requests that are each successful and incomplete (first and last scheduled offset, request count, missing services), so a lost export batch shows as one run. Evaluated on the target before the next cell and replayed byte for byte by the terminal",
+        "ruleId": "protocol-decision-56",
+        "stillBlocking": "G1, G2, G4, the container-health guard, and the terminal's ledger, application-witness, generator-absence, posture and application-log checks",
+        "timingKey": "traceCompletenessRule"
+      },
+      "ruleByCellKind": {
+        "fault": "protocol-decision-25 (no timing key; blocking above max(1, 1 %) outside the fault-and-drain window)",
+        "no-fault": "protocol-decision-56 (timing key traceCompletenessRule; recorded, never blocking)"
+      },
+      "timingKey": "traceCompletenessRule (no-fault cells only)"
+    }
+  },
+  "collection": {
+    "applicationLogs": "application.log: docker compose logs --no-color --timestamps for every started application service except the collector (its output is otelcol.log); Docker's RFC3339Nano receive stamp prefixes every line",
+    "collectorCarrier": "otelcol debug exporter, one unrotated json-file segment (otelcol.log), unchanged",
+    "cpu": "docker-engine cumulative CPU before and after the window, unchanged (diagnostic in every cell)",
+    "dockerEvents": "pause cells: docker-events.json (live docker events stream of the project's pause and unpause events, raw and parsed, with the cell's wall-to-monotonic mapping); H4",
+    "requestWitness": "frontendproxy JSON access log, unchanged; its json-file log is one unrotated segment bounded at 4g (the collector carrier's rule): a 25 req/s cell writes about 4650 lines (~0.4 kB each, inside upstream's 5m x 2 bound of 5 to 10 MB at 50 req/s; the retention is kept as the pilots' so the materialized source is unchanged); a lost line fails the terminal's witness check; every request of the mix, POSTs included, is one witnessed token",
+    "telemetryBytes": "sudo -n tcpdump on OTLP ports, unchanged (the only sudo on fb14srv6)"
+  },
+  "containerHealthGuard": {
+    "authority": "user 2026-10-03 (with option A)",
+    "rule": "every project container is inspected right before the warm-up (baseline) and after the cell's captures, before cleanup (final): State.OOMKilled, RestartCount, status and HostConfig.Memory are recorded in container-health.json; the cell is invalid if any container has OOMKilled true, if an application container restarted or was replaced between baseline and final, or if a declared memory limit is not in effect; replayed by the terminal"
+  },
+  "declaration": "research/traffic-sweep/DECLARATION_E_OTEL.md (measurement repo; frozen and committed alone before the first cell)",
+  "derivedFrom": {
+    "authority": "main repo research/traffic-sweep/BUDGET_E.md (ec4b9fa, committed alone before any E work; amendment 1, d4e8e52) and protocol decisions 95-102 and 108 (user 2026-10-12): the upstream Locust task mix as an open loop with a request ledger, off-path faults on frauddetectionservice and accountingservice with the frontend pause as the on-path control, 5 blocks (blocks 1-3 training, 4-5 test, decision 100), the rate and the kept faults chosen from the off-path pilot v2 (otel-offpath-pilot-v2); campaign C's decisions 25, 56, 66 and 69 and pilot v2's sizing carried over unchanged",
+    "descriptorByteSha256": "25dbeb16674c2c01af903ea244050dd417be0192112c4deacb7ea77b6a0b24c5",
+    "descriptorCanonicalSha256": "6dd3cb7215db438cdf2f0618dd62eed583b86004f5f0254c565eabe93cc13721",
+    "descriptorPath": "pipelines/campaigns/otel-repeat-episodes-c-v1.json",
+    "disposition": "campaign C's epoch is not superseded: it keeps its own descriptor, plan, admission history and spent attempts; the campaign E is a separate epoch selected by execution/study-epoch.json",
+    "inheritedAmendments": [],
+    "predecessorDerivedFrom": {
+      "authority": "main repo research/PROTOCOL_DRAFT_20261002.md decision 82 (user 2026-10-10: clean placement test runs, campaign C on TeaStore and OTel with campaign B's 36-cell shape and new blocks, after the placement design is frozen by digest; fault cells scored only by the frozen placement); budget and stop rule research/traffic-sweep/BUDGET_C.md (d5b9af0, committed alone before any C work); B's decisions 49, 50, 56, 66 and 69 carried over unchanged",
+      "descriptorByteSha256": "5adefafb39d11b7f7c81f342bef99915e370cd5e8c9d8ffa5dbe8ccfb3e5557f",
+      "descriptorCanonicalSha256": "6e5d0f3460d28142428221c259994011a3a02973392aca4ffe6a4eb47a81a4ce",
+      "descriptorPath": "pipelines/campaigns/otel-repeat-episodes-v1.json",
+      "disposition": "campaign B's epoch is not superseded: it keeps its own descriptor, plan, admission history and spent attempts; campaign C is a separate epoch selected by execution/study-epoch.json",
+      "inheritedAmendments": [],
+      "predecessorDerivedFrom": {
+        "authority": "main repo research/PROTOCOL_DRAFT_20261002.md decision 49 (user 2026-10-04: B, 3 more blocks on TeaStore and OTel, after the H10/H4 harness change), decision 50 (fault doses inherited from Hotel, a fixed factor), decision 56 (trace loss recorded, never blocking, in no-fault cells), decision 69 (H4 recorded, never blocking); budget and stop rule research/traffic-sweep/BUDGET_B.md (92ca1c7, committed alone before the work); proposal research/traffic-sweep/NEXT_CAMPAIGNS_PROPOSAL.md section B; harness changes research/protocol/METHODOLOGY_HARDENING.md H10 and H4",
+        "descriptorByteSha256": "1d007caa6b2be800abda763444779730be29bb0d6f48191aed315d2053f4e8ed",
+        "descriptorCanonicalSha256": "be5b0b4dcd212aaa47908a6dd533e5cb73a104ab22b1b9e04a147e21ccb2c86d",
+        "descriptorPath": "pipelines/campaigns/otel-traffic-sweep-v1.json",
+        "disposition": "the sweep epoch is not superseded: it keeps its own descriptor, plan, admission history and spent attempts; the repeat epoch is a separate epoch selected by execution/study-epoch.json",
+        "inheritedAmendments": [
+          "research/traffic-sweep/AMENDMENT_OTEL_1.md (measurement repo): shared trace-completeness rule, research/PROTOCOL_DRAFT_20261002.md decision 25 (user 2026-10-03); frontendproxy memory limit 50M -> 256M (user 2026-10-03, option A) and the per-cell container-health guard; relaunch 1 of 2, all 12 cells, attempt 2"
+        ],
+        "studyEpoch": "otel-traffic-sweep-v1"
+      },
+      "studyEpoch": "otel-repeat-episodes-v1"
+    },
+    "studyEpoch": "otel-repeat-episodes-c-v1"
+  },
+  "design": {
+    "blockRule": "each block holds the no-fault cell, then the kept off-path pauses in a seeded Fisher-Yates order (one draw per block), then the frontend pause when it is kept; the runKey's block is the block",
+    "blocks": 5,
+    "cellShape": "campaign C's cell (candidate_repeat_c.cell_timing(regime, rate, 1); a pause of frauddetectionservice or accountingservice takes the frontend pause's) at the campaign rate; only the seeded onset (C's strata rule over the 5 blocks), the slots per phase it implies, the concurrency, the plan-level run count and minimum remaining time, the frontendproxy, otelcol and jaeger memory limit, the generator's open-file minimum and the workload mix differ",
+    "cellsPerBlock": 4,
+    "coldStartEachRun": true,
+    "doses": "the pauses are the frontend pause's mechanism (docker compose pause / unpause) for a hold of 60 s on the kept services; the throttle is not in E (decision 108)",
+    "episodesPerRegimeAndRate": 5,
+    "faultAppliedToEveryEffectCell": true,
+    "harnessChanges": {
+      "H10": "no readiness probe from the fault onset to the end of the hold; probes outside that window unchanged",
+      "H4": "the freeze is stamped and RECORDED, never blocking (decision 69): command issued, command returned, applied-state readback (every fault); the Docker pause and unpause events of the target container with event time in ns and the cell's monotonic mapping (pause cells)"
+    },
+    "keptFaults": [
+      "fraud-pause",
+      "accounting-pause",
+      "frontend-pause"
+    ],
+    "keptFaultsRule": "set by the coordinator from the off-path pilot v2's verdict (BUDGET_E stop rule 5 and step 4): a non-empty subset of fraud-pause, accounting-pause and frontend-pause that includes at least one off-path pause; one of 6 prepared sets",
+    "noFaultCellsCarryPseudoWindow": true,
+    "offPathFraming": "frauddetectionservice and accountingservice consume the orders topic asynchronously in their own consumer groups; the checkout route returns without waiting for them (checkoutservice sends the message and continues), so a pause of either must not make any route unavailable",
+    "omittedRegimes": {
+      "net-delay": "no no-sudo mechanism exists in this harness: fb14srv6 grants sudo only for tcpdump, the only netem mechanism the project has is `sudo -n nsenter -t <pid> -n tc` (Hotel faults/lmt_faults.py), and the docker-sidecar netem of decision round 4 item 6 is not built (it would also need an image with iproute2 pinned on the host)"
+    },
+    "postureRule": "full only; placements are evaluated by restriction of full cells (an approximation: a sensor can behave differently when other sensors are off)",
+    "postures": [
+      "full"
+    ],
+    "purpose": "campaign E (BUDGET_E.md, decisions 95-102): the placement test on the OTel Demo's off-path faults; the upstream task mix as an open loop at 25 req/s, 5 blocks of one no-fault cell and one cell per kept fault (fraud-pause, accounting-pause, frontend-pause); blocks 1-3 train the placement, blocks 4-5 test it (decision 100)",
+    "rateRule": "set by the coordinator from the off-path pilot v2's verdict: 25 or 50 req/s of the whole mix",
+    "rates": [
+      25.0
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "calibration",
+        "fault": null,
+        "id": "no-fault-calibration",
+        "kind": "no-fault-calibration"
+      },
+      {
+        "artifactRootClass": "effect/fraud-pause",
+        "fault": "fraud-pause",
+        "id": "fraud-pause-effect",
+        "kind": "effect"
+      },
+      {
+        "artifactRootClass": "effect/accounting-pause",
+        "fault": "accounting-pause",
+        "id": "accounting-pause-effect",
+        "kind": "effect"
+      },
+      {
+        "artifactRootClass": "effect/frontend-pause",
+        "fault": "frontend-pause",
+        "id": "frontend-pause-effect",
+        "kind": "effect"
+      }
+    ],
+    "split": {
+      "declaredBeforeLaunch": true,
+      "rule": "decision 100 (user 2026-10-12): 5 blocks; the placement is solved on blocks 1-3, frozen with the pass rule, and scored once on blocks 4-5; the detectors that score the test blocks are calibrated on the training blocks only (decision 102)",
+      "testBlocks": [
+        4,
+        5
+      ],
+      "trainingBlocks": [
+        1,
+        2,
+        3
+      ]
+    },
+    "totalRuns": 20
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true,
+    "runtimeSuccessDoesNotPromote": true
+  },
+  "faultDesign": {
+    "containerResolvedBeforeOnset": true,
+    "freezeStamps": {
+      "authority": "METHODOLOGY_HARDENING.md H4 (decision 42, user 2026-10-04); recorded, never blocking: decision 69 (user 2026-10-09)",
+      "dockerEvents": "pause cells only: docker-events.json, kind otel-demo-fault-docker-events-v1, retained beside intervention.json. A live `docker events` stream (filters type=container, event=pause, event=unpause, label com.docker.compose.project=<project>) is started before the measurement barrier and stopped after the fault worker has settled, so the daemon's bounded event buffer cannot lose the event. The file holds the stream's raw JSON lines, the parsed events (action, containerId, service, timeNano, monotonic and barrier-relative offset by the cell's mapping), parseProblems for lines that could not be parsed, and the mapping. Verdict {status ok|missing|contradictory, failures, reasons[{kind, reason}], ...}: ok iff the stream was alive when stopped, there is exactly one pause event and one unpause event of the target container, the pause event lies in [commandIssued, commandReturned] and the unpause event in [revertCommandIssued, revertCommandReturned], each widened by the declared tolerance (0.25 s), and the unpause follows the pause; absences are missing, anything that disagrees is contradictory",
+      "onsetInterval": "pause: [commandIssued, Docker pause event]; throttle: [commandIssued, commandReturned] plus the applied quota read back",
+      "receipt": "intervention.json freeze = {schemaVersion 1, kind otel-demo-fault-freeze-stamps-v1, action, commandIssuedMonotonic (= startedMonotonic), commandReturnedMonotonic (taken when the fault command returns, before the state readback), stateReadbackMonotonic (= appliedMonotonic), the three barrier-relative offsets, dockerEventsFile, stampCheck {status ok|missing|contradictory, failures, reasons}}; expected: commandIssued <= commandReturned <= stateReadback, issued = startedMonotonic, readback = appliedMonotonic, returned <= revertingMonotonic",
+      "rule": "H4 never invalidates a cell. A failed, dead or contradictory event stream or stamp leaves the cell valid and the freeze record marked missing (an absence: no stream, no event) or contradictory (events or stamps that disagree), with its reasons and a failure count per cell, in docker-events.json verdict and in intervention.json freeze.stampCheck. The terminal replays and byte-compares whatever was retained: a record that does not replay from its own raw lines, clock and receipt is refused (integrity), a record that replays and says missing or contradictory is accepted (availability)",
+      "throttleStamps": "command issued and command returned monotonic stamps and the applied-state readback stamp; no events"
+    },
+    "holdSeconds": 60,
+    "manifestation": "pause: the paused container state read back after the command; throttle: the applied NanoCpus read back. The Docker pause event is evidence recorded beside it, not a condition of manifestation (decision 69). The entry route is not probed during the fault (scenario entryRouteDuringFault is not-probed-h10). Off-path pauses (frauddetectionservice, accountingservice) are proven by the paused container state read back and the Docker pause event, like the frontend's; whether the consumer-side effect shows in the target's spans, and that checkout requests keep succeeding, is the pilot's question, re-measured here per block (analysis.manifestationCriterion), not a harness condition",
+    "metricExportIntervalMilliseconds": null,
+    "omitted": {
+      "net-delay": "no no-sudo mechanism exists in this harness: fb14srv6 grants sudo only for tcpdump, the only netem mechanism the project has is `sudo -n nsenter -t <pid> -n tc` (Hotel faults/lmt_faults.py), and the docker-sidecar netem of decision round 4 item 6 is not built (it would also need an image with iproute2 pinned on the host)"
+    },
+    "onsetBaseSeconds": 60,
+    "onsetStamp": "pre-command (actualOnsetMonotonicOffsetSeconds is taken immediately before the command; F-ADH-085)",
+    "probes": "H10: no route probe is sent from the onset to the end of the hold; the post-revert readiness probes are stamped into the receipt's probes list (phase, start/end monotonic, available) so the analysis can exclude their windows from sensor scoring; probe requests carry the token readiness-not-scored. duringRouteAvailable is null",
+    "scenarios": {
+      "accounting-pause": {
+        "action": "pause",
+        "applyCommand": "docker compose pause accountingservice",
+        "duringPredicate": "running-and-paused",
+        "entryRouteDuringFault": "not-probed-h10",
+        "revertCommand": "docker compose unpause accountingservice",
+        "service": "accountingservice"
+      },
+      "fraud-pause": {
+        "action": "pause",
+        "applyCommand": "docker compose pause frauddetectionservice",
+        "duringPredicate": "running-and-paused",
+        "entryRouteDuringFault": "not-probed-h10",
+        "revertCommand": "docker compose unpause frauddetectionservice",
+        "service": "frauddetectionservice"
+      },
+      "frontend-pause": {
+        "action": "pause",
+        "applyCommand": "docker compose pause frontend",
+        "duringPredicate": "running-and-paused",
+        "entryRouteDuringFault": "not-probed-h10",
+        "revertCommand": "docker compose unpause frontend",
+        "service": "frontend"
+      }
+    }
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "detectionWindow": "[appliedMonotonic, revertingMonotonic]: after the pause is observed, before the unpause command (Hotel compose_pause.py); offsets are relative to the shared barrier",
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "freezeStamps": "pause: docker-events.json beside intervention.json; every fault: intervention.json freeze",
+      "independentOfScoredTelemetry": true,
+      "intervalLabel": "intervention-exposure",
+      "requiredReceiptFields": [
+        "actualOffsetMonotonicOffsetSeconds",
+        "actualOnsetMonotonicOffsetSeconds",
+        "appliedMonotonic",
+        "appliedMonotonicOffsetSeconds",
+        "barrierMonotonic",
+        "duringRouteAvailable",
+        "duringStateSamples",
+        "error",
+        "freeze",
+        "manifested",
+        "postState",
+        "preState",
+        "probes",
+        "recovered",
+        "revertingMonotonic",
+        "revertingMonotonicOffsetSeconds",
+        "scenario",
+        "service",
+        "successful",
+        "targetContainerId",
+        "targetImageId"
+      ],
+      "scenarioContracts": [
+        {
+          "action": "pause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "entryRouteDuringFault": "not-probed-h10",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "accounting-pause",
+          "service": "accountingservice"
+        },
+        {
+          "action": "pause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "entryRouteDuringFault": "not-probed-h10",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "fraud-pause",
+          "service": "frauddetectionservice"
+        },
+        {
+          "action": "pause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "entryRouteDuringFault": "not-probed-h10",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "frontend-pause",
+          "service": "frontend"
+        }
+      ],
+      "source": "controller-and-target-state-probes"
+    },
+    "path": {
+      "crossTraceAssemblyAllowed": false,
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "executedDenominator": "application-side-request-witness",
+      "expectedNoFaultPath": [
+        "adservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "frontend",
+        "frontendproxy",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "recommendationservice",
+        "shippingservice"
+      ],
+      "expectedNoFaultPathByRoute": {
+        "add-to-cart": [
+          "frontendproxy",
+          "frontend",
+          "cartservice"
+        ],
+        "ads": [
+          "frontendproxy",
+          "frontend",
+          "adservice"
+        ],
+        "checkout": [
+          "frontendproxy",
+          "frontend",
+          "cartservice",
+          "checkoutservice",
+          "productcatalogservice",
+          "currencyservice",
+          "shippingservice",
+          "quoteservice",
+          "paymentservice",
+          "emailservice"
+        ],
+        "index": [
+          "frontendproxy",
+          "frontend"
+        ],
+        "product": [
+          "frontendproxy",
+          "frontend",
+          "productcatalogservice"
+        ],
+        "recommendations": [
+          "frontendproxy",
+          "frontend",
+          "recommendationservice",
+          "productcatalogservice"
+        ],
+        "view-cart": [
+          "frontendproxy",
+          "frontend",
+          "cartservice"
+        ]
+      },
+      "faultSpecificTruth": {
+        "accounting-pause": {
+          "duringFaultExpectedOutcome": "offered-request-outcome-not-presumed",
+          "duringFaultFullPathRequired": false,
+          "postRecoveryFullPathRequired": true,
+          "preFaultFullPathRequired": true
+        },
+        "fraud-pause": {
+          "duringFaultExpectedOutcome": "offered-request-outcome-not-presumed",
+          "duringFaultFullPathRequired": false,
+          "postRecoveryFullPathRequired": true,
+          "preFaultFullPathRequired": true
+        },
+        "frontend-pause": {
+          "duringFaultExpectedOutcome": "offered-request-outcome-not-presumed",
+          "duringFaultFullPathRequired": false,
+          "postRecoveryFullPathRequired": true,
+          "preFaultFullPathRequired": true
+        }
+      },
+      "missingWitnessOrCorrelationState": "unsupported",
+      "numericMissingValue": null,
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "requiredCorrelation": [
+        "opaque-request-token",
+        "application-side-request-witness",
+        "original-trace-id",
+        "one-to-one-token-trace-mapping"
+      ],
+      "scoredPhases": [
+        "pre-fault",
+        "during-fault",
+        "post-readiness"
+      ]
+    }
+  },
+  "id": "otel-offpath-e-v1",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "otel-demo",
+  "outcomes": {
+    "costRegimeOnly": null,
+    "offeredRequestsAreDenominator": true,
+    "primary": "per off-path class (frauddetectionservice pause, accountingservice pause): the frozen 6/h set's pass or fail by the off-path sign rule on the test blocks (decision 99, analysis.passRule); on-path cells and other classes are reported without a verdict",
+    "secondary": "per cell: request outcomes and latency by route over pre-onset, hold and post-revert; the target's consumer-side spans per second; productcatalogservice and frontend CPU; the dependency waits of the checkout journeys; per block the manifestation statistics of the pilot's criterion",
+    "windowMembership": "monotonic-shared-barrier"
+  },
+  "postureRealization": {
+    "async": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "closure": [
+        "accountingservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frauddetectionservice",
+        "frontend",
+        "frontendproxy",
+        "kafka",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "closureDecision": "instrumentation is activated on the selected closure plus accountingservice, frauddetectionservice, kafka (the orders topic's broker and its two consumers); every other application service runs uninstrumented",
+      "currentControl": "materialized-posture-controls-async-closure",
+      "reason": null,
+      "status": "implemented"
+    },
+    "full": {
+      "claimBoundary": null,
+      "currentControl": "upstream-all-services-enabled",
+      "reason": null,
+      "status": "implemented"
+    },
+    "none": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "emailservice",
+          "flagd",
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "currentControl": "materialized-posture-controls",
+      "reason": null,
+      "status": "implemented"
+    },
+    "selected": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "closure": [
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frontend",
+        "frontendproxy",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "closureDecision": "instrumentation is activated on the synchronous checkout path (frontendproxy, frontend, cartservice, checkoutservice, productcatalogservice, currencyservice, shippingservice, quoteservice, paymentservice, emailservice, flagd); every other application service runs uninstrumented",
+      "currentControl": "materialized-posture-controls-selected-closure",
+      "derivation": [
+        "frontendproxy -> frontend: Envoy routes /api/* to the Next.js frontend (src/frontendproxy/envoy.tmpl.yaml)",
+        "add-to-cart: src/frontend/pages/api/cart.ts POST -> CartGateway.addItem + getCart (cartservice)",
+        "place-order: src/frontend/pages/api/checkout.ts POST -> CheckoutGateway.placeOrder (checkoutservice), then ProductCatalogService.getProduct per item (productcatalogservice)",
+        "src/checkoutservice/main.go PlaceOrder: cartservice GetCart, productcatalogservice GetProduct, currencyservice Convert, shippingservice GetQuote (-> quoteservice), paymentservice Charge, shippingservice ShipOrder, cartservice EmptyCart, emailservice POST /send_order_confirmation (an error is logged and swallowed), then sendToPostProcessor (Kafka produce with RequiredAcks = sarama.NoResponse, src/checkoutservice/kafka/producer.go:24; erratum 2: no broker acknowledgement)",
+        "flagd: checkoutservice (paymentServiceUnreachable, kafkaQueueProblems), paymentservice, cartservice and productcatalogservice evaluate feature flags through flagd on the request; measured: 600 of 600 offered-request traces of v3r1 no-fault-cost/b01-01-full contain flagd (and productcatalogservice), so flagd is on the traced synchronous path although the declaration's parenthetical list omits it",
+        "kafka, frauddetectionservice, accountingservice: consumers of the orders topic (src/frauddetectionservice/.../main.kt poll loop, src/accountingservice/Consumer.cs); excluded from the synchronous comparison and added by async"
+      ],
+      "reason": null,
+      "status": "implemented"
+    }
+  },
+  "protocolGates": {
+    "blocking": [
+      "F1",
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "evaluatedOn": "the target, per cell, before the next cell (candidate_remote); replayed by the terminal validator",
+    "g4ChannelScope": "ledger-only (no per-channel in-cell / total counts are recorded)",
+    "module": "modules/otel-demo/validation/protocol_gates.py",
+    "notEvaluated": {
+      "P0": "the per-cell posture proof is config- and probe-based; no per-service connection count is recorded",
+      "R1": "no per-channel recordsAfterWarmup and no per-route readiness map is recorded",
+      "R2": "fresh project and down -v are enforced by the cell runner, not recorded as a gate input"
+    },
+    "recordedNotBlocking": [
+      "R2.recovery"
+    ],
+    "stopRule": "first-invalid-cell",
+    "thresholds": {
+      "FLOOR": 0.5,
+      "G1_MIN_DISPATCHED": 1,
+      "HOLD_TOLERANCE_S": 1.0,
+      "ONSET_TOLERANCE_S": 1.0,
+      "PRE_FAIL_MAX": 0.05,
+      "SCOPE_MIN": 0.95,
+      "SCOPE_SLACK_S": 5.0
+    },
+    "vendoredFrom": "src/obsplacement/protocol_gates.py (measurement repo, d3fc741), byte-identical"
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "requestsPerSecond",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "onsetOffsetDependsOnAttempt": false,
+    "retryMayReplaceCell": false,
+    "runIdRule": "first 24 hex of sha256(canonical runKey) (the frozen compiler's rule)"
+  },
+  "schedule": {
+    "blockOrder": "no-fault, kept off-path pauses (seeded), frontend pause (when kept)",
+    "blocks": [
+      {
+        "block": 1,
+        "order": [
+          "no-fault-calibration@r25#b1",
+          "fraud-pause-effect@r25#b1",
+          "accounting-pause-effect@r25#b1",
+          "frontend-pause-effect@r25#b1"
+        ],
+        "orderSha256": "1d27cea0ff648b60f119b59c2eeb01d344c892e5ba84c5741bb84e9b95d3c242",
+        "split": "training"
+      },
+      {
+        "block": 2,
+        "order": [
+          "no-fault-calibration@r25#b2",
+          "fraud-pause-effect@r25#b2",
+          "accounting-pause-effect@r25#b2",
+          "frontend-pause-effect@r25#b2"
+        ],
+        "orderSha256": "44882f5be2fd1052341da1bbc3ad799f6a047acaf59af12658af80f3379617a9",
+        "split": "training"
+      },
+      {
+        "block": 3,
+        "order": [
+          "no-fault-calibration@r25#b3",
+          "accounting-pause-effect@r25#b3",
+          "fraud-pause-effect@r25#b3",
+          "frontend-pause-effect@r25#b3"
+        ],
+        "orderSha256": "7b24ee2754bf0969b344eef07b8fa8e758827f648ba2d33b9d7d853cbac782ee",
+        "split": "training"
+      },
+      {
+        "block": 4,
+        "order": [
+          "no-fault-calibration@r25#b4",
+          "fraud-pause-effect@r25#b4",
+          "accounting-pause-effect@r25#b4",
+          "frontend-pause-effect@r25#b4"
+        ],
+        "orderSha256": "34c4d4359cccf93ab46e9a55e5dece47e89bd0756764a3acfd2e5543ffcce6c3",
+        "split": "test"
+      },
+      {
+        "block": 5,
+        "order": [
+          "no-fault-calibration@r25#b5",
+          "fraud-pause-effect@r25#b5",
+          "accounting-pause-effect@r25#b5",
+          "frontend-pause-effect@r25#b5"
+        ],
+        "orderSha256": "7c14c90ffd906fc733a5627c41e36e37bf83f5ce8a15f0de6e8925375dc2e7a7",
+        "split": "test"
+      }
+    ],
+    "drawEncoding": "UTF-8(seed || NUL || epoch || NUL || block-NN (NN = block number) || NUL || draw-i || NUL || version)",
+    "leadCell": null,
+    "onsetRule": "campaign C's strata rule over the 5 blocks: per (regime, rate) the blocks take the 5 strata of one inter-arrival in a seeded order (quiet.stratified_onset_offset with 5 episodes), uniform inside the stratum; the no-fault cell's pseudo onset included",
+    "seed": 20261012,
+    "shuffle": "per-block-no-fault-then-fisher-yates-over-the-kept-off-path-pauses-then-the-frontend-pause-with-sha256-draws",
+    "split": {
+      "declaredBeforeLaunch": true,
+      "rule": "decision 100 (user 2026-10-12): 5 blocks; the placement is solved on blocks 1-3, frozen with the pass rule, and scored once on blocks 4-5; the detectors that score the test blocks are calibrated on the training blocks only (decision 102)",
+      "testBlocks": [
+        4,
+        5
+      ],
+      "trainingBlocks": [
+        1,
+        2,
+        3
+      ]
+    },
+    "version": "offpath-e-schedule-v1"
+  },
+  "setupPreconditions": [
+    {
+      "enforcedBy": "modules/otel-demo/drivers/campaign_setup.py: auto refuses without a recorded posture-probe receipt bound to the pinned upstream commit and the probe script bytes",
+      "id": "posture-connection-probe-ok",
+      "requiredCounts": {
+        "disabledOtlpConnections": 0,
+        "enabledOtlpConnectionsMinimum": 1
+      },
+      "requiredOutput": "PROBE OK",
+      "stage": "before-gate-setup-and-after-every-upstream-repin",
+      "tool": "modules/otel-demo/tools/posture_connection_probe.sh",
+      "why": "text-level guard proofs missed currencyservice's unguarded initLogger() on 2026-09-06; only counting OTLP connections per posture sees a missed SDK init"
+    },
+    {
+      "detail": "the standing teastore-demo Compose project on fb14srv6 (WebUI :8080, DB :3306) must be removed by its owner: docker compose -p teastore-demo down",
+      "enforcedBy": "candidate_setup.assert_no_active_foreign refuses any running container or active Compose project at install and at readiness",
+      "id": "demo-stack-torn-down",
+      "ports": [
+        8080,
+        3306
+      ],
+      "stage": "before-gate-setup"
+    },
+    {
+      "detail": "ports 18080-18084 free and /home/stig/observability-placement-candidate-v4-runs/.srv6-runtime.lock absent",
+      "enforcedBy": "candidate_setup.ports_free and the shared srv6 lease in candidate-target-allocation.json",
+      "id": "reserved-ports-free-and-lease-absent",
+      "ports": [
+        18080,
+        18081,
+        18082,
+        18083,
+        18084
+      ],
+      "stage": "before-gate-setup"
+    }
+  ],
+  "source": {
+    "applicationFamily": "otel-demo",
+    "channel": "compose-otel-collector",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "status": "method-design-only",
+  "sutDeviations": [
+    {
+      "mechanism": "docker update --memory <bytes> --memory-swap <same ratio as before> on the running container, right after compose up and before readiness; verified by inspect and recorded in container-health.json",
+      "pilot": "268435456 bytes (256 MiB)",
+      "pilotRule": "the sweep's rule (0.3 MB per waiting request, twice the cost the attempt-1 kill implies) at rate x timeout = 25 x 15 = 375 waiting requests = 112500000 bytes, rounded up to a power of two (134217728 bytes) with a floor at C's own 256 MiB (268435456 bytes)",
+      "reason": "attempt 1 (2026-10-03): Envoy killed by the memory cgroup 12 s into the frontend pause at 10/s (srv6 kernel log 11:46:59Z; again 11:59:31Z after cell 3's window); 124 of 1,800 requests lost their access-log line and the cell failed the terminal's witness check; user decision option A",
+      "scope": "campaign E's cells; C's epoch and every frozen epoch keep their limit",
+      "service": "frontendproxy",
+      "setting": "memory limit (HostConfig.Memory)",
+      "sweep": "268435456 bytes (256M)",
+      "upstream": "52428800 bytes (50M; upstream 2d4661e docker-compose.yml:319-320)"
+    },
+    {
+      "mechanism": "docker update --memory <bytes> --memory-swap <same ratio as before> on the running container, right after compose up and before readiness; verified by inspect and recorded in container-health.json (the frontendproxy's mechanism)",
+      "pilot": "1073741824 bytes (1 GiB)",
+      "reason": "telemetry backend, not a SUT service (user decision 2026-10-12, decision 103): at 25 to 50 req/s of the mix the collector's debug exporter prints every span (a few thousand per second, no memory_limiter in its config) and jaeger holds the traces in memory; an OOM kill of either would invalidate the cell (container-health guard)",
+      "scope": "campaign E's cells only; every SUT service limit stays upstream's; C's epoch and every frozen epoch keep upstream's",
+      "service": "jaeger",
+      "setting": "memory limit (HostConfig.Memory)",
+      "upstream": "419430400 bytes (400M; upstream docker-compose.yml)"
+    },
+    {
+      "mechanism": "docker update --memory <bytes> --memory-swap <same ratio as before> on the running container, right after compose up and before readiness; verified by inspect and recorded in container-health.json (the frontendproxy's mechanism)",
+      "pilot": "1073741824 bytes (1 GiB)",
+      "reason": "telemetry backend, not a SUT service (user decision 2026-10-12, decision 103): at 25 to 50 req/s of the mix the collector's debug exporter prints every span (a few thousand per second, no memory_limiter in its config) and jaeger holds the traces in memory; an OOM kill of either would invalidate the cell (container-health guard)",
+      "scope": "campaign E's cells only; every SUT service limit stays upstream's; C's epoch and every frozen epoch keep upstream's",
+      "service": "otelcol",
+      "setting": "memory limit (HostConfig.Memory)",
+      "upstream": "209715200 bytes (200M; upstream docker-compose.yml)"
+    },
+    {
+      "mechanism": "materialize.py renders it into the materialized compose.otel-placement.yml when the selector names the epoch",
+      "pilot": "max-size 4g, max-file 1 (the collector carrier's rule, compose.otel-placement.yml)",
+      "reason": "the request witness is the frontendproxy access log; at 50 req/s a cell writes ~3.7 MB of it (estimated), inside upstream's bound; kept as the pilots' so the materialized source is unchanged",
+      "scope": "the load pilot's, the off-path pilots' and campaign E's materialized source; every other epoch renders the overlay byte for byte",
+      "service": "frontendproxy",
+      "setting": "json-file log rotation",
+      "upstream": "max-size 5m, max-file 2 (x-default-logging)"
+    }
+  ],
+  "target": {
+    "allocationPath": "modules/otel-demo/execution/candidate-target-allocation.json",
+    "dockerGid": 998,
+    "executionGid": 1016,
+    "executionUid": 1016,
+    "executionUser": "stig",
+    "host": "fb14srv6",
+    "leaseScope": "shared-srv6-host-exclusive-otel-then-online-boutique",
+    "setupUser": "root",
+    "transportUser": "root"
+  },
+  "timing": {
+    "budget": {
+      "approvalToFirstMutationSeconds": 3600,
+      "barrierLeadSeconds": 1,
+      "cellDeadlineReserveSeconds": 900,
+      "cellOverheadSeconds": 300,
+      "cellPeriodEstimateSeconds": 511,
+      "cleanupReserveSeconds": 600,
+      "measuredCellPeriodSeconds": {
+        "cells": 12,
+        "gaps": 11,
+        "maximum": 314.9,
+        "mean": 309.6,
+        "minimum": 302.7,
+        "source": "otel-traffic-sweep-v1 relaunch 1 (fb14srv6, 2026-10-03), consecutive request-ledger barrierEpoch gaps"
+      },
+      "measuredTailSeconds": {
+        "r100Maximum": 167.4,
+        "r100Minimum": 158.7,
+        "r50Maximum": 150.0,
+        "r50Minimum": 142.2,
+        "source": "otel-load-pilot-v1 attempt 1 (fb14srv6, 2026-10-12), request-ledger endedAtEpoch to the next cell's barrierEpoch, 5 gaps"
+      },
+      "minimumRemainingRule": "totalRuns x cellPeriod + cellDeadlineReserve + cleanupReserve",
+      "minimumRemainingSeconds": 11720,
+      "runWindowHours": 5,
+      "runWindowRule": "ceil-to-whole-hours(minimumRemaining + approvalToFirstMutation)",
+      "timedSecondsPerCell": 211
+    },
+    "duringFaultProbe": false,
+    "duringFaultProbeRule": "H10: no readiness probe from the fault onset to the end of the hold (scored window [onset, onset + hold]); the post-revert readiness probes start after the revert command returns, and the stack and route readiness before the warm-up are unchanged",
+    "faultEdgeSlackSeconds": 5,
+    "faultHoldSeconds": 60,
+    "faultOnsetAcceptanceSeconds": [
+      -1.0,
+      1.0
+    ],
+    "faultOnsetBaseSeconds": 60,
+    "faultOnsetPhaseOffset": "seeded-stratified-within-one-inter-arrival",
+    "faultOnsetPhaseSelectorEncoding": "stratum order: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || onset-stratum || NUL || stratum); position: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || bNN || NUL || onset-phase)",
+    "faultOnsetStrata": 5,
+    "freezeStamps": true,
+    "generatorOpenFilesMinimum": 1774,
+    "measurementSeconds": 180,
+    "metricExportIntervalMilliseconds": null,
+    "metricExportIntervalNote": "not set: every SDK keeps its own default (60 s observed, research/system-profiles/otel.md); changing it is an emission change this initial test does not make (a declared limit)",
+    "offeredByRate": {
+      "25": 4500
+    },
+    "offeredRule": "requests-per-second-x-measurement-seconds-integral",
+    "postRecoveryAllowanceSeconds": 2.0,
+    "requestTimeoutSeconds": 15.0,
+    "warmupRequestsPerSecond": 10.0,
+    "warmupSeconds": 30,
+    "workloadMix": {
+      "categories": [
+        "binoculars",
+        "telescopes",
+        "accessories",
+        "assembly",
+        "travel",
+        "books",
+        null
+      ],
+      "cycleWeight": 24,
+      "draws": "every parameter is an integer from sha256(namespace NUL 'mix' NUL taskIndex NUL label) mod n (no stdlib RNG): identical on 3.9 and 3.13, a pure function of (runId or warm-up namespace, task index)",
+      "journeys": "a task is a journey: its requests are adjacent plan slots and run sequentially in the open loop's slots; a request that needs a predecessor's effect (POST /api/checkout needs the cart the preceding POST /api/cart filled, held in valkey under the journey's userId) is dispatched at max(its slot, the predecessor's end), is sent even if the predecessor failed (upstream's behaviour; no row is skipped, so every offered token is witnessed), and records its predecessor (dependsOn) in its row",
+      "kind": "otel-demo-upstream-locust-mix-v1",
+      "multiAdds": [
+        2,
+        3,
+        4
+      ],
+      "people": [
+        {
+          "address": {
+            "city": "Mountain View",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "1600 Amphitheatre Parkway",
+            "zipCode": "94043"
+          },
+          "creditCard": {
+            "creditCardCvv": 672,
+            "creditCardExpirationMonth": 1,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4432-8015-6152-0454"
+          },
+          "email": "larry_sergei@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Redmond",
+            "country": "United States",
+            "state": "WA",
+            "streetAddress": "One Microsoft Way",
+            "zipCode": "98052"
+          },
+          "creditCard": {
+            "creditCardCvv": 114,
+            "creditCardExpirationMonth": 2,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4532-4211-7434-1278"
+          },
+          "email": "bill@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Cupertino",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "One Apple Park Way",
+            "zipCode": "95014"
+          },
+          "creditCard": {
+            "creditCardCvv": 239,
+            "creditCardExpirationMonth": 3,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4532-6178-2799-1951"
+          },
+          "email": "steve@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Menlo Park",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "1 Hacker Way",
+            "zipCode": "94025"
+          },
+          "creditCard": {
+            "creditCardCvv": 784,
+            "creditCardExpirationMonth": 4,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4539-1103-5661-7083"
+          },
+          "email": "mark@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Seattle",
+            "country": "United States",
+            "state": "WA",
+            "streetAddress": "410 Terry Ave N",
+            "zipCode": "98109"
+          },
+          "creditCard": {
+            "creditCardCvv": 397,
+            "creditCardExpirationMonth": 5,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4916-0816-6217-7968"
+          },
+          "email": "jeff@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Los Gatos",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "100 Winchester Circle",
+            "zipCode": "95032"
+          },
+          "creditCard": {
+            "creditCardCvv": 793,
+            "creditCardExpirationMonth": 6,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4929-5431-0337-5647"
+          },
+          "email": "reed@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Ottawa",
+            "country": "Canada",
+            "state": "ON",
+            "streetAddress": "150 Elgin St",
+            "zipCode": "K2P1L4"
+          },
+          "creditCard": {
+            "creditCardCvv": 488,
+            "creditCardExpirationMonth": 7,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4763-1844-9699-8031"
+          },
+          "email": "tobias@example.com",
+          "userCurrency": "CAD"
+        },
+        {
+          "address": {
+            "city": "San Francisco",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "1355 Market St",
+            "zipCode": "94103"
+          },
+          "creditCard": {
+            "creditCardCvv": 159,
+            "creditCardExpirationMonth": 8,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4929-6495-8333-3657"
+          },
+          "email": "jack@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Santa Clara",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "2200 Mission College Blvd",
+            "zipCode": "95054"
+          },
+          "creditCard": {
+            "creditCardCvv": 682,
+            "creditCardExpirationMonth": 9,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4485-4803-8707-3547"
+          },
+          "email": "moore@example.com",
+          "userCurrency": "USD"
+        }
+      ],
+      "products": [
+        "0PUK6V6EV0",
+        "1YMWWN1N4O",
+        "2ZYFJ3GM2N",
+        "66VCHSJNUP",
+        "6E92ZMYYFZ",
+        "9SIQT8TOJO",
+        "L9ECAV7KIM",
+        "LS4PSXUNUM",
+        "OLJCESPC7Z",
+        "HQTGWGPNH4"
+      ],
+      "propagation": "every request carries traceparent 00-<trace id>-<span id>-01 and x-obsplacement-request-token, one trace per request, the offpath identity rule (candidate_remote.request_identity); the upstream loadgenerator is removed",
+      "quantities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10
+      ],
+      "requestOrder": "the tasks' requests in task order, flattened; request i is scheduled at barrier + i / rate; the last task is cut at the cell's offered count",
+      "requestShares": "per 24 tasks (34 requests with multiAdds' mean of 3): GET /api/products 16 (47 %), POST /api/cart 6 (17.6 %), recommendations, ads and view-cart 3 each (8.8 %), POST /api/checkout 2 (5.9 %), GET / 1 (2.9 %) (DESIGN.md 2.3)",
+      "routes": {
+        "add-to-cart": {
+          "derivation": "frontend pages/api/cart.ts POST -> cartservice AddItem, then GetCart (valkey); no productcatalogservice call",
+          "method": "POST",
+          "path": "/api/cart",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "cartservice"
+          ]
+        },
+        "ads": {
+          "derivation": "frontend pages/api/data.ts -> adservice GetAds (-> flagd); a None category sends no query (requests drops None); upstream spells the path /api/data/ and relies on Next.js's 308 redirect to /api/data (trailingSlash is unset), which Python 3.9's urllib does not follow and which would show the request token to the proxy twice, so the canonical path is sent (a declared deviation in spelling, not in route)",
+          "method": "GET",
+          "path": "/api/data?contextKeys={category}",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "adservice"
+          ]
+        },
+        "checkout": {
+          "derivation": "frontend pages/api/checkout.ts -> checkoutservice PlaceOrder -> cartservice GetCart/EmptyCart, productcatalogservice GetProduct, currencyservice Convert, shippingservice GetQuote (-> quoteservice) and ShipOrder, paymentservice Charge, emailservice (HTTP), then the order message to Kafka topic orders (asynchronous: accountingservice, frauddetectionservice, whose consumer spans start their own traces, so they are never in the checkout request's trace); the offpath epoch's path check observed these ten plus flagd on every successful journey",
+          "method": "POST",
+          "path": "/api/checkout",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "cartservice",
+            "checkoutservice",
+            "productcatalogservice",
+            "currencyservice",
+            "shippingservice",
+            "quoteservice",
+            "paymentservice",
+            "emailservice"
+          ]
+        },
+        "index": {
+          "derivation": "frontendproxy -> frontend renders the shell; the product list is fetched client side (pages/index.tsx)",
+          "method": "GET",
+          "path": "/",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend"
+          ]
+        },
+        "product": {
+          "derivation": "frontend pages/api/products/[productId]/index.ts -> productcatalogservice GetProduct; flagd only for OLJCESPC7Z (productcatalogservice main.go checkProductFailure); no currency call without a currencyCode",
+          "method": "GET",
+          "path": "/api/products/{productId}",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "productcatalogservice"
+          ]
+        },
+        "recommendations": {
+          "derivation": "frontend pages/api/recommendations.ts -> recommendationservice ListRecommendations (-> flagd, productcatalogservice ListProducts), then productcatalogservice GetProduct for up to 4 products",
+          "method": "GET",
+          "path": "/api/recommendations?productIds={productId}",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "recommendationservice",
+            "productcatalogservice"
+          ]
+        },
+        "view-cart": {
+          "derivation": "frontend pages/api/cart.ts GET -> cartservice GetCart (valkey); upstream sends no sessionId, so the cart is the empty one of session '' and no productcatalogservice call follows",
+          "method": "GET",
+          "path": "/api/cart",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "cartservice"
+          ]
+        }
+      },
+      "sessions": "userId = 'u' + first 24 hex of sha256(namespace NUL 'mix' NUL taskIndex NUL 'user'), one per journey, so carts never mix across journeys (upstream uses uuid1 per journey); GET /api/cart sends no sessionId, as upstream",
+      "source": {
+        "dropped": "flood_home (weight 5: issues get_flagd_value('loadgeneratorFloodHomepage') homepage requests, 0 at the default flag, and asks flagd on every call); the 1-10 s think time (arrival spacing replaces it); the browser (Playwright) tasks; the baggage and OTel instrumentation of the Locust process; on_start's index request",
+        "locustfileSha256": "84815ac2e778192ebd6e56e428271b8568a261e87df6658ed87cdbf37e71328e",
+        "peopleSha256": "2e780c99cd1950213c798ba086c184b6ae89a98af8a6df4bb190b2e19bcf77ab",
+        "repository": "upstream/opentelemetry-demo 2d4661e"
+      },
+      "taskOrder": "smooth weighted round-robin (nginx's algorithm) over the integer task weights, ties to the earlier task; 24 tasks per cycle, so every window of one cycle holds each task's weight exactly",
+      "tasks": [
+        {
+          "id": "index",
+          "requests": "GET /",
+          "weight": 1
+        },
+        {
+          "id": "browse_product",
+          "requests": "GET /api/products/{p}",
+          "weight": 10
+        },
+        {
+          "id": "get_recommendations",
+          "requests": "GET /api/recommendations?productIds={p}",
+          "weight": 3
+        },
+        {
+          "id": "get_ads",
+          "requests": "GET /api/data?contextKeys={c} (upstream: /api/data/)",
+          "weight": 3
+        },
+        {
+          "id": "view_cart",
+          "requests": "GET /api/cart",
+          "weight": 3
+        },
+        {
+          "id": "add_to_cart",
+          "requests": "GET /api/products/{p}; POST /api/cart {item, userId}",
+          "weight": 2
+        },
+        {
+          "id": "checkout",
+          "requests": "add_to_cart(user); POST /api/checkout {person, userId}",
+          "weight": 1
+        },
+        {
+          "id": "checkout_multi",
+          "requests": "2-4 x add_to_cart(user); POST /api/checkout {person, userId}",
+          "weight": 1
+        }
+      ]
+    }
+  },
+  "workflow": {
+    "candidateExecutionEnabled": false,
+    "constructionBlockers": [
+      "gate-plan-pending",
+      "gate-run-not-requested"
+    ],
+    "externalMutationAllowed": false,
+    "runtimeAuthorized": false
+  },
+  "workload": {
+    "arrivals": "constant spacing (offset = sequence / rate) from the shared barrier, over the requests of the mix; the rate is the total requests per second of the whole mix",
+    "concurrency": 750,
+    "concurrencyRule": "ceil(2 x rate x request timeout) = ceil(2 x 25 x 15) = 750: the worker cap covers rate x timeout with the sweep's 2x margin; one thread per in-flight, waiting or scheduled-ahead request",
+    "entry": "frontendproxy",
+    "generatorOpenFiles": "the controller raises its RLIMIT_NOFILE soft limit to concurrency + 1024 = 1774 (never above the hard limit) before the cell starts, or refuses the cell: every in-flight request holds a socket, and an EMFILE would read as a failed request of the target",
+    "kind": "multi-route-open-loop-mix",
+    "ledger": "request-ledger.json (kind otel-demo-mix-ledger-v1): one row per scheduled request with its route, task, journey, step, method, target, bodySha256 and dependsOn, scheduledOffsetSeconds, scheduledAtEpoch, startedAtEpoch/endedAtEpoch, startedMonotonic/endedMonotonic (the fault receipt's clock), status, bytes, error and outcome ok|timeout|failed; the terminal replays every row's identity, route and parameters from the plan",
+    "method": "GET",
+    "mix": {
+      "categories": [
+        "binoculars",
+        "telescopes",
+        "accessories",
+        "assembly",
+        "travel",
+        "books",
+        null
+      ],
+      "cycleWeight": 24,
+      "draws": "every parameter is an integer from sha256(namespace NUL 'mix' NUL taskIndex NUL label) mod n (no stdlib RNG): identical on 3.9 and 3.13, a pure function of (runId or warm-up namespace, task index)",
+      "journeys": "a task is a journey: its requests are adjacent plan slots and run sequentially in the open loop's slots; a request that needs a predecessor's effect (POST /api/checkout needs the cart the preceding POST /api/cart filled, held in valkey under the journey's userId) is dispatched at max(its slot, the predecessor's end), is sent even if the predecessor failed (upstream's behaviour; no row is skipped, so every offered token is witnessed), and records its predecessor (dependsOn) in its row",
+      "kind": "otel-demo-upstream-locust-mix-v1",
+      "multiAdds": [
+        2,
+        3,
+        4
+      ],
+      "people": [
+        {
+          "address": {
+            "city": "Mountain View",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "1600 Amphitheatre Parkway",
+            "zipCode": "94043"
+          },
+          "creditCard": {
+            "creditCardCvv": 672,
+            "creditCardExpirationMonth": 1,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4432-8015-6152-0454"
+          },
+          "email": "larry_sergei@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Redmond",
+            "country": "United States",
+            "state": "WA",
+            "streetAddress": "One Microsoft Way",
+            "zipCode": "98052"
+          },
+          "creditCard": {
+            "creditCardCvv": 114,
+            "creditCardExpirationMonth": 2,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4532-4211-7434-1278"
+          },
+          "email": "bill@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Cupertino",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "One Apple Park Way",
+            "zipCode": "95014"
+          },
+          "creditCard": {
+            "creditCardCvv": 239,
+            "creditCardExpirationMonth": 3,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4532-6178-2799-1951"
+          },
+          "email": "steve@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Menlo Park",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "1 Hacker Way",
+            "zipCode": "94025"
+          },
+          "creditCard": {
+            "creditCardCvv": 784,
+            "creditCardExpirationMonth": 4,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4539-1103-5661-7083"
+          },
+          "email": "mark@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Seattle",
+            "country": "United States",
+            "state": "WA",
+            "streetAddress": "410 Terry Ave N",
+            "zipCode": "98109"
+          },
+          "creditCard": {
+            "creditCardCvv": 397,
+            "creditCardExpirationMonth": 5,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4916-0816-6217-7968"
+          },
+          "email": "jeff@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Los Gatos",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "100 Winchester Circle",
+            "zipCode": "95032"
+          },
+          "creditCard": {
+            "creditCardCvv": 793,
+            "creditCardExpirationMonth": 6,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4929-5431-0337-5647"
+          },
+          "email": "reed@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Ottawa",
+            "country": "Canada",
+            "state": "ON",
+            "streetAddress": "150 Elgin St",
+            "zipCode": "K2P1L4"
+          },
+          "creditCard": {
+            "creditCardCvv": 488,
+            "creditCardExpirationMonth": 7,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4763-1844-9699-8031"
+          },
+          "email": "tobias@example.com",
+          "userCurrency": "CAD"
+        },
+        {
+          "address": {
+            "city": "San Francisco",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "1355 Market St",
+            "zipCode": "94103"
+          },
+          "creditCard": {
+            "creditCardCvv": 159,
+            "creditCardExpirationMonth": 8,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4929-6495-8333-3657"
+          },
+          "email": "jack@example.com",
+          "userCurrency": "USD"
+        },
+        {
+          "address": {
+            "city": "Santa Clara",
+            "country": "United States",
+            "state": "CA",
+            "streetAddress": "2200 Mission College Blvd",
+            "zipCode": "95054"
+          },
+          "creditCard": {
+            "creditCardCvv": 682,
+            "creditCardExpirationMonth": 9,
+            "creditCardExpirationYear": 2039,
+            "creditCardNumber": "4485-4803-8707-3547"
+          },
+          "email": "moore@example.com",
+          "userCurrency": "USD"
+        }
+      ],
+      "products": [
+        "0PUK6V6EV0",
+        "1YMWWN1N4O",
+        "2ZYFJ3GM2N",
+        "66VCHSJNUP",
+        "6E92ZMYYFZ",
+        "9SIQT8TOJO",
+        "L9ECAV7KIM",
+        "LS4PSXUNUM",
+        "OLJCESPC7Z",
+        "HQTGWGPNH4"
+      ],
+      "propagation": "every request carries traceparent 00-<trace id>-<span id>-01 and x-obsplacement-request-token, one trace per request, the offpath identity rule (candidate_remote.request_identity); the upstream loadgenerator is removed",
+      "quantities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10
+      ],
+      "requestOrder": "the tasks' requests in task order, flattened; request i is scheduled at barrier + i / rate; the last task is cut at the cell's offered count",
+      "requestShares": "per 24 tasks (34 requests with multiAdds' mean of 3): GET /api/products 16 (47 %), POST /api/cart 6 (17.6 %), recommendations, ads and view-cart 3 each (8.8 %), POST /api/checkout 2 (5.9 %), GET / 1 (2.9 %) (DESIGN.md 2.3)",
+      "routes": {
+        "add-to-cart": {
+          "derivation": "frontend pages/api/cart.ts POST -> cartservice AddItem, then GetCart (valkey); no productcatalogservice call",
+          "method": "POST",
+          "path": "/api/cart",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "cartservice"
+          ]
+        },
+        "ads": {
+          "derivation": "frontend pages/api/data.ts -> adservice GetAds (-> flagd); a None category sends no query (requests drops None); upstream spells the path /api/data/ and relies on Next.js's 308 redirect to /api/data (trailingSlash is unset), which Python 3.9's urllib does not follow and which would show the request token to the proxy twice, so the canonical path is sent (a declared deviation in spelling, not in route)",
+          "method": "GET",
+          "path": "/api/data?contextKeys={category}",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "adservice"
+          ]
+        },
+        "checkout": {
+          "derivation": "frontend pages/api/checkout.ts -> checkoutservice PlaceOrder -> cartservice GetCart/EmptyCart, productcatalogservice GetProduct, currencyservice Convert, shippingservice GetQuote (-> quoteservice) and ShipOrder, paymentservice Charge, emailservice (HTTP), then the order message to Kafka topic orders (asynchronous: accountingservice, frauddetectionservice, whose consumer spans start their own traces, so they are never in the checkout request's trace); the offpath epoch's path check observed these ten plus flagd on every successful journey",
+          "method": "POST",
+          "path": "/api/checkout",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "cartservice",
+            "checkoutservice",
+            "productcatalogservice",
+            "currencyservice",
+            "shippingservice",
+            "quoteservice",
+            "paymentservice",
+            "emailservice"
+          ]
+        },
+        "index": {
+          "derivation": "frontendproxy -> frontend renders the shell; the product list is fetched client side (pages/index.tsx)",
+          "method": "GET",
+          "path": "/",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend"
+          ]
+        },
+        "product": {
+          "derivation": "frontend pages/api/products/[productId]/index.ts -> productcatalogservice GetProduct; flagd only for OLJCESPC7Z (productcatalogservice main.go checkProductFailure); no currency call without a currencyCode",
+          "method": "GET",
+          "path": "/api/products/{productId}",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "productcatalogservice"
+          ]
+        },
+        "recommendations": {
+          "derivation": "frontend pages/api/recommendations.ts -> recommendationservice ListRecommendations (-> flagd, productcatalogservice ListProducts), then productcatalogservice GetProduct for up to 4 products",
+          "method": "GET",
+          "path": "/api/recommendations?productIds={productId}",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "recommendationservice",
+            "productcatalogservice"
+          ]
+        },
+        "view-cart": {
+          "derivation": "frontend pages/api/cart.ts GET -> cartservice GetCart (valkey); upstream sends no sessionId, so the cart is the empty one of session '' and no productcatalogservice call follows",
+          "method": "GET",
+          "path": "/api/cart",
+          "requiredServices": [
+            "frontendproxy",
+            "frontend",
+            "cartservice"
+          ]
+        }
+      },
+      "sessions": "userId = 'u' + first 24 hex of sha256(namespace NUL 'mix' NUL taskIndex NUL 'user'), one per journey, so carts never mix across journeys (upstream uses uuid1 per journey); GET /api/cart sends no sessionId, as upstream",
+      "source": {
+        "dropped": "flood_home (weight 5: issues get_flagd_value('loadgeneratorFloodHomepage') homepage requests, 0 at the default flag, and asks flagd on every call); the 1-10 s think time (arrival spacing replaces it); the browser (Playwright) tasks; the baggage and OTel instrumentation of the Locust process; on_start's index request",
+        "locustfileSha256": "84815ac2e778192ebd6e56e428271b8568a261e87df6658ed87cdbf37e71328e",
+        "peopleSha256": "2e780c99cd1950213c798ba086c184b6ae89a98af8a6df4bb190b2e19bcf77ab",
+        "repository": "upstream/opentelemetry-demo 2d4661e"
+      },
+      "taskOrder": "smooth weighted round-robin (nginx's algorithm) over the integer task weights, ties to the earlier task; 24 tasks per cycle, so every window of one cycle holds each task's weight exactly",
+      "tasks": [
+        {
+          "id": "index",
+          "requests": "GET /",
+          "weight": 1
+        },
+        {
+          "id": "browse_product",
+          "requests": "GET /api/products/{p}",
+          "weight": 10
+        },
+        {
+          "id": "get_recommendations",
+          "requests": "GET /api/recommendations?productIds={p}",
+          "weight": 3
+        },
+        {
+          "id": "get_ads",
+          "requests": "GET /api/data?contextKeys={c} (upstream: /api/data/)",
+          "weight": 3
+        },
+        {
+          "id": "view_cart",
+          "requests": "GET /api/cart",
+          "weight": 3
+        },
+        {
+          "id": "add_to_cart",
+          "requests": "GET /api/products/{p}; POST /api/cart {item, userId}",
+          "weight": 2
+        },
+        {
+          "id": "checkout",
+          "requests": "add_to_cart(user); POST /api/checkout {person, userId}",
+          "weight": 1
+        },
+        {
+          "id": "checkout_multi",
+          "requests": "2-4 x add_to_cart(user); POST /api/checkout {person, userId}",
+          "weight": 1
+        }
+      ]
+    },
+    "path": "/api/products/66VCHSJNUP",
+    "probeRoute": "GET /api/products/66VCHSJNUP (method and path above, services frontendproxy, frontend, productcatalogservice): the stack-readiness probe and the post-revert readiness probes only; it is not a route of the mix",
+    "productId": "66VCHSJNUP",
+    "readiness": "the harness's checkout-journey readiness (one complete journey, stack-wide) and then one request of the probe route (path above) returning 200; both carry the token readiness-not-scored and run before the warm-up; the post-revert readiness probes of a fault cell use the probe route too",
+    "requestTimeoutSeconds": 15.0,
+    "requestsPerSecondLevels": [
+      25.0
+    ],
+    "routeDerivation": [
+      "GET /: frontendproxy -> frontend renders the shell; the product list is fetched client side (pages/index.tsx)",
+      "GET /api/products/{productId}: frontend pages/api/products/[productId]/index.ts -> productcatalogservice GetProduct; flagd only for OLJCESPC7Z (productcatalogservice main.go checkProductFailure); no currency call without a currencyCode",
+      "GET /api/recommendations?productIds={productId}: frontend pages/api/recommendations.ts -> recommendationservice ListRecommendations (-> flagd, productcatalogservice ListProducts), then productcatalogservice GetProduct for up to 4 products",
+      "GET /api/data?contextKeys={category}: frontend pages/api/data.ts -> adservice GetAds (-> flagd); a None category sends no query (requests drops None); upstream spells the path /api/data/ and relies on Next.js's 308 redirect to /api/data (trailingSlash is unset), which Python 3.9's urllib does not follow and which would show the request token to the proxy twice, so the canonical path is sent (a declared deviation in spelling, not in route)",
+      "GET /api/cart: frontend pages/api/cart.ts GET -> cartservice GetCart (valkey); upstream sends no sessionId, so the cart is the empty one of session '' and no productcatalogservice call follows",
+      "POST /api/cart: frontend pages/api/cart.ts POST -> cartservice AddItem, then GetCart (valkey); no productcatalogservice call",
+      "POST /api/checkout: frontend pages/api/checkout.ts -> checkoutservice PlaceOrder -> cartservice GetCart/EmptyCart, productcatalogservice GetProduct, currencyservice Convert, shippingservice GetQuote (-> quoteservice) and ShipOrder, paymentservice Charge, emailservice (HTTP), then the order message to Kafka topic orders (asynchronous: accountingservice, frauddetectionservice, whose consumer spans start their own traces, so they are never in the checkout request's trace); the offpath epoch's path check observed these ten plus flagd on every successful journey"
+    ],
+    "routeServices": [
+      "adservice",
+      "cartservice",
+      "checkoutservice",
+      "currencyservice",
+      "emailservice",
+      "frontend",
+      "frontendproxy",
+      "paymentservice",
+      "productcatalogservice",
+      "quoteservice",
+      "recommendationservice",
+      "shippingservice"
+    ],
+    "traceContext": "every request carries traceparent 00-<trace id>-<span id>-01 and x-obsplacement-request-token, one trace per request, the offpath identity rule (candidate_remote.request_identity); the upstream loadgenerator is removed",
+    "upstreamGenerators": {
+      "mechanism": "docker compose rm --stop --force loadgenerator, after up and before readiness",
+      "off": [
+        "loadgenerator"
+      ],
+      "proof": "upstream-generator.json per cell: zero containers carrying the project's service label after the removal and after the window (asked of the Docker engine)",
+      "runsOnlyBetweenUpAndRemoval": true,
+      "why": "the upstream Locust loadgenerator runs in every offpath/v3 cell (LOCUST_HEADLESS true overrides LOCUST_AUTOSTART false; retained v3a2 b03-03-full otelcol.log: 360 loadgenerator records, Starting Locust 2.18.2, GET http://frontend-proxy:18080/ failing) and asks flagd on every task; the sweep's rate must be the only traffic"
+    },
+    "warmup": "30 s at 10/s of the same mix (its own token namespace), never scored",
+    "window": "the workload returns no earlier than barrier + measurementSeconds at every rate (the CPU and capture windows are the same length at every rate)"
+  }
+}

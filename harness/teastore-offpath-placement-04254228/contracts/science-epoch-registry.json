@@ -1,0 +1,379 @@
+{
+  "$schema": "https://observability-placement.local/contracts/science-epoch-registry.schema.json",
+  "schemaVersion": 1,
+  "permissions": {
+    "runtimeAllowed": false,
+    "externalMutationAllowed": false,
+    "heldOutOutcomeAccessAllowed": false,
+    "aiSelectorAllowed": false,
+    "evidencePromotionAllowed": false
+  },
+  "transition": {
+    "parentCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+    "parentTree": "998aaba29c8ba43f5f3929aacd9b235ff51b9028",
+    "ownedPaths": [
+      "contracts/science-construction-control.schema.json",
+      "contracts/science-epoch-registry.json",
+      "contracts/science-epoch-registry.schema.json",
+      "pyproject.toml",
+      "tests/test_openspec_science.py",
+      "tests/test_science_epoch_router.py",
+      "tools/run_openspec.py",
+      "tools/validate_openspec_construction.py",
+      "tools/validate_science_epochs.py",
+      "uv.lock"
+    ],
+    "commitDerivation": "single-commit-last-change-of-every-owned-path"
+  },
+  "epochs": [
+    {
+      "id": "scientific-change-v1",
+      "required": true,
+      "changeIds": [
+        "adopt-scientific-openspec",
+        "phase2-method-freeze",
+        "teastore-candidate-pilot-freeze"
+      ],
+      "schema": {
+        "id": "https://observability-placement.local/contracts/science-change-control.schema.json",
+        "path": "contracts/science-change-control.schema.json",
+        "sha256": "5422b177f8fd378c630c20a522407c9e5c254b03bc2340f65d48da06df9073eb"
+      },
+      "validator": {
+        "id": "scientific-change-v1-validator",
+        "path": "tools/validate_openspec_science.py",
+        "sha256": "890ab8f70d49ee12af5245538b210ec2c4694fd6c1f87deb5245a9968b2310c9"
+      },
+      "snapshot": {
+        "commit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+        "tree": "998aaba29c8ba43f5f3929aacd9b235ff51b9028"
+      },
+      "parent": null,
+      "diagnosticObservations": [],
+      "supersessions": [],
+      "allowedPaths": [],
+      "sourceBindings": [],
+      "protocolModule": null
+    },
+    {
+      "id": "teastore-construction-v2",
+      "required": true,
+      "changeIds": [
+        "adopt-teastore-diagnostic-harness"
+      ],
+      "schema": {
+        "id": "https://observability-placement.local/contracts/science-construction-control.schema.json",
+        "path": "contracts/science-construction-control.schema.json",
+        "sha256": "9128dc487797280e0238121cf9e0b828959ac9bd834866f4684088d255bfb44e"
+      },
+      "validator": {
+        "id": "teastore-construction-v2-validator",
+        "path": "tools/validate_openspec_construction.py",
+        "sha256": "3d6aa45a7ff4b105bddab6a4627537790e80de3f209cbedda63a19b7860c7469"
+      },
+      "snapshot": null,
+      "parent": {
+        "epochId": "scientific-change-v1",
+        "changeId": "teastore-candidate-pilot-freeze",
+        "commit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+        "tree": "998aaba29c8ba43f5f3929aacd9b235ff51b9028"
+      },
+      "diagnosticObservations": [
+        {
+          "campaignId": "canddiag-20260829-1813",
+          "terminalStatus": "pass",
+          "manifestSha256": "8c3bdeded3ada824b2c51509680dd3db46eafee02674b95863062dad1f549f05",
+          "externalSealSha256": "6aeed088f344b2b11e2a123bf706080e4e1cf8e7156fb01c3690be8d0b741ae9",
+          "frameworkCommit": "ca2df4a8c42bf59f184bcc316c64c3015cfb7ee7",
+          "qualification": "diagnostic-only"
+        },
+        {
+          "campaignId": "canddiag-effect-20260829-1854",
+          "terminalStatus": "blocked",
+          "manifestSha256": "77abd456856673858e138be3c0b635707afcb1bfdaaf8d8126634a761195c8ae",
+          "externalSealSha256": "9739b2bd8df3c77dc85757f74d44b37188dddac5a1b348885923d08c39ec7255",
+          "frameworkCommit": "0cdfc2b4a47419e0a59d7d9be3e5f98817e29710",
+          "qualification": "diagnostic-only"
+        },
+        {
+          "campaignId": "canddiag-effect2-20260829-1931",
+          "terminalStatus": "pass",
+          "manifestSha256": "bf1e42e37062c076ba775eaa401c4f69e7126919a18fdf5eded5828e9da5c37b",
+          "externalSealSha256": "63782828e4ef0e0cf1b5c68396f44c7c4cd941567a5a94723cf9dd00c31d2729",
+          "frameworkCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "qualification": "diagnostic-only"
+        }
+      ],
+      "supersessions": [
+        {
+          "path": "modules/teastore/collectors/kieker_native.py",
+          "kind": "authority-source",
+          "predecessorCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "predecessorSha256": "c86c5ab67cd73d8f8d1de6e4156284d82380cccdbd256e64b4eccdf7ea9790e2",
+          "successorChangeId": "adopt-teastore-diagnostic-harness",
+          "successorSourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "successorSourceSha256": "c86c5ab67cd73d8f8d1de6e4156284d82380cccdbd256e64b4eccdf7ea9790e2"
+        },
+        {
+          "path": "modules/teastore/collectors/performance_probe.py",
+          "kind": "authority-source",
+          "predecessorCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "predecessorSha256": "9f0f9ff866b4dbfadeb89fc9fa6a21b2d409097bf5c6a7b9849c1238cbe7bf9b",
+          "successorChangeId": "adopt-teastore-diagnostic-harness",
+          "successorSourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "successorSourceSha256": "fb358935c8a948b0aedbb14ac69b3635d2975afbbf9f1d50978ef5eb5f08f040"
+        },
+        {
+          "path": "modules/teastore/deployment/srv5.yaml",
+          "kind": "authority-source",
+          "predecessorCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "predecessorSha256": "c1b0d64b2085ff9f1d19aad62e44755e260742f696f233bc34cca4d0ccdefe4e",
+          "successorChangeId": "adopt-teastore-diagnostic-harness",
+          "successorSourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "successorSourceSha256": "48db101a68b5656d64cbb0a3082ae1f014a248df569bfdcfcd2784213688f9fe"
+        },
+        {
+          "path": "modules/teastore/execution/performance_campaign.py",
+          "kind": "authority-source",
+          "predecessorCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "predecessorSha256": "be60ff53c7600207676671cc709e28c289333f46e3a14825f2c335d0810d0e2d",
+          "successorChangeId": "adopt-teastore-diagnostic-harness",
+          "successorSourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "successorSourceSha256": "650ea7e1ce21f92a06707a81b2fb0e17ff78b7ef56b9f5aa396c04d996bec13b"
+        },
+        {
+          "path": "modules/teastore/extension-ledger.yaml",
+          "kind": "authority-source",
+          "predecessorCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "predecessorSha256": "730f6dd192497a8ee1451efc60deebab3d8ba24aca632b36c36f963778adb5ff",
+          "successorChangeId": "adopt-teastore-diagnostic-harness",
+          "successorSourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "successorSourceSha256": "5e07d9292612251f337d200cd0631983b9aca068dc7147eebc3190d0f74fdbba"
+        },
+        {
+          "path": "modules/teastore/validation/performance_receipt.py",
+          "kind": "authority-source",
+          "predecessorCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "predecessorSha256": "d9024ba602cee74aee6fc51b2224c91562417075c3de876700f0a1584f030173",
+          "successorChangeId": "adopt-teastore-diagnostic-harness",
+          "successorSourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "successorSourceSha256": "0b6868773e96a0ce537bc01f1012229d03abed572fe68cc7da6a3f82cf56a256"
+        },
+        {
+          "path": "modules/teastore/workload/fixed_load.py",
+          "kind": "authority-source",
+          "predecessorCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "predecessorSha256": "5d40d62cf768af6303ac3ed6c175d065147244babc236df488b789193115e5f6",
+          "successorChangeId": "adopt-teastore-diagnostic-harness",
+          "successorSourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "successorSourceSha256": "04d039c1d64552354f73e093a58da6b9ccbc4817eb693506cbb9d35d5a2176e0"
+        },
+        {
+          "path": "findings/teastore-candidate-pilot-freeze.csv",
+          "kind": "append-only-ledger",
+          "predecessorCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "predecessorSha256": "0dceda78306e523c63b79aa16ae6710e0a1ca55868e247bc7ff85e14ddd7c25b",
+          "predecessorLength": 9388,
+          "successorChangeId": "adopt-teastore-diagnostic-harness"
+        }
+      ],
+      "allowedPaths": [
+        "findings/adopt-teastore-diagnostic-harness.csv",
+        "findings/teastore-candidate-pilot-freeze.csv",
+        "modules/teastore/collectors/kieker_native.py",
+        "modules/teastore/collectors/performance_probe.py",
+        "modules/teastore/collectors/performance_probe_v3.py",
+        "modules/teastore/deployment/srv5.yaml",
+        "modules/teastore/execution/candidate_orchestrator.py",
+        "modules/teastore/execution/candidate_pilot.py",
+        "modules/teastore/execution/candidate_runtime_adapter.py",
+        "modules/teastore/execution/performance_campaign.py",
+        "modules/teastore/execution/srv5_harness.py",
+        "modules/teastore/extension-ledger.yaml",
+        "modules/teastore/images/Dockerfile.auth",
+        "modules/teastore/images/Dockerfile.persistence",
+        "modules/teastore/images/Dockerfile.webui",
+        "modules/teastore/images/patched-image-inputs.json",
+        "modules/teastore/images/patched-image-lock.schema.json",
+        "modules/teastore/validation/candidate_pilot.py",
+        "modules/teastore/validation/native_token_correlation.py",
+        "modules/teastore/validation/patched_images.py",
+        "modules/teastore/validation/performance_receipt.py",
+        "modules/teastore/validation/secret_scan.py",
+        "modules/teastore/validation/srv5_terminal.py",
+        "modules/teastore/witness/README.md",
+        "modules/teastore/witness/app-witness.schema.json",
+        "modules/teastore/witness/extract_app_witness.py",
+        "modules/teastore/witness/extract_native_token_correlation.py",
+        "modules/teastore/witness/native-token-correlation.schema.json",
+        "modules/teastore/witness/patch-manifest.json",
+        "modules/teastore/witness/patch-manifest-v2.json",
+        "modules/teastore/witness/teastore-app-witness-v1.patch",
+        "modules/teastore/witness/teastore-app-witness-v2.patch",
+        "modules/teastore/workload/fixed_load.py",
+        "openspec/changes/adopt-teastore-diagnostic-harness/.openspec.yaml",
+        "openspec/changes/adopt-teastore-diagnostic-harness/authority.md",
+        "openspec/changes/adopt-teastore-diagnostic-harness/design.md",
+        "openspec/changes/adopt-teastore-diagnostic-harness/governance.json",
+        "openspec/changes/adopt-teastore-diagnostic-harness/proposal.md",
+        "openspec/changes/adopt-teastore-diagnostic-harness/specs/adopt-teastore-diagnostic-harness/spec.md",
+        "openspec/changes/adopt-teastore-diagnostic-harness/tasks.md",
+        "openspec/changes/adopt-teastore-diagnostic-harness/verification.md",
+        "pipelines/README.md",
+        "pipelines/campaigns/teastore-candidate-pilot-v1.json",
+        "pipelines/campaigns/teastore-performance-diagnostic-smoke.json",
+        "pipelines/campaigns/teastore-performance-effect-diagnostic-smoke.json",
+        "tests/fixtures/teastore-native-cross-message.json",
+        "tests/fixtures/RealKiekerFixture.java",
+        "tests/fixtures/teastore-kieker-java-writer.b64",
+        "tests/fixtures/teastore-kieker-java-writer.provenance.json",
+        "tests/test_candidate_orchestrator.py",
+        "tests/test_candidate_pilot.py",
+        "tests/test_candidate_pilot_evidence.py",
+        "tests/test_candidate_runtime_adapter.py",
+        "tests/test_fixed_load.py",
+        "tests/test_kieker_native_correlation.py",
+        "tests/test_kieker_java_wire_fixture.py",
+        "tests/test_kieker_durable_spool.py",
+        "tests/test_native_token_correlation.py",
+        "tests/test_openspec_construction.py",
+        "tests/test_performance_campaign_lifecycle.py",
+        "tests/test_performance_probe.py",
+        "tests/test_performance_probe_v3.py",
+        "tests/test_performance_receipt.py",
+        "tests/test_srv5_harness.py",
+        "tests/test_srv5_terminal.py",
+        "tests/test_teastore_app_witness.py",
+        "tests/test_teastore_native_bridge_patch.py",
+        "tests/test_teastore_patched_images.py",
+        "tests/test_teastore_secret_scan.py"
+      ],
+      "sourceBindings": [
+        {
+          "path": "openspec/changes/teastore-candidate-pilot-freeze/design.md",
+          "sourceCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "sha256": "5bb26ba71edc91afd3e66aeedfdcd4523f7354ef0cabb48cbb8eacc96a3a4c82",
+          "role": "frozen candidate-pilot protocol",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "openspec/changes/teastore-candidate-pilot-freeze/governance.json",
+          "sourceCommit": "b331aa4d365d7d41accc7d7cf1c20904fab2f622",
+          "sha256": "2427ef04951d4d83b1555bafd01eb2b6afdf3e6edb082d298ef95dce7086ceff",
+          "role": "frozen design permissions and checkpoints",
+          "qualification": "reviewed-parent"
+        },
+        {
+          "path": "pipelines/campaigns/teastore-candidate-pilot-v1.json",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "742a9b0f625e1aea7eb87198b53d7d8a6ff3818cb6dbb3a88512a8cca31d4921",
+          "role": "exact 27-cell descriptor",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/collectors/kieker_native.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "c86c5ab67cd73d8f8d1de6e4156284d82380cccdbd256e64b4eccdf7ea9790e2",
+          "role": "typed supersession source for the native Kieker collector",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/collectors/performance_probe.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "fb358935c8a948b0aedbb14ac69b3635d2975afbbf9f1d50978ef5eb5f08f040",
+          "role": "typed supersession source for the diagnostic performance probe",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/deployment/srv5.yaml",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "48db101a68b5656d64cbb0a3082ae1f014a248df569bfdcfcd2784213688f9fe",
+          "role": "typed supersession source for the srv5 diagnostic deployment contract",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/execution/candidate_pilot.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "64a80fd39960117a3de1742fe07dc37e169f957d453f6a00ee3fb3735cd6548e",
+          "role": "deterministic descriptor compiler and admission calculator",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/execution/srv5_harness.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "ab4494590fb456a498240e084c1ceb6723889a7288487ab07d9a0f43c2b79fd8",
+          "role": "diagnostic-only server controller",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/execution/performance_campaign.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "650ea7e1ce21f92a06707a81b2fb0e17ff78b7ef56b9f5aa396c04d996bec13b",
+          "role": "one-regime diagnostic campaign runner",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/extension-ledger.yaml",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "5e07d9292612251f337d200cd0631983b9aca068dc7147eebc3190d0f74fdbba",
+          "role": "typed supersession source for the TeaStore extension inventory",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/validation/performance_receipt.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "0b6868773e96a0ce537bc01f1012229d03abed572fe68cc7da6a3f82cf56a256",
+          "role": "typed supersession source for diagnostic receipt replay",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/workload/fixed_load.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "04d039c1d64552354f73e093a58da6b9ccbc4817eb693506cbb9d35d5a2176e0",
+          "role": "typed supersession source for the fixed diagnostic workload",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/validation/candidate_pilot.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "d465cae25e24ce05d43ab00198f9c14ee2a3bc88cfd5f341107b89fde77ab861",
+          "role": "candidate evidence replay contract",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/validation/srv5_terminal.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "e1028d44010d3138d72f2f99b91e7fcd607a16f3606639ad11bc36cc5c5d9a3e",
+          "role": "diagnostic terminal validator",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/witness/patch-manifest.json",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "7254bb68f05d62af65cbbf14ba93e8421d736078ac8d39aba7837f5bd876fcfb",
+          "role": "application witness patch identity",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/witness/teastore-app-witness-v1.patch",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "0694a442eb992b5c415416982aea344502a87d79544af8950555494f58916fac",
+          "role": "source-bound positive application witness patch",
+          "qualification": "diagnostic-source"
+        },
+        {
+          "path": "modules/teastore/witness/extract_app_witness.py",
+          "sourceCommit": "b4a6e053afbd9d2de322e2df6ad43e847a20979a",
+          "sha256": "bafed399903b6c76912521c601cb9e02c5c6b320188bc317644342a958e6e3c8",
+          "role": "application witness extractor",
+          "qualification": "diagnostic-source"
+        }
+      ],
+      "protocolModule": {
+        "id": "teastore-candidate-pilot-v1-compiler",
+        "path": "modules/teastore/execution/candidate_pilot.py",
+        "sha256": "9105d2c59657c84a606dd7f2c55457b563cb06047fa55911c47955760acc1d37"
+      }
+    }
+  ]
+}

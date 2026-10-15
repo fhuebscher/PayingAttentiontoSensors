@@ -1,0 +1,103 @@
+{
+ "consistencyCheck": "pass",
+ "consistencyMismatches": [],
+ "inputs": {
+  "research/placement/test-f-r6/otel-r6.json": "65949a77c392ef28dfb813c3d1f22cd1d8bc9f8100228b5d8b671f8d2940ff2d",
+  "research/placement/test-f-r6/placement-r6.json": "89b8a58c9f7a8285ca621172b33410a54e51c225356d86c64d0f5f32bd722373",
+  "research/placement/test-f-r6/transfer-r6-own/transfer.json": "be0ee9b822006164279e1839cdd273a6c27f691e61ef1b6fd5a0a6f0ad53f7e7",
+  "research/placement/test-f-r6/transfer-r6/transfer.json": "ccdca495192117bec9b1388522e1e281e24438e6b2aeec79ad4b46dbe5fdc24e"
+ },
+ "rows": [
+  {
+   "counted": true,
+   "id": "FR6-V1",
+   "numbers": {
+    "accounting-pause-effect": "PASS",
+    "fraud-pause-effect": "PASS"
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  },
+  {
+   "counted": true,
+   "id": "FR6-V2",
+   "numbers": {
+    "set": [
+     "metric:kafka:kafka.consumer_group.lag"
+    ]
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  },
+  {
+   "counted": true,
+   "id": "FR6-L1",
+   "numbers": {
+    "ledgerDetected": 0,
+    "offPathEpisodes": 4
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  },
+  {
+   "counted": false,
+   "id": "FR6-C",
+   "numbers": {
+    "frontendEpisodes": 2,
+    "gFrontend": 0.0,
+    "ledgerTtd": [
+     0.4197833612561226,
+     0.34646791219711304
+    ],
+    "setTtd": [
+     0.4197833612561226,
+     0.34646791219711304
+    ]
+   },
+   "result": "hit",
+   "role": "control check, not counted"
+  },
+  {
+   "counted": true,
+   "id": "TR6-LAG",
+   "numbers": {
+    "accounting-pause-effect": "PASS",
+    "fraud-pause-effect": "PASS",
+    "placementSha256": "ce6bfc1b9addbb1771b189c9330b1930f0d84c9890c1fd8d8e8cae0978d20a3d"
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  },
+  {
+   "counted": false,
+   "id": "TR6-R2",
+   "numbers": {
+    "accounting-pause-effect": "PASS",
+    "fraud-pause-effect": "PASS",
+    "placementSha256": "633b89f1beea3b6896488aa41de82983ac84c80d2230a768938190f0d181e560"
+   },
+   "result": "hit",
+   "role": "reported, not counted (not independent of TR6-LAG)"
+  },
+  {
+   "counted": true,
+   "id": "TR6-PUR",
+   "numbers": {
+    "accounting-pause-effect": "FAIL",
+    "fraud-pause-effect": "FAIL",
+    "placementSha256": "674580e08353e667ea32d587091fc38327db6d68e1d3f2142fdd94c9e433b606"
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  }
+ ],
+ "runStopped": false,
+ "scope": "instance",
+ "scriptSha256": "4ab0906c212390a796edda6dd7d2396471a1178a00ec4c2cff0d5217a70ba61a",
+ "tally": {
+  "hit": 5,
+  "miss": 0,
+  "of": 5,
+  "undecided": 0
+ }
+}

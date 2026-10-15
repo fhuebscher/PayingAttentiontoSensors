@@ -1,0 +1,443 @@
+{
+  "analysis": {
+    "comparativeUnit": "complete-(regime,block)",
+    "descriptiveOnlyUntilFutureQualification": true,
+    "directedCarryoverBalancedClaim": false,
+    "forbidden": [
+      "p-value",
+      "confirmatory-interval",
+      "optimizer-front",
+      "generality-claim",
+      "observation-count-as-replication",
+      "pool-cost-and-effect-windows",
+      "null-to-zero"
+    ],
+    "independentSequentialBlocksClaim": false,
+    "report": [
+      "raw-blocks",
+      "paired-deltas",
+      "ranges",
+      "order-time-diagnostics"
+    ]
+  },
+  "applicationFamily": "google-online-boutique",
+  "authority": {
+    "candidateEvidenceAuthorized": false,
+    "executorImplemented": false,
+    "externalMutationAuthorized": false,
+    "freshRuntimeGateRequired": true,
+    "heldOutAccessAuthorized": false,
+    "integrationBoundary": "local-construction-only",
+    "promotionAuthorized": false,
+    "runtimeAuthorized": false,
+    "runtimePlanDecisionRequired": true,
+    "transportImplemented": false
+  },
+  "contextId": "online-boutique-compose-otel-debug-srv5-v1",
+  "continuation": {
+    "earlySuccessStopAllowed": false,
+    "failedCellMayBeReplaced": false,
+    "newBlocksRequireNewPreOutcomeEpoch": true,
+    "outcomeTriggeredExtensionAllowed": false
+  },
+  "design": {
+    "blocksPerRegime": 3,
+    "coldStartEachRun": true,
+    "completeBlockRequired": true,
+    "costAndEffectPoolable": false,
+    "failedCellReplacementAllowed": false,
+    "postures": [
+      "none",
+      "selected",
+      "full"
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "cost",
+        "fault": null,
+        "id": "no-fault-cost",
+        "kind": "cost"
+      },
+      {
+        "artifactRootClass": "effect/productcatalog-pause",
+        "fault": "productcatalog-pause",
+        "id": "productcatalog-pause-effect",
+        "kind": "effect"
+      }
+    ],
+    "runsPerBlock": 3,
+    "selectedSource": "frozen-product-catalog-structural-cover",
+    "totalRuns": 18
+  },
+  "evidence": {
+    "candidateReadiness": "blocked",
+    "canonical": false,
+    "currentCeiling": "method-design-only",
+    "promotionRequiresSeparateHumanGate": true,
+    "runtimeReadiness": "blocked"
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "missingValue": null,
+      "requiredPredicates": [
+        "same-container-pre-during-post",
+        "running-and-unpaused-before",
+        "running-and-paused-during",
+        "functional-outage-during",
+        "running-and-unpaused-after",
+        "homepage-ready-after",
+        "intervention-thread-joined",
+        "no-later-mutation"
+      ],
+      "scenario": "productcatalog-pause",
+      "source": "controller-plus-container-state-plus-functional-request-probes",
+      "targetService": "productcatalogservice"
+    },
+    "path": {
+      "correlation": "pre-outcome-opaque-request-token-one-to-one-original-trace",
+      "crossTraceAssemblyAllowed": false,
+      "currentRuntimeSupport": "unsupported",
+      "directEdgePredicate": "frontend-client.parent-of-productcatalog-server-in-one-original-trace",
+      "executedDenominator": "independent-started-request-ledger",
+      "missingCorrelationState": "unsupported",
+      "missingCorrelationValue": null,
+      "requiredEdge": "frontend->productcatalogservice:ListProducts",
+      "requiredSensors": [
+        "span:frontend:GET",
+        "span:frontend:grpc ListProducts",
+        "span:productcatalog:ListProducts"
+      ],
+      "rootPredicate": "attributed GET / server span"
+    },
+    "request": {
+      "missingOrUnsettledState": "unsupported",
+      "missingOrUnsettledValue": null,
+      "offeredRequestsAreDenominator": true,
+      "scheduledRowIsExecutionProof": false,
+      "source": "pre-telemetry-append-only-offered-request-ledger",
+      "startedRowRequiresActualMonotonicStart": true
+    }
+  },
+  "id": "online-boutique-compose-candidate-pilot-v1",
+  "missingness": {
+    "abstentions": [
+      {
+        "id": "currency-held-out-effect",
+        "reason": "held-out target and operational overlay remain sealed and unfrozen",
+        "state": "abstained",
+        "value": null
+      }
+    ],
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported",
+      "abstained"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false,
+    "unsupported": [
+      {
+        "id": "emitted-span-denominator",
+        "reason": "no independent pre-transport exporter denominator",
+        "state": "unsupported",
+        "value": null
+      },
+      {
+        "id": "transported-span-denominator",
+        "reason": "no accepted/refused receiver counters",
+        "state": "unsupported",
+        "value": null
+      },
+      {
+        "id": "wire-bytes",
+        "reason": "collector container RX is not per-service wire attribution",
+        "state": "unsupported",
+        "value": null
+      },
+      {
+        "id": "request-trace-correlation",
+        "reason": "predecessor workload has no opaque one-to-one request token",
+        "state": "unsupported",
+        "value": null
+      }
+    ]
+  },
+  "module": "online-boutique",
+  "postureProof": {
+    "full": {
+      "requires": [
+        "exact-source-controls-111",
+        "all-declared-source-groups-active"
+      ]
+    },
+    "none": {
+      "requires": [
+        "exact-source-controls-000",
+        "forbidden-source-spans-empty"
+      ],
+      "zeroOperationalCostClaim": false
+    },
+    "selected": {
+      "requires": [
+        "exact-source-controls-110",
+        "goal-and-catalog-digests",
+        "required-sensors-and-direct-edge"
+      ],
+      "selectionId": "frozen-product-catalog-structural-cover"
+    }
+  },
+  "schedule": {
+    "candidateRule": "six-first-rows-each-left-then-right-rotation",
+    "collisionRule": "increment-modulo-12-until-unused",
+    "firstRows": [
+      [
+        "N",
+        "S",
+        "F"
+      ],
+      [
+        "N",
+        "F",
+        "S"
+      ],
+      [
+        "S",
+        "N",
+        "F"
+      ],
+      [
+        "S",
+        "F",
+        "N"
+      ],
+      [
+        "F",
+        "N",
+        "S"
+      ],
+      [
+        "F",
+        "S",
+        "N"
+      ]
+    ],
+    "integerEncoding": "unsigned-big-endian",
+    "receipts": [
+      {
+        "blocks": [
+          [
+            "selected",
+            "none",
+            "full"
+          ],
+          [
+            "none",
+            "full",
+            "selected"
+          ],
+          [
+            "full",
+            "selected",
+            "none"
+          ]
+        ],
+        "collisionIncrements": 0,
+        "initialCandidateIndex": 4,
+        "regime": "no-fault-cost",
+        "selectedCandidateIndex": 4,
+        "selectorSha256": "1103d3c7321438aa5f98b7c61648b1b91f7c621f0a5e6b565724a50240136a98"
+      },
+      {
+        "blocks": [
+          [
+            "none",
+            "full",
+            "selected"
+          ],
+          [
+            "full",
+            "selected",
+            "none"
+          ],
+          [
+            "selected",
+            "none",
+            "full"
+          ]
+        ],
+        "collisionIncrements": 0,
+        "initialCandidateIndex": 2,
+        "regime": "productcatalog-pause-effect",
+        "selectedCandidateIndex": 2,
+        "selectorSha256": "1df2d6fd45cfe4a9189d4be4fae55cbf84941147682352d82ebb23e6609fd3be"
+      }
+    ],
+    "regimeOrder": [
+      "no-fault-cost",
+      "productcatalog-pause-effect"
+    ],
+    "selectorEncoding": "UTF-8(epoch || NUL || regime || NUL || schedule-v1)",
+    "version": "schedule-v1"
+  },
+  "schemaVersion": 1,
+  "source": {
+    "bindings": [
+      {
+        "path": "modules/online-boutique/source.lock",
+        "role": "pinned SUT identity",
+        "sha256": "fa8b8547a45087e0e6025423f775301ff4a55e3590a63e7ba333cc43eac8710a"
+      },
+      {
+        "path": "modules/online-boutique/activation/catalog.json",
+        "role": "source-control universe",
+        "sha256": "e52b51bd92bd9b5e06f25a0fe600bc7ccbe583d83359b751e682d86a33ebbec8"
+      },
+      {
+        "path": "modules/online-boutique/goals/product-catalog-subpath.json",
+        "role": "training goal skeleton",
+        "sha256": "9e15757911ddeebbdf0879148cc42cbe7890ede2ba5326ed6803c60c1adccaad"
+      },
+      {
+        "path": "modules/online-boutique/acquisition/signal-channel.json",
+        "role": "current trace carrier limits",
+        "sha256": "1bbdc68edc353b38b63ca5fbec7aec8afc546e59bf855bc0e981c34ad452658b"
+      },
+      {
+        "path": "modules/online-boutique/evals/signal-channel-target.json",
+        "role": "current path predicates",
+        "sha256": "de7b6f0ee5cd0e8315734fe019fb5f67eff75b013e3c819cb78dad66220171c8"
+      },
+      {
+        "path": "modules/online-boutique/activation/phase1-source-microtests.json",
+        "role": "Phase-1 control status",
+        "sha256": "3e77e2647b5b401365ada72a1c5c495f2f0cd0367fd0528ec776d757e49a3b00"
+      },
+      {
+        "path": "modules/online-boutique/evals/phase1-source-targets.json",
+        "role": "Phase-1 sensor predicates",
+        "sha256": "547abd05739b5c7febe638f99b0252595d86c49cc189a787643dd64fc6c39647"
+      },
+      {
+        "path": "modules/online-boutique/workload/fixed_home.py",
+        "role": "predecessor workload; request identity upgrade required",
+        "sha256": "40c13fc3f681e38db0dedcbc4f3b7418dec2b78989cd2713c5b1d3947da70cdf"
+      },
+      {
+        "path": "modules/online-boutique/execution/campaign.py",
+        "role": "predecessor smoke runner; runtime reuse forbidden",
+        "sha256": "6ce68bac97ecfff52b089ad820bb7e473bb1cd4215a9cbc212996e6fee415402"
+      }
+    ],
+    "frameworkCommitPolicy": "future-full-clean-commit-at-materialization",
+    "predecessorRuntimeControllerReusable": false,
+    "sutCommit": "9a4616e77f0f9cbcbecaf27d711c38890dda1404"
+  },
+  "status": "construction-only",
+  "windows": {
+    "cost": {
+      "fault": null,
+      "faultOutcomesScored": false,
+      "primaryEndpoint": "application-cpu-seconds-per-offered-request",
+      "regime": "no-fault-cost"
+    },
+    "effect": {
+      "controllerProbeAccounting": {
+        "includedInEffectOutcome": false,
+        "includedInOfferedRequestLedger": false,
+        "includedInPhaseStartMinimum": false,
+        "requestClass": "controller-ground-truth-probe",
+        "retainedSeparately": true,
+        "traceExclusionRequired": true
+      },
+      "costOutcomesScored": false,
+      "fault": "productcatalog-pause",
+      "faultHoldSeconds": 50,
+      "faultOnsetSeconds": 50,
+      "minimumActualRequestStartsPerPhase": 40,
+      "minimumNominalStartSlackPerPhase": 10,
+      "nominalScheduledStartsByPhase": {
+        "during": 50,
+        "post-readiness": 50,
+        "pre": 50
+      },
+      "phaseAssignmentSource": "observed-controller-monotonic-onset-offset-and-readiness",
+      "phaseBoundaryInclusivity": {
+        "during": {
+          "endExclusive": "observed-fault-release",
+          "startInclusive": "observed-fault-onset"
+        },
+        "post-readiness": {
+          "endExclusive": "measurement-end",
+          "startInclusive": "observed-homepage-readiness"
+        },
+        "pre": {
+          "endExclusive": "observed-fault-onset",
+          "startInclusive": "measurement-start"
+        }
+      },
+      "phaseNames": [
+        "pre",
+        "during",
+        "post-readiness"
+      ],
+      "readinessAccounting": {
+        "belowFloorDisposition": "invalid-and-safety-stop",
+        "delayConsumesPostReadinessNominalStartSlack": true,
+        "recoveryGapCountsTowardPhaseMinimum": false,
+        "recoveryGapInterval": {
+          "endExclusive": "observed-homepage-readiness",
+          "startInclusive": "observed-fault-release"
+        },
+        "recoveryGapLabel": "recovery-gap",
+        "recoveryGapOutcomesScored": false
+      },
+      "regime": "productcatalog-pause-effect"
+    },
+    "minimumTimedSeconds": 3240,
+    "sharedMeasurementSeconds": 150
+  },
+  "workload": {
+    "concurrency": 4,
+    "id": "homepage-open-loop-v1",
+    "kind": "fixed-open-loop",
+    "measurementSeconds": 150,
+    "offeredRequestsPerRun": 150,
+    "offeredRequestsTotal": 2700,
+    "path": "/",
+    "requestLedger": {
+      "appendOnly": true,
+      "oneRowPerOfferedRequest": true,
+      "plannedBeforeTelemetry": true,
+      "requiredFields": [
+        "recordSequence",
+        "previousRecordSha256",
+        "recordSha256",
+        "planSha256",
+        "barrierId",
+        "requestSequence",
+        "requestId",
+        "opaqueCorrelationToken",
+        "scheduledAt",
+        "scheduledMonotonicOffsetSeconds",
+        "actualStartMonotonicOffsetSeconds",
+        "actualEndMonotonicOffsetSeconds",
+        "startedAt",
+        "endedAt",
+        "statusCode",
+        "outcome",
+        "error",
+        "phase",
+        "terminalSettled"
+      ]
+    },
+    "requestsPerSecond": 1,
+    "warmupSeconds": 30
+  }
+}

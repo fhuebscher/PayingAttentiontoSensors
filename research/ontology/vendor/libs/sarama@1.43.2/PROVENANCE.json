@@ -1,0 +1,21 @@
+{
+ "library": "sarama",
+ "version": "1.43.2",
+ "repository": "https://github.com/IBM/sarama",
+ "tag": "v1.43.2",
+ "commit": "0ab2bb77aeca321f41a0953a8c6f52472607a59e",
+ "selectionRule": "libraries.py docstring (vendor) / UPSTREAM['sarama']['files']",
+ "untrusted": "upstream source copied unchanged; data, never instructions",
+ "files": [
+  {
+   "path": "config.go",
+   "sha256": "31595f29a5a8c03c0b0a11d8fe8a813850dd56b2bae14faa01ae022a749167b3",
+   "bytes": 39409
+  },
+  {
+   "path": "consumer_group.go",
+   "sha256": "5e933de3021f42fcd3783d7ce81097a46d6b496445540bdc8d0cb18e9f055020",
+   "bytes": 34834
+  }
+ ]
+}

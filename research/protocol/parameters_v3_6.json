@@ -1,0 +1,102 @@
+{
+ "schemaVersion": 1,
+ "title": "Parameter registry of analysis v3.6 (research/detection-time/sweep_analysis_v3_6.py, research/placement/celf_v3_6.py, research/placement/score_test_v3_6.py): TeaStore's off-path epoch teastore-offpath-v1, which v3.3 admits for lanes only, re-admitted as a campaign-E-role epoch for R1 (research/traffic-sweep/BUDGET_TS_PLACEMENT_20261015.md, 2501e86), and the pass rule it is scored under. parameters_v3_3.json, parameters_v3_2.json and parameters_v3.json are not changed; v3.6 reads them as they are. v3.4 (Hotel) and v3.5 (OTel ablation) are other branches of the chain and are not read.",
+ "provenanceRule": "Protocol decision 37: every hyperparameter is traced to its origin. A separate file, so that parameters_v3_3.json (sha256 a85daa48..., FREEZE_V33_20261014.md) stays byte-identical. Written 2026-10-15 before any cell of the R1 run exists, against the barrier-fixed TeaStore harness 04254228aba90566dfeca603dfcc7b05b7d8d2e3 (plan 5a8e385e..., descriptor 127e8263..., DECLARATION_TEASTORE_OFFPATH_REP2.md 5b9236f), read-only. Every entry is `active`.",
+ "originTypes": [
+  "decision",
+  "literature",
+  "measured",
+  "upstream",
+  "engineering default",
+  "unknown"
+ ],
+ "parameters": [
+  {
+   "name": "V36_EPOCH_PROFILES",
+   "value": {
+    "teastore-offpath-v1": {
+     "system": "teastore",
+     "role": "campaign-E",
+     "shape": "campaign-B",
+     "ledgerKind": null,
+     "noFaultRegime": "no-fault-cost",
+     "faultRegimes": {
+      "recommender-pause-effect": [
+       "recommender",
+       "pause"
+      ],
+      "auth-freeze-effect": [
+       "auth",
+       "pause"
+      ]
+     },
+     "design": {
+      "blocks": 5,
+      "cellsPerBlock": 6,
+      "cells": 30,
+      "journeysPerSecond": [
+       10.0,
+       1.0
+      ],
+      "note": "informational, not enforced by the reader"
+     }
+    }
+   },
+   "unit": "study-epoch name -> cell profile, in V33_EPOCH_PROFILES's shape; this entry REPLACES v3.3's teastore-offpath-v1 entry for the duration of a v3.6 run and differs from it in exactly one key, role (offpath-teastore -> campaign-E; asserted at import).",
+   "origin_type": "decision",
+   "origin_ref": "user, 2026-10-15 ~07:00Z ('R1, gated'): a TeaStore off-path placement test on a fresh run trained on blocks 1-3 and scored on blocks 4-5 (BUDGET_TS_PLACEMENT_20261015.md). Every other key is parameters_v3_3.json's (regimes no-fault-cost, recommender-pause-effect -> recommender, auth-freeze-effect -> auth, both pause; 5 blocks, 6 cells per block, 30 cells, 10 and 1 journeys/s; DECLARATION_TEASTORE_OFFPATH.md f40e786).",
+   "status": "active"
+  },
+  {
+   "name": "V36_SPLIT",
+   "value": {
+    "train": [
+     1,
+     2,
+     3
+    ],
+    "test": [
+     4,
+     5
+    ]
+   },
+   "unit": "blocks {train, test}",
+   "origin_type": "decision",
+   "origin_ref": "BUDGET_TS_PLACEMENT_20261015.md (train 1-3, test 4-5 as F); equal to V32_E_SPLIT (asserted at import); research/protocol/split_ts_offpath.json has the same content (byte-identical to split_f_otel.json).",
+   "status": "active"
+  },
+  {
+   "name": "V36_PASS_RULE",
+   "value": [
+    {
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+     "class": "recommender-pause-effect",
+     "rate": 10,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "minEpisodes": 2
+    },
+    {
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+     "class": "recommender-pause-effect",
+     "rate": 1,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "minEpisodes": 2
+    }
+   ],
+   "unit": "score_test_v3_2 rule list {set, class, rate, minGain, minImprovedEpisodes, minEpisodes}",
+   "origin_type": "decision",
+   "origin_ref": "BUDGET_TS_PLACEMENT_20261015.md: F's pass rule (V32_PASS_RULE, decisions 99, 110, 112) mapped to this epoch: the off-path class recommender-pause-effect at each rate (10 and 1 req/s) separately; strictly positive g, strict improvement on >= 2 test episodes of the class at that rate, a dash below 2 valid test episodes (decision 91) or with a member absent (decision 90). auth-freeze-effect (on-path control) has no rule and carries no verdict. Decision 73 unchanged.",
+   "status": "active"
+  },
+  {
+   "name": "V36_TIERS_RULE",
+   "value": "TeaStore has no effort/runtime tier file in celf_v3_2's schema: celf_v3_6 is run without one (no --tiers), so every candidate is in tiersMissingForGroundSet and only the (effort<=any, runtime<=any) cell admits it (celf_v3_2.admits: an unknown tier passes only the `any` cap). No tier is invented. The pass rule names that cell.",
+   "unit": "text",
+   "origin_type": "engineering default",
+   "origin_ref": "research/placement/declared/ has no TeaStore tier file in celf_v3_2's schema (teastore.json is the older family table); F's lag sensor entered only the any/any cell the same way (RESULT_F.md, tiersMissingForGroundSet).",
+   "status": "active"
+  }
+ ]
+}

@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "sut": "teastore",
+  "extraction": {
+    "extractor": "A",
+    "service": "webui",
+    "notes": [
+      "Protocol of the sync edges is HTTP/REST (ServiceLoadBalancer.java:185 'Load balances a REST operation'; RESTClient.java:88 'http://'), JSON entities.",
+      "Registry failure timeout and cleanup interval: not in the files given (the registry service's own source is not among them).",
+      "Jaeger/OpenTracing tracer: Tracing.java:42 builds JaegerTracer.Builder with only a ConstSampler and the B3 codec and no reporter, sender or endpoint; destination and flush interval are library default, not in these files. No jaeger endpoint is set in the webui Dockerfile, dockerbase Dockerfile, start.sh or compose file, so no exportsTelemetryTo node is emitted for it.",
+      "Kieker AMQP heartbeat: shipped properties line 31 is 0 (kieker.monitoring.writer.amqp.ChunkingAmqpWriter.heartbeat=0), overridden to 900 by the compose command (compose line 19 and line 28); the AMQP link heartbeat is a telemetry-link setting, not a registry heartbeat.",
+      "Metrics: no metric exporter is configured in these files. Logs: RegistryClient.java:78 sets org.slf4j.simpleLogger.logFile to System.out (stdout); dockerbase Dockerfile:30 ENV LOG_TO_FILE false.",
+      "Health check: no healthcheck key in the webui compose block (lines 108-119) and no HEALTHCHECK in either Dockerfile; ReadyRest.java exposes a GET ready/isready endpoint but nothing in these files invokes it as a container health check."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+      "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-teastore-protocol",
+      "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "webui",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 108,
+        "quotedToken": "webui:"
+      },
+      "role": {
+        "value": "microservice",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 109,
+        "quotedToken": "descartesresearch/teastore-webui"
+      },
+      "container": {
+        "value": "webui",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 108,
+        "quotedToken": "webui:",
+        "note": "no container_name key in the block; compose service name webui, image descartesresearch/teastore-webui (line 109)"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "no deploy.replicas or scale key in the webui block (harness modules/teastore/deployment/compose/docker-compose_kieker.yaml lines 108-119); library default, not in these files"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "rabbitmq",
+          "repo": "harness",
+          "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+          "line": 113,
+          "quotedToken": "RABBITMQ_HOST: \"rabbitmq\"",
+          "note": "Kieker operation-execution records (traces). start.sh:35 switches kieker.monitoring.writer to ChunkingCollector when RABBITMQ_HOST is set; kieker.monitoring.properties:32 sets its writer to ChunkingAmqpWriter, queuename=kieker (line 28). Batching: chunkSize=32 (line 33), deferredWriteDelay=500 (line 34), taskRunInterval=20 (line 36); units not stated in these files."
+        }
+      ],
+      "registersWith": [
+        {
+          "value": "registry",
+          "repo": "upstream",
+          "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/startup/WebuiStartup.java",
+          "line": 56,
+          "quotedToken": "RegistryClient.getClient().register(",
+          "note": "registry host named by REGISTRY_HOST: \"registry\" at harness compose line 112"
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": { "caller": "webui", "callee": "persistence" },
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/IndexServlet.java",
+      "line": 56,
+      "quotedToken": "Service.PERSISTENCE",
+      "note": "HTTP/REST via LoadBalancedCRUDOperations (LoadBalancedCRUDOperations.java:62 ServiceLoadBalancer.loadBalanceRESTOperation); also CartServlet, ProductServlet, CategoryServlet, ProfileServlet, OrderServlet, ErrorServlet, LoginServlet, StatusServlet:95, DataBaseActionServlet:67"
+    },
+    {
+      "value": { "caller": "webui", "callee": "auth" },
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 56,
+      "quotedToken": "Service.AUTH",
+      "note": "HTTP/REST; webui call site IndexServlet.java:58 LoadBalancedStoreOperations.isLoggedIn, also CartActionServlet.java:60 and LoginActionServlet.java:62"
+    },
+    {
+      "value": { "caller": "webui", "callee": "image" },
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+      "line": 108,
+      "quotedToken": "Service.IMAGE",
+      "note": "HTTP/REST; webui call site IndexServlet.java:60 LoadBalancedImageOperations.getWebImage; multicast at LoadBalancedImageOperations.java:200 and StatusServlet.java:110"
+    },
+    {
+      "value": { "caller": "webui", "callee": "recommender" },
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+      "line": 45,
+      "quotedToken": "Service.RECOMMENDER",
+      "note": "HTTP/REST; webui call sites CartServlet.java:88 and ProductServlet.java:79; multicast train at DataBaseActionServlet.java:84 and StatusServlet.java:129"
+    },
+    {
+      "value": { "caller": "webui", "callee": "registry" },
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 245,
+      "quotedToken": ".put(Entity.text(\"\"))",
+      "note": "HTTP PUT register/heartbeat; the registry GET for load-balancer refresh is at RegistryClient.java:193 and ServiceLoadBalancer.java:140 (every 2500 ms, RegistryClient.java:64 and :161); unregister is an HTTP DELETE at line 265"
+    }
+  ],
+  "coordinators": [
+    {
+      "name": {
+        "value": "registry",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 112,
+        "quotedToken": "REGISTRY_HOST: \"registry\""
+      },
+      "type": {
+        "value": "ServiceRegistry",
+        "repo": "upstream",
+        "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+        "line": 44,
+        "quotedToken": "registering with the registry"
+      },
+      "hostedBy": {
+        "value": "registry",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 112,
+        "quotedToken": "REGISTRY_HOST: \"registry\""
+      },
+      "liveness": [
+        {
+          "mechanism": {
+            "value": "heartbeat",
+            "repo": "upstream",
+            "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+            "line": 159,
+            "quotedToken": "heartbeatScheduler.scheduleAtFixedRate(new RegistryClientHeartbeatDaemon("
+          },
+          "monitors": [
+            {
+              "value": "webui",
+              "repo": "upstream",
+              "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/startup/WebuiStartup.java",
+              "line": 56,
+              "quotedToken": "RegistryClient.getClient().register("
+            }
+          ],
+          "heartbeatIntervalSeconds": {
+            "value": 2.5,
+            "repo": "upstream",
+            "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+            "line": 65,
+            "quotedToken": "HEARTBEAT_INTERVAL_MS = 2500",
+            "note": "milliseconds in code, converted to seconds; the heartbeat is registerOnce, an HTTP PUT (RegistryClient.java:245)"
+          },
+          "heartbeatThreadIndependentOfWork": {
+            "value": true,
+            "repo": "upstream",
+            "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+            "line": 69,
+            "quotedToken": "ScheduledExecutorService heartbeatScheduler",
+            "note": "dedicated newSingleThreadScheduledExecutor (line 70) used only for the heartbeat (line 159), separate from servlet request threads"
+          },
+          "healthCheckConfigured": {
+            "value": false,
+            "repo": "harness",
+            "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+            "line": 108,
+            "quotedToken": "webui:",
+            "note": "absence: no healthcheck key in the webui block (lines 108-119); no HEALTHCHECK in either Dockerfile"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,770 @@
+{
+ "cost": {
+  "cells": {
+   "b01": {
+    "full": {
+     "appCpuSeconds": 27.040578,
+     "completed": 1200,
+     "daemonCpuSeconds": 10.268003,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 11.4821195602417,
+     "totalCpuSeconds": 37.308581000000004
+    },
+    "metrics": {
+     "appCpuSeconds": 18.271862000000002,
+     "completed": 1200,
+     "daemonCpuSeconds": 6.169418,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.067079216241837,
+     "totalCpuSeconds": 24.441280000000003
+    },
+    "none": {
+     "appCpuSeconds": 18.403653000000002,
+     "completed": 1200,
+     "daemonCpuSeconds": 2.766826,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.036610066890717,
+     "totalCpuSeconds": 21.170479
+    },
+    "selected": {
+     "appCpuSeconds": 21.693568,
+     "completed": 1200,
+     "daemonCpuSeconds": 7.24817,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.542035102844238,
+     "totalCpuSeconds": 28.941738
+    }
+   },
+   "b02": {
+    "full": {
+     "appCpuSeconds": 27.053785,
+     "completed": 1200,
+     "daemonCpuSeconds": 10.109459000000001,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 11.522017419338226,
+     "totalCpuSeconds": 37.163244000000006
+    },
+    "metrics": {
+     "appCpuSeconds": 18.413624,
+     "completed": 1200,
+     "daemonCpuSeconds": 6.163747000000001,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.121747851371765,
+     "totalCpuSeconds": 24.577371
+    },
+    "none": {
+     "appCpuSeconds": 18.448631,
+     "completed": 1200,
+     "daemonCpuSeconds": 2.760738,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.00354066491127,
+     "totalCpuSeconds": 21.209369
+    },
+    "selected": {
+     "appCpuSeconds": 21.767915,
+     "completed": 1200,
+     "daemonCpuSeconds": 7.274024,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.644644498825073,
+     "totalCpuSeconds": 29.041939
+    }
+   },
+   "b03": {
+    "full": {
+     "appCpuSeconds": 27.074348999999998,
+     "completed": 1200,
+     "daemonCpuSeconds": 10.18701,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 11.492311954498291,
+     "totalCpuSeconds": 37.261359
+    },
+    "metrics": {
+     "appCpuSeconds": 18.298703,
+     "completed": 1200,
+     "daemonCpuSeconds": 6.132337,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.059792548418045,
+     "totalCpuSeconds": 24.43104
+    },
+    "none": {
+     "appCpuSeconds": 18.384977,
+     "completed": 1200,
+     "daemonCpuSeconds": 2.7912410000000003,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.012850165367126,
+     "totalCpuSeconds": 21.176218
+    },
+    "selected": {
+     "appCpuSeconds": 21.732848,
+     "completed": 1200,
+     "daemonCpuSeconds": 7.314473,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.624021291732788,
+     "totalCpuSeconds": 29.047321
+    }
+   },
+   "b04": {
+    "full": {
+     "appCpuSeconds": 27.149984000000003,
+     "completed": 1200,
+     "daemonCpuSeconds": 10.165161999999999,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 11.5538090467453,
+     "totalCpuSeconds": 37.315146
+    },
+    "metrics": {
+     "appCpuSeconds": 18.314182000000002,
+     "completed": 1200,
+     "daemonCpuSeconds": 6.190327,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.103520005941391,
+     "totalCpuSeconds": 24.504509000000002
+    },
+    "none": {
+     "appCpuSeconds": 18.32148,
+     "completed": 1200,
+     "daemonCpuSeconds": 2.8376539999999997,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 9.977340698242188,
+     "totalCpuSeconds": 21.159134
+    },
+    "selected": {
+     "appCpuSeconds": 21.71366,
+     "completed": 1200,
+     "daemonCpuSeconds": 7.180912,
+     "failed": 0,
+     "offered": 1200,
+     "p50Ms": 10.623350739479065,
+     "totalCpuSeconds": 28.894572
+    }
+   }
+  },
+  "completeBlocks": [
+   "b01",
+   "b02",
+   "b03",
+   "b04"
+  ],
+  "steps": {
+   "metrics->full": {
+    "appCpuSeconds": {
+     "max": 8.835802000000001,
+     "mean": 8.75508125,
+     "min": 8.640161000000003,
+     "n": 4,
+     "perBlock": [
+      8.768715999999998,
+      8.640161000000003,
+      8.775645999999998,
+      8.835802000000001
+     ],
+     "positive": 4
+    },
+    "daemonCpuSeconds": {
+     "max": 4.098585,
+     "mean": 4.01845125,
+     "min": 3.9457120000000003,
+     "n": 4,
+     "perBlock": [
+      4.098585,
+      3.9457120000000003,
+      4.054673000000001,
+      3.974834999999999
+     ],
+     "positive": 4
+    },
+    "p50Ms": {
+     "max": 1.4502890408039093,
+     "mean": 1.4245295897126198,
+     "min": 1.4002695679664612,
+     "n": 4,
+     "perBlock": [
+      1.4150403439998627,
+      1.4002695679664612,
+      1.432519406080246,
+      1.4502890408039093
+     ],
+     "positive": 4
+    },
+    "totalCpuSeconds": {
+     "max": 12.867301000000001,
+     "mean": 12.773532500000002,
+     "min": 12.585873000000007,
+     "n": 4,
+     "perBlock": [
+      12.867301000000001,
+      12.585873000000007,
+      12.830319,
+      12.810636999999996
+     ],
+     "positive": 4
+    }
+   },
+   "metrics->selected": {
+    "appCpuSeconds": {
+     "max": 3.434145000000001,
+     "mean": 3.402404999999999,
+     "min": 3.354291,
+     "n": 4,
+     "perBlock": [
+      3.421705999999997,
+      3.354291,
+      3.434145000000001,
+      3.3994779999999984
+     ],
+     "positive": 4
+    },
+    "daemonCpuSeconds": {
+     "max": 1.1821359999999999,
+     "mean": 1.0904374999999997,
+     "min": 0.9905850000000003,
+     "n": 4,
+     "perBlock": [
+      1.0787519999999997,
+      1.110276999999999,
+      1.1821359999999999,
+      0.9905850000000003
+     ],
+     "positive": 4
+    },
+    "p50Ms": {
+     "max": 0.564228743314743,
+     "mean": 0.5204780027270317,
+     "min": 0.47495588660240173,
+     "n": 4,
+     "perBlock": [
+      0.47495588660240173,
+      0.5228966474533081,
+      0.564228743314743,
+      0.519830733537674
+     ],
+     "positive": 4
+    },
+    "totalCpuSeconds": {
+     "max": 4.616281000000001,
+     "mean": 4.492842499999999,
+     "min": 4.390062999999998,
+     "n": 4,
+     "perBlock": [
+      4.500457999999998,
+      4.464568,
+      4.616281000000001,
+      4.390062999999998
+     ],
+     "positive": 4
+    }
+   },
+   "none->metrics": {
+    "appCpuSeconds": {
+     "max": -0.007297999999998694,
+     "mean": -0.06509249999999955,
+     "min": -0.13179099999999977,
+     "n": 4,
+     "perBlock": [
+      -0.13179099999999977,
+      -0.03500700000000023,
+      -0.08627399999999952,
+      -0.007297999999998694
+     ],
+     "positive": 0
+    },
+    "daemonCpuSeconds": {
+     "max": 3.403009000000001,
+     "mean": 3.3748424999999997,
+     "min": 3.3410959999999994,
+     "n": 4,
+     "perBlock": [
+      3.4025920000000003,
+      3.403009000000001,
+      3.3410959999999994,
+      3.3526730000000002
+     ],
+     "positive": 4
+    },
+    "p50Ms": {
+     "max": 0.1261793076992035,
+     "mean": 0.08044950664043427,
+     "min": 0.030469149351119995,
+     "n": 4,
+     "perBlock": [
+      0.030469149351119995,
+      0.118207186460495,
+      0.04694238305091858,
+      0.1261793076992035
+     ],
+     "positive": 4
+    },
+    "totalCpuSeconds": {
+     "max": 3.3680020000000006,
+     "mean": 3.309750000000001,
+     "min": 3.2548220000000008,
+     "n": 4,
+     "perBlock": [
+      3.2708010000000023,
+      3.3680020000000006,
+      3.2548220000000008,
+      3.3453750000000007
+     ],
+     "positive": 4
+    }
+   },
+   "selected->full": {
+    "appCpuSeconds": {
+     "max": 5.436324000000003,
+     "mean": 5.352676250000001,
+     "min": 5.285870000000003,
+     "n": 4,
+     "perBlock": [
+      5.347010000000001,
+      5.285870000000003,
+      5.341500999999997,
+      5.436324000000003
+     ],
+     "positive": 4
+    },
+    "daemonCpuSeconds": {
+     "max": 3.019833,
+     "mean": 2.9280137500000007,
+     "min": 2.8354350000000013,
+     "n": 4,
+     "perBlock": [
+      3.019833,
+      2.8354350000000013,
+      2.8725370000000012,
+      2.9842499999999985
+     ],
+     "positive": 4
+    },
+    "p50Ms": {
+     "max": 0.9400844573974609,
+     "mean": 0.9040515869855881,
+     "min": 0.8682906627655029,
+     "n": 4,
+     "perBlock": [
+      0.9400844573974609,
+      0.8773729205131531,
+      0.8682906627655029,
+      0.9304583072662354
+     ],
+     "positive": 4
+    },
+    "totalCpuSeconds": {
+     "max": 8.420573999999998,
+     "mean": 8.280690000000002,
+     "min": 8.121305000000007,
+     "n": 4,
+     "perBlock": [
+      8.366843000000003,
+      8.121305000000007,
+      8.214037999999999,
+      8.420573999999998
+     ],
+     "positive": 4
+    }
+   }
+  }
+ },
+ "detect": {
+  "cells": 80,
+  "classes": {
+   "cpu-throttle-effect": {
+    "L": {
+     "caught": 0,
+     "n": 12,
+     "topSensors": []
+    },
+    "M": {
+     "caught": 0,
+     "n": 12,
+     "topSensors": []
+    },
+    "S": {
+     "caught": 1,
+     "n": 16,
+     "topSensors": [
+      [
+       "S:rate:sys_psi_cpu",
+       1
+      ]
+     ]
+    },
+    "T": {
+     "caught": 0,
+     "n": 4,
+     "topSensors": []
+    },
+    "Tsel": {
+     "caught": 0,
+     "n": 4,
+     "topSensors": []
+    }
+   },
+   "net-delay-effect": {
+    "L": {
+     "caught": 0,
+     "n": 12,
+     "topSensors": []
+    },
+    "M": {
+     "caught": 2,
+     "n": 12,
+     "topSensors": [
+      [
+       "M:profile:cpu",
+       1
+      ],
+      [
+       "M:search:cpu",
+       1
+      ]
+     ]
+    },
+    "S": {
+     "caught": 2,
+     "n": 16,
+     "topSensors": [
+      [
+       "S:attractions:sys_memory",
+       1
+      ],
+      [
+       "S:geo:sys_psi_cpu",
+       1
+      ]
+     ]
+    },
+    "T": {
+     "caught": 4,
+     "n": 4,
+     "topSensors": [
+      [
+       "T:frontend:HTTP_GET_/hotels",
+       4
+      ],
+      [
+       "T:frontend:/search.Search/Nearby",
+       4
+      ],
+      [
+       "T:search:/search.Search/Nearby",
+       4
+      ],
+      [
+       "T:search:/rate.Rate/GetRates",
+       4
+      ]
+     ]
+    },
+    "Tsel": {
+     "caught": 4,
+     "n": 4,
+     "topSensors": [
+      [
+       "Tsel:frontend:HTTP_GET_/hotels",
+       4
+      ],
+      [
+       "Tsel:frontend:/search.Search/Nearby",
+       4
+      ]
+     ]
+    }
+   },
+   "reservation-pause-effect": {
+    "L": {
+     "caught": 12,
+     "n": 12,
+     "topSensors": [
+      [
+       "L:frontend:4ae82b46d72e",
+       12
+      ],
+      [
+       "L:frontend:dff1c3922d14",
+       1
+      ]
+     ]
+    },
+    "M": {
+     "caught": 12,
+     "n": 12,
+     "topSensors": [
+      [
+       "M:profile:cpu",
+       12
+      ]
+     ]
+    },
+    "S": {
+     "caught": 0,
+     "n": 16,
+     "topSensors": []
+    },
+    "T": {
+     "caught": 4,
+     "n": 4,
+     "topSensors": [
+      [
+       "T:frontend:HTTP_GET_/hotels",
+       4
+      ],
+      [
+       "T:frontend:/profile.Profile/GetProfiles",
+       4
+      ],
+      [
+       "T:profile:memcached_get_profile",
+       4
+      ],
+      [
+       "T:frontend:/reservation.Reservation/CheckAvailability",
+       4
+      ],
+      [
+       "T:profile:/profile.Profile/GetProfiles",
+       4
+      ]
+     ]
+    },
+    "Tsel": {
+     "caught": 4,
+     "n": 4,
+     "topSensors": [
+      [
+       "Tsel:frontend:/reservation.Reservation/CheckAvailability",
+       4
+      ],
+      [
+       "Tsel:frontend:HTTP_GET_/hotels",
+       4
+      ],
+      [
+       "Tsel:frontend:/profile.Profile/GetProfiles",
+       4
+      ]
+     ]
+    }
+   },
+   "search-pause-effect": {
+    "L": {
+     "caught": 1,
+     "n": 12,
+     "topSensors": [
+      [
+       "L:frontend:4ae82b46d72e",
+       1
+      ]
+     ]
+    },
+    "M": {
+     "caught": 11,
+     "n": 12,
+     "topSensors": [
+      [
+       "M:profile:cpu",
+       11
+      ],
+      [
+       "M:geo:cpu",
+       3
+      ]
+     ]
+    },
+    "S": {
+     "caught": 1,
+     "n": 16,
+     "topSensors": [
+      [
+       "S:recommendation:sys_memory",
+       1
+      ]
+     ]
+    },
+    "T": {
+     "caught": 4,
+     "n": 4,
+     "topSensors": [
+      [
+       "T:frontend:HTTP_GET_/hotels",
+       4
+      ],
+      [
+       "T:frontend:/profile.Profile/GetProfiles",
+       4
+      ],
+      [
+       "T:reservation:/reservation.Reservation/CheckAvailability",
+       4
+      ],
+      [
+       "T:profile:memcached_get_profile",
+       4
+      ],
+      [
+       "T:rate:/rate.Rate/GetRates",
+       4
+      ]
+     ]
+    },
+    "Tsel": {
+     "caught": 4,
+     "n": 4,
+     "topSensors": [
+      [
+       "Tsel:frontend:/reservation.Reservation/CheckAvailability",
+       4
+      ],
+      [
+       "Tsel:frontend:HTTP_GET_/hotels",
+       4
+      ],
+      [
+       "Tsel:frontend:/profile.Profile/GetProfiles",
+       4
+      ],
+      [
+       "Tsel:frontend:/search.Search/Nearby",
+       4
+      ]
+     ]
+    }
+   }
+  },
+  "falseAlarms": {
+   "L": {
+    "anyAdmissibleFiring": 0,
+    "inadmissible": [],
+    "noFaultWindows": 12
+   },
+   "M": {
+    "anyAdmissibleFiring": 0,
+    "inadmissible": [
+     "M:frontend:cpu",
+     "M:rate:cpu",
+     "M:reservation:cpu"
+    ],
+    "noFaultWindows": 12
+   },
+   "S": {
+    "anyAdmissibleFiring": 0,
+    "inadmissible": [
+     "S:frontend:sys_memory",
+     "S:geo:sys_memory",
+     "S:profile:sys_memory",
+     "S:rate:sys_memory",
+     "S:reservation:sys_memory",
+     "S:search:sys_memory"
+    ],
+    "noFaultWindows": 16
+   },
+   "T": {
+    "anyAdmissibleFiring": 0,
+    "inadmissible": [],
+    "noFaultWindows": 4
+   },
+   "Tsel": {
+    "anyAdmissibleFiring": 0,
+    "inadmissible": [],
+    "noFaultWindows": 4
+   }
+  },
+  "pseudoWindowOffsets": [
+   45.31606709957123,
+   60.19450533390045
+  ],
+  "validCells": 80
+ },
+ "predictions": {
+  "P1": {
+   "Tsel": [
+    [
+     4,
+     4
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     4,
+     4
+    ]
+   ],
+   "reads": "yes"
+  },
+  "P2": {
+   "TselVsT": {
+    "cpu-throttle-effect": [
+     [
+      0,
+      4
+     ],
+     [
+      0,
+      4
+     ]
+    ],
+    "net-delay-effect": [
+     [
+      4,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "reservation-pause-effect": [
+     [
+      4,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "search-pause-effect": [
+     [
+      4,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ]
+   },
+   "reads": "yes"
+  },
+  "P3": {
+   "positiveOfN": [
+    4,
+    4
+   ],
+   "reads": "yes"
+  },
+  "P4": {
+   "positiveOfN": [
+    4,
+    4
+   ],
+   "reads": "yes"
+  }
+ }
+}

@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "extractor": "B",
+    "service": "paymentservice",
+    "notes": [
+      "Inbound only in these files: index.js:46 registers the PaymentService charge handler. The only outgoing client call is the flagd flag lookup (charge.js:9, charge.js:19-20).",
+      "No messages published or consumed, and no Kafka client, in src/paymentservice/index.js, charge.js, opentelemetry.js or package.json (package.json:14-35).",
+      "No registry, discovery or coordinator is referenced in these files. docker-compose.yml:446-450 depends_on (otelcol, flagd) sets start order only and is not a call edge.",
+      "No heartbeat in these files. A gRPC health service is served at index.js:42-44 (health.service, status SERVING at index.js:43); the status is static and not on a timer.",
+      "No health check: the paymentservice block docker-compose.yml:423-451 has no healthcheck key, and src/paymentservice/Dockerfile:1-26 has no HEALTHCHECK instruction.",
+      "Telemetry interval not stated: opentelemetry.js:25-27 PeriodicExportingMetricReader sets no export interval, and opentelemetry.js:16 sets no batch settings; library default, not in these files.",
+      "flagd protocol and host binding are not stated in these files: charge.js:9 constructs FlagdProvider with no arguments. FLAGD_HOST and FLAGD_PORT are passed through at docker-compose.yml:440-441 (values .env:129-130). How the provider reads them is library default, not in these files.",
+      "Container name differs from the compose key: docker-compose.yml:423 key paymentservice, docker-compose.yml:425 container_name payment-service. OTEL_SERVICE_NAME=paymentservice at docker-compose.yml:445.",
+      "Posture override: modules/otel-demo/deployment/compose.candidate-postures.yml:96 replaces the entrypoint, so with OTEL_PLACEMENT_ENABLED equal to false the process runs node index.js without --require ./opentelemetry.js. The telemetry facts apply only to the instrumented launch."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "syncEdges": [
+    {
+      "basis": "cited",
+      "value": {
+        "caller": "paymentservice",
+        "callee": "flagd"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/paymentservice/charge.js",
+      "line": 20,
+      "quotedToken": "getBooleanValue",
+      "note": "Flag evaluation call site (charge.js:19 setProviderAndWait). Callee host and port come from the environment (docker-compose.yml:440-441, .env:129-130). Protocol is not stated in these files."
+    }
+  ],
+  "services": [
+    {
+      "name": {
+        "value": "paymentservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 423,
+        "quotedToken": "paymentservice:"
+      },
+      "container": {
+        "value": "payment-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 425,
+        "quotedToken": "container_name: payment-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/",
+        "note": "library default, not in these files: no replicas key in the paymentservice block docker-compose.yml:423-451 (its deploy block at lines 431-434 sets only a memory limit)"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Host resolved from .env:27. The endpoint is set by docker-compose.yml:442 (OTEL_EXPORTER_OTLP_ENDPOINT) and .env:32, port 4317 from .env:28."
+        }
+      ],
+      "emits": [
+        {
+          "kind": "span",
+          "id": {
+            "value": "charge",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "src/paymentservice/charge.js",
+            "line": 17,
+            "quotedToken": "tracer.startSpan('charge')"
+          }
+        },
+        {
+          "kind": "metric",
+          "id": {
+            "value": "app.payment.transactions",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "src/paymentservice/charge.js",
+            "line": 14,
+            "quotedToken": "app.payment.transactions"
+          }
+        },
+        {
+          "kind": "log",
+          "id": {
+            "value": "Charge request received.",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "src/paymentservice/index.js",
+            "line": 19,
+            "quotedToken": "Charge request received."
+          }
+        },
+        {
+          "kind": "log",
+          "id": {
+            "value": "Transaction complete.",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "src/paymentservice/charge.js",
+            "line": 65,
+            "quotedToken": "Transaction complete."
+          }
+        }
+      ]
+    }
+  ]
+}

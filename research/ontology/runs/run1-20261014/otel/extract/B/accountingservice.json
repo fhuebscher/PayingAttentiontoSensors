@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "run": "run1-20261014",
+    "system": "otel",
+    "service": "accountingservice",
+    "extractor": "B",
+    "entryIndex": 35,
+    "notes": [
+      "syncEdges: none stated. No HTTP or gRPC client code in src/accountingservice/Program.cs, Consumer.cs, Helpers.cs or Log.cs; AccountingService.csproj:25 sets GrpcServices=\"none\". The stage-1 kafka and otelcol edges are not synchronous calls (async consumption and OTLP export) and are not reported.",
+      "publishesTo: none stated. No producer code in the service files.",
+      "registersWith: none stated. No registry or discovery client in the service files, and no registry block in deployment files.",
+      "consumer group liveness: ConsumerConfig at src/accountingservice/Consumer.cs:75-82 sets no session.timeout.ms or heartbeat.interval.ms. Those values are a library default (librdkafka), not in these files. Whether the heartbeat runs on a thread independent of message processing is not stated in these files. Program.cs:22 runs consumer.StartListening() on the main thread before host.Run() at Program.cs:24.",
+      "consumer group coordinator: not emitted. The group-to-broker coordination is Kafka protocol behaviour and is not stated in these files; the bootstrap broker is kafka (.env:139).",
+      "replicas: no deploy.replicas or scale key in docker-compose.yml:21-45 or in modules/otel-demo/deployment/compose.candidate-postures.yml:14-24. Compose default of 1; library default, not in these files.",
+      "health check: no healthcheck key in docker-compose.yml:21-45 and none in compose.candidate-postures.yml:14-24. Not configured in these files.",
+      "telemetry: OTEL_EXPORTER_OTLP_ENDPOINT is set to http://otelcol:4318 at docker-compose.yml:36 (host from .env:27, HTTP port from .env:29). Trace, metric and log exporter choice comes from OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER at compose.candidate-postures.yml:22-24; that variable's value is not set in these files. Export interval: not stated in these files; the OpenTelemetry .NET SDK default is a library default, not in these files.",
+      "compose.candidate-postures.yml:18 switches the entrypoint between plain dotnet and ./instrument.sh on OTEL_PLACEMENT_ENABLED."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "accountingservice",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 21,
+        "quotedToken": "accountingservice:"
+      },
+      "container": {
+        "value": "accounting-service",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 23,
+        "quotedToken": "container_name: accounting-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "Library default, not in these files: no deploy.replicas or scale in upstream docker-compose.yml:21-45 or harness modules/otel-demo/deployment/compose.candidate-postures.yml:14-24; Compose default 1. Sourced from the Compose documentation, not fetched."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol"
+        }
+      ],
+      "consumes": [
+        {
+          "topic": {
+            "value": "orders",
+            "repo": "upstream",
+            "sourceFile": "src/accountingservice/Consumer.cs",
+            "line": 12,
+            "quotedToken": "TopicName = \"orders\";"
+          },
+          "group": {
+            "value": "accountingservice",
+            "repo": "upstream",
+            "sourceFile": "src/accountingservice/Consumer.cs",
+            "line": 77,
+            "quotedToken": "GroupId = $\"accountingservice\""
+          }
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": {
+        "value": "orders",
+        "repo": "upstream",
+        "sourceFile": "src/accountingservice/Consumer.cs",
+        "line": 12,
+        "quotedToken": "TopicName = \"orders\";"
+      },
+      "broker": {
+        "value": "kafka",
+        "repo": "upstream",
+        "sourceFile": ".env",
+        "line": 139,
+        "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}"
+      }
+    }
+  ]
+}

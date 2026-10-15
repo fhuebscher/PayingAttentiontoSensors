@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/control-universe.schema.json",
+  "title": "Backend-neutral control universe and Phase 1 microtest plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "family", "claimPolicy", "semanticContext", "evidenceItems", "abstentions", "activationGroups", "microtests"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "family": {"type": "string", "minLength": 1},
+    "claimPolicy": {
+      "const": {
+        "phase": "control-universe-characterization",
+        "completeClaimCeiling": "phase-1-structural-control-map",
+        "incompleteClaimCeiling": "descriptive-only",
+        "empiricalClaimsAllowed": false,
+        "optimizationClaimsAllowed": false,
+        "crossFamilyEquivalenceAllowed": false
+      }
+    },
+    "semanticContext": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contextId", "scenarioId", "channelId", "nativeSemanticUnit", "nativeIdentityFields", "targetSet", "backgroundPolicy", "completenessCriterion", "evidenceItems"],
+      "properties": {
+        "contextId": {"type": "string", "minLength": 1},
+        "scenarioId": {"type": "string", "minLength": 1},
+        "channelId": {"type": "string", "minLength": 1},
+        "nativeSemanticUnit": {"type": "string", "minLength": 1},
+        "nativeIdentityFields": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "targetSet": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "backgroundPolicy": {
+          "type": "object", "additionalProperties": false,
+          "required": ["mode", "backgroundSet", "evidenceItems"],
+          "properties": {
+            "mode": {"enum": ["forbid", "exclude", "separate", "include"]},
+            "backgroundSet": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+            "evidenceItems": {"$ref": "#/$defs/evidenceRefs"}
+          }
+        },
+        "completenessCriterion": {"type": "string", "minLength": 1},
+        "evidenceItems": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "evidenceItems": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "abstentions": {"type": "array", "items": {"$ref": "#/$defs/abstention"}},
+    "activationGroups": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/group"}},
+    "microtests": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/microtest"}}
+  },
+  "$defs": {
+    "stage": {"enum": ["declared", "enabled", "emitted", "transported", "retained"]},
+    "evidenceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "locator", "sha256", "capturedAt"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["source-inspection", "configuration", "runtime-receipt", "collector-output", "backend-query", "test", "other"]},
+        "locator": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "capturedAt": {"type": "string", "minLength": 1}
+      }
+    },
+    "abstention": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "subjectType", "subjectId", "reason", "evidenceItems"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "subjectType": {"enum": ["activation-group", "microtest", "stage", "claim"]},
+        "subjectId": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1},
+        "evidenceItems": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "support": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "evidenceItems", "abstentionId"],
+      "properties": {
+        "status": {"enum": ["supported", "unsupported", "unknown"]},
+        "evidenceItems": {"$ref": "#/$defs/evidenceRefs"},
+        "abstentionId": {"type": ["string", "null"]}
+      }
+    },
+    "stageEffects": {
+      "type": "object", "additionalProperties": false,
+      "required": ["declared", "enabled", "emitted", "transported", "retained"],
+      "properties": {
+        "declared": {"$ref": "#/$defs/effect"}, "enabled": {"$ref": "#/$defs/effect"},
+        "emitted": {"$ref": "#/$defs/effect"}, "transported": {"$ref": "#/$defs/effect"},
+        "retained": {"$ref": "#/$defs/effect"}
+      }
+    },
+    "effect": {"enum": ["direct-control", "indirect-coupling", "no-known-effect", "unknown", "unsupported"]},
+    "group": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "evidenceItems", "dependencies", "mechanism", "locus", "settingDomain", "stageEffects", "support"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "evidenceItems": {"$ref": "#/$defs/evidenceRefs"},
+        "dependencies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "mechanism": {"enum": ["source-weaving", "source-sdk", "runtime-monitor", "runtime-configuration", "export-filter", "transport-route", "collector-filter", "backend-retention", "mixed", "other"]},
+        "locus": {"enum": ["source", "process-runtime", "transport", "collector", "backend", "mixed"]},
+        "settingDomain": {
+          "type": "object", "additionalProperties": false,
+          "required": ["values", "referenceValue", "offValue"],
+          "properties": {
+            "values": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": ["string", "number", "integer", "boolean", "null"]}},
+            "referenceValue": {}, "offValue": {}
+          }
+        },
+        "stageEffects": {"$ref": "#/$defs/stageEffects"},
+        "support": {"$ref": "#/$defs/support"}
+      }
+    },
+    "targetStages": {
+      "type": "object", "additionalProperties": false,
+      "required": ["declared", "enabled", "emitted", "transported", "retained"],
+      "properties": {
+        "declared": {"$ref": "#/$defs/target"}, "enabled": {"$ref": "#/$defs/target"},
+        "emitted": {"$ref": "#/$defs/target"}, "transported": {"$ref": "#/$defs/target"},
+        "retained": {"$ref": "#/$defs/target"}
+      }
+    },
+    "target": {"enum": ["on", "off", "observe", "unknown", "unsupported", "not-applicable"]},
+    "microtest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "support", "settings", "targetStages"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["full-reference", "true-source-off", "emission-off", "transport-off", "retention-off", "one-group-perturbation"]},
+        "support": {"$ref": "#/$defs/support"},
+        "settings": {"type": "object"},
+        "targetStages": {"$ref": "#/$defs/targetStages"},
+        "activationGroupId": {"type": "string", "minLength": 1},
+        "baselineTestId": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

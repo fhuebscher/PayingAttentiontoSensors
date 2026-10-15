@@ -1,0 +1,2114 @@
+{
+ "schemaVersion": 1,
+ "sut": "teastore",
+ "extraction": {
+  "stage": 1,
+  "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+  "tool": "research/ontology/extract_stage1.py",
+  "services": [
+   "recommender"
+  ],
+  "rules": "extract_stage1.py D1-D5, inputs.py R1-R7",
+  "astStats": {
+   "filesParsed": 53,
+   "filesSkippedByExtension": {
+    ".xml": 8,
+    ".mf": 3,
+    "Dockerfile": 2,
+    ".properties": 1,
+    ".sh": 2
+   },
+   "languages": [
+    "java"
+   ],
+   "callSites": 71,
+   "byCategory": {
+    "config": 8,
+    "http": 33,
+    "registry": 32,
+    "scheduler": 5
+   },
+   "grammarCache": "/Users/fhuebscher/Library/Caches/tree-sitter-language-pack/v1.22.1/libs"
+  },
+  "observations": [
+   {
+    "kind": "image",
+    "service": "recommender",
+    "value": "descartesresearch/teastore-recommender",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 97,
+    "quotedToken": "image: descartesresearch/teastore-recommender"
+   },
+   {
+    "kind": "build_context",
+    "service": "recommender",
+    "value": "services/tools.descartes.teastore.recommender",
+    "repo": "upstream",
+    "sourceFile": "tools/build_docker.sh",
+    "line": 44,
+    "quotedToken": "docker buildx build -t \"${registry}teastore-recommender\" ../services/tools.descartes.teastore.recommender/ --load",
+    "note": "inputs.py R2: image built by the upstream build script"
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "javax.naming",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "newInitialContext().lookup",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/RecommenderSelector.java",
+    "line": 76,
+    "quotedToken": "new InitialContext()",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"java:comp/env/recommenderAlgorithm\"",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/RecommenderSelector.java",
+      "line": 76,
+      "quotedToken": "\"java:comp/env/recommenderAlgorithm\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http+registry",
+    "matches": [
+     {
+      "category": "http",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     },
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "RegistryClient.getClient().unregister",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 61,
+    "quotedToken": "RegistryClient.getClient()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "in-tree:tools.descartes.teastore.registryclient.util.RESTClient",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "RESTClient.setGlobalReadTimeout",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 71,
+    "quotedToken": "RESTClient",
+    "literals": [
+     {
+      "kind": "resolvedConstant",
+      "value": "1750",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+      "line": 40,
+      "quotedToken": "1750",
+      "note": "identifier REST_READ_TIMOUT at line 71"
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.preInitializeServiceLoadBalancers",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 72,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http+registry",
+    "matches": [
+     {
+      "category": "http",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     },
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "RegistryClient.getClient().runAfterServiceIsAvailable",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 73,
+    "quotedToken": "RegistryClient.getClient()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http+registry",
+    "matches": [
+     {
+      "category": "http",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     },
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "RegistryClient.getClient().register",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 75,
+    "quotedToken": "RegistryClient.getClient()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "javax.naming",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "newInitialContext().lookup",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 78,
+    "quotedToken": "new InitialContext()",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"java:comp/env/recommenderLoopTime\"",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+      "line": 78,
+      "quotedToken": "\"java:comp/env/recommenderLoopTime\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http+registry",
+    "matches": [
+     {
+      "category": "http",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     },
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "RegistryClient.getClient().runAfterServiceIsAvailable",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RetrainDaemon.java",
+    "line": 61,
+    "quotedToken": "RegistryClient.getClient()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+    "line": 138,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"generatedb\"",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+      "line": 138,
+      "quotedToken": "\"generatedb\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"finished\"",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+      "line": 140,
+      "quotedToken": "\"finished\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.multicastRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+    "line": 214,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"train/timestamp\"",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+      "line": 215,
+      "quotedToken": "\"train/timestamp\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "java",
+    "value": "System.getenv",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+    "line": 97,
+    "quotedToken": "System",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"LOG_PARAMETERS\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+      "line": 97,
+      "quotedToken": "\"LOG_PARAMETERS\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "scheduler",
+    "matches": [
+     {
+      "category": "scheduler",
+      "library": "java.util.concurrent",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "Executors.newSingleThreadScheduledExecutor",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 67,
+    "quotedToken": "Executors",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "scheduler",
+    "matches": [
+     {
+      "category": "scheduler",
+      "library": "java.util.concurrent",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "Executors.newSingleThreadScheduledExecutor",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 69,
+    "quotedToken": "Executors",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "scheduler",
+    "matches": [
+     {
+      "category": "scheduler",
+      "library": "java.util.concurrent",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "Executors.newSingleThreadScheduledExecutor",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 71,
+    "quotedToken": "Executors",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "javax.naming",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "newInitialContext().lookup",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 81,
+    "quotedToken": "new InitialContext()",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"java:comp/env/useHostIP\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 81,
+      "quotedToken": "\"java:comp/env/useHostIP\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "javax.naming",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "newInitialContext().lookup",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 89,
+    "quotedToken": "new InitialContext()",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"java:comp/env/hostName\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 89,
+      "quotedToken": "\"java:comp/env/hostName\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "javax.naming",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "newInitialContext().lookup",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 97,
+    "quotedToken": "new InitialContext()",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"java:comp/env/servicePort\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 97,
+      "quotedToken": "\"java:comp/env/servicePort\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "javax.naming",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "newInitialContext().lookup",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 103,
+    "quotedToken": "new InitialContext()",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"java:comp/env/registryURL\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 103,
+      "quotedToken": "\"java:comp/env/registryURL\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "scheduler",
+    "matches": [
+     {
+      "category": "scheduler",
+      "library": "java.util.concurrent",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "heartbeatScheduler.scheduleAtFixedRate",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 159,
+    "quotedToken": "heartbeatScheduler",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "0",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 159,
+      "quotedToken": "0"
+     },
+     {
+      "kind": "resolvedConstant",
+      "value": "2500",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 65,
+      "quotedToken": "2500",
+      "note": "identifier HEARTBEAT_INTERVAL_MS at line 160"
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "scheduler",
+    "matches": [
+     {
+      "category": "scheduler",
+      "library": "java.util.concurrent",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "loadBalancerUpdateScheduler.scheduleAtFixedRate",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 161,
+    "quotedToken": "loadBalancerUpdateScheduler",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "1000",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 161,
+      "quotedToken": "1000"
+     },
+     {
+      "kind": "resolvedConstant",
+      "value": "2500",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 64,
+      "quotedToken": "2500",
+      "note": "identifier LOAD_BALANCER_REFRESH_INTERVAL_MS at line 162"
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "getRESTClient(5000).target(registryRESTURL).path(\"/\"+targetService.getServiceName()+\"/\").request",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 193,
+    "quotedToken": "getRESTClient(5000).target(registryRESTURL)",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "com.netflix.loadbalancer",
+      "match": "qualified"
+     }
+    ],
+    "language": "java",
+    "value": "Server",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 204,
+    "quotedToken": "Server",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "getRESTClient(5000).target(registryRESTURL).path(service.getServiceName()).path(server.toString()).request",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 244,
+    "quotedToken": "getRESTClient(5000).target(registryRESTURL).path(service.getServiceName())",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.text",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 245,
+    "quotedToken": "Entity",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 245,
+      "quotedToken": "\"\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "getRESTClient(1000).target(registryRESTURL).path(service.getServiceName()).path(server.toString()).request",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 264,
+    "quotedToken": "getRESTClient(1000).target(registryRESTURL).path(service.getServiceName())",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "org.glassfish.jersey.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "ClientConfig",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 273,
+    "quotedToken": "ClientConfig",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "ClientBuilder.newClient",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 276,
+    "quotedToken": "ClientBuilder",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "com.netflix.loadbalancer",
+      "match": "qualified"
+     }
+    ],
+    "language": "java",
+    "value": "Server",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 291,
+    "quotedToken": "Server",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "in-tree:tools.descartes.teastore.registryclient.util.RESTClient",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "RESTClient",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+    "line": 81,
+    "quotedToken": "RESTClient<T>",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\":\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+      "line": 81,
+      "quotedToken": "\":\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"/\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+      "line": 82,
+      "quotedToken": "\"/\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http+registry",
+    "matches": [
+     {
+      "category": "http",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     },
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "RegistryClient.getClient().getServersForService",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 140,
+    "quotedToken": "RegistryClient.getClient()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "com.netflix.loadbalancer",
+      "match": "qualified"
+     }
+    ],
+    "language": "java",
+    "value": "LoadBalancerBuilder.newBuilder().buildFixedServerListLoadBalancer",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 175,
+    "quotedToken": "LoadBalancerBuilder.newBuilder()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "com.netflix.loadbalancer",
+      "match": "qualified"
+     }
+    ],
+    "language": "java",
+    "value": "LoadBalancerCommand.<ServiceLoadBalancerResult>builder().withLoadBalancer(loadBalancer).withRetryHandler(retryHandler).build().submit(server->Observable.just(ServiceLoadBalancerResult.fromRESTOperation((RESTClient)getEndpointClientCollection(endpointURI,entityClass).getRESTClient(server),operation))",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 218,
+    "quotedToken": "LoadBalancerCommand.<ServiceLoadBalancerResult<R>>builder()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http+registry",
+    "matches": [
+     {
+      "category": "http",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     },
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "RegistryClient.getClient().getMyService",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 281,
+    "quotedToken": "RegistryClient.getClient()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http+registry",
+    "matches": [
+     {
+      "category": "http",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     },
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.RegistryClient",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "RegistryClient.getClient().getMyServiceInstanceServer",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 283,
+    "quotedToken": "RegistryClient.getClient()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "target.request",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/HttpWrapper.java",
+    "line": 43,
+    "quotedToken": "target",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 62,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 93,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 119,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 145,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 173,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 202,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 238,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 108,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"image\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+      "line": 108,
+      "quotedToken": "\"image\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"getProductImages\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+      "line": 109,
+      "quotedToken": "\"getProductImages\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 110,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 171,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"image\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+      "line": 171,
+      "quotedToken": "\"image\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"getWebImages\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+      "line": 172,
+      "quotedToken": "\"getWebImages\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 173,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.multicastRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 200,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"image\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+      "line": 200,
+      "quotedToken": "\"image\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"regenerateImages\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+      "line": 201,
+      "quotedToken": "\"regenerateImages\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "client.getEndpointTarget().path(\"regenerateImages\").request",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 201,
+    "quotedToken": "client.getEndpointTarget().path(\"regenerateImages\")",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+    "line": 45,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"recommend\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+      "line": 45,
+      "quotedToken": "\"recommend\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"uid\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+      "line": 46,
+      "quotedToken": "\"uid\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+    "line": 47,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 56,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"useractions\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 56,
+      "quotedToken": "\"useractions\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"placeorder\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 59,
+      "quotedToken": "\"placeorder\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"addressName\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 60,
+      "quotedToken": "\"addressName\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"address1\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 60,
+      "quotedToken": "\"address1\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"address2\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 61,
+      "quotedToken": "\"address2\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"creditCardCompany\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 61,
+      "quotedToken": "\"creditCardCompany\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"creditCardNumber\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 62,
+      "quotedToken": "\"creditCardNumber\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"creditCardExpiryDate\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 63,
+      "quotedToken": "\"creditCardExpiryDate\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"totalPriceInCents\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 64,
+      "quotedToken": "\"totalPriceInCents\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 65,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 87,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"useractions\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 87,
+      "quotedToken": "\"useractions\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"login\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 90,
+      "quotedToken": "\"login\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"name\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 90,
+      "quotedToken": "\"name\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"password\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 91,
+      "quotedToken": "\"password\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 92,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 110,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"useractions\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 110,
+      "quotedToken": "\"useractions\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"logout\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 112,
+      "quotedToken": "\"logout\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 113,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 131,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"useractions\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 131,
+      "quotedToken": "\"useractions\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"isloggedin\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 134,
+      "quotedToken": "\"isloggedin\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 135,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 156,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"cart\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 156,
+      "quotedToken": "\"cart\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"add\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 158,
+      "quotedToken": "\"add\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 158,
+      "quotedToken": "\"\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 159,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 179,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"cart\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 179,
+      "quotedToken": "\"cart\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"remove\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 181,
+      "quotedToken": "\"remove\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 181,
+      "quotedToken": "\"\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 182,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "java",
+    "value": "ServiceLoadBalancer.loadBalanceRESTOperation",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 207,
+    "quotedToken": "ServiceLoadBalancer",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"cart\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 207,
+      "quotedToken": "\"cart\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 209,
+      "quotedToken": "\"\""
+     },
+     {
+      "kind": "literal",
+      "value": "\"quantity\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+      "line": 209,
+      "quotedToken": "\"quantity\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 210,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+    "line": 69,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "Entity.entity",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+    "line": 115,
+    "quotedToken": "Entity",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "builtin",
+      "match": "global"
+     }
+    ],
+    "language": "java",
+    "value": "System.getenv",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 79,
+    "quotedToken": "System",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"USE_HTTPS\"",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+      "line": 79,
+      "quotedToken": "\"USE_HTTPS\""
+     }
+    ],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "org.glassfish.jersey.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "ClientConfig",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 91,
+    "quotedToken": "ClientConfig",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "ClientBuilder.newBuilder().withConfig",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 118,
+    "quotedToken": "ClientBuilder.newBuilder()",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "type"
+     }
+    ],
+    "language": "java",
+    "value": "ClientBuilder.newClient",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 125,
+    "quotedToken": "ClientBuilder",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "http",
+    "matches": [
+     {
+      "category": "http",
+      "library": "jakarta.ws.rs.client",
+      "match": "method"
+     }
+    ],
+    "language": "java",
+    "value": "client.target",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 128,
+    "quotedToken": "client",
+    "literals": [],
+    "services": [
+     "recommender"
+    ]
+   }
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+   "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-teastore-protocol",
+   "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67"
+  }
+ },
+ "architecture": {
+  "name": {
+   "value": "teastore",
+   "repo": "harness",
+   "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+   "line": 40,
+   "quotedToken": "services:",
+   "note": "architecture = the services of the compose files harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml"
+  }
+ },
+ "host": {
+  "id": {
+   "value": "fb14srv5",
+   "repo": "obsplacement",
+   "sourceFile": "research/host-topology.json",
+   "line": 9,
+   "quotedToken": "\"hostId\": \"fb14srv5\"",
+   "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "recommender",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 96,
+    "quotedToken": "recommender:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/Dockerfile",
+    "line": 1,
+    "quotedToken": "descartesresearch/teastore-base:latest",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM descartesresearch/teastore-base:latest"
+   },
+   "container": {
+    "value": "recommender",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 96,
+    "quotedToken": "recommender:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-recommender-<n>"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for recommender in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1"
+   }
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "recommender",
+    "callee": "registry"
+   },
+   "repo": "harness",
+   "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+   "line": 102,
+   "quotedToken": "REGISTRY_HOST: \"registry\"",
+   "note": "stage-1 rule D4: environment REGISTRY_HOST=registry"
+  }
+ ]
+}

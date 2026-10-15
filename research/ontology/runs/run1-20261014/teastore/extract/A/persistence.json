@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "sut": "teastore",
+  "extraction": {
+    "stage": 2,
+    "extractor": "A",
+    "service": "persistence",
+    "notes": [
+      "Not stated in the given files: replica count (compose service has no replicas/deploy key, docker-compose_kieker.yaml:58-71), container health check (no healthcheck key in docker-compose_kieker.yaml and no HEALTHCHECK in persistence/Dockerfile or dockerbase/Dockerfile), registry failure timeout and cleanup interval (registry service code is not among the files), the destination of Jaeger/OpenTracing spans (Tracing.init at Tracing.java:42 sets sampler and B3 codecs only; no endpoint/agent host is configured in these files; library default, not in these files), any message consumption (no consumer group or subscription in these files).",
+      "Kieker AMQP writer batching, from kieker.monitoring.properties: chunkSize=32 (line 33), deferredWriteDelay=500 (line 34), taskRunInterval=20 (line 36); units not stated in these files. AMQP connection heartbeat requested as 900 by compose (docker-compose_kieker.yaml:19), image default 0 (kieker.monitoring.properties:31); this is the RabbitMQ connection heartbeat, not the registry heartbeat.",
+      "Registry heartbeat failure path: RegistryClientHeartbeatDaemon.run rethrows any Exception as RuntimeException (RegistryClientHeartbeatDaemon.java:43) inside a scheduleAtFixedRate task (RegistryClient.java:159); registerOnce catches only ProcessingException (RegistryClient.java:247).",
+      "Kieker writer is switched from FileWriter to ChunkingCollector only when RABBITMQ_HOST != unset (start.sh:33-35); compose sets RABBITMQ_HOST (docker-compose_kieker.yaml:67) and still runs start.sh (line 30)."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+      "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-teastore-protocol",
+      "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "persistence",
+        "basis": "cited",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 58,
+        "quotedToken": "persistence:"
+      },
+      "container": {
+        "value": "descartesresearch/teastore-persistence",
+        "basis": "cited",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 59,
+        "quotedToken": "image: descartesresearch/teastore-persistence",
+        "note": "exposes 8080 (line 61); image is FROM descartesresearch/teastore-base:latest (persistence/Dockerfile:1)"
+      },
+      "registersWith": [
+        {
+          "value": "registry",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/daemons/InitialDataGenerationDaemon.java",
+          "line": 76,
+          "quotedToken": "RegistryClient.getClient().register",
+          "note": "registers after DB wait and data generation; registry host from REGISTRY_HOST: \"registry\" (docker-compose_kieker.yaml:64)"
+        }
+      ],
+      "publishesTo": [
+        {
+          "value": "kieker",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "utilities/tools.descartes.teastore.dockerbase/kieker.monitoring.properties",
+          "line": 28,
+          "quotedToken": "ChunkingAmqpWriter.queuename=kieker",
+          "note": "Kieker monitoring-record queue, active because RABBITMQ_HOST is set to rabbitmq (docker-compose_kieker.yaml:67); broker host rabbitmq is referenced only by that env var in these files"
+        }
+      ],
+      "exportsTelemetryTo": [
+        {
+          "value": "rabbitmq",
+          "basis": "cited",
+          "repo": "harness",
+          "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+          "line": 67,
+          "quotedToken": "RABBITMQ_HOST: \"rabbitmq\"",
+          "note": "Kieker records (traces/operation executions) via ChunkingAmqpWriter (start.sh:35); batching chunkSize=32, deferredWriteDelay=500, taskRunInterval=20 (kieker.monitoring.properties:33,34,36)"
+        },
+        {
+          "value": "stdout",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+          "line": 78,
+          "quotedToken": "org.slf4j.simpleLogger.logFile",
+          "note": "logs: slf4j simple logger set to System.out"
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": { "caller": "persistence", "callee": "db" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java",
+      "line": 112,
+      "quotedToken": "java:comp/env/databaseHost",
+      "note": "protocol JDBC/MySQL (persistence.xml:17 com.mysql.jdbc.Driver); DB host from DB_HOST: \"db\" (docker-compose_kieker.yaml:65)"
+    },
+    {
+      "value": { "caller": "persistence", "callee": "registry" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 245,
+      "quotedToken": ".put(Entity.text(\"\"))",
+      "note": "protocol HTTP REST PUT, registration/heartbeat (registerOnce)"
+    },
+    {
+      "value": { "caller": "persistence", "callee": "registry" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+      "line": 140,
+      "quotedToken": "getServersForService(targetService)",
+      "note": "protocol HTTP REST GET (RegistryClient.java:193-195), run by LoadBalancerUpdaterDaemon every 2500 ms (RegistryClient.java:161-162)"
+    },
+    {
+      "value": { "caller": "persistence", "callee": "persistence" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+      "line": 52,
+      "quotedToken": "multicastRESTToOtherServiceInstances",
+      "note": "protocol HTTP REST DELETE to other persistence instances for cache clearing (CacheManager.java:112); callee is the other instances, not itself"
+    }
+  ],
+  "coordinators": [
+    {
+      "name": {
+        "value": "registry",
+        "basis": "cited",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 64,
+        "quotedToken": "REGISTRY_HOST: \"registry\""
+      },
+      "type": {
+        "value": "ServiceRegistry",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+        "line": 103,
+        "quotedToken": "registryURL",
+        "note": "registryURL REST endpoint .../registry/rest/services/ (persistence web.xml:31); the registry service's own code is not in these files"
+      },
+      "hostedBy": {
+        "value": "registry",
+        "basis": "cited",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 42,
+        "quotedToken": "image: descartesresearch/teastore-registry"
+      },
+      "liveness": [
+        {
+          "mechanism": {
+            "value": "heartbeat",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+            "line": 159,
+            "quotedToken": "heartbeatScheduler.scheduleAtFixedRate(new RegistryClientHeartbeatDaemon"
+          },
+          "monitors": [
+            {
+              "value": "persistence",
+              "basis": "cited",
+              "repo": "harness",
+              "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+              "line": 58,
+              "quotedToken": "persistence:"
+            }
+          ],
+          "heartbeatIntervalSeconds": {
+            "value": 2.5,
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+            "line": 65,
+            "quotedToken": "HEARTBEAT_INTERVAL_MS = 2500",
+            "note": "2500 ms, scheduleAtFixedRate with initial delay 0 (line 159-160)"
+          },
+          "heartbeatThreadIndependentOfWork": {
+            "value": true,
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+            "line": 69,
+            "quotedToken": "heartbeatScheduler = Executors",
+            "note": "dedicated newSingleThreadScheduledExecutor (lines 69-70), separate from servlet request threads; the task only calls registerOnce (RegistryClientHeartbeatDaemon.java:40)"
+          },
+          "healthCheckConfigured": {
+            "value": false,
+            "basis": "cited",
+            "repo": "harness",
+            "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+            "line": 58,
+            "quotedToken": "persistence:",
+            "note": "absence: no healthcheck key in the persistence compose block (lines 58-71), no HEALTHCHECK in persistence/Dockerfile (lines 1-4) or dockerbase/Dockerfile"
+          }
+        }
+      ]
+    }
+  ]
+}

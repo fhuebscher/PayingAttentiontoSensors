@@ -1,0 +1,136 @@
+{
+ "stage1": {
+  "path": "research/ontology/runs/run1-20261014/teastore/stage1.json",
+  "sha256": "077f01a1aa96487dc0e476c239ba34cf8d5830bd4df3b6185ee62c8826d7dc50"
+ },
+ "extractors": [
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/auth.json",
+   "sha256": "10d8ea3644d3041f4eb94cfdb5d0df7291d9cfaf19b932397a020d1963ad2784",
+   "canonicalSha256": "161652ece8c82590f4b2e55e1c70be3da359b6d3811b221378f688107442f8f7"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/db.json",
+   "sha256": "76c1f39de51f3f03157f1ce6610bbca057ac7cbfb480cc1dfe55f7077334ab63",
+   "canonicalSha256": "10c06b7ca2683da8079ffee8912c423d3db4b2f4e98f66cd74627e680a68d784"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/image.json",
+   "sha256": "bf08badb8c6d083005e109e385443c31d1d670e0f3a811eb42e9faca3282733d",
+   "canonicalSha256": "7092fef30a25e1d09af25cd5c74024b34a274394e1f7bd577874e85d2c9787cf"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/persistence.json",
+   "sha256": "0b9d561ce0ce1eb193189eea4e65262ba8323a0cc18ce170d6c8db4e82cf99b2",
+   "canonicalSha256": "76c0375cb59ac7624f8c0ec8afac21ec4ce45bdb6b7c43aab4f7e8dc9fcece3c"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/recommender.json",
+   "sha256": "0311efe8d4ece59084edfd642ad172d0dea95a040fb0281919f7f919a7282fb3",
+   "canonicalSha256": "d7b89c8bc64027929d268955b0a1fd333c03733fab8644548ec8a551aa36a329"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/registry.json",
+   "sha256": "77f4feb247abeefe936a9188c0830c46075dd904e4092987c830f231177ca028",
+   "canonicalSha256": "b96ac27ba085f0cefa8a4cf175401c933b9f01c9961a59e6902a4bf1135153e7"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/webui.json",
+   "sha256": "e268a00b79ccfebc515a643a0c5e560d25ad64d5f6623d7f2f58366aac9b00ad",
+   "canonicalSha256": "0e64334315fc398543c06a87a875750427ee7bc49b5f99fc657606b03017b53d"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/auth.json",
+   "sha256": "941e8c26c466306b5390daa39f7e00b3b1170550889a310cbc06fa30fc41609e",
+   "canonicalSha256": "545352f3b617af1aaec7c95fe3535342b8bc9edce241d143f6bc09144a0a3708"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/db.json",
+   "sha256": "66d27ab0621c68b97ec420dd71e7f36fce5a3b0aba6d2b375db88d74910cd31d",
+   "canonicalSha256": "675d257564800aac94525e7ae31118163046a5f35032a2f63298c521479a82e5"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/image.json",
+   "sha256": "685e3d42ed6972d49878f915c5b9ac8a38e337f16a09b31546323282e21f576a",
+   "canonicalSha256": "1ea878c6864ae025e1c473185beb3dc44730e1db8ce9541dde4a67e5b1769dfd"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/persistence.json",
+   "sha256": "0b4e18da2a590b30eabe4fa10f48d27ca3b110b4cc1fe93232a87d63eb2c501c",
+   "canonicalSha256": "fc034887b5992d03947bdc947d72f3de9951c212bdac7d258001b7c2b8e04426"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/recommender.json",
+   "sha256": "9bdd2fc80ba4f26481c4a5fbd6a153fc9eaf52f6c5dd9ba0f8289c7fd7d14acb",
+   "canonicalSha256": "60e031ff5a2d7403933613b6967afac54ebf9a86bef4e6f82529c0b4255b87c4"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/registry.json",
+   "sha256": "390d7abd0d6676e453112a018f45d37e67073adda2e476c0356e6a79df613bbc",
+   "canonicalSha256": "ecd6dda0fb84567d1d5500de184f7c3e85ca7ce92fa3b165f98b7f1af186f6ec"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/webui.json",
+   "sha256": "6acf6cd2b902c22363f51a36fec0ef8c3b78172d54a5dbf3a0bb1c23cc499ed1",
+   "canonicalSha256": "a0540063c2f030b0b74ab741de95209ed0c9953700b318a3ba1e925212682e1c"
+  }
+ ],
+ "answers": {
+  "from": "research/ontology/runs/run1-20261014/teastore/judge/answers_all.jsonl",
+  "sha256": "d1bea2ffea784b6c75eee8ddc50bf91af8727f98d4a84ab87c6e85af1d27a9cb",
+  "reusedIds": [
+   "00837501609cd224",
+   "0288aaab5c68e47c",
+   "02f16c39281c3736",
+   "04449c9e0efd00a7",
+   "06273bac7343d27c",
+   "22d0a2f4370e5f69",
+   "3120779848c13379",
+   "366af6dab9e1873f",
+   "3ca8e8f34928577b",
+   "4f866aeb11825df4",
+   "53af938e06e67129",
+   "65c637ddfcd28c3d",
+   "6dd2d3f6b3d65c92",
+   "71f30ae9a4be8d30",
+   "7996484953f2527e",
+   "7d437affbd82ce96",
+   "7edfe4aa5c95374c",
+   "7f890988caac7900",
+   "83e5f2df76a44e0c",
+   "8fc365172b4a84ef",
+   "95dd9d43666b4a1f",
+   "9e6725fb17127fad",
+   "a15078363dbff3a1",
+   "c0df92866929b62e",
+   "c241099ffb72abeb",
+   "c51a533fa088ee86",
+   "d9b04fb58848cc38",
+   "d9cca3a0e9805a6e",
+   "dab2b3a9a3796bb8",
+   "de0e4b594d25e0e5",
+   "e187791e421f145d",
+   "e27337701a38ba7c",
+   "e557e8af9b966ddb",
+   "e926ec915dc7ed6a",
+   "ef4297f7fcfdb21d",
+   "f0f0ebe1d7b99da0"
+  ],
+  "newOrChangedPackets": [],
+  "oldAnswersNotNeeded": 16
+ }
+}

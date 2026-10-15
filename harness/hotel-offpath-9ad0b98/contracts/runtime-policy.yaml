@@ -1,0 +1,17 @@
+schema_version: 1
+python: 3.13.12
+package_manager:
+  name: uv
+  version: 0.9.25
+  lock_required: true
+container:
+  preferred: true
+  python_image: python:3.13.12-slim-bookworm@sha256:a58daefb915e1e03ad48f3ca4df8832065412c5c35cacb9d39f4229184de12b6
+  uv_image: ghcr.io/astral-sh/uv:0.9.25@sha256:13e233d08517abdafac4ead26c16d881cd77504a2c40c38c905cf3a0d70131a6
+fallback:
+  command: uv sync --frozen
+  canonical_if_runtime_matches: true
+prohibited:
+  - reuse-another-repository-venv-as-runtime
+  - unpinned-pip-install-in-canonical-run
+  - system-python-without-version-receipt

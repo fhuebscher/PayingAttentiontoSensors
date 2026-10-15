@@ -1,0 +1,338 @@
+{
+ "mergeVersion": 1,
+ "system": "teastore",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+   "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-teastore-protocol",
+   "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67"
+  }
+ },
+ "aliases": {
+  "registry": "registry",
+  "db": "db",
+  "persistence": "persistence",
+  "auth": "auth",
+  "image": "image",
+  "recommender": "recommender",
+  "webui": "webui"
+ },
+ "normalisation": "merge.py docstring step 3",
+ "agreement": {
+  "agreed": 0,
+  "contested": 7,
+  "agreement": 0.0,
+  "byRelation": {
+   "name": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "id": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "callsSync": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "container": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "replicas": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "role": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "service": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   }
+  }
+ },
+ "log": {
+  "inputs": [
+   {
+    "origin": "stage1",
+    "input": "stage1[0]",
+    "sha256": "8d6acdbc6cbe8fe87d2dcf00d1e832d9fa3dff3b6d804c3a4ff52f97181ab255"
+   }
+  ],
+  "schemaRejected": [],
+  "sourcesReplaced": [],
+  "dropped": [],
+  "droppedCount": {
+   "A": 0,
+   "B": 0,
+   "stage1": 0
+  },
+  "checkedCount": {
+   "A": 0,
+   "B": 0,
+   "stage1": 7
+  },
+  "uncheckedDefaultCount": {
+   "A": 0,
+   "B": 0,
+   "stage1": 1
+  }
+ },
+ "agreed": [],
+ "contested": [
+  {
+   "key": [
+    "architecture",
+    "name",
+    "teastore"
+   ],
+   "relation": "name",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.architecture.name",
+     "subject": "architecture",
+     "object": "teastore",
+     "slots": [
+      "const",
+      "name"
+     ],
+     "fact": {
+      "value": "teastore",
+      "repo": "harness",
+      "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+      "line": 40,
+      "quotedToken": "services:",
+      "note": "architecture = the services of the compose files harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "17395d8cfe38c876"
+  },
+  {
+   "key": [
+    "host",
+    "id",
+    "fb14srv5"
+   ],
+   "relation": "id",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.host.id",
+     "subject": "host",
+     "object": "fb14srv5",
+     "slots": [
+      "const",
+      "name"
+     ],
+     "fact": {
+      "value": "fb14srv5",
+      "repo": "obsplacement",
+      "sourceFile": "research/host-topology.json",
+      "line": 9,
+      "quotedToken": "\"hostId\": \"fb14srv5\"",
+      "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "f99ca959c05f084d"
+  },
+  {
+   "key": [
+    "recommender",
+    "callsSync",
+    "registry"
+   ],
+   "relation": "callsSync",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.syncEdges[0]",
+     "subject": "recommender",
+     "object": "registry",
+     "slots": [
+      "caller",
+      "callee"
+     ],
+     "fact": {
+      "value": {
+       "caller": "recommender",
+       "callee": "registry"
+      },
+      "repo": "harness",
+      "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+      "line": 102,
+      "quotedToken": "REGISTRY_HOST: \"registry\"",
+      "note": "stage-1 rule D4: environment REGISTRY_HOST=registry"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "db6ad960b1ea242f"
+  },
+  {
+   "key": [
+    "recommender",
+    "container",
+    "recommender"
+   ],
+   "relation": "container",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].container",
+     "subject": "recommender",
+     "object": "recommender",
+     "slots": [
+      "service",
+      "name"
+     ],
+     "fact": {
+      "value": "recommender",
+      "repo": "harness",
+      "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+      "line": 96,
+      "quotedToken": "recommender:",
+      "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-recommender-<n>"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "a8224791d183961a"
+  },
+  {
+   "key": [
+    "recommender",
+    "replicas",
+    "1.0"
+   ],
+   "relation": "replicas",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].replicas",
+     "subject": "recommender",
+     "object": 1,
+     "slots": [
+      "service",
+      "number"
+     ],
+     "fact": {
+      "value": 1,
+      "basis": "documented-default",
+      "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+      "note": "stage-1 rule D3: no deploy.replicas or scale for recommender in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1"
+     },
+     "check": "unchecked-default"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "e200b871d68f2de5"
+  },
+  {
+   "key": [
+    "recommender",
+    "role",
+    "microservice"
+   ],
+   "relation": "role",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].role",
+     "subject": "recommender",
+     "object": "microservice",
+     "slots": [
+      "service",
+      "enum"
+     ],
+     "fact": {
+      "value": "microservice",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.recommender/Dockerfile",
+      "line": 1,
+      "quotedToken": "descartesresearch/teastore-base:latest",
+      "note": "stage-1 rule D1: built from the pinned tree; last FROM descartesresearch/teastore-base:latest"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "f62a3d776ee7206f"
+  },
+  {
+   "key": [
+    "recommender",
+    "service",
+    "recommender"
+   ],
+   "relation": "service",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].name",
+     "subject": "recommender",
+     "object": "recommender",
+     "slots": [
+      "service",
+      "service"
+     ],
+     "fact": {
+      "value": "recommender",
+      "repo": "harness",
+      "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+      "line": 96,
+      "quotedToken": "recommender:"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "90e5ba703d0c860f"
+  }
+ ]
+}

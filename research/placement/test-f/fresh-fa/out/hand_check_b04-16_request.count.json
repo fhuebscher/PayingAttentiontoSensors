@@ -1,0 +1,19 @@
+{
+ "cell": "r25-b04-16-full",
+ "sensor": "metric:kafka:kafka.request.count",
+ "rawSamplesInWindow": 36,
+ "readerSamplesInWindow": 36,
+ "m": 7.200023875999289,
+ "spikeThr": 2.3726379743489225,
+ "rawMin": 4.799997482301125,
+ "rawMax": 8.00003776568121,
+ "rawBeyondUp": 0,
+ "rawBeyondDown": 1,
+ "readerSpikeAlarms": 1,
+ "firstBeyond": [
+  [
+   1791942771.0579886,
+   4.799997482301125
+  ]
+ ]
+}

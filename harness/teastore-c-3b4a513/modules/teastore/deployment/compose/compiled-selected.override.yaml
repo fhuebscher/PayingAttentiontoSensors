@@ -1,0 +1,8 @@
+services:
+  webui: &compiled
+    volumes:
+      - ../../../../.local/compiled/teastore/aop.xml:/usr/local/tomcat/lib/aop.xml:ro
+  auth: *compiled
+  persistence: *compiled
+  image: *compiled
+  recommender: *compiled

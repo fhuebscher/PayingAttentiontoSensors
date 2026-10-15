@@ -1,0 +1,5 @@
+DRY RUN
+inputs: 239 files, 682912 bytes; 25 services; excluded {'asset': 21, 'lockfile': 7, 'test': 9, 'tooling-dotfile': 18}; unresolved vars 0
+stage1 services=accountingservice: 8 schema facts {'ok': 7, 'unchecked-default': 1}; 20 observations+literals {'ok': 20}; AST {"filesParsed": 4, "callSites": 5, "byCategory": {"config": 1, "kafka": 4}}
+merge: A files 0, B files 0; dropped {'A': 0, 'B': 0, 'stage1': 0}; schema-rejected 0; agreed 0, contested 8, agreement 0.0; per relation {"callsSync": "0/2", "container": "0/1", "id": "0/1", "name": "0/1", "replicas": "0/1", "role": "0/1", "service": "0/1"}; judge packets 8
+SHACL on the stage-1 spec (converter/shapes check, not an ontology): conforms=True, 129 triples

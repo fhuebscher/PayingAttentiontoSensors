@@ -1,0 +1,5 @@
+services:
+  rabbitmq:
+networks:
+  teastore-network:
+    external: false

@@ -1,0 +1,151 @@
+# Per-service posture controls for the exact none/selected/full contract.
+#
+# Every OTEL_CANDIDATE_* variable is supplied by candidate_runtime.posture_environment
+# (plan side) and candidate_setup.compose_environment (install side); ``:?`` fails
+# closed when a variable is unset or empty, ``?`` fails closed only when unset so
+# that the agent-clearing variables may legitimately be the empty string.
+#
+# Services whose upstream image loads an instrumentation agent unconditionally
+# get a posture-conditional launch here (materialize.py ENTRYPOINT_GUARDS /
+# AGENT_ENVIRONMENT are the single render source; candidate_runtime.py declares
+# the expected values independently and compares). ``$$`` is Compose's escape
+# for a literal ``$`` that the container shell, not Compose, must expand.
+services:
+  accountingservice:
+    entrypoint:
+      - /bin/sh
+      - -c
+      - 'if [ "$$OTEL_PLACEMENT_ENABLED" = "false" ]; then exec dotnet AccountingService.dll; else exec ./instrument.sh dotnet AccountingService.dll; fi'
+    environment:
+      OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_ACCOUNTINGSERVICE_ENABLED:?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_ACCOUNTINGSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}"
+  adservice:
+    environment:
+      JAVA_TOOL_OPTIONS: "${OTEL_CANDIDATE_ADSERVICE_JAVA_TOOL_OPTIONS?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_ADSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_ADSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_ADSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_ADSERVICE_EXPORTER:?candidate posture required}"
+  cartservice:
+    environment:
+      OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_CARTSERVICE_ENABLED:?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_CARTSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_CARTSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_CARTSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_CARTSERVICE_EXPORTER:?candidate posture required}"
+  checkoutservice:
+    environment:
+      OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_CHECKOUTSERVICE_ENABLED:?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_CHECKOUTSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_CHECKOUTSERVICE_EXPORTER:?candidate posture required}"
+  currencyservice:
+    environment:
+      OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_CURRENCYSERVICE_ENABLED:?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_CURRENCYSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_CURRENCYSERVICE_EXPORTER:?candidate posture required}"
+  emailservice:
+    environment:
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_EMAILSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_EMAILSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_EMAILSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_EMAILSERVICE_EXPORTER:?candidate posture required}"
+  frauddetectionservice:
+    environment:
+      JAVA_TOOL_OPTIONS: "${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_JAVA_TOOL_OPTIONS?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_FRAUDDETECTIONSERVICE_EXPORTER:?candidate posture required}"
+  frontend:
+    environment:
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_FRONTEND_DISABLED:?candidate posture required}"
+      OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_FRONTEND_ENABLED:?candidate posture required}"
+      NEXT_PUBLIC_OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_FRONTEND_ENABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_FRONTEND_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_FRONTEND_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_FRONTEND_EXPORTER:?candidate posture required}"
+  frontendproxy:
+    volumes:
+      - ${OTEL_CANDIDATE_ENVOY_CONFIG:?candidate posture required}:/home/envoy/envoy.tmpl.yaml:ro
+  imageprovider:
+    volumes:
+      - ${OTEL_CANDIDATE_IMAGEPROVIDER_NGINX_TEMPLATE:?candidate posture required}:/nginx.conf.template:ro
+    environment:
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_IMAGEPROVIDER_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_IMAGEPROVIDER_EXPORTER:?candidate posture required}"
+  loadgenerator:
+    environment:
+      LOCUST_AUTOSTART: "false"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_LOADGENERATOR_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_LOADGENERATOR_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_LOADGENERATOR_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_LOADGENERATOR_EXPORTER:?candidate posture required}"
+  paymentservice:
+    entrypoint:
+      - /bin/sh
+      - -c
+      - 'if [ "$$OTEL_PLACEMENT_ENABLED" = "false" ]; then exec node index.js; else exec node --require ./opentelemetry.js index.js; fi'
+    environment:
+      OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_PAYMENTSERVICE_ENABLED:?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_PAYMENTSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_PAYMENTSERVICE_EXPORTER:?candidate posture required}"
+  productcatalogservice:
+    environment:
+      OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_ENABLED:?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_EXPORTER:?candidate posture required}"
+  quoteservice:
+    environment:
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_QUOTESERVICE_DISABLED:?candidate posture required}"
+      OTEL_PHP_AUTOLOAD_ENABLED: "${OTEL_CANDIDATE_QUOTESERVICE_ENABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_QUOTESERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_QUOTESERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_QUOTESERVICE_EXPORTER:?candidate posture required}"
+  recommendationservice:
+    environment:
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_DISABLED:?candidate posture required}"
+      OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_ENABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER:?candidate posture required}"
+  shippingservice:
+    environment:
+      OTEL_PLACEMENT_ENABLED: "${OTEL_CANDIDATE_SHIPPINGSERVICE_ENABLED:?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_SHIPPINGSERVICE_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_SHIPPINGSERVICE_EXPORTER:?candidate posture required}"
+  flagd:
+    environment:
+      FLAGD_OTEL_COLLECTOR_URI: "${OTEL_CANDIDATE_FLAGD_OTEL_COLLECTOR_URI?candidate posture required}"
+      FLAGD_METRICS_EXPORTER: "${OTEL_CANDIDATE_FLAGD_METRICS_EXPORTER?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_FLAGD_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_FLAGD_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_FLAGD_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_FLAGD_EXPORTER:?candidate posture required}"
+  flagd-ui:
+    environment:
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_FLAGD_UI_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_FLAGD_UI_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_FLAGD_UI_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_FLAGD_UI_EXPORTER:?candidate posture required}"
+  kafka:
+    environment:
+      KAFKA_OPTS: "${OTEL_CANDIDATE_KAFKA_KAFKA_OPTS?candidate posture required}"
+      OTEL_SDK_DISABLED: "${OTEL_CANDIDATE_KAFKA_DISABLED:?candidate posture required}"
+      OTEL_TRACES_EXPORTER: "${OTEL_CANDIDATE_KAFKA_EXPORTER:?candidate posture required}"
+      OTEL_METRICS_EXPORTER: "${OTEL_CANDIDATE_KAFKA_EXPORTER:?candidate posture required}"
+      OTEL_LOGS_EXPORTER: "${OTEL_CANDIDATE_KAFKA_EXPORTER:?candidate posture required}"

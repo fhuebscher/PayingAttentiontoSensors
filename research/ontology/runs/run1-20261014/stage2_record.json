@@ -1,0 +1,10 @@
+{
+ "promptSha256": "d29393e563c713440288700e6956dd33ec3c01b7e2a4d217cef08300edae00f7",
+ "wrapperSha256": "627fa70e695b792f8b161d164f89ff2a3299ff8da91469c56ca1352fcf2a2da2",
+ "models": {
+  "A": "sonnet (Sonnet 5.5)",
+  "B": "haiku (Haiku 5.5)",
+  "judge": "opus (Opus 5.5)"
+ },
+ "wrapperNote": "v3: the task entry carries system/service/extractor/out; model by index parity (even=A sonnet, odd=B haiku), checked; v1 fc829c81 and v2 3cab91dd replaced before any extractor ran"
+}

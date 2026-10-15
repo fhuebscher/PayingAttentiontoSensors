@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/knowledge-policy.schema.json",
+  "title": "Offline knowledge-access policy bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema", "schemaVersion", "id", "status", "sharedBudget", "archiveCompatibility",
+    "policies", "freezeGate", "claimBoundary"
+  ],
+  "properties": {
+    "$schema": {"const": "https://observability-placement.local/contracts/knowledge-policy.schema.json"},
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["method-contract", "preregistered", "superseded"]},
+    "sharedBudget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["unit", "value", "equalityGroup"],
+      "properties": {
+        "unit": {"const": "unique-target-configuration-evaluation"},
+        "value": {"type": ["integer", "null"], "minimum": 1},
+        "equalityGroup": {"const": "K0-K3"}
+      }
+    },
+    "archiveCompatibility": {
+      "type": "object", "additionalProperties": false,
+      "required": ["requiredEqual", "requiredMappings", "forbiddenSubstitutions"],
+      "properties": {
+        "requiredEqual": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "requiredMappings": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "forbiddenSubstitutions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "policies": {
+      "type": "array", "minItems": 5, "maxItems": 5,
+      "items": {"$ref": "#/$defs/policy"}
+    },
+    "freezeGate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["before", "requiredBindings", "unresolved"],
+      "properties": {
+        "before": {"const": "target-exploration-outcome-access"},
+        "requiredBindings": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "unresolved": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "preregistered"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "sharedBudget": {"properties": {"value": {"type": "integer", "minimum": 1}}},
+          "freezeGate": {"properties": {"unresolved": {"maxItems": 0}}}
+        }
+      }
+    },
+    {"properties": {"policies": {"contains": {"properties": {"id": {"const": "K0"}}, "required": ["id"]}, "minContains": 1, "maxContains": 1}}},
+    {"properties": {"policies": {"contains": {"properties": {"id": {"const": "K1"}}, "required": ["id"]}, "minContains": 1, "maxContains": 1}}},
+    {"properties": {"policies": {"contains": {"properties": {"id": {"const": "K2"}}, "required": ["id"]}, "minContains": 1, "maxContains": 1}}},
+    {"properties": {"policies": {"contains": {"properties": {"id": {"const": "K3"}}, "required": ["id"]}, "minContains": 1, "maxContains": 1}}},
+    {"properties": {"policies": {"contains": {"properties": {"id": {"const": "K4"}}, "required": ["id"]}, "minContains": 1, "maxContains": 1}}}
+  ],
+  "$defs": {
+    "policy": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "id", "selectionEligible", "scoringOnly", "allowedKnowledge", "forbiddenKnowledge",
+        "revealSchedule", "abstentionAllowed"
+      ],
+      "properties": {
+        "id": {"enum": ["K0", "K1", "K2", "K3", "K4"]},
+        "selectionEligible": {"type": "boolean"},
+        "scoringOnly": {"type": "boolean"},
+        "allowedKnowledge": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "forbiddenKnowledge": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "revealSchedule": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "abstentionAllowed": {"const": true}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"id": {"const": "K4"}}, "required": ["id"]},
+          "then": {"properties": {"selectionEligible": {"const": false}, "scoringOnly": {"const": true}}},
+          "else": {"properties": {"selectionEligible": {"const": true}, "scoringOnly": {"const": false}}}
+        }
+      ]
+    }
+  }
+}

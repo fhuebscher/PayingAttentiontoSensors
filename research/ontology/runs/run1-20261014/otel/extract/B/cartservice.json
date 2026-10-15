@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+    "system": "otel",
+    "service": "cartservice",
+    "extractor": "B",
+    "notes": [
+      "Health check: gRPC health service registered at src/cartservice/src/Program.cs:77-78 (AddGrpcHealthChecks, AddCheck Sample returning Healthy) and mapped at Program.cs:86. The cartservice block (docker-compose.yml:80-111) has no healthcheck key. The schema has no field for a service-level health check, so it is recorded here only.",
+      "Heartbeat, registry, discovery and coordinator: none referenced in these files. No registersWith, coordinator or liveness fact is emitted.",
+      "Messaging: no publish or consume call in Program.cs or CartService.cs. No publishesTo or consumes fact is emitted.",
+      "Telemetry: OTLP exporters for logs (Program.cs:31), traces (Program.cs:69) and metrics (Program.cs:74). Endpoint from OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4317 (.env:32, passed through docker-compose.yml:100), gRPC port 4317 (.env:28). Metrics temporality cumulative (.env:39). No export interval, batch delay or export timeout is set in these files (grep for METRIC_EXPORT_INTERVAL, BSP_SCHEDULE_DELAY, EXPORT_TIMEOUT found none); library default, not in these files. The OTLP protocol selection is not set in these files; library default, not in these files.",
+      "flagd: FlagdProvider() is constructed with no arguments (Program.cs:42). The host FLAGD_HOST=flagd (.env:129, passed through docker-compose.yml:97) is read by the library; the env read is library behaviour, not in these files. The protocol is not stated in these files; library default, not in these files (OpenFeature.Contrib.Providers.Flagd 0.3.0, cartservice.csproj:31).",
+      "Not a system service: Program.cs:51 constructs a second ValkeyCartStore at the hard-coded address badhost:1234. It is used only when the flag cartServiceFailure is true (CartService.cs:84-86, EmptyCart). It is not recorded as a syncEdge.",
+      "Replicas: no deploy.replicas or scale key in the cartservice block (docker-compose.yml:80-111, the deploy block at lines 88-92 sets resources only); library default, not in these files."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "cartservice",
+        "callee": "flagd"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/cartservice/src/services/CartService.cs",
+      "line": 84,
+      "quotedToken": "GetBooleanValueAsync",
+      "note": "Awaited flag evaluation on EmptyCart (CartService.cs:84). Protocol: not stated in these files; library default, not in these files. Host: see extraction.notes (flagd)."
+    },
+    {
+      "value": {
+        "caller": "cartservice",
+        "callee": "valkey-cart"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/cartservice/src/cartstore/ValkeyCartStore.cs",
+      "line": 117,
+      "quotedToken": "HashGetAsync",
+      "note": "Awaited Redis-protocol read on AddItem and GetCart (StackExchange.Redis 2.8.16, cartservice.csproj:30). Target from VALKEY_ADDR=valkey-cart:${VALKEY_PORT} (.env:144, passed through docker-compose.yml:99)."
+    }
+  ],
+  "services": [
+    {
+      "name": {
+        "value": "cartservice",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 80,
+        "quotedToken": "cartservice:"
+      },
+      "container": {
+        "value": "cart-service",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 82,
+        "quotedToken": "container_name: cart-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "Absent: no deploy.replicas or scale in the cartservice block (upstream:docker-compose.yml:80-111) or in harness:modules/otel-demo/deployment/compose.candidate-postures.yml:32-38. Compose default 1; library default, not in these files."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol"
+        }
+      ]
+    }
+  ]
+}

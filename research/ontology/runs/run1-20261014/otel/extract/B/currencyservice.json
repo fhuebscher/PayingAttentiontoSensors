@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "EXTRACTION_PROTOCOL.md stage 2, extractor B",
+    "service": "currencyservice",
+    "notes": [
+      "syncEdges: none made by this service. server.cpp registers only two gRPC services (server.cpp:246 RegisterService(&currencyService), server.cpp:247 RegisterService(&healthService)) and contains no client stub. The RPCs it serves are declared at pb/demo.proto:140-142. CMakeLists.txt:64-69 links gRPC::grpc++ for serving only. The stage-1 edge currencyservice to otelcol (.env:27) is telemetry export, not a synchronous service call, so it is reported under exportsTelemetryTo.",
+      "messaging: none. No Kafka or other messaging client in server.cpp or CMakeLists.txt:64-69. docker-compose.yml:181-185 passes no KAFKA_SERVICE_ADDR and docker-compose.yml:186-188 depends_on lists only otelcol.",
+      "registry, discovery, coordinator: none. server.cpp has no registration code and docker-compose.yml:166-189 has no registry key. Callers reach this service by address only (CURRENCY_SERVICE_ADDR at .env:64 is consumed by other services).",
+      "health: no healthcheck key in docker-compose.yml:166-189. The process serves a gRPC health service: HealthServer at server.cpp:91 sets SERVING in Check at server.cpp:98 and is registered at server.cpp:247. It answers on request. These files contain no heartbeat thread, failure timeout or cleanup interval, so heartbeat independence from work does not apply.",
+      "container and port: src/currencyservice/Dockerfile:47-48 EXPOSE and ENTRYPOINT use CURRENCY_SERVICE_PORT. .env:63 sets CURRENCY_SERVICE_PORT=7001. docker-compose.yml:179-180 publishes it. server.cpp:241 binds 0.0.0.0. docker-compose.yml:177 sets memory limit 20M (not in schema).",
+      "telemetry traces: tracer_common.h:75 creates OtlpGrpcExporterFactory::Create() with no options, and tracer_common.h:77 wraps it in SimpleSpanProcessorFactory::Create (per-span export; timing is library behaviour, not in these files). The endpoint comes from OTEL_EXPORTER_OTLP_ENDPOINT, which the exporter reads from the environment. Behaviour when unset: library default, not in these files.",
+      "telemetry metrics: meter_common.h:22-23 creates OtlpGrpcMetricExporterFactory::Create(otlpOptions) with default options. meter_common.h:26-28 uses a PeriodicExportingMetricReader with default PeriodicExportingMetricReaderOptions. The export interval is not set in these files: library default, not in these files. server.cpp:267 calls initMeter().",
+      "telemetry logs: logger_common.h:21-22 creates OtlpGrpcLogRecordExporterFactory::Create(loggerOptions) with default options, and logger_common.h:23 uses SimpleLogRecordProcessorFactory (per-record export; timing is library behaviour, not in these files). server.cpp:268 calls initLogger().",
+      "collector receive side: otelcol-config.yml:8 sets the gRPC OTLP receiver endpoint to OTEL_COLLECTOR_HOST:OTEL_COLLECTOR_PORT_GRPC, which resolves to otelcol:4317 (.env:27-28).",
+      "export gating: modules/otel-demo/deployment/compose.candidate-postures.yml:46-52 (harness repo) sets OTEL_PLACEMENT_ENABLED, OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER from OTEL_CANDIDATE_CURRENCYSERVICE_* variables whose values are not in these files. server.cpp reads only VERSION (server.cpp:85), so whether export happens depends on those unstated values and on library behaviour, not in these files.",
+      "replicas: no deploy.replicas or scale key in docker-compose.yml:166-189, and none in compose.candidate-postures.yml:46-52. Library default, not in these files."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "currencyservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 166,
+        "quotedToken": "currencyservice:"
+      },
+      "role": {
+        "value": "microservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "src/currencyservice/src/server.cpp",
+        "line": 103,
+        "quotedToken": "class CurrencyService final",
+        "note": "gRPC server implementing oteldemo.CurrencyService (pb/demo.proto:140); it makes no outbound calls"
+      },
+      "container": {
+        "value": "currency-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 168,
+        "quotedToken": "container_name: currency-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "absent: no deploy.replicas or scale key in the currencyservice block (docker-compose.yml:166-189; its deploy block at :174-177 sets only resources.limits.memory). Library default, not in these files; Compose default 1."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Resolves the OTEL_COLLECTOR_HOST reference in OTEL_EXPORTER_OTLP_ENDPOINT (.env:32 gives http://otelcol:4317; port at .env:28). Passed to the service by the bare entry at docker-compose.yml:184. Export is gated by the candidate posture variables (see extraction.notes)."
+        }
+      ],
+      "registersWith": [],
+      "publishesTo": [],
+      "consumes": []
+    }
+  ],
+  "syncEdges": []
+}

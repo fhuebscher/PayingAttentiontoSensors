@@ -1,0 +1,113 @@
+{
+ "consistencyCheck": "pass",
+ "consistencyMismatches": [],
+ "inputs": {
+  "research/placement/test-ts-r5/placement-r5.json": "5f68c81d713a28ac66a81db99ed6157e0cf3def72e3068706b89545b18e752fc",
+  "research/placement/test-ts-r5/transfer-r5-own/transfer.json": "fec7d11f7e907326e95b08ba7328f8f782d13f46416fa91637d4157dc1d82c66",
+  "research/placement/test-ts-r5/transfer-r5/transfer.json": "62429a1efadd74b740fcd92cc94ede27d100501e922ec1103112936c0b396b63",
+  "research/placement/test-ts-r5/ts-r5.json": "f9723c8e6001530be9f431030b020aef2abec43d7aaef8fef51a358fe0523ccc"
+ },
+ "rows": [
+  {
+   "counted": true,
+   "id": "TS5-V1",
+   "numbers": {
+    "gE": 48.5420863814652,
+    "improved": 2,
+    "rate": "1",
+    "verdict": "PASS"
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  },
+  {
+   "counted": true,
+   "id": "TS5-V10",
+   "numbers": {
+    "gE": 48.81357361096889,
+    "improved": 2,
+    "rate": "10",
+    "verdict": "PASS"
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  },
+  {
+   "counted": true,
+   "id": "TS5-S",
+   "numbers": {
+    "sets": {
+     "1": [
+      "log:webui:d4d75ec135e6"
+     ],
+     "10": [
+      "log:webui:d4d75ec135e6"
+     ]
+    }
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  },
+  {
+   "counted": true,
+   "id": "TS5-T1",
+   "numbers": {
+    "absentFromScoringGroundSet": {},
+    "episodesInPool": 2,
+    "improved": 2,
+    "members": [
+     "log:webui:d4d75ec135e6"
+    ],
+    "rate": "1",
+    "verdict": "PASS"
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  },
+  {
+   "counted": true,
+   "id": "TS5-T10",
+   "numbers": {
+    "absentFromScoringGroundSet": {},
+    "episodesInPool": 2,
+    "improved": 1,
+    "members": [
+     "span:auth:BCryptProvider.checkPassword"
+    ],
+    "rate": "10",
+    "verdict": "FAIL"
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  },
+  {
+   "counted": false,
+   "id": "TS5-L",
+   "numbers": {
+    "ledgerMissed": 4,
+    "recEpisodes": 4
+   },
+   "result": "hit",
+   "role": "check, not counted (true by construction if no request in the window touches recommender)"
+  },
+  {
+   "counted": true,
+   "id": "TS5-C",
+   "numbers": {
+    "authEpisodes": 4,
+    "ledgerDetected": 4
+   },
+   "result": "hit",
+   "role": "counted prediction"
+  }
+ ],
+ "runStopped": false,
+ "scope": "instance",
+ "scriptSha256": "c2a4840435b42373f27cfe028da4a1e9394355ffc935da1658d1eaedc65cc521",
+ "tally": {
+  "hit": 6,
+  "miss": 0,
+  "of": 6,
+  "undecided": 0
+ }
+}

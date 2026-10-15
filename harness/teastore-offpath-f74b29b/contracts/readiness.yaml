@@ -1,0 +1,19 @@
+version: 1
+status: planning-only
+description: Ordinal implementation readiness; never a measured runtime cost.
+classes:
+  R0-direct:
+    weight: 0
+    meaning: Existing supported selector is directly usable.
+  R1-deployment:
+    weight: 1
+    meaning: Requires a deployment overlay, mounted configuration, or restart.
+  R2-build:
+    weight: 2
+    meaning: Requires a reproducible build variant without new instrumentation logic.
+  R3-source:
+    weight: 3
+    meaning: Requires a source guard, integration, or new selector.
+  R4-unsupported:
+    weight: null
+    meaning: Infeasible under the retained posture or a hard goal constraint.

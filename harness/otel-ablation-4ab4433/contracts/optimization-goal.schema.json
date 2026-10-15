@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/optimization-goal.schema.json",
+  "title": "Structural goal skeleton frozen only for small-space enumeration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema", "schemaVersion", "id", "status", "operationalFreezeStatus", "module", "applicationFamily",
+    "catalogBinding", "compatibleContextIds", "scenario", "evidenceRequirements",
+    "structuralObjectives", "empiricalObjectives", "claimBoundary"
+  ],
+  "properties": {
+    "$schema": {"const": "https://observability-placement.local/contracts/optimization-goal.schema.json"},
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "status": {"const": "frozen-for-structural-oracle"},
+    "operationalFreezeStatus": {"const": "open"},
+    "module": {"type": "string", "minLength": 1},
+    "applicationFamily": {"type": "string", "minLength": 1},
+    "catalogBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "id", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "id": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "compatibleContextIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "scenario": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "workloadPopulation", "intervention", "informationRole"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "workloadPopulation": {"type": "string", "minLength": 1},
+        "intervention": {"type": "string", "minLength": 1},
+        "informationRole": {"enum": ["training", "held-out"]}
+      }
+    },
+    "evidenceRequirements": {
+      "type": "object", "additionalProperties": false,
+      "required": ["required", "optional", "requiredRelations"],
+      "properties": {
+        "required": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "optional": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "requiredRelations": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "structuralObjectives": {
+      "const": [
+        {"id": "required-evidence-coverage", "direction": "maximize"},
+        {"id": "structural-required-set-covered", "direction": "maximize"},
+        {"id": "structural-activation-count", "direction": "minimize"}
+      ]
+    },
+    "empiricalObjectives": {
+      "type": "array", "minItems": 1, "items": {"$ref": "#/$defs/objective"}
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "objective": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "direction", "requiredWindow"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "direction": {"enum": ["maximize", "minimize"]},
+        "requiredWindow": {"enum": ["no-fault-cost", "fault-utility", "held-out-transfer"]}
+      }
+    }
+  }
+}

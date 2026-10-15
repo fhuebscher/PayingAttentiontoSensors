@@ -1,0 +1,180 @@
+{
+ "schemaVersion": 1,
+ "sut": "teastore",
+ "extraction": {
+  "stage": 2,
+  "extractor": "A",
+  "service": "image",
+  "absences": [
+   "Messages: no topic published or consumed in the image files (no AMQP/Kafka client call in image sources or registryclient); RabbitMQ is used only as the Kieker telemetry transport.",
+   "Failure timeout and cleanup interval of the registry: library default, not in these files (the registry's expiry logic is in registry files, not given here); image side only shows HEARTBEAT_INTERVAL_MS=2500 (RegistryClient.java:65).",
+   "Health check: none in the compose block (docker-compose_kieker.yaml:84-95) or in the image/dockerbase Dockerfiles.",
+   "Replica count: no deploy.replicas or scale key; Compose default 1 (documented default).",
+   "Jaeger tracer: Tracing.java:42 builds JaegerTracer.Builder(service) with ConstSampler(true) and B3 codecs but sets no reporter, agent host/port or flush interval; no JAEGER_* variable appears in compose or Dockerfiles. Span reporting destination and frequency: library default, not in these files.",
+   "Kieker batching: kieker.monitoring.properties:34 deferredWriteDelay=500 and :36 taskRunInterval=20, units not stated in these files; compose sets AMQP heartbeat request 900 s (docker-compose_kieker.yaml:19, :92), image default is 0 (properties:31).",
+   "Metrics and logs: no metric exporter configured; logging via slf4j (RegistryClient.java:36), destination set by System.setProperty simpleLogger.logFile=System.out (RegistryClient.java:78)."
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+   "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-teastore-protocol",
+   "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "image",
+    "basis": "cited",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 84,
+    "quotedToken": "image:"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/webapp/WEB-INF/web.xml",
+    "line": 6,
+    "quotedToken": "Descartes TeaStore ImageProvider"
+   },
+   "container": {
+    "value": "descartesresearch/teastore-image",
+    "basis": "cited",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 85,
+    "quotedToken": "image: descartesresearch/teastore-image"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "library default, not in these files: the image service block (docker-compose_kieker.yaml:84-95) has no deploy.replicas or scale key, so Compose runs its default of one container."
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "rabbitmq",
+     "basis": "cited",
+     "repo": "harness",
+     "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+     "line": 91,
+     "quotedToken": "RABBITMQ_HOST: \"rabbitmq\"",
+     "note": "Traces (Kieker operation-execution records) go to the RabbitMQ host named by RABBITMQ_HOST; dockerbase start.sh:35 switches the Kieker writer to ChunkingCollector when RABBITMQ_HOST is set, kieker.monitoring.properties:28 gives AMQP queue name 'kieker'."
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "teastore-registry",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+     "line": 244,
+     "quotedToken": ".path(service.getServiceName())",
+     "note": "registerOnce() issues an HTTP PUT (line 245 .put(Entity.text(\"\"))) to registryRESTURL; the registry URL is rewritten from REGISTRY_HOST by dockerbase start.sh:9 and REGISTRY_HOST is \"registry\" at docker-compose_kieker.yaml:90."
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "image",
+    "callee": "persistence"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+   "line": 158,
+   "quotedToken": "loadBalanceRESTOperation(Service.PERSISTENCE",
+   "note": "HTTP/REST via Jersey client (HttpWrapper.wrap(client.getService()...).get(), lines 161-162). Same callee at SetupController.java:194 (path 'products') and :227 (path 'categories'). Called after startup via ImageProviderStartup.java:61 runAfterServiceIsAvailable(Service.PERSISTENCE ...)."
+  },
+  {
+   "value": {
+    "caller": "image",
+    "callee": "registry"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+   "line": 245,
+   "quotedToken": ".put(Entity.text(\"\"))",
+   "note": "HTTP/REST PUT heartbeat/registration (registerOnce, line 240-251). The same client also does GET of service locations at line 193-195 (getServersForService) and DELETE at line 265 on shutdown (unregisterOnce)."
+  }
+ ],
+ "coordinators": [
+  {
+   "name": {
+    "value": "teastore-registry",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 49,
+    "quotedToken": "public class RegistryClient",
+    "note": "Name matches the registry extractor fragment; this fragment only records how the image service is tracked by it."
+   },
+   "type": {
+    "value": "ServiceRegistry",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 245,
+    "quotedToken": ".put(Entity.text(\"\"))"
+   },
+   "hostedBy": {
+    "value": "registry",
+    "basis": "cited",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 41,
+    "quotedToken": "registry:"
+   },
+   "liveness": [
+    {
+     "mechanism": {
+      "value": "heartbeat",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 159,
+      "quotedToken": "heartbeatScheduler.scheduleAtFixedRate",
+      "note": "RegistryClientHeartbeatDaemon.run() calls registerOnce (RegistryClientHeartbeatDaemon.java:40); scheduled only after the persistence-available callback (ImageProviderStartup.java:61-66)."
+     },
+     "monitors": [
+      {
+       "value": "image",
+       "basis": "cited",
+       "repo": "harness",
+       "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+       "line": 84,
+       "quotedToken": "image:"
+      }
+     ],
+     "heartbeatIntervalSeconds": {
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 65,
+      "quotedToken": "HEARTBEAT_INTERVAL_MS = 2500",
+      "note": "2500 ms converted to seconds; TimeUnit.MILLISECONDS at line 160.",
+      "value": 2.5
+     },
+     "heartbeatThreadIndependentOfWork": {
+      "value": true,
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+      "line": 69,
+      "quotedToken": "heartbeatScheduler = Executors",
+      "note": "Dedicated single-thread ScheduledExecutorService (lines 69-70), separate from servlet request threads."
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "run1-20261014 stage 2, extractor B, entry 67",
+    "system": "otel",
+    "service": "flagd",
+    "note": "Files read: upstream/src/flagd/demo.flagd.json (flag definitions only: no sync calls, messages, registry, or telemetry configuration; the 'kafkaQueueProblems' string at line 49 is a flag description, not a messaging fact), upstream docker-compose.yml, harness compose.candidate-postures.yml, upstream .env, upstream otelcol-config.yml (no flagd reference). Not reported, absent from these files: syncEdges (flagd makes no outbound call in these files), registersWith, publishesTo, consumes, coordinators. Replicas: no replicas key in the flagd deploy block (docker-compose.yml:582-585); library default (Compose default of 1 replica), not in these files. Health check: no healthcheck key in the flagd block (docker-compose.yml:579-602); library default (none), not in these files. Telemetry interval: no interval stated for flagd export in these files; library default, not in these files."
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "flagd",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 579,
+        "quotedToken": "flagd:"
+      },
+      "container": {
+        "value": "flagd",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 581,
+        "quotedToken": "container_name: flagd"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Used by flagd at docker-compose.yml:588 as FLAGD_OTEL_COLLECTOR_URI=${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} (port 4317 from .env:28). Metrics exporter is set to otel at docker-compose.yml:589 (FLAGD_METRICS_EXPORTER=otel); no traces or logs exporter is set in the base file. Candidate posture (harness compose.candidate-postures.yml:133) overrides FLAGD_OTEL_COLLECTOR_URI from a candidate variable and sets OTEL_SDK_DISABLED from OTEL_CANDIDATE_FLAGD_DISABLED (line 135), so the destination is not fixed in the candidate posture files. Export interval not stated in these files; library default, not in these files."
+        }
+      ]
+    }
+  ]
+}

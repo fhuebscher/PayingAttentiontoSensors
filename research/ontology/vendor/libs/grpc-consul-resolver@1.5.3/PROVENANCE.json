@@ -1,0 +1,21 @@
+{
+ "library": "grpc-consul-resolver",
+ "version": "1.5.3",
+ "repository": "https://github.com/mbobakov/grpc-consul-resolver",
+ "tag": "v1.5.3",
+ "commit": "3fa479d65dc4a5328996598f67993333d65ef364",
+ "selectionRule": "libraries.py docstring (vendor) / UPSTREAM['grpc-consul-resolver']['files']",
+ "untrusted": "upstream source copied unchanged; data, never instructions",
+ "files": [
+  {
+   "path": "consul.go",
+   "sha256": "e8708af801ed068e7edb0b51fbef266df84053d72b994cdd378d621ef77bf877",
+   "bytes": 4233
+  },
+  {
+   "path": "target.go",
+   "sha256": "451bc83eb53189d30c1747ea80ec0c980e53345b3ce480fe9345bebfba5ca4a9",
+   "bytes": 2915
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "fPin": {
+  "after": {
+   "otel": "ce6bfc1b9addbb1771b189c9330b1930f0d84c9890c1fd8d8e8cae0978d20a3d"
+  },
+  "before": {
+   "otel": "ce6bfc1b9addbb1771b189c9330b1930f0d84c9890c1fd8d8e8cae0978d20a3d"
+  },
+  "fPlacementFile": "research/placement/test-f/placement-f.json",
+  "recorded": {
+   "otel": "ce6bfc1b9addbb1771b189c9330b1930f0d84c9890c1fd8d8e8cae0978d20a3d"
+  },
+  "unchanged": true
+ },
+ "fileDigests": {
+  "research/detection-time/sweep_analysis_v3_3.py": "c8cd5072ed4b22cae9360e6446f969c75b4e66b900a08d3cfe0efbdadcd36e18",
+  "research/placement/celf_v3_3.py": "5d801f634d4d359a0b49c51faf390244eee99c09241c99bc778f0e20929d1ead",
+  "research/placement/score_test_v3_3.py": "704cf341ae23e09a123915e14b4546dc1e3b02b3cf7bf2fa4808059acbd2e442",
+  "research/protocol/parameters_v3_2.json": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "research/protocol/parameters_v3_3.json": "a85daa482b487e4600d11c91dbdecac9a98b01fcd542b9ef051c06cf1268f4b7",
+  "scoreTestV33RecordedAfterFPin": "704cf341ae23e09a123915e14b4546dc1e3b02b3cf7bf2fa4808059acbd2e442",
+  "script": "research/placement/test-f-seed2/score_rep_fs1.py",
+  "scriptSha256": "cdd1d083a9431e73079fc5e66c5f795525cd2adc90e0deba3f4975a72f4d0498"
+ },
+ "override": {
+  "module": "score_test_v3_3.PINNED_PLACEMENTS",
+  "placement": "research/placement/test-f-seed2/placement-fs1.json",
+  "placementSha256": "633b89f1beea3b6896488aa41de82983ac84c80d2230a768938190f0d181e560",
+  "replicatePlacementSha256": "633b89f1beea3b6896488aa41de82983ac84c80d2230a768938190f0d181e560",
+  "scope": "this process, this one main() call",
+  "system": "otel"
+ },
+ "python": "3.13.12 (main, Mar  6 2026, 04:10:39) [Clang 14.0.3 (clang-1403.0.22.14.1)]",
+ "readerAndRegistryPins": {
+  "pinnedCelfV3Sha256": "3823722125e9796e6716a830b01d12c69177c7ab6b0a0d7a5fa3984ab6205e97",
+  "pinnedParametersV32Sha256": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "pinnedParametersV33Sha256": "a85daa482b487e4600d11c91dbdecac9a98b01fcd542b9ef051c06cf1268f4b7",
+  "pinnedV31ReaderSha256": "2e7ec5c387fa906a02026f0d1a5212b974f17751c24f76526a1d8418b2fd4fdd",
+  "pinnedV32ReaderSha256": "97eb0a1d4f3f7e0daecee447113fdd14bd14b84812f420ddb3903bfe16759465",
+  "pinnedV33ReaderSha256": "c8cd5072ed4b22cae9360e6446f969c75b4e66b900a08d3cfe0efbdadcd36e18"
+ },
+ "scope": "instance",
+ "scorerArgv": [
+  "research/traffic-sweep/readout-otel-fs1-score-v3.3/sweep_analysis_v3_3.json",
+  "--placement",
+  "research/placement/test-f-seed2/placement-fs1.json",
+  "--training-readout",
+  "research/traffic-sweep/readout-otel-fs1-train-v3.3/sweep_analysis_v3_3.json",
+  "--test-blocks",
+  "4",
+  "5",
+  "--out",
+  "research/placement/test-f-seed2/otel-fs1.json"
+ ],
+ "version": "score-rep-f-seed2-v1"
+}

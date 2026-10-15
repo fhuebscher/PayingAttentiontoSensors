@@ -1,0 +1,62 @@
+{
+  "action": "pause",
+  "actualOffsetMonotonicOffsetSeconds": 122.68447006121278,
+  "actualOnsetMonotonicOffsetSeconds": 60.8190087787807,
+  "appliedMonotonic": 5094.403617456555,
+  "appliedMonotonicOffsetSeconds": 62.61768003925681,
+  "barrierMonotonic": 5031.785937417299,
+  "duringRouteAvailable": false,
+  "duringStateSamples": [
+    {
+      "OOMKilled": false,
+      "Paused": true,
+      "Running": true,
+      "Status": "paused"
+    }
+  ],
+  "error": null,
+  "manifested": true,
+  "onsetSource": "pre-command",
+  "postState": {
+    "OOMKilled": false,
+    "Paused": false,
+    "Running": true,
+    "Status": "running"
+  },
+  "preState": {
+    "OOMKilled": false,
+    "Paused": false,
+    "Running": true,
+    "Status": "running"
+  },
+  "probes": [
+    {
+      "available": false,
+      "endMonotonic": 5099.503298718482,
+      "phase": "during-fault",
+      "startMonotonic": 5094.403853714466,
+      "status": null
+    },
+    {
+      "available": true,
+      "endMonotonic": 5154.472403712571,
+      "phase": "post-revert",
+      "startMonotonic": 5154.471782445908,
+      "status": 200
+    }
+  ],
+  "readyAtMonotonic": 5154.472475014627,
+  "recovered": true,
+  "revertedMonotonic": 5154.470407478511,
+  "revertingMonotonic": 5152.852528728545,
+  "revertingMonotonicOffsetSeconds": 121.06659131124616,
+  "scenario": "frontend-pause",
+  "scheduledHoldSeconds": 60.0,
+  "scheduledOnsetSeconds": 60.54806,
+  "service": "frontend",
+  "startedMonotonic": 5092.604946196079,
+  "successful": true,
+  "targetContainerId": "cid-frontend",
+  "targetImageId": "sha256:1cf387c012cd2d02f1923e589f86df4a4802427057dbc90f47b87f04d29d54bc",
+  "throttle": null
+}

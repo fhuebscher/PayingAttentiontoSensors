@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/probe-design.schema.json",
+  "title": "Versioned probe-design registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "status", "claimBoundary", "designs"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["catalog-bound-source-inspection-method-draft", "superseded"]},
+    "claimBoundary": {"type": "string", "minLength": 1},
+    "designs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/design"}
+    }
+  },
+  "$defs": {
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "design": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "module", "applicationFamily", "activationGroups", "logicalEvidence",
+        "placementLocus", "semanticSignal", "mechanism", "settingDomain",
+        "dependencies", "lifecycle", "controlPurity", "sourceBindings"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "module": {"type": "string", "minLength": 1},
+        "applicationFamily": {"type": "string", "minLength": 1},
+        "activationGroups": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "logicalEvidence": {
+          "type": "array", "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "placementLocus": {
+          "enum": ["source", "compile-weave", "load-time-weave", "process-runtime", "transport", "collector", "backend"]
+        },
+        "semanticSignal": {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "nativeUnit", "identityFields"],
+          "properties": {
+            "kind": {"type": "string", "minLength": 1},
+            "nativeUnit": {"type": "string", "minLength": 1},
+            "identityFields": {
+              "type": "array", "minItems": 1, "uniqueItems": true,
+              "items": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "mechanism": {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "implementation", "versionBinding"],
+          "properties": {
+            "kind": {"enum": ["aspectj-kieker", "manual-propagation", "otel-go-sdk", "otel-node-sdk", "other"]},
+            "implementation": {"type": "string", "minLength": 1},
+            "versionBinding": {"type": "string", "minLength": 1}
+          }
+        },
+        "settingDomain": {
+          "type": "object", "additionalProperties": false,
+          "required": ["values", "referenceValue", "controllability"],
+          "properties": {
+            "values": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": ["string", "boolean", "number"]}},
+            "referenceValue": {"type": ["string", "boolean", "number"]},
+            "controllability": {"enum": ["independent", "dependency-closed", "fixed-on", "unsupported"]}
+          }
+        },
+        "dependencies": {
+          "type": "array", "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "lifecycle": {"enum": ["rebuild", "restart", "runtime", "fixed-image"]},
+        "controlPurity": {
+          "type": "object", "additionalProperties": false,
+          "required": ["sourceWorkOff", "emissionOff", "transportOff", "retentionOff"],
+          "properties": {
+            "sourceWorkOff": {"enum": ["supported", "coupled", "unsupported", "unknown"]},
+            "emissionOff": {"enum": ["supported", "coupled", "unsupported", "unknown"]},
+            "transportOff": {"enum": ["supported", "coupled", "unsupported", "unknown"]},
+            "retentionOff": {"enum": ["supported", "coupled", "unsupported", "unknown"]}
+          }
+        },
+        "sourceBindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/binding"}}
+      }
+    }
+  }
+}

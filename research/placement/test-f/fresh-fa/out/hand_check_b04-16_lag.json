@@ -1,0 +1,14 @@
+{
+ "cell": "r25-b04-16-full",
+ "sensor": "metric:kafka:kafka.consumer_group.lag",
+ "rawSamplesInWindow": 36,
+ "readerSamplesInWindow": 36,
+ "m": 7.0,
+ "spikeThr": 7.412999999999999,
+ "rawMin": 5.0,
+ "rawMax": 8.0,
+ "rawBeyondUp": 0,
+ "rawBeyondDown": 0,
+ "readerSpikeAlarms": 0,
+ "firstBeyond": []
+}

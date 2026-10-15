@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "EXTRACTION_PROTOCOL.md stage 2, extractor B",
+    "service": "productcatalogservice",
+    "notes": [
+      "syncEdges: one outbound edge, productcatalogservice to flagd, from checkProductFailure (main.go:300-310). It is reached only from GetProduct (main.go:254) and only when the requested id equals OLJCESPC7Z (main.go:301); the flag is read with client.BooleanValue (main.go:306). The client is the OpenFeature client; the provider is set at startup with flagd.NewProvider() (main.go:132) and no options. The transport (gRPC) is the flagd provider's default resolver: library default, not in these files. Target address comes from FLAGD_HOST and FLAGD_PORT (docker-compose.yml:471-472; .env:129 FLAGD_HOST=flagd, .env:130 FLAGD_PORT=8013). Whether the provider reads those variables is library behaviour, not in these files.",
+      "createClient (main.go:312-317) dials a service address with grpc.DialContext, but no call site exists in main.go, tools.go or any other file given. It contributes no edge.",
+      "messaging: none. No Kafka or other messaging client among the imports in main.go:9-47. docker-compose.yml:466-482 does not pass KAFKA_SERVICE_ADDR and depends_on lists only otelcol and flagd.",
+      "registry, discovery, coordinator: none. main.go has no registration or heartbeat code. docker-compose.yml:454-482 has no registry key. Callers reach the service by address only (PRODUCT_CATALOG_SERVICE_ADDR is consumed by other services, .env:107). No heartbeat, failure timeout or cleanup interval is present in these files.",
+      "health: gRPC health service registered at main.go:160 and Check returns SERVING at main.go:230-232; Watch is not implemented (main.go:234-236). docker-compose.yml:454-482 has no healthcheck key and Dockerfile:26-34 has no HEALTHCHECK instruction. Heartbeat independence from work does not apply.",
+      "container and port: docker-compose.yml:456 container_name product-catalog-service; docker-compose.yml:467-468 publishes ${PRODUCT_CATALOG_SERVICE_PORT}; .env:106 sets PRODUCT_CATALOG_SERVICE_PORT=3550; main.go:144 reads PRODUCT_CATALOG_SERVICE_PORT with mustMapEnv and main.go:148 listens on that port. Dockerfile:33 EXPOSE uses PRODUCT_SERVICE_PORT, a name not defined in .env or in the files read (the EXPOSE and the env name disagree; the runtime port is the one at main.go:144).",
+      "replicas: no deploy.replicas or scale key in docker-compose.yml:454-482. Compose default 1, documented default. The deploy block at docker-compose.yml:462-465 sets only resources.limits.memory 20M (not in schema).",
+      "restart: docker-compose.yml:466 restart unless-stopped (not in schema).",
+      "telemetry traces: main.go:86 otlptracegrpc.New(ctx) with no options; main.go:91 sdktrace.WithBatcher(exporter) (batch timing: library default, not in these files). Endpoint from environment: docker-compose.yml:473 passes OTEL_EXPORTER_OTLP_ENDPOINT through, and .env:32 sets it to http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}, which is http://otelcol:4317 (.env:27-28). Incoming RPCs are traced by otelgrpc.NewServerHandler() at main.go:154. Trace propagation is set at main.go:95.",
+      "telemetry metrics: main.go:102 otlpmetricgrpc.New(ctx) with no options; main.go:108 sdkmetric.NewPeriodicReader(exporter) with no interval set (export interval: library default, not in these files). Runtime metrics are read at a minimum interval of 1 second at main.go:137. Temporality is cumulative from .env:39 via docker-compose.yml:474.",
+      "telemetry logs: no OTLP log exporter. main.go:57 creates a logrus logger (logrus.New(), default output: library default, not in these files) and main.go imports no logs SDK. The collector's logs pipeline has only the otlp receiver (otelcol-config.yml:132-133), so this service's logrus output is not sent over OTLP to that pipeline.",
+      "collector receive side: otelcol-config.yml:8 sets the gRPC OTLP receiver endpoint to ${env:OTEL_COLLECTOR_HOST}:${env:OTEL_COLLECTOR_PORT_GRPC}, which resolves to otelcol:4317.",
+      "export gating: modules/otel-demo/deployment/compose.candidate-postures.yml:103-109 (harness repo) sets OTEL_PLACEMENT_ENABLED, OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER from OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_* variables whose values are not in these files. None of these names appears in main.go, so whether they change export cannot be determined from these files.",
+      "not used as facts: products/products.json is catalog data; tools.go only pins protoc plugins; go.mod lists libraries but states no service dependency. demo.proto:71-75 defines the ProductCatalogService RPCs (ListProducts, GetProduct, SearchProducts) that this service serves."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "productcatalogservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 454,
+        "quotedToken": "productcatalogservice:"
+      },
+      "role": {
+        "value": "microservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "src/productcatalogservice/main.go",
+        "line": 159,
+        "quotedToken": "RegisterProductCatalogServiceServer",
+        "note": "gRPC server implementing oteldemo.ProductCatalogService (pb/demo.proto:71); it makes one outbound call, to flagd (syncEdges)"
+      },
+      "container": {
+        "value": "product-catalog-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 456,
+        "quotedToken": "container_name: product-catalog-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "absent: no deploy.replicas or scale key in the productcatalogservice block (docker-compose.yml:454-482; its deploy block at :462-465 sets only resources.limits.memory). Library default, not in these files; Compose default 1."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Resolves the OTEL_COLLECTOR_HOST reference in OTEL_EXPORTER_OTLP_ENDPOINT (.env:32 gives http://otelcol:4317; port at .env:28). Passed to the service through the bare entry at docker-compose.yml:473. Traces and metrics are exported; logs are not exported over OTLP (see extraction.notes)."
+        }
+      ],
+      "registersWith": [],
+      "publishesTo": [],
+      "consumes": []
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "productcatalogservice",
+        "callee": "flagd"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/productcatalogservice/main.go",
+      "line": 306,
+      "quotedToken": "client.BooleanValue(",
+      "note": "OpenFeature flag read (productCatalogFailure) in checkProductFailure, reached only from GetProduct for id OLJCESPC7Z (main.go:254, main.go:301). Target service flagd is defined at docker-compose.yml:579 (quotedToken flagd:); address from FLAGD_HOST/FLAGD_PORT (.env:129-130). Protocol: gRPC via the flagd provider's default resolver, library default, not in these files."
+    }
+  ]
+}

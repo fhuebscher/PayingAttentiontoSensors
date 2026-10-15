@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "stage": 2,
+  "extractor": "A",
+  "service": "frontendproxy",
+  "notes": [
+   "Healthcheck: no healthcheck block in the frontendproxy service of upstream docker-compose.yml (service block lines 311-344; the only healthcheck keys in that file are at lines 652 and 801, other services). Not reported as a fact.",
+   "Registry/discovery/coordinator: none stated in the given files for this service; registersWith left empty. Envoy clusters use type STRICT_DNS (envoy.tmpl.yaml:71 etc.), i.e. DNS resolution, not a registry.",
+   "Telemetry frequency: not stated. envoy.tmpl.yaml:27 sets only a 0.250s gRPC timeout, which is not an export interval; batching/export period is library default, not in these files. Only traces are configured in envoy.tmpl.yaml (tracing block lines 18-32); no metrics or logs sink is configured in the given files.",
+   "The otel collector's httpcheck/frontendproxy receiver scrapes http://frontendproxy:${ENVOY_PORT} (otelcol-config.yml:15-17, no collection_interval in that block: library default, not in these files). That is the collector polling the proxy, not an export by the proxy.",
+   "Runtime override: harness compose.candidate-postures.yml:76 bind-mounts ${OTEL_CANDIDATE_ENVOY_CONFIG} over /home/envoy/envoy.tmpl.yaml, so the config running in a campaign is the candidate file, not the upstream file read here; that file was not among the given files.",
+   "Edge protocol is HTTP for all edges (Envoy HttpConnectionManager, envoy.tmpl.yaml:13-15 and routes lines 40-55); the callee names are resolved from the cluster address env vars (.env lines 27, 81, 87, 95, 129, 133, 151, 155)."
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "frontendproxy",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 311,
+    "quotedToken": "frontendproxy:"
+   },
+   "container": {
+    "value": "frontend-proxy",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 313,
+    "quotedToken": "container_name: frontend-proxy"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "library default, not in these files: no deploy.replicas or scale in the frontendproxy block (upstream docker-compose.yml:311-344, deploy block lines 317-320 sets only resources.limits.memory); Compose default 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "repo": "upstream",
+     "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+     "line": 26,
+     "quotedToken": "opentelemetry_collector_grpc",
+     "note": "traces only (envoy.tracers.opentelemetry, OTLP over gRPC); cluster address is ${OTEL_COLLECTOR_HOST} (envoy.tmpl.yaml:85) = otelcol (.env:27); export frequency not stated in these files"
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {"caller": "frontendproxy", "callee": "frontend"},
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 55,
+   "quotedToken": "cluster: frontend",
+   "note": "HTTP; default route prefix '/'; cluster address ${FRONTEND_HOST} (envoy.tmpl.yaml:109) = frontend (.env:81)"
+  },
+  {
+   "value": {"caller": "frontendproxy", "callee": "loadgenerator"},
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 41,
+   "quotedToken": "cluster: loadgen",
+   "note": "HTTP; prefix /loadgen; cluster address ${LOCUST_WEB_HOST} (envoy.tmpl.yaml:157) = loadgenerator (.env:95)"
+  },
+  {
+   "value": {"caller": "frontendproxy", "callee": "otelcol"},
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 43,
+   "quotedToken": "opentelemetry_collector_http",
+   "note": "HTTP; prefix /otlp-http/ forwarded to the collector OTLP/HTTP port; cluster address ${OTEL_COLLECTOR_HOST} (envoy.tmpl.yaml:97) = otelcol (.env:27)"
+  },
+  {
+   "value": {"caller": "frontendproxy", "callee": "jaeger"},
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 45,
+   "quotedToken": "cluster: jaeger",
+   "note": "HTTP; prefix /jaeger; cluster address ${JAEGER_SERVICE_HOST} (envoy.tmpl.yaml:181) = jaeger (.env:155)"
+  },
+  {
+   "value": {"caller": "frontendproxy", "callee": "grafana"},
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 47,
+   "quotedToken": "cluster: grafana",
+   "note": "HTTP; prefix /grafana; cluster address ${GRAFANA_SERVICE_HOST} (envoy.tmpl.yaml:169) = grafana (.env:151)"
+  },
+  {
+   "value": {"caller": "frontendproxy", "callee": "imageprovider"},
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 49,
+   "quotedToken": "cluster: imageprovider",
+   "note": "HTTP; prefix /images/; cluster address ${IMAGE_PROVIDER_HOST} (envoy.tmpl.yaml:121) = imageprovider (.env:87)"
+  },
+  {
+   "value": {"caller": "frontendproxy", "callee": "flagd"},
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 51,
+   "quotedToken": "cluster: flagservice",
+   "note": "HTTP; prefix /flagservice/ with timeout 0s; cluster address ${FLAGD_HOST} (envoy.tmpl.yaml:133) = flagd (.env:129)"
+  },
+  {
+   "value": {"caller": "frontendproxy", "callee": "flagd-ui"},
+   "repo": "upstream",
+   "sourceFile": "src/frontendproxy/envoy.tmpl.yaml",
+   "line": 53,
+   "quotedToken": "cluster: flagd-ui",
+   "note": "HTTP; prefix /feature; cluster address ${FLAGD_UI_HOST} (envoy.tmpl.yaml:145) = flagd-ui (.env:133)"
+  }
+ ]
+}

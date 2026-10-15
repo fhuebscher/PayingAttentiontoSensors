@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 2,
+  "kind": "otel-demo-candidate-target-contract-v2",
+  "host": "fb14srv6",
+  "transportUsers": ["root"],
+  "setupUsers": ["root"],
+  "executionIdentities": [
+    {"user": "stig", "uid": 1016, "gid": 1016, "supplementalGids": [998]}
+  ],
+  "releaseParent": "/home/stig/observability-placement-candidate-v4-otel-srv6",
+  "artifactParent": "/home/stig/observability-placement-candidate-v4-runs",
+  "leasePath": "/home/stig/observability-placement-candidate-v4-runs/.srv6-runtime.lock",
+  "projectPrefix": "otel_candidate_v4",
+  "reservedPorts": [18080, 18081, 18082, 18083, 18084],
+  "freshReadinessAfter": null,
+  "readinessRequirements": [
+    "exact non-symlink installed release with source digest replay",
+    "controller-only artifact root after setup with no candidate result entries",
+    "no foreign active containers or active compose projects",
+    "shared srv6 lease available and reserved ports free",
+    "foreign exited projects and volumes inventoried and preserved",
+    "installed controller bytes and built image ids match the setup receipt"
+  ],
+  "docker": {"expectedGid": 998, "expectedVersion": "29.6.1"},
+  "source": {
+    "submodulePath": "upstream/opentelemetry-demo",
+    "upstreamCommit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "compose": {
+    "projectRule": "project-prefix-plus-campaign-id",
+    "ports": {
+      "frontend": 18080,
+      "frontendProxyOtlp": 18081,
+      "grafana": 18082,
+      "jaeger": 18083,
+      "prometheus": 18084
+    }
+  },
+  "isolation": {
+    "foreignActiveDockerResourcesAllowed": false,
+    "foreignExitedProjectsAndVolumesPolicy": "inventory-and-preserve",
+    "competingExperimentLeasesAllowed": false,
+    "noOverlappingHostLocalCostWindows": true
+  },
+  "handoff": {
+    "predecessor": null,
+    "successor": "online-boutique",
+    "successorRequires": [
+      "otel remote terminal retained",
+      "otel compose project empty",
+      "all five otel reserved ports free",
+      "shared srv6 lease acquirable after otel controller exit"
+    ]
+  },
+  "claimBoundary": "The complete randomized 18-cell OTel Demo campaign runs on fb14srv6 only. Cost and effect regimes stay in their frozen order on that host; measurements are not pooled with another host. Foreign exited projects and volumes are inventory only and are never touched."
+}

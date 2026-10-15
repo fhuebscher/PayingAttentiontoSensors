@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "sut": "hotel",
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+      "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-hotel-protocol",
+      "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+    }
+  },
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "search",
+        "callee": "srv-geo"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/search/server.go",
+      "line": 70,
+      "quotedToken": "s.initGeoClient(\"srv-geo\")",
+      "note": "gRPC: geo.NewGeoClient (server.go:101), Geo.Nearby call (server.go:136, proto geo.proto:9); dialled with grpc.Dial (dialer/dialer.go:55). Callee is the Consul service name passed to the dialer; compose key is geo (docker-compose.yml:81)."
+    },
+    {
+      "value": {
+        "caller": "search",
+        "callee": "srv-rate"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/search/server.go",
+      "line": 73,
+      "quotedToken": "s.initRateClient(\"srv-rate\")",
+      "note": "gRPC: rate.NewRateClient (server.go:110), Rate.GetRates call (server.go:149, proto rate.proto:9). Callee is the Consul service name; compose key is rate (docker-compose.yml:102)."
+    }
+  ],
+  "services": [
+    {
+      "name": {
+        "value": "search",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 61,
+        "quotedToken": "search:"
+      },
+      "container": {
+        "value": "search",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 61,
+        "quotedToken": "search:",
+        "note": "No container_name in the search block (docker-compose.yml:61-79); the compose service key is used as the name. The search block has no healthcheck: key (docker-compose.yml:61-79) and the harness overlay has none for search (compose.observability-placement.yml:12-16). Absence of a health check: compose default, not in these files."
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 77,
+        "quotedToken": "replicas: 1",
+        "note": "Overlay does not set replicas for search."
+      },
+      "registersWith": [
+        {
+          "value": "consul",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "hotelReservation/config.json",
+          "line": 2,
+          "quotedToken": "\"consulAddress\": \"consul:8500\"",
+          "note": "Registration call at services/search/server.go:82 (s.Registry.Register) under the name srv-search (server.go:24). Consul agent image pinned in the overlay (compose.observability-placement.yml:3)."
+        }
+      ],
+      "exportsTelemetryTo": [
+        {
+          "value": "jaeger",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "hotelReservation/config.json",
+          "line": 3,
+          "quotedToken": "\"jaegerAddress\": \"jaeger:6831\"",
+          "note": "Traces via jaeger-client-go (go.mod:15), agent host set from the address (tracing/tracer.go:37). BufferFlushInterval 1 s (tracer.go:36). Sample ratio default 0.01 (tracer.go:14); the overlay sets JAEGER_SAMPLE_RATIO for search to 1 by default (compose.observability-placement.yml:15)."
+        },
+        {
+          "value": "stdout",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "hotelReservation/cmd/search/main.go",
+          "line": 22,
+          "quotedToken": "Out: os.Stdout",
+          "note": "Logs: zerolog ConsoleWriter to stdout. No log shipping and no log flush interval in these files."
+        }
+      ]
+    }
+  ],
+  "coordinators": [
+    {
+      "name": {
+        "value": "consul",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 4,
+        "quotedToken": "consul:",
+        "note": "Upstream image is hashicorp/consul:latest (docker-compose.yml:5); the harness overlay pins hashicorp/consul:1.13 (compose.observability-placement.yml:3)."
+      },
+      "type": {
+        "value": "ServiceRegistry",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/registry/registry.go",
+        "line": 8,
+        "quotedToken": "consul \"github.com/hashicorp/consul/api\"",
+        "note": "Consul API client used by search to register (registry.go:92) and deregister (registry.go:97) its service."
+      },
+      "hostedBy": {
+        "value": "consul",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 4,
+        "quotedToken": "consul:",
+        "note": "Compose service whose image runs the Consul agent."
+      },
+      "liveness": [
+        {
+          "mechanism": {
+            "value": "ServiceRegister",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/registry/registry.go",
+            "line": 92,
+            "quotedToken": "return c.Agent().ServiceRegister(reg)",
+            "note": "One-shot registration at startup (services/search/server.go:82). AgentServiceRegistration (registry.go:85-90) has no Check or TTL field. No heartbeat loop, failure timeout or cleanup interval in these files: library default, not in these files (consul api v1.26.1, go.mod:10). Whether a heartbeat runs independently of request processing: not stated in these files."
+          },
+          "monitors": [
+            {
+              "value": "srv-search",
+              "basis": "cited",
+              "repo": "upstream",
+              "sourceFile": "hotelReservation/services/search/server.go",
+              "line": 24,
+              "quotedToken": "const name = \"srv-search\"",
+              "note": "Consul service name the search service is registered under (server.go:82)."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

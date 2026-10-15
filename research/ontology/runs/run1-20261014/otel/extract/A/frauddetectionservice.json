@@ -1,0 +1,41 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {"stage": 2, "extractor": "A", "service": "frauddetectionservice", "task": 46},
+ "sources": {
+  "upstream": {"path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo", "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"},
+  "harness": {"path": "../observability-placement-runtime-otel-protocol", "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"}
+ },
+ "services": [
+  {
+   "name": {"value": "frauddetectionservice", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 219, "quotedToken": "frauddetectionservice:"},
+   "container": {"value": "frauddetection-service", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 221, "quotedToken": "container_name: frauddetection-service", "note": "no healthcheck: key in the service block docker-compose.yml:219-247 (health check: none configured; restart: unless-stopped at line 231)"},
+   "replicas": {"value": 1, "basis": "documented-default", "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas", "note": "no deploy.replicas or scale in the service block docker-compose.yml:229-230 (deploy only sets resources.limits.memory) nor in compose.candidate-postures.yml:59-65; Compose default 1"},
+   "consumes": [
+    {
+     "topic": {"value": "orders", "repo": "upstream", "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt", "line": 26, "quotedToken": "const val topic = \"orders\""},
+     "group": {"value": "frauddetectionservice", "repo": "upstream", "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt", "line": 27, "quotedToken": "const val groupID = \"frauddetectionservice\""}
+    }
+   ],
+   "exportsTelemetryTo": [
+    {"value": "otelcol", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 236, "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}", "note": "OTLP over HTTP (port 4318 via .env:29) for traces, metrics and logs; the export interval is not stated in the service's files (library default, not in these files); the java agent is attached at Dockerfile:22 JAVA_TOOL_OPTIONS"},
+    {"value": "container stdout (docker json-file log driver)", "repo": "upstream", "sourceFile": "src/frauddetectionservice/src/main/resources/log4j2.xml", "line": 9, "quotedToken": "<Console name=\"STDOUT\" target=\"SYSTEM_OUT\">", "note": "log4j2 console appender, Root level INFO (log4j2.xml:14); compose logging: *logging at docker-compose.yml:247 (json-file, max-size 5m at docker-compose.yml:7)"}
+   ]
+  }
+ ],
+ "syncEdges": [
+  {"value": {"caller": "frauddetectionservice", "callee": "flagd"}, "repo": "upstream", "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt", "line": 35, "quotedToken": "FlagdProvider(options)", "note": "feature-flag evaluation (getIntegerValue, main.kt:86) via the flagd OpenFeature provider; host from FLAGD_HOST at docker-compose.yml:233; wire protocol not stated in these files"}
+ ],
+ "topics": [
+  {
+   "name": {"value": "orders", "repo": "upstream", "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt", "line": 49, "quotedToken": "subscribe(listOf(topic))"},
+   "broker": {"value": "kafka", "repo": "upstream", "sourceFile": ".env", "line": 139, "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}", "note": "bootstrap server read at main.kt:42 and passed at docker-compose.yml:235"}
+  }
+ ],
+ "consumerGroups": [
+  {
+   "name": {"value": "frauddetectionservice", "repo": "upstream", "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt", "line": 41, "quotedToken": "props[GROUP_ID_CONFIG] = groupID", "note": "consumer properties block main.kt:38-41,47 sets only deserializers, group.id and bootstrap.servers; no session.timeout.ms, heartbeat.interval.ms or max.poll.interval.ms: library default, not in these files; the poll loop (main.kt:55-57) also sleeps 1 s per record when flag kafkaQueueProblems > 0 (main.kt:60-62)"},
+   "coordinator": {"value": "kafka", "repo": "upstream", "sourceFile": "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt", "line": 47, "quotedToken": "props[BOOTSTRAP_SERVERS_CONFIG] = bootstrapServers", "note": "coordinator is the broker the group connects to; no coordinator, heartbeat interval, failure timeout or cleanup interval stated in these files"}
+  }
+ ]
+}

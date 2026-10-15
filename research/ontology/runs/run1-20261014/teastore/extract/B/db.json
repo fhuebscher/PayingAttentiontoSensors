@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "sut": "teastore",
+  "extraction": {
+    "stage": 2,
+    "extractor": "B",
+    "model": "haiku",
+    "service": "db",
+    "scope": "service facts only; files: upstream utilities/tools.descartes.teastore.database/{Dockerfile,setup.sql}, harness modules/teastore/deployment/compose/docker-compose_kieker.yaml, upstream tools/build_docker.sh"
+  },
+  "sources": {
+    "harness": {
+      "path": "../observability-placement-runtime-teastore-protocol",
+      "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+    },
+    "upstream": {
+      "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+      "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "db",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 50,
+        "quotedToken": "db:"
+      },
+      "role": {
+        "value": "datastore",
+        "repo": "upstream",
+        "sourceFile": "utilities/tools.descartes.teastore.database/Dockerfile",
+        "line": 1,
+        "quotedToken": "mariadb:10.4.12",
+        "note": "base image is MariaDB 10.4.12; the Dockerfile adds setup.sql as the init script (line 5)"
+      },
+      "container": {
+        "value": "db",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 50,
+        "quotedToken": "db:",
+        "note": "no container_name in the db service block (lines 50-57); Compose names the container <project>-db-<n>, library default, not in these files"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "library default, not in these files: no deploy.replicas or scale in the db service block at docker-compose_kieker.yaml:50-57; Compose default 1"
+      }
+    }
+  ]
+}

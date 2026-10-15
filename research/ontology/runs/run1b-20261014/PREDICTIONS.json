@@ -1,0 +1,1203 @@
+{
+ "label": "PREDICTIONS from the run's ABoxes, committed before any comparison. Every campaign compared later has already been read: the comparison is POST HOC for all rows.",
+ "scope": "instance (one system at one pinned commit; the ABox as built, SHACL violations included)",
+ "run": "run1b-20261014",
+ "inputs": {
+  "hotel.ttl": "6dcda14f3d08947927e3787ce037e2c6a3f1e55814bc39fa461b182c46df490a",
+  "otel.ttl": "bd6624c0e93eaf383eb1ddb2094484315575506e59334e11479b5f1ef6c73150",
+  "teastore.ttl": "4e1d269ad3233ef47741ef746865899b8987a400680780a3f39a185365ee9a27",
+  "pooled.json (row keys only)": "b69797d09086dd818602eb4a75d3c5e7911c3542919da335e1bc057617318233"
+ },
+ "rows": [
+  {
+   "source": "pooled (research/lanes/out-pooled-20261014/pooled.json)",
+   "system": "hotel",
+   "regime": "cpu-throttle",
+   "faultKind": "degradation",
+   "target": "profile",
+   "opsKind": "cpuThrottle",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": true,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-liveness-check"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "sync-caller",
+     "affected": "svc-frontend",
+     "via": "svc-profile"
+    }
+   ]
+  },
+  {
+   "source": "pooled (research/lanes/out-pooled-20261014/pooled.json)",
+   "system": "hotel",
+   "regime": "net-delay",
+   "faultKind": "degradation",
+   "target": "rate",
+   "opsKind": "netDelay",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-liveness-check"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "sync-caller",
+     "affected": "svc-frontend",
+     "via": "svc-rate"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-search",
+     "via": "svc-rate"
+    }
+   ]
+  },
+  {
+   "source": "pooled (research/lanes/out-pooled-20261014/pooled.json)",
+   "system": "hotel",
+   "regime": "search-pause",
+   "faultKind": "pause",
+   "target": "search",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-liveness-check"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "sync-caller",
+     "affected": "svc-frontend",
+     "via": "svc-search"
+    }
+   ]
+  },
+  {
+   "source": "pooled (research/lanes/out-pooled-20261014/pooled.json)",
+   "system": "otel",
+   "regime": "accounting-pause",
+   "faultKind": "pause",
+   "target": "accountingservice",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-coordinator"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "backlog",
+     "affected": "group-accountingservice",
+     "via": "topic-orders"
+    }
+   ]
+  },
+  {
+   "source": "pooled (research/lanes/out-pooled-20261014/pooled.json)",
+   "system": "otel",
+   "regime": "fraud-pause",
+   "faultKind": "pause",
+   "target": "frauddetectionservice",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-coordinator"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "backlog",
+     "affected": "group-frauddetectionservice",
+     "via": "topic-orders"
+    }
+   ]
+  },
+  {
+   "source": "pooled (research/lanes/out-pooled-20261014/pooled.json)",
+   "system": "otel",
+   "regime": "frontend-pause",
+   "faultKind": "pause",
+   "target": "frontend",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-coordinator"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "sync-caller",
+     "affected": "svc-frontendproxy",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-grafana",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-jaeger",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-loadgenerator",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-otelcol",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-prometheus",
+     "via": "svc-frontend"
+    }
+   ]
+  },
+  {
+   "source": "pooled (research/lanes/out-pooled-20261014/pooled.json)",
+   "system": "otel",
+   "regime": "productcatalog-cpu-throttle",
+   "faultKind": "degradation",
+   "target": "productcatalogservice",
+   "opsKind": "cpuThrottle",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-coordinator"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "starved",
+     "affected": "svc-accountingservice",
+     "via": "topic-orders"
+    },
+    {
+     "effect": "starved",
+     "affected": "svc-frauddetectionservice",
+     "via": "topic-orders"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-checkoutservice",
+     "via": "svc-productcatalogservice"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-frontend",
+     "via": "svc-productcatalogservice"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-frontendproxy",
+     "via": "svc-productcatalogservice"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-grafana",
+     "via": "svc-productcatalogservice"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-jaeger",
+     "via": "svc-productcatalogservice"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-loadgenerator",
+     "via": "svc-productcatalogservice"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-otelcol",
+     "via": "svc-productcatalogservice"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-prometheus",
+     "via": "svc-productcatalogservice"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-recommendationservice",
+     "via": "svc-productcatalogservice"
+    }
+   ]
+  },
+  {
+   "source": "pooled (research/lanes/out-pooled-20261014/pooled.json)",
+   "system": "teastore",
+   "regime": "auth-freeze",
+   "faultKind": "pause",
+   "target": "auth",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-liveness-check"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "sync-caller",
+     "affected": "svc-webui",
+     "via": "svc-auth"
+    }
+   ]
+  },
+  {
+   "source": "pooled (research/lanes/out-pooled-20261014/pooled.json)",
+   "system": "teastore",
+   "regime": "persistence-cpu-throttle",
+   "faultKind": "degradation",
+   "target": "persistence",
+   "opsKind": "cpuThrottle",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-liveness-check"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "sync-caller",
+     "affected": "svc-auth",
+     "via": "svc-persistence"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-image",
+     "via": "svc-persistence"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-persistence",
+     "via": "svc-persistence"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-recommender",
+     "via": "svc-persistence"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-webui",
+     "via": "svc-persistence"
+    }
+   ]
+  },
+  {
+   "source": "campaign F (DECLARATION_F_OTEL.md, RESULT_F.md)",
+   "system": "otel",
+   "regime": "fraud-pause",
+   "faultKind": "pause",
+   "target": "frauddetectionservice",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-coordinator"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "backlog",
+     "affected": "group-frauddetectionservice",
+     "via": "topic-orders"
+    }
+   ]
+  },
+  {
+   "source": "campaign F (DECLARATION_F_OTEL.md, RESULT_F.md)",
+   "system": "otel",
+   "regime": "accounting-pause",
+   "faultKind": "pause",
+   "target": "accountingservice",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-coordinator"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "backlog",
+     "affected": "group-accountingservice",
+     "via": "topic-orders"
+    }
+   ]
+  },
+  {
+   "source": "campaign F (DECLARATION_F_OTEL.md, RESULT_F.md)",
+   "system": "otel",
+   "regime": "frontend-pause",
+   "faultKind": "pause",
+   "target": "frontend",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-coordinator"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "sync-caller",
+     "affected": "svc-frontendproxy",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-grafana",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-jaeger",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-loadgenerator",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-otelcol",
+     "via": "svc-frontend"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-prometheus",
+     "via": "svc-frontend"
+    }
+   ]
+  },
+  {
+   "source": "TeaStore off-path (DECLARATION_TEASTORE_OFFPATH.md, RESULT_TS_OFFPATH.md)",
+   "system": "teastore",
+   "regime": "recommender-pause",
+   "faultKind": "pause",
+   "target": "recommender",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-liveness-check"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "sync-caller",
+     "affected": "svc-recommender",
+     "via": "svc-recommender"
+    },
+    {
+     "effect": "sync-caller",
+     "affected": "svc-webui",
+     "via": "svc-recommender"
+    }
+   ]
+  },
+  {
+   "source": "TeaStore off-path (DECLARATION_TEASTORE_OFFPATH.md, RESULT_TS_OFFPATH.md)",
+   "system": "teastore",
+   "regime": "auth-freeze",
+   "faultKind": "pause",
+   "target": "auth",
+   "opsKind": "pause",
+   "targetInAbox": true,
+   "lanes": [
+    {
+     "ownLane": false,
+     "coordinatorLane": false,
+     "coordinatorEmits": false,
+     "lagLane": false
+    }
+   ],
+   "coordinatorClass": [
+    "no-liveness-check"
+   ],
+   "coordinatorWindow": [],
+   "blastRadius": [
+    {
+     "effect": "sync-caller",
+     "affected": "svc-webui",
+     "via": "svc-auth"
+    }
+   ]
+  }
+ ],
+ "sharedFate": {
+  "hotel": [
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-attractions"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-frontend"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-geo"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-profile"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-rate"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-recommendation"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-reservation"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-review"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-search"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-user"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Collector",
+    "anchor": "svc-stdout",
+    "member": "svc-search"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Coordinator",
+    "anchor": "coord-consul",
+    "member": "svc-attractions"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Coordinator",
+    "anchor": "coord-consul",
+    "member": "svc-geo"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Coordinator",
+    "anchor": "coord-consul",
+    "member": "svc-profile"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Coordinator",
+    "anchor": "coord-consul",
+    "member": "svc-rate"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Coordinator",
+    "anchor": "coord-consul",
+    "member": "svc-recommendation"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Coordinator",
+    "anchor": "coord-consul",
+    "member": "svc-reservation"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Coordinator",
+    "anchor": "coord-consul",
+    "member": "svc-review"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Coordinator",
+    "anchor": "coord-consul",
+    "member": "svc-search"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Coordinator",
+    "anchor": "coord-consul",
+    "member": "svc-user"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-attractions"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-consul"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-frontend"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-geo"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-jaeger"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-memcached-profile"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-memcached-rate"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-memcached-reserve"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-mongodb-attractions"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-mongodb-geo"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-mongodb-profile"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-mongodb-rate"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-mongodb-recommendation"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-mongodb-reservation"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-mongodb-review"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-mongodb-user"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-profile"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-rate"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-recommendation"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-reservation"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-review"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-search"
+   },
+   {
+    "arch": "arch-hotel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv4",
+    "member": "svc-user"
+   }
+  ],
+  "otel": [
+   {
+    "arch": "arch-otel",
+    "anchorType": "Broker",
+    "anchor": "svc-kafka",
+    "member": "svc-accountingservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Broker",
+    "anchor": "svc-kafka",
+    "member": "svc-checkoutservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Broker",
+    "anchor": "svc-kafka",
+    "member": "svc-frauddetectionservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-jaeger",
+    "member": "svc-otelcol"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-opensearch",
+    "member": "svc-otelcol"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-accountingservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-adservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-cartservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-checkoutservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-currencyservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-emailservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-flagd"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-flagd-ui"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-frauddetectionservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-frontend"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-frontendproxy"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-imageprovider"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-kafka"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-loadgenerator"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-paymentservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-productcatalogservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-recommendationservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-otelcol",
+    "member": "svc-shippingservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-prometheus",
+    "member": "svc-otelcol"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Collector",
+    "anchor": "svc-stats.grafana.org",
+    "member": "svc-grafana"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-accountingservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-adservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-cartservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-checkoutservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-currencyservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-emailservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-flagd"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-flagd-ui"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-frauddetectionservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-frontend"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-frontendproxy"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-grafana"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-imageprovider"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-jaeger"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-kafka"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-loadgenerator"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-opensearch"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-otelcol"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-paymentservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-productcatalogservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-prometheus"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-quoteservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-recommendationservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-shippingservice"
+   },
+   {
+    "arch": "arch-otel",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv6",
+    "member": "svc-valkey-cart"
+   }
+  ],
+  "teastore": [
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Collector",
+    "anchor": "svc-rabbitmq",
+    "member": "svc-auth"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Collector",
+    "anchor": "svc-rabbitmq",
+    "member": "svc-image"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Collector",
+    "anchor": "svc-rabbitmq",
+    "member": "svc-persistence"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Collector",
+    "anchor": "svc-rabbitmq",
+    "member": "svc-recommender"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Collector",
+    "anchor": "svc-rabbitmq",
+    "member": "svc-webui"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Coordinator",
+    "anchor": "coord-registry",
+    "member": "svc-auth"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Coordinator",
+    "anchor": "coord-registry",
+    "member": "svc-image"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Coordinator",
+    "anchor": "coord-registry",
+    "member": "svc-persistence"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Coordinator",
+    "anchor": "coord-registry",
+    "member": "svc-recommender"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Coordinator",
+    "anchor": "coord-registry",
+    "member": "svc-webui"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv5",
+    "member": "svc-auth"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv5",
+    "member": "svc-db"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv5",
+    "member": "svc-image"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv5",
+    "member": "svc-persistence"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv5",
+    "member": "svc-recommender"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv5",
+    "member": "svc-registry"
+   },
+   {
+    "arch": "arch-teastore",
+    "anchorType": "Host",
+    "anchor": "host-fb14srv5",
+    "member": "svc-webui"
+   }
+  ]
+ }
+}

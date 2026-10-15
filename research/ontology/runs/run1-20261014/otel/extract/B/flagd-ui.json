@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "extractor": "B",
+    "service": "flagd-ui",
+    "notes": [
+      "No synchronous service calls: no outbound HTTP, gRPC or DB call to another service in src/flagd-ui/src. The browser-side fetches go to the service's own routes (src/components/basic/BasicView.tsx:21, src/components/advanced/AdvancedView.tsx:23) and to external URLs https://flagd.dev/schema/v0/flags.json and targeting.json (src/components/advanced/AdvancedView.tsx:45-46), which are not services of this system. Reads and writes go to the local file data/ (src/app/api/read-file/route.ts:12, src/app/api/write-to-file/route.ts:10), which is the host directory ./src/flagd mounted at /app/data (docker-compose.yml:629); this is a shared file, not a call.",
+      "No messages published or consumed: no Kafka or other broker client in src/flagd-ui (package.json:11-17 lists none).",
+      "No registry, discovery or coordinator: no registration or heartbeat code in src/flagd-ui/src; no liveness mechanism configured in docker-compose.yml:605-629 or compose.candidate-postures.yml:139-144. The compose depends_on flagd is condition service_started (docker-compose.yml:626-627), not a registration.",
+      "No health check: the flagd-ui block docker-compose.yml:605-629 has no healthcheck key; src/flagd-ui/Dockerfile:1-33 has no HEALTHCHECK instruction; compose.candidate-postures.yml:139-144 sets none. Health-check absence is library default, not in these files, for the probe itself.",
+      "Replicas: no deploy.replicas or scale key in docker-compose.yml:611-614 (deploy block sets only memory limit 150M, line 614) or in compose.candidate-postures.yml:139-144; Compose default 1 (library default, not in these files).",
+      "Telemetry interval not stated: no export interval or batch setting for flagd-ui in docker-compose.yml:616-622, .env, or src/otelcollector/otelcol-config.yml; library default, not in these files. Telemetry is sent over OTLP/HTTP to otelcol port 4318 (docker-compose.yml:617, .env:27 and .env:29). The SDK that reads OTEL_EXPORTER_OTLP_ENDPOINT is @vercel/otel (package.json:12); that it reads this variable is library behaviour, not in these files.",
+      "Posture override: compose.candidate-postures.yml:139-144 sets OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER for flagd-ui from OTEL_CANDIDATE_FLAGD_UI_* variables, so the emitted telemetry is posture-dependent. The values are not set in these files. The span sensor below is the registration in src/flagd-ui/src/instrumentation.ts:5-6; whether @vercel/otel emits request spans from it is library behaviour, not in these files. No metric or log sensor is registered in these files."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "flagd-ui",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 605,
+        "quotedToken": "flagd-ui:"
+      },
+      "container": {
+        "value": "flagd-ui",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 607,
+        "quotedToken": "container_name: flagd-ui"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "library default, not in these files: no replicas key in the flagd-ui block docker-compose.yml:605-629 (its deploy block at lines 611-614 sets only a memory limit) nor in compose.candidate-postures.yml:139-144"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Compose resolves the host from .env:27; the endpoint is docker-compose.yml:617 (http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}), port 4318 from .env:29 OTEL_COLLECTOR_PORT_HTTP=4318 (OTLP/HTTP)"
+        }
+      ],
+      "emits": [
+        {
+          "kind": "span",
+          "id": {
+            "value": "flagd-ui",
+            "basis": "cited",
+            "repo": "upstream",
+            "sourceFile": "src/flagd-ui/src/instrumentation.ts",
+            "line": 6,
+            "quotedToken": "serviceName: \"flagd-ui\"",
+            "note": "span sensor registered by registerOTel at instrumentation.ts:6; enabled by next.config.mjs:4 instrumentationHook: true; see extraction notes for the library-behaviour caveat"
+          }
+        }
+      ]
+    }
+  ]
+}

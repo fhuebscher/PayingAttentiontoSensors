@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "sut": "teastore",
+  "extraction": {
+    "extractor": "A",
+    "service": "db",
+    "absences": [
+      "sync calls: none stated in Dockerfile, setup.sql or compose db block (docker-compose_kieker.yaml:50-57)",
+      "messages published or consumed: none stated; the db block sets no RABBITMQ_HOST (docker-compose_kieker.yaml:50-57)",
+      "registry/discovery/coordinator: none stated; the db block sets no REGISTRY_HOST (docker-compose_kieker.yaml:50-57)",
+      "health check: none configured in the Dockerfile (lines 1-12) or the compose db block (lines 50-57); no HEALTHCHECK or healthcheck key",
+      "telemetry: no export target configured for db in these files; no KIEKER_AMQP_HEARTBEAT_SECONDS, command or OTEL setting in the db block (docker-compose_kieker.yaml:50-57)"
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+      "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-teastore-protocol",
+      "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "db",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 50,
+        "quotedToken": "db:"
+      },
+      "role": {
+        "value": "datastore",
+        "repo": "upstream",
+        "sourceFile": "utilities/tools.descartes.teastore.database/Dockerfile",
+        "line": 1,
+        "quotedToken": "mariadb:10.4.12",
+        "note": "Dockerfile builds on the mariadb image; setup.sql line 1 creates the database teadb"
+      },
+      "container": {
+        "value": "db",
+        "repo": "harness",
+        "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+        "line": 51,
+        "quotedToken": "descartesresearch/teastore-db",
+        "note": "image descartesresearch/teastore-db; no container_name set, so Compose derives the container name from the service key db"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "library default, not in these files: the db block (docker-compose_kieker.yaml:50-57) has no deploy.replicas or scale; Compose default is 1"
+      }
+    }
+  ]
+}

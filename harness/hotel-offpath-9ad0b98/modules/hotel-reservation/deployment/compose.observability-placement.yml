@@ -1,0 +1,82 @@
+services:
+  consul:
+    image: ${HR_CONSUL_IMAGE:-hashicorp/consul:1.13}
+  frontend:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    build:
+      labels:
+        org.obsplacement.materialized-source-sha256: ${HR_SOURCE_SHA256:?set HR_SOURCE_SHA256}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_FRONTEND_JAEGER_SAMPLE_RATIO:?set HR_FRONTEND_JAEGER_SAMPLE_RATIO}
+      JAEGER_DISABLED: ${HR_FRONTEND_JAEGER_DISABLED:?set HR_FRONTEND_JAEGER_DISABLED}
+  search:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1}
+      JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}
+  geo:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1}
+      JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}
+  rate:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1}
+      JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}
+  reservation:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1}
+      JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}
+  profile:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1}
+      JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}
+  user:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1}
+      JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}
+  recommendation:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1}
+      JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}
+  review:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1}
+      JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}
+  attractions:
+    image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}
+    environment:
+      JAEGER_SAMPLE_RATIO: ${HR_JAEGER_SAMPLE_RATIO:-1}
+      JAEGER_DISABLED: ${HR_JAEGER_DISABLED:-false}
+  jaeger:
+    image: ${HR_JAEGER_IMAGE:-jaegertracing/all-in-one:1.60}
+  memcached-rate:
+    image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}
+  memcached-review:
+    image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}
+  memcached-profile:
+    image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}
+  memcached-reserve:
+    image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}
+  mongodb-geo:
+    image: ${HR_MONGO_IMAGE:-mongo:5.0}
+  mongodb-profile:
+    image: ${HR_MONGO_IMAGE:-mongo:5.0}
+  mongodb-rate:
+    image: ${HR_MONGO_IMAGE:-mongo:5.0}
+  mongodb-review:
+    image: ${HR_MONGO_IMAGE:-mongo:5.0}
+  mongodb-attractions:
+    image: ${HR_MONGO_IMAGE:-mongo:5.0}
+  mongodb-recommendation:
+    image: ${HR_MONGO_IMAGE:-mongo:5.0}
+  mongodb-reservation:
+    image: ${HR_MONGO_IMAGE:-mongo:5.0}
+  mongodb-user:
+    image: ${HR_MONGO_IMAGE:-mongo:5.0}

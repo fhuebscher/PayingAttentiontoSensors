@@ -1,0 +1,140 @@
+diff --git a/hotelReservation/Dockerfile b/hotelReservation/Dockerfile
+index 06e3a3f..f21550c 100644
+--- a/hotelReservation/Dockerfile
++++ b/hotelReservation/Dockerfile
+@@ -1 +1 @@
+-FROM golang:1.21 as builder
++FROM golang:1.21@sha256:4746d26432a9117a5f58e95cb9f954ddf0de128e9d5816886514199316e4a2fb as builder
+diff --git a/hotelReservation/tracing/mux.go b/hotelReservation/tracing/mux.go
+index 72e3877..612f016 100644
+--- a/hotelReservation/tracing/mux.go
++++ b/hotelReservation/tracing/mux.go
+@@ -17,0 +18,2 @@ import (
++	"encoding/json"
++	"fmt"
+@@ -18,0 +21,2 @@ import (
++	"regexp"
++	"time"
+@@ -37,0 +42,19 @@ type TracedServeMux struct {
++var opportunityToken = regexp.MustCompile(`^hr-[0-9a-f]{32}$`)
++
++type statusRecorder struct {
++	http.ResponseWriter
++	status int
++}
++
++func (w *statusRecorder) WriteHeader(status int) {
++	w.status = status
++	w.ResponseWriter.WriteHeader(status)
++}
++
++func (w *statusRecorder) Write(body []byte) (int, error) {
++	if w.status == 0 {
++		w.WriteHeader(http.StatusOK)
++	}
++	return w.ResponseWriter.Write(body)
++}
++
+@@ -39,0 +63,31 @@ func (tm *TracedServeMux) Handle(pattern string, handler http.Handler) {
++	witnessed := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
++		token := r.Header.Get("X-Obsplacement-Opportunity")
++		if token == "" {
++			handler.ServeHTTP(w, r)
++			return
++		}
++		if !opportunityToken.MatchString(token) {
++			http.Error(w, "invalid opportunity token", http.StatusBadRequest)
++			return
++		}
++		if span := opentracing.SpanFromContext(r.Context()); span != nil {
++			span.SetTag("obsplacement.opaque_token", token)
++		}
++		started := time.Now().UTC()
++		recorder := &statusRecorder{ResponseWriter: w}
++		handler.ServeHTTP(recorder, r)
++		if recorder.status == 0 {
++			recorder.status = http.StatusOK
++		}
++		ended := time.Now().UTC()
++		row, _ := json.Marshal(map[string]interface{}{
++			"schema":            "hotel-application-request-witness-v1",
++			"opaqueToken":       token,
++			"method":            r.Method,
++			"routePattern":      pattern,
++			"statusCode":        recorder.status,
++			"startedAtUnixNano": started.UnixNano(),
++			"endedAtUnixNano":   ended.UnixNano(),
++		})
++		fmt.Printf("OBSPLACEMENT_WITNESS %s\n", row)
++	})
+@@ -42 +96 @@ func (tm *TracedServeMux) Handle(pattern string, handler http.Handler) {
+-		handler,
++		witnessed,
+diff --git a/hotelReservation/tracing/tracer.go b/hotelReservation/tracing/tracer.go
+index 97fe22e..f96fcfa 100644
+--- a/hotelReservation/tracing/tracer.go
++++ b/hotelReservation/tracing/tracer.go
+@@ -3,0 +4,3 @@ import (
++	"context"
++	"encoding/json"
++	"fmt"
+@@ -9,0 +13 @@ import (
++	jaeger "github.com/uber/jaeger-client-go"
+@@ -10,0 +15 @@ import (
++	"github.com/uber/jaeger-client-go/thrift"
+@@ -12,0 +18,35 @@ import (
++type countingTransport struct {
++	service  string
++	delegate jaeger.Transport
++}
++
++func (t *countingTransport) Append(span *jaeger.Span) (int, error) {
++	buffer := thrift.NewTMemoryBufferLen(65535)
++	protocol := thrift.NewTCompactProtocolFactory().GetProtocol(buffer)
++	serialized := jaeger.BuildJaegerThrift(span)
++	if err := serialized.Write(context.Background(), protocol); err != nil {
++		return 0, err
++	}
++	ctx := span.SpanContext()
++	row, _ := json.Marshal(map[string]interface{}{
++		"schema":                 "hotel-source-emitted-span-v1",
++		"service":                t.service,
++		"traceId":                ctx.TraceID().String(),
++		"spanId":                 ctx.SpanID().String(),
++		"startedAtUnixNano":      span.StartTime().UnixNano(),
++		"endedAtUnixNano":        span.StartTime().Add(span.Duration()).UnixNano(),
++		"compactThriftSpanBytes": buffer.Len(),
++		"wireBytes":              false,
++	})
++	fmt.Printf("OBSPLACEMENT_EMISSION %s\n", row)
++	return t.delegate.Append(span)
++}
++
++func (t *countingTransport) Flush() (int, error) {
++	return t.delegate.Flush()
++}
++
++func (t *countingTransport) Close() error {
++	return t.delegate.Close()
++}
++
+@@ -47 +87,10 @@ func Init(serviceName, host string) (opentracing.Tracer, error) {
+-	tracer, _, err := cfg.NewTracer()
++	sender, err := jaeger.NewUDPTransport(cfg.Reporter.LocalAgentHostPort, 0)
++	if err != nil {
++		return nil, err
++	}
++	reporter := jaeger.NewRemoteReporter(
++		&countingTransport{service: serviceName, delegate: sender},
++		jaeger.ReporterOptions.QueueSize(cfg.Reporter.QueueSize),
++		jaeger.ReporterOptions.BufferFlushInterval(cfg.Reporter.BufferFlushInterval),
++	)
++	tracer, _, err := cfg.NewTracer(config.Reporter(reporter))
+@@ -48,0 +98 @@ func Init(serviceName, host string) (opentracing.Tracer, error) {
++		reporter.Close()
+diff --git a/hotelReservation/tune/setting.go b/hotelReservation/tune/setting.go
+--- a/hotelReservation/tune/setting.go
++++ b/hotelReservation/tune/setting.go
+@@ -37,0 +38,2 @@ func setLogLevel() {
++	case "FATAL", "fatal": // LMT+S pilot none posture. Not Disabled: that also disables Fatal, whose
++		zerolog.SetGlobalLevel(zerolog.FatalLevel) // callback then exits main before srv.Run() starts.

@@ -1,0 +1,390 @@
+{
+ "schemaVersion": 1,
+ "title": "Parameter registry of analysis v3.2 (research/detection-time/sweep_analysis_v3_2.py, research/placement/celf_v3_2.py, research/placement/score_test_v3_2.py): the values and rules v3.2 adds to v3.1 for campaign E (BUDGET_E.md, ec4b9fa, step 3). parameters_v3.json (v3.1) is not changed.",
+ "provenanceRule": "Protocol decision 37: every hyperparameter is traced to its origin. A separate file, so that parameters_v3.json (sha256 212830be..., decision 92) and v3.1 stay byte-identical.",
+ "originTypes": [
+  "decision",
+  "literature",
+  "measured",
+  "upstream",
+  "engineering default",
+  "unknown"
+ ],
+ "parameters": [
+  {
+   "name": "V32_EPOCH_PROFILES",
+   "value": {
+    "otel-offpath-pilot-v1": {
+     "system": "otel",
+     "role": "manifestation-pilot",
+     "shape": "campaign-B",
+     "ledgerKind": "otel-demo-mix-ledger-v1",
+     "noFaultRegime": "no-fault-calibration",
+     "faultRegimes": {
+      "frontend-pause-effect": [
+       "frontend",
+       "pause"
+      ],
+      "productcatalog-cpu-throttle-effect": [
+       "productcatalogservice",
+       "degradation"
+      ],
+      "fraud-pause-effect": [
+       "frauddetectionservice",
+       "pause"
+      ],
+      "accounting-pause-effect": [
+       "accountingservice",
+       "pause"
+      ]
+     }
+    },
+    "otel-offpath-pilot-v2": {
+     "system": "otel",
+     "role": "manifestation-pilot",
+     "shape": "campaign-B",
+     "ledgerKind": "otel-demo-mix-ledger-v1",
+     "noFaultRegime": "no-fault-calibration",
+     "faultRegimes": {
+      "frontend-pause-effect": [
+       "frontend",
+       "pause"
+      ],
+      "fraud-pause-effect": [
+       "frauddetectionservice",
+       "pause"
+      ],
+      "accounting-pause-effect": [
+       "accountingservice",
+       "pause"
+      ]
+     }
+    },
+    "otel-offpath-e-v1": {
+     "system": "otel",
+     "role": "campaign-E",
+     "shape": "campaign-B",
+     "ledgerKind": "otel-demo-mix-ledger-v1",
+     "noFaultRegime": "no-fault-calibration",
+     "faultRegimes": {
+      "frontend-pause-effect": [
+       "frontend",
+       "pause"
+      ],
+      "fraud-pause-effect": [
+       "frauddetectionservice",
+       "pause"
+      ],
+      "accounting-pause-effect": [
+       "accountingservice",
+       "pause"
+      ]
+     }
+    }
+   },
+   "unit": "study-epoch name -> cell profile (regimes with [target service, fault kind]; ledger kind; shape)",
+   "origin_type": "decision",
+   "origin_ref": "BUDGET_E.md user decisions 1-2 (upstream task mix as an open loop with one ledger row per request; frauddetectionservice pause, accountingservice pause, frontend pause, productcatalogservice 0.1-core throttle) and sequence step 3. Re-pinned 2026-10-13 (review finding F1) to the committed harness at 6a5c2a9 (../observability-placement-runtime-otel-protocol, read-only): the epoch names are the `id` of pipelines/campaigns/otel-offpath-pilot-v1.json, otel-offpath-pilot-v2.json and otel-offpath-e-v1.json; each profile's regimes are that file's design.regimes ids (pilot-v1: no-fault-calibration, frontend-pause-effect, productcatalog-cpu-throttle-effect, fraud-pause-effect, accounting-pause-effect; pilot-v2 (ff29b93): no-fault-calibration, frontend-pause-effect, fraud-pause-effect, accounting-pause-effect; e-v1: no-fault-calibration, fraud-pause-effect, accounting-pause-effect, frontend-pause-effect, design.blocks 5) with the targets of faultDesign.scenarios (fraud-pause -> frauddetectionservice, accounting-pause -> accountingservice, frontend-pause -> frontend; action pause; verified against the files at 6a5c2a9 on 2026-10-13); the ledger kind is MIX_LEDGER_KIND (modules/otel-demo/execution/candidate_remote.py:1391). The throttle regime is not in E (decision 108, d1358bb; research/placement/pilot-offpath/RESULT_V2.md). A pilot readout is not E evidence. An epoch not listed here stops the run (UnknownSchema), as decision 92 requires. Earlier text (ba27afc, uncommitted tree, now superseded): pilot-v1 read from candidate_offpath_pilot.py and execution/candidate_remote.py:1374-1580.",
+   "status": "active"
+  },
+  {
+   "name": "V32_LEDGER_SCHEMAS",
+   "value": {
+    "otel-demo-mix-ledger-v1": {
+     "keys": [
+      "barrierEpoch",
+      "barrierMonotonic",
+      "completed",
+      "concurrency",
+      "durationSeconds",
+      "endedAtEpoch",
+      "failed",
+      "kind",
+      "method",
+      "mixSha256",
+      "offered",
+      "ratePerSecond",
+      "requestTimeoutSeconds",
+      "requests",
+      "routeCounts",
+      "schemaVersion",
+      "startedAtEpoch",
+      "taskCounts",
+      "tokenNamespace",
+      "url"
+     ],
+     "rowKeys": [
+      "bodySha256",
+      "bytes",
+      "dependsOn",
+      "endedAtEpoch",
+      "endedMonotonic",
+      "error",
+      "method",
+      "originalTraceId",
+      "outcome",
+      "requestToken",
+      "route",
+      "scheduledAtEpoch",
+      "scheduledOffsetSeconds",
+      "startedAtEpoch",
+      "startedMonotonic",
+      "status",
+      "step",
+      "target",
+      "task",
+      "taskIndex",
+      "traceparent"
+     ],
+     "extraTopKeys": [
+      "mixSha256",
+      "routeCounts",
+      "taskCounts"
+     ],
+     "extraRowKeys": [
+      "bodySha256",
+      "dependsOn",
+      "method",
+      "route",
+      "step",
+      "target",
+      "task",
+      "taskIndex"
+     ],
+     "routeKey": "route",
+     "taskKey": "task",
+     "routesFromKey": "routeCounts",
+     "schemaVersion": 1
+    }
+   },
+   "unit": "key sets of the multi-route request ledger (request-ledger.json): v1's pinned keys plus the mix keys, and per row v1's plus route, task, taskIndex, step, method, target, bodySha256, dependsOn",
+   "origin_type": "upstream",
+   "origin_ref": "Re-pinned 2026-10-13 (review finding F1) to the committed harness at 6a5c2a9 (../observability-placement-runtime-otel-protocol, read-only), modules/otel-demo/execution/candidate_remote.py: MIX_LEDGER_KIND (:1391); one_mix_request (:1528), whose returned row dict (:1551-1558) holds the 21 row keys (requestToken, originalTraceId, traceparent, scheduledOffsetSeconds, scheduledAtEpoch, startedAtEpoch, endedAtEpoch, startedMonotonic, endedMonotonic, status, bytes, error, outcome, route, task, taskIndex, step, method, target, bodySha256, dependsOn); run_mix_workload (:1572), whose returned dict (:1596-1607) holds the 20 top-level keys (schemaVersion, kind, method `MIX`, url the base, tokenNamespace, ratePerSecond, concurrency, requestTimeoutSeconds, durationSeconds, barrierMonotonic, barrierEpoch, startedAtEpoch, endedAtEpoch, offered, completed, failed, mixSha256, taskCounts, routeCounts via mix_counts, requests); line numbers and key counts verified against the file on 2026-10-13. The route set of a cell is the key set of `routeCounts`; a row whose route is not in it, a ledger of another key set or kind, stops the run. Legacy v1 ledgers (otel-demo-route-ledger-v1) are read by v2.4's reader unchanged, and only in legacy epochs. Earlier text (ba27afc, uncommitted tree, superseded): MIX_LEDGER_KIND :1374, one_mix_request :1511, run_mix_workload :1555.",
+   "status": "active"
+  },
+  {
+   "name": "V32_ROUTE_MODEL_OTEL",
+   "value": {
+    "syncServices": [
+     "frontendproxy",
+     "frontend",
+     "adservice",
+     "cartservice",
+     "checkoutservice",
+     "currencyservice",
+     "emailservice",
+     "paymentservice",
+     "productcatalogservice",
+     "quoteservice",
+     "recommendationservice",
+     "shippingservice",
+     "flagd"
+    ],
+    "edges": [
+     "frontendproxy->frontend",
+     "frontend->productcatalogservice",
+     "frontend->recommendationservice",
+     "frontend->adservice",
+     "frontend->cartservice",
+     "frontend->checkoutservice",
+     "recommendationservice->productcatalogservice",
+     "recommendationservice->flagd",
+     "adservice->flagd",
+     "cartservice->flagd",
+     "paymentservice->flagd",
+     "productcatalogservice->flagd",
+     "checkoutservice->cartservice",
+     "checkoutservice->productcatalogservice",
+     "checkoutservice->currencyservice",
+     "checkoutservice->shippingservice",
+     "checkoutservice->paymentservice",
+     "checkoutservice->emailservice",
+     "shippingservice->quoteservice"
+    ],
+    "affectedPath": {
+     "frauddetectionservice": [
+      "frauddetectionservice",
+      "kafka"
+     ],
+     "accountingservice": [
+      "accountingservice",
+      "kafka"
+     ]
+    },
+    "p1p2Regime": "frontend-pause-effect",
+    "asyncEdges": [
+     "checkoutservice->kafka",
+     "kafka->accountingservice",
+     "kafka->frauddetectionservice"
+    ]
+   },
+   "unit": "declared call graph of the upstream task mix, the affected path of off-path targets, the one regime P1 and P2 are declared for",
+   "origin_type": "engineering default",
+   "origin_ref": "research/load-generator/DESIGN.md section 2.3 (route -> services table, read from upstream source, unexecuted; checkout -> Kafka -> accounting and fraud, main.go:319-323) added to the project map's observed edges, because the map's base run drove one route (5 services). The off-path affected path is the consumer and its broker (a service on the path of the spike rule's path filter); the producer is not on it because the consumer is asynchronous. The asynchronous Kafka edges (`asyncEdges`) are declared for the observed-vs-declared report only and are NOT added to the call graph the affected-path closure walks (an async consumer has no synchronous caller; the off-path target's path is the declared `affectedPath`). The declared graph is applied only when a v3.2-epoch cell is read. Edges observed in E's no-fault traces but not declared here are listed in the readout (`edgesObservedNotDeclared`). P1 and P2 are declared for a request-path pause (the ledger's failed-timeout model); the off-path pauses are outside them. An engineering default, not a preregistration decision (the user may change the off-path path). Re-pinned 2026-10-13 (review finding F1) against the committed harness at 6a5c2a9 (../observability-placement-runtime-otel-protocol, read-only): the route set and each route's guaranteed services are pipelines/campaigns/otel-offpath-e-v1.json workload.mix.routes[*].requiredServices (7 routes: add-to-cart, ads, checkout, index, product, recommendations, view-cart); the union of their requiredServices is a subset of `syncServices` (checked 2026-10-13). The edges, the asynchronous edges and the affected path remain the engineering default stated above (read from upstream source, not from the harness).",
+   "status": "active"
+  },
+  {
+   "name": "V32_LEDGER_ANY_ROUTE_RULE",
+   "value": "The ledger sensor E fires on any route: every route has its own ledger streams (`ledger:<entry>:<route>`: the `failed` rule exempt, `spike`/`run3`/`median` on the route's ok latencies, `absent` on the route's completions), each calibrated per (sensor, rule) at the rate by v3.1's criterion (zero held-out alarms, honest nested counts) with the route's own baseline; E's detection time in an episode is the earliest counted fire over all routes and rules (v2.4 col_fire / celf_v3 build_table: min over the family). A route with no baseline in a cell has no latency verdict (listed, ledgerRoutesWithoutBaseline). E's false alarms are the union of the routes' alarms (counted per route and rule in the calibration). The route key is the ledger row's `route` field.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "BUDGET_E.md step 3 ('the ledger sensor detects on any route (state the rule)'); decisions 61-63, 70 (per-rule calibration, the ledger as the OR of its calibrated rules). v2.4 and v3.1 already key the ledger by route (TeaStore routeId, sweep_analysis_v2.py:889-899, v3.py:906); v3.2's change is that OTel's route comes from each row.",
+   "status": "active"
+  },
+  {
+   "name": "V32_EXPOSURE_RULE",
+   "value": "Exposure per route (H5, decision 42/H5 'exposure recorded, objective unchanged'): per episode, for each route the number of ledger requests started in [onset, hold end]; a route's exposed services = the services with a span in the no-fault cells' traces of that route's requests (request token -> route); an episode's exposed services = the union over routes with at least one request started in the hold. The pooled route path of v2.4 (the union over all no-fault traces) is kept beside it.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "BUDGET_E.md step 3 ('exposure counts per route'); v2.4 exposure() (sweep_analysis_v2.py:2981-3025) pools one route path for the system; with one route the two coincide.",
+   "status": "active"
+  },
+  {
+   "name": "V32_OWN_PER_CLASS_RULE",
+   "value": "A sensor on the fault's target service is `own` for that class's episodes only (decision 84; dt.scored: own = svc == the episode's target) and stays a candidate for the other classes: sensors of frauddetectionservice are own in the fraud-pause class and not in the accounting-pause, frontend-pause or throttle classes. The off-path pauses are scored like every other class; the ledger E is expected not to detect them (reported, not assumed: a ledger catch counts as one).",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 84 (round 24), BUDGET_E.md step 3 / task item 2.",
+   "status": "active"
+  },
+  {
+   "name": "V32_BLOCK_SELECT_RULE",
+   "value": "Cells of a campaign-E epoch are selected by their block number (receipt runKey.block), never by outcome: `--blocks` lists the blocks read; every other cell of an E epoch is not loaded (only its receipt's runKey is read) and is listed as excluded by the split. Cells of other epochs are read whole. The split (training and test blocks) is fixed in the campaign's declaration before launch; the reader records the selection and the sha256 of the split file it was given.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 95 ('training and test blocks in one declaration, the split fixed before launch'); decision 81(b) correction ('subsets are selected by block number from the plan, never by outcome').",
+   "status": "active"
+  },
+  {
+   "name": "V32_E_SPLIT",
+   "value": {
+    "train": [
+     1,
+     2,
+     3
+    ],
+    "test": [
+     4,
+     5
+    ]
+   },
+   "unit": "block numbers of campaign E's training and test blocks",
+   "origin_type": "decision",
+   "origin_ref": "Decision 100 (round 30, 2026-10-12, protocol 80152db): 5 blocks; the placement is solved on blocks 1-3, frozen, and scored once on blocks 4-5. The reader, the placement and the scorer refuse any other split.",
+   "status": "active"
+  },
+  {
+   "name": "V32_PASS_RULE",
+   "value": [
+    {
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+     "class": "fraud-pause-effect",
+     "rate": null,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "minEpisodes": 2
+    },
+    {
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+     "class": "accounting-pause-effect",
+     "rate": null,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "minEpisodes": 2
+    }
+   ],
+   "unit": "pass rules of the campaign-E test (score_test_v3_2.py): a list, one rule per off-path class",
+   "origin_type": "decision",
+   "origin_ref": "Decision 99 (round 30, protocol 80152db): for each off-path class separately, at E's rate (rate null = every rate of the placement), the frozen 6/h set passes iff g = D(ledger alone) - D(S_6/h) > 0 over THAT class's test episodes and it improves at least 2 of them; a dash if a member of the set is absent from the scoring ground set or fewer than 2 valid test episodes exist (decisions 90-91). On-path classes and other cells carry no verdict. The 6/h set is that of the unrestricted frontier cell (effort <= any, runtime <= any), an engineering default of this file: the user named 'the frozen 6/h set'. Overridable only by editing this entry (its digest is recorded in every output). AMENDED by decision 110 (user, 2026-10-13, before E's launch, after the adversarial review): the rule's set is the unrestricted frontier cell at the zero-alarm knot 3/T_r of E's rate (T_r = the training no-fault hours; a zero-alarm sensor evaluated in every training fold costs 2.996/T_r, so exactly one is affordable), not 6/h: with 3 training no-fault cells (~0.15-0.18 h) every sensor costs >= ~17/h under decision 73, so the 6/h set is empty and both verdicts would FAIL by construction. The 6/h point is still computed and reported, without a verdict. AMENDED by decision 112 (user, 2026-10-13, before the v3.2 freeze, on the v3.2 review's blocker; E running, no E cell read): the rule's set is the unrestricted frontier cell at 6/T_r (T_r as in decision 110), i.e. two zero-alarm sensors evaluated in every training fold (2 x 2.996/T_r <= 6/T_r), and a sensor is a candidate for the frozen set only if it has a counted fire in >= 2 training episodes of at least one class (V32_RECURRENCE_RULE). Reason (counted on the pilot v2 v3.2 shakedown readout): at 3/T_r the single slot went to a log id seen in one training episode (per-line log hashing gives 17-34 non-own `appear` ids per off-path pilot episode, none shared with another episode), which cannot fire in the test blocks, and the fraud and accounting Kafka member-failed ids are disjoint, so one slot serves at most one class. Stated before freezing: a recurring sensor of the frontend class may take a slot, leaving an off-path class without one (then that class FAILs). Decision 110's 3/T_r point and the 6/h point stay computed and reported without a verdict. The per-class rule text above (g > 0, improves >= 2 of the class's test episodes, a dash below 2 valid episodes) is unchanged.",
+   "status": "active"
+  },
+  {
+   "name": "V32_RECURRENCE_RULE",
+   "value": {
+    "minEpisodesPerClass": 2
+   },
+   "unit": "episodes: the least number of TRAINING episodes of one class (fault regime) in which a sensor must have a counted fire to be a candidate of the placement's frontier",
+   "origin_type": "decision",
+   "origin_ref": "Decision 112 (user, 2026-10-13, before the v3.2 freeze, on the v3.2 review's blocker; E running, no E cell read): a sensor is a candidate for the frozen set only if it has a counted fire in >= 2 of the training episodes of at least one class. `counted` is celf_v3's (decision 72 by-construction rule, decisions 79/84 own-sensor exclusion per class, applied before the count), i.e. a finite entry of the objective's detection-time table. Applied in celf_v3_2 to the ground set of every frontier cell and every budget point, so all reported points share the candidates; the number of sensors it removes per rate is recorded in the placement output (recurrence). Switch RECURRENCE_FILTER in celf_v3_2.py; the rule is not applied by the reader or the scorer (the scorer scores the frozen sets as frozen).",
+   "status": "active"
+  },
+  {
+   "name": "V32_TIERS",
+   "value": {
+    "schemaVersion": 1,
+    "effortTiers": [
+     0,
+     1,
+     2
+    ],
+    "runtimeTiers": [
+     "<1%",
+     "1-10%",
+     ">10%"
+    ],
+    "any": "any",
+    "runtimeBins": {
+     "<1%": [
+      null,
+      0.01
+     ],
+     "1-10%": [
+      0.01,
+      0.1
+     ],
+     ">10%": [
+      0.1,
+      null
+     ]
+    },
+    "postureCatalogs": [
+     "postures",
+     "postureCurrentCatalog"
+    ],
+    "postureCatalogDocKeys": {
+     "postures": "v3",
+     "postureCurrentCatalog": "current"
+    },
+    "postureOrder": [
+     "none",
+     "selected",
+     "async",
+     "full"
+    ],
+    "stepFromPosture": {
+     "none": "present at none",
+     "selected": "none->selected",
+     "async": "selected->async",
+     "full": "async->full"
+    },
+    "stepKeys": {
+     "selected": "none_to_selected",
+     "async": "selected_to_async",
+     "full": "async_to_full"
+    },
+    "runtimeSemantics": "cumulative",
+    "cumulativeDefinition": "a set's runtime cost = the cumulative share of the posture steps needed to emit all its members (none 0, selected 0.17, async 0.228, full 0.288 of none-level CPU); the cap applies to that set-level value, binned by runtimeBins. As the cumulative value of a set is the cumulative value of the latest first-emission step among its members, the cap is a per-sensor filter on the cumulative value of the sensor's first step."
+   },
+   "unit": "tier vocabularies, posture-step binning and catalog choice of the tiered placement",
+   "origin_type": "decision",
+   "origin_ref": "BUDGET_E.md user decision 3 (effort tiers 0 out of the box / 1 configuration / 2 code; runtime tiers < 1 %, 1-10 %, > 10 %). Coordinator engineering defaults (2026-10-12, with research/placement/declared/OTEL_EFFORT.md, 1fff401): a sensor's runtime tier is the tier of the posture step that first emits it ('<1%' when present at `none`, then the bin of that step's share of none-level CPU: none->selected 0.17 -> '>10%', selected->async 0.058 and async->full 0.060 -> '1-10%'); the posture membership comes from the v3 catalog (`postures`) for existing campaigns and the current runtime catalog (`postureCurrentCatalog`) for the new off-path epochs; a null tier is never treated as 0 and is admissible only in the `any` cap of its axis. A sensor whose effortTier is null or that is absent from the effort file has an unknown effort tier. Decision 101 (round 30): the runtime tier is cumulative (a sensor first emitted at async also pays the selected step); the cap is a set-level deployment cost. Supersedes the marginal reading of the coordinator default; the posture catalogs, nulls and `any` rules are unchanged.",
+   "status": "active"
+  },
+  {
+   "name": "V32_TRAIN_ONLY_CALIBRATION_RULE",
+   "value": "Detectors for scoring the test blocks are calibrated on the training blocks only: cells of a campaign-E epoch whose block is a test block (`--test-blocks`, equal to V32_E_SPLIT.test) are flagged heldOut and are excluded from every pooled fit, the per-(sensor, rule) calibration, the leave-one-cell-out folds, the route-graph context and the validation fit (their no-fault cells and the pre-onset segments of their fault cells included); their fault cells are still scored as episodes with the training-calibrated detectors, applied unchanged. A sensor seen only in held-out cells is not in the calibration and never fires. A readout reading a registry test block without the flag is refused. The readout tags every episode with heldOut.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "Decision 102 (round 30, protocol 80152db): train-only calibration, a reader change before the v3.2 freeze. Replaces the N5 limitation of decision 88 for E.",
+   "status": "active"
+  },
+  {
+   "name": "V32_P1P2_DEPENDS_RULE",
+   "value": "Ledger rows that wait on a predecessor (`dependsOn` not null: a checkout after its cart POST) start at max(slot, predecessor end), so they break the open-loop schedule that P1 and P2 assume. They are excluded from P1 and P2 only (the first-failed row, the P1 interval, the expected-timeout and the failed-before-detection count are computed on the other rows) and are kept for detection (the ledger E, every sensor). The readout lists, per cell, how many rows were excluded (v32.dependsOnRows).",
+   "unit": "rule text",
+   "origin_type": "engineering default",
+   "origin_ref": "Coordinator engineering default, round 30 (protocol 80152db). Re-pinned 2026-10-13 (review finding F1) to the committed harness at 6a5c2a9 (../observability-placement-runtime-otel-protocol, read-only), modules/otel-demo/execution/candidate_remote.py: MIX_DEPENDENCY_SLACK_SECONDS = 5.0 (:1392-1394, a dependent request waits for its predecessor's end at most the client timeout plus this slack and is then sent whatever the predecessor's outcome) and the wait in one_mix_request (:1540, `dependency.wait(timeout + MIX_DEPENDENCY_SLACK_SECONDS)`; the row's `dependsOn` is returned at :1558). Earlier text: candidate_remote.py:1375-1377, 1522-1523 (uncommitted tree, superseded).",
+   "status": "active"
+  }
+ ]
+}

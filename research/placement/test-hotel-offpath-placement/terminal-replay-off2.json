@@ -1,0 +1,282 @@
+{
+  "campaignId": "hotel-v1-20261015t080538z-cb803aec",
+  "campaignLevelReplay": {
+    "byteEqualToHostTerminal": true,
+    "candidateCampaignValid": true,
+    "canonicalSha256": "d25532ed2a89e5b0ad08a9deb2d1896e1545d0f770d472a5de1b2f0668fda810",
+    "manifest": {
+      "fileCount": 2876,
+      "manifestSha256": "373932759102269894a84f27527df1a8b9ac7b55dfe916b6d55067ff7024901d",
+      "verdict": "pass"
+    },
+    "outcome": "returned",
+    "validCellCount": 30
+  },
+  "cells": [
+    {
+      "ordinal": 1,
+      "path": "runs/calibration/r10/b01/p01-full/attempt-01",
+      "runId": "no-fault-calibration-r10-b01-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 2,
+      "path": "runs/effect/search-pause/r10/b01/p02-full/attempt-01",
+      "runId": "search-pause-effect-r10-b01-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 3,
+      "path": "runs/effect/consul-pause/r10/b01/p03-full/attempt-01",
+      "runId": "consul-pause-effect-r10-b01-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 4,
+      "path": "runs/effect/consul-pause/r1/b01/p04-full/attempt-01",
+      "runId": "consul-pause-effect-r1-b01-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 5,
+      "path": "runs/calibration/r1/b01/p05-full/attempt-01",
+      "runId": "no-fault-calibration-r1-b01-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 6,
+      "path": "runs/effect/search-pause/r1/b01/p06-full/attempt-01",
+      "runId": "search-pause-effect-r1-b01-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 7,
+      "path": "runs/effect/consul-pause/r1/b02/p01-full/attempt-01",
+      "runId": "consul-pause-effect-r1-b02-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 8,
+      "path": "runs/effect/search-pause/r1/b02/p02-full/attempt-01",
+      "runId": "search-pause-effect-r1-b02-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 9,
+      "path": "runs/effect/search-pause/r10/b02/p03-full/attempt-01",
+      "runId": "search-pause-effect-r10-b02-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 10,
+      "path": "runs/effect/consul-pause/r10/b02/p04-full/attempt-01",
+      "runId": "consul-pause-effect-r10-b02-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 11,
+      "path": "runs/calibration/r1/b02/p05-full/attempt-01",
+      "runId": "no-fault-calibration-r1-b02-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 12,
+      "path": "runs/calibration/r10/b02/p06-full/attempt-01",
+      "runId": "no-fault-calibration-r10-b02-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 13,
+      "path": "runs/calibration/r10/b03/p01-full/attempt-01",
+      "runId": "no-fault-calibration-r10-b03-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 14,
+      "path": "runs/effect/consul-pause/r10/b03/p02-full/attempt-01",
+      "runId": "consul-pause-effect-r10-b03-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 15,
+      "path": "runs/calibration/r1/b03/p03-full/attempt-01",
+      "runId": "no-fault-calibration-r1-b03-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 16,
+      "path": "runs/effect/consul-pause/r1/b03/p04-full/attempt-01",
+      "runId": "consul-pause-effect-r1-b03-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 17,
+      "path": "runs/effect/search-pause/r10/b03/p05-full/attempt-01",
+      "runId": "search-pause-effect-r10-b03-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 18,
+      "path": "runs/effect/search-pause/r1/b03/p06-full/attempt-01",
+      "runId": "search-pause-effect-r1-b03-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 19,
+      "path": "runs/calibration/r1/b04/p01-full/attempt-01",
+      "runId": "no-fault-calibration-r1-b04-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 20,
+      "path": "runs/effect/search-pause/r10/b04/p02-full/attempt-01",
+      "runId": "search-pause-effect-r10-b04-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 21,
+      "path": "runs/calibration/r10/b04/p03-full/attempt-01",
+      "runId": "no-fault-calibration-r10-b04-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 22,
+      "path": "runs/effect/consul-pause/r10/b04/p04-full/attempt-01",
+      "runId": "consul-pause-effect-r10-b04-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 23,
+      "path": "runs/effect/search-pause/r1/b04/p05-full/attempt-01",
+      "runId": "search-pause-effect-r1-b04-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 24,
+      "path": "runs/effect/consul-pause/r1/b04/p06-full/attempt-01",
+      "runId": "consul-pause-effect-r1-b04-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 25,
+      "path": "runs/effect/consul-pause/r10/b05/p01-full/attempt-01",
+      "runId": "consul-pause-effect-r10-b05-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 26,
+      "path": "runs/effect/search-pause/r10/b05/p02-full/attempt-01",
+      "runId": "search-pause-effect-r10-b05-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 27,
+      "path": "runs/calibration/r10/b05/p03-full/attempt-01",
+      "runId": "no-fault-calibration-r10-b05-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 28,
+      "path": "runs/effect/search-pause/r1/b05/p04-full/attempt-01",
+      "runId": "search-pause-effect-r1-b05-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 29,
+      "path": "runs/calibration/r1/b05/p05-full/attempt-01",
+      "runId": "no-fault-calibration-r1-b05-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    },
+    {
+      "ordinal": 30,
+      "path": "runs/effect/consul-pause/r1/b05/p06-full/attempt-01",
+      "runId": "consul-pause-effect-r1-b05-full-a01",
+      "sealedOnHost": true,
+      "terminalMatchesRetained": true,
+      "valid": true
+    }
+  ],
+  "cellsFound": 30,
+  "cellsReplayValid": 30,
+  "cellsSealedOnHost": 30,
+  "cellsTerminalMatchRetained": 30,
+  "compiledPlanCanonicalSha256": "90b7b621c8a1e54a92a78f813bb9c73ee829eddf4ef615e8806edd50d1df2f2a",
+  "fetchDirectory": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/hotel-offpath-evidence/off2-fetch/x",
+  "frameworkCommit": "9ad0b98194f715b921aba187df5ed511082f1f7b",
+  "hostTerminal": {
+    "candidateCampaignValid": true,
+    "canonicalSha256": "d25532ed2a89e5b0ad08a9deb2d1896e1545d0f770d472a5de1b2f0668fda810",
+    "cellCount": 30,
+    "file": "campaign-terminal.json",
+    "manifest": {
+      "fileCount": 2876,
+      "manifestSha256": "373932759102269894a84f27527df1a8b9ac7b55dfe916b6d55067ff7024901d",
+      "verdict": "pass"
+    },
+    "runIdsCanonicalSha256": "31be9531af9a9e575d3d19842170b9b3397ba40fdb614d55c3685e2637a86a2e",
+    "sha256": "928085daa427621a5707ece99edef4acc7aeb2b7eeb4c3c149a2d5d13dc0e68a",
+    "validCellCount": 30
+  },
+  "interpreter": "3.9.6 (default, May  7 2023, 23:32:44) \n[Clang 14.0.3 (clang-1403.0.22.14.1)]",
+  "kind": "hotel-offpath-per-cell-and-campaign-terminal-replay",
+  "remoteRoot": "/home/fhuebscher/observability-placement-candidate-v4-runs/hotel-candidate-v1/hotel-v1-20261015t080538z-cb803aec",
+  "studyEpoch": "hotel-offpath-v1"
+}

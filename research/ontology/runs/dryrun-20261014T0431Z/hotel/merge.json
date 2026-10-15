@@ -1,0 +1,325 @@
+{
+ "mergeVersion": 1,
+ "system": "hotel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+   "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-hotel-protocol",
+   "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "bb0bfda81078614d0b34de31dbec60351d07f0b1"
+  }
+ },
+ "aliases": {
+  "consul": "consul",
+  "frontend": "frontend",
+  "profile": "profile",
+  "search": "search",
+  "geo": "geo",
+  "rate": "rate",
+  "review": "review",
+  "attractions": "attractions",
+  "recommendation": "recommendation",
+  "user": "user",
+  "reservation": "reservation",
+  "jaeger": "jaeger",
+  "memcached-rate": "memcached-rate",
+  "memcached-review": "memcached-review",
+  "memcached-profile": "memcached-profile",
+  "memcached-reserve": "memcached-reserve",
+  "mongodb-geo": "mongodb-geo",
+  "mongodb-profile": "mongodb-profile",
+  "mongodb-rate": "mongodb-rate",
+  "mongodb-review": "mongodb-review",
+  "mongodb-attractions": "mongodb-attractions",
+  "mongodb-recommendation": "mongodb-recommendation",
+  "mongodb-reservation": "mongodb-reservation",
+  "mongodb-user": "mongodb-user",
+  "hotel_reserv_review": "review",
+  "hotel_reserv_attractions": "attractions",
+  "hotel_reserv_review_mmc": "memcached-review",
+  "geo-db": "mongodb-geo",
+  "profile-db": "mongodb-profile",
+  "rate-db": "mongodb-rate",
+  "review-db": "mongodb-review",
+  "attractions-db": "mongodb-attractions",
+  "recommendation-db": "mongodb-recommendation",
+  "reservation-db": "mongodb-reservation",
+  "user-db": "mongodb-user"
+ },
+ "normalisation": "merge.py docstring step 3",
+ "agreement": {
+  "agreed": 0,
+  "contested": 6,
+  "agreement": 0.0,
+  "byRelation": {
+   "name": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "id": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "container": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "replicas": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "role": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "service": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   }
+  }
+ },
+ "log": {
+  "inputs": [
+   {
+    "origin": "stage1",
+    "input": "stage1[0]",
+    "sha256": "345d5892ec757b57da663830b875494a254c85962c4096c99d9b68457d8583ce"
+   }
+  ],
+  "schemaRejected": [],
+  "sourcesReplaced": [],
+  "dropped": [],
+  "droppedCount": {
+   "A": 0,
+   "B": 0,
+   "stage1": 0
+  },
+  "checkedCount": {
+   "A": 0,
+   "B": 0,
+   "stage1": 6
+  },
+  "uncheckedDefaultCount": {
+   "A": 0,
+   "B": 0,
+   "stage1": 0
+  }
+ },
+ "agreed": [],
+ "contested": [
+  {
+   "key": [
+    "architecture",
+    "name",
+    "hotel"
+   ],
+   "relation": "name",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.architecture.name",
+     "subject": "architecture",
+     "object": "hotel",
+     "slots": [
+      "const",
+      "name"
+     ],
+     "fact": {
+      "value": "hotel",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/docker-compose.yml",
+      "line": 3,
+      "quotedToken": "services:",
+      "note": "architecture = the services of the compose files upstream:hotelReservation/docker-compose.yml, harness:modules/hotel-reservation/deployment/compose.observability-placement.yml"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "afbb25c14dfeaf47"
+  },
+  {
+   "key": [
+    "host",
+    "id",
+    "fb14srv4"
+   ],
+   "relation": "id",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.host.id",
+     "subject": "host",
+     "object": "fb14srv4",
+     "slots": [
+      "const",
+      "name"
+     ],
+     "fact": {
+      "value": "fb14srv4",
+      "repo": "obsplacement",
+      "sourceFile": "research/host-topology.json",
+      "line": 184,
+      "quotedToken": "\"hostId\": \"fb14srv4\"",
+      "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "ab429c2b80ccf7d8"
+  },
+  {
+   "key": [
+    "search",
+    "container",
+    "search"
+   ],
+   "relation": "container",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].container",
+     "subject": "search",
+     "object": "search",
+     "slots": [
+      "service",
+      "name"
+     ],
+     "fact": {
+      "value": "search",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/docker-compose.yml",
+      "line": 61,
+      "quotedToken": "search:",
+      "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-search-<n>"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "3009e363e4deec58"
+  },
+  {
+   "key": [
+    "search",
+    "replicas",
+    "1.0"
+   ],
+   "relation": "replicas",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].replicas",
+     "subject": "search",
+     "object": 1,
+     "slots": [
+      "service",
+      "number"
+     ],
+     "fact": {
+      "value": 1,
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/docker-compose.yml",
+      "line": 77,
+      "quotedToken": "replicas: 1"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "fa446644634b8fcd"
+  },
+  {
+   "key": [
+    "search",
+    "role",
+    "microservice"
+   ],
+   "relation": "role",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].role",
+     "subject": "search",
+     "object": "microservice",
+     "slots": [
+      "service",
+      "enum"
+     ],
+     "fact": {
+      "value": "microservice",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/Dockerfile",
+      "line": 1,
+      "quotedToken": "golang:1.21",
+      "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "4db4a7d2c2b4ae99"
+  },
+  {
+   "key": [
+    "search",
+    "service",
+    "search"
+   ],
+   "relation": "service",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].name",
+     "subject": "search",
+     "object": "search",
+     "slots": [
+      "service",
+      "service"
+     ],
+     "fact": {
+      "value": "search",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/docker-compose.yml",
+      "line": 61,
+      "quotedToken": "search:"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "abf687b31cf2b8b3"
+  }
+ ]
+}

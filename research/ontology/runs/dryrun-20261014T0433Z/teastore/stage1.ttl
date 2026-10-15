@@ -1,0 +1,142 @@
+@prefix ev: <http://obsplacement.example/evidence#> .
+@prefix omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#> .
+@prefix ops: <http://obsplacement.example/ops#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sut: <http://obsplacement.example/sut/teastore#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sut:ev-0369c653be7cceda a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-recommender ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-recommender-<n>" ;
+    ev:quotedToken "recommender:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 96 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-3702becb0d6a7184 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-recommender ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for recommender in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-394bb8a9d0497af3 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-recommender ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for recommender in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-39e308f0a2668ab4 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv5 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-recommender ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-416706eeffe5303f a ev:Evidence ;
+    ev:aboutObject sut:svc-registry ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D4: environment REGISTRY_HOST=registry" ;
+    ev:quotedToken "REGISTRY_HOST: \"registry\"" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 102 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-72a90e318d45dcd8 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM descartesresearch/teastore-base:latest" ;
+    ev:quotedToken "descartesresearch/teastore-base:latest" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.recommender/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8ce17901f51187c2 a ev:Evidence ;
+    ev:aboutObject ops:Host ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:host-fb14srv5 ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-d0d3a1ba0c2572e1 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommender ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-recommender ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for recommender in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-d532481606810a07 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommender ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:basis "cited" ;
+    ev:quotedToken "recommender:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 96 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-e948a505e28f327c a ev:Evidence ;
+    ev:aboutObject omsac:MicroserviceArchitecture ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:basis "cited" ;
+    ev:note "architecture = the services of the compose files harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:quotedToken "services:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 40 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-eda836ec1f5da6c4 a ev:Evidence ;
+    ev:aboutObject sut:ctr-recommender ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-recommender-<n>" ;
+    ev:quotedToken "recommender:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 96 ;
+    ev:sourceRepo "harness" .
+
+sut:arch-teastore a omsac:MicroserviceArchitecture ;
+    omsac:isComposedOf sut:svc-recommender .
+
+sut:host-fb14srv5 a ops:Host .
+
+sut:rs-recommender a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-recommender .
+
+sut:ctr-recommender a ops:Container ;
+    ops:placedOn sut:host-fb14srv5 .
+
+sut:svc-recommender a omsac:Microservice ;
+    ops:callsSync sut:svc-registry ;
+    ops:runsIn sut:ctr-recommender .
+

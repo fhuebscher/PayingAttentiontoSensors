@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "stage2",
+    "extractor": "A",
+    "service": "quoteservice",
+    "notRepeatedFromFiles": {
+      "syncCallsOut": "none found: routes.php defines only POST /getquote (line 52) and no outbound HTTP/gRPC client call in the given files",
+      "messaging": "none found: no topic, producer or consumer in the given files",
+      "registryOrCoordinator": "none found: no registration, heartbeat, failure timeout or cleanup interval in the given files",
+      "replicas": "not stated: docker-compose.yml:485-509 has no replicas or scale setting; compose default is not in these files",
+      "healthCheck": "not stated: docker-compose.yml:485-509 (quoteservice block) has no healthcheck key",
+      "telemetryInterval": "not stated: public/index.php:61,66,71 flush on OTEL_BSP_SCHEDULE_DELAY, OTEL_BLRP_SCHEDULE_DELAY, OTEL_METRIC_EXPORT_INTERVAL, none set in the given files; library default, not in these files",
+      "telemetrySignals": "traces (routes.php:18 tracerProvider), metrics (routes.php:39 meterProvider), logs (dependencies.php:24 loggerProvider), all sent via OTLP endpoint; candidate-postures.yml:114-116 overrides OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER per posture"
+    }
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "quoteservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 485,
+        "quotedToken": "quoteservice:"
+      },
+      "role": {
+        "value": "microservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "src/quoteservice/app/routes.php",
+        "line": 52,
+        "quotedToken": "$app->post('/getquote'"
+      },
+      "container": {
+        "value": "quote-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 487,
+        "quotedToken": "container_name: quote-service"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "docker-compose.yml",
+          "line": 501,
+          "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}",
+          "note": "OTEL_COLLECTOR_HOST=otelcol (upstream .env:27), OTLP/HTTP port 4318 (.env:29); signals are traces, metrics and logs (see extraction.notRepeatedFromFiles.telemetrySignals); export interval not set in these files"
+        }
+      ]
+    }
+  ]
+}

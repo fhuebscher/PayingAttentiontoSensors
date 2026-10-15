@@ -1,0 +1,354 @@
+schema_version: 1
+module: teastore
+upstream:
+  repository: https://github.com/DescartesResearch/TeaStore.git
+  commit: 34b37f7e7be433ce72d5f9455e66922a13116749
+  path: upstream/teastore
+policy:
+  copied_upstream_application_source: forbidden
+  unclassified_files: forbidden
+  canonical_requires_clean_framework_tree: true
+extensions:
+  - path: execution/srv5_harness.py
+    class: deployment-overlay
+    purpose: Retain fail-closed srv5 inventory, fetch, terminal validation, and exact-owner-bound cleanup while direct materialization and launch remain construction-blocked before external mutation.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_pilot.py
+    class: deployment-overlay
+    purpose: Compile the frozen randomized candidate-pilot schedule and fail closed on runtime requests outside an explicit diagnostic or candidate authorization window.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_orchestrator.py
+    class: deployment-overlay
+    purpose: Materialize and replay the exact 27-cell candidate plan locally, with a separate no-callback non-evidentiary simulation and no executor or runtime injection surface.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_runtime_adapter.py
+    class: deployment-overlay
+    purpose: Replay all local and semantic runtime-readiness inputs including the target-built eight-image receipt before consulting the caller clock, bind the exact authorized 27-cell sequence, and consume each attempt before delegating to the bounded transport.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_transport.py
+    class: deployment-overlay
+    purpose: Install and bind an exact composite release through root transport, replay installed readiness and image IDs, launch one stig-owned 27-cell plan, and support terminal-only status/refetch with independent local replay of success or ABSTAINED abort evidence.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_release_installer.py
+    class: deployment-overlay
+    purpose: Restrict root on fb14srv5 to a typed setup bootstrap, exact release installation with stig-owned patched-image build and inspection, installed-readiness replay, fixed runuser handoff to stig, and read-only campaign status.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate-target-v4.json
+    class: deployment-overlay
+    purpose: Freeze root transport/setup, stig uid-gid and Docker-group execution identity, collision-resistant parents, host lease, project prefix, and reserved TeaStore ports for v4 registry projection.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_remote_controller.py
+    class: deployment-overlay
+    purpose: Hold one non-blocking lease for the complete ordered campaign, enforce the authorization deadline and cleanup reserve, durably retain caught pre-output and mid-run failures as ABSTAINED, stop on first failure, and replay the exact terminal campaign.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_cell_executor.py
+    class: deployment-overlay
+    purpose: Expose only the immutable gate-internal cell contract to the production lifecycle, with no free-form timing, posture, fault, host, evidence-label, or retry arguments.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/compose/compiled-full.override.yaml
+    class: deployment-overlay
+    purpose: Bind-mount the catalog-complete AspectJ configuration so the full posture is rendered by the same compiler as selected.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/compose/compiled-selected.override.yaml
+    class: deployment-overlay
+    purpose: Mount the compiler-generated AspectJ posture before each selected run starts.
+    origin: framework-owned
+    upstream_patch: false
+  - path: images/patched-image-inputs.json
+    class: deployment-overlay
+    purpose: Freeze detached-source preparation, the exact witness patch, Maven reactor, parent image digests, platform, WAR paths, and the post-build validation boundary for patched TeaStore images.
+    origin: framework-owned
+    upstream_patch: false
+  - path: images/patched-image-lock.schema.json
+    class: validator
+    purpose: Define the closed post-build lock tying source, patch, WAR, Dockerfile, platform, image ID, and immutable output image references together.
+    origin: framework-owned
+    upstream_patch: false
+  - path: images/Dockerfile.auth
+    class: deployment-overlay
+    purpose: Overlay only the validated patched auth WAR on the exact digest-pinned linux-amd64 parent image.
+    origin: framework-owned
+    upstream_patch: false
+  - path: images/Dockerfile.persistence
+    class: deployment-overlay
+    purpose: Overlay only the validated patched persistence WAR on the exact digest-pinned linux-amd64 parent image.
+    origin: framework-owned
+    upstream_patch: false
+  - path: images/Dockerfile.webui
+    class: deployment-overlay
+    purpose: Overlay only the validated patched webui WAR on the exact digest-pinned linux-amd64 parent image.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/performance_campaign.py
+    class: deployment-overlay
+    purpose: Retain the diagnostic denial while providing the gate-internal one-cell lifecycle, actual 120-second warmup and setup-gap boundaries, measurement-scoped application logs, and fail-closed cleanup for the bounded candidate controller.
+    origin: framework-owned
+    upstream_patch: false
+  - path: collectors/performance_probe.py
+    class: collector
+    purpose: Retain the legacy schema-v1/v2 sampler for replay of sealed smoke runs; its sequential cadence is not admissible for cost claims.
+    origin: framework-owned
+    upstream_patch: false
+  - path: collectors/performance_probe_v3.py
+    class: collector
+    purpose: Produce fixed-rate, stable-container, per-service resource samples whose cadence, arithmetic, nominal window, and cost projection can be replayed from retained evidence.
+    origin: framework-owned
+    upstream_patch: false
+  - path: collectors/system_probe.py
+    class: collector
+    purpose: Sample per-container cgroup-v2 CPU, memory, I/O and PSI counters plus docker/containerd unit CPU every 5 s in every cell (sys lineage); a stopped container is a null row, and fault-window samples are detection signals, never cost estimates.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/study_epoch.py
+    class: deployment-overlay
+    purpose: Read the committed study-epoch selector; without it every epoch-dependent constant is the frozen 27-cell epoch's, with it the traffic sweep's, the quiet calibration's, campaign B's or campaign C's (the epoch it names), and any other selector refuses to load.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/study-epoch.json
+    class: deployment-overlay
+    purpose: Committed study-epoch selector; its presence activates the epoch it names, teastore-traffic-sweep-v1, (since 2026-10-04) teastore-quiet-calibration-v1, (since 2026-10-09) teastore-traffic-sweep-b-v1 (since 2026-10-10, for the second quiet run A2, protocol decision 68) teastore-quiet-calibration-v1 again or (since 2026-10-11, campaign C, protocol decision 82) teastore-traffic-sweep-c-v1 (read by execution/study_epoch.py).
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_sweep.py
+    class: deployment-overlay
+    purpose: Compile the traffic-sweep epoch (teastore-traffic-sweep-v1) beside the frozen compiler; rate, measurement, onset, hold, offered count and phase floors are per-cell plan values with pinned descriptor and plan digests.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_quiet.py
+    class: deployment-overlay
+    purpose: Compile the quiet calibration epoch (teastore-quiet-calibration-v1, protocol decision 48) from the sweep compiler; 40 no-fault cells, each the sweep's no-fault cell with its own seeded pseudo-window onset, in 10 blocks of a seeded rate order, with pinned descriptor and plan digests.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_sweep_b.py
+    class: deployment-overlay
+    purpose: Compile campaign B (teastore-traffic-sweep-b-v1, protocol decision 49) from the sweep compiler; 36 cells, 3 blocks of the sweep's 12 (regime, rate) cells with their own seeded order and onsets, and the H10 probe-window and H4 freeze-stamp declaration (timing.faultHarness) on every fault cell, with pinned descriptor and plan digests.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_sweep_c.py
+    class: deployment-overlay
+    purpose: Compile campaign C (teastore-traffic-sweep-c-v1, protocol decision 82, BUDGET_C.md) from campaign B's compiler; campaign B's 36-cell shape exactly (each cell B's cell of the same regime and rate, H10/H4 declaration included) with its own seed 20261011, order, onsets and run IDs, with pinned descriptor and plan digests.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/protocol_gates.py
+    class: validator
+    purpose: Byte-identical vendored copy of the measurement repo's shared protocol gates (F1, G1, G2, G4 blocking for sweep cells; R2.recovery recorded).
+    origin: framework-owned
+    upstream_patch: false
+  - path: activation/catalog.json
+    class: instrumentation-adapter
+    purpose: Map logical TeaStore sensors to realizable AspectJ and mandatory propagation activation groups.
+    origin: framework-owned
+    upstream_patch: false
+  - path: activation/auth-selection.json
+    class: instrumentation-adapter
+    purpose: Provide a deterministic compiler fixture for the auth logical selection.
+    origin: framework-owned
+    upstream_patch: false
+  - path: goals/fault-qualification.json
+    class: instrumentation-adapter
+    purpose: Declare fault scenarios, required sensor and service-edge evidence, and the logical selection compiled for qualification.
+    origin: framework-owned
+    upstream_patch: false
+  - path: goals/auth-persistence-fault.json
+    class: instrumentation-adapter
+    purpose: Freeze the auth-persistence evidence goal for exact structural enumeration without claiming runtime utility.
+    origin: framework-owned
+    upstream_patch: false
+  - path: goals/full-journey-structure.json
+    class: instrumentation-adapter
+    purpose: Freeze a distinct five-operation journey-coverage goal for exact structural enumeration.
+    origin: framework-owned
+    upstream_patch: false
+  - path: collectors/kieker_native.py
+    class: collector
+    purpose: Decode Kieker 2.0.0 AMQP containers while retaining native traceId/eoi/ess.
+    origin: legacy-port
+    legacy_path: tools/collectors/collect_kieker_native.py
+    upstream_patch: false
+    constraints:
+      - exclusive-consumer:kieker-rabbitmq-queue
+      - wire-format:kieker-2.0.0
+      - source-map:teastore-java-packages
+  - path: collectors/__init__.py
+    class: evidence-normalizer
+    purpose: Define the telemetry event fields validated by the native collector.
+    origin: legacy-port
+    legacy_path: tools/collectors/__init__.py
+    upstream_patch: false
+  - path: postures/native-full.yaml
+    class: instrumentation-adapter
+    purpose: Select native Kieker evidence and declare queue exclusivity.
+    origin: framework-owned
+    upstream_patch: false
+  - path: postures/none.override.yaml
+    class: instrumentation-adapter
+    purpose: Disable Kieker before JVM startup through the upstream runtime switch.
+    origin: framework-owned
+    upstream_patch: false
+  - path: postures/auth-subset.override.yaml
+    class: instrumentation-adapter
+    purpose: Mount a generated AspectJ pointcut into each instrumentable application container.
+    origin: framework-owned
+    upstream_patch: false
+  - path: postures/auth-subset.aop.xml
+    class: instrumentation-adapter
+    purpose: Smoke-test source-side selection by weaving only the TeaStore auth package.
+    origin: framework-owned
+    upstream_patch: false
+  - path: postures/auth-subset.yaml
+    class: instrumentation-adapter
+    purpose: Declare the requested AspectJ scope and mandatory manual-propagation coupling observed at runtime.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/srv5.yaml
+    class: deployment-overlay
+    purpose: Bind the module to the currently approved srv5 Compose ownership scope.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/compose/docker-compose_kieker.yaml
+    class: deployment-overlay
+    purpose: Connect the published Kieker-enabled TeaStore images to the declared telemetry broker.
+    origin: legacy-port
+    legacy_path: examples/docker/docker-compose_kieker.yaml
+    upstream_patch: false
+  - path: deployment/compose/docker-compose_rabbitmq.yaml
+    class: deployment-overlay
+    purpose: Provide a reproducible RabbitMQ management image and bounded durable Kieker queue.
+    origin: legacy-port
+    legacy_path: examples/docker/docker-compose_rabbitmq.yaml
+    upstream_patch: false
+  - path: deployment/compose/isolation.override.yaml
+    class: deployment-overlay
+    purpose: Replace legacy global names with framework-owned project/network/container names.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/native_kieker.py
+    class: validator
+    purpose: Fail on synthetic IDs, parse failure, empty service coverage, or replay-unverifiable events.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/performance_receipt.py
+    class: validator
+    purpose: Reject overhead evidence without matched workload denominators, source provenance, or queue controls.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/candidate_pilot.py
+    class: validator
+    purpose: Reconcile candidate-pilot provenance, the actual warmup/setup/measurement boundaries, immutable opportunities, append-only journey outcomes, independent fault and path truth, capture replay, and separate raw, signature, and path views.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/candidate_readiness.py
+    class: validator
+    purpose: Replay each of the twelve live-readiness seam observations and its retained planted-defect witness against exact framework, plan, image, and checker digests.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/candidate_terminal.py
+    class: validator
+    purpose: Recompute closed per-cell manifests and scientific reports, require controller-owned cleanup proof, and admit only the exact 27 declared roots with external campaign and cell anchors.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/secret_scan.py
+    class: validator
+    purpose: Reject secret-bearing retained service logs across raw, quoted, escaped, nested JSON, multiline, compound, dotted, hyphenated, underscore-separated, and camelCase key representations.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/patched_images.py
+    class: validator
+    purpose: Validate frozen patched-image inputs, built WAR closure, and image-lock/Compose consistency without executing Maven, Docker, SSH, or network operations or asserting image existence.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/native_token_correlation.py
+    class: validator
+    purpose: Reconcile measurement-scoped opaque journey tokens with independently captured native Kieker trace identities and reject missing, duplicate, ambiguous, or out-of-scope mappings.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/fault_visibility.py
+    class: validator
+    purpose: Require proven interventions, target-service telemetry, balanced postures, and workload reaction for TeaStore fault qualification.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/srv5_terminal.py
+    class: validator
+    purpose: Recompute fetched workload ledgers, shared barriers, telemetry denominators, exact teardown, remote absence proof, and immutable content manifest before admitting smoke evidence.
+    origin: framework-owned
+    upstream_patch: false
+  - path: workload/load_gen_loop.sh
+    class: workload
+    purpose: Generate a stateful, duration-bounded TeaStore user journey and expose completed cycles.
+    origin: legacy-port
+    legacy_path: tools/load_gen_loop.sh
+    upstream_patch: false
+  - path: workload/fixed_load.py
+    class: workload
+    purpose: Pre-allocate opaque path opportunities, apply a fixed open-loop schedule, and retain an immutable plan plus append-only hash-reconciled terminal journey evidence.
+    origin: framework-owned
+    upstream_patch: false
+  - path: witness/teastore-app-witness-v1.patch
+    class: upstream-patch
+    purpose: Propagate one bounded opaque journey token across the pinned webui-auth-persistence login path and emit fixed-schema application-side witness rows.
+    origin: framework-owned
+    upstream_patch: true
+  - path: witness/patch-manifest.json
+    class: upstream-patch
+    purpose: Bind the application-witness patch bytes, exact upstream base, touched paths, token contract, and output contract.
+    origin: framework-owned
+    upstream_patch: true
+  - path: witness/app-witness.schema.json
+    class: evidence-normalizer
+    purpose: Define the exact positive application-path witness row accepted for candidate evidence.
+    origin: framework-owned
+    upstream_patch: false
+  - path: witness/extract_app_witness.py
+    class: evidence-normalizer
+    purpose: Validate complete journey evidence and bounded service logs before emitting independently observed auth-to-persistence execution witnesses and a hash-bound extraction receipt.
+    origin: framework-owned
+    upstream_patch: false
+  - path: witness/teastore-app-witness-v2.patch
+    class: upstream-patch
+    purpose: Extend the source-bound TeaStore witness patch with an auth-side opaque-token to native-Kieker-trace bridge while preserving parameter-logging denial.
+    origin: framework-owned
+    upstream_patch: true
+  - path: witness/patch-manifest-v2.json
+    class: upstream-patch
+    purpose: Bind the native-trace bridge patch bytes, exact upstream base, touched paths, token contract, and non-parameterized logging contract.
+    origin: framework-owned
+    upstream_patch: true
+  - path: witness/teastore-app-witness-v3.patch
+    class: upstream-patch
+    purpose: Extend the native-trace bridge patch with an AspectJ weaving exclusion that keeps the framework witness helper invisible to the system under test's own instrumentation in every posture.
+    origin: framework-owned
+    upstream_patch: true
+  - path: witness/patch-manifest-v3.json
+    class: upstream-patch
+    purpose: Bind the weaving-exclusion patch bytes, exact upstream base, touched paths including the woven aop.xml, token contract, and non-parameterized logging contract.
+    origin: framework-owned
+    upstream_patch: true
+  - path: witness/native-token-correlation.schema.json
+    class: evidence-normalizer
+    purpose: Define the closed typed mapping between an opaque journey token and one native Kieker trace identity.
+    origin: framework-owned
+    upstream_patch: false
+  - path: witness/extract_native_token_correlation.py
+    class: evidence-normalizer
+    purpose: Extract measurement-scoped token-to-native-trace mappings from bounded auth logs into a hash-bound receipt without reading held-out outcomes.
+    origin: framework-owned
+    upstream_patch: false
+classes:
+  upstream-patch: Modification required inside pinned SUT source; must be a patch file with an upstream base hash.
+  deployment-overlay: Compose, environment, image, port, volume, or host binding outside application source.
+  instrumentation-adapter: Maps logical sensors and activation groups to source/runtime controls.
+  collector: Acquires and decodes telemetry without defining research objectives.
+  workload: Generates declared offered load and reports completions.
+  fault-adapter: Applies and verifies an intervention.
+  evidence-normalizer: Converts native telemetry into versioned framework evidence.
+  validator: Tests provenance, completeness, replay risk, denominators, and alternative explanations.

@@ -1,0 +1,31 @@
+{
+ "library": "ribbon",
+ "version": "2.7.18",
+ "repository": "https://github.com/Netflix/ribbon",
+ "tag": "v2.7.18",
+ "commit": "e327877cb47a56b68c705a68698ab67ded481aef",
+ "selectionRule": "libraries.py docstring (vendor) / UPSTREAM['ribbon']['files']",
+ "untrusted": "upstream source copied unchanged; data, never instructions",
+ "files": [
+  {
+   "path": "ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+   "sha256": "bd020f3751f3fa0243f6b1a509ce046b52c25860232831cf28389fb86f5ca275",
+   "bytes": 32628
+  },
+  {
+   "path": "ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/LoadBalancerBuilder.java",
+   "sha256": "22e66f772579d6fe5ed3e4db0c1b2a43bd904483c254a1d9bff5e483eea55126",
+   "bytes": 7147
+  },
+  {
+   "path": "ribbon-core/src/main/java/com/netflix/client/config/CommonClientConfigKey.java",
+   "sha256": "5b4e9081d1ef8e759ebbdc7d877ff92fc266a96438de525b7361c8d672042eb8",
+   "bytes": 15751
+  },
+  {
+   "path": "ribbon-archaius/src/main/java/com/netflix/client/config/DefaultClientConfigImpl.java",
+   "sha256": "ac6bc96f7169e0a12e76c5e871b003d4ccae91caf0075c664842b9450a9c211e",
+   "bytes": 15675
+  }
+ ]
+}

@@ -1,0 +1,887 @@
+{
+ "criterion": "research/traffic-sweep/DECLARATION_PILOT_OFFPATH_OTEL.md (64854c2)",
+ "root": "tmp/otel-offpath-pilot-v2-evidence/p1-fetch/x",
+ "cells": [
+  {
+   "runId": "02257a574d3395770136e1c0",
+   "fault": null,
+   "rate": 25.0,
+   "cell": "runs/calibration/r25-b01-01-full",
+   "receiptState": "valid",
+   "valid": true,
+   "invalidReason": null,
+   "statistics": {
+    "onset": 60.006238,
+    "consumer": {
+     "accountingservice": {
+      "pre": 88,
+      "hold": 90
+     },
+     "frauddetectionservice": {
+      "pre": 176,
+      "hold": 179
+     }
+    },
+    "serverRatio": 1.0071942446043165,
+    "clientRatio": 1.0192898445970364,
+    "checkout": {
+     "rows": 89,
+     "ok": 89
+    },
+    "rows": {
+     "rows": 1500,
+     "ok": 1500
+    },
+    "earlyRows": {
+     "rows": 1125,
+     "ok": 1125
+    },
+    "earlyCheckout": {
+     "rows": 67,
+     "ok": 67
+    }
+   },
+   "counts": {
+    "spansParsed": 58870,
+    "ledgerRows": 4500,
+    "server": {
+     "pre": 1556,
+     "hold": 1559,
+     "preMedianMs": 0.13256072998046875,
+     "holdMedianMs": 0.133514404296875
+    },
+    "client": {
+     "pre": 1397,
+     "hold": 1398,
+     "preMedianMs": 2.6388168334960938,
+     "holdMedianMs": 2.6897192001342773
+    }
+   },
+   "witnessCrossCheck": {
+    "ledgerRows": 4500,
+    "witnessRows": 4500,
+    "unwitnessedLedgerRows": 0,
+    "unknownWitnessRows": 0,
+    "byRoute": {
+     "add-to-cart": {
+      "ledgerRows": 790,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "ads": {
+      "ledgerRows": 398,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "checkout": {
+      "ledgerRows": 265,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "index": {
+      "ledgerRows": 133,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "product": {
+      "ledgerRows": 2118,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "recommendations": {
+      "ledgerRows": 398,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "view-cart": {
+      "ledgerRows": 398,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     }
+    }
+   }
+  },
+  {
+   "runId": "ddd3db6531e3f456ceb3369f",
+   "fault": "accounting-pause",
+   "rate": 25.0,
+   "cell": "runs/effect/accounting-pause/r25-b01-02-full",
+   "receiptState": "valid",
+   "valid": true,
+   "invalidReason": null,
+   "statistics": {
+    "onset": 60.00771717727184,
+    "consumer": {
+     "accountingservice": {
+      "pre": 87,
+      "hold": 0
+     },
+     "frauddetectionservice": {
+      "pre": 174,
+      "hold": 178
+     }
+    },
+    "serverRatio": 0.9654008438818565,
+    "clientRatio": 0.9235184082986141,
+    "checkout": {
+     "rows": 89,
+     "ok": 89
+    },
+    "rows": {
+     "rows": 1500,
+     "ok": 1500
+    },
+    "earlyRows": {
+     "rows": 1125,
+     "ok": 1125
+    },
+    "earlyCheckout": {
+     "rows": 67,
+     "ok": 67
+    }
+   },
+   "counts": {
+    "spansParsed": 58954,
+    "ledgerRows": 4500,
+    "server": {
+     "pre": 1560,
+     "hold": 1558,
+     "preMedianMs": 0.14126300811767578,
+     "holdMedianMs": 0.13637542724609375
+    },
+    "client": {
+     "pre": 1395,
+     "hold": 1396,
+     "preMedianMs": 2.8040409088134766,
+     "holdMedianMs": 2.589583396911621
+    }
+   },
+   "witnessCrossCheck": {
+    "ledgerRows": 4500,
+    "witnessRows": 4500,
+    "unwitnessedLedgerRows": 0,
+    "unknownWitnessRows": 0,
+    "byRoute": {
+     "add-to-cart": {
+      "ledgerRows": 799,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "ads": {
+      "ledgerRows": 396,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "checkout": {
+      "ledgerRows": 264,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "index": {
+      "ledgerRows": 132,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "product": {
+      "ledgerRows": 2118,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "recommendations": {
+      "ledgerRows": 396,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "view-cart": {
+      "ledgerRows": 395,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     }
+    }
+   }
+  },
+  {
+   "runId": "25b4b978c23a4af695ce08f9",
+   "fault": "fraud-pause",
+   "rate": 25.0,
+   "cell": "runs/effect/fraud-pause/r25-b01-03-full",
+   "receiptState": "valid",
+   "valid": true,
+   "invalidReason": null,
+   "statistics": {
+    "onset": 60.01786680519581,
+    "consumer": {
+     "accountingservice": {
+      "pre": 89,
+      "hold": 88
+     },
+     "frauddetectionservice": {
+      "pre": 178,
+      "hold": 0
+     }
+    },
+    "serverRatio": 0.9850088183421517,
+    "clientRatio": 0.9338805477643953,
+    "checkout": {
+     "rows": 88,
+     "ok": 88
+    },
+    "rows": {
+     "rows": 1500,
+     "ok": 1500
+    },
+    "earlyRows": {
+     "rows": 1125,
+     "ok": 1125
+    },
+    "earlyCheckout": {
+     "rows": 66,
+     "ok": 66
+    }
+   },
+   "counts": {
+    "spansParsed": 59026,
+    "ledgerRows": 4500,
+    "server": {
+     "pre": 1557,
+     "hold": 1566,
+     "preMedianMs": 0.13518333435058594,
+     "holdMedianMs": 0.13315677642822266
+    },
+    "client": {
+     "pre": 1399,
+     "hold": 1398,
+     "preMedianMs": 2.8901100158691406,
+     "holdMedianMs": 2.6990175247192383
+    }
+   },
+   "witnessCrossCheck": {
+    "ledgerRows": 4500,
+    "witnessRows": 4500,
+    "unwitnessedLedgerRows": 0,
+    "unknownWitnessRows": 0,
+    "byRoute": {
+     "add-to-cart": {
+      "ledgerRows": 786,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "ads": {
+      "ledgerRows": 399,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "checkout": {
+      "ledgerRows": 266,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "index": {
+      "ledgerRows": 133,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "product": {
+      "ledgerRows": 2117,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "recommendations": {
+      "ledgerRows": 400,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "view-cart": {
+      "ledgerRows": 399,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     }
+    }
+   }
+  },
+  {
+   "runId": "59b65b20177ac00b5e617783",
+   "fault": null,
+   "rate": 50.0,
+   "cell": "runs/calibration/r50-b01-04-full",
+   "receiptState": "valid",
+   "valid": true,
+   "invalidReason": null,
+   "statistics": {
+    "onset": 60.010958,
+    "consumer": {
+     "accountingservice": {
+      "pre": 176,
+      "hold": 176
+     },
+     "frauddetectionservice": {
+      "pre": 352,
+      "hold": 352
+     }
+    },
+    "serverRatio": 0.9787234042553191,
+    "clientRatio": 0.9402462734931951,
+    "checkout": {
+     "rows": 176,
+     "ok": 176
+    },
+    "rows": {
+     "rows": 3000,
+     "ok": 3000
+    },
+    "earlyRows": {
+     "rows": 2250,
+     "ok": 2250
+    },
+    "earlyCheckout": {
+     "rows": 132,
+     "ok": 132
+    }
+   },
+   "counts": {
+    "spansParsed": 114099,
+    "ledgerRows": 9000,
+    "server": {
+     "pre": 3115,
+     "hold": 3128,
+     "preMedianMs": 0.13446807861328125,
+     "holdMedianMs": 0.1316070556640625
+    },
+    "client": {
+     "pre": 2792,
+     "hold": 2800,
+     "preMedianMs": 2.759099006652832,
+     "holdMedianMs": 2.5942325592041016
+    }
+   },
+   "witnessCrossCheck": {
+    "ledgerRows": 9000,
+    "witnessRows": 9000,
+    "unwitnessedLedgerRows": 0,
+    "unknownWitnessRows": 0,
+    "byRoute": {
+     "add-to-cart": {
+      "ledgerRows": 1588,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "ads": {
+      "ledgerRows": 794,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "checkout": {
+      "ledgerRows": 529,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "index": {
+      "ledgerRows": 265,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "product": {
+      "ledgerRows": 4236,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "recommendations": {
+      "ledgerRows": 794,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "view-cart": {
+      "ledgerRows": 794,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     }
+    }
+   }
+  },
+  {
+   "runId": "20db7d6b7e34858a352ded64",
+   "fault": "fraud-pause",
+   "rate": 50.0,
+   "cell": "runs/effect/fraud-pause/r50-b01-05-full",
+   "receiptState": "valid",
+   "valid": true,
+   "invalidReason": null,
+   "statistics": {
+    "onset": 60.0226346924901,
+    "consumer": {
+     "accountingservice": {
+      "pre": 176,
+      "hold": 177
+     },
+     "frauddetectionservice": {
+      "pre": 352,
+      "hold": 2
+     }
+    },
+    "serverRatio": 0.9893428063943162,
+    "clientRatio": 0.9253046723928587,
+    "checkout": {
+     "rows": 177,
+     "ok": 177
+    },
+    "rows": {
+     "rows": 3000,
+     "ok": 3000
+    },
+    "earlyRows": {
+     "rows": 2250,
+     "ok": 2250
+    },
+    "earlyCheckout": {
+     "rows": 132,
+     "ok": 132
+    }
+   },
+   "counts": {
+    "spansParsed": 114090,
+    "ledgerRows": 9000,
+    "server": {
+     "pre": 3108,
+     "hold": 3115,
+     "preMedianMs": 0.1342296600341797,
+     "holdMedianMs": 0.1327991485595703
+    },
+    "client": {
+     "pre": 2790,
+     "hold": 2793,
+     "preMedianMs": 2.6508569717407227,
+     "holdMedianMs": 2.452850341796875
+    }
+   },
+   "witnessCrossCheck": {
+    "ledgerRows": 9000,
+    "witnessRows": 9000,
+    "unwitnessedLedgerRows": 0,
+    "unknownWitnessRows": 0,
+    "byRoute": {
+     "add-to-cart": {
+      "ledgerRows": 1586,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "ads": {
+      "ledgerRows": 795,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "checkout": {
+      "ledgerRows": 530,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "index": {
+      "ledgerRows": 265,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "product": {
+      "ledgerRows": 4235,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "recommendations": {
+      "ledgerRows": 795,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "view-cart": {
+      "ledgerRows": 794,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     }
+    }
+   }
+  },
+  {
+   "runId": "fb1b1a80adbf4c5442e88f0c",
+   "fault": "accounting-pause",
+   "rate": 50.0,
+   "cell": "runs/effect/accounting-pause/r50-b01-06-full",
+   "receiptState": "valid",
+   "valid": true,
+   "invalidReason": null,
+   "statistics": {
+    "onset": 60.0069825053215,
+    "consumer": {
+     "accountingservice": {
+      "pre": 176,
+      "hold": 0
+     },
+     "frauddetectionservice": {
+      "pre": 352,
+      "hold": 354
+     }
+    },
+    "serverRatio": 0.9891696750902527,
+    "clientRatio": 0.9086425339366516,
+    "checkout": {
+     "rows": 177,
+     "ok": 177
+    },
+    "rows": {
+     "rows": 3000,
+     "ok": 3000
+    },
+    "earlyRows": {
+     "rows": 2250,
+     "ok": 2250
+    },
+    "earlyCheckout": {
+     "rows": 132,
+     "ok": 132
+    }
+   },
+   "counts": {
+    "spansParsed": 114113,
+    "ledgerRows": 9000,
+    "server": {
+     "pre": 3121,
+     "hold": 3128,
+     "preMedianMs": 0.13208389282226562,
+     "holdMedianMs": 0.13065338134765625
+    },
+    "client": {
+     "pre": 2796,
+     "hold": 2800,
+     "preMedianMs": 2.6345252990722656,
+     "holdMedianMs": 2.3938417434692383
+    }
+   },
+   "witnessCrossCheck": {
+    "ledgerRows": 9000,
+    "witnessRows": 9000,
+    "unwitnessedLedgerRows": 0,
+    "unknownWitnessRows": 0,
+    "byRoute": {
+     "add-to-cart": {
+      "ledgerRows": 1590,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "ads": {
+      "ledgerRows": 794,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "checkout": {
+      "ledgerRows": 529,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "index": {
+      "ledgerRows": 265,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "product": {
+      "ledgerRows": 4235,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "recommendations": {
+      "ledgerRows": 794,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     },
+     "view-cart": {
+      "ledgerRows": 793,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 0
+     }
+    }
+   }
+  },
+  {
+   "runId": "10502d9a9bf6b28693586d15",
+   "fault": "frontend-pause",
+   "rate": 25.0,
+   "cell": "runs/effect/frontend-pause/r25-b01-07-full",
+   "receiptState": "valid",
+   "valid": true,
+   "invalidReason": null,
+   "statistics": {
+    "onset": 60.02210319787264,
+    "consumer": {
+     "accountingservice": {
+      "pre": 88,
+      "hold": 1
+     },
+     "frauddetectionservice": {
+      "pre": 176,
+      "hold": 2
+     }
+    },
+    "serverRatio": null,
+    "clientRatio": null,
+    "checkout": {
+     "rows": 89,
+     "ok": 9
+    },
+    "rows": {
+     "rows": 1500,
+     "ok": 44
+    },
+    "earlyRows": {
+     "rows": 1125,
+     "ok": 4
+    },
+    "earlyCheckout": {
+     "rows": 65,
+     "ok": 1
+    }
+   },
+   "counts": {
+    "spansParsed": 47985,
+    "ledgerRows": 4500,
+    "server": {
+     "pre": 1552,
+     "hold": 8,
+     "preMedianMs": 0.13709068298339844,
+     "holdMedianMs": 0.10371208190917969
+    },
+    "client": {
+     "pre": 1395,
+     "hold": 7,
+     "preMedianMs": 2.9096603393554688,
+     "holdMedianMs": 1.386404037475586
+    }
+   },
+   "witnessCrossCheck": {
+    "ledgerRows": 4500,
+    "witnessRows": 4500,
+    "unwitnessedLedgerRows": 0,
+    "unknownWitnessRows": 0,
+    "byRoute": {
+     "add-to-cart": {
+      "ledgerRows": 789,
+      "statusDisagrees": 4,
+      "witnessFlagsNotDash": 256
+     },
+     "ads": {
+      "ledgerRows": 398,
+      "statusDisagrees": 2,
+      "witnessFlagsNotDash": 130
+     },
+     "checkout": {
+      "ledgerRows": 266,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 80
+     },
+     "index": {
+      "ledgerRows": 133,
+      "statusDisagrees": 1,
+      "witnessFlagsNotDash": 43
+     },
+     "product": {
+      "ledgerRows": 2117,
+      "statusDisagrees": 5,
+      "witnessFlagsNotDash": 698
+     },
+     "recommendations": {
+      "ledgerRows": 399,
+      "statusDisagrees": 2,
+      "witnessFlagsNotDash": 130
+     },
+     "view-cart": {
+      "ledgerRows": 398,
+      "statusDisagrees": 1,
+      "witnessFlagsNotDash": 134
+     }
+    }
+   }
+  },
+  {
+   "runId": "4da3a8464a4093f8b610ad9f",
+   "fault": "frontend-pause",
+   "rate": 50.0,
+   "cell": "runs/effect/frontend-pause/r50-b01-08-full",
+   "receiptState": "valid",
+   "valid": true,
+   "invalidReason": null,
+   "statistics": {
+    "onset": 60.00879741460085,
+    "consumer": {
+     "accountingservice": {
+      "pre": 178,
+      "hold": 1
+     },
+     "frauddetectionservice": {
+      "pre": 356,
+      "hold": 2
+     }
+    },
+    "serverRatio": null,
+    "clientRatio": null,
+    "checkout": {
+     "rows": 176,
+     "ok": 7
+    },
+    "rows": {
+     "rows": 3000,
+     "ok": 73
+    },
+    "earlyRows": {
+     "rows": 2250,
+     "ok": 9
+    },
+    "earlyCheckout": {
+     "rows": 129,
+     "ok": 0
+    }
+   },
+   "counts": {
+    "spansParsed": 86226,
+    "ledgerRows": 9000,
+    "server": {
+     "pre": 3111,
+     "hold": 10,
+     "preMedianMs": 0.13208389282226562,
+     "holdMedianMs": 0.12159347534179688
+    },
+    "client": {
+     "pre": 2799,
+     "hold": 5,
+     "preMedianMs": 2.5458335876464844,
+     "holdMedianMs": 1.6133785247802734
+    }
+   },
+   "witnessCrossCheck": {
+    "ledgerRows": 9000,
+    "witnessRows": 9000,
+    "unwitnessedLedgerRows": 0,
+    "unknownWitnessRows": 0,
+    "byRoute": {
+     "add-to-cart": {
+      "ledgerRows": 1576,
+      "statusDisagrees": 4,
+      "witnessFlagsNotDash": 527
+     },
+     "ads": {
+      "ledgerRows": 797,
+      "statusDisagrees": 4,
+      "witnessFlagsNotDash": 261
+     },
+     "checkout": {
+      "ledgerRows": 532,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 169
+     },
+     "index": {
+      "ledgerRows": 266,
+      "statusDisagrees": 0,
+      "witnessFlagsNotDash": 89
+     },
+     "product": {
+      "ledgerRows": 4235,
+      "statusDisagrees": 6,
+      "witnessFlagsNotDash": 1387
+     },
+     "recommendations": {
+      "ledgerRows": 797,
+      "statusDisagrees": 2,
+      "witnessFlagsNotDash": 262
+     },
+     "view-cart": {
+      "ledgerRows": 797,
+      "statusDisagrees": 2,
+      "witnessFlagsNotDash": 260
+     }
+    }
+   }
+  }
+ ],
+ "noFaultPrecondition": {
+  "25": {
+   "runId": "02257a574d3395770136e1c0",
+   "valid": true,
+   "passes": true,
+   "checkoutRows": 89,
+   "checkoutOkShare": 1.0,
+   "rows": 1500,
+   "rowsOkShare": 1.0
+  },
+  "50": {
+   "runId": "59b65b20177ac00b5e617783",
+   "valid": true,
+   "passes": true,
+   "checkoutRows": 176,
+   "checkoutOkShare": 1.0,
+   "rows": 3000,
+   "rowsOkShare": 1.0
+  }
+ },
+ "verdicts": {
+  "productcatalog-cpu-throttle": {
+   "25": {
+    "faultRunId": null,
+    "noFaultRunId": "02257a574d3395770136e1c0",
+    "verdict": "—",
+    "reason": "the plan has no (or more than one) productcatalog-cpu-throttle cell at this rate"
+   },
+   "50": {
+    "faultRunId": null,
+    "noFaultRunId": "59b65b20177ac00b5e617783",
+    "verdict": "—",
+    "reason": "the plan has no (or more than one) productcatalog-cpu-throttle cell at this rate"
+   }
+  },
+  "frontend-pause": {
+   "25": {
+    "faultRunId": "10502d9a9bf6b28693586d15",
+    "noFaultRunId": "02257a574d3395770136e1c0",
+    "verdict": "manifests",
+    "reason": null
+   },
+   "50": {
+    "faultRunId": "4da3a8464a4093f8b610ad9f",
+    "noFaultRunId": "59b65b20177ac00b5e617783",
+    "verdict": "manifests",
+    "reason": null
+   }
+  },
+  "fraud-pause": {
+   "25": {
+    "faultRunId": "25b4b978c23a4af695ce08f9",
+    "noFaultRunId": "02257a574d3395770136e1c0",
+    "verdict": "manifests",
+    "reason": null
+   },
+   "50": {
+    "faultRunId": "20db7d6b7e34858a352ded64",
+    "noFaultRunId": "59b65b20177ac00b5e617783",
+    "verdict": "manifests",
+    "reason": null
+   }
+  },
+  "accounting-pause": {
+   "25": {
+    "faultRunId": "ddd3db6531e3f456ceb3369f",
+    "noFaultRunId": "02257a574d3395770136e1c0",
+    "verdict": "manifests",
+    "reason": null
+   },
+   "50": {
+    "faultRunId": "fb1b1a80adbf4c5442e88f0c",
+    "noFaultRunId": "59b65b20177ac00b5e617783",
+    "verdict": "manifests",
+    "reason": null
+   }
+  }
+ },
+ "keptForE": {
+  "productcatalog-cpu-throttle": false,
+  "frontend-pause": true,
+  "fraud-pause": true,
+  "accounting-pause": true
+ },
+ "eRate": {
+  "rate": 25.0,
+  "rule": "lowest rate at which every kept fault manifests"
+ },
+ "validity": "terminal-valid"
+}

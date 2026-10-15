@@ -1,0 +1,449 @@
+{
+  "analysis": {
+    "comparativeUnit": "complete-(regime,block)",
+    "costAndEffectPoolable": false,
+    "descriptiveOnly": true,
+    "forbidden": [
+      "observation-count-as-replication",
+      "source-off-as-none",
+      "unsupported-posture-imputation",
+      "cross-family-replication-from-channel-alias"
+    ],
+    "report": [
+      "raw-blocks",
+      "paired-deltas",
+      "ranges",
+      "order-time-thermal-diagnostics",
+      "typed-abstentions"
+    ]
+  },
+  "design": {
+    "blocksPerRegime": 3,
+    "coldStartEachRun": true,
+    "postures": [
+      "none",
+      "selected",
+      "async",
+      "full"
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "cost",
+        "fault": null,
+        "id": "no-fault-cost",
+        "kind": "cost"
+      },
+      {
+        "artifactRootClass": "effect/fraud-pause",
+        "fault": "fraud-pause",
+        "id": "fraud-pause-effect",
+        "kind": "effect"
+      },
+      {
+        "artifactRootClass": "effect/frontend-pause",
+        "fault": "frontend-pause",
+        "id": "frontend-pause-effect",
+        "kind": "effect"
+      }
+    ],
+    "runsPerBlock": 4,
+    "totalRuns": 36
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true,
+    "runtimeSuccessDoesNotPromote": true
+  },
+  "faultDesign": {
+    "authority": "DECLARATION.md 8194d74 (fraud-pause, 15 s at 45 s, frontend-pause control) and erratum 2 (ff65eea: hold, scenario and export interval are parameters; declared defaults kept until the user chooses a redesign)",
+    "controlScenarios": [
+      "frontend-pause"
+    ],
+    "holdSeconds": 15,
+    "metricExportIntervalMilliseconds": null,
+    "onsetSeconds": 45,
+    "scenarios": {
+      "fraud-pause": {
+        "action": "pause",
+        "entryRouteDuringFault": "recorded-not-required",
+        "implemented": true,
+        "service": "frauddetectionservice"
+      },
+      "frontend-pause": {
+        "action": "pause",
+        "entryRouteDuringFault": "must-be-unavailable",
+        "implemented": true,
+        "service": "frontend"
+      }
+    },
+    "targetScenarios": [
+      "fraud-pause"
+    ]
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "detectionWindow": "[appliedMonotonic, revertingMonotonic]: after the pause is observed, before the unpause command (Hotel compose_pause.py); offsets are relative to the shared barrier",
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "independentOfScoredTelemetry": true,
+      "intervalLabel": "intervention-exposure",
+      "offPathFraming": "checkout produces with RequiredAcks = NoResponse (producer.go:24, erratum 2) and frauddetectionservice and accountingservice consume asynchronously in separate consumer groups, so a consumer fault cannot reach the order response (code reading, method)",
+      "requiredReceiptFields": [
+        "actualOffsetMonotonicOffsetSeconds",
+        "actualOnsetMonotonicOffsetSeconds",
+        "appliedMonotonic",
+        "appliedMonotonicOffsetSeconds",
+        "barrierMonotonic",
+        "duringRouteAvailable",
+        "duringStateSamples",
+        "error",
+        "manifested",
+        "postState",
+        "preState",
+        "recovered",
+        "revertingMonotonic",
+        "revertingMonotonicOffsetSeconds",
+        "scenario",
+        "service",
+        "successful",
+        "targetContainerId",
+        "targetImageId"
+      ],
+      "scenarioContracts": [
+        {
+          "commandFamily": "container-pause-unpause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "entryRouteDuringFault": "recorded-not-required",
+          "postPredicate": "running-and-unpaused-and-journey-ready",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "fraud-pause",
+          "service": "frauddetectionservice"
+        },
+        {
+          "commandFamily": "container-pause-unpause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "entryRouteDuringFault": "must-be-unavailable",
+          "postPredicate": "running-and-unpaused-and-journey-ready",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "frontend-pause",
+          "service": "frontend"
+        }
+      ],
+      "source": "controller-and-target-state-probes"
+    },
+    "path": {
+      "crossTraceAssemblyAllowed": false,
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "executedDenominator": "application-side-request-witness",
+      "expectedNoFaultPath": [
+        "frontendproxy",
+        "frontend",
+        "cartservice",
+        "checkoutservice",
+        "productcatalogservice",
+        "currencyservice",
+        "shippingservice",
+        "quoteservice",
+        "paymentservice",
+        "emailservice",
+        "flagd"
+      ],
+      "faultSpecificTruth": {
+        "fraud-pause": {
+          "duringFaultExpectedOutcome": "offered-journey-outcome-not-presumed",
+          "duringFaultFullPathRequired": false,
+          "postRecoveryFullPathRequired": true,
+          "preFaultFullPathRequired": true
+        },
+        "frontend-pause": {
+          "duringFaultExpectedOutcome": "offered-request-with-frontend-unavailable",
+          "duringFaultFullPathRequired": false,
+          "postRecoveryFullPathRequired": true,
+          "preFaultFullPathRequired": true
+        }
+      },
+      "missingWitnessOrCorrelationState": "unsupported",
+      "numericMissingValue": null,
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "requiredCorrelation": [
+        "opaque-request-token",
+        "application-side-request-witness",
+        "original-trace-id",
+        "one-to-one-token-trace-mapping"
+      ],
+      "scoredPhases": [
+        "pre-fault",
+        "during-fault",
+        "post-readiness"
+      ]
+    }
+  },
+  "id": "otel-demo-offpath-v1",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "otel-demo",
+  "outcomes": {
+    "costRegimeOnly": "no-fault-cost",
+    "effectResourcesAreCostEstimates": false,
+    "offeredRequestsAreDenominator": true,
+    "primaryCostEndpoint": "application-cpu-seconds-per-offered-request",
+    "retainedTraceBytesAreWireBytes": false,
+    "windowMembership": "monotonic-shared-barrier"
+  },
+  "postureRealization": {
+    "async": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "closure": [
+        "accountingservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frauddetectionservice",
+        "frontend",
+        "frontendproxy",
+        "kafka",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "closureDecision": "instrumentation is activated on the selected closure plus accountingservice, frauddetectionservice, kafka (the orders topic's broker and its two consumers); every other application service runs uninstrumented",
+      "currentControl": "materialized-posture-controls-async-closure",
+      "reason": null,
+      "status": "implemented"
+    },
+    "full": {
+      "claimBoundary": null,
+      "currentControl": "upstream-all-services-enabled",
+      "reason": null,
+      "status": "implemented"
+    },
+    "none": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "emailservice",
+          "flagd",
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "currentControl": "materialized-posture-controls",
+      "reason": null,
+      "status": "implemented"
+    },
+    "selected": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "closure": [
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frontend",
+        "frontendproxy",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "closureDecision": "instrumentation is activated on the synchronous checkout path (frontendproxy, frontend, cartservice, checkoutservice, productcatalogservice, currencyservice, shippingservice, quoteservice, paymentservice, emailservice, flagd); every other application service runs uninstrumented",
+      "currentControl": "materialized-posture-controls-selected-closure",
+      "derivation": [
+        "frontendproxy -> frontend: Envoy routes /api/* to the Next.js frontend (src/frontendproxy/envoy.tmpl.yaml)",
+        "add-to-cart: src/frontend/pages/api/cart.ts POST -> CartGateway.addItem + getCart (cartservice)",
+        "place-order: src/frontend/pages/api/checkout.ts POST -> CheckoutGateway.placeOrder (checkoutservice), then ProductCatalogService.getProduct per item (productcatalogservice)",
+        "src/checkoutservice/main.go PlaceOrder: cartservice GetCart, productcatalogservice GetProduct, currencyservice Convert, shippingservice GetQuote (-> quoteservice), paymentservice Charge, shippingservice ShipOrder, cartservice EmptyCart, emailservice POST /send_order_confirmation (an error is logged and swallowed), then sendToPostProcessor (Kafka produce with RequiredAcks = sarama.NoResponse, src/checkoutservice/kafka/producer.go:24; erratum 2: no broker acknowledgement)",
+        "flagd: checkoutservice (paymentServiceUnreachable, kafkaQueueProblems), paymentservice, cartservice and productcatalogservice evaluate feature flags through flagd on the request; measured: 600 of 600 offered-request traces of v3r1 no-fault-cost/b01-01-full contain flagd (and productcatalogservice), so flagd is on the traced synchronous path although the declaration's parenthetical list omits it",
+        "kafka, frauddetectionservice, accountingservice: consumers of the orders topic (src/frauddetectionservice/.../main.kt poll loop, src/accountingservice/Consumer.cs); excluded from the synchronous comparison and added by async"
+      ],
+      "reason": null,
+      "status": "implemented"
+    }
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "retryMayReplaceCell": false
+  },
+  "schedule": {
+    "algorithm": "sha256-regime-indexed-latin-rotation-v1",
+    "context": "schedule-v1",
+    "positionBalance": "latin-rectangle: 3 blocks x 4 postures per regime; each posture occupies 3 of the 4 ordinal positions once and none twice; a full 4x4 Latin square would need 4 blocks, which the declaration does not grant",
+    "postureCodes": {
+      "A": "async",
+      "F": "full",
+      "N": "none",
+      "S": "selected"
+    },
+    "seedSource": "study-epoch-and-regime-only"
+  },
+  "setupPreconditions": [
+    {
+      "enforcedBy": "modules/otel-demo/drivers/campaign_setup.py: auto refuses without a recorded posture-probe receipt bound to the pinned upstream commit and the probe script bytes",
+      "id": "posture-connection-probe-ok",
+      "requiredCounts": {
+        "disabledOtlpConnections": 0,
+        "enabledOtlpConnectionsMinimum": 1
+      },
+      "requiredOutput": "PROBE OK",
+      "stage": "before-gate-setup-and-after-every-upstream-repin",
+      "tool": "modules/otel-demo/tools/posture_connection_probe.sh",
+      "why": "text-level guard proofs missed currencyservice's unguarded initLogger() on 2026-09-06; only counting OTLP connections per posture sees a missed SDK init"
+    },
+    {
+      "detail": "the standing teastore-demo Compose project on fb14srv6 (WebUI :8080, DB :3306) must be removed by its owner: docker compose -p teastore-demo down",
+      "enforcedBy": "candidate_setup.assert_no_active_foreign refuses any running container or active Compose project at install and at readiness",
+      "id": "demo-stack-torn-down",
+      "ports": [
+        8080,
+        3306
+      ],
+      "stage": "before-gate-setup"
+    },
+    {
+      "detail": "ports 18080-18084 free and /home/stig/observability-placement-candidate-v4-runs/.srv6-runtime.lock absent",
+      "enforcedBy": "candidate_setup.ports_free and the shared srv6 lease in candidate-target-allocation.json",
+      "id": "reserved-ports-free-and-lease-absent",
+      "ports": [
+        18080,
+        18081,
+        18082,
+        18083,
+        18084
+      ],
+      "stage": "before-gate-setup"
+    }
+  ],
+  "source": {
+    "applicationFamily": "otel-demo",
+    "channel": "compose-otel-collector",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "status": "method-design-only",
+  "supersedes": {
+    "authority": "main repo research/otel-offpath/DECLARATION.md at 8194d74 (user 2026-10-01: direction (c), off-path consumer pause; fifth override of OTEL_RUN2_STOPPING_RULE.md; no launch until the user approves the built harness and the declaration)",
+    "descriptorByteSha256": "f37fb9873f4dfdaf48951cda6fb27b91b1bab77967091e68d88190b8133bfd2e",
+    "descriptorCanonicalSha256": "1231208d0ce21230804aea042569b7b8078e237be20a46f16fa763e10d3d7a28",
+    "descriptorPath": "pipelines/campaigns/otel-demo-candidate-pilot-v3.json",
+    "studyEpoch": "otel-demo-candidate-pilot-v3",
+    "v3Disposition": "v3 (24 cells, /api/recommendations workload) keeps its own runs; offpath is a new epoch on fb14srv6 and is never pooled with v3, v2 or run 3; the v3 descriptor's bytes are unchanged",
+    "whatChanged": [
+      "workload: the offered unit is a checkout journey (add to cart, then place order) through frontendproxy with W3C trace context, one ledger row per journey",
+      "selected = the synchronous checkout path, async = selected + kafka, frauddetectionservice, accountingservice; none and full unchanged; posture names unchanged",
+      "regimes no-fault-cost, fraud-pause-effect, frontend-pause-effect; totalRuns 24 -> 36; each regime a 3x4 Latin rectangle",
+      "fault timing and scenarios from faultDesign (declared default: onset 45 s, hold 15 s, as Hotel, for both pauses; fraud-pause = docker pause of frauddetectionservice); every receipt carries appliedMonotonic/revertingMonotonic"
+    ]
+  },
+  "target": {
+    "allocationPath": "modules/otel-demo/execution/candidate-target-allocation.json",
+    "dockerGid": 998,
+    "executionGid": 1016,
+    "executionUid": 1016,
+    "executionUser": "stig",
+    "host": "fb14srv6",
+    "leaseScope": "shared-srv6-host-exclusive-otel-then-online-boutique",
+    "setupUser": "root",
+    "transportUser": "root"
+  },
+  "timing": {
+    "faultOnsetSeconds": 45,
+    "interventionHoldSeconds": 15,
+    "measurementSeconds": 600,
+    "offeredRequestsPerRun": 600,
+    "requestsPerSecond": 1.0,
+    "warmupSeconds": 120
+  },
+  "workflow": {
+    "candidateExecutionEnabled": false,
+    "constructionBlockers": [
+      "amd64-source-guard-images-not-built-on-target",
+      "posture-connection-probe-receipt-not-recorded",
+      "gate-plan-pending",
+      "gate-run-not-requested"
+    ],
+    "externalMutationAllowed": false,
+    "runtimeAuthorized": false
+  },
+  "workload": {
+    "concurrency": 32,
+    "entry": "frontendproxy",
+    "journey": "checkout-add-to-cart-then-place-order",
+    "journeysPerSecond": 1,
+    "ledger": "request-ledger.json keeps its keys; one row per offered journey: startedAtEpoch = add-to-cart start, endedAtEpoch = end of the last step attempted, status = place-order status (or the failing step's), error None iff both steps return 200; a steps list carries each step's start, end, status",
+    "offeredJourneys": 600,
+    "pathCheck": {
+      "artifact": "workload-path-check.json at the campaign root",
+      "cell": "the first no-fault-cost full cell in plan order (before every fault cell)",
+      "onFailure": "the campaign stops before any fault cell; terminal validation fails",
+      "rule": "every journey with error None has observedTraceServices minus accountingservice, frauddetectionservice and kafka equal to the selected closure, and at least one such journey exists"
+    },
+    "readiness": "one complete journey with token readiness-not-scored returning 200 on both steps",
+    "stepTimeoutSeconds": 15,
+    "steps": [
+      {
+        "body": "{\"item\": {\"productId\": \"OLJCESPC7Z\", \"quantity\": 1}, \"userId\": <journey token>}",
+        "method": "POST",
+        "name": "add-to-cart",
+        "path": "/api/cart"
+      },
+      {
+        "body": "people.json[0] (larry_sergei@example.com, USD, upstream test card) with userId = <journey token>",
+        "method": "POST",
+        "name": "place-order",
+        "path": "/api/checkout?currencyCode=USD"
+      }
+    ],
+    "traceContext": "one W3C trace per journey: both steps carry traceparent 00-<journey trace id>-<step span id>-01; add-to-cart carries the journey's request token and the ledger row's traceparent; place-order carries <token>-order with its own span id, so the frontendproxy witness keeps one row per journey token (the add-to-cart request) and place-order rows are not part of the witness",
+    "upstreamSource": "upstream/opentelemetry-demo 2d4661e: src/frontend/pages/api/cart.ts, src/frontend/pages/api/checkout.ts, src/loadgenerator/locustfile.py checkout() (add_to_cart then POST /api/checkout with a people.json person), src/loadgenerator/people.json"
+  }
+}

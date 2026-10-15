@@ -1,0 +1,86 @@
+{
+  "algorithm": "sha256",
+  "files": [
+    {
+      "bytes": 37098,
+      "path": "application-witness.json",
+      "sha256": "66270dd20f7866ccd403108005a4b700dcb9ba12e45358ff7c17192e8719cc83"
+    },
+    {
+      "bytes": 185413,
+      "path": "application.log",
+      "sha256": "cc62076001ca20c37021bfcb3990361f7bcfd536f3afdf8a9d20c20c2080935a"
+    },
+    {
+      "bytes": 251,
+      "path": "cell-cleanup.json",
+      "sha256": "8462918e293f4825e6bea9a82e140d013058405bfa4ce05a0f9967a24c58a1fa"
+    },
+    {
+      "bytes": 8127,
+      "path": "container-health.json",
+      "sha256": "8460e293f7ea2814ae985bf6c0bea81a10d24a4350788781614cc3802aa1ef68"
+    },
+    {
+      "bytes": 1894,
+      "path": "intervention.json",
+      "sha256": "5230191f4f540075299d3f6e2d4c8027786d562e8b3f739112ccabdacdcafa09"
+    },
+    {
+      "bytes": 1725696,
+      "path": "otelcol.log",
+      "sha256": "d3eafd59e52ab2546315368b1971a6b3838542bf652df48488e6e7a871a83ee4"
+    },
+    {
+      "bytes": 18444,
+      "path": "posture-proof.json",
+      "sha256": "28752374a93305536dbdde9c182639bae74cef0f54bcea0d65d728c656a4a914"
+    },
+    {
+      "bytes": 2399,
+      "path": "protocol-gates.json",
+      "sha256": "135a7aeb9efc6aa88f135ebb50c6e7c75fe8aa7ce18e1226290c13afcf21dbbf"
+    },
+    {
+      "bytes": 697,
+      "path": "receipt.json",
+      "sha256": "6495840bdb59a413f116ffab78a54469265f1b1d18a5139e2c6316ffe3ce0a42"
+    },
+    {
+      "bytes": 99468,
+      "path": "request-ledger.json",
+      "sha256": "fbda25b2a5479c371dc4fccfec087fb0d0a567a751cd1943f95f11a7dfa6fe79"
+    },
+    {
+      "bytes": 5029,
+      "path": "resources.json",
+      "sha256": "ffedeb6fb18722bf55673b86cc2c43b4e1b270fdfcc060f9aa0a69c6cb077a63"
+    },
+    {
+      "bytes": 299,
+      "path": "telemetry-bytes.json",
+      "sha256": "4bf0560fd229dad8be6e80acae27fe7e8c33860568fe75587c6e910e0eec32ec"
+    },
+    {
+      "bytes": 13,
+      "path": "telemetry.pcap",
+      "sha256": "8e6cc22f2fe46fa12f7f4a2c808d0f4a488672a10679fb31f0b68167f74916d4"
+    },
+    {
+      "bytes": 1248,
+      "path": "trace-completeness.json",
+      "sha256": "ab920b8ea2ba5f7915bc184034695609b8742e93b6bee9840a8b12ce377fc655"
+    },
+    {
+      "bytes": 82956,
+      "path": "trace-correlation.json",
+      "sha256": "40c47c67c8bf2604438f6e4810e800acd7e95399c2c73b253aa155a399cb9aeb"
+    },
+    {
+      "bytes": 527,
+      "path": "upstream-generator.json",
+      "sha256": "11e3b2852d13fafecb6bf1442e6e936681482d896ae6ff18775c37da9d9b72a9"
+    }
+  ],
+  "schemaVersion": 1
+}

@@ -1,0 +1,97 @@
+{
+  "schema": "teastore.app-witness-patch-manifest",
+  "schemaVersion": 2,
+  "source": {
+    "repositoryPath": "upstream/teastore",
+    "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "predecessor": {
+    "manifestPath": "modules/teastore/witness/patch-manifest.json",
+    "manifestSha256": "7254bb68f05d62af65cbbf14ba93e8421d736078ac8d39aba7837f5bd876fcfb",
+    "patchPath": "modules/teastore/witness/teastore-app-witness-v1.patch",
+    "patchSha256": "0694a442eb992b5c415416982aea344502a87d79544af8950555494f58916fac"
+  },
+  "patch": {
+    "path": "modules/teastore/witness/teastore-app-witness-v2.patch",
+    "sha256": "c6fbb755ba9f572f4df2197e78eee22f7e2e9768fb8106654a5a79dc08d0bfff",
+    "applyOptions": [
+      "--ignore-space-change"
+    ]
+  },
+  "patchedPaths": [
+    "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java",
+    "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java",
+    "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java",
+    "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/observability/ObservabilityJourney.java",
+    "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java"
+  ],
+  "correlation": {
+    "header": "X-Observability-Journey-Id",
+    "tokenRegex": "journey-[0-9a-f]{32}",
+    "maximumLength": 40,
+    "propagation": [
+      "webui",
+      "auth",
+      "persistence"
+    ]
+  },
+  "observations": {
+    "applicationWitness": {
+      "logPrefix": "OBSERVABILITY_APP_WITNESS ",
+      "schema": "teastore.app-witness-observation",
+      "schemaVersion": 1,
+      "events": {
+        "auth": "login-persistence-request",
+        "persistence": "login-user-lookup"
+      }
+    },
+    "nativeTraceBridge": {
+      "logPrefix": "OBSERVABILITY_NATIVE_TRACE_BRIDGE ",
+      "service": "auth",
+      "fields": [
+        "token",
+        "nativeTraceId",
+        "service"
+      ],
+      "nativeTraceId": "canonical signed-long decimal string excluding -1",
+      "emissionPoint": "auth login after token validation and before persistence request",
+      "monitoringDisabledBehavior": "emit nothing",
+      "unsetTraceIdBehavior": "emit nothing only for -1"
+    }
+  },
+  "kiekerApiVerification": {
+    "jarPath": "upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar",
+    "jarSha256": "c3bf5b6b4ff7b765885cdef88507e73ab63cea7bd58562a2175d5a6f43fc6ff1",
+    "javaTarget": 11,
+    "imports": [
+      "kieker.monitoring.core.controller.MonitoringController",
+      "kieker.monitoring.core.registry.ControlFlowRegistry"
+    ],
+    "methods": [
+      "MonitoringController.getInstance().isMonitoringEnabled()",
+      "ControlFlowRegistry.INSTANCE.recallThreadLocalTraceId()"
+    ],
+    "verification": "read-only javap against the pinned JAR",
+    "javaCompilationClaim": false
+  },
+  "privacy": {
+    "bridgeLogsOnlyValidatedTokenAndNativeTraceId": true,
+    "persistenceBridgeAllowed": false,
+    "parameterLoggingAllowed": false,
+    "runtimeRequirement": "LOG_PARAMETERS must be absent or exactly false and proven by a measurement-scoped service-log-capture receipt"
+  },
+  "output": {
+    "filename": "app-witness.jsonl",
+    "schema": "teastore.app-witness",
+    "schemaVersion": 1,
+    "positiveExecutedPath": [
+      "auth",
+      "persistence"
+    ],
+    "nativeCorrelationFilename": "native-token-correlation.json",
+    "nativeCorrelationSchema": "teastore.native-token-correlation",
+    "nativeCorrelationSchemaVersion": 1
+  }
+}

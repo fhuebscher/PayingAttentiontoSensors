@@ -1,0 +1,21 @@
+{
+ "run": "run2-20261014",
+ "stage": "library-knowledge module, stage 2 setup (Amendment 3 change 1)",
+ "libraryPromptSha256": "b4c719bd34519c69d1a8d724c04d20df7f87b4d4d5c4c5315317bcdb32624941",
+ "libraryPromptHashDefinition": "sha256 of the bytes of library_prompt.txt (no trailing newline)",
+ "wrapperSha256": "92a3da5e5810220ac72cbc82a43fdc27956e4adfa04da239b19b0f6ef32afd44",
+ "fragmentSchemaSha256": "17db34414db38c8b318568076f8e941cd31f45aceb561fa622c19bf43a5adcce",
+ "tasksSha256": "aa0b5a14071440343d244db6bf8c7feb930eab613848c4657224b4e37649a432",
+ "tasks": 14,
+ "libraries": 7,
+ "models": {
+  "A": "sonnet (Sonnet 5.5)",
+  "B": "haiku (Haiku 5.5)",
+  "judge": "opus (Opus 5.5), judge prompt b1c5099d"
+ },
+ "modelByIndexParity": "even index = A sonnet, odd = B haiku (as stage2_tasks.json)",
+ "vendorCommit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8",
+ "libraries.json": "f3681db70a3c34a1f8ba7175af63c92ca20e6076c60002149914b299a5cfb8b7",
+ "servicePromptSha256": "d29393e563c713440288700e6956dd33ec3c01b7e2a4d217cef08300edae00f7 (unchanged; not used here)",
+ "status": "committed before any library extractor runs; no extractor or judge has run"
+}

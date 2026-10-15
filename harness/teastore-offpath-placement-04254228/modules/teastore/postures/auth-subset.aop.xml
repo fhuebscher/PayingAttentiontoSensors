@@ -1,0 +1,16 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+  <weaver options="-Xlint:ignore -Xset:weaveJavaxPackages=true">
+    <include within="tools.descartes.teastore.auth..*" />
+  </weaver>
+  <aspects>
+    <concrete-aspect name="kieker.monitoring.probe.aspectj.operationExecution.TargetedAspect"
+      extends="tools.descartes.teastore.kieker.probes.AbstractOperationExecutionWithParameterAspect">
+      <pointcut name="monitoredOperation"
+        expression="execution(* tools.descartes.teastore.auth..*(..))
+        &amp;&amp; !execution(private static * *..lambda*(..))
+        &amp;&amp; !execution(private * *..lambda*(..))
+        &amp;&amp; !within(is(AnonymousType))" />
+    </concrete-aspect>
+  </aspects>
+</aspectj>

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/signal-channel.schema.json",
+  "title": "Signal channel manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "channel", "collector", "nativeFormat", "acquisitionCompleteness"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "channel": {
+      "type": "object", "additionalProperties": false,
+      "required": ["signalType", "semanticUnit", "transport", "collectorEndpoint", "acquisitionCarrier", "applicationLogsInstrumented", "applicationLogsSupport"],
+      "properties": {
+        "signalType": {"type": "string", "minLength": 1}, "semanticUnit": {"type": "string", "minLength": 1},
+        "transport": {"type": "string", "minLength": 1}, "collectorEndpoint": {"type": "string", "minLength": 1},
+        "acquisitionCarrier": {"type": "string", "minLength": 1},
+        "applicationLogsInstrumented": {"type": "boolean"},
+        "applicationLogsSupport": {"enum": ["supported", "unsupported", "not-applicable"]}
+      }
+    },
+    "collector": {"type": "object", "minProperties": 1},
+    "nativeFormat": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "exportSummaryMarker", "resourceMarker", "spanMarker", "traceIdField", "spanIdField", "parentIdField", "traceIdPattern", "spanIdPattern", "parentIdPattern", "normalizerFailureMode"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "exportSummaryMarker": {"type": "string", "minLength": 1},
+        "resourceMarker": {"type": "string", "minLength": 1}, "spanMarker": {"type": "string", "minLength": 1},
+        "traceIdField": {"type": "string", "minLength": 1}, "spanIdField": {"type": "string", "minLength": 1},
+        "parentIdField": {"type": "string", "minLength": 1}, "traceIdPattern": {"type": "string"},
+        "spanIdPattern": {"type": "string"}, "parentIdPattern": {"type": "string"},
+        "normalizerFailureMode": {"enum": ["reject-whole-carrier", "reject-record"]}
+      }
+    },
+    "acquisitionCompleteness": {"type": "object", "minProperties": 1}
+  }
+}

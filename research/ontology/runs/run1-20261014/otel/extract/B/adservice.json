@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "EXTRACTION_PROTOCOL.md stage 2, extractor B",
+    "service": "adservice",
+    "notes": [
+      "replicas: no replicas or scale key in the adservice block (docker-compose.yml:48-77); its deploy block sets only resources.limits.memory (docker-compose.yml:56-59). Library default, not in these files.",
+      "healthcheck: no healthcheck key in docker-compose.yml:48-77. The process exposes a gRPC health service (AdService.java:99, healthMgr.getHealthService(); status SERVING at AdService.java:113). No heartbeat or cleanup schedule.",
+      "registry, discovery, coordinator: none. No registry or discovery client in the dependency list (build.gradle:43-58).",
+      "messaging: none. No Kafka or other messaging client in build.gradle:43-58 and no messaging depends_on in docker-compose.yml:48-77.",
+      "syncEdges: only the flagd evaluation call sites are outbound (AdService.java:172, 205, 209). FlagdOptions at AdService.java:87-90 sets no host, port or transport. FLAGD_HOST and FLAGD_PORT are passed through by docker-compose.yml:65-66 and set at .env:129-130. The flagd provider reads them and uses gRPC by library default; neither is stated in these files.",
+      "telemetry destination: docker-compose.yml:67 sets OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}. .env:27 and .env:29 resolve this to otelcol:4318. docker-compose.yml:70 sets OTEL_LOGS_EXPORTER=otlp. The OTLP protocol, signal paths and export intervals are library defaults (OpenTelemetry Java agent), not in these files.",
+      "telemetry on or off: OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER and JAVA_TOOL_OPTIONS are set from OTEL_CANDIDATE_ADSERVICE_* variables whose values are not in these files (compose.candidate-postures.yml:27-31, harness repo). The Dockerfile sets JAVA_TOOL_OPTIONS=-javaagent at Dockerfile:28."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "adservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 48,
+        "quotedToken": "adservice:"
+      },
+      "container": {
+        "value": "ad-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 50,
+        "quotedToken": "container_name: ad-service"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Resolves the OTEL_COLLECTOR_HOST reference in docker-compose.yml:67 (OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}); port 4318 at .env:29. Logs go to the same endpoint via docker-compose.yml:70. Active only if the candidate posture variables enable export (see extraction.notes)."
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "adservice",
+        "callee": "flagd"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/adservice/src/main/java/oteldemo/AdService.java",
+      "line": 172,
+      "quotedToken": "ffClient.getBooleanValue",
+      "note": "Synchronous OpenFeature flag evaluation through the flagd provider on the request path. Protocol and host are not in this line (see extraction.notes)."
+    }
+  ]
+}

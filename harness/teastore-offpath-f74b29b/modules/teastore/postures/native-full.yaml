@@ -1,0 +1,23 @@
+schema_version: 1
+name: native-full
+collector: kieker_native
+activation_groups:
+  - id: teastore.kieker.aspectj.all
+    control_plane: source-runtime
+    state: enabled
+constraints:
+  exclusive_resources:
+    - rabbitmq://teastore/kieker
+  forbidden_concurrent_collectors:
+    - kieker_rabbitmq
+evidence_requirements:
+  - native_trace_id
+  - eoi
+  - ess
+  - message_sha1
+  - signature_sha1
+canonicality:
+  minimum_parse_success_ratio: 0.99
+  require_multiple_services: true
+  require_queue_purge_receipt: true
+  require_zero_concurrent_consumers_before_start: true

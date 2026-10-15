@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/multisut-construction-control.schema.json",
+  "title": "Multi-SUT candidate construction control",
+  "description": "Closed local construction envelope. It cannot authorize runtime, held-out access, evidence qualification, or promotion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema", "schemaVersion", "id", "claimCeiling", "parentEpoch",
+    "adoptedSource", "module", "workflow", "openSpec", "artifacts",
+    "sourceBindings", "protocolBindings", "permissions", "checkIds",
+    "humanCheckpoints", "pathOwnership", "verification"
+  ],
+  "properties": {
+    "$schema": {"const": "https://observability-placement.local/contracts/multisut-construction-control.schema.json"},
+    "schemaVersion": {"const": 3},
+    "id": {"$ref": "#/$defs/slug"},
+    "claimCeiling": {"const": "candidate-harness-construction"},
+    "parentEpoch": {
+      "type": "object", "additionalProperties": false,
+      "required": ["changeId", "commit", "tree"],
+      "properties": {
+        "changeId": {"const": "adopt-teastore-diagnostic-harness"},
+        "commit": {"$ref": "#/$defs/gitCommit"},
+        "tree": {"$ref": "#/$defs/gitCommit"}
+      }
+    },
+    "adoptedSource": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "commit", "tree", "qualification"],
+      "properties": {
+        "kind": {"const": "candidate-construction-source"},
+        "commit": {"$ref": "#/$defs/gitCommit"},
+        "tree": {"$ref": "#/$defs/gitCommit"},
+        "qualification": {"const": "local-construction-only"}
+      }
+    },
+    "module": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "applicationFamily", "channel", "replicationContribution"],
+      "properties": {
+        "id": {"$ref": "#/$defs/slug"},
+        "applicationFamily": {"$ref": "#/$defs/slug"},
+        "channel": {"$ref": "#/$defs/slug"},
+        "replicationContribution": {"enum": ["application-family", "execution-channel-only"]}
+      }
+    },
+    "workflow": {
+      "type": "object", "additionalProperties": false,
+      "required": ["state", "blockers"],
+      "properties": {
+        "state": {"const": "construction-blocked"},
+        "blockers": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "openSpec": {
+      "type": "object", "additionalProperties": false,
+      "required": ["configPath", "schemaName", "packageName", "version"],
+      "properties": {
+        "configPath": {"const": "openspec/config.yaml"},
+        "schemaName": {"const": "scientific-change"},
+        "packageName": {"const": "@fission-ai/openspec"},
+        "version": {"const": "1.11.0"}
+      }
+    },
+    "artifacts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["proposal", "authority", "specs", "design", "tasks", "verification", "governance", "findings"],
+      "properties": {
+        "proposal": {"$ref": "#/$defs/repositoryFile"},
+        "authority": {"$ref": "#/$defs/repositoryFile"},
+        "specs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryFile"}},
+        "design": {"$ref": "#/$defs/repositoryFile"},
+        "tasks": {"$ref": "#/$defs/repositoryFile"},
+        "verification": {"$ref": "#/$defs/repositoryFile"},
+        "governance": {"$ref": "#/$defs/repositoryFile"},
+        "findings": {"$ref": "#/$defs/repositoryFile"}
+      }
+    },
+    "sourceBindings": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"$ref": "#/$defs/sourceBinding"}
+    },
+    "protocolBindings": {
+      "type": "object", "additionalProperties": false,
+      "required": ["studyEpoch", "descriptor", "compiler", "compiledPlan", "maximumFutureRunEvidenceLabel", "canonical"],
+      "properties": {
+        "studyEpoch": {"$ref": "#/$defs/slug"},
+        "descriptor": {
+          "type": "object", "additionalProperties": false,
+          "required": ["path", "byteSha256", "canonicalSha256"],
+          "properties": {
+            "path": {"$ref": "#/$defs/repositoryFile"},
+            "byteSha256": {"$ref": "#/$defs/sha256"},
+            "canonicalSha256": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "compiler": {
+          "type": "object", "additionalProperties": false,
+          "required": ["path", "sha256", "api"],
+          "properties": {
+            "path": {"$ref": "#/$defs/repositoryFile"},
+            "sha256": {"$ref": "#/$defs/sha256"},
+            "api": {"const": "pure-candidate-construction-v1"}
+          }
+        },
+        "compiledPlan": {
+          "type": "object", "additionalProperties": false,
+          "required": ["canonicalSha256", "runCount"],
+          "properties": {
+            "canonicalSha256": {"$ref": "#/$defs/sha256"},
+            "runCount": {"type": "integer", "minimum": 1, "maximum": 10000}
+          }
+        },
+        "maximumFutureRunEvidenceLabel": {"enum": ["smoke-validation", "candidate-evidence"]},
+        "canonical": {"const": false}
+      }
+    },
+    "permissions": {"$ref": "#/$defs/closedPermissions"},
+    "checkIds": {
+      "type": "array", "minItems": 8, "maxItems": 8,
+      "prefixItems": [
+        {"const": "construction-schema"}, {"const": "parent-and-source"},
+        {"const": "source-bindings"}, {"const": "delivery-ownership"},
+        {"const": "protocol-replay"}, {"const": "artifact-completeness"},
+        {"const": "abstention-boundary"}, {"const": "gate-boundary"}
+      ],
+      "items": false
+    },
+    "humanCheckpoints": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "prefixItems": [
+        {"$ref": "#/$defs/pendingPlan"},
+        {"$ref": "#/$defs/notRequestedRun"},
+        {"$ref": "#/$defs/notRequestedPromotion"}
+      ],
+      "items": false
+    },
+    "pathOwnership": {
+      "type": "object", "additionalProperties": false,
+      "required": ["baseCommit", "allowed", "forbidden"],
+      "properties": {
+        "baseCommit": {"$ref": "#/$defs/gitCommit"},
+        "allowed": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryFile"}},
+        "forbidden": {
+          "type": "array", "minItems": 2, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/repositoryPath"},
+          "allOf": [{"contains": {"const": ".local/"}}, {"contains": {"const": "upstream/"}}]
+        }
+      }
+    },
+    "verification": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "independentReviewerRequired", "reportBinding"],
+      "properties": {
+        "status": {"const": "not-run"},
+        "independentReviewerRequired": {"const": true},
+        "reportBinding": {"type": "null"}
+      }
+    }
+  },
+  "$defs": {
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "repositoryPath": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*//).+$"},
+    "repositoryFile": {"allOf": [{"$ref": "#/$defs/repositoryPath"}, {"not": {"pattern": "/$"}}]},
+    "sourceBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sourceCommit", "sha256", "role", "qualification"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "sourceCommit": {"$ref": "#/$defs/gitCommit"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "role": {"type": "string", "minLength": 1},
+        "qualification": {"enum": ["reviewed-parent", "local-construction-source", "historical-context"]}
+      }
+    },
+    "closedPermissions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["runtimeAllowed", "externalMutationAllowed", "heldOutOutcomeAccessAllowed", "aiSelectorAllowed", "evidencePromotionAllowed"],
+      "properties": {
+        "runtimeAllowed": {"const": false},
+        "externalMutationAllowed": {"const": false},
+        "heldOutOutcomeAccessAllowed": {"const": false},
+        "aiSelectorAllowed": {"const": false},
+        "evidencePromotionAllowed": {"const": false}
+      }
+    },
+    "checkpointBase": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "scope", "status", "decisionBinding"],
+      "properties": {
+        "id": {"enum": ["GATE-PLAN", "GATE-RUN", "GATE-PROMOTION"]},
+        "scope": {"enum": ["plan-approval", "run-authorization", "evidence-promotion"]},
+        "status": {"enum": ["pending", "not-requested"]},
+        "decisionBinding": {"type": "null"}
+      }
+    },
+    "pendingPlan": {"allOf": [{"$ref": "#/$defs/checkpointBase"}, {"properties": {"id": {"const": "GATE-PLAN"}, "scope": {"const": "plan-approval"}, "status": {"const": "pending"}}}]},
+    "notRequestedRun": {"allOf": [{"$ref": "#/$defs/checkpointBase"}, {"properties": {"id": {"const": "GATE-RUN"}, "scope": {"const": "run-authorization"}, "status": {"const": "not-requested"}}}]},
+    "notRequestedPromotion": {"allOf": [{"$ref": "#/$defs/checkpointBase"}, {"properties": {"id": {"const": "GATE-PROMOTION"}, "scope": {"const": "evidence-promotion"}, "status": {"const": "not-requested"}}}]}
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "extractor": "A",
+    "service": "loadgenerator",
+    "entry": 54
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "loadgenerator",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 385,
+        "quotedToken": "loadgenerator:"
+      },
+      "container": {
+        "value": "load-generator",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 387,
+        "quotedToken": "container_name: load-generator",
+        "note": "Image ${IMAGE_NAME}:${DEMO_VERSION}-loadgenerator (docker-compose.yml:386), built from src/loadgenerator/Dockerfile (.env:98), base python:3.12-slim-bookworm (Dockerfile:5), ENTRYPOINT locust --skip-log-setup (Dockerfile:23). The compose block (lines 385-420) has no healthcheck key, so no container health check is configured; the Dockerfile has no HEALTHCHECK either. restart: unless-stopped (line 397), memory limit 1G (line 396), depends_on frontend and flagd with condition service_started (lines 416-419). Harness override compose.candidate-postures.yml:85-91 sets LOCUST_AUTOSTART false and the OTEL_* exporter variables from ${OTEL_CANDIDATE_LOADGENERATOR_*}, unresolved in these files."
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 387,
+        "quotedToken": "container_name: load-generator",
+        "note": "No deploy.replicas or scale key in the block (docker-compose.yml:385-420); a fixed container_name admits one container. Replica count is not stated explicitly."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "docker-compose.yml",
+          "line": 407,
+          "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT",
+          "note": "Value http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} = http://otelcol:4317 (.env:32, .env:27, .env:28). Traces (locustfile.py:62 BatchSpanProcessor(OTLPSpanExporter())), metrics (locustfile.py:58 PeriodicExportingMetricReader(exporter)) and logs (locustfile.py:50 BatchLogRecordProcessor(exporter)) all use the OTLP gRPC exporters (locustfile.py:22, 23, 29-31). Export intervals are not set in these files (library default, not in these files); the metric temporality preference is cumulative (.env:39). Harness override compose.candidate-postures.yml:88-91 sets OTEL_SDK_DISABLED and OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER from ${OTEL_CANDIDATE_LOADGENERATOR_*}, unresolved in these files; whether the exporter is otlp or none per posture is not stated here."
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "loadgenerator",
+        "callee": "frontendproxy"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": ".env",
+      "line": 94,
+      "quotedToken": "LOCUST_HOST=http://${FRONTEND_PROXY_ADDR}",
+      "note": "HTTP. FRONTEND_PROXY_ADDR=frontend-proxy:${ENVOY_PORT} (.env:83); the compose block passes LOCUST_HOST through (docker-compose.yml:403). Requests are issued with self.client.get (src/loadgenerator/locustfile.py:111, HttpUser at line 106) to paths such as /api/checkout (locustfile.py:157). Callee is the frontend-proxy service, not frontend directly."
+    },
+    {
+      "value": {
+        "caller": "loadgenerator",
+        "callee": "flagd"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/loadgenerator/locustfile.py",
+      "line": 72,
+      "quotedToken": "FlagdProvider(host=os.environ.get('FLAGD_HOST', 'flagd')",
+      "note": "OpenFeature flag evaluation (get_integer_value at locustfile.py:78, flag loadgeneratorFloodHomepage at line 171). FLAGD_HOST=flagd and FLAGD_PORT=8013 (.env:129, .env:130; docker-compose.yml:413-414). Wire protocol is not stated in these files (library default of openfeature-provider-flagd==0.1.5, requirements.txt:34, not in these files)."
+    }
+  ]
+}

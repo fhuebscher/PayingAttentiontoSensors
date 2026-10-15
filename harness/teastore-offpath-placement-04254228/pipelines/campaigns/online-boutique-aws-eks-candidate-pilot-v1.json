@@ -1,0 +1,578 @@
+{
+  "applicationFamily": "google-online-boutique",
+  "cleanup": {
+    "actionsAuthorized": false,
+    "cleanupFailureInvalidatesRun": true,
+    "cleanupFailureStopsCampaign": true,
+    "deletesOnlyExactOwnedIdentities": true,
+    "implementationStatus": "not-implemented",
+    "joinsWorkloadCollectorAndInterventionBeforeDeletion": true,
+    "requiredReceipts": [
+      "ownership-preflight.json",
+      "ownership-created.jsonl",
+      "cleanup-actions.jsonl",
+      "cleanup-verification.json"
+    ],
+    "retainsFailureAndCleanupReceipts": true,
+    "runsOnSuccessFailureAndCancellation": true,
+    "verifiesAbsenceByIndependentPostInventory": true
+  },
+  "cloudInputs": {
+    "forbidFloatingRefs": true,
+    "forbiddenTokens": [
+      "HEAD",
+      "latest",
+      "most_recent",
+      "version-range",
+      "unversioned-chart"
+    ],
+    "pinnedConstructionInputs": {
+      "applicationCommit": "9a4616e77f0f9cbcbecaf27d711c38890dda1404",
+      "deploymentCommit": "c0f08154f0c1197c612acc409452dffa346a20ed"
+    },
+    "requiredRuntimeBindings": [
+      "twelve-digit-aws-account-id",
+      "exact-aws-region",
+      "exact-caller-arn",
+      "exact-cluster-arn-and-creation-identity",
+      "terraform-lock-sha256",
+      "reviewed-plan-sha256",
+      "exact-kubernetes-version",
+      "exact-addon-and-controller-versions",
+      "helm-archive-sha256-per-release",
+      "digest-only-image-reference-per-container",
+      "registry-push-digest-and-pod-pull-proof",
+      "argocd-disabled-or-content-addressed-and-quiescent",
+      "exact-owner-tag-values-spend-ceiling-lease-and-teardown-deadline",
+      "fixed-node-instance-ami-capacity-and-storage-topology"
+    ],
+    "resolutionStatus": "unresolved",
+    "resolvedRuntimeBindings": null
+  },
+  "cost": {
+    "billedAwsCostRequiresLaterTagScopedBillingEvidence": true,
+    "collectorTailExcluded": true,
+    "currentOutcomeState": "unsupported",
+    "effectResourceUse": "diagnostic-only",
+    "effectResourcesAreCostEstimates": false,
+    "eligibleRegime": "no-fault-cost",
+    "failedRequestsRetained": true,
+    "implementationStatus": "not-implemented",
+    "offeredRequestsAreDenominator": true,
+    "pricingSnapshotDigestRequiredForCurrencyProjection": true,
+    "requiredNoFaultArtifacts": [
+      "request-opportunities.jsonl",
+      "workload-outcomes.jsonl",
+      "resource-samples.jsonl",
+      "telemetry-byte-ledger.json",
+      "resource-cost-receipt.json"
+    ],
+    "resourceCostClaim": "unsupported-until-eks-cost-collector-is-reviewed",
+    "resourcePopulation": {
+      "application": "all-pods-in-run-owned-application-namespace",
+      "clusterOverhead": "reported-separately-never-attributed-silently",
+      "nodeTopology": "exact-instance-ami-capacity-storage-and-node-uid-binding-required",
+      "telemetry": "all-pods-in-run-owned-lgtm-namespaces"
+    },
+    "resourceSampling": {
+      "attribution": "namespace-pod-uid-container-id",
+      "cadenceSeconds": 1,
+      "clock": "monotonic-with-wall-anchor",
+      "missingOrDuplicateSampleState": "unsupported",
+      "requiredCoverageFraction": 1,
+      "units": [
+        "cpu-core-seconds",
+        "memory-byte-seconds",
+        "network-receive-bytes",
+        "network-transmit-bytes",
+        "storage-byte-seconds"
+      ]
+    },
+    "telemetryBytes": {
+      "missingStageState": "unsupported",
+      "retainedBytesAreWireBytes": false,
+      "stagesReportedSeparately": [
+        "source-exported-otlp-bytes",
+        "collector-received-bytes",
+        "backend-retained-bytes"
+      ]
+    },
+    "windowMembership": "cost-measurement"
+  },
+  "design": {
+    "artifactRootsDisjoint": true,
+    "blocksPerRegime": 3,
+    "clusterCreatedOncePerCampaign": true,
+    "coldStartEachRun": true,
+    "coldStartScope": "application-and-telemetry-workloads-not-eks-cluster",
+    "costAndEffectPoolable": false,
+    "postures": [
+      "none",
+      "selected",
+      "full"
+    ],
+    "regimes": [
+      {
+        "artifactRoot": "cost",
+        "costProjectionAllowed": true,
+        "fault": null,
+        "id": "no-fault-cost",
+        "kind": "cost",
+        "windows": [
+          {
+            "faultAllowed": false,
+            "id": "warmup",
+            "offeredRequests": 120,
+            "scored": false,
+            "seconds": 120,
+            "startsWhen": "application-and-backends-ready-barrier"
+          },
+          {
+            "faultAllowed": false,
+            "id": "cost-measurement",
+            "offeredRequests": 600,
+            "scored": true,
+            "seconds": 600,
+            "startsWhen": "warmup-terminal-reconciliation-passed"
+          },
+          {
+            "faultAllowed": false,
+            "id": "collector-tail",
+            "offeredRequests": 0,
+            "scored": false,
+            "seconds": 30,
+            "startsWhen": "cost-workload-terminal-reconciliation-passed"
+          }
+        ]
+      },
+      {
+        "artifactRoot": "effect/productcatalog-scale-zero",
+        "costProjectionAllowed": false,
+        "fault": "productcatalog-kubernetes-scale-zero",
+        "id": "productcatalog-scale-zero-effect",
+        "kind": "effect",
+        "windows": [
+          {
+            "faultAllowed": false,
+            "id": "warmup",
+            "offeredRequests": 120,
+            "scored": false,
+            "seconds": 120,
+            "startsWhen": "application-and-backends-ready-barrier"
+          },
+          {
+            "faultAllowed": false,
+            "id": "pre-fault-effect",
+            "offeredRequests": 180,
+            "scored": true,
+            "seconds": 180,
+            "startsWhen": "warmup-terminal-reconciliation-passed"
+          },
+          {
+            "endsWhen": "five-consecutive-zero-ready-samples",
+            "faultAllowed": true,
+            "id": "fault-transition",
+            "maximumSeconds": 60,
+            "offeredRequests": 0,
+            "scored": false,
+            "startsWhen": "scale-zero-request-receipted"
+          },
+          {
+            "endsWhen": "fault-workload-terminal-reconciliation-passed",
+            "faultAllowed": true,
+            "id": "fault-effect",
+            "offeredRequests": 120,
+            "scored": true,
+            "seconds": 120,
+            "startsWhen": "five-consecutive-zero-ready-samples"
+          },
+          {
+            "endsWhen": "same-deployment-ready-and-independent-probe-success",
+            "faultAllowed": false,
+            "id": "recovery-transition",
+            "maximumSeconds": 300,
+            "offeredRequests": 0,
+            "scored": false,
+            "startsWhen": "exact-pre-fault-replicas-restore-request-receipted"
+          },
+          {
+            "faultAllowed": false,
+            "id": "post-recovery-effect",
+            "offeredRequests": 180,
+            "scored": true,
+            "seconds": 180,
+            "startsWhen": "same-deployment-ready-and-independent-probe-success"
+          },
+          {
+            "faultAllowed": false,
+            "id": "collector-tail",
+            "offeredRequests": 0,
+            "scored": false,
+            "seconds": 30,
+            "startsWhen": "post-recovery-workload-terminal-reconciliation-passed"
+          }
+        ]
+      }
+    ],
+    "runsPerBlock": 3,
+    "totalRuns": 18
+  },
+  "evidence": {
+    "canonical": false,
+    "currentClaimBoundary": "construction validation only; no AWS EKS execution evidence",
+    "currentLabel": "method-design-only",
+    "kindEvidenceTransferAllowed": false,
+    "maximumAfterSeparateRuntimeAdmission": "candidate-evidence"
+  },
+  "governance": {
+    "parentMethodFreeze": "phase2-method-freeze",
+    "permissions": {
+      "aws": false,
+      "docker": false,
+      "kind": false,
+      "kubernetes": false,
+      "ssh": false
+    },
+    "promotionEligible": false,
+    "requiredBeforeRuntime": [
+      "implemented-and-watched-aws-eks-executor",
+      "resolved-immutable-cloud-input-receipt",
+      "human-gate-run-authorization"
+    ],
+    "runtimeAuthorized": false,
+    "scope": "local-construction-contract"
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "independentOfTempoAndLoki": true,
+      "intervention": "deployment-scale-zero-then-restore-exact-replicas",
+      "maximumManifestationSeconds": 60,
+      "maximumRecoverySeconds": 300,
+      "missingManifestationOrRecovery": "invalid-and-safety-stop",
+      "phaseAssignmentSource": "observed-state-barriers-not-nominal-offsets",
+      "requestedHoldSecondsAfterObservedManifestation": 120,
+      "requiredConsecutiveZeroReadySamples": 5,
+      "requiredFields": [
+        "targetNamespace",
+        "targetDeploymentUid",
+        "preReplicaCount",
+        "preReadyReplicaCount",
+        "requestedAtMonotonicNs",
+        "observedZeroReadyAtMonotonicNs",
+        "continuousZeroReadySamples",
+        "restoreRequestedAtMonotonicNs",
+        "postReadyAtMonotonicNs",
+        "sameDeploymentUid",
+        "independentProbeOutcomes",
+        "manifested",
+        "recovered"
+      ],
+      "source": "kubernetes-api-state-plus-independent-http-probe",
+      "stateSampleCadenceSeconds": 1,
+      "target": "productcatalogservice"
+    },
+    "path": {
+      "crossTraceAssemblyAllowed": false,
+      "directParentRequired": true,
+      "goal": "online-boutique-homepage-path/product-catalog-subpath",
+      "missingOpportunityOrTraceState": "unsupported",
+      "numericMissingValue": null,
+      "opportunityJoin": "exact-client-issued-trace-id",
+      "postureOutcomeClassification": {
+        "full": {
+          "completeAcquisitionMissingRequiredPathValue": 0,
+          "missingOpportunityOrAcquisitionState": "unsupported"
+        },
+        "none": {
+          "missingOpportunityOrAcquisitionState": "unsupported",
+          "validZeroRequires": [
+            "independently-reconciled-executed-opportunity",
+            "exact-none-materialization-proof",
+            "complete-bounded-acquisition-without-limit-or-parse-loss",
+            "zero-target-source-spans-for-issued-trace-id"
+          ]
+        },
+        "selected": {
+          "completeAcquisitionMissingRequiredPathValue": 0,
+          "missingOpportunityOrAcquisitionState": "unsupported"
+        }
+      },
+      "rawTraceCountIsReplication": false,
+      "requiredEdges": [
+        "frontend-server->frontend-ListProducts-client",
+        "frontend-ListProducts-client->productcatalog-ListProducts-server"
+      ],
+      "requiredSensors": [
+        "span:frontend:GET",
+        "span:frontend:grpc ListProducts",
+        "span:productcatalog:ListProducts"
+      ],
+      "rootParentEqualsSentParentSpanId": true,
+      "sameTraceRequired": true
+    },
+    "requestOpportunity": {
+      "appendOnly": true,
+      "createdBeforeTelemetryQuery": true,
+      "expectedOpportunityIsExecutionProof": false,
+      "independentOfTelemetryBackend": true,
+      "missingReceiptState": "unsupported",
+      "requiredFields": [
+        "opportunityId",
+        "runId",
+        "requestOrdinal",
+        "recordSequence",
+        "phaseId",
+        "attempt",
+        "method",
+        "path",
+        "traceparent",
+        "traceId",
+        "sentParentSpanId",
+        "traceparentSha256",
+        "scheduledAtMonotonicNs",
+        "attemptStartedAtMonotonicNs",
+        "responseEndedAtMonotonicNs",
+        "httpStatus",
+        "transportError"
+      ],
+      "source": "client-generated-w3c-traceparent-before-request",
+      "terminalLedgerReconciliationRequired": true,
+      "traceparentConsistencyRequired": true
+    }
+  },
+  "id": "online-boutique-aws-eks-candidate-pilot-v1",
+  "module": "online-boutique-lgtm",
+  "ownership": {
+    "authorizedDeletionKinds": [],
+    "baselineInventoryRequired": true,
+    "baselineOrForeignDeletionAllowed": false,
+    "cleanupFailureAction": "stop-campaign-before-any-next-paid-cell",
+    "clusterLifetime": "one-cluster-per-complete-18-cell-campaign",
+    "createReceiptRequired": true,
+    "deletionActionsAuthorized": false,
+    "dependencyOrderedDeletionPlan": null,
+    "exactResourceIdentityRequired": true,
+    "implementationStatus": "not-implemented",
+    "leaseTtlSeconds": null,
+    "ownerTokenRequired": true,
+    "perRunReset": "application-telemetry-namespaces-and-releases",
+    "requiredOwnerTags": [
+      "obsplacement:campaign-id",
+      "obsplacement:owner-token-sha256",
+      "obsplacement:expires-at"
+    ],
+    "reuseRequires": "terminal-clean-reset-receipt-before-next-cell",
+    "scope": "one-campaign-owned-ephemeral-aws-eks-environment",
+    "spendCeilingAud": null,
+    "teardownDeadlineSeconds": null,
+    "terraformLockDisposition": "release-exact-lock-never-generic-delete",
+    "terraformStateDisposition": "retain-content-addressed-audit-evidence",
+    "unknownOwnershipAction": "abstain-without-deletion",
+    "wholeAccountCleanupAllowed": false,
+    "wholeRegionCleanupAllowed": false
+  },
+  "randomization": {
+    "algorithm": "sha256-ranked-permutation-v1",
+    "failedAttemptsRetained": true,
+    "frozenBeforeOutcomes": true,
+    "retryMayReplaceCell": false,
+    "schedule": [
+      {
+        "blocks": [
+          {
+            "block": 1,
+            "order": [
+              "full",
+              "none",
+              "selected"
+            ]
+          },
+          {
+            "block": 2,
+            "order": [
+              "none",
+              "selected",
+              "full"
+            ]
+          },
+          {
+            "block": 3,
+            "order": [
+              "selected",
+              "full",
+              "none"
+            ]
+          }
+        ],
+        "regime": "no-fault-cost",
+        "rotationDirection": 1,
+        "scheduleSha256": "761403c3a61142a9b8f85018f67c814ef28e5d0cd18e25811afb422e9f578c6e",
+        "selectedCandidateIndex": 4,
+        "selectorSha256": "0e549d7a0b1ec504a79957463aa63c828b0fd065d949e2b02cde0f92e99eca6d"
+      },
+      {
+        "blocks": [
+          {
+            "block": 1,
+            "order": [
+              "none",
+              "full",
+              "selected"
+            ]
+          },
+          {
+            "block": 2,
+            "order": [
+              "full",
+              "selected",
+              "none"
+            ]
+          },
+          {
+            "block": 3,
+            "order": [
+              "selected",
+              "none",
+              "full"
+            ]
+          }
+        ],
+        "regime": "productcatalog-scale-zero-effect",
+        "rotationDirection": 1,
+        "scheduleSha256": "4e9ad73efa4f530a41b7fb601fde4ab0d343b1b253607dd10f5d7cf205fdf96f",
+        "selectedCandidateIndex": 1,
+        "selectorSha256": "6637c40caaf9b33de2f9a616e0cf7ad2d0b694a3498a2ae26b5f1a105be1a0d0"
+      }
+    ],
+    "unit": "complete-(regime,block)"
+  },
+  "replication": {
+    "applicationFamily": "google-online-boutique",
+    "applicationFamilyCountContribution": 0,
+    "channel": "aws-eks-lgtm",
+    "comparativeUnit": "complete-(regime,block)",
+    "currentChannelStratumCountContribution": 0,
+    "futureValidCandidateChannelStratumContribution": 1,
+    "independentApplicationReplication": false,
+    "rawRequestsTracesAndSpansAreReplicates": false,
+    "sameFamilyAs": [
+      "compose-native-otel",
+      "kind-lgtm-tempo-loki"
+    ]
+  },
+  "schemaVersion": 1,
+  "source": {
+    "activationRef": "modules/online-boutique/activation/catalog.json",
+    "applicationCommit": "9a4616e77f0f9cbcbecaf27d711c38890dda1404",
+    "applicationRepository": "https://github.com/GoogleCloudPlatform/microservices-demo.git",
+    "bindings": [
+      {
+        "path": "modules/online-boutique-lgtm/source.lock",
+        "role": "deployment-source-pin",
+        "sha256": "2b19939ae4e75b16908cf3b235bfd571bed249c228e2f8974acd3d740d3e0b1c"
+      },
+      {
+        "path": "modules/online-boutique-lgtm/materialize.py",
+        "role": "source-identity-and-materialization-prior-art-only",
+        "sha256": "bd46f13664d6d8497ba745e15091443c185a08d0699d7f605b425792e96c6861"
+      },
+      {
+        "path": "modules/online-boutique/goals/homepage-path.json",
+        "role": "shared-goal",
+        "sha256": "c059b19574b9d9deee41095f236cfce7fc3af98deb34441c9badb5d4c7203dca"
+      },
+      {
+        "path": "modules/online-boutique/activation/catalog.json",
+        "role": "shared-activation-catalog",
+        "sha256": "e52b51bd92bd9b5e06f25a0fe600bc7ccbe583d83359b751e682d86a33ebbec8"
+      },
+      {
+        "path": "modules/online-boutique/workload/fixed_home.py",
+        "role": "workload-prior-art-requiring-correlation-adapter",
+        "sha256": "40c13fc3f681e38db0dedcbc4f3b7418dec2b78989cd2713c5b1d3947da70cdf"
+      },
+      {
+        "path": "modules/online-boutique-lgtm/deployment/postures/none.yaml",
+        "role": "none-posture",
+        "sha256": "98c6f5256d5045b1399494fb0115fa609b90db016fe4ab22dbdd7778fa08b7d4"
+      },
+      {
+        "path": "modules/online-boutique-lgtm/deployment/postures/selected.yaml",
+        "role": "selected-posture",
+        "sha256": "87fc9073ceabbc7bc75b264cbe8b6009241cb7cedff464e3412129762b98f6e8"
+      },
+      {
+        "path": "modules/online-boutique-lgtm/deployment/postures/full.yaml",
+        "role": "full-posture",
+        "sha256": "efb30aaf5272b39381d2725737498c17feb749db586525aa014a2bc266f8a571"
+      }
+    ],
+    "deploymentCommit": "c0f08154f0c1197c612acc409452dffa346a20ed",
+    "deploymentRepository": "https://github.com/cxmiller21/aws-eks-microservices.git",
+    "goalRef": "modules/online-boutique/goals/homepage-path.json"
+  },
+  "status": "construction-only",
+  "targetEnvironment": {
+    "aliasesAccepted": [],
+    "channel": "aws-eks-lgtm",
+    "executor": null,
+    "executorStatus": "not-implemented",
+    "id": "aws-eks",
+    "kind": "managed-cloud-kubernetes",
+    "kindReference": {
+      "channel": "kind-lgtm-tempo-loki",
+      "id": "kind",
+      "kind": "local-kubernetes",
+      "maximumClaim": "smoke-validation",
+      "mayProveTarget": false,
+      "maySubstituteForTarget": false
+    },
+    "knownImplementationBlockers": [
+      "upstream-online-boutique-v0.8.0-differs-from-shared-v0.10.6-source",
+      "upstream-retains-in-cluster-loadgenerator",
+      "floating-head-latest-provider-chart-and-addon-inputs",
+      "emailservice-selector-does-not-match-deployment",
+      "argocd-self-heal-conflicts-with-exclusive-experiment-ownership",
+      "lgtm-resources-are-not-implemented-for-eks",
+      "registry-digest-push-pull-and-owned-cleanup-receipts-are-not-implemented",
+      "fixed-home-workload-does-not-issue-or-reconcile-traceparent",
+      "aws-native-resource-cost-collector-is-not-implemented",
+      "safe-aws-deletion-authority-is-not-defined"
+    ],
+    "provider": "aws"
+  },
+  "workload": {
+    "concurrency": 4,
+    "correlationAdapterStatus": "not-implemented",
+    "endpoint": "exact-run-bound-external-alb-url",
+    "exactOfferedCountRequired": true,
+    "failedTimedOutAndLateRequestsRetained": true,
+    "id": "online-boutique-homepage-trace-opportunity-v1",
+    "method": "GET",
+    "path": "/",
+    "phaseOverrunState": "invalid",
+    "phaseSchedules": {
+      "cost-measurement": 600,
+      "fault-effect": 120,
+      "post-recovery-effect": 180,
+      "pre-fault-effect": 180,
+      "warmup": 120
+    },
+    "phaseStartRule": "fresh-monotonic-barrier-after-required-observed-state",
+    "query": "",
+    "ratePerSecond": 1,
+    "responseBodyPolicy": "read-completely-record-byte-count-not-content",
+    "retryCount": 0,
+    "sourceRef": "modules/online-boutique/workload/fixed_home.py",
+    "sourceUse": "fixed-rate-prior-art-only",
+    "terminalReconciliation": {
+      "appendOnlyJsonlSha256Required": true,
+      "duplicateOrMissingOrdinalState": "invalid",
+      "oneOpportunityAndOneOutcomePerOrdinal": true,
+      "rowCountAndSequenceRangeRequired": true,
+      "traceparentMustMatchTraceIdAndSentParentSpanId": true
+    },
+    "timeoutSeconds": 15
+  }
+}

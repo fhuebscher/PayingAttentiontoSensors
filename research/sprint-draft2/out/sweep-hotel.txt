@@ -1,0 +1,113 @@
+sweep: episodes 144, no-fault 72, services ['attractions', 'frontend', 'geo', 'profile', 'rate', 'recommendation', 'reservation', 'review', 'search', 'user']
+
+== reservation-pause-effect (target reservation), episodes 72, no-fault 72
+  metric grid (k, floor pp): target det FA | other-union det FA
+    k=3 floor=0.5  target 72/72 FA 9/72 | other 72/72 FA 56/72
+    k=3 floor=1    target 72/72 FA 0/72 | other 72/72 FA 10/72
+    k=3 floor=2    target 71/72 FA 0/72 | other 70/72 FA 0/72
+    k=4 floor=0.5  target 71/72 FA 0/72 | other 72/72 FA 43/72
+    k=4 floor=1    target 71/72 FA 0/72 | other 72/72 FA 10/72
+    k=4 floor=2    target 71/72 FA 0/72 | other 70/72 FA 0/72
+    k=5 floor=0.5  target 66/72 FA 0/72 | other 71/72 FA 29/72
+    k=5 floor=1    target 66/72 FA 0/72 | other 71/72 FA 7/72
+    k=5 floor=2    target 66/72 FA 0/72 | other 69/72 FA 0/72
+    k=6 floor=0.5  target 56/72 FA 0/72 | other 71/72 FA 22/72
+    k=6 floor=1    target 56/72 FA 0/72 | other 71/72 FA 4/72
+    k=6 floor=2    target 56/72 FA 0/72 | other 69/72 FA 0/72
+  metric per service, det/FA over the 12 configs in grid order:
+    attractions      0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+    frontend         72/17 72/4 69/0 68/9 68/4 65/0 62/6 62/3 59/0 55/4 55/2 53/0
+    geo              16/16 0/0 0/0 15/15 0/0 0/0 14/14 0/0 0/0 14/10 0/0 0/0
+    profile          72/29 72/2 43/0 71/18 71/2 42/0 65/8 65/1 37/0 57/8 57/1 30/0
+    rate             8/10 0/0 0/0 5/5 0/0 0/0 2/4 0/0 0/0 2/2 0/0 0/0
+    recommendation   0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+    reservation    * 72/9 72/0 71/0 71/0 71/0 71/0 66/0 66/0 66/0 56/0 56/0 56/0
+    review           0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+    search           12/14 0/4 0/0 9/8 0/4 0/0 6/5 0/3 0/0 4/3 0/1 0/0
+    user             0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+  log warn+   72/72 FA 0/72  emitting services (episodes): {'frontend': 72}
+  log error+  72/72 FA 0/72  emitting services (episodes): {'frontend': 72}
+  trace (full) error spans by service (episodes of 24): {'frontend': 24}
+  posture agreement per (run, block), all 3 postures agree, of 24 groups:
+    log warn+                  24/24
+    log error+                 24/24
+    metric-target k3 f0.5      24/24
+    metric-other k3 f0.5       24/24
+    metric-target k3 f1        24/24
+    metric-other k3 f1         24/24
+    metric-target k3 f2        23/24
+    metric-other k3 f2         22/24
+    metric-target k4 f0.5      23/24
+    metric-other k4 f0.5       24/24
+    metric-target k4 f1        23/24
+    metric-other k4 f1         24/24
+    metric-target k4 f2        23/24
+    metric-other k4 f2         22/24
+    metric-target k5 f0.5      18/24
+    metric-other k5 f0.5       23/24
+    metric-target k5 f1        18/24
+    metric-other k5 f1         23/24
+    metric-target k5 f2        18/24
+    metric-other k5 f2         21/24
+    metric-target k6 f0.5      8/24
+    metric-other k6 f0.5       23/24
+    metric-target k6 f1        8/24
+    metric-other k6 f1         23/24
+    metric-target k6 f2        8/24
+    metric-other k6 f2         21/24
+
+== search-pause-effect (target search), episodes 72, no-fault 72
+  metric grid (k, floor pp): target det FA | other-union det FA
+    k=3 floor=0.5  target 72/72 FA 14/72 | other 72/72 FA 52/72
+    k=3 floor=1    target 72/72 FA 4/72 | other 72/72 FA 6/72
+    k=3 floor=2    target 72/72 FA 0/72 | other 72/72 FA 0/72
+    k=4 floor=0.5  target 71/72 FA 8/72 | other 72/72 FA 38/72
+    k=4 floor=1    target 71/72 FA 4/72 | other 72/72 FA 6/72
+    k=4 floor=2    target 71/72 FA 0/72 | other 72/72 FA 0/72
+    k=5 floor=0.5  target 71/72 FA 5/72 | other 72/72 FA 26/72
+    k=5 floor=1    target 71/72 FA 3/72 | other 71/72 FA 4/72
+    k=5 floor=2    target 71/72 FA 0/72 | other 71/72 FA 0/72
+    k=6 floor=0.5  target 70/72 FA 3/72 | other 72/72 FA 20/72
+    k=6 floor=1    target 70/72 FA 1/72 | other 71/72 FA 3/72
+    k=6 floor=2    target 70/72 FA 0/72 | other 71/72 FA 0/72
+  metric per service, det/FA over the 12 configs in grid order:
+    attractions      0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+    frontend         72/17 72/4 72/0 72/9 72/4 72/0 71/6 71/3 71/0 71/4 71/2 71/0
+    geo              72/16 23/0 0/0 71/15 22/0 0/0 71/14 22/0 0/0 69/10 20/0 0/0
+    profile          72/29 72/2 45/0 71/18 71/2 45/0 63/8 63/1 38/0 54/8 54/1 31/0
+    rate             72/10 72/0 72/0 72/5 72/0 72/0 71/4 71/0 71/0 71/2 71/0 71/0
+    recommendation   0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+    reservation      72/9 72/0 71/0 70/0 70/0 69/0 65/0 65/0 64/0 53/0 53/0 52/0
+    review           0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+    search         * 72/14 72/4 72/0 71/8 71/4 71/0 71/5 71/3 71/0 70/3 70/1 70/0
+    user             0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+  log warn+   0/72 FA 0/72  emitting services (episodes): {}
+  log error+  0/72 FA 0/72  emitting services (episodes): {}
+  trace (full) error spans by service (episodes of 24): {'search': 24, 'frontend': 24}
+  posture agreement per (run, block), all 3 postures agree, of 24 groups:
+    log warn+                  24/24
+    log error+                 24/24
+    metric-target k3 f0.5      24/24
+    metric-other k3 f0.5       24/24
+    metric-target k3 f1        24/24
+    metric-other k3 f1         24/24
+    metric-target k3 f2        24/24
+    metric-other k3 f2         24/24
+    metric-target k4 f0.5      23/24
+    metric-other k4 f0.5       24/24
+    metric-target k4 f1        23/24
+    metric-other k4 f1         24/24
+    metric-target k4 f2        23/24
+    metric-other k4 f2         24/24
+    metric-target k5 f0.5      23/24
+    metric-other k5 f0.5       24/24
+    metric-target k5 f1        23/24
+    metric-other k5 f1         23/24
+    metric-target k5 f2        23/24
+    metric-other k5 f2         23/24
+    metric-target k6 f0.5      22/24
+    metric-other k6 f0.5       24/24
+    metric-target k6 f1        22/24
+    metric-other k6 f1         23/24
+    metric-target k6 f2        22/24
+    metric-other k6 f2         23/24

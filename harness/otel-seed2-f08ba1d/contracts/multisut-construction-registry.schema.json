@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/multisut-construction-registry.schema.json",
+  "title": "Root-owned multi-SUT construction admission registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "permissions", "transition", "baseEpoch", "children"],
+  "properties": {
+    "$schema": {"const": "https://observability-placement.local/contracts/multisut-construction-registry.schema.json"},
+    "schemaVersion": {"const": 1},
+    "permissions": {"$ref": "#/$defs/closedPermissions"},
+    "transition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["parentCommit", "parentTree", "ownedPaths", "commitDerivation"],
+      "properties": {
+        "parentCommit": {"$ref": "#/$defs/gitCommit"},
+        "parentTree": {"$ref": "#/$defs/gitCommit"},
+        "ownedPaths": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryFile"}},
+        "commitDerivation": {"const": "single-commit-last-change-of-every-owned-path"}
+      }
+    },
+    "baseEpoch": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "commit", "tree", "router", "activeChangeIds"],
+      "properties": {
+        "id": {"const": "teastore-construction-v2"},
+        "commit": {"$ref": "#/$defs/gitCommit"},
+        "tree": {"$ref": "#/$defs/gitCommit"},
+        "router": {"$ref": "#/$defs/fileBinding"},
+        "activeChangeIds": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/slug"}}
+      }
+    },
+    "children": {
+      "type": "array", "minItems": 4, "maxItems": 4,
+      "items": {"$ref": "#/$defs/child"}
+    }
+  },
+  "$defs": {
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "repositoryPath": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*//).+$"},
+    "repositoryFile": {"allOf": [{"$ref": "#/$defs/repositoryPath"}, {"not": {"pattern": "/$"}}]},
+    "fileBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "closedPermissions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["runtimeAllowed", "externalMutationAllowed", "heldOutOutcomeAccessAllowed", "aiSelectorAllowed", "evidencePromotionAllowed"],
+      "properties": {
+        "runtimeAllowed": {"const": false},
+        "externalMutationAllowed": {"const": false},
+        "heldOutOutcomeAccessAllowed": {"const": false},
+        "aiSelectorAllowed": {"const": false},
+        "evidencePromotionAllowed": {"const": false}
+      }
+    },
+    "sourceBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sourceCommit", "sha256", "role", "qualification"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "sourceCommit": {"$ref": "#/$defs/gitCommit"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "role": {"type": "string", "minLength": 1},
+        "qualification": {"enum": ["reviewed-parent", "local-construction-source", "historical-context"]}
+      }
+    },
+    "artifactBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "mode"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "mode": {"const": "100644"}
+      }
+    },
+    "module": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "applicationFamily", "channel", "replicationContribution"],
+      "properties": {
+        "id": {"$ref": "#/$defs/slug"},
+        "applicationFamily": {"$ref": "#/$defs/slug"},
+        "channel": {"$ref": "#/$defs/slug"},
+        "replicationContribution": {"enum": ["application-family", "execution-channel-only"]}
+      }
+    },
+    "parentEpoch": {
+      "type": "object", "additionalProperties": false,
+      "required": ["changeId", "commit", "tree"],
+      "properties": {
+        "changeId": {"const": "adopt-teastore-diagnostic-harness"},
+        "commit": {"$ref": "#/$defs/gitCommit"},
+        "tree": {"$ref": "#/$defs/gitCommit"}
+      }
+    },
+    "adoptedSource": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "commit", "tree", "qualification"],
+      "properties": {
+        "kind": {"const": "candidate-construction-source"},
+        "commit": {"$ref": "#/$defs/gitCommit"},
+        "tree": {"$ref": "#/$defs/gitCommit"},
+        "qualification": {"const": "local-construction-only"}
+      }
+    },
+    "descriptor": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "byteSha256", "canonicalSha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "byteSha256": {"$ref": "#/$defs/sha256"},
+        "canonicalSha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "compiler": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "api"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "api": {"const": "pure-candidate-construction-v1"}
+      }
+    },
+    "compiledPlan": {
+      "type": "object", "additionalProperties": false,
+      "required": ["canonicalSha256", "runCount"],
+      "properties": {
+        "canonicalSha256": {"$ref": "#/$defs/sha256"},
+        "runCount": {"type": "integer", "minimum": 1, "maximum": 10000}
+      }
+    },
+    "protocolBindings": {
+      "type": "object", "additionalProperties": false,
+      "required": ["studyEpoch", "descriptor", "compiler", "compiledPlan", "maximumFutureRunEvidenceLabel", "canonical"],
+      "properties": {
+        "studyEpoch": {"$ref": "#/$defs/slug"},
+        "descriptor": {"$ref": "#/$defs/descriptor"},
+        "compiler": {"$ref": "#/$defs/compiler"},
+        "compiledPlan": {"$ref": "#/$defs/compiledPlan"},
+        "maximumFutureRunEvidenceLabel": {"enum": ["smoke-validation", "candidate-evidence"]},
+        "canonical": {"const": false}
+      }
+    },
+    "child": {
+      "type": "object", "additionalProperties": false,
+      "required": ["changeId", "required", "parentEpoch", "adoptedSource", "module", "blockers", "sourceBindings", "artifactBindings", "protocolBindings", "allowedPaths"],
+      "properties": {
+        "changeId": {"$ref": "#/$defs/slug"},
+        "required": {"const": false},
+        "parentEpoch": {"$ref": "#/$defs/parentEpoch"},
+        "adoptedSource": {"$ref": "#/$defs/adoptedSource"},
+        "module": {"$ref": "#/$defs/module"},
+        "blockers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "sourceBindings": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/sourceBinding"}},
+        "artifactBindings": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"$ref": "#/$defs/artifactBinding"}},
+        "protocolBindings": {"$ref": "#/$defs/protocolBindings"},
+        "allowedPaths": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryFile"}}
+      }
+    }
+  }
+}

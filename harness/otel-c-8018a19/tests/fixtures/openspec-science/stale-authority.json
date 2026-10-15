@@ -1,0 +1,11 @@
+{
+  "fixtureId": "stale-authority",
+  "checkId": "authority-bindings",
+  "expectedStatus": "fail",
+  "expectedDiagnostic": "authority digest mismatch",
+  "mutation": {
+    "kind": "append-text",
+    "path": "authority/current.md",
+    "text": "\nsemantic drift\n"
+  }
+}

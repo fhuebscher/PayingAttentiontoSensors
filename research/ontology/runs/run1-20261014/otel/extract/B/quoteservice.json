@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "stage2 extractor B",
+    "system": "otel",
+    "service": "quoteservice",
+    "entry": 61,
+    "notes": [
+      "No synchronous outbound calls found in routes.php, dependencies.php, settings.php or public/index.php. composer.json:16 requires guzzlehttp/guzzle and composer.json:19 requires php-http/guzzle7-adapter, but no call site is in the given files. Nothing reported under (1).",
+      "No consumed or published messages in the given files. Nothing reported under (2).",
+      "No registry, discovery or coordinator registration in the given files (no registry setting in settings.php, index.php, dependencies.php or the compose block at docker-compose.yml:484-510). Nothing reported under (3); the service schema has no liveness field for a non-coordinator service.",
+      "Health check: docker-compose.yml:484-510 (quoteservice block) has no healthcheck key, and src/quoteservice/Dockerfile has no HEALTHCHECK instruction. Docker default (no health check): library default, not in these files.",
+      "Telemetry flush cadence: public/index.php:61, :66 and :71 schedule periodic forceFlush() calls from Configuration::getInt(OTEL_BSP_SCHEDULE_DELAY), OTEL_BLRP_SCHEDULE_DELAY and OTEL_METRIC_EXPORT_INTERVAL. None of these variables is set in docker-compose.yml:500-506, the quoteservice overlay (compose.candidate-postures.yml:110-116) or .env; their values are library default, not in these files. No frequency is reported."
+    ]
+  },
+  "sources": {
+    "otel-demo": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "quoteservice",
+        "basis": "cited",
+        "repo": "otel-demo",
+        "sourceFile": "docker-compose.yml",
+        "line": 485,
+        "quotedToken": "quoteservice:"
+      },
+      "container": {
+        "value": "quote-service",
+        "basis": "cited",
+        "repo": "otel-demo",
+        "sourceFile": "docker-compose.yml",
+        "line": 487,
+        "quotedToken": "container_name: quote-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/",
+        "quotedToken": "deploy:",
+        "note": "Library default, not in these files: the quoteservice deploy block (docker-compose.yml:493-496) sets only deploy.resources.limits.memory, with no replicas key."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "otel-demo",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Endpoint is set at docker-compose.yml:501 as OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}; the collector service is otelcol (docker-compose.yml:719) and the HTTP port is .env:29 (OTEL_COLLECTOR_PORT_HTTP=4318). Traces, metrics and logs are all sent to this endpoint by the OTEL_*_EXPORTER defaults (library default for the exporter type, not in these files)."
+        }
+      ],
+      "emits": [
+        {
+          "kind": "span",
+          "id": {
+            "value": "calculate-quote",
+            "basis": "cited",
+            "repo": "otel-demo",
+            "sourceFile": "src/quoteservice/app/routes.php",
+            "line": 19,
+            "quotedToken": "spanBuilder('calculate-quote')"
+          }
+        },
+        {
+          "kind": "metric",
+          "id": {
+            "value": "quotes",
+            "basis": "cited",
+            "repo": "otel-demo",
+            "sourceFile": "src/quoteservice/app/routes.php",
+            "line": 41,
+            "quotedToken": "createCounter('quotes'"
+          }
+        },
+        {
+          "kind": "log",
+          "id": {
+            "value": "Calculated quote",
+            "basis": "cited",
+            "repo": "otel-demo",
+            "sourceFile": "src/quoteservice/app/routes.php",
+            "line": 67,
+            "quotedToken": "$logger->info('Calculated quote'"
+          }
+        }
+      ]
+    }
+  ]
+}

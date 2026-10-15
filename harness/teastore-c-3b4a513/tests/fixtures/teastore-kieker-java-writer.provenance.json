@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "path": "tests/fixtures/RealKiekerFixture.java",
+    "sha256": "247cfc6c5b69eb427f05bf55b46fe14ea81878528512fab9061062f49eba4b5a"
+  },
+  "inputs": [
+    {
+      "path": "upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar",
+      "sha256": "c3bf5b6b4ff7b765885cdef88507e73ab63cea7bd58562a2175d5a6f43fc6ff1"
+    },
+    {
+      "path": "upstream/teastore/utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/IPayloadCharacterization.java",
+      "sha256": "fc786e0cdda388a045c01f2608f6cc56952c39d4e225d2a7797ad4cd20c6fc3f"
+    },
+    {
+      "path": "upstream/teastore/utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/OperationExecutionWithParametersRecord.java",
+      "sha256": "b86b42af8dfeeb6509692ef9ff98d7d39918db59fc1dc64dd023f83ab5b9d559"
+    }
+  ],
+  "toolchain": {
+    "javac": "17.0.2",
+    "java": "17.0.2"
+  },
+  "compileCommand": [
+    "javac",
+    "-cp",
+    "upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar",
+    "-d",
+    "{classes}",
+    "tests/fixtures/RealKiekerFixture.java",
+    "upstream/teastore/utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/IPayloadCharacterization.java",
+    "upstream/teastore/utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/OperationExecutionWithParametersRecord.java"
+  ],
+  "runCommand": [
+    "java",
+    "-cp",
+    "{classes}:upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar",
+    "RealKiekerFixture"
+  ],
+  "output": {
+    "path": "tests/fixtures/teastore-kieker-java-writer.b64",
+    "byteSha256": "82a5f746c111916f6a51fc9e83b1b12805f26287c298e8816e6c5895e2e8df72",
+    "decodedBytes": 477,
+    "decodedSha256": "cb88cc65b54285e56ea8135dad0b70020e8317e3abb9ddfd3049c818ed8c31cc"
+  }
+}

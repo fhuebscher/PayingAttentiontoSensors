@@ -1,0 +1,158 @@
+{
+ "cellsF1": 25,
+ "cellsF3": 25,
+ "identicalOrderAndOnsets": true,
+ "differences": [],
+ "cells": [
+  {
+   "ordinal": 1,
+   "cell": "runs/calibration/r25-b01-01-full",
+   "faultOnsetSeconds": 60.018674,
+   "faultOnsetPhaseOffsetSeconds": 0.018674
+  },
+  {
+   "ordinal": 2,
+   "cell": "runs/calibration/r25-b01-02-full",
+   "faultOnsetSeconds": 60.020795,
+   "faultOnsetPhaseOffsetSeconds": 0.020795
+  },
+  {
+   "ordinal": 3,
+   "cell": "runs/effect/accounting-pause/r25-b01-03-full",
+   "faultOnsetSeconds": 60.009585,
+   "faultOnsetPhaseOffsetSeconds": 0.009585
+  },
+  {
+   "ordinal": 4,
+   "cell": "runs/effect/fraud-pause/r25-b01-04-full",
+   "faultOnsetSeconds": 60.004623,
+   "faultOnsetPhaseOffsetSeconds": 0.004623
+  },
+  {
+   "ordinal": 5,
+   "cell": "runs/effect/frontend-pause/r25-b01-05-full",
+   "faultOnsetSeconds": 60.007207,
+   "faultOnsetPhaseOffsetSeconds": 0.007207
+  },
+  {
+   "ordinal": 6,
+   "cell": "runs/calibration/r25-b02-06-full",
+   "faultOnsetSeconds": 60.009517,
+   "faultOnsetPhaseOffsetSeconds": 0.009517
+  },
+  {
+   "ordinal": 7,
+   "cell": "runs/calibration/r25-b02-07-full",
+   "faultOnsetSeconds": 60.012413,
+   "faultOnsetPhaseOffsetSeconds": 0.012413
+  },
+  {
+   "ordinal": 8,
+   "cell": "runs/effect/fraud-pause/r25-b02-08-full",
+   "faultOnsetSeconds": 60.012805,
+   "faultOnsetPhaseOffsetSeconds": 0.012805
+  },
+  {
+   "ordinal": 9,
+   "cell": "runs/effect/accounting-pause/r25-b02-09-full",
+   "faultOnsetSeconds": 60.020323,
+   "faultOnsetPhaseOffsetSeconds": 0.020323
+  },
+  {
+   "ordinal": 10,
+   "cell": "runs/effect/frontend-pause/r25-b02-10-full",
+   "faultOnsetSeconds": 60.024916,
+   "faultOnsetPhaseOffsetSeconds": 0.024916
+  },
+  {
+   "ordinal": 11,
+   "cell": "runs/calibration/r25-b03-11-full",
+   "faultOnsetSeconds": 60.034191,
+   "faultOnsetPhaseOffsetSeconds": 0.034191
+  },
+  {
+   "ordinal": 12,
+   "cell": "runs/calibration/r25-b03-12-full",
+   "faultOnsetSeconds": 60.005122,
+   "faultOnsetPhaseOffsetSeconds": 0.005122
+  },
+  {
+   "ordinal": 13,
+   "cell": "runs/effect/fraud-pause/r25-b03-13-full",
+   "faultOnsetSeconds": 60.036296,
+   "faultOnsetPhaseOffsetSeconds": 0.036296
+  },
+  {
+   "ordinal": 14,
+   "cell": "runs/effect/accounting-pause/r25-b03-14-full",
+   "faultOnsetSeconds": 60.001186,
+   "faultOnsetPhaseOffsetSeconds": 0.001186
+  },
+  {
+   "ordinal": 15,
+   "cell": "runs/effect/frontend-pause/r25-b03-15-full",
+   "faultOnsetSeconds": 60.032976,
+   "faultOnsetPhaseOffsetSeconds": 0.032976
+  },
+  {
+   "ordinal": 16,
+   "cell": "runs/calibration/r25-b04-16-full",
+   "faultOnsetSeconds": 60.036231,
+   "faultOnsetPhaseOffsetSeconds": 0.036231
+  },
+  {
+   "ordinal": 17,
+   "cell": "runs/calibration/r25-b04-17-full",
+   "faultOnsetSeconds": 60.002893,
+   "faultOnsetPhaseOffsetSeconds": 0.002893
+  },
+  {
+   "ordinal": 18,
+   "cell": "runs/effect/accounting-pause/r25-b04-18-full",
+   "faultOnsetSeconds": 60.028635,
+   "faultOnsetPhaseOffsetSeconds": 0.028635
+  },
+  {
+   "ordinal": 19,
+   "cell": "runs/effect/fraud-pause/r25-b04-19-full",
+   "faultOnsetSeconds": 60.021334,
+   "faultOnsetPhaseOffsetSeconds": 0.021334
+  },
+  {
+   "ordinal": 20,
+   "cell": "runs/effect/frontend-pause/r25-b04-20-full",
+   "faultOnsetSeconds": 60.022074,
+   "faultOnsetPhaseOffsetSeconds": 0.022074
+  },
+  {
+   "ordinal": 21,
+   "cell": "runs/calibration/r25-b05-21-full",
+   "faultOnsetSeconds": 60.025753,
+   "faultOnsetPhaseOffsetSeconds": 0.025753
+  },
+  {
+   "ordinal": 22,
+   "cell": "runs/calibration/r25-b05-22-full",
+   "faultOnsetSeconds": 60.02475,
+   "faultOnsetPhaseOffsetSeconds": 0.02475
+  },
+  {
+   "ordinal": 23,
+   "cell": "runs/effect/fraud-pause/r25-b05-23-full",
+   "faultOnsetSeconds": 60.027082,
+   "faultOnsetPhaseOffsetSeconds": 0.027082
+  },
+  {
+   "ordinal": 24,
+   "cell": "runs/effect/accounting-pause/r25-b05-24-full",
+   "faultOnsetSeconds": 60.036407,
+   "faultOnsetPhaseOffsetSeconds": 0.036407
+  },
+  {
+   "ordinal": 25,
+   "cell": "runs/effect/frontend-pause/r25-b05-25-full",
+   "faultOnsetSeconds": 60.013868,
+   "faultOnsetPhaseOffsetSeconds": 0.013868
+  }
+ ]
+}

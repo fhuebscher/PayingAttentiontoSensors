@@ -1,0 +1,53 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "service": "emailservice",
+  "extractor": "A",
+  "absences": {
+   "syncCalls": "email_server.rb makes no outbound service call: Pony.mail uses via: :test (email_server.rb:44); the only network interface is the inbound POST /send_order_confirmation (email_server.rb:18).",
+   "messaging": "no topic published or consumed in the given files.",
+   "registry": "no registry, discovery or coordinator registration in the given files; no heartbeat, failure timeout or cleanup interval.",
+   "replicas": "docker-compose.yml:192-212 has no replicas key (deploy block holds only resources.limits.memory); library default, not in these files.",
+   "healthcheck": "no healthcheck block in the emailservice compose block (docker-compose.yml:192-218); the healthcheck keys at lines 652 and 801 belong to other services.",
+   "telemetryRate": "no export interval or batch setting for traces in the given files; OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER are set only to a posture variable (compose.candidate-postures.yml:57-58), no endpoint for metrics or logs for this service."
+  }
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "emailservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 192,
+    "quotedToken": "emailservice"
+   },
+   "container": {
+    "value": "email-service",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 194,
+    "quotedToken": "container_name: email-service"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "docker-compose.yml",
+     "line": 210,
+     "quotedToken": "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT",
+     "note": "traces only, OTLP/HTTP to ${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}/v1/traces; host resolves to otelcol at .env:27"
+    }
+   ]
+  }
+ ]
+}

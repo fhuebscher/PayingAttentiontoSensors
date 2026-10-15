@@ -1,0 +1,154 @@
+{
+ "libraries": {
+  "Confluent.Kafka@2.5.3": {
+   "agreed": 7,
+   "supported": 0,
+   "decisions": {}
+  },
+  "consul-api@1.26.1": {
+   "agreed": 0,
+   "supported": 0,
+   "decisions": {
+    "not decidable": 1
+   }
+  },
+  "grpc-consul-resolver@1.5.3": {
+   "agreed": 0,
+   "supported": 2,
+   "decisions": {
+    "not decidable": 1,
+    "supported": 2
+   }
+  },
+  "kafka-clients@3.6.0": {
+   "agreed": 7,
+   "supported": 1,
+   "decisions": {
+    "not supported": 1,
+    "supported": 1
+   }
+  },
+  "librdkafka@2.5.3": {
+   "agreed": 8,
+   "supported": 4,
+   "decisions": {
+    "supported": 4
+   }
+  },
+  "ribbon@2.7.18": {
+   "agreed": 5,
+   "supported": 11,
+   "decisions": {
+    "not decidable": 1,
+    "supported": 11
+   }
+  },
+  "sarama@1.43.2": {
+   "agreed": 9,
+   "supported": 2,
+   "decisions": {
+    "not decidable": 1,
+    "supported": 2
+   }
+  }
+ },
+ "systems": {
+  "teastore": {
+   "schemaErrors": [],
+   "factsByAcceptance": {
+    "deterministic": 14,
+    "agreed": 51,
+    "supported": 2
+   },
+   "acceptedKeys": {
+    "agreed": 51,
+    "deterministic": 16,
+    "supported": 4,
+    "libraryAttached": 0
+   },
+   "attachment": {
+    "accepted": 0,
+    "unmet": 0,
+    "overridden": 0,
+    "alreadyAccepted": 0
+   },
+   "decisions": {
+    "not decidable": 10,
+    "not supported": 4,
+    "supported": 4
+   },
+   "rebuild": {
+    "incomplete": 4,
+    "orphaned": 4
+   },
+   "shaclConforms": true,
+   "triples": 1134,
+   "shaclViolations": 0
+  },
+  "hotel": {
+   "schemaErrors": [],
+   "factsByAcceptance": {
+    "deterministic": 42,
+    "agreed": 65,
+    "supported": 41
+   },
+   "acceptedKeys": {
+    "agreed": 67,
+    "deterministic": 44,
+    "supported": 45,
+    "libraryAttached": 0
+   },
+   "attachment": {
+    "accepted": 0,
+    "unmet": 0,
+    "overridden": 0,
+    "alreadyAccepted": 0
+   },
+   "decisions": {
+    "not decidable": 12,
+    "not supported": 4,
+    "supported": 45
+   },
+   "rebuild": {
+    "incomplete": 5,
+    "orphaned": 8
+   },
+   "shaclConforms": true,
+   "triples": 3038,
+   "shaclViolations": 0
+  },
+  "otel": {
+   "schemaErrors": [],
+   "factsByAcceptance": {
+    "deterministic": 35,
+    "library": 12,
+    "supported": 20,
+    "agreed": 124
+   },
+   "acceptedKeys": {
+    "agreed": 124,
+    "deterministic": 35,
+    "supported": 20,
+    "libraryAttached": 12
+   },
+   "attachment": {
+    "accepted": 32,
+    "unmet": 0,
+    "overridden": 0,
+    "alreadyAccepted": 2
+   },
+   "decisions": {
+    "not decidable": 36,
+    "not supported": 1,
+    "supported": 20
+   },
+   "rebuild": {
+    "incomplete": 0,
+    "orphaned": 0
+   },
+   "shaclConforms": true,
+   "triples": 3510,
+   "shaclViolations": 0
+  }
+ }
+}

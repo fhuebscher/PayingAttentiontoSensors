@@ -1,0 +1,407 @@
+{
+ "mergeVersion": 1,
+ "system": "otel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67"
+  }
+ },
+ "aliases": {
+  "accountingservice": "accountingservice",
+  "adservice": "adservice",
+  "cartservice": "cartservice",
+  "checkoutservice": "checkoutservice",
+  "currencyservice": "currencyservice",
+  "emailservice": "emailservice",
+  "frauddetectionservice": "frauddetectionservice",
+  "frontend": "frontend",
+  "frontendproxy": "frontendproxy",
+  "imageprovider": "imageprovider",
+  "loadgenerator": "loadgenerator",
+  "paymentservice": "paymentservice",
+  "productcatalogservice": "productcatalogservice",
+  "quoteservice": "quoteservice",
+  "recommendationservice": "recommendationservice",
+  "shippingservice": "shippingservice",
+  "flagd": "flagd",
+  "flagd-ui": "flagd-ui",
+  "kafka": "kafka",
+  "valkey-cart": "valkey-cart",
+  "jaeger": "jaeger",
+  "grafana": "grafana",
+  "otelcol": "otelcol",
+  "prometheus": "prometheus",
+  "opensearch": "opensearch",
+  "accounting-service": "accountingservice",
+  "ad-service": "adservice",
+  "cart-service": "cartservice",
+  "checkout-service": "checkoutservice",
+  "currency-service": "currencyservice",
+  "email-service": "emailservice",
+  "frauddetection-service": "frauddetectionservice",
+  "frontend-proxy": "frontendproxy",
+  "load-generator": "loadgenerator",
+  "payment-service": "paymentservice",
+  "product-catalog-service": "productcatalogservice",
+  "quote-service": "quoteservice",
+  "recommendation-service": "recommendationservice",
+  "shipping-service": "shippingservice",
+  "otel-col": "otelcol"
+ },
+ "normalisation": "merge.py docstring step 3",
+ "agreement": {
+  "agreed": 0,
+  "contested": 8,
+  "agreement": 0.0,
+  "byRelation": {
+   "callsSync": {
+    "agreed": 0,
+    "contested": 2,
+    "agreement": 0.0
+   },
+   "container": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "replicas": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "role": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "service": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "name": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   },
+   "id": {
+    "agreed": 0,
+    "contested": 1,
+    "agreement": 0.0
+   }
+  }
+ },
+ "log": {
+  "inputs": [
+   {
+    "origin": "stage1",
+    "input": "stage1[0]",
+    "sha256": "0f6239b3113538db34472ed6c3addc2de6381a4f281f971e8a97b1d8bf170beb"
+   }
+  ],
+  "schemaRejected": [],
+  "sourcesReplaced": [],
+  "dropped": [],
+  "droppedCount": {
+   "A": 0,
+   "B": 0,
+   "stage1": 0
+  },
+  "checkedCount": {
+   "A": 0,
+   "B": 0,
+   "stage1": 8
+  },
+  "uncheckedDefaultCount": {
+   "A": 0,
+   "B": 0,
+   "stage1": 1
+  }
+ },
+ "agreed": [],
+ "contested": [
+  {
+   "key": [
+    "accountingservice",
+    "callsSync",
+    "kafka"
+   ],
+   "relation": "callsSync",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.syncEdges[0]",
+     "subject": "accountingservice",
+     "object": "kafka",
+     "slots": [
+      "caller",
+      "callee"
+     ],
+     "fact": {
+      "value": {
+       "caller": "accountingservice",
+       "callee": "kafka"
+      },
+      "repo": "upstream",
+      "sourceFile": ".env",
+      "line": 139,
+      "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}",
+      "note": "stage-1 rule D4: bare entry docker-compose.yml:35 passes KAFKA_SERVICE_ADDR=kafka:9092 to accountingservice"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "55d6e5b521feb27c"
+  },
+  {
+   "key": [
+    "accountingservice",
+    "callsSync",
+    "otelcol"
+   ],
+   "relation": "callsSync",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.syncEdges[1]",
+     "subject": "accountingservice",
+     "object": "otelcol",
+     "slots": [
+      "caller",
+      "callee"
+     ],
+     "fact": {
+      "value": {
+       "caller": "accountingservice",
+       "callee": "otelcol"
+      },
+      "repo": "upstream",
+      "sourceFile": ".env",
+      "line": 27,
+      "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+      "note": "stage-1 rule D4: entry docker-compose.yml:36 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4318 to accountingservice"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "ddf7263d18343fbe"
+  },
+  {
+   "key": [
+    "accountingservice",
+    "container",
+    "accountingservice"
+   ],
+   "relation": "container",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].container",
+     "subject": "accountingservice",
+     "object": "accounting-service",
+     "slots": [
+      "service",
+      "name"
+     ],
+     "fact": {
+      "value": "accounting-service",
+      "repo": "upstream",
+      "sourceFile": "docker-compose.yml",
+      "line": 23,
+      "quotedToken": "container_name: accounting-service"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "4c25b600df0cc341"
+  },
+  {
+   "key": [
+    "accountingservice",
+    "replicas",
+    "1.0"
+   ],
+   "relation": "replicas",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].replicas",
+     "subject": "accountingservice",
+     "object": 1,
+     "slots": [
+      "service",
+      "number"
+     ],
+     "fact": {
+      "value": 1,
+      "basis": "documented-default",
+      "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+      "note": "stage-1 rule D3: no deploy.replicas or scale for accountingservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1"
+     },
+     "check": "unchecked-default"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "e7d8974334f4d4b8"
+  },
+  {
+   "key": [
+    "accountingservice",
+    "role",
+    "microservice"
+   ],
+   "relation": "role",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].role",
+     "subject": "accountingservice",
+     "object": "microservice",
+     "slots": [
+      "service",
+      "enum"
+     ],
+     "fact": {
+      "value": "microservice",
+      "repo": "upstream",
+      "sourceFile": "src/accountingservice/Dockerfile",
+      "line": 22,
+      "quotedToken": "base",
+      "note": "stage-1 rule D1: built from the pinned tree; last FROM base"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "25e842269b964afe"
+  },
+  {
+   "key": [
+    "accountingservice",
+    "service",
+    "accountingservice"
+   ],
+   "relation": "service",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.services[0].name",
+     "subject": "accountingservice",
+     "object": "accountingservice",
+     "slots": [
+      "service",
+      "service"
+     ],
+     "fact": {
+      "value": "accountingservice",
+      "repo": "upstream",
+      "sourceFile": "docker-compose.yml",
+      "line": 21,
+      "quotedToken": "accountingservice:"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "e8fef816628bb001"
+  },
+  {
+   "key": [
+    "architecture",
+    "name",
+    "otel"
+   ],
+   "relation": "name",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.architecture.name",
+     "subject": "architecture",
+     "object": "otel",
+     "slots": [
+      "const",
+      "name"
+     ],
+     "fact": {
+      "value": "otel",
+      "repo": "upstream",
+      "sourceFile": "docker-compose.yml",
+      "line": 16,
+      "quotedToken": "services:",
+      "note": "architecture = the services of the compose files upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "e8446b129b4b4752"
+  },
+  {
+   "key": [
+    "host",
+    "id",
+    "fb14srv6"
+   ],
+   "relation": "id",
+   "instances": [
+    {
+     "origin": "stage1",
+     "input": "stage1[0]",
+     "path": "$.host.id",
+     "subject": "host",
+     "object": "fb14srv6",
+     "slots": [
+      "const",
+      "name"
+     ],
+     "fact": {
+      "value": "fb14srv6",
+      "repo": "obsplacement",
+      "sourceFile": "research/host-topology.json",
+      "line": 422,
+      "quotedToken": "\"hostId\": \"fb14srv6\"",
+      "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host"
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "stage1"
+   ],
+   "id": "a901b6e3ec7e3db3"
+  }
+ ]
+}

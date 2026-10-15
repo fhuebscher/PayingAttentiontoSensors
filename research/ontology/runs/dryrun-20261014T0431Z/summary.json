@@ -1,0 +1,49 @@
+{
+ "hotel": {
+  "service": "search",
+  "stage1Facts": 6,
+  "factCitations": {
+   "ok": 6
+  },
+  "observations": 35,
+  "observationCitations": {
+   "ok": 35
+  },
+  "astCallSites": 20,
+  "agreed": 0,
+  "contested": 6,
+  "shaclConforms": true
+ },
+ "otel": {
+  "service": "accountingservice",
+  "stage1Facts": 8,
+  "factCitations": {
+   "ok": 7,
+   "unchecked-default": 1
+  },
+  "observations": 20,
+  "observationCitations": {
+   "ok": 20
+  },
+  "astCallSites": 5,
+  "agreed": 0,
+  "contested": 8,
+  "shaclConforms": true
+ },
+ "teastore": {
+  "service": "recommender",
+  "stage1Facts": 7,
+  "factCitations": {
+   "ok": 6,
+   "unchecked-default": 1
+  },
+  "observations": 126,
+  "observationCitations": {
+   "ok": 126
+  },
+  "astCallSites": 71,
+  "agreed": 0,
+  "contested": 7,
+  "shaclConforms": true
+ }
+}

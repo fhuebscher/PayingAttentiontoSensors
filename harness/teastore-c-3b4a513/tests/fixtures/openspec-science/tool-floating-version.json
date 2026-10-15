@@ -1,0 +1,12 @@
+{
+  "fixtureId": "tool-floating-version",
+  "checkId": "openspec-tool-pin",
+  "expectedStatus": "fail",
+  "expectedDiagnostic": "must pin @fission-ai/openspec exactly",
+  "mutation": {
+    "kind": "json-set",
+    "path": "package.json",
+    "keys": ["devDependencies", "@fission-ai/openspec"],
+    "value": "^1.11.0"
+  }
+}

@@ -1,0 +1,300 @@
+{
+ "facts": {
+  "facts": 8,
+  "counts": {
+   "ok": 7,
+   "unchecked-default": 1
+  },
+  "ok": true,
+  "rows": [
+   {
+    "status": "ok",
+    "matchedLine": 16,
+    "offset": 0,
+    "path": "$.architecture.name",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 16,
+    "quotedToken": "services:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 422,
+    "offset": 0,
+    "path": "$.host.id",
+    "repo": "obsplacement",
+    "sourceFile": "research/host-topology.json",
+    "line": 422,
+    "quotedToken": "\"hostId\": \"fb14srv6\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 23,
+    "offset": 0,
+    "path": "$.services[0].container",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 23,
+    "quotedToken": "container_name: accounting-service"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 21,
+    "offset": 0,
+    "path": "$.services[0].name",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 21,
+    "quotedToken": "accountingservice:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[0].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 22,
+    "offset": 0,
+    "path": "$.services[0].role",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Dockerfile",
+    "line": 22,
+    "quotedToken": "base"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 139,
+    "offset": 0,
+    "path": "$.syncEdges[0]",
+    "repo": "upstream",
+    "sourceFile": ".env",
+    "line": 139,
+    "quotedToken": "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 27,
+    "offset": 0,
+    "path": "$.syncEdges[1]",
+    "repo": "upstream",
+    "sourceFile": ".env",
+    "line": 27,
+    "quotedToken": "OTEL_COLLECTOR_HOST=otelcol"
+   }
+  ]
+ },
+ "observations": {
+  "facts": 20,
+  "counts": {
+   "ok": 20
+  },
+  "ok": true,
+  "rows": [
+   {
+    "status": "ok",
+    "matchedLine": 24,
+    "offset": 0,
+    "path": "$.obs[0]",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 24,
+    "quotedToken": "OTEL_LOGS_EXPORTER: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 23,
+    "offset": 0,
+    "path": "$.obs[1]",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 23,
+    "quotedToken": "OTEL_METRICS_EXPORTER: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 20,
+    "offset": 0,
+    "path": "$.obs[2]",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 20,
+    "quotedToken": "OTEL_PLACEMENT_ENABLED: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_ENABLED:?candidate posture required}\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 21,
+    "offset": 0,
+    "path": "$.obs[3]",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 21,
+    "quotedToken": "OTEL_SDK_DISABLED: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_DISABLED:?candidate posture required}\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 22,
+    "offset": 0,
+    "path": "$.obs[4]",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 22,
+    "quotedToken": "OTEL_TRACES_EXPORTER: \"${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER:?candidate posture required}\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 41,
+    "offset": 0,
+    "path": "$.obs[5]",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 41,
+    "quotedToken": "otelcol:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 43,
+    "offset": 0,
+    "path": "$.obs[6]",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 43,
+    "quotedToken": "kafka:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 22,
+    "offset": 0,
+    "path": "$.obs[7]",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 22,
+    "quotedToken": "image: ${IMAGE_NAME}:${DEMO_VERSION}-accountingservice"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 25,
+    "offset": 0,
+    "path": "$.obs[8]",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 25,
+    "quotedToken": "context: ./"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 26,
+    "offset": 0,
+    "path": "$.obs[9]",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 26,
+    "quotedToken": "dockerfile: ${ACCOUNTING_SERVICE_DOCKERFILE}"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 16,
+    "offset": 0,
+    "path": "$.obs[10]",
+    "repo": "harness",
+    "sourceFile": "modules/otel-demo/deployment/compose.candidate-postures.yml",
+    "line": 16,
+    "quotedToken": "- /bin/sh"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 22,
+    "offset": 0,
+    "path": "$.obs[11]",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 22,
+    "quotedToken": "Environment.GetEnvironmentVariable"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 22,
+    "offset": 0,
+    "path": "$.obs[12]",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 22,
+    "quotedToken": "\"KAFKA_SERVICE_ADDR\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 26,
+    "offset": 0,
+    "path": "$.obs[13]",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 26,
+    "quotedToken": "_consumer.Subscribe"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 12,
+    "offset": 0,
+    "path": "$.obs[14]",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 12,
+    "quotedToken": "\"orders\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 41,
+    "offset": 0,
+    "path": "$.obs[15]",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 41,
+    "quotedToken": "_consumer.Consume"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 75,
+    "offset": 0,
+    "path": "$.obs[16]",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 75,
+    "quotedToken": "ConsumerConfig"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 77,
+    "offset": 0,
+    "path": "$.obs[17]",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 77,
+    "quotedToken": "$\"accountingservice\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 81,
+    "offset": 0,
+    "path": "$.obs[18]",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 81,
+    "quotedToken": "true"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 84,
+    "offset": 0,
+    "path": "$.obs[19]",
+    "repo": "upstream",
+    "sourceFile": "src/accountingservice/Consumer.cs",
+    "line": 84,
+    "quotedToken": "ConsumerBuilder<string, byte[]>"
+   }
+  ]
+ }
+}

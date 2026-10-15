@@ -1,0 +1,119 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix ops:   <http://obsplacement.example/ops#> .
+@prefix ev:    <http://obsplacement.example/evidence#> .
+@prefix shp:   <http://obsplacement.example/shapes#> .
+@prefix omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# SHACL shapes for one SUT ABox. Validated by research/ontology/query.py validate() with the TBox (omsac.ttl + ops.ttl)
+# as ont_graph, so sh:targetClass and sh:class see rdfs:subClassOf. The evidence shape is SHACL-SPARQL (pyshacl advanced).
+
+shp:sparqlPrefixes
+    sh:declare [ sh:prefix "ops" ; sh:namespace "http://obsplacement.example/ops#"^^xsd:anyURI ] ,
+               [ sh:prefix "ev" ; sh:namespace "http://obsplacement.example/evidence#"^^xsd:anyURI ] ,
+               [ sh:prefix "omsac" ; sh:namespace "http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#"^^xsd:anyURI ] ,
+               [ sh:prefix "rdf" ; sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ] .
+
+shp:MicroserviceShape a sh:NodeShape ;
+    sh:targetClass omsac:Microservice ;
+    rdfs:comment "Every Microservice runsIn exactly one Container." ;
+    sh:property [ sh:path ops:runsIn ; sh:minCount 1 ; sh:maxCount 1 ; sh:class ops:Container ] .
+
+shp:RunsInShape a sh:NodeShape ;
+    sh:targetSubjectsOf ops:runsIn ;
+    rdfs:comment "Any component that runs in a container runs in exactly one." ;
+    sh:property [ sh:path ops:runsIn ; sh:maxCount 1 ; sh:class ops:Container ] .
+
+shp:ContainerShape a sh:NodeShape ;
+    sh:targetClass ops:Container ;
+    rdfs:comment "Every Container placedOn exactly one Host." ;
+    sh:property [ sh:path ops:placedOn ; sh:minCount 1 ; sh:maxCount 1 ; sh:class ops:Host ] .
+
+shp:ConsumerShape a sh:NodeShape ;
+    sh:targetSubjectsOf ops:consumesFrom ;
+    rdfs:comment "Every consumer is memberOf a ConsumerGroup." ;
+    sh:property [ sh:path ops:memberOf ; sh:minCount 1 ; sh:class ops:ConsumerGroup ] ;
+    sh:property [ sh:path ops:consumesFrom ; sh:class ops:Topic ] .
+
+shp:ConsumerGroupShape a sh:NodeShape ;
+    sh:targetClass ops:ConsumerGroup ;
+    sh:property [ sh:path ops:coordinatedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:class ops:ConsumerGroupCoordinator ] .
+
+shp:TopicShape a sh:NodeShape ;
+    sh:targetClass ops:Topic ;
+    sh:property [ sh:path ops:onBroker ; sh:minCount 1 ; sh:maxCount 1 ; sh:class ops:Broker ] .
+
+shp:CoordinatorShape a sh:NodeShape ;
+    sh:targetClass ops:Coordinator ;
+    sh:property [ sh:path ops:hostedBy ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+shp:LivenessShape a sh:NodeShape ;
+    sh:targetClass ops:LivenessMechanism ;
+    rdfs:comment "Every LivenessMechanism has failureTimeoutSeconds, one coordinator and at least one monitored member." ;
+    sh:property [ sh:path ops:failureTimeoutSeconds ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ; sh:minInclusive 0 ] ;
+    sh:property [ sh:path ops:heartbeatIntervalSeconds ; sh:maxCount 1 ; sh:datatype xsd:decimal ; sh:minInclusive 0 ] ;
+    sh:property [ sh:path ops:cleanupIntervalSeconds ; sh:maxCount 1 ; sh:datatype xsd:decimal ; sh:minInclusive 0 ] ;
+    sh:property [ sh:path ops:heartbeatThreadIndependentOfWork ; sh:maxCount 1 ; sh:datatype xsd:boolean ] ;
+    sh:property [ sh:path ops:healthCheckConfigured ; sh:maxCount 1 ; sh:datatype xsd:boolean ] ;
+    sh:property [ sh:path ops:enforcedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:class ops:Coordinator ] ;
+    sh:property [ sh:path ops:monitors ; sh:minCount 1 ] .
+
+shp:ReplicaSetShape a sh:NodeShape ;
+    sh:targetClass ops:ReplicaSet ;
+    sh:property [ sh:path ops:replicaSetOf ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ops:replicaCount ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:nonNegativeInteger ] .
+
+shp:LagMetricShape a sh:NodeShape ;
+    sh:targetSubjectsOf ops:measuresLagOf ;
+    sh:property [ sh:path ops:measuresLagOf ; sh:class ops:ConsumerGroup ] .
+
+shp:EvidenceRecordShape a sh:NodeShape ;
+    sh:targetClass ev:Evidence ;
+    rdfs:comment "An evidence record is either cited (file, line, quoted token, repo, commit) or a documented default (URL)." ;
+    sh:property [ sh:path ev:aboutSubject ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ev:aboutPredicate ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ev:aboutObject ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ev:basis ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "cited" "documented-default" ) ] ;
+    sh:xone (
+        [ sh:property [ sh:path ev:basis ; sh:hasValue "cited" ] ;
+          sh:property [ sh:path ev:sourceFile ; sh:minCount 1 ; sh:maxCount 1 ] ;
+          sh:property [ sh:path ev:sourceLine ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 1 ] ;
+          sh:property [ sh:path ev:quotedToken ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+          sh:property [ sh:path ev:sourceRepo ; sh:minCount 1 ] ;
+          sh:property [ sh:path ev:sourceCommit ; sh:minCount 1 ; sh:pattern "^[0-9a-f]{40}$" ] ]
+        [ sh:property [ sh:path ev:basis ; sh:hasValue "documented-default" ] ;
+          sh:property [ sh:path ev:sourceUrl ; sh:minCount 1 ] ]
+    ) .
+
+# Every fact triple (rdf:type to an omsac/ops class, or any omsac/ops predicate) of every individual has an evidence record.
+shp:FactEvidenceShape a sh:NodeShape ;
+    rdfs:comment "Every fact has a source annotation: an ev:Evidence whose (aboutSubject, aboutPredicate, aboutObject) is the triple." ;
+    sh:targetClass omsac:MicroserviceArchitecture , omsac:Microservice , omsac:Technology , omsac:Infrastructure ,
+                   ops:ReplicaSet , ops:Topic , ops:ConsumerGroup , ops:Coordinator , ops:LivenessMechanism , ops:Collector , ops:Sensor ;
+    sh:targetSubjectsOf omsac:isComposedOf , omsac:interactsWith , omsac:dependsOn , ops:callsSync , ops:runsIn , ops:placedOn ,
+                   ops:replicaSetOf , ops:replicaCount , ops:publishesTo , ops:consumesFrom , ops:onBroker , ops:memberOf ,
+                   ops:coordinatedBy , ops:hostedBy , ops:registersWith , ops:enforcedBy , ops:monitors ,
+                   ops:heartbeatIntervalSeconds , ops:failureTimeoutSeconds , ops:cleanupIntervalSeconds ,
+                   ops:heartbeatThreadIndependentOfWork , ops:healthCheckConfigured , ops:exportsTelemetryTo , ops:emits ,
+                   ops:measuresLagOf ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes shp:sparqlPrefixes ;
+        sh:message "fact triple without an ev:Evidence record" ;
+        sh:select """
+            SELECT $this ?path ?value WHERE {
+                $this ?path ?value .
+                FILTER (?path = rdf:type
+                        || STRSTARTS(STR(?path), "http://obsplacement.example/ops#")
+                        || STRSTARTS(STR(?path), "http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#"))
+                FILTER (?path != rdf:type
+                        || STRSTARTS(STR(?value), "http://obsplacement.example/ops#")
+                        || STRSTARTS(STR(?value), "http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#"))
+                FILTER NOT EXISTS {
+                    ?e a ev:Evidence ; ev:aboutSubject $this ; ev:aboutPredicate ?path ; ev:aboutObject ?value .
+                }
+            }
+        """ ;
+    ] .

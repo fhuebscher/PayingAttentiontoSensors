@@ -1,0 +1,836 @@
+{
+ "mergeVersion": 2,
+ "system": "library:ribbon@2.7.18",
+ "library": "ribbon@2.7.18",
+ "sources": {
+  "obsplacement": {
+   "path": ".",
+   "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+  }
+ },
+ "aliases": {},
+ "agreement": {
+  "agreed": 5,
+  "contested": 12,
+  "agreement": 0.29411764705882354,
+  "byRelation": {
+   "library:heartbeat-thread-independent": {
+    "agreed": 1,
+    "contested": 0
+   },
+   "library:config-default": {
+    "agreed": 3,
+    "contested": 3
+   },
+   "library:failure-detector": {
+    "agreed": 1,
+    "contested": 1
+   },
+   "library:removal-signal": {
+    "agreed": 0,
+    "contested": 8
+   }
+  }
+ },
+ "log": {
+  "inputs": [
+   {
+    "origin": "A",
+    "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+    "sha256": "9513f6e7309640e25144a61e0a0b7297b2cb54faf07d5e43d5309cd3e07fc7da"
+   },
+   {
+    "origin": "B",
+    "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+    "sha256": "bd5be9a4f29cd9d67b10f84f7b4ef35a284f04c0945ec8b0f3246ba0adaaec61"
+   }
+  ],
+  "schemaRejected": [],
+  "sourcesReplaced": [],
+  "dropped": [],
+  "droppedCount": {
+   "A": 0,
+   "B": 0
+  },
+  "checkedCount": {
+   "A": 11,
+   "B": 11
+  }
+ },
+ "agreed": [
+  {
+   "key": [
+    "ribbon@2.7.18|baseloadbalancer.pingtask",
+    "library:heartbeat-thread-independent",
+    true
+   ],
+   "relation": "library:heartbeat-thread-independent",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[7]",
+     "subject": "BaseLoadBalancer.PingTask",
+     "object": true,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "heartbeat-thread-independent",
+      "subject": "BaseLoadBalancer.PingTask",
+      "value": true,
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 275,
+      "quotedToken": "lbTimer.schedule(new PingTask(), 0, pingIntervalSeconds * 1000)",
+      "note": "Ribbon has no heartbeat; the periodic ping is a TimerTask (line 634) scheduled on a ShutdownEnabledTimer (line 273) with its own daemon flag argument true, i.e. separate from request-handling threads. forceQuickPing() (line 817) instead runs the Pinger on the calling thread (line 824)."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[5]",
+     "subject": "BaseLoadBalancer.PingTask",
+     "object": true,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "heartbeat-thread-independent",
+      "subject": "BaseLoadBalancer.PingTask",
+      "value": true,
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 275,
+      "quotedToken": "lbTimer.schedule(new PingTask()",
+      "note": "The periodic ping is scheduled on lbTimer, a timer named NFLoadBalancer-PingTimer- (line 273), not invoked from chooseServer. Caveat: forceQuickPing (lines 817-827) runs the Pinger synchronously on the caller's thread, and setServersList (line 543) calls it. Only the periodic path is independent. Only applies when the ping class is not DummyPing."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "b5aac04a1f2e5aa3"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|nfloadbalancermaxtotalpingtime",
+    "library:config-default",
+    "2.0"
+   ],
+   "relation": "library:config-default",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[3]",
+     "subject": "NFLoadBalancerMaxTotalPingTime",
+     "object": 2,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "NFLoadBalancerMaxTotalPingTime",
+      "value": 2,
+      "unit": "s",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 173,
+      "quotedToken": "NFLoadBalancerMaxTotalPingTime, 2",
+      "note": "Default supplied at the call site clientConfig.get(key, 2); the key declaration (CommonClientConfigKey.java line 163) carries no default. Passed to setMaxTotalPingTime (line 176)."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[2]",
+     "subject": "NFLoadBalancerMaxTotalPingTime",
+     "object": 2,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "NFLoadBalancerMaxTotalPingTime",
+      "value": 2,
+      "unit": "s",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 173,
+      "quotedToken": "NFLoadBalancerMaxTotalPingTime, 2",
+      "note": "Computed default: CommonClientConfigKey.java line 163 declares no default. The value is stored by setMaxTotalPingTime (lines 342-347) and not read by the pinger in these files."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "6b87abef1d693056"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|nfloadbalancerpingclassname",
+    "library:config-default",
+    "com.netflix.loadbalancer.dummyping"
+   ],
+   "relation": "library:config-default",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[4]",
+     "subject": "NFLoadBalancerPingClassName",
+     "object": "com.netflix.loadbalancer.DummyPing",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "NFLoadBalancerPingClassName",
+      "value": "com.netflix.loadbalancer.DummyPing",
+      "unit": "none",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-core/src/main/java/com/netflix/client/config/CommonClientConfigKey.java",
+      "line": 159,
+      "quotedToken": "com.netflix.loadbalancer.DummyPing",
+      "note": "With DummyPing, canSkipPing() (BaseLoadBalancer.java lines 256-263) is true and setupPingTask() returns without scheduling any ping (line 267-268), so no periodic liveness check runs by default."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[0]",
+     "subject": "NFLoadBalancerPingClassName",
+     "object": "com.netflix.loadbalancer.DummyPing",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "NFLoadBalancerPingClassName",
+      "value": "com.netflix.loadbalancer.DummyPing",
+      "unit": "none",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-core/src/main/java/com/netflix/client/config/CommonClientConfigKey.java",
+      "line": 159,
+      "quotedToken": "com.netflix.loadbalancer.DummyPing",
+      "note": "Default ping class. DummyPing disables the ping timer (BaseLoadBalancer.java lines 256-262). DefaultClientConfigImpl.java line 336 sets this key from getDefaultNfloadbalancerPingClassname (line 79-80)."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "050f50f8f421bed2"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|nfloadbalancerpinginterval",
+    "library:config-default",
+    "30.0"
+   ],
+   "relation": "library:config-default",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[2]",
+     "subject": "NFLoadBalancerPingInterval",
+     "object": 30,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "NFLoadBalancerPingInterval",
+      "value": 30,
+      "unit": "s",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 172,
+      "quotedToken": "NFLoadBalancerPingInterval, 30",
+      "note": "Default supplied at the call site clientConfig.get(key, 30); the key declaration itself (CommonClientConfigKey.java line 161) carries no default. Value is passed to setPingInterval, which sets pingIntervalSeconds (line 175, 327); unit seconds follows from pingIntervalSeconds * 1000 on line 275."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[1]",
+     "subject": "NFLoadBalancerPingInterval",
+     "object": 30,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "NFLoadBalancerPingInterval",
+      "value": 30,
+      "unit": "s",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 172,
+      "quotedToken": "NFLoadBalancerPingInterval, 30",
+      "note": "Computed default: CommonClientConfigKey.java line 161 declares the key with no default, so this 30 applies when unset. The value is in seconds (setPingInterval, line 322). Applies only when the ping class is not DummyPing."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "60eefe8b35ea1577"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|nfloadbalancerpinginterval",
+    "library:failure-detector",
+    "client"
+   ],
+   "relation": "library:failure-detector",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[5]",
+     "subject": "NFLoadBalancerPingInterval",
+     "object": "client",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "NFLoadBalancerPingInterval",
+      "value": "client",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 692,
+      "quotedToken": "svr.setAlive(isAlive)",
+      "note": "The load balancer itself pings each server (line 682 pingerStrategy.pingServers, result from ping.isAlive at line 912) every pingIntervalSeconds (line 275) and sets liveness locally; these files name no broker coordinator, registry server or registry agent in this path. There is no per-server timeout key; maxTotalPingTime is not enforced in the shown code."
+     },
+     "check": "ok"
+    },
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[4]",
+     "subject": "NFLoadBalancerPingInterval",
+     "object": "client",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "NFLoadBalancerPingInterval",
+      "value": "client",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 275,
+      "quotedToken": "pingIntervalSeconds * 1000",
+      "note": "The client's own PingTask runs every pingIntervalSeconds and calls IPing.isAlive per server (BaseLoadBalancer.java line 912, token ping.isAlive(servers[i])). The broker, group coordinator, registry server and registry agent are not involved in these files. Detection is therefore by the client only, and only when the ping class is not DummyPing (lines 256-262)."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A",
+    "B"
+   ],
+   "id": "f31975088c542a97"
+  }
+ ],
+ "contested": [
+  {
+   "key": [
+    "ribbon@2.7.18|baseloadbalancer",
+    "library:removal-signal",
+    "loadbalancer [{}]:  markserverdown called on [{}]"
+   ],
+   "relation": "library:removal-signal",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[9]",
+     "subject": "BaseLoadBalancer",
+     "object": "LoadBalancer [{}]:  markServerDown called on [{}]",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "BaseLoadBalancer",
+      "signal": "log",
+      "value": "LoadBalancer [{}]:  markServerDown called on [{}]",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 774,
+      "quotedToken": "markServerDown called on [{}]",
+      "note": "Emitted at error level (logger.error) when markServerDown marks a live server dead."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "af5bfc9d055bf7b3"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|baseloadbalancer",
+    "library:removal-signal",
+    "loadbalancer [{}]:  server [{}] status changed to {}"
+   ],
+   "relation": "library:removal-signal",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[8]",
+     "subject": "BaseLoadBalancer",
+     "object": "LoadBalancer [{}]:  Server [{}] status changed to {}",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "BaseLoadBalancer",
+      "signal": "log",
+      "value": "LoadBalancer [{}]:  Server [{}] status changed to {}",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 696,
+      "quotedToken": "status changed to {}",
+      "note": "Emitted by the client-side load balancer at debug level (logger.debug) when a ping changes a server's alive state; the argument on line 697 is ALIVE or DEAD."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "93f5f566f05ba180"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|baseloadbalancer",
+    "library:removal-signal",
+    "loadbalancer_upserverlist"
+   ],
+   "relation": "library:removal-signal",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[9]",
+     "subject": "BaseLoadBalancer",
+     "object": "LoadBalancer_UpServerList",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "BaseLoadBalancer",
+      "signal": "metric",
+      "value": "LoadBalancer_UpServerList",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 78,
+      "quotedToken": "UpServerList",
+      "note": "Exposed @Monitor name, built as PREFIX + \"UpServerList\" with PREFIX = \"LoadBalancer_\" (line 67). Type INFORMATIONAL. The list is the live alive set that the pinger rebuilds (lines 705-707)."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "B"
+   ],
+   "id": "8920b5aa64ca0bde"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|baseloadbalancer",
+    "library:removal-signal",
+    "notifyserverstatuschangelistener"
+   ],
+   "relation": "library:removal-signal",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[10]",
+     "subject": "BaseLoadBalancer",
+     "object": "notifyServerStatusChangeListener",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "BaseLoadBalancer",
+      "signal": "event",
+      "value": "notifyServerStatusChangeListener",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 709,
+      "quotedToken": "notifyServerStatusChangeListener(changedServers)",
+      "note": "Registered listeners are called with the servers whose alive state changed; also called at line 778 from markServerDown."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "da159080297bd675"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|baseloadbalancer",
+    "library:removal-signal",
+    "serverstatuschanged"
+   ],
+   "relation": "library:removal-signal",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[10]",
+     "subject": "BaseLoadBalancer",
+     "object": "serverStatusChanged",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "BaseLoadBalancer",
+      "signal": "api",
+      "value": "serverStatusChanged",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 720,
+      "quotedToken": "serverStatusChanged",
+      "note": "ServerStatusChangeListener callback, invoked with the changed servers by notifyServerStatusChangeListener (called from the pinger at line 709 and from markServerDown). The interface itself is not in these files."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "B"
+   ],
+   "id": "2b3d7a5d5882c8b5"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|baseloadbalancer.markserverdown(server)",
+    "library:removal-signal",
+    "markserverdown called on"
+   ],
+   "relation": "library:removal-signal",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[7]",
+     "subject": "BaseLoadBalancer.markServerDown(Server)",
+     "object": "markServerDown called on",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "BaseLoadBalancer.markServerDown(Server)",
+      "signal": "log",
+      "value": "markServerDown called on",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 774,
+      "quotedToken": "markServerDown called on",
+      "note": "Full text: \"markServerDown called on [{}]\", logged at ERROR level. The same method sets server.setAlive(false) (line 775) and notifies status listeners."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "B"
+   ],
+   "id": "fb8c7138b72e757e"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|baseloadbalancer.markserverdown(string)",
+    "library:removal-signal",
+    "markserverdown called for server"
+   ],
+   "relation": "library:removal-signal",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[8]",
+     "subject": "BaseLoadBalancer.markServerDown(String)",
+     "object": "markServerDown called for server",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "BaseLoadBalancer.markServerDown(String)",
+      "signal": "log",
+      "value": "markServerDown called for server",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 804,
+      "quotedToken": "markServerDown called for server",
+      "note": "Full text: \"markServerDown called for server [{}]\", logged at ERROR level, only when a server in upServerList was marked down."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "B"
+   ],
+   "id": "d4e1a0f3db22a6e4"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|baseloadbalancer.pinger",
+    "library:removal-signal",
+    "status changed to"
+   ],
+   "relation": "library:removal-signal",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[6]",
+     "subject": "BaseLoadBalancer.Pinger",
+     "object": "status changed to",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "removal-signal",
+      "subject": "BaseLoadBalancer.Pinger",
+      "signal": "log",
+      "value": "status changed to",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 696,
+      "quotedToken": "status changed to",
+      "note": "Full text: \"Server [{}] status changed to {}\", logged at DEBUG level when a server's alive flag flips to DEAD (line 697, token ALIVE/DEAD)."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "B"
+   ],
+   "id": "92b8ecbcb7a36f79"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|markserverdown",
+    "library:failure-detector",
+    "client"
+   ],
+   "relation": "library:failure-detector",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[6]",
+     "subject": "markServerDown",
+     "object": "client",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "markServerDown",
+      "value": "client",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 775,
+      "quotedToken": "server.setAlive(false)",
+      "note": "markServerDown(Server) lets the caller of the load balancer mark a server dead immediately, without a timeout key."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "23f56f0253deaf8d"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|maxtotalpingtimeseconds",
+    "library:config-default",
+    "5.0"
+   ],
+   "relation": "library:config-default",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[1]",
+     "subject": "maxTotalPingTimeSeconds",
+     "object": 5,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "maxTotalPingTimeSeconds",
+      "value": 5,
+      "unit": "s",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 89,
+      "quotedToken": "maxTotalPingTimeSeconds = 5",
+      "note": "Field default of BaseLoadBalancer; the config-driven path (initWithConfig, line 173) passes 2 instead. The files shown do not use this value to bound the ping loop (SerialPingStrategy, lines 890-918, has no time check)."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "9dc9ae5d6ef30f74"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|pingintervalseconds",
+    "library:config-default",
+    "10.0"
+   ],
+   "relation": "library:config-default",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "A",
+     "input": "research/ontology/runs/run2-20261014/library/A/ribbon@2.7.18.json",
+     "path": "$.facts[0]",
+     "subject": "pingIntervalSeconds",
+     "object": 10,
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "pingIntervalSeconds",
+      "value": 10,
+      "unit": "s",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java",
+      "line": 88,
+      "quotedToken": "pingIntervalSeconds = 10",
+      "note": "Field default of BaseLoadBalancer; the config-driven path (initWithConfig, line 172) passes 30 instead."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "A"
+   ],
+   "id": "21c7abfb96a28793"
+  },
+  {
+   "key": [
+    "ribbon@2.7.18|serverlistupdaterclassname",
+    "library:config-default",
+    "com.netflix.loadbalancer.pollingserverlistupdater"
+   ],
+   "relation": "library:config-default",
+   "library": "ribbon@2.7.18",
+   "instances": [
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/ribbon@2.7.18.json",
+     "path": "$.facts[3]",
+     "subject": "ServerListUpdaterClassName",
+     "object": "com.netflix.loadbalancer.PollingServerListUpdater",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "config-default",
+      "subject": "ServerListUpdaterClassName",
+      "value": "com.netflix.loadbalancer.PollingServerListUpdater",
+      "unit": "none",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/ribbon@2.7.18/ribbon-core/src/main/java/com/netflix/client/config/CommonClientConfigKey.java",
+      "line": 169,
+      "quotedToken": "com.netflix.loadbalancer.PollingServerListUpdater",
+      "note": "Default server-list updater class, which polls for membership. Its interval key ServerListRefreshInterval (line 173) has no default stated in these files."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "B"
+   ],
+   "id": "1fbfb7fd0b2face0"
+  }
+ ],
+ "deterministic": []
+}

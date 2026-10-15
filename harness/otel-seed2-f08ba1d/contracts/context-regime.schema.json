@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/context-regime.schema.json",
+  "title": "Deployment context and experimental regime registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "status", "claimBoundary", "contexts", "regimes", "poolingPolicy"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["source-inspection-method-draft", "superseded"]},
+    "claimBoundary": {"type": "string", "minLength": 1},
+    "contexts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/context"}},
+    "regimes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/regime"}},
+    "poolingPolicy": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "context": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "id", "module", "applicationFamily", "sutCommit", "orchestration",
+        "substrate", "channel", "acquisition", "isolation", "compatibilityKey"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "module": {"type": "string", "minLength": 1},
+        "applicationFamily": {"type": "string", "minLength": 1},
+        "sutCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "orchestration": {"enum": ["compose", "kind", "eks", "other"]},
+        "substrate": {"type": "string", "minLength": 1},
+        "channel": {"type": "string", "minLength": 1},
+        "acquisition": {"type": "string", "minLength": 1},
+        "isolation": {"enum": ["exclusive-host", "controlled-interference", "shared-host", "unknown"]},
+        "compatibilityKey": {"type": "string", "minLength": 1}
+      }
+    },
+    "regime": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "id", "contextId", "purpose", "workload", "intervention", "interference",
+        "measurementWindow", "matchingFactors", "nonPoolingFactors", "heldOut"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "contextId": {"type": "string", "minLength": 1},
+        "purpose": {"enum": ["control-characterization", "exploration", "confirmation", "held-out-transfer"]},
+        "workload": {
+          "type": "object", "additionalProperties": false,
+          "required": ["journey", "offeredLoadMode", "ratePerSecond", "durationSeconds", "concurrency"],
+          "properties": {
+            "journey": {"type": "string", "minLength": 1},
+            "offeredLoadMode": {"enum": ["fixed-open-loop"]},
+            "ratePerSecond": {"type": "number", "exclusiveMinimum": 0},
+            "durationSeconds": {"type": "integer", "minimum": 1},
+            "concurrency": {"type": "integer", "minimum": 1}
+          }
+        },
+        "intervention": {
+          "type": "object", "additionalProperties": false,
+          "required": ["id", "target", "scheduledAtSeconds", "durationSeconds"],
+          "properties": {
+            "id": {"type": "string", "minLength": 1},
+            "target": {"type": ["string", "null"]},
+            "scheduledAtSeconds": {"type": ["integer", "null"], "minimum": 0},
+            "durationSeconds": {"type": ["integer", "null"], "minimum": 1}
+          }
+        },
+        "interference": {
+          "type": "object", "additionalProperties": false,
+          "required": ["mode", "level", "evidenceRequired"],
+          "properties": {
+            "mode": {"enum": ["none", "controlled", "ambient"]},
+            "level": {"type": ["string", "number", "null"]},
+            "evidenceRequired": {"type": "boolean"}
+          }
+        },
+        "measurementWindow": {"enum": ["no-fault-cost", "fault-utility", "control-stage", "held-out-transfer"]},
+        "matchingFactors": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "nonPoolingFactors": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "heldOut": {"type": "boolean"}
+      }
+    }
+  }
+}

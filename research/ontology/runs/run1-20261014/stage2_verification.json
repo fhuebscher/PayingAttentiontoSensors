@@ -1,0 +1,10 @@
+{
+ "workflowRunId": "wf_8ed6c7b4-dab",
+ "extractorRuns": 78,
+ "repliedOK": 78,
+ "agentErrors": 0,
+ "subagentTokens": 7397555,
+ "durationMs": 927585,
+ "promptCheck": "all 78 transcripts carry the pinned prompt (sha256 d29393e5) and wrapper v3 (627fa70e) verbatim after removing the harness 2-space frame indent; task indices 0-77 each once",
+ "outputs": "78/78 expected files present, no extra file"
+}

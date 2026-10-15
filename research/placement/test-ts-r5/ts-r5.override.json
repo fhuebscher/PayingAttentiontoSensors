@@ -1,0 +1,84 @@
+{
+ "fetch": {
+  "package": "tmp/teastore-offpath-evidence/r5-fetch/x/.packages/teastore-offpath-v1.json",
+  "packageFrameworkCommit": "04254228aba90566dfeca603dfcc7b05b7d8d2e3",
+  "packageSetupId": "9e9443fb6252e0ac7e1c6d374be15b24",
+  "packageSha256": "aa0faebc6f5ce5d601be0e1975655a7bb3251e8c77dc551f7db846aea293e5c1",
+  "sourceTxt": "fb14srv5:/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/9e9443fb6252e0ac7e1c6d374be15b24"
+ },
+ "fileDigests": {
+  "research/detection-time/sweep_analysis_v3_6.py": "98d7832c4dad50149b53bebf191682dce991877a136e6db548b9c152131df83a",
+  "research/placement/celf_v3_6.py": "05c5c58af42e8d303681517101e042b44e5eeca9907bc2a8dac67cda8be1b6cf",
+  "research/placement/score_test_v3_6.py": "c2ab6de8d675a356fb7842cf653e8b07f2e386d37045af6205f3fa1ebb1d4218",
+  "research/protocol/parameters_v3_2.json": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "research/protocol/parameters_v3_3.json": "a85daa482b487e4600d11c91dbdecac9a98b01fcd542b9ef051c06cf1268f4b7",
+  "research/protocol/parameters_v3_6.json": "68f417c53599b52401e6a33d30d0d45215bf8a349182f84171b2691cf9424428",
+  "scoreTestV36RecordedAfterR1Pin": "c2ab6de8d675a356fb7842cf653e8b07f2e386d37045af6205f3fa1ebb1d4218",
+  "script": "research/placement/test-ts-r5/score_rep_ts5.py",
+  "scriptSha256": "5a9e02665b24d9fc14dbd77016183846b84c77aa7744da8408ee1cf9b9d364c2"
+ },
+ "override": {
+  "module": "score_test_v3_6.PINNED_PLACEMENTS",
+  "placement": "research/placement/test-ts-r5/placement-r5.json",
+  "placementCommit": "0918b0e4e9af3abda7797cae605d69cc1afee582",
+  "placementSha256": "5f68c81d713a28ac66a81db99ed6157e0cf3def72e3068706b89545b18e752fc",
+  "replicatePlacementSha256": "5f68c81d713a28ac66a81db99ed6157e0cf3def72e3068706b89545b18e752fc",
+  "scope": "this process, this one main() call",
+  "system": "teastore"
+ },
+ "python": "3.13.12 (main, Mar  6 2026, 04:10:39) [Clang 14.0.3 (clang-1403.0.22.14.1)]",
+ "r1Pin": {
+  "after": {
+   "teastore": "f7f5c04a6422394d2fab11b97d8ef974643afec69b37688dc359f42e7a64e8de"
+  },
+  "before": {
+   "teastore": "f7f5c04a6422394d2fab11b97d8ef974643afec69b37688dc359f42e7a64e8de"
+  },
+  "r1PlacementFile": "research/placement/test-ts-placement/placement-rep3r1.json",
+  "recorded": {
+   "teastore": "f7f5c04a6422394d2fab11b97d8ef974643afec69b37688dc359f42e7a64e8de"
+  },
+  "unchanged": true
+ },
+ "readerAndRegistryPins": {
+  "pinnedCelfV3Sha256": "3823722125e9796e6716a830b01d12c69177c7ab6b0a0d7a5fa3984ab6205e97",
+  "pinnedParametersV32Sha256": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "pinnedParametersV33Sha256": "a85daa482b487e4600d11c91dbdecac9a98b01fcd542b9ef051c06cf1268f4b7",
+  "pinnedParametersV36Sha256": "68f417c53599b52401e6a33d30d0d45215bf8a349182f84171b2691cf9424428",
+  "pinnedV31ReaderSha256": "2e7ec5c387fa906a02026f0d1a5212b974f17751c24f76526a1d8418b2fd4fdd",
+  "pinnedV32ReaderSha256": "97eb0a1d4f3f7e0daecee447113fdd14bd14b84812f420ddb3903bfe16759465",
+  "pinnedV33ReaderSha256": "c8cd5072ed4b22cae9360e6446f969c75b4e66b900a08d3cfe0efbdadcd36e18",
+  "pinnedV36ReaderSha256": "98d7832c4dad50149b53bebf191682dce991877a136e6db548b9c152131df83a"
+ },
+ "readouts": {
+  "scoring": {
+   "campaignsRead": [
+    "tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1"
+   ],
+   "path": "research/traffic-sweep/readout-teastore-offpath-r5-score-v3.6/sweep_analysis_v3_6.json",
+   "sha256": "41bf1c39471e12f7347f2626bf0e42e0c8540d4726c903c298e5d768385f2c4a"
+  },
+  "training": {
+   "campaignsRead": [
+    "tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1"
+   ],
+   "path": "research/traffic-sweep/readout-teastore-offpath-r5-train-v3.6/sweep_analysis_v3_6.json",
+   "sha256": "0071c2d99b245529b71a075b1b6a6bc1001b0ae32bf6fb2d7857a9241202fa01"
+  }
+ },
+ "scope": "instance",
+ "scorerArgv": [
+  "research/traffic-sweep/readout-teastore-offpath-r5-score-v3.6/sweep_analysis_v3_6.json",
+  "--placement",
+  "research/placement/test-ts-r5/placement-r5.json",
+  "--training-readout",
+  "research/traffic-sweep/readout-teastore-offpath-r5-train-v3.6/sweep_analysis_v3_6.json",
+  "--test-blocks",
+  "4",
+  "5",
+  "--out",
+  "research/placement/test-ts-r5/ts-r5.json"
+ ],
+ "setupId": "9e9443fb6252e0ac7e1c6d374be15b24",
+ "version": "score-rep-ts-r5-v1"
+}

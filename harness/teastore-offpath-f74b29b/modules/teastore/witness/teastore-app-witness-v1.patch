@@ -1,0 +1,274 @@
+diff --git a/services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java b/services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java
+index 2cf8bc9336b7ed8d6a9ac268f8cf4e3e9a977423..d4cf33736d655251c96150d61d02271a1353529c 100644
+--- a/services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java
++++ b/services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java
+@@ -18,12 +18,16 @@ import java.time.LocalDateTime;
+ import java.time.format.DateTimeFormatter;
+ 
+ import jakarta.ws.rs.Consumes;
++import jakarta.ws.rs.HeaderParam;
+ import jakarta.ws.rs.POST;
+ import jakarta.ws.rs.Path;
+ import jakarta.ws.rs.Produces;
+ import jakarta.ws.rs.QueryParam;
+ import jakarta.ws.rs.core.Response;
+ 
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++
+ import tools.descartes.teastore.auth.security.BCryptProvider;
+ import tools.descartes.teastore.auth.security.RandomSessionIdGenerator;
+ import tools.descartes.teastore.auth.security.ShaSecurityProvider;
+@@ -33,6 +37,7 @@ import tools.descartes.teastore.entities.User;
+ import tools.descartes.teastore.entities.message.SessionBlob;
+ import tools.descartes.teastore.registryclient.Service;
+ import tools.descartes.teastore.registryclient.loadbalancers.LoadBalancerTimeoutException;
++import tools.descartes.teastore.registryclient.observability.ObservabilityJourney;
+ import tools.descartes.teastore.registryclient.rest.LoadBalancedCRUDOperations;
+ import tools.descartes.teastore.registryclient.util.NotFoundException;
+ import tools.descartes.teastore.registryclient.util.TimeoutException;
+@@ -46,6 +51,7 @@ import tools.descartes.teastore.registryclient.util.TimeoutException;
+ @Produces({ "application/json" })
+ @Consumes({ "application/json" })
+ public class AuthUserActionsRest {
++  private static final Logger LOG = LoggerFactory.getLogger(AuthUserActionsRest.class);
+ 
+   /**
+    * Persists order in database.
+@@ -131,11 +137,14 @@ public class AuthUserActionsRest {
+   @POST
+   @Path("login")
+   public Response login(SessionBlob blob, @QueryParam("name") String name,
+-      @QueryParam("password") String password) {
++      @QueryParam("password") String password,
++      @HeaderParam(ObservabilityJourney.HEADER) String journeyId) {
+     User user;
+     try {
++      String token = ObservabilityJourney.validToken(journeyId);
++      ObservabilityJourney.emit(LOG, "auth", "login-persistence-request", token);
+       user = LoadBalancedCRUDOperations.getEntityWithProperties(Service.PERSISTENCE, "users",
+-          User.class, "name", name);
++          User.class, "name", name, token);
+     } catch (TimeoutException e) {
+       return Response.status(408).build();
+     } catch (NotFoundException e) {
+diff --git a/services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java b/services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java
+index 1079bc1fb4d32a995ca4610a3227d22419de7744..b45506e612af4e35bc98096f0397cb5feefb57ac 100644
+--- a/services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java
++++ b/services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java
+@@ -17,14 +17,19 @@ import java.util.ArrayList;
+ import java.util.List;
+ 
+ import jakarta.ws.rs.GET;
++import jakarta.ws.rs.HeaderParam;
+ import jakarta.ws.rs.Path;
+ import jakarta.ws.rs.PathParam;
+ import jakarta.ws.rs.core.Response;
+ import jakarta.ws.rs.core.Response.Status;
+ 
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++
+ import tools.descartes.teastore.persistence.domain.UserRepository;
+ import tools.descartes.teastore.persistence.repository.DataGenerator;
+ import tools.descartes.teastore.registryclient.util.AbstractCRUDEndpoint;
++import tools.descartes.teastore.registryclient.observability.ObservabilityJourney;
+ import tools.descartes.teastore.entities.User;
+ 
+ /**
+@@ -35,6 +40,7 @@ import tools.descartes.teastore.entities.User;
+  */
+ @Path("users")
+ public class UserEndpoint extends AbstractCRUDEndpoint<User> {
++	private static final Logger LOG = LoggerFactory.getLogger(UserEndpoint.class);
+ 
+ 	/**
+ 	 * {@inheritDoc}
+@@ -105,7 +111,9 @@ public class UserEndpoint extends AbstractCRUDEndpoint<User> {
+ 	 */
+ 	@GET
+ 	@Path("name/{name}")
+-	public Response findById(@PathParam("name") final String name) {
++	public Response findById(@PathParam("name") final String name,
++			@HeaderParam(ObservabilityJourney.HEADER) final String journeyId) {
++		ObservabilityJourney.emit(LOG, "persistence", "login-user-lookup", journeyId);
+ 		if (name == null || name.isEmpty()) {
+ 			return Response.status(Status.NOT_FOUND).build();
+ 		}
+diff --git a/services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java b/services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java
+index b08e9bfbc12e6c19e9387c13c513034ab12378e5..e09030e5acd0fc1a7cf3070c12dc5bfeae05d015 100644
+--- a/services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java
++++ b/services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java
+@@ -60,7 +60,8 @@ public class LoginActionServlet extends AbstractUIServlet {
+ 		boolean login = false;
+ 		if (request.getParameter("username") != null && request.getParameter("password") != null) {
+ 			SessionBlob blob = LoadBalancedStoreOperations.login(getSessionBlob(request),
+-					request.getParameter("username"), request.getParameter("password"));
++					request.getParameter("username"), request.getParameter("password"),
++					request.getHeader("X-Observability-Journey-Id"));
+ 			login = (blob != null && blob.getSID() != null);
+ 
+ 			if (login) {
+diff --git a/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/observability/ObservabilityJourney.java b/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/observability/ObservabilityJourney.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..22730f1d82c9f3ac9863221db4806e309b914d6f
+--- /dev/null
++++ b/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/observability/ObservabilityJourney.java
+@@ -0,0 +1,54 @@
++/**
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package tools.descartes.teastore.registryclient.observability;
++
++import java.time.Instant;
++import java.util.regex.Pattern;
++
++import org.slf4j.Logger;
++
++/**
++ * Validates and emits the opaque correlation witness used by controlled
++ * observability experiments. This class deliberately never accepts or logs
++ * arbitrary headers, credentials, request bodies, or session data.
++ */
++public final class ObservabilityJourney {
++  public static final String HEADER = "X-Observability-Journey-Id";
++  public static final String LOG_PREFIX = "OBSERVABILITY_APP_WITNESS ";
++  private static final Pattern TOKEN = Pattern.compile("journey-[0-9a-f]{32}");
++
++  private ObservabilityJourney() {
++  }
++
++  /** Return the token when it has the generated workload shape, otherwise null. */
++  public static String validToken(String value) {
++    return value != null && TOKEN.matcher(value).matches() ? value : null;
++  }
++
++  /** Emit one fixed-schema, privacy-safe witness row for a valid token. */
++  public static void emit(Logger logger, String service, String event, String value) {
++    String token = validToken(value);
++    boolean fixedEvent = ("auth".equals(service) && "login-persistence-request".equals(event))
++        || ("persistence".equals(service) && "login-user-lookup".equals(event));
++    if (token == null || !fixedEvent) {
++      return;
++    }
++    logger.info(LOG_PREFIX
++        + "{\"schema\":\"teastore.app-witness-observation\",\"schemaVersion\":1,"
++        + "\"observedAtUtc\":\"" + Instant.now().toString() + "\","
++        + "\"journeyId\":\"" + token + "\","
++        + "\"service\":\"" + service + "\","
++        + "\"event\":\"" + event + "\"}");
++  }
++}
+diff --git a/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java b/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java
+index e43af9eb151bbc72df4a64c751c82167b65af94b..6df54672b1d541e77e2cc6c66eff7f8b2b5c96e4 100644
+--- a/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java
++++ b/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java
+@@ -170,8 +170,18 @@ public final class LoadBalancedCRUDOperations {
+ 	 */
+ 	public static <T> T getEntityWithProperties(Service service, String endpointURI, Class<T> entityClass,
+ 			String propertyName, String propertyValue) throws NotFoundException, LoadBalancerTimeoutException {
++		return getEntityWithProperties(service, endpointURI, entityClass, propertyName, propertyValue, null);
++	}
++
++	/**
++	 * Returns one entity while forwarding a validated experiment correlation token.
++	 */
++	public static <T> T getEntityWithProperties(Service service, String endpointURI, Class<T> entityClass,
++			String propertyName, String propertyValue, String journeyId)
++			throws NotFoundException, LoadBalancerTimeoutException {
+ 		return ServiceLoadBalancer.loadBalanceRESTOperation(service, endpointURI, entityClass,
+-				client -> NonBalancedCRUDOperations.getEntityWithProperty(client, propertyName, propertyValue));
++				client -> NonBalancedCRUDOperations.getEntityWithProperty(
++						client, propertyName, propertyValue, journeyId));
+ 	}
+ 
+ 	/**
+diff --git a/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java b/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java
+index 06a0ebd68f7bca91439c0bb73919230e37d3603d..77f8bb8f6f2249b056c89882e580a1a012079584 100644
+--- a/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java
++++ b/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java
+@@ -7,6 +7,7 @@ import jakarta.ws.rs.core.Response;
+ import tools.descartes.teastore.registryclient.Service;
+ import tools.descartes.teastore.registryclient.loadbalancers.LoadBalancerTimeoutException;
+ import tools.descartes.teastore.registryclient.loadbalancers.ServiceLoadBalancer;
++import tools.descartes.teastore.registryclient.observability.ObservabilityJourney;
+ import tools.descartes.teastore.registryclient.util.NotFoundException;
+ import tools.descartes.teastore.entities.Product;
+ import tools.descartes.teastore.entities.message.SessionBlob;
+@@ -84,12 +85,27 @@ public final class LoadBalancedStoreOperations {
+    */
+   public static SessionBlob login(SessionBlob blob, String name, String password)
+       throws NotFoundException, LoadBalancerTimeoutException {
++    return login(blob, name, password, null);
++  }
++
++  /**
++   * Login with an optional, strictly validated experiment correlation token.
++   */
++  public static SessionBlob login(SessionBlob blob, String name, String password, String journeyId)
++      throws NotFoundException, LoadBalancerTimeoutException {
+     Response r = ServiceLoadBalancer.loadBalanceRESTOperation(Service.AUTH, "useractions",
+         Product.class,
+-        client -> ResponseWrapper.wrap(HttpWrapper
+-            .wrap(client.getEndpointTarget().path("login").queryParam("name", name)
+-                .queryParam("password", password))
+-            .post(Entity.entity(blob, MediaType.APPLICATION_JSON), Response.class)));
++        client -> {
++          jakarta.ws.rs.client.Invocation.Builder request = HttpWrapper
++              .wrap(client.getEndpointTarget().path("login").queryParam("name", name)
++                  .queryParam("password", password));
++          String token = ObservabilityJourney.validToken(journeyId);
++          if (token != null) {
++            request.header(ObservabilityJourney.HEADER, token);
++          }
++          return ResponseWrapper.wrap(
++              request.post(Entity.entity(blob, MediaType.APPLICATION_JSON), Response.class));
++        });
+     return RestUtil.readThrowAndOrClose(r, SessionBlob.class);
+   }
+ 
+diff --git a/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java b/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java
+index 0328fc58cdf2c4a89f5e6c5e6e9d1dab7fd45069..bb2559e870977405bd1b7a33a1c80442f711edce 100644
+--- a/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java
++++ b/utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java
+@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
+ import tools.descartes.teastore.registryclient.util.NotFoundException;
+ import tools.descartes.teastore.registryclient.util.RESTClient;
+ import tools.descartes.teastore.registryclient.util.TimeoutException;
++import tools.descartes.teastore.registryclient.observability.ObservabilityJourney;
+ 
+ /**
+  * Default REST operations that transfer Entities to/from a service that has a
+@@ -322,8 +323,21 @@ public final class NonBalancedCRUDOperations {
+    */
+   public static <T> T getEntityWithProperty(RESTClient<T> client, String propertyURI,
+       String propertyValue) throws NotFoundException, TimeoutException {
++    return getEntityWithProperty(client, propertyURI, propertyValue, null);
++  }
++
++  /**
++   * Returns an entity and forwards a validated experiment correlation token.
++   */
++  public static <T> T getEntityWithProperty(RESTClient<T> client, String propertyURI,
++      String propertyValue, String journeyId) throws NotFoundException, TimeoutException {
+     WebTarget target = client.getEndpointTarget().path(propertyURI).path(propertyValue);
+-    Response response = ResponseWrapper.wrap(HttpWrapper.wrap(target).get());
++    jakarta.ws.rs.client.Invocation.Builder request = HttpWrapper.wrap(target);
++    String token = ObservabilityJourney.validToken(journeyId);
++    if (token != null) {
++      request.header(ObservabilityJourney.HEADER, token);
++    }
++    Response response = ResponseWrapper.wrap(request.get());
+     T entity = null;
+     if (response != null && response.getStatus() < 400) {
+       try {

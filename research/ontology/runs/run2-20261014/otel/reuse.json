@@ -1,0 +1,245 @@
+{
+ "stage1": {
+  "path": "research/ontology/runs/run1-20261014/otel/stage1.json",
+  "sha256": "97ef2f9e648b930935307701d32faf4634cb48df95fbea1a5c4454b40c046bc1"
+ },
+ "extractors": [
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/accountingservice.json",
+   "sha256": "6d8418f8cb5dd80ad7624ff74f9e5507597236b90ce0f87cef4e10820e4a2542"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/adservice.json",
+   "sha256": "d2d1243fdb431e797407a1a96618cb4c4fbee6ac63e2d47e40c59e7abb376312"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/cartservice.json",
+   "sha256": "4fde165f9433d95f555df44ab32990b86bf2411eba7f000e604512334f1c5122"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/checkoutservice.json",
+   "sha256": "cd55e78a1ef1199067d88f016b884b7ae26567ee45ba4eeb1ede1ecc7d4abf9c"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/currencyservice.json",
+   "sha256": "f427096d52613605b2213b25b5bf07ed3b0a18c932f9573eae756053c1037b13"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/emailservice.json",
+   "sha256": "bd45f14bdd237491a79f4421a122fe4fad070d5c0b72a9e6aead30907df4b11b"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/flagd-ui.json",
+   "sha256": "b54c493f4e514eee84406ccd7d9e50d3f5de32c58faa5dd877328d3e4f51c87d"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/flagd.json",
+   "sha256": "730495de5f36476d27ac17a57f9f3c0a003e433b239554a4a5cd7e8f10666608"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/frauddetectionservice.json",
+   "sha256": "a211b07aaa37d913a55c021a173d89c0e6f88b8257acbeb3445d8e968d0a9199"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/frontend.json",
+   "sha256": "9ee4db4a452a1b0b292f35b064f341a03b1141b7bb16740234cb5d897d4f8bda"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/frontendproxy.json",
+   "sha256": "ecf7eb197dc7ca2004000b7e6a1021dd0e141f49af2844b789bbb360f5f45cd7"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/grafana.json",
+   "sha256": "e8e64a55512a0582cefb3c627e348927e4522457356dedf3304fc470b4885187"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/imageprovider.json",
+   "sha256": "6903ce0465df6309db8e22e8b53a592fd421f192f67ffb8d413a5508f11ac31d"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/kafka.json",
+   "sha256": "b91272aaf4268613b38af6384c72bcdc40048da034eb7b0b4ddec7f31b592630"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/loadgenerator.json",
+   "sha256": "6ba722f4b927e72a4a04c7db170a73f52b0476393639f0979d50ce24096b2e68"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/otelcol.json",
+   "sha256": "464a31593e01ae187f7e8c1401549d1e42292dd8f71e40701e218e39e5e10ba5"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/paymentservice.json",
+   "sha256": "174e78819b02ce66c0404f26b76f77a8c284b29d17e7280052e3f6c1e149e8b3"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/productcatalogservice.json",
+   "sha256": "2c385bedde13c88e3c3059d64b0796802bb799dc7f5ace7ffebc732c7b35e21a"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/prometheus.json",
+   "sha256": "0ad85cdcd78e63f3419c3e833a79c68a7a69c0cf01b84b7f3ee67397f203b054"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/quoteservice.json",
+   "sha256": "7f0899c45e6e990558228e226dd5bbbf39d8e0208139271ff3fe4efc1fe02c16"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/recommendationservice.json",
+   "sha256": "4ced8b561e05abbdef06ebc2d4bf8082cc36205d61d04e8f0607a1f8867bf1b3"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/A/shippingservice.json",
+   "sha256": "e7a4b9ff5832239e266c9848806ec1169cbe07acdca57037c84b3605c05eb3e3"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/accountingservice.json",
+   "sha256": "b93be7e0da01e07c4813e377225dc8e6d9cffe1906fbb6f0e235315e3694e179"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/adservice.json",
+   "sha256": "2e06d13635e5ff251216ce3528a61852bcff4928d1a76a3b4338028a00d5d5ee"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/cartservice.json",
+   "sha256": "a2011e5d80625539d776ee7d67ea23a3ce6fa932fc81a61eb5e5d1d4a2f172fe"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/checkoutservice.json",
+   "sha256": "7878e2924ed2a667ad0252c85a491597bbb66e22ddeb41da9e76854d617c3182"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/currencyservice.json",
+   "sha256": "422a3aff7341ca5c84abaf87c6b546c212d8298aabf60c3a4e603b644b3672df"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/emailservice.json",
+   "sha256": "a2a156c3493b358695b088d7e70a87f20e46f4cb412e46ebfa229bbe9595b948"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/flagd-ui.json",
+   "sha256": "e47f41d51e3195bb83b7c3d811e69b62d2a3815eed8592849f377b6070df0e1d"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/flagd.json",
+   "sha256": "85d878095f7622815c4e21f94f50d1edcb641e0307e5d593d9ecccf2f5b02a61"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/frauddetectionservice.json",
+   "sha256": "4a39f1ab1885763ed9eb14f6e38a070e8b199fdb58c9051c345e7decc8b43c71"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/frontend.json",
+   "sha256": "195a188e4249b8f21bc77b643043c8fa3438a8012296dca6f5052d1926c0277d"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/frontendproxy.json",
+   "sha256": "94498e50b95cb04be7bb8e48ec54ed6159fc4111e135c7496b12860866b0a6ed"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/grafana.json",
+   "sha256": "9d62dac8e6a57629c82b4912fce9bf812992e0ac733e3d8ec94056757e92dae5"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/imageprovider.json",
+   "sha256": "75398e4019eeb2e2896daedeb3b29fe86c4cc1f604d2aa7d8550415d8f82c32a"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/kafka.json",
+   "sha256": "356fcf8b5ed4ed496720f70c8c41fa0b50f650f071173559227886fb61c54eee"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/loadgenerator.json",
+   "sha256": "1f3a5e3435b9e0cb70a12ead7a91fbae98eb7e971124cf88f4ac370e79564423"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/otelcol.json",
+   "sha256": "2dc20a7c79404eb3d94ab68a0c079ff055752b8313c2f4acda92b1654591ac99"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/paymentservice.json",
+   "sha256": "bd5e62ed28f8a008ec74ff8dad0531833de3228c0ca30d9346eda4f1ad392e71"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/productcatalogservice.json",
+   "sha256": "9ce9a5f6fa1df699194e60c35d0ba4ce775e9612264b769af08501063697f044"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/prometheus.json",
+   "sha256": "9fc45f394e504c75ff7db02aabe1fea5bb09424b79de4c0533b76f54de7c9aa2"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/quoteservice.json",
+   "sha256": "896fb03305d858c282ae39885729202bd6c4861c187b848fa100acd14a68f9a1"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/recommendationservice.json",
+   "sha256": "c0577515aecd5457ebc9bf73c1a57efd3ce79d3cca6bc55b3a22d0858c7f421d"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/otel/extract/B/shippingservice.json",
+   "sha256": "a0ceba9e0a3e31996632fc71bed4b8992e3e2000dbff84f69152b39e95f7d756"
+  }
+ ],
+ "answers": {
+  "from": "research/ontology/runs/run1-20261014/otel/judge/answers_all.jsonl",
+  "reused": 47,
+  "new": 10,
+  "newIds": [
+   "146e2e86244b1935",
+   "2239a73172d5f803",
+   "2712494262c7220a",
+   "a4f7a6eb35e0f1cf",
+   "ae15f8d873a81c0a",
+   "b023676150a0e0fa",
+   "b4b35fc9185e871a",
+   "ddefe24aef28ada3",
+   "fac49c024bd2b933",
+   "fca4dc95aa3bf684"
+  ]
+ }
+}

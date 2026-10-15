@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 2,
+  "id": "teastore-kieker-34b37f7",
+  "logicalSensors": [
+    {
+      "id": "operation:auth",
+      "activationGroup": "aspectj:auth"
+    },
+    {
+      "id": "operation:image",
+      "activationGroup": "aspectj:image"
+    },
+    {
+      "id": "operation:persistence",
+      "activationGroup": "aspectj:persistence"
+    },
+    {
+      "id": "operation:recommender",
+      "activationGroup": "aspectj:recommender"
+    },
+    {
+      "id": "operation:webui",
+      "activationGroup": "aspectj:webui"
+    },
+    {
+      "id": "propagation:registry-client",
+      "activationGroup": "manual:registry-client"
+    }
+  ],
+  "activationGroups": [
+    {
+      "id": "aspectj:auth",
+      "aspectjPatterns": [
+        "tools.descartes.teastore.auth..*"
+      ],
+      "requires": [
+        "manual:registry-client"
+      ],
+      "excludeTypes": [
+        "tools.descartes.teastore.auth.startup.AuthStartup"
+      ],
+      "excludeExecutions": [
+        "tools.descartes.teastore.auth.security.ConstantKeyProvider.getKey",
+        "tools.descartes.teastore.auth.security.SHASecurityProvider.blobToString",
+        "tools.descartes.teastore.auth.security.SHASecurityProvider.getKeyProvider",
+        "tools.descartes.teastore.auth.security.SHASecurityProvider.getSHA512"
+      ]
+    },
+    {
+      "id": "aspectj:image",
+      "aspectjPatterns": [
+        "tools.descartes.teastore.image..*"
+      ],
+      "requires": [
+        "manual:registry-client"
+      ],
+      "excludeTypes": [
+        "tools.descartes.teastore.image.ImageDB",
+        "tools.descartes.teastore.image.ImageDBKey",
+        "tools.descartes.teastore.image.ImageScaler",
+        "tools.descartes.teastore.image.StoreImage",
+        "tools.descartes.teastore.image.cache.AbstractQueueCache",
+        "tools.descartes.teastore.image.cache.AbstractTreeCache",
+        "tools.descartes.teastore.image.cache.FirstInFirstOut",
+        "tools.descartes.teastore.image.cache.IDataCache",
+        "tools.descartes.teastore.image.cache.LastInFirstOut",
+        "tools.descartes.teastore.image.cache.LeastFrequentlyUsed",
+        "tools.descartes.teastore.image.cache.LeastRecentlyUsed",
+        "tools.descartes.teastore.image.cache.MostRecentlyUsed",
+        "tools.descartes.teastore.image.cache.RandomReplacement",
+        "tools.descartes.teastore.image.cache.entry..*",
+        "tools.descartes.teastore.image.cache.rules..*",
+        "tools.descartes.teastore.image.setup.CachingMode",
+        "tools.descartes.teastore.image.setup.CachingRule",
+        "tools.descartes.teastore.image.setup.CreatorFactory",
+        "tools.descartes.teastore.image.setup.CreatorRunner",
+        "tools.descartes.teastore.image.setup.ImageCreator",
+        "tools.descartes.teastore.image.setup.ImageIDFactory",
+        "tools.descartes.teastore.image.setup.ImageProviderStartup",
+        "tools.descartes.teastore.image.setup.StorageMode",
+        "tools.descartes.teastore.image.setup.StorageRule",
+        "tools.descartes.teastore.image.storage.rules..*"
+      ],
+      "excludeExecutions": [
+        "tools.descartes.teastore.image.ImageProvider.getProductImages",
+        "tools.descartes.teastore.image.ImageProvider.getWebUIImages",
+        "tools.descartes.teastore.image.ImageProvider.setImageDB",
+        "tools.descartes.teastore.image.ImageProvider.setStorage",
+        "tools.descartes.teastore.image.cache.AbstractCache.addEntry",
+        "tools.descartes.teastore.image.cache.AbstractCache.cacheData",
+        "tools.descartes.teastore.image.cache.AbstractCache.dataAddedToCache",
+        "tools.descartes.teastore.image.cache.AbstractCache.dataIsCachable",
+        "tools.descartes.teastore.image.cache.AbstractCache.dataIsInCache",
+        "tools.descartes.teastore.image.cache.AbstractCache.dataRemovedFromCache",
+        "tools.descartes.teastore.image.cache.AbstractCache.findInEntries",
+        "tools.descartes.teastore.image.cache.AbstractCache.getCurrentCacheSize",
+        "tools.descartes.teastore.image.cache.AbstractCache.getData",
+        "tools.descartes.teastore.image.cache.AbstractCache.getFreeSpace",
+        "tools.descartes.teastore.image.cache.AbstractCache.hasStorageFor",
+        "tools.descartes.teastore.image.cache.AbstractCache.saveData",
+        "tools.descartes.teastore.image.cache.AbstractCache.setMaxCacheSize",
+        "tools.descartes.teastore.image.setup.SetupController.configureImageProvider",
+        "tools.descartes.teastore.image.setup.SetupController.convertToIDs",
+        "tools.descartes.teastore.image.setup.SetupController.createWorkingDir",
+        "tools.descartes.teastore.image.setup.SetupController.deleteImages",
+        "tools.descartes.teastore.image.setup.SetupController.deleteUnusedImages",
+        "tools.descartes.teastore.image.setup.SetupController.deleteWorkingDir",
+        "tools.descartes.teastore.image.setup.SetupController.detectCategoryImages",
+        "tools.descartes.teastore.image.setup.SetupController.detectExistingImages",
+        "tools.descartes.teastore.image.setup.SetupController.fetchCategories",
+        "tools.descartes.teastore.image.setup.SetupController.fetchProductsForCategory",
+        "tools.descartes.teastore.image.setup.SetupController.generateImages",
+        "tools.descartes.teastore.image.setup.SetupController.getPathToResource",
+        "tools.descartes.teastore.image.setup.SetupController.getState",
+        "tools.descartes.teastore.image.setup.SetupController.getWorkingDir",
+        "tools.descartes.teastore.image.setup.SetupController.isFinished",
+        "tools.descartes.teastore.image.setup.SetupController.isFirstImageProvider",
+        "tools.descartes.teastore.image.setup.SetupController.matchCategoriesToImage",
+        "tools.descartes.teastore.image.setup.SetupController.setCacheSize",
+        "tools.descartes.teastore.image.setup.SetupController.setupStorage",
+        "tools.descartes.teastore.image.setup.SetupController.teardown",
+        "tools.descartes.teastore.image.setup.SetupController.waitAndStopImageCreation",
+        "tools.descartes.teastore.image.setup.SetupController.waitForPersistence",
+        "tools.descartes.teastore.image.storage.DriveStorage.dataIsStorable",
+        "tools.descartes.teastore.image.storage.DriveStorage.getIDLock",
+        "tools.descartes.teastore.image.storage.DriveStorage.loadFromDisk",
+        "tools.descartes.teastore.image.storage.DriveStorage.saveData"
+      ]
+    },
+    {
+      "id": "aspectj:persistence",
+      "aspectjPatterns": [
+        "tools.descartes.teastore.persistence..*"
+      ],
+      "requires": [
+        "manual:registry-client"
+      ],
+      "excludeTypes": [
+        "tools.descartes.teastore.persistence.daemons..*",
+        "tools.descartes.teastore.persistence.domain.converters..*",
+        "tools.descartes.teastore.persistence.repository..*",
+        "tools.descartes.teastore.persistence.rest.DatabaseGenerationEndpoint",
+        "tools.descartes.teastore.persistence.servlet..*"
+      ],
+      "excludeExecutions": [
+        "tools.descartes.teastore.persistence.domain.CategoryRepository.getEntityClass",
+        "tools.descartes.teastore.persistence.domain.OrderItemRepository.getEntityClass",
+        "tools.descartes.teastore.persistence.domain.OrderRepository.getEntityClass",
+        "tools.descartes.teastore.persistence.domain.PersistenceCategory.getDescription",
+        "tools.descartes.teastore.persistence.domain.PersistenceCategory.getName",
+        "tools.descartes.teastore.persistence.domain.PersistenceCategory.setDescription",
+        "tools.descartes.teastore.persistence.domain.PersistenceCategory.setName",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getAddress1",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getAddress2",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getAddressName",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getCreditCardCompany",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getCreditCardExpiryDate",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getCreditCardExpiryLocalDate",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getCreditCardNumber",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getOrderTime",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getTime",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getTotalPriceInCents",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.getUserId",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setAddress1",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setAddress2",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setAddressName",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setCreditCardCompany",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setCreditCardExpiryDate",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setCreditCardExpiryLocalDate",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setCreditCardNumber",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setOrderTime",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setTime",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setTotalPriceInCents",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrder.setUserId",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrderItem.getOrderId",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrderItem.getProductId",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrderItem.getQuantity",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrderItem.getUnitPriceInCents",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrderItem.setOrderId",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrderItem.setProductId",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrderItem.setQuantity",
+        "tools.descartes.teastore.persistence.domain.PersistenceOrderItem.setUnitPriceInCents",
+        "tools.descartes.teastore.persistence.domain.PersistenceProduct.getCategoryId",
+        "tools.descartes.teastore.persistence.domain.PersistenceProduct.getDescription",
+        "tools.descartes.teastore.persistence.domain.PersistenceProduct.getListPriceInCents",
+        "tools.descartes.teastore.persistence.domain.PersistenceProduct.getName",
+        "tools.descartes.teastore.persistence.domain.PersistenceProduct.setCategoryId",
+        "tools.descartes.teastore.persistence.domain.PersistenceProduct.setDescription",
+        "tools.descartes.teastore.persistence.domain.PersistenceProduct.setListPriceInCents",
+        "tools.descartes.teastore.persistence.domain.PersistenceProduct.setName",
+        "tools.descartes.teastore.persistence.domain.PersistenceUser.getEmail",
+        "tools.descartes.teastore.persistence.domain.PersistenceUser.getPassword",
+        "tools.descartes.teastore.persistence.domain.PersistenceUser.getRealName",
+        "tools.descartes.teastore.persistence.domain.PersistenceUser.getUserName",
+        "tools.descartes.teastore.persistence.domain.PersistenceUser.setEmail",
+        "tools.descartes.teastore.persistence.domain.PersistenceUser.setPassword",
+        "tools.descartes.teastore.persistence.domain.PersistenceUser.setRealName",
+        "tools.descartes.teastore.persistence.domain.PersistenceUser.setUserName",
+        "tools.descartes.teastore.persistence.domain.ProductRepository.getEntityClass",
+        "tools.descartes.teastore.persistence.domain.UserRepository.getEntityClass"
+      ]
+    },
+    {
+      "id": "aspectj:recommender",
+      "aspectjPatterns": [
+        "tools.descartes.teastore.recommender..*"
+      ],
+      "requires": [
+        "manual:registry-client"
+      ],
+      "excludeTypes": [
+        "tools.descartes.teastore.recommender.algorithm.AbstractRecommender",
+        "tools.descartes.teastore.recommender.algorithm.OrderItemSet",
+        "tools.descartes.teastore.recommender.algorithm.impl.UseFallBackException",
+        "tools.descartes.teastore.recommender.rest.TrainEndPoint",
+        "tools.descartes.teastore.recommender.servlet.IndexServlet",
+        "tools.descartes.teastore.recommender.servlet.RecommenderStartup",
+        "tools.descartes.teastore.recommender.servlet.RetrainDaemon"
+      ],
+      "excludeExecutions": [
+        "tools.descartes.teastore.recommender.algorithm.RecommenderSelector.getInstance",
+        "tools.descartes.teastore.recommender.algorithm.RecommenderSelector.train",
+        "tools.descartes.teastore.recommender.algorithm.impl.cf.SlopeOneRecommender.buildDifferencesMatrices",
+        "tools.descartes.teastore.recommender.algorithm.impl.cf.SlopeOneRecommender.calculateScoreForItem",
+        "tools.descartes.teastore.recommender.algorithm.impl.cf.SlopeOneRecommender.executePreprocessing",
+        "tools.descartes.teastore.recommender.algorithm.impl.cf.SlopeOneRecommender.getUserVector",
+        "tools.descartes.teastore.recommender.algorithm.impl.pop.PopularityBasedRecommender.executePreprocessing",
+        "tools.descartes.teastore.recommender.servlet.TrainingSynchronizer.filterForMaxtimeStamp",
+        "tools.descartes.teastore.recommender.servlet.TrainingSynchronizer.filterLists",
+        "tools.descartes.teastore.recommender.servlet.TrainingSynchronizer.getInstance",
+        "tools.descartes.teastore.recommender.servlet.TrainingSynchronizer.setReady",
+        "tools.descartes.teastore.recommender.servlet.TrainingSynchronizer.toMillis",
+        "tools.descartes.teastore.recommender.servlet.TrainingSynchronizer.waitForPersistence"
+      ]
+    },
+    {
+      "id": "aspectj:webui",
+      "aspectjPatterns": [
+        "tools.descartes.teastore.webui..*"
+      ],
+      "requires": [
+        "manual:registry-client"
+      ],
+      "excludeTypes": [
+        "tools.descartes.teastore.webui.servlet.AbstractUIServlet",
+        "tools.descartes.teastore.webui.servlet.elhelper..*",
+        "tools.descartes.teastore.webui.startup..*"
+      ],
+      "excludeExecutions": [
+        "tools.descartes.teastore.webui.servlet.CartActionServlet.confirmOrder",
+        "tools.descartes.teastore.webui.servlet.CartActionServlet.extractOrderInformation",
+        "tools.descartes.teastore.webui.servlet.CartActionServlet.updateOrder",
+        "tools.descartes.teastore.webui.servlet.CategoryServlet.createNavigation",
+        "tools.descartes.teastore.webui.servlet.OrderServlet.doGetInternal"
+      ]
+    },
+    {
+      "id": "manual:registry-client",
+      "aspectjPatterns": [],
+      "requires": [],
+      "disableControl": null,
+      "reason": "Manual TrackingFilter/ResponseWrapper propagation is baked into the published Kieker images."
+    }
+  ],
+  "pointcutGuards": [
+    "!execution(private static * *..lambda*(..))",
+    "!execution(private * *..lambda*(..))",
+    "!within(is(AnonymousType))"
+  ],
+  "globalExcludeTypes": [
+    "tools.descartes.teastore.registryclient.observability..*"
+  ]
+}

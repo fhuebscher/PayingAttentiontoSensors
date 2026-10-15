@@ -1,0 +1,56 @@
+[
+ {
+  "system": "library:consul-api@1.26.1",
+  "packets": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/consul-api@1.26.1/judge/packets_00.jsonl",
+  "answers": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/consul-api@1.26.1/judge/answers_00.jsonl",
+  "n": 1
+ },
+ {
+  "system": "library:grpc-consul-resolver@1.5.3",
+  "packets": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/grpc-consul-resolver@1.5.3/judge/packets_00.jsonl",
+  "answers": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/grpc-consul-resolver@1.5.3/judge/answers_00.jsonl",
+  "n": 3
+ },
+ {
+  "system": "library:kafka-clients@3.6.0",
+  "packets": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/kafka-clients@3.6.0/judge/packets_00.jsonl",
+  "answers": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/kafka-clients@3.6.0/judge/answers_00.jsonl",
+  "n": 2
+ },
+ {
+  "system": "library:librdkafka@2.5.3",
+  "packets": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/librdkafka@2.5.3/judge/packets_00.jsonl",
+  "answers": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/librdkafka@2.5.3/judge/answers_00.jsonl",
+  "n": 4
+ },
+ {
+  "system": "library:ribbon@2.7.18",
+  "packets": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/ribbon@2.7.18/judge/packets_00.jsonl",
+  "answers": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/ribbon@2.7.18/judge/answers_00.jsonl",
+  "n": 12
+ },
+ {
+  "system": "library:sarama@1.43.2",
+  "packets": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/sarama@1.43.2/judge/packets_00.jsonl",
+  "answers": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/library/sarama@1.43.2/judge/answers_00.jsonl",
+  "n": 3
+ },
+ {
+  "system": "teastore",
+  "packets": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/teastore/judge/packets_00.jsonl",
+  "answers": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/teastore/judge/answers_00.jsonl",
+  "n": 2
+ },
+ {
+  "system": "hotel",
+  "packets": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/hotel/judge/packets_00.jsonl",
+  "answers": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/hotel/judge/answers_00.jsonl",
+  "n": 4
+ },
+ {
+  "system": "otel",
+  "packets": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/otel/judge/packets_00.jsonl",
+  "answers": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/ontology/runs/run2-20261014/otel/judge/answers_00.jsonl",
+  "n": 10
+ }
+]

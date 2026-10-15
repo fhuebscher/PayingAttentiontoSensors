@@ -1,0 +1,658 @@
+{
+  "amendments": [],
+  "analysis": {
+    "analysisFreeze": "exploratory pilot: no placement is scored on these cells; the manifestation criterion is declared before launch (BUDGET_D.md amendment 1) and applied once",
+    "comparativeUnit": "rate; 2 throttle episodes and 1 no-fault cell per rate, read by the manifestation criterion only",
+    "duringFaultProbes": "none (H10): the receipt's probes are the post-revert readiness probes only",
+    "forbidden": [
+      "observation-count-as-replication",
+      "source-off-as-none",
+      "unsupported-posture-imputation",
+      "cross-family-replication-from-channel-alias"
+    ],
+    "manifestationCriterion": "the throttle manifests at a rate if, in both throttle cells, the median productcatalogservice GetProduct server-span duration over the hold is >= 2x its median over the pre-onset segment, and the frontend->productcatalog gRPC client span median rises too; the no-fault cell at that rate shows neither (same statistic at the same window position)",
+    "manifestationCriterionDefaults": {
+      "clientSpanRatio": "median frontend->productcatalog gRPC client-span duration, hold / pre-onset >= 1.25 (= 'rises')",
+      "hold": "[onset, onset + hold)",
+      "noFaultCell": "same statistics at its pseudo onset; must show neither the >= 2x server-span ratio nor the >= 1.25x client-span ratio",
+      "onset": "fault cells: the onset command issued (intervention.json); no-fault cell: its pseudo onset (the seeded window position, timing.scoredWindowSeconds[0])",
+      "preOnsetSegment": "[onset - 60 s, onset)",
+      "serverSpanRatio": "median productcatalogservice GetProduct server-span duration, hold / pre-onset >= 2.0",
+      "spanSelection": "by span start time; all spans regardless of status",
+      "verdictPerRate": "manifests / does not manifest / '—' (fewer than 2 valid throttle cells, or an invalid no-fault cell, at that rate)"
+    },
+    "probeWindowsExcludedFromSensorScoring": true,
+    "traceCompleteness": {
+      "authority": "fault cells: research/PROTOCOL_DRAFT_20261002.md decision 25 (user 2026-10-03, as the sweep); no-fault cells: decision 56 (user 2026-10-04, as the quiet epoch)",
+      "faultCells": {
+        "allowanceMinimum": 1,
+        "allowanceShare": 0.01,
+        "authority": "research/PROTOCOL_DRAFT_20261002.md decision 25 (user 2026-10-03, all three sweeps); replaces the M1 99 % rule after OTel attempt 1 stopped at cell 8 (20/21)",
+        "drainRule": "client timeout + 2 s (TeaStore Q3)",
+        "drainSeconds": 17.0,
+        "rule": "windows by request start on the fault receipt's monotonic clock. Fault cells: pre-onset = start before the onset command was issued; fault-and-drain = start in [onset command issued, route ready + drainSeconds]; after-drain = later. No-fault cells: one whole-measurement window. (i) incomplete traces of fault-and-drain requests are counted and recorded (with request tokens) as the fault's effect, never blocking; (ii) the cell is blocked only if the successful requests of the other windows with an incomplete trace number more than max(allowanceMinimum, floor(allowanceShare x their successful requests)). Complete = the request's own trace id observed and exactly the route's services. Every incomplete trace is counted per window (successful and unsuccessful separately) in trace-completeness.json, evaluated on the target before the next cell and replayed by the terminal"
+      },
+      "noFaultCells": {
+        "allowanceMinimum": 1,
+        "allowanceShare": 0.01,
+        "authority": "research/PROTOCOL_DRAFT_20261002.md decision 56 (user 2026-10-04, round 12, on research/traffic-sweep/STOP_QUIET_OTEL_A1.md); this epoch only, the sweep keeps decision 25",
+        "blocking": false,
+        "decision25Counterfactual": "recorded per cell, not applied: max(allowanceMinimum, floor(allowanceShare x successful requests)) and whether the incomplete count exceeds it",
+        "rule": "one whole-measurement window (every cell is a no-fault cell). Complete = the request's own trace id observed and exactly the route's services. A successful request without a complete trace is telemetry loss: counted and recorded, never blocking. trace-completeness.json records per window the successful, complete and incomplete requests (unsuccessful separately); for every incomplete request its scheduled offset, whether its own trace id was observed and which required path services were missing; the count of incomplete requests per missing service; and the contiguous runs of consecutively scheduled requests that are each successful and incomplete (first and last scheduled offset, request count, missing services), so a lost export batch shows as one run. Evaluated on the target before the next cell and replayed byte for byte by the terminal",
+        "ruleId": "protocol-decision-56",
+        "stillBlocking": "G1, G2, G4, the container-health guard, and the terminal's ledger, application-witness, generator-absence, posture and application-log checks",
+        "timingKey": "traceCompletenessRule"
+      },
+      "ruleByCellKind": {
+        "fault": "protocol-decision-25 (no timing key; blocking above max(1, 1 %) outside the fault-and-drain window)",
+        "no-fault": "protocol-decision-56 (timing key traceCompletenessRule; recorded, never blocking)"
+      },
+      "timingKey": "traceCompletenessRule (no-fault cells only)"
+    }
+  },
+  "collection": {
+    "applicationLogs": "application.log: docker compose logs --no-color --timestamps for every started application service except the collector (its output is otelcol.log); Docker's RFC3339Nano receive stamp prefixes every line",
+    "collectorCarrier": "otelcol debug exporter, one unrotated json-file segment (otelcol.log), unchanged",
+    "cpu": "docker-engine cumulative CPU before and after the window, unchanged (diagnostic in every cell)",
+    "dockerEvents": "pause cells: docker-events.json (live docker events stream of the project's pause and unpause events, raw and parsed, with the cell's wall-to-monotonic mapping); H4",
+    "requestWitness": "frontendproxy JSON access log, unchanged; its json-file log is one unrotated segment bounded at 4g (the collector carrier's rule), because upstream's 5m x 2 keeps between 5 and 10 MB and one access-log line is ~0.4 kB on disk (estimated), so the 18,300 requests of a 100 req/s cell (~7.3 MB) keep only a ~27 % margin below upstream's bound, which a 0.55 kB line would exceed; a lost line fails the terminal's witness check",
+    "telemetryBytes": "sudo -n tcpdump on OTLP ports, unchanged (the only sudo on fb14srv6)"
+  },
+  "containerHealthGuard": {
+    "authority": "user 2026-10-03 (with option A)",
+    "rule": "every project container is inspected right before the warm-up (baseline) and after the cell's captures, before cleanup (final): State.OOMKilled, RestartCount, status and HostConfig.Memory are recorded in container-health.json; the cell is invalid if any container has OOMKilled true, if an application container restarted or was replaced between baseline and final, or if a declared memory limit is not in effect; replayed by the terminal"
+  },
+  "declaration": "research/traffic-sweep/DECLARATION_PILOT_LOAD_OTEL.md (measurement repo; frozen and committed alone before the first cell)",
+  "derivedFrom": {
+    "authority": "main repo research/traffic-sweep/BUDGET_D.md amendment 1 (user 2026-10-12: higher traffic, no new fault code; a load pilot on OTel (fb14srv6) with the same throttle, fault cells plus one no-fault cell per rate, a manifestation criterion declared before launch); user decisions 2026-10-12: rates 50 and 100 req/s, SUT memory limits as in C; diagnosis research/placement/test-c/DIAGNOSIS_OTEL_THROTTLE.md (aa461f8); campaign C's decisions 25, 56, 66 and 69 carried over unchanged",
+    "descriptorByteSha256": "25dbeb16674c2c01af903ea244050dd417be0192112c4deacb7ea77b6a0b24c5",
+    "descriptorCanonicalSha256": "6dd3cb7215db438cdf2f0618dd62eed583b86004f5f0254c565eabe93cc13721",
+    "descriptorPath": "pipelines/campaigns/otel-repeat-episodes-c-v1.json",
+    "disposition": "campaign C's epoch is not superseded: it keeps its own descriptor, plan, admission history and spent attempts; the load pilot is a separate epoch selected by execution/study-epoch.json",
+    "inheritedAmendments": [],
+    "predecessorDerivedFrom": {
+      "authority": "main repo research/PROTOCOL_DRAFT_20261002.md decision 82 (user 2026-10-10: clean placement test runs, campaign C on TeaStore and OTel with campaign B's 36-cell shape and new blocks, after the placement design is frozen by digest; fault cells scored only by the frozen placement); budget and stop rule research/traffic-sweep/BUDGET_C.md (d5b9af0, committed alone before any C work); B's decisions 49, 50, 56, 66 and 69 carried over unchanged",
+      "descriptorByteSha256": "5adefafb39d11b7f7c81f342bef99915e370cd5e8c9d8ffa5dbe8ccfb3e5557f",
+      "descriptorCanonicalSha256": "6e5d0f3460d28142428221c259994011a3a02973392aca4ffe6a4eb47a81a4ce",
+      "descriptorPath": "pipelines/campaigns/otel-repeat-episodes-v1.json",
+      "disposition": "campaign B's epoch is not superseded: it keeps its own descriptor, plan, admission history and spent attempts; campaign C is a separate epoch selected by execution/study-epoch.json",
+      "inheritedAmendments": [],
+      "predecessorDerivedFrom": {
+        "authority": "main repo research/PROTOCOL_DRAFT_20261002.md decision 49 (user 2026-10-04: B, 3 more blocks on TeaStore and OTel, after the H10/H4 harness change), decision 50 (fault doses inherited from Hotel, a fixed factor), decision 56 (trace loss recorded, never blocking, in no-fault cells), decision 69 (H4 recorded, never blocking); budget and stop rule research/traffic-sweep/BUDGET_B.md (92ca1c7, committed alone before the work); proposal research/traffic-sweep/NEXT_CAMPAIGNS_PROPOSAL.md section B; harness changes research/protocol/METHODOLOGY_HARDENING.md H10 and H4",
+        "descriptorByteSha256": "1d007caa6b2be800abda763444779730be29bb0d6f48191aed315d2053f4e8ed",
+        "descriptorCanonicalSha256": "be5b0b4dcd212aaa47908a6dd533e5cb73a104ab22b1b9e04a147e21ccb2c86d",
+        "descriptorPath": "pipelines/campaigns/otel-traffic-sweep-v1.json",
+        "disposition": "the sweep epoch is not superseded: it keeps its own descriptor, plan, admission history and spent attempts; the repeat epoch is a separate epoch selected by execution/study-epoch.json",
+        "inheritedAmendments": [
+          "research/traffic-sweep/AMENDMENT_OTEL_1.md (measurement repo): shared trace-completeness rule, research/PROTOCOL_DRAFT_20261002.md decision 25 (user 2026-10-03); frontendproxy memory limit 50M -> 256M (user 2026-10-03, option A) and the per-cell container-health guard; relaunch 1 of 2, all 12 cells, attempt 2"
+        ],
+        "studyEpoch": "otel-traffic-sweep-v1"
+      },
+      "studyEpoch": "otel-repeat-episodes-v1"
+    },
+    "studyEpoch": "otel-repeat-episodes-c-v1"
+  },
+  "design": {
+    "cellShape": "campaign C's cell (candidate_repeat_c.cell_timing(regime, rate, 1)) at the pilot rate; only the seeded onset (2 strata), the slots per phase it implies, the concurrency, the plan-level run count and minimum remaining time, the frontendproxy memory limit and the generator's open-file minimum differ",
+    "cellsPerSegment": 3,
+    "coldStartEachRun": true,
+    "doses": "inherited from the sweep and Hotel's fault catalogue as a fixed factor (decision 50): CPU throttle to 0.1 cores",
+    "episodesPerRegimeAndRate": {
+      "no-fault-calibration": 1,
+      "productcatalog-cpu-throttle-effect": 2
+    },
+    "faultAppliedToEveryEffectCell": true,
+    "harnessChanges": {
+      "H10": "no readiness probe from the fault onset to the end of the hold; probes outside that window unchanged",
+      "H4": "the freeze is stamped and RECORDED, never blocking (decision 69): command issued, command returned, applied-state readback (every fault); the Docker pause and unpause events of the target container with event time in ns and the cell's monotonic mapping (pause cells)"
+    },
+    "noFaultCellsCarryPseudoWindow": true,
+    "omittedRegimes": {
+      "frontend-pause-effect": "not part of the pilot: the question is whether the throttle binds (amendment 1)",
+      "net-delay": "no no-sudo mechanism exists in this harness: fb14srv6 grants sudo only for tcpdump, the only netem mechanism the project has is `sudo -n nsenter -t <pid> -n tc` (Hotel faults/lmt_faults.py), and the docker-sidecar netem of decision round 4 item 6 is not built (it would also need an image with iproute2 pinned on the host)"
+    },
+    "postureRule": "full only; placements are evaluated by restriction of full cells (an approximation: a sensor can behave differently when other sensors are off)",
+    "postures": [
+      "full"
+    ],
+    "purpose": "load pilot (BUDGET_D.md amendment 1): does campaign C's 0.1-core productcatalogservice throttle take effect at 50 and 100 req/s, where its CPU demand (~1.07 ms per request in C) reaches the cap; decides whether and at which rates campaign D runs",
+    "rates": [
+      50.0,
+      100.0
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "calibration",
+        "fault": null,
+        "id": "no-fault-calibration",
+        "kind": "no-fault-calibration"
+      },
+      {
+        "artifactRootClass": "effect/productcatalog-cpu-throttle",
+        "fault": "productcatalog-cpu-throttle",
+        "id": "productcatalog-cpu-throttle-effect",
+        "kind": "effect"
+      }
+    ],
+    "segmentOrderRationale": "engineering default: the campaign stops on its first invalid cell, and 100 req/s is the rate most likely to break the harness or the SUT, so no 50 req/s cell depends on a 100 req/s cell",
+    "segmentRule": "one segment per rate, rate-ascending (every 50 req/s cell runs before any 100 req/s cell); each segment holds the throttle twice (episodes 1 and 2) and the no-fault cell once (episode 1), in a seeded order; the runKey's block is the episode",
+    "segments": 2,
+    "totalRuns": 6
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true,
+    "runtimeSuccessDoesNotPromote": true
+  },
+  "faultDesign": {
+    "containerResolvedBeforeOnset": true,
+    "freezeStamps": {
+      "authority": "METHODOLOGY_HARDENING.md H4 (decision 42, user 2026-10-04); recorded, never blocking: decision 69 (user 2026-10-09)",
+      "dockerEvents": "pause cells only: docker-events.json, kind otel-demo-fault-docker-events-v1, retained beside intervention.json. A live `docker events` stream (filters type=container, event=pause, event=unpause, label com.docker.compose.project=<project>) is started before the measurement barrier and stopped after the fault worker has settled, so the daemon's bounded event buffer cannot lose the event. The file holds the stream's raw JSON lines, the parsed events (action, containerId, service, timeNano, monotonic and barrier-relative offset by the cell's mapping), parseProblems for lines that could not be parsed, and the mapping. Verdict {status ok|missing|contradictory, failures, reasons[{kind, reason}], ...}: ok iff the stream was alive when stopped, there is exactly one pause event and one unpause event of the target container, the pause event lies in [commandIssued, commandReturned] and the unpause event in [revertCommandIssued, revertCommandReturned], each widened by the declared tolerance (0.25 s), and the unpause follows the pause; absences are missing, anything that disagrees is contradictory",
+      "onsetInterval": "pause: [commandIssued, Docker pause event]; throttle: [commandIssued, commandReturned] plus the applied quota read back",
+      "receipt": "intervention.json freeze = {schemaVersion 1, kind otel-demo-fault-freeze-stamps-v1, action, commandIssuedMonotonic (= startedMonotonic), commandReturnedMonotonic (taken when the fault command returns, before the state readback), stateReadbackMonotonic (= appliedMonotonic), the three barrier-relative offsets, dockerEventsFile, stampCheck {status ok|missing|contradictory, failures, reasons}}; expected: commandIssued <= commandReturned <= stateReadback, issued = startedMonotonic, readback = appliedMonotonic, returned <= revertingMonotonic",
+      "rule": "H4 never invalidates a cell. A failed, dead or contradictory event stream or stamp leaves the cell valid and the freeze record marked missing (an absence: no stream, no event) or contradictory (events or stamps that disagree), with its reasons and a failure count per cell, in docker-events.json verdict and in intervention.json freeze.stampCheck. The terminal replays and byte-compares whatever was retained: a record that does not replay from its own raw lines, clock and receipt is refused (integrity), a record that replays and says missing or contradictory is accepted (availability)",
+      "throttleStamps": "command issued and command returned monotonic stamps and the applied-state readback stamp; no events"
+    },
+    "holdSeconds": 60,
+    "manifestation": "pause: the paused container state read back after the command; throttle: the applied NanoCpus read back. The Docker pause event is evidence recorded beside it, not a condition of manifestation (decision 69). The entry route is not probed during the fault (scenario entryRouteDuringFault is not-probed-h10)",
+    "metricExportIntervalMilliseconds": null,
+    "omitted": {
+      "net-delay": "no no-sudo mechanism exists in this harness: fb14srv6 grants sudo only for tcpdump, the only netem mechanism the project has is `sudo -n nsenter -t <pid> -n tc` (Hotel faults/lmt_faults.py), and the docker-sidecar netem of decision round 4 item 6 is not built (it would also need an image with iproute2 pinned on the host)"
+    },
+    "onsetBaseSeconds": 60,
+    "onsetStamp": "pre-command (actualOnsetMonotonicOffsetSeconds is taken immediately before the command; F-ADH-085)",
+    "probes": "H10: no route probe is sent from the onset to the end of the hold; the post-revert readiness probes are stamped into the receipt's probes list (phase, start/end monotonic, available) so the analysis can exclude their windows from sensor scoring; probe requests carry the token readiness-not-scored. duringRouteAvailable is null",
+    "scenarios": {
+      "frontend-pause": {
+        "action": "pause",
+        "applyCommand": "docker compose pause frontend",
+        "duringPredicate": "running-and-paused",
+        "entryRouteDuringFault": "not-probed-h10",
+        "revertCommand": "docker compose unpause frontend",
+        "service": "frontend"
+      },
+      "productcatalog-cpu-throttle": {
+        "action": "cpu-throttle",
+        "applyCommand": "docker update --cpus 0.1 <container>",
+        "cpus": "0.1",
+        "duringPredicate": "running-and-nanocpus-equal-the-throttle",
+        "entryRouteDuringFault": "not-probed-h10",
+        "nanoCpus": 100000000,
+        "revertCommand": "docker update --cpus <original> <container>; an unset original (NanoCpus 0) is lifted to every host CPU instead, because docker update --cpus 0 is a no-op (measured on fb14srv4 2026-09-28, Hotel lmt_faults.py); the container is removed at the end of the cell",
+        "service": "productcatalogservice"
+      }
+    }
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "detectionWindow": "[appliedMonotonic, revertingMonotonic]: after the pause is observed, before the unpause command (Hotel compose_pause.py); offsets are relative to the shared barrier",
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "freezeStamps": "pause: docker-events.json beside intervention.json; every fault: intervention.json freeze",
+      "independentOfScoredTelemetry": true,
+      "intervalLabel": "intervention-exposure",
+      "requiredReceiptFields": [
+        "actualOffsetMonotonicOffsetSeconds",
+        "actualOnsetMonotonicOffsetSeconds",
+        "appliedMonotonic",
+        "appliedMonotonicOffsetSeconds",
+        "barrierMonotonic",
+        "duringRouteAvailable",
+        "duringStateSamples",
+        "error",
+        "freeze",
+        "manifested",
+        "postState",
+        "preState",
+        "probes",
+        "recovered",
+        "revertingMonotonic",
+        "revertingMonotonicOffsetSeconds",
+        "scenario",
+        "service",
+        "successful",
+        "targetContainerId",
+        "targetImageId"
+      ],
+      "scenarioContracts": [
+        {
+          "action": "pause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "entryRouteDuringFault": "not-probed-h10",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "frontend-pause",
+          "service": "frontend"
+        },
+        {
+          "action": "cpu-throttle",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-nanocpus-equal-the-throttle",
+          "entryRouteDuringFault": "not-probed-h10",
+          "postPredicate": "running-and-nanocpus-reverted-and-route-ready",
+          "prePredicate": "running-and-unthrottled",
+          "scenario": "productcatalog-cpu-throttle",
+          "service": "productcatalogservice"
+        }
+      ],
+      "source": "controller-and-target-state-probes"
+    },
+    "path": {
+      "crossTraceAssemblyAllowed": false,
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "executedDenominator": "application-side-request-witness",
+      "expectedNoFaultPath": [
+        "frontendproxy",
+        "frontend",
+        "productcatalogservice"
+      ],
+      "faultSpecificTruth": {
+        "frontend-pause": {
+          "duringFaultExpectedOutcome": "offered-request-outcome-not-presumed",
+          "duringFaultFullPathRequired": false,
+          "postRecoveryFullPathRequired": true,
+          "preFaultFullPathRequired": true
+        },
+        "productcatalog-cpu-throttle": {
+          "duringFaultExpectedOutcome": "offered-request-outcome-not-presumed",
+          "duringFaultFullPathRequired": false,
+          "postRecoveryFullPathRequired": true,
+          "preFaultFullPathRequired": true
+        }
+      },
+      "missingWitnessOrCorrelationState": "unsupported",
+      "numericMissingValue": null,
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "requiredCorrelation": [
+        "opaque-request-token",
+        "application-side-request-witness",
+        "original-trace-id",
+        "one-to-one-token-trace-mapping"
+      ],
+      "scoredPhases": [
+        "pre-fault",
+        "during-fault",
+        "post-readiness"
+      ]
+    }
+  },
+  "id": "otel-load-pilot-v1",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "otel-demo",
+  "outcomes": {
+    "costRegimeOnly": null,
+    "offeredRequestsAreDenominator": true,
+    "primary": "per rate: whether the throttle manifests by the declared criterion (analysis.manifestationCriterion)",
+    "secondary": "per cell: request outcomes and latency over pre-onset, hold and post-revert; productcatalogservice CPU; the frontend's CPU (whether 50 or 100 req/s saturates the route without a fault)",
+    "windowMembership": "monotonic-shared-barrier"
+  },
+  "postureRealization": {
+    "async": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "closure": [
+        "accountingservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frauddetectionservice",
+        "frontend",
+        "frontendproxy",
+        "kafka",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "closureDecision": "instrumentation is activated on the selected closure plus accountingservice, frauddetectionservice, kafka (the orders topic's broker and its two consumers); every other application service runs uninstrumented",
+      "currentControl": "materialized-posture-controls-async-closure",
+      "reason": null,
+      "status": "implemented"
+    },
+    "full": {
+      "claimBoundary": null,
+      "currentControl": "upstream-all-services-enabled",
+      "reason": null,
+      "status": "implemented"
+    },
+    "none": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "emailservice",
+          "flagd",
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "currentControl": "materialized-posture-controls",
+      "reason": null,
+      "status": "implemented"
+    },
+    "selected": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "closure": [
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frontend",
+        "frontendproxy",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "closureDecision": "instrumentation is activated on the synchronous checkout path (frontendproxy, frontend, cartservice, checkoutservice, productcatalogservice, currencyservice, shippingservice, quoteservice, paymentservice, emailservice, flagd); every other application service runs uninstrumented",
+      "currentControl": "materialized-posture-controls-selected-closure",
+      "derivation": [
+        "frontendproxy -> frontend: Envoy routes /api/* to the Next.js frontend (src/frontendproxy/envoy.tmpl.yaml)",
+        "add-to-cart: src/frontend/pages/api/cart.ts POST -> CartGateway.addItem + getCart (cartservice)",
+        "place-order: src/frontend/pages/api/checkout.ts POST -> CheckoutGateway.placeOrder (checkoutservice), then ProductCatalogService.getProduct per item (productcatalogservice)",
+        "src/checkoutservice/main.go PlaceOrder: cartservice GetCart, productcatalogservice GetProduct, currencyservice Convert, shippingservice GetQuote (-> quoteservice), paymentservice Charge, shippingservice ShipOrder, cartservice EmptyCart, emailservice POST /send_order_confirmation (an error is logged and swallowed), then sendToPostProcessor (Kafka produce with RequiredAcks = sarama.NoResponse, src/checkoutservice/kafka/producer.go:24; erratum 2: no broker acknowledgement)",
+        "flagd: checkoutservice (paymentServiceUnreachable, kafkaQueueProblems), paymentservice, cartservice and productcatalogservice evaluate feature flags through flagd on the request; measured: 600 of 600 offered-request traces of v3r1 no-fault-cost/b01-01-full contain flagd (and productcatalogservice), so flagd is on the traced synchronous path although the declaration's parenthetical list omits it",
+        "kafka, frauddetectionservice, accountingservice: consumers of the orders topic (src/frauddetectionservice/.../main.kt poll loop, src/accountingservice/Consumer.cs); excluded from the synchronous comparison and added by async"
+      ],
+      "reason": null,
+      "status": "implemented"
+    }
+  },
+  "protocolGates": {
+    "blocking": [
+      "F1",
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "evaluatedOn": "the target, per cell, before the next cell (candidate_remote); replayed by the terminal validator",
+    "g4ChannelScope": "ledger-only (no per-channel in-cell / total counts are recorded)",
+    "module": "modules/otel-demo/validation/protocol_gates.py",
+    "notEvaluated": {
+      "P0": "the per-cell posture proof is config- and probe-based; no per-service connection count is recorded",
+      "R1": "no per-channel recordsAfterWarmup and no per-route readiness map is recorded",
+      "R2": "fresh project and down -v are enforced by the cell runner, not recorded as a gate input"
+    },
+    "recordedNotBlocking": [
+      "R2.recovery"
+    ],
+    "stopRule": "first-invalid-cell",
+    "thresholds": {
+      "FLOOR": 0.5,
+      "G1_MIN_DISPATCHED": 1,
+      "HOLD_TOLERANCE_S": 1.0,
+      "ONSET_TOLERANCE_S": 1.0,
+      "PRE_FAIL_MAX": 0.05,
+      "SCOPE_MIN": 0.95,
+      "SCOPE_SLACK_S": 5.0
+    },
+    "vendoredFrom": "src/obsplacement/protocol_gates.py (measurement repo, d3fc741), byte-identical"
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "requestsPerSecond",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "onsetOffsetDependsOnAttempt": false,
+    "retryMayReplaceCell": false,
+    "runIdRule": "first 24 hex of sha256(canonical runKey) (the frozen compiler's rule)"
+  },
+  "schedule": {
+    "drawEncoding": "UTF-8(seed || NUL || epoch || NUL || block-NN (NN = segment number) || NUL || draw-i || NUL || version)",
+    "leadCell": null,
+    "seed": 20261012,
+    "segmentOrder": "rate-ascending",
+    "segments": [
+      {
+        "order": [
+          "productcatalog-cpu-throttle-effect@r50#b1",
+          "no-fault-calibration@r50#b1",
+          "productcatalog-cpu-throttle-effect@r50#b2"
+        ],
+        "orderSha256": "bd2b2511554d00d3f1fa8f4ddeaade95ab8d2a64e68e3a12dbb66f1688146d6a",
+        "requestsPerSecond": 50.0,
+        "segment": 1
+      },
+      {
+        "order": [
+          "productcatalog-cpu-throttle-effect@r100#b1",
+          "no-fault-calibration@r100#b1",
+          "productcatalog-cpu-throttle-effect@r100#b2"
+        ],
+        "orderSha256": "53b1dea38952a0d102fa79e635aa7a1680e1a97fcc406fd24ec7e28ef48a34e9",
+        "requestsPerSecond": 100.0,
+        "segment": 2
+      }
+    ],
+    "shuffle": "fisher-yates-over-(regime,episode)-within-each-rate-segment-with-sha256-draws",
+    "version": "load-pilot-schedule-v1"
+  },
+  "setupPreconditions": [
+    {
+      "enforcedBy": "modules/otel-demo/drivers/campaign_setup.py: auto refuses without a recorded posture-probe receipt bound to the pinned upstream commit and the probe script bytes",
+      "id": "posture-connection-probe-ok",
+      "requiredCounts": {
+        "disabledOtlpConnections": 0,
+        "enabledOtlpConnectionsMinimum": 1
+      },
+      "requiredOutput": "PROBE OK",
+      "stage": "before-gate-setup-and-after-every-upstream-repin",
+      "tool": "modules/otel-demo/tools/posture_connection_probe.sh",
+      "why": "text-level guard proofs missed currencyservice's unguarded initLogger() on 2026-09-06; only counting OTLP connections per posture sees a missed SDK init"
+    },
+    {
+      "detail": "the standing teastore-demo Compose project on fb14srv6 (WebUI :8080, DB :3306) must be removed by its owner: docker compose -p teastore-demo down",
+      "enforcedBy": "candidate_setup.assert_no_active_foreign refuses any running container or active Compose project at install and at readiness",
+      "id": "demo-stack-torn-down",
+      "ports": [
+        8080,
+        3306
+      ],
+      "stage": "before-gate-setup"
+    },
+    {
+      "detail": "ports 18080-18084 free and /home/stig/observability-placement-candidate-v4-runs/.srv6-runtime.lock absent",
+      "enforcedBy": "candidate_setup.ports_free and the shared srv6 lease in candidate-target-allocation.json",
+      "id": "reserved-ports-free-and-lease-absent",
+      "ports": [
+        18080,
+        18081,
+        18082,
+        18083,
+        18084
+      ],
+      "stage": "before-gate-setup"
+    }
+  ],
+  "source": {
+    "applicationFamily": "otel-demo",
+    "channel": "compose-otel-collector",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "status": "method-design-only",
+  "sutDeviations": [
+    {
+      "mechanism": "docker update --memory <bytes> --memory-swap <same ratio as before> on the running container, right after compose up and before readiness; verified by inspect and recorded in container-health.json",
+      "pilot": "536870912 bytes (512 MiB)",
+      "pilotRule": "the sweep's rule (0.3 MB per waiting request, twice the cost the attempt-1 kill implies) at rate x timeout = 100 x 15 = 1500 waiting requests = 450 MB, rounded up to 512 MiB",
+      "reason": "attempt 1 (2026-10-03): Envoy killed by the memory cgroup 12 s into the frontend pause at 10/s (srv6 kernel log 11:46:59Z; again 11:59:31Z after cell 3's window); 124 of 1,800 requests lost their access-log line and the cell failed the terminal's witness check; user decision option A",
+      "scope": "the load pilot's cells; C's epoch and every frozen epoch keep their limit",
+      "service": "frontendproxy",
+      "setting": "memory limit (HostConfig.Memory)",
+      "sweep": "268435456 bytes (256M)",
+      "upstream": "52428800 bytes (50M; upstream 2d4661e docker-compose.yml:319-320)"
+    },
+    {
+      "mechanism": "materialize.py renders it into the materialized compose.otel-placement.yml when the selector names the pilot",
+      "pilot": "max-size 4g, max-file 1 (the collector carrier's rule, compose.otel-placement.yml)",
+      "reason": "the request witness is the frontendproxy access log; at 100 req/s a cell writes ~7.3 MB of it (estimated), within ~27 % of upstream's 10 MB loss bound",
+      "scope": "the load pilot's materialized source only; every other epoch renders the overlay byte for byte",
+      "service": "frontendproxy",
+      "setting": "json-file log rotation",
+      "upstream": "max-size 5m, max-file 2 (x-default-logging)"
+    }
+  ],
+  "target": {
+    "allocationPath": "modules/otel-demo/execution/candidate-target-allocation.json",
+    "dockerGid": 998,
+    "executionGid": 1016,
+    "executionUid": 1016,
+    "executionUser": "stig",
+    "host": "fb14srv6",
+    "leaseScope": "shared-srv6-host-exclusive-otel-then-online-boutique",
+    "setupUser": "root",
+    "transportUser": "root"
+  },
+  "timing": {
+    "budget": {
+      "approvalToFirstMutationSeconds": 3600,
+      "barrierLeadSeconds": 1,
+      "cellDeadlineReserveSeconds": 900,
+      "cellOverheadSeconds": 450,
+      "cellPeriodEstimateSeconds": 661,
+      "cleanupReserveSeconds": 600,
+      "measuredCellPeriodSeconds": {
+        "cells": 12,
+        "gaps": 11,
+        "maximum": 314.9,
+        "mean": 309.6,
+        "minimum": 302.7,
+        "source": "otel-traffic-sweep-v1 relaunch 1 (fb14srv6, 2026-10-03), consecutive request-ledger barrierEpoch gaps"
+      },
+      "measuredTailSeconds": {
+        "maximum": 133.9,
+        "minimum": 122.3,
+        "r10Minus_r0p05Seconds": 4.0,
+        "source": "otel-repeat-episodes-c-v1 attempt 1 (fb14srv6, 2026-10-11), request-ledger endedAtEpoch to the next cell's barrierEpoch, 35 gaps"
+      },
+      "minimumRemainingRule": "totalRuns x cellPeriod + cellDeadlineReserve + cleanupReserve",
+      "minimumRemainingSeconds": 5466,
+      "runWindowHours": 3,
+      "runWindowRule": "ceil-to-whole-hours(minimumRemaining + approvalToFirstMutation)",
+      "timedSecondsPerCell": 211
+    },
+    "duringFaultProbe": false,
+    "duringFaultProbeRule": "H10: no readiness probe from the fault onset to the end of the hold (scored window [onset, onset + hold]); the post-revert readiness probes start after the revert command returns, and the stack and route readiness before the warm-up are unchanged",
+    "faultEdgeSlackSeconds": 5,
+    "faultHoldSeconds": 60,
+    "faultOnsetAcceptanceSeconds": [
+      -1.0,
+      1.0
+    ],
+    "faultOnsetBaseSeconds": 60,
+    "faultOnsetPhaseOffset": "seeded-stratified-within-one-inter-arrival",
+    "faultOnsetPhaseSelectorEncoding": "stratum order: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || onset-stratum || NUL || stratum); position: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || bNN || NUL || onset-phase)",
+    "faultOnsetStrata": 2,
+    "freezeStamps": true,
+    "generatorOpenFilesMinimum": 4024,
+    "measurementSeconds": 180,
+    "metricExportIntervalMilliseconds": null,
+    "metricExportIntervalNote": "not set: every SDK keeps its own default (60 s observed, research/system-profiles/otel.md); changing it is an emission change this initial test does not make (a declared limit)",
+    "offeredByRate": {
+      "100": 18000,
+      "50": 9000
+    },
+    "offeredRule": "requests-per-second-x-measurement-seconds-integral",
+    "postRecoveryAllowanceSeconds": 2.0,
+    "requestTimeoutSeconds": 15.0,
+    "warmupRequestsPerSecond": 10.0,
+    "warmupSeconds": 30
+  },
+  "workflow": {
+    "candidateExecutionEnabled": false,
+    "constructionBlockers": [
+      "gate-plan-pending",
+      "gate-run-not-requested"
+    ],
+    "externalMutationAllowed": false,
+    "runtimeAuthorized": false
+  },
+  "workload": {
+    "arrivals": "constant spacing (offset = sequence / rate) from the shared barrier",
+    "concurrency": 3000,
+    "concurrencyRule": "ceil(2 x max rate x request timeout) = ceil(2 x 100 x 15): the worker cap covers rate x timeout with the sweep's 2x margin; one thread per in-flight or scheduled-ahead request",
+    "entry": "frontendproxy",
+    "generatorOpenFiles": "the controller raises its RLIMIT_NOFILE soft limit to concurrency + 1024 = 4024 (never above the hard limit) before the cell starts, or refuses the cell: every in-flight request holds a socket, and an EMFILE would read as a failed request of the target",
+    "kind": "single-route-open-loop",
+    "ledger": "request-ledger.json: one row per scheduled request with scheduledOffsetSeconds, scheduledAtEpoch, startedAtEpoch/endedAtEpoch, startedMonotonic/endedMonotonic (the fault receipt's clock), status, bytes, error and outcome ok|timeout|failed",
+    "method": "GET",
+    "path": "/api/products/66VCHSJNUP",
+    "productId": "66VCHSJNUP",
+    "readiness": "the harness's checkout-journey readiness (one complete journey, stack-wide) and then one route request returning 200; both carry the token readiness-not-scored and run before the warm-up",
+    "requestTimeoutSeconds": 15.0,
+    "requestsPerSecondLevels": [
+      50.0,
+      100.0
+    ],
+    "routeDerivation": [
+      "frontendproxy -> frontend: Envoy routes /api/* to the Next.js frontend (src/frontendproxy/envoy.tmpl.yaml)",
+      "frontend: src/frontend/pages/api/products/[productId]/index.ts GET -> ProductCatalogService.getProduct (services/ProductCatalog.service.ts) -> ProductCatalogGateway.getProduct (productcatalogservice gRPC); CurrencyGateway.convert only when currencyCode is set and not USD (none is sent)",
+      "productcatalogservice: src/productcatalogservice/main.go GetProduct; checkProductFailure asks flagd only for id OLJCESPC7Z, so the route product 66VCHSJNUP keeps flagd off the route"
+    ],
+    "routeServices": [
+      "frontendproxy",
+      "frontend",
+      "productcatalogservice"
+    ],
+    "traceContext": "every request carries traceparent 00-<trace id>-<span id>-01 and x-obsplacement-request-token, the offpath identity rule (candidate_remote.request_identity)",
+    "upstreamGenerators": {
+      "mechanism": "docker compose rm --stop --force loadgenerator, after up and before readiness",
+      "off": [
+        "loadgenerator"
+      ],
+      "proof": "upstream-generator.json per cell: zero containers carrying the project's service label after the removal and after the window (asked of the Docker engine)",
+      "runsOnlyBetweenUpAndRemoval": true,
+      "why": "the upstream Locust loadgenerator runs in every offpath/v3 cell (LOCUST_HEADLESS true overrides LOCUST_AUTOSTART false; retained v3a2 b03-03-full otelcol.log: 360 loadgenerator records, Starting Locust 2.18.2, GET http://frontend-proxy:18080/ failing) and asks flagd on every task; the sweep's rate must be the only traffic"
+    },
+    "warmup": "30 s at 10/s for every rate on the same route, never scored",
+    "window": "the workload returns no earlier than barrier + measurementSeconds at every rate (the CPU and capture windows are the same length at every rate)"
+  }
+}

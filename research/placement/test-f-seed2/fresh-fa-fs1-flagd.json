@@ -1,0 +1,39 @@
+{
+ "cells": 4,
+ "dropped": [
+  "spike"
+ ],
+ "inputs": {
+  "scriptSha256": "afaf53e8a23f5b0a9f080cd0e97065988fc60889944269e1fc0bc70c5281f095",
+  "trainingReadoutSha256": "bcc4cd34901011b25c4c489ddfd9ef67111950ba0f9fd5b430b3ce3f36d95300",
+  "validationReadout": "tmp/fresh-fa-fs1-own/readout-v3.3-validation/sweep_analysis_v3_3.json",
+  "validationReadoutSha256": "43b97162e862020f0f11542470ab717fb3a1302185e232d2ba0e1ccb2ba05d90"
+ },
+ "label": "POST HOC fresh false alarms, R2 second frozen member (calibrated rules only); instance",
+ "rows": [
+  {
+   "alarms": 1,
+   "hours": 0.2,
+   "rule": "median",
+   "trainHonestUpperPerHour": 9.985774245179964,
+   "upperPerHour": 23.71932259195289,
+   "value": "K 2.5"
+  },
+  {
+   "alarms": 0,
+   "hours": 0.2,
+   "rule": "run3",
+   "trainHonestUpperPerHour": 9.985774245179964,
+   "upperPerHour": 14.978661367769948,
+   "value": "K 2.5"
+  },
+  {
+   "alarms": 1,
+   "hours": 0.2,
+   "rule": "union of calibrated rules",
+   "trainHonestUpperPerHour": 9.985774245179966,
+   "upperPerHour": 23.71932259195289
+  }
+ ],
+ "sensor": "metric:flagd:feature_flag.flagd.impression"
+}

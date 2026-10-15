@@ -1,0 +1,1195 @@
+{
+  "cellStatus": "valid",
+  "claimBoundary": "Candidate-pilot evidence only. Raw records are event observations, not unique call diversity; no canonical, causal, optimizer, or cross-host claim follows.",
+  "contract": "teastore-candidate-pilot-evidence-v1",
+  "drainAllowance": {
+    "allowanceSeconds": 17.0,
+    "excusedFailures": 0,
+    "excusedJourneyIds": [],
+    "rule": "fault cells: journeys STARTING in [readiness, readiness + allowance) may fail; recorded, excluded from the zero-failure rule and from the scored population (Q3, 2026-10-03)",
+    "windowMonotonicSeconds": [
+      121.68711,
+      138.68711000000002
+    ]
+  },
+  "kind": "run-validation",
+  "protocolGates": {
+    "blocking": [
+      "F1",
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "failedGates": [],
+    "module": "validation/protocol_gates.py",
+    "notEvaluated": [
+      "P0",
+      "R1",
+      "R2"
+    ],
+    "verdicts": [
+      {
+        "detail": {
+          "holdSeconds": 60.311,
+          "onsetCommandSeconds": 0.25,
+          "onsetSource": "pre-command"
+        },
+        "gate": "F1",
+        "reason": "fault truth holds",
+        "threshold": "all of ['commandsOrdered', 'holdBounded', 'insideMeasurement', 'manifested', 'onsetCommandBounded', 'onsetOnSchedule', 'reverted']",
+        "value": [],
+        "verdict": "pass"
+      },
+      {
+        "detail": {
+          "minDispatched": 1,
+          "rate": 0.2,
+          "startedInWindow": 12,
+          "window": [
+            61.01511,
+            121.32611
+          ]
+        },
+        "gate": "G1",
+        "reason": "12 scheduled opportunities in [61.02, 121.33] vs floor 7; 12 dispatched (min 1)",
+        "threshold": 7,
+        "value": 12,
+        "verdict": "pass"
+      },
+      {
+        "detail": {
+          "costCell": false,
+          "failures": 0,
+          "window": [
+            0.0,
+            61.01511
+          ]
+        },
+        "gate": "G2",
+        "reason": "healthy: 13 successes, failure share 0.000 over [0.00, 61.02)",
+        "threshold": {
+          "failureShareMax": 0.05,
+          "successes": 7
+        },
+        "value": {
+          "failureShare": 0.0,
+          "successes": 13
+        },
+        "verdict": "pass"
+      },
+      {
+        "detail": {
+          "channelsWithoutScopeCounts": [],
+          "offered": 36,
+          "planOffered": 36,
+          "scopeShares": {
+            "ledger": 1.0
+          }
+        },
+        "gate": "G4",
+        "reason": "provenance complete",
+        "threshold": "all of ['faultTiming', 'ledger', 'offeredEqualsPlan', 'planConsistent', 'rateEqualsProfile', 'scope', 'validityRecorded']; scope >= 0.95",
+        "value": [],
+        "verdict": "pass"
+      },
+      {
+        "gate": "R2.recovery",
+        "reason": "last 60 s overlap the fault (revert returned at 121.57 s)",
+        "threshold": null,
+        "value": null,
+        "verdict": "\u2014"
+      }
+    ]
+  },
+  "reconstruction": {
+    "eligibleExecutedPaths": 24,
+    "fraction": 1.0,
+    "reconstructedPaths": 24,
+    "status": "supported"
+  },
+  "runKey": {
+    "attempt": 1,
+    "block": 1,
+    "posture": "full",
+    "regime": "auth-freeze-effect",
+    "studyEpoch": "teastore-traffic-sweep-v1"
+  },
+  "schemaVersion": 1,
+  "traceCompleteness": {
+    "allowance": 1,
+    "blocking": false,
+    "fraction": 0.01,
+    "incompleteInRuleTwo": 0,
+    "rule": "protocol decision 25 (shared trace-completeness rule), journey unit",
+    "successfulJourneysInRuleTwo": 21,
+    "windowIMonotonicSeconds": [
+      61.01511,
+      138.68711000000002
+    ],
+    "windows": {
+      "after-drain": {
+        "defectiveRecordsByLoggingTime": 0,
+        "incompleteJourneyIds": [],
+        "incompleteJourneys": 0,
+        "journeys": 8,
+        "reasons": {},
+        "successfulJourneys": 8,
+        "unattributableClusters": 0,
+        "unattributableTraceIds": [],
+        "untracedJourneys": 0
+      },
+      "fault-and-drain": {
+        "defectiveRecordsByLoggingTime": 0,
+        "incompleteJourneyIds": [],
+        "incompleteJourneys": 0,
+        "journeys": 15,
+        "reasons": {},
+        "successfulJourneys": 3,
+        "unattributableClusters": 0,
+        "unattributableTraceIds": [],
+        "untracedJourneys": 12
+      },
+      "pre-onset": {
+        "defectiveRecordsByLoggingTime": 0,
+        "incompleteJourneyIds": [],
+        "incompleteJourneys": 0,
+        "journeys": 13,
+        "reasons": {},
+        "successfulJourneys": 13,
+        "unattributableClusters": 0,
+        "unattributableTraceIds": [],
+        "untracedJourneys": 0
+      }
+    }
+  },
+  "validationTable": [
+    {
+      "conclusion": "Application witness artifact is present.",
+      "failureClass": null,
+      "gate": "app-witness-presence",
+      "inference": "Without an independent application witness, expected opportunities do not define an executed-path denominator.",
+      "observation": {
+        "app-witness-extraction.json": true,
+        "app-witness.jsonl": true,
+        "auth.log": true,
+        "native-token-correlation-extraction.json": true,
+        "native-token-correlation.json": true,
+        "persistence.log": true,
+        "service-log-capture.json": true
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Required artifact set is complete.",
+      "failureClass": null,
+      "gate": "artifact-presence",
+      "inference": "Cost cells require replayable resource evidence; effect cells require only artifacts used by the effect claim.",
+      "observation": {
+        "present": {
+          "app-witness-extraction.json": true,
+          "app-witness.jsonl": true,
+          "application.log": true,
+          "auth.log": true,
+          "capture-terminal.json": true,
+          "journey-ledger.jsonl": true,
+          "journey-ledger.plan.json": true,
+          "kieker-amqp.spool": true,
+          "native-token-correlation-extraction.json": true,
+          "native-token-correlation.json": true,
+          "persistence.log": true,
+          "posture-proof.json": true,
+          "queue-proof.json": true,
+          "receipt.json": true,
+          "resources.json": true,
+          "runtime-images.json": true,
+          "service-log-capture.json": true,
+          "system-samples.json": true,
+          "traces.json": true
+        },
+        "requiredForThisRegime": [
+          "receipt.json",
+          "journey-ledger.plan.json",
+          "journey-ledger.jsonl",
+          "kieker-amqp.spool",
+          "traces.json",
+          "runtime-images.json",
+          "capture-terminal.json",
+          "posture-proof.json",
+          "queue-proof.json",
+          "system-samples.json",
+          "application.log"
+        ],
+        "resourcesRequiredForCostClaim": false
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "The receipt carries its compiled cell's timing.",
+      "failureClass": null,
+      "gate": "sweep-compiled-timing",
+      "inference": "Rate, measurement, onset, hold and floors are plan values of the compiled sweep cell; the receipt's copy must equal them byte for byte.",
+      "observation": {
+        "runId": "teastore-traffic-sweep-v1/auth-freeze-effect/r0p2/b01/full/a01",
+        "timing": {
+          "applicationLogTimestamps": true,
+          "barrierLeadSeconds": 15.0,
+          "concurrency": 240,
+          "cpuThrottleCpus": null,
+          "cpuThrottleNanoCpus": null,
+          "drainAllowanceSeconds": 17.0,
+          "fault": "auth-freeze",
+          "faultApplied": true,
+          "faultHoldSeconds": 60,
+          "faultOnsetBaseSeconds": 60,
+          "faultOnsetPhaseOffsetSeconds": 1.00511,
+          "faultOnsetSeconds": 61.00511,
+          "faultTarget": "auth",
+          "interArrivalSeconds": 5.0,
+          "journeyKind": "login-only",
+          "journeysPerSecond": 0.2,
+          "measurementSeconds": 180,
+          "minimumActualStartsByPhase": {
+            "after": 6,
+            "before": 7,
+            "during": 6
+          },
+          "offered": 36,
+          "postRecoveryAllowanceSeconds": 2.0,
+          "probeStamps": true,
+          "protocolGates": [
+            "F1",
+            "G1",
+            "G2",
+            "G4"
+          ],
+          "requestTimeoutSeconds": 15.0,
+          "route": "POST /tools.descartes.teastore.webui/loginAction",
+          "scoredWindowSeconds": [
+            61.00511,
+            121.00511
+          ],
+          "systemSampleCount": 37,
+          "systemSampleIntervalSeconds": 5.0,
+          "warmupJourneysPerSecond": 10.0,
+          "warmupOffered": 300,
+          "warmupSeconds": 30,
+          "workloadId": "login-only-v1"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Run identity matches the frozen candidate pilot.",
+      "failureClass": null,
+      "gate": "frozen-run-identity",
+      "inference": "The endpoint is meaningful only for the frozen epoch, population, posture, and first attempt.",
+      "observation": {
+        "attempt": 1,
+        "block": 1,
+        "contract": "teastore-candidate-pilot-evidence-v1",
+        "population": "login-only-v1",
+        "posture": "full",
+        "regime": "auth-freeze-effect",
+        "selectionId": null,
+        "studyEpoch": "teastore-traffic-sweep-v1"
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Posture and queue proofs semantically replay.",
+      "failureClass": null,
+      "gate": "posture-and-queue-semantic-replay",
+      "inference": "Catalog closure, required/forbidden groups, AOP bytes, purge, barrier, collector exclusivity, and terminal drain must replay from retained artifacts.",
+      "observation": {
+        "aopSha256": "317e09cd664f93f876760395bad7b5859b508888e947ae5b8bcd6e4f640fc90f",
+        "brokerHeartbeatDisabled": true,
+        "emptySingleCollectorBarrier": true,
+        "postureProofSha256": "0d5731ca45083b33420cbe8d246832cf1a969b7baab0111c8a5c0cabfe6a92d1",
+        "queueProofSha256": "816123ca6f0b724eecbcfb9d983cae9b8ef5f3edfd0591d2c4d014d3a6dace13",
+        "requiredGroups": [
+          "aspectj:auth",
+          "aspectj:image",
+          "aspectj:persistence",
+          "aspectj:recommender",
+          "aspectj:webui",
+          "manual:registry-client"
+        ],
+        "terminalDrain": true,
+        "zeroConsumerPurge": true
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Source, images, and host lease are proven.",
+      "failureClass": null,
+      "gate": "provenance-and-host-lease",
+      "inference": "The frozen SUT, clean harness, immutable images, and exclusive authorized host bound the observation domain.",
+      "observation": {
+        "collectorAttributionConfigurationSha256": "cb51ab63579bfd525f44002afb7e7d0030e5bfd57f83420532716411340f6c8c",
+        "exclusiveLease": true,
+        "frameworkCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "frameworkDirty": false,
+        "host": "fb14srv5",
+        "imageDigests": {
+          "auth": "teastore-auth@sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "runtimeImagesSha256": "936a243be687bd18f1931afc6787be055faf3f8e4dc0e76f0603674e9474f93b",
+        "spoolSha256": "83904e2dfb557dc61abc082280439c446e3eec20801411e4b6f0e0ecb7836a5d",
+        "sutCommit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Receipt matches its independently scheduled cell.",
+      "failureClass": null,
+      "gate": "campaign-run-binding",
+      "inference": "A receipt cannot choose a more convenient scheduled cell after observing outcomes.",
+      "observation": {
+        "expected": {
+          "attempt": 1,
+          "block": 1,
+          "posture": "full",
+          "regime": "auth-freeze-effect",
+          "runId": "teastore-traffic-sweep-v1/auth-freeze-effect/r0p2/b01/full/a01",
+          "studyEpoch": "teastore-traffic-sweep-v1"
+        },
+        "observed": {
+          "attempt": 1,
+          "block": 1,
+          "posture": "full",
+          "regime": "auth-freeze-effect",
+          "studyEpoch": "teastore-traffic-sweep-v1"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "All sidecar hashes reconcile.",
+      "failureClass": null,
+      "gate": "artifact-hash-binding",
+      "inference": "Sidecars must be the exact bytes named by the immutable receipt.",
+      "observation": {
+        "app-witness-extraction.json": {
+          "actual": "2e44049240469e66d46f2a40cb5d80c5691a186210a2422ca1ae8f52f912a018",
+          "declared": "2e44049240469e66d46f2a40cb5d80c5691a186210a2422ca1ae8f52f912a018"
+        },
+        "app-witness.jsonl": {
+          "actual": "c2ecf4592df56a3171d6c0571b3877f7f0c3bd22f3bca9b8132252bf2c59f5a1",
+          "declared": "c2ecf4592df56a3171d6c0571b3877f7f0c3bd22f3bca9b8132252bf2c59f5a1"
+        },
+        "application.log": {
+          "actual": "c2960f4403b1a58e454397ce0b7f710b630a6b85626444bb650ef2aad648d95c",
+          "declared": "c2960f4403b1a58e454397ce0b7f710b630a6b85626444bb650ef2aad648d95c"
+        },
+        "auth.log": {
+          "actual": "a7deb270a9a47c6a141c7b998bff7385f3b2b7b31b34b04d24ec6e340d007ba8",
+          "declared": "a7deb270a9a47c6a141c7b998bff7385f3b2b7b31b34b04d24ec6e340d007ba8"
+        },
+        "capture-terminal.json": {
+          "actual": "25a498404ad22ddf14ff8ada2c084e7676dc2c3e2c69fda6163120e8a9c22923",
+          "declared": "25a498404ad22ddf14ff8ada2c084e7676dc2c3e2c69fda6163120e8a9c22923"
+        },
+        "journey-ledger.jsonl": {
+          "actual": "30c4494601871cb7a459a55a9d26c482a576b8dd77f55bb8e5616a1cb923c2ad",
+          "declared": "30c4494601871cb7a459a55a9d26c482a576b8dd77f55bb8e5616a1cb923c2ad"
+        },
+        "journey-ledger.plan.json": {
+          "actual": "7fdae76f1ece67afb9e4edaf8f195194777c173499daa0ddb1e8a87f8f884aa3",
+          "declared": "7fdae76f1ece67afb9e4edaf8f195194777c173499daa0ddb1e8a87f8f884aa3"
+        },
+        "kieker-amqp.spool": {
+          "actual": "83904e2dfb557dc61abc082280439c446e3eec20801411e4b6f0e0ecb7836a5d",
+          "declared": "83904e2dfb557dc61abc082280439c446e3eec20801411e4b6f0e0ecb7836a5d"
+        },
+        "native-token-correlation-extraction.json": {
+          "actual": "2bbd50765e756e8ed2a375086de7c22e4474fdca12b76c0bd13e763b9ed6d4fa",
+          "declared": "2bbd50765e756e8ed2a375086de7c22e4474fdca12b76c0bd13e763b9ed6d4fa"
+        },
+        "native-token-correlation.json": {
+          "actual": "6b9dd91847b9c8329105cbfe5b7f68bd9a1cafc3cfe0c227bfa9068bcfb66f2c",
+          "declared": "6b9dd91847b9c8329105cbfe5b7f68bd9a1cafc3cfe0c227bfa9068bcfb66f2c"
+        },
+        "persistence.log": {
+          "actual": "678f3f5d0f5ec01ea4a9f0ae1a948ef5e9952d303716ffeab72ec8adefca4fac",
+          "declared": "678f3f5d0f5ec01ea4a9f0ae1a948ef5e9952d303716ffeab72ec8adefca4fac"
+        },
+        "posture-proof.json": {
+          "actual": "0d5731ca45083b33420cbe8d246832cf1a969b7baab0111c8a5c0cabfe6a92d1",
+          "declared": "0d5731ca45083b33420cbe8d246832cf1a969b7baab0111c8a5c0cabfe6a92d1"
+        },
+        "queue-proof.json": {
+          "actual": "816123ca6f0b724eecbcfb9d983cae9b8ef5f3edfd0591d2c4d014d3a6dace13",
+          "declared": "816123ca6f0b724eecbcfb9d983cae9b8ef5f3edfd0591d2c4d014d3a6dace13"
+        },
+        "runtime-images.json": {
+          "actual": "936a243be687bd18f1931afc6787be055faf3f8e4dc0e76f0603674e9474f93b",
+          "declared": "936a243be687bd18f1931afc6787be055faf3f8e4dc0e76f0603674e9474f93b"
+        },
+        "service-log-capture.json": {
+          "actual": "6cb7322017cf3d2672e48cb5f97bcc7e9c24e530b3a88bc344821f2915028d56",
+          "declared": "6cb7322017cf3d2672e48cb5f97bcc7e9c24e530b3a88bc344821f2915028d56"
+        },
+        "system-samples.json": {
+          "actual": "3e3f31b8281ff6baeeb62b3b4b30e3c8fbf736ecfac2b12ae3dd9e3fd773ab0c",
+          "declared": "3e3f31b8281ff6baeeb62b3b4b30e3c8fbf736ecfac2b12ae3dd9e3fd773ab0c"
+        },
+        "traces.json": {
+          "actual": "791385f3e80abc7a2144d230540cffe97d1d279cd875d2082ea82f208c5ad869",
+          "declared": "791385f3e80abc7a2144d230540cffe97d1d279cd875d2082ea82f208c5ad869"
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Warm-up, setup gap, and measurement boundaries match the frozen design.",
+      "failureClass": null,
+      "gate": "shared-window",
+      "inference": "The frozen 120 s warm-up is retained separately from the non-negative setup gap before the shared 600 s measurement clock.",
+      "observation": {
+        "monotonicMeasurementSeconds": 180.0,
+        "setupGapSeconds": 20.0,
+        "sharedBarrierId": "barrier-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "wallMeasurementSeconds": 180.0,
+        "wallWarmupSeconds": 30.0,
+        "warmupSettledBeforeMeasurementSeconds": 21.0
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Pre-outcome plan and terminal ledger reconcile.",
+      "failureClass": null,
+      "gate": "pre-outcome-plan-and-ledger-chain",
+      "inference": "Expected opportunities are frozen before outcomes, then terminal rows are hash-chained and reconciled one-to-one.",
+      "observation": {
+        "chainErrors": [],
+        "planErrors": [],
+        "planOpportunities": 36,
+        "reconciliationRecords": 1,
+        "terminalRecords": 36
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Ledger has 36 unique offered opportunities.",
+      "failureClass": null,
+      "gate": "offered-ledger-denominator",
+      "inference": "One pre-allocated row per offered journey is the workload and expected-opportunity denominator.",
+      "observation": {
+        "duplicateJourneyIds": [],
+        "duplicateOpaqueTokens": [],
+        "duplicateOpportunityIds": [],
+        "ledgerRows": 36,
+        "receiptOffered": 36
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Journey rows are temporally and structurally complete.",
+      "failureClass": null,
+      "gate": "journey-ledger-integrity",
+      "inference": "Tokens must predate outcomes, requests must be bounded, and every row must settle on the shared barrier.",
+      "observation": {
+        "invalidRowCount": 0,
+        "invalidRows": []
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Outcome and latency denominators reconcile.",
+      "failureClass": null,
+      "gate": "outcome-and-latency-denominators",
+      "inference": "Offered journeys define burden; only successful journeys define latency, and an empty latency is null rather than zero.",
+      "observation": {
+        "computedLatencyMs": {
+          "count": 24,
+          "denominator": "successful-journeys",
+          "mean": 80.0000000000045,
+          "p50": 80.00000000000007,
+          "p95": 80.0000000000125,
+          "p99": 80.0000000000125
+        },
+        "computedOutcomes": {
+          "succeeded": 24,
+          "timeout": 12
+        },
+        "declaredLatencyMs": {
+          "count": 24,
+          "denominator": "successful-journeys",
+          "mean": 80.0000000000045,
+          "p50": 80.00000000000007,
+          "p95": 80.0000000000125,
+          "p99": 80.0000000000125
+        },
+        "declaredWorkload": {
+          "failed": 0,
+          "offered": 36,
+          "requests": 36,
+          "successful": 24,
+          "timedOut": 12
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Resources are explicitly excluded from this effect claim.",
+      "failureClass": null,
+      "gate": "resource-effect-claim-boundary",
+      "inference": "Diagnostic resource artifacts are outside the effect estimand, and the effect receipt must not carry a cost projection.",
+      "observation": {
+        "analysisKind": "effect",
+        "artifactAvailability": "available-but-excluded",
+        "artifactSha256": {
+          "actual": "44e7e1e595be379cc0680460d1968537e6c545b842d9da1f539c3e736fa3c441",
+          "declared": "44e7e1e595be379cc0680460d1968537e6c545b842d9da1f539c3e736fa3c441"
+        },
+        "costProjection": null,
+        "parseError": null,
+        "receiptResourceProjection": {
+          "fields": null,
+          "isNull": true,
+          "present": true
+        },
+        "resourceUse": "diagnostic-only",
+        "resourcesExcludedFromEffectClaims": true,
+        "strictResourceReplay": "not-run-for-effect-cell"
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "System samples cover the window.",
+      "failureClass": null,
+      "gate": "system-samples",
+      "inference": "Every cell carries 121 cgroup-v2 samples on the shared 600 s window; a no-fault cell has every application service in every sample, a fault cell may carry null rows for a stopped container. Fault-window samples are detection signals, never cost estimates.",
+      "observation": {
+        "errorCount": 0,
+        "errors": [],
+        "kind": "teastore-system-samples-v1",
+        "maximumLateSeconds": 0.002,
+        "noFaultCell": false,
+        "nullSamplesByService": {
+          "auth": 0,
+          "image": 0,
+          "persistence": 0,
+          "recommender": 0,
+          "webui": 0
+        },
+        "sampleCount": 37
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Intervention artifact and receipt reconcile.",
+      "failureClass": null,
+      "gate": "intervention-artifact-binding",
+      "inference": "Effect ground truth is scored only from the exact separately retained intervention receipt bytes.",
+      "observation": {
+        "equalsReceipt": true,
+        "error": null,
+        "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tests/fixtures/sweep_v22/teastore/campaign/runs/auth-freeze-effect/b01-02-full/intervention.json"
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "This is an effect run.",
+      "failureClass": null,
+      "gate": "cost-effect-separation",
+      "inference": "Effect runs have a separate cold-start root and exactly one declared training fault.",
+      "observation": {
+        "analysisKind": "effect",
+        "hasIntervention": true,
+        "resourceUse": "diagnostic-only"
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Intervention manifestation and recovery are proven.",
+      "failureClass": null,
+      "gate": "independent-fault-ground-truth",
+      "inference": "A successful command is insufficient; independent target state, recovery, and joined-thread evidence are required.",
+      "observation": {
+        "holdSeconds": 60.0,
+        "laterMutation": false,
+        "manifested": true,
+        "recovered": true,
+        "scenario": "auth-freeze",
+        "stateSamples": 3,
+        "targetContainerId": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "threadJoined": true
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Each effect phase meets its plan-derived actual-start floor.",
+      "failureClass": null,
+      "gate": "actual-phase-start-floor",
+      "inference": "Nominal scheduling does not prove exposure; actual monotonic starts supply phase denominators.",
+      "observation": {
+        "floors": {
+          "after": 6,
+          "before": 7,
+          "during": 6
+        },
+        "observed": {
+          "after": 11,
+          "before": 13,
+          "during": 12
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Command stamps and probe windows are complete and ordered.",
+      "failureClass": null,
+      "gate": "sweep-fault-command-stamps",
+      "inference": "The onset is stamped immediately before the command and the revert around its command; every post-revert readiness request is stamped so the analysis can exclude it.",
+      "observation": {
+        "holdBetweenCommandsSeconds": 60.311,
+        "onsetCommandSeconds": 0.25,
+        "onsetIssuedLateSeconds": 0.00999999999999801,
+        "probeWindowSeconds": [
+          121.57611,
+          121.68611
+        ],
+        "probes": 1
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Effect context is stable outside intervention.",
+      "failureClass": null,
+      "gate": "effect-context",
+      "inference": "During-fault failures are outcomes, while pre-fault or post-readiness failures invalidate context.",
+      "observation": {
+        "count": 0,
+        "drainExcusedFailures": 0,
+        "drainExcusedJourneyIds": [],
+        "preOrPostFailures": []
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "F1/G1/G2/G4 pass.",
+      "failureClass": null,
+      "gate": "protocol-gates",
+      "inference": "Vendored protocol gates: F1 fault truth (fault cells), G1 traffic, G2 healthy before onset, G4 bookkeeping; R2.recovery is recorded, not blocking; P0, R1, R2 have no harness inputs.",
+      "observation": {
+        "error": null,
+        "failedGates": []
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Every application service has timestamped log lines.",
+      "failureClass": null,
+      "gate": "application-log-timestamps",
+      "inference": "docker compose logs --timestamps retains every application service's log with Docker receive times.",
+      "observation": {
+        "bytes": 302,
+        "secretBearingTextDetected": false,
+        "servicesWithoutStampedLines": [],
+        "stampedLinesByService": {
+          "auth": 1,
+          "image": 1,
+          "persistence": 1,
+          "recommender": 1,
+          "webui": 1
+        },
+        "undecodableCharacters": 0,
+        "unstampedLines": 0
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Raw spool, collector counters, runtime host proof, and attribution digest reconcile.",
+      "failureClass": null,
+      "gate": "native-spool-collector-and-attribution-binding",
+      "inference": "Candidate traces must be reproduced from a sealed raw AMQP spool under the exact frozen service-attribution configuration.",
+      "observation": {
+        "attributionConfigurationSha256": "cb51ab63579bfd525f44002afb7e7d0030e5bfd57f83420532716411340f6c8c",
+        "counts": {
+          "containers_bad": 0,
+          "containers_ok": 36,
+          "messages": 36,
+          "records_bad": 0,
+          "records_ok": 72
+        },
+        "runtimeServiceCount": 8,
+        "spool": {
+          "artifactSha256": "83904e2dfb557dc61abc082280439c446e3eec20801411e4b6f0e0ecb7836a5d",
+          "blockers": [],
+          "complete": true,
+          "deliveryCount": 36,
+          "duplicateBodyCount": 0,
+          "path": "kieker-amqp.spool",
+          "rawBodyBytes": 12240,
+          "replayedEventCount": 72,
+          "replayedRecordFailures": 0,
+          "schemaVersion": 1,
+          "sealed": true,
+          "spoolBytes": 40487,
+          "terminalDigestSha256": "ffacafb35439349efa616c2be27f6c4d5f9e272f46d1ca50a8ecf8eb7e2e0109",
+          "uniqueBodyCount": 36
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "All trace records have clip-able native timestamps.",
+      "failureClass": null,
+      "gate": "native-timestamp-window",
+      "inference": "Only native event timestamps inside the shared interval may enter scored views; tail remains diagnostic.",
+      "observation": {
+        "diagnosticTailOrOutsideRecords": 0,
+        "malformedRows": [],
+        "measurementRecords": 72
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Every scored record identifies one proven original native trace.",
+      "failureClass": null,
+      "gate": "original-native-trace-provenance",
+      "inference": "Scraper-generated trace_id values are never treated or named as original Kieker trace IDs.",
+      "observation": {
+        "genericTraceIdFieldsPresent": 72,
+        "rawRecords": 72,
+        "recordsWithOriginalNativeId": 72,
+        "scraperGeneratedIdsObserved": 0
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Capture has complete hashes and no detected replay.",
+      "failureClass": null,
+      "gate": "replay-and-duplicate-control",
+      "inference": "Message/signature hashes plus native event identity allow many rows per message but detect exact redelivery.",
+      "observation": {
+        "duplicateHashedNativeEventKeys": [],
+        "duplicateKeysDecidedByTraceCompleteness": 0,
+        "exposureReplayDuplicateKeys": 0,
+        "unhashedRows": []
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Terminal capture reconciles.",
+      "failureClass": null,
+      "gate": "terminal-capture-reconciliation",
+      "inference": "A settled terminal receipt must reconcile to the capture bytes; an empty or partial read is not zero.",
+      "observation": {
+        "computed": {
+          "allRawRecords": 72,
+          "allUniqueMessageBodies": 36,
+          "allUniqueNativeTraces": 36,
+          "allUniqueSignatures": 2,
+          "diagnosticTailOrOutsideRecords": 0,
+          "originalNativeTraces": 36,
+          "records": 72,
+          "uniqueMessageBodies": 36
+        },
+        "declared": {
+          "complete": true,
+          "exclusiveCollector": true,
+          "foreignWriters": 0,
+          "hashReconciled": true,
+          "measurementRecords": 72,
+          "queueMessagesAtBarrier": 0,
+          "queuePurgedBefore": true,
+          "rawRecords": 72,
+          "redeliveredMessageSha1": [],
+          "settled": true,
+          "uniqueMessageBodies": 36,
+          "uniqueNativeTraces": 36,
+          "uniqueSignatures": 2,
+          "unjoinedChildren": 0
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Capture cardinality matches posture.",
+      "failureClass": null,
+      "gate": "posture-capture-domain",
+      "inference": "None must be terminally empty; selected and full must have non-empty complete capture.",
+      "observation": {
+        "posture": "full",
+        "rawRecords": 72
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Native-token correlation replays.",
+      "failureClass": null,
+      "gate": "native-token-correlation-artifact",
+      "inference": "The auth-log bridge must replay to a one-to-one, hash-bound mapping; native events never carry workload tokens.",
+      "observation": {
+        "blockers": [],
+        "mappingRows": 24,
+        "outcome": "pass",
+        "receiptReconciled": true,
+        "replayedRows": 24,
+        "runtimeActionsExecuted": false,
+        "schema": "teastore.native-token-correlation-validation-report",
+        "schemaVersion": 1
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Native correlation and attribution are terminally unambiguous.",
+      "failureClass": null,
+      "gate": "native-event-correlation-and-attribution-integrity",
+      "inference": "Only original Kieker identity with globally resolved parents, unique events, and runtime-host service attribution can support path reconstruction; when the replayed closure omits the trace-root sensor, a missing depth-0 parent alone is the expected unwoven-root shape, not a defect (F-ADH-066; lineage F-ADH-064/065).",
+      "observation": {
+        "entryPointWoven": true,
+        "errors": [],
+        "exposureWindow": {
+          "endEpoch": 1790989371.68711,
+          "marginSeconds": 0.0,
+          "settleSeconds": 0.42100000381469727,
+          "startEpoch": 1790989311.00511
+        },
+        "probeOrphanRootEvents": 0,
+        "rawRecords": 72,
+        "recordsDecidedByTraceCompleteness": 0,
+        "toleratedExposureEvents": 0,
+        "unwovenRootEvents": 0
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "The receipt's exposure tolerance replays exactly and leaves no residual loss.",
+      "failureClass": null,
+      "gate": "exposure-tolerance-binding",
+      "inference": "Telemetry loss may only be excused inside the recorded exposure window of a proven intervention, re-derived independently from the retained records; residual loss outside that window is a pipeline defect in every regime (F-ADH-074).",
+      "observation": {
+        "containerDiagnosticError": null,
+        "receiptMatches": true,
+        "recomputed": {
+          "applied": true,
+          "containerParseFailures": [],
+          "fault": "auth-freeze",
+          "residualContainerParseFailures": 0,
+          "residualCorrelationErrorEvents": 0,
+          "residualEoiGapTraces": 0,
+          "residualMissingEoiCount": 0,
+          "rule": "timestamp-scoped-exposure-tolerance-v2",
+          "schemaVersion": 1,
+          "toleratedContainerParseFailures": 0,
+          "toleratedCorrelationErrorEvents": 0,
+          "toleratedEoiGapTraces": 0,
+          "toleratedMissingEoiCount": 0,
+          "window": {
+            "endEpoch": 1790989371.68711,
+            "marginSeconds": 0.0,
+            "settleSeconds": 0.42100000381469727,
+            "startEpoch": 1790989311.00511
+          }
+        },
+        "toleratedExposureEvents": 0
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Incomplete traces outside the fault and drain window are within the allowance.",
+      "failureClass": null,
+      "gate": "trace-completeness",
+      "inference": "Decision 25: journeys starting in the fault or drain window may have incomplete traces (recorded); elsewhere at most max(1, floor(1% of successful journeys)) may; every incomplete trace is reported per window in traceCompleteness.",
+      "observation": {
+        "allowance": 1,
+        "error": null,
+        "incompleteInRuleTwo": 0,
+        "successfulJourneysInRuleTwo": 21,
+        "windowIMonotonicSeconds": [
+          61.01511,
+          138.68711000000002
+        ]
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Application source logs replay to the witness rows.",
+      "failureClass": null,
+      "gate": "application-source-log-replay",
+      "inference": "Raw service logs, not a self-declared extraction count, define the independent execution witness.",
+      "observation": {
+        "authObservations": 24,
+        "completeWitnessPaths": 24,
+        "partialOptionalObservations": 0,
+        "persistenceObservations": 24,
+        "unscoredExcludedObservations": 0
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Application witness extraction reconciles.",
+      "failureClass": null,
+      "gate": "application-witness-extraction",
+      "inference": "The independent source logs, scored population, and emitted witness rows require terminal hash reconciliation.",
+      "observation": {
+        "appWitnessSha256": "c2ecf4592df56a3171d6c0571b3877f7f0c3bd22f3bca9b8132252bf2c59f5a1",
+        "counts": {
+          "authObservations": 24,
+          "completeWitnessPaths": 24,
+          "ledgerOpportunities": 36,
+          "partialOptionalObservations": 0,
+          "persistenceObservations": 24,
+          "phases": {
+            "after": 11,
+            "before": 13,
+            "during": 12
+          },
+          "requiredScoredOpportunities": 24,
+          "unscoredExcludedObservations": 0
+        },
+        "inputs": {
+          "authLogSha256": "a7deb270a9a47c6a141c7b998bff7385f3b2b7b31b34b04d24ec6e340d007ba8",
+          "journeyLedgerSha256": "30c4494601871cb7a459a55a9d26c482a576b8dd77f55bb8e5616a1cb923c2ad",
+          "journeyPlanSha256": "7fdae76f1ece67afb9e4edaf8f195194777c173499daa0ddb1e8a87f8f884aa3",
+          "persistenceLogSha256": "678f3f5d0f5ec01ea4a9f0ae1a948ef5e9952d303716ffeab72ec8adefca4fac"
+        },
+        "status": "complete"
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Executed-path denominator is independently observed.",
+      "failureClass": null,
+      "gate": "independent-execution-denominator",
+      "inference": "Expected opportunities do not prove execution; an independent application witness defines eligibility.",
+      "observation": {
+        "eligibleExecutedPaths": 24,
+        "errors": [],
+        "scoredExpectedOpportunities": 24,
+        "witnessRows": 24
+      },
+      "status": "pass"
+    },
+    {
+      "conclusion": "Correlation is complete.",
+      "failureClass": null,
+      "gate": "opaque-token-native-trace-correlation",
+      "inference": "Each pre-outcome workload token must join through the separately extracted auth-log bridge to exactly one original native trace; native events carry no workload token. When the replayed closure omits the trace-root sensor, per-request window containment and the trace<->token bijection are structurally absent and are measured as trace-level coverage instead of being required (F-ADH-066).",
+      "observation": {
+        "correlationErrors": [],
+        "eligibleExecutedPaths": 24,
+        "entryPointWoven": true,
+        "traceLevelCoverage": null
+      },
+      "status": "pass"
+    }
+  ],
+  "verdict": "pass",
+  "views": {
+    "path": {
+      "details": [
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "0504029833a8026aedc3e69d8b181c645656da5fa6f0a25a41f831c08c8b5757",
+          "opportunityId": "login-only-v1:000000",
+          "originalNativeTraceId": "10000",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "8ab6ab61037fd9edcbd883f111834196a94eb8dfc13343b23c6aae8c3b52116d",
+          "opportunityId": "login-only-v1:000001",
+          "originalNativeTraceId": "10001",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "c6feb08962497587e9c655d4a9ac9ce75abd46e78c6eb3a34b3913ff8c1c15f0",
+          "opportunityId": "login-only-v1:000002",
+          "originalNativeTraceId": "10002",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "fc95489e3cbd5e84965ec65c86198f7b9e9baf2991ecb21a8d0017d61af368c5",
+          "opportunityId": "login-only-v1:000003",
+          "originalNativeTraceId": "10003",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "3d1f137fb78409646ee28def04dc91319f2fb66fe036d568075e7eca075367bb",
+          "opportunityId": "login-only-v1:000004",
+          "originalNativeTraceId": "10004",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "aaf1b95194c5fdc7bf283430c072240853818484c41f49a4709c70681412eb06",
+          "opportunityId": "login-only-v1:000005",
+          "originalNativeTraceId": "10005",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "f9f7fdabfbd6edc678bec94c59c8f33d33f1f8371c2e741c6ec1f6c602f5bcfa",
+          "opportunityId": "login-only-v1:000006",
+          "originalNativeTraceId": "10006",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "f5b574b91645e1d73f3db8fcee5b280d172aade6555230047e03ffd6a04b5367",
+          "opportunityId": "login-only-v1:000007",
+          "originalNativeTraceId": "10007",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "d7f7d8d0954ce910d527ff2a9a5af21fb0a0a98aad094d9a98722f4eff4a52fa",
+          "opportunityId": "login-only-v1:000008",
+          "originalNativeTraceId": "10008",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "38558b6e4d345b967752cdb6bd073b49e11ba0240c6146b4ee6e2b8634c088c7",
+          "opportunityId": "login-only-v1:000009",
+          "originalNativeTraceId": "10009",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "67f33ce9213aabf7540d40c341d53400d72af447db969235a8dc24956eaca91e",
+          "opportunityId": "login-only-v1:000010",
+          "originalNativeTraceId": "10010",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "7b24b6b3fd3756109a9c2d436ed02bafd1818b60f40bf379eb69e4009e4d7804",
+          "opportunityId": "login-only-v1:000011",
+          "originalNativeTraceId": "10011",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "cf47b450b2c02f54c4716ae51f12e66b0e714bfc6c2de41d419b515fc4b4ac09",
+          "opportunityId": "login-only-v1:000012",
+          "originalNativeTraceId": "10012",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "c45d43d2248ed25bc2fe6ca3d181085bcecb1129bdc232d00b97fe9afc54dfe4",
+          "opportunityId": "login-only-v1:000025",
+          "originalNativeTraceId": "10025",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "dbd697a3c6fd64396f78858729c73788d881fdfc528f6147b093b7ba79025653",
+          "opportunityId": "login-only-v1:000026",
+          "originalNativeTraceId": "10026",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "8ddd12b4b742016d400d72ac737f3efb3f2ebcabfc9f166dafe1cddc6668e35b",
+          "opportunityId": "login-only-v1:000027",
+          "originalNativeTraceId": "10027",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "2d2cbe501ad1a0db3ff3108c55001d94e33e933265c666d7d699b116988debda",
+          "opportunityId": "login-only-v1:000028",
+          "originalNativeTraceId": "10028",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "5badfd317795f10a7aa3031789bf51875e69515106cf269b9653bc6b34b2d770",
+          "opportunityId": "login-only-v1:000029",
+          "originalNativeTraceId": "10029",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "5844da8bf33f503292f433b190a6cc0bd315bf9a168fdd7042a666872014fff1",
+          "opportunityId": "login-only-v1:000030",
+          "originalNativeTraceId": "10030",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "f9b88765950756fd1b96ef7bbf615c0c3b4acdec075111b8300a89e6feb80079",
+          "opportunityId": "login-only-v1:000031",
+          "originalNativeTraceId": "10031",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "c436c5eeb736fca07eb8fcd6c2a7916d5dd585848964328c788b50989d0c6b67",
+          "opportunityId": "login-only-v1:000032",
+          "originalNativeTraceId": "10032",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "176ee4b01b7e398f1cb22b4d4c6b16e797153fa1697cbae92db34f47f6365fe0",
+          "opportunityId": "login-only-v1:000033",
+          "originalNativeTraceId": "10033",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "7709b3e5a0a9f110012a4fba64f1df3553f580e4a8bb06fd130dff1b365e8392",
+          "opportunityId": "login-only-v1:000034",
+          "originalNativeTraceId": "10034",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        },
+        {
+          "directAuthPersistenceEdge": true,
+          "mappingId": "a8699e7ba7dbe490ba363fb2e2213d8777645976171b222bc071204b3b52911f",
+          "opportunityId": "login-only-v1:000035",
+          "originalNativeTraceId": "10035",
+          "reconstructed": true,
+          "requiredOperationsPresent": true
+        }
+      ],
+      "eligibleExecutedPaths": 24,
+      "expectedOpportunities": 24
+    },
+    "raw": {
+      "diagnosticTailOrOutsideRecords": 0,
+      "originalNativeTraces": 36,
+      "records": 72,
+      "uniqueMessageBodies": 36
+    },
+    "signatureWeighted": {
+      "signatureWeightedRecords": 2.0,
+      "topOperation": "Auth.login",
+      "topOperationConcentration": 0.5,
+      "topOperationCount": 36,
+      "uniqueSignatures": 2
+    }
+  }
+}

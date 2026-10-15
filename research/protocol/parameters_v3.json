@@ -1,0 +1,383 @@
+{
+ "schemaVersion": 1,
+ "title": "Parameter registry of the traffic-sweep analysis v3 (research/detection-time/sweep_analysis_v3.py): the values and rules v3 adds to v2.4 (protocol round 15, decisions 61-65, as amended by round 17, decision 67 (v3.1, d8df15d); research/PROTOCOL_DRAFT_20261002.md, 252cfcd; design research/protocol/ANALYSIS_V3_DESIGN.md) and the campaign-B reader. Every v2.4 value v3 reads stays in research/protocol/parameters.json, which v3 does not change.",
+ "provenanceRule": "Protocol decision 37 (round 8): every hyperparameter and sensitivity setting is traced to its origin. Kept in a file of its own so that research/protocol/parameters.json, whose sha256 7447b492... the v2.4 freeze record 891a4c3 pins for every v2.4 readout, stays byte-identical and v2.4 stays reproducible (engineering default, recorded in the v3 docstring).",
+ "originTypes": [
+  "decision",
+  "literature",
+  "measured",
+  "upstream",
+  "engineering default",
+  "unknown"
+ ],
+ "parameters": [
+  {
+   "name": "V3_CALIBRATION_UNIT",
+   "value": "sensor-rule",
+   "unit": "calibration unit",
+   "origin_type": "decision",
+   "origin_ref": "decision 61 (PROTOCOL_DRAFT_20261002.md round 15, 252cfcd; ANALYSIS_V3_DESIGN.md point 1): one threshold per (sensor, rule); a sensor's detector is the OR of its calibrated rules. Replaces decision 53 (K per family, K_FIT_UNIT) in v3.",
+   "status": "active"
+  },
+  {
+   "name": "V3_MAX_HELD_OUT_ALARMS",
+   "value": 0,
+   "unit": "held-out alarms per (sensor, rule, rate), summed over the rate's no-fault cells",
+   "origin_type": "decision",
+   "origin_ref": "decision 61 (round 15; ANALYSIS_V3_DESIGN.md point 2): the smallest grid value with zero held-out alarms, leave-one-cell-out on the no-fault cells of the rate. Replaces the 15/h target of decision 33 (FAR_TARGET_PER_HOUR) in v3. Amended by decision 67 (round 17, d8df15d; ANALYSIS_V3_DESIGN.md 'Review and amendment v3.1', 7997b32). The selection stays; the naive zero (and its bound -ln(0.05)/T) is never printed as a false-alarm claim: every false-alarm figure is the honest nested count (V3_NESTED_RULE).",
+   "status": "active"
+  },
+  {
+   "name": "V3_SENSITIVITY_MAX_HELD_OUT_ALARMS",
+   "value": 1,
+   "unit": "held-out alarms per (sensor, rule, rate)",
+   "origin_type": "decision",
+   "origin_ref": "decision 65 (round 15; ANALYSIS_V3_DESIGN.md 'What it costs': 'one sensitivity row at <= 1 held-out alarm'): the same calibration with at most one held-out alarm; its bound is the exact bound for the count observed (0 or 1). Amended by decision 67 (round 17, d8df15d; ANALYSIS_V3_DESIGN.md 'Review and amendment v3.1', 7997b32). No such row for range-fallback rules: the sensitivity setting tries K_GRID only.",
+   "status": "active"
+  },
+  {
+   "name": "V3_LEVEL_GRID_RULE",
+   "value": "level rules (spike, run3, median; the ledger's on ok latency) try K_GRID in ascending order (K <= 100, decision 55, threshold max(K x MAD_SCALE x MAD, relative floor, resolution) as v2.4), then the range fallback (V3_RANGE_FALLBACK_RULE); the first value with at most the criterion's held-out alarms is the rule's calibrated value; none: the rule is dropped. Each rule is calibrated on its own (its own threshold), so run3 and median may fire before spike.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 62 (round 15; ANALYSIS_V3_DESIGN.md point 3, level rules)",
+   "status": "active"
+  },
+  {
+   "name": "V3_RANGE_WIDEN_STEPS",
+   "value": 1,
+   "unit": "instrument resolution steps",
+   "origin_type": "decision",
+   "origin_ref": "decision 62 (round 15): the range fallback is the fit cells' empirical minimum and maximum widened by one resolution step (the instrument resolution of RESOLUTION_RULE)",
+   "status": "active"
+  },
+  {
+   "name": "V3_RANGE_FALLBACK_RULE",
+   "value": "range fallback of a level rule: lower = min - V3_RANGE_WIDEN_STEPS x resolution, upper = max + V3_RANGE_WIDEN_STEPS x resolution, min/max over the pooled fault-free level values of the fit's cells (the same probe-excluded segment values the median and MAD come from), resolution = the instrument resolution of RESOLUTION_RULE (0 if none). Thresholds per direction: upper - median (up), median - lower (down), compared with dt.beyond (inclusive), so a value one resolution step beyond the fit range fires. Two-sided for metrics, up-only for the latency channels (span durations, ledger latency). Decision 52 kept: a sensor whose fault-free MAD is 0 has no K rule, and the range fallback may apply to it (it needs the median and n >= MIN_BASELINE_POOLED only). Labelled 'range fallback (discrete in effect)': a continuous series always leaves held-out alarms, so in effect it rescues discrete series only. Not tried in the <= 1 alarm sensitivity setting. A range with no instrument resolution in the fit (a constant instrument, e.g. Hotel's sys_io, sys_psi_io, sys_psi_memory at 0.0 everywhere) or a threshold <= 0 is degenerate: the rule is unarmed with the reason 'range degenerate: no instrument resolution in the fit', never a value, never re-armed in the optimistic arm.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 62 (round 15; ANALYSIS_V3_DESIGN.md point 3) Amended by decision 67 (round 17, d8df15d; ANALYSIS_V3_DESIGN.md 'Review and amendment v3.1', 7997b32). (point 4: discrete-only label, up-only for latency channels, two-sided for metrics, no <= 1 row; point 5: decision 52 kept, the range fallback may apply to MAD = 0, labelled). Degenerate-range guard: the independent v3.1 review (Fable, 2026-10-10), finding F1 (inclusive >= on a {0, 0} threshold fired on every sample).",
+   "status": "active"
+  },
+  {
+   "name": "V3_ABSENT_M_GRID",
+   "value": [
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    5.0
+   ],
+   "unit": "multiplier of the largest fault-free gap G",
+   "origin_type": "decision",
+   "origin_ref": "decision 62 (round 15; ANALYSIS_V3_DESIGN.md point 3): g = m x G, m on the grid {1, 1.5, 2, 3, 5}, the smallest m with at most the criterion's held-out alarms; replaces ABSENT_GAP_MULT (2.0) in v3",
+   "status": "active"
+  },
+  {
+   "name": "V3_ABSENT_CENSORED_RULE",
+   "value": "G = the largest of, over the fit's cells that have at least one record of the stream in their fault-free segment: the largest inter-arrival gap between records in the segment, the censored silence from the segment start to the first record, and the censored silence from the last record to the segment end. The segment is H1's (segment_stats): a no-fault cell from the barrier to the measurement end, a fault cell from the barrier to startedMonotonic (its trailing silence ends at the onset), whole-second logs cut at the floor of the onset as in v2.4. A cell with no record of the stream contributes nothing (there is no first or last record). Arming unchanged: the pooled record count must reach MIN_BASELINE_POOLED, else the rule is unarmed. The ledger's `absent` uses the completions of its route the same way.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 62 (round 15; ANALYSIS_V3_DESIGN.md point 3: 'the largest inter-arrival gap in the fit cells, including the censored silences from window start to the first record and from the last record to window end'). Engineering defaults (recorded): window = H1's fault-free segment per cell; a cell without a record contributes no silence (literal reading of 'first record' / 'last record'). Amended by decision 67 (round 17, d8df15d; ANALYSIS_V3_DESIGN.md 'Review and amendment v3.1', 7997b32). (point 4: a cell with no records contributes no silence.)",
+   "status": "active"
+  },
+  {
+   "name": "V3_APPEAR_RULE",
+   "value": "`appear` unchanged (fires on a stream with no record in the fault-free data of the fit); per (sensor, appear) its held-out count is the number of held-out no-fault cells in which the stream appears while having no record in that fold's fit; above the criterion it is dropped. A stream with a record in the pooled scoring fit cannot fire `appear` in an episode and is unarmed for `appear` (unless dropped). Because a stream that can fire `appear` in an episode has no no-fault record, its held-out count is 0 by construction; the held-out `appear` alarms per service (new templates or operations in no-fault time) are reported beside, as the vocabulary-level rate. Sensors whose only calibrated rule is `appear` are listed apart from the other placeable sensors (decision 67).",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 62 (round 15: '`appear` unchanged, calibrated by the same criterion'); the unarmed status and the vocabulary-level report are engineering defaults (recorded) that make the by-construction zero visible Amended by decision 67 (round 17, d8df15d; ANALYSIS_V3_DESIGN.md 'Review and amendment v3.1', 7997b32). (point 3) Accepted as an engineering default (coordinator, 2026-10-09), recorded in V3_ACCEPTED_DEFAULTS.",
+   "status": "active"
+  },
+  {
+   "name": "V3_LEDGER_RULE",
+   "value": "the ledger E (per route): `failed` is exempt from calibration (the client's definition of failure, the positive control of P1/P2) and always armed; its count in the no-fault cells of each rate is reported. E's `spike`, `run3`, `median` (ok latency) and `absent` (completions) are calibrated like any sensor's rules.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 63 (round 15; ANALYSIS_V3_DESIGN.md point 5). run3 and median are E's level rules beside spike (v2.4 E_RULES); calibrating them like spike is the reading of 'E's spike and absent are calibrated like any sensor' (engineering default, recorded) Amended by decision 67 (round 17, d8df15d; ANALYSIS_V3_DESIGN.md 'Review and amendment v3.1', 7997b32). (point 6: `failed` stays exempt and is labelled; E's rule mix per rate is printed.)",
+   "status": "active"
+  },
+  {
+   "name": "V3_CALIBRATION_SCOPE_RULE",
+   "value": "calibration is per rate and independent of the fault class: a held-out fold is one no-fault cell of the rate scored with v2.4's leave-one-cell-out fit (every valid cell of the rate except that cell, fault cells contributing their pre-onset segment, H1); every armed (sensor, rule) is counted on its own fires, with the detector restarted after each alarm (v2.4's restart semantics restricted to that rule). The episodes are scored with the pooled fit (H1) at each rule's calibrated value. Decision 55's scored-set calibration (M3) is not applied: the unit is the rule, and the class's path filter and by-construction flags still decide which fires count in scoring.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 61 names the unit and the criterion; decision 67 (round 17, point 5) adopts the calibration as class-independent (one value per rule and rate). Keeping v2.4's fit construction (H1, decision 31) is an engineering default, recorded. Accepted as an engineering default (coordinator, 2026-10-09), recorded in V3_ACCEPTED_DEFAULTS.",
+   "status": "active"
+  },
+  {
+   "name": "V3_STATUS_RULE",
+   "value": "each (sensor, rule) at a rate is: calibrated (armed in scoring, held-out count within the criterion at its value, and able to fire inside the hold), dropped (armed, no grid value within the criterion; listed with its held-out count at the last grid value), inert (calibrated by the criterion but unable to fire inside the hold: an `absent` whose scoring gap g exceeds the shortest fault hold of the system; neither calibrated nor a reason to call the sensor placeable), unarmed (cannot fire in scoring at this rate: no pooled level data, pooled n < MIN_BASELINE_POOLED, for K values MAD = 0, for `appear` a record in the pooled fit; listed with the reason) or exempt (the ledger's `failed`). Placeability is per (sensor, rule): a rule is placeable iff calibrated; a sensor with no calibrated rule is 'not placeable at this quiet time'. A K = 100 selection is flagged 'at grid edge'.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 62 (round 15) as amended by decision 67 (round 17, points 3 and 5: inert status, per-rule placeability, grid-edge flag); MIN_BASELINE_POOLED stays for arming (decision 31)",
+   "status": "active"
+  },
+  {
+   "name": "V3_PLACEMENT_FAR_RULE",
+   "value": "placement-level false alarms of a sensor set at a rate: the honest nested union (V3_NESTED_RULE) of its sensors' rules on the rate's no-fault cells: for each held-out cell, the rules at the values re-selected without that cell, simulated together on it with its leave-one-cell-out fit, the union detector restarted after each alarm; count, hours, rate and the exact one-sided FAR_CONFIDENCE Poisson bound; the sum of the members' counts beside (no independence assumed). On validation cells (campaign B): the calibrated values with the pooled fit. No constraint inside the objective. Only held-out cells where at least one of the set's rules is in the detector and armed count, alarms and hours alike; with none the count is —.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 64 (round 15) as amended by decision 67 (round 17, points 1-2: the honest nested union, never the naive 0)",
+   "status": "active"
+  },
+  {
+   "name": "V3_P4_RULE",
+   "value": "P4 compares the ledger with the placeable sensors in two arms: calibrated (primary: candidates = fires of calibrated rules only) and optimistic (beside: dropped rules also armed at the largest grid value, K = 100 for level rules, m = 5 for `absent`), as H6's pessimistic and optimistic bounds; decision 55's B1 does not apply. Each (class, rate) names the dropped (sensor, rule) pairs and the non-placeable sensors on the class's affected path. The ledger is the OR of its calibrated rules (decision 70, V3_P4_LEDGER_READING); a dropped ledger rule is listed per rate, not a reason for —. P4 is — where fewer episodes than declared exist (as v2.4). The ledger's `failed` is exempt from calibration, always compared, and labelled so in the readout.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 65 (round 15) as amended by decision 67 (round 17, point 6) and decision 70 (round 19, 147c910: the ledger is the OR of its calibrated rules; replaces the earlier engineering reading 'an armed ledger rule dropped makes P4 —', accepted on 2026-10-09 as an engineering default (coordinator, 2026-10-09) and recorded in V3_ACCEPTED_DEFAULTS)",
+   "status": "active"
+  },
+  {
+   "name": "V3_VALIDATION_RULE",
+   "value": "out-of-sample check: no-fault cells given with --validation are never pooled into a fit or a calibration; each calibrated (sensor, rule) of the rate, each placeable sensor (OR of its rules) and each reported sensor set (union) is run on them with the pooled scoring fit of the main cells, without refitting; counts, hours and the exact bound are reported. Fault cells given as validation are listed and not used.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 65 (round 15: 'Campaign B's no-fault cells serve as the out-of-sample check of the calibrated detectors') Amended by decision 67 (round 17, d8df15d; ANALYSIS_V3_DESIGN.md 'Review and amendment v3.1', 7997b32). (point 2: B's no-fault cells are a fresh check whose limit is printed, V3_B_FRESH_HOURS.)",
+   "status": "active"
+  },
+  {
+   "name": "V3_FREEZE_EVENTS_RULE",
+   "value": "campaign-B reader (TeaStore, OTel), decisions 54 and 69: a fault cell whose H4 record carries exactly one Docker `pause` event of its target container, inside [command issued - V3_FREEZE_EVENT_TOLERANCE_S, the cell's v2.4 upper bound + V3_FREEZE_EVENT_TOLERANCE_S], with no problem, gets that event as its onset interval's upper bound; P1's tolerance then adds the Docker event granularity and the alignment residual (v2.4's p1_tolerance). Otherwise (decision 69) its H4 record is `missing` with the reasons; the cell stays valid, keeps the sweep's bound and is counted per harness. The sweep's bound is v2.4's per system (decision 69: 'as in the sweep'): TeaStore [command issued, command returned]; OTel [startedMonotonic, appliedMonotonic], appliedMonotonic being the OTel sweep's own bound (F6). Problems: TeaStore sweep.freezeStamps (bbb6b11) status other than `recorded` (its failures become the reasons), failureCount != len(failures), `missing` with no failure, `recorded` with failures (contradictory), the validator's h4 status disagreeing, a null record ('freezeStamps null'); rows of another container or type are left out (F11). OTel docker-events.json (c4aa313) verdict status other than `ok` (its reasons become the reasons), failures != len(reasons), `ok` with reasons or with a stream error / exitedBeforeStop / parseProblems (contradictory), containerId not the receipt's target, an event monotonic that does not replay the producer's bm + (timeNano/1e9 - be) (F7); OTel intervention.freeze.stampCheck status other than `ok` likewise, commandIssuedMonotonic not replaying startedMonotonic, a null `freeze`. Also: zero or several pause events, an event outside the window, no record in a B cell. Hotel's docker-events.jsonl line format is still read (timeNano mapped wall -> ledger clock by the cell's fit). Record key sets are pinned (V3_B_RECORD_KEYS): another key set or an unknown version or kind stops the run (UnknownSchema). Throttle cells keep v2.4's bound; their command, readback and stampCheck records are kept (a problem there marks the record missing, counted).",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 49 (round 10: campaign B after the H4 harness change), decision 54 (round 11: the P1 window's upper bound is the Docker pause event), decision 69 (round 18, f6aea2d: H4 record missing or contradictory in a valid cell -> fall back to [command issued, command returned], counted). Schemas: Hotel's docker-events.jsonl (sweep_analysis_v2.read_docker_events); research/traffic-sweep/DECLARATION_B_TEASTORE_DRAFT.md 'H4, as implemented' (read 2026-10-09, before its decision-69 update: re-check when it changes); research/traffic-sweep/DECLARATION_B_OTEL_DRAFT.md 'H4: stamp the freeze' (read 2026-10-09, written before decision 69: its blocking verdict becomes a recorded one). The throttle bound staying v2.4's is engineering default (coordinator, 2026-10-09). Accepted as an engineering default (coordinator, 2026-10-09), recorded in V3_ACCEPTED_DEFAULTS. Rewritten to the decision-69 schemas (TeaStore bbb6b11, OTel 0ad9a2c / c4aa313) after the independent v3.1 review (Fable, 2026-10-10), findings F3, F6, F7, F11.",
+   "status": "active"
+  },
+  {
+   "name": "V3_NESTED_RULE",
+   "value": "honest nested leave-one-cell-out count of a (sensor, rule) at a rate: for each no-fault cell X of the rate, the grid value is re-selected by the same criterion on the other no-fault cells Y, each scored with a fit that excludes both X and Y (every valid cell of the rate except X and Y, H1); X is then scored at that value with its own leave-one-cell-out fit (exact count, restarted after each alarm). Where no value meets the criterion without X, the rule is not in X's detector (0). Summed over X: the honest count; / T: the honest rate, with its exact bound. A sensor's honest count is the union of its rules so re-selected, simulated per X; a sensor set's likewise (V3_PLACEMENT_FAR_RULE). The honest per-sensor rate is the sensor's false-alarm cost for CELF. F2: the honest count and its hours run over the held-out cells where the rule was in the detector and armed in that cell's fit (`foldsEvaluated`, `honestHours`; the rate's whole T beside); with no such cell the count is — (not evaluable), and a sensor (or set) with no evaluated cell has CELF cost —, never 0.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 67 (round 17, d8df15d; ANALYSIS_V3_DESIGN.md amendment v3.1 points 1-2). The inner fits excluding both cells (full nesting) are an engineering default, recorded: the reviewer's feasibility script (tmp/v3review/v3_feasibility.py) nests the fits for `absent` and reuses the single-exclusion fits for K rules. Accepted as an engineering default (coordinator, 2026-10-09), recorded in V3_ACCEPTED_DEFAULTS. Evaluated-fold denominator: the independent v3.1 review (Fable, 2026-10-10), finding F2.",
+   "status": "active"
+  },
+  {
+   "name": "V3_TESTABLE_RULE",
+   "value": "a held-out fold whose fit cannot arm a (sensor, rule) (level: no pooled scale, n < MIN_BASELINE_POOLED, MAD = 0 for K, a degenerate range; absent: n < MIN_BASELINE_POOLED; appear: a record in the fold's fit) is no evidence: it adds no alarm and no test. A grid value needs at least one armed fold; a rule with no testable value is unarmed ('not testable'). The same holds in the nested re-selection. A rule calibrated on the leave-one-cell-out folds may still be out of the detector, or unarmed, in every nested fold (OTel: 411-460 calibrated rules per rate armed with one cell left out but not with two): its honest count is then — (no nested evidence), never 0 (V3_NESTED_RULE).",
+   "unit": "rule text",
+   "origin_type": "engineering default",
+   "origin_ref": "Found while building v3.1 (2026-10-09): with unarmed folds counted as zero alarms, OTel's MAD = 0 metrics (n just above MIN_BASELINE_POOLED with one cell left out, below it with two) were dropped by the selection yet re-selected at the range in every nested fold by vacuity, adding about 1,200 honest alarms per rate. The reviewer's feasibility script (tmp/v3review/v3_feasibility.py) likewise calibrates only rules with an armed held-out cell. Decisions 61 and 67 speak of held-out alarms; reading an untestable fold as no evidence is the engineering default, recorded and flagged for review. Accepted as an engineering default (coordinator, 2026-10-09), recorded in V3_ACCEPTED_DEFAULTS. Corrected after the independent v3.1 review (Fable, 2026-10-10), finding F2: the earlier text implied the nested count could not be vacuous; it can, and is then reported as —.",
+   "status": "active"
+  },
+  {
+   "name": "V3_INERT_RULE",
+   "value": "an `absent` whose calibrated scoring gap g = m x G exceeds the shortest fault hold among the system's episodes cannot respond to a silence starting at or after the onset inside the hold: status inert (V3_STATUS_RULE); it is not in the scoring detector, and in the nested count it is left out of a held-out cell's detector where its gap in that cell's fit exceeds the hold.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 67 (round 17, point 3: 'a rule whose calibrated value cannot fire inside the hold (e.g. absent gap > hold) is inert'). The hold is each episode's own (B - A), the shortest over the system's valid fault cells (engineering default). Accepted as an engineering default (coordinator, 2026-10-09), recorded in V3_ACCEPTED_DEFAULTS.",
+   "status": "active"
+  },
+  {
+   "name": "V3_OPTIMISTIC_ARM_RULE",
+   "value": "the optimistic P4 arm scores the episodes with the calibrated detector plus every dropped (sensor, rule) armed at the largest grid value: level rules at K = the last K_GRID value (100), `absent` at the last V3_ABSENT_M_GRID value (5); inert and unarmed rules stay out. It is a bound beside the calibrated arm, never the primary. Printed as 'optimistic bound (not evidence)', never in bold.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 67 (round 17, point 6: 'calibrated (primary) and optimistic (dropped rules at the largest grid value), as H6's pessimistic/optimistic bounds')",
+   "status": "active"
+  },
+  {
+   "name": "V3_B_FRESH_HOURS",
+   "value": 0.15,
+   "unit": "hours of no-fault time per rate and system in campaign B",
+   "origin_type": "decision",
+   "origin_ref": "decision 49 (round 10: 3 more blocks, one no-fault cell per rate and block, 180 s each = 0.15 h) and decision 67 (round 17, point 2: B's no-fault cells as a fresh check whose limit, about 20/h for 0 alarms, is printed)",
+   "status": "active"
+  },
+  {
+   "name": "V3_KNOWN_LIMITATIONS",
+   "value": {
+    "otel": [
+     "L66 (decision 66, round 16, e12e98f; research/traffic-sweep/OTEL_LOST_BATCH_DIAGNOSIS.md): otelcol.log is a lossy carrier in the existing OTel sweep and quiet cells (the collector's log sampling is on): a span or metric missing there may be a carrier drop, not a system loss. Campaign B's OTel cells disable the sampling, so B's fault cells are read through a lossless carrier while the quiet calibration cells were not; the direction is conservative for `absent` and the level rules (calibration sees extra silences, so gaps and K are larger than a lossless carrier would give).",
+     "L-H10 (DECLARATION_B_OTEL_DRAFT.md H10; coordinator 2026-10-09): the sweep's OTel fault cells probed the route right after the fault command (a `during-fault` readiness probe, scope-excluded from L and M scoring by v2.4's probe windows); campaign B's cells do not probe from the onset to the end of the hold. The four pooled episodes per (fault, rate) therefore come from two harnesses (sweep 1, B 3), not one design; the per-harness breakdown is printed beside every pooled verdict."
+    ],
+    "teastore": [
+     "L-H4 (DECLARATION_B_TEASTORE_DRAFT.md; coordinator 2026-10-09): the sweep's TeaStore fault cell has no H4 record (its onset interval is [command issued, command returned]), B's have the Docker pause event; the sweep already probed only after the revert, so H10 changes nothing there. The four pooled episodes per (fault, rate) come from two harnesses (sweep 1, B 3); the per-harness breakdown is printed beside every pooled verdict."
+    ]
+   },
+   "unit": "limitation texts per system",
+   "origin_type": "decision",
+   "origin_ref": "decision 66 (PROTOCOL_DRAFT_20261002.md round 16, e12e98f) and the lost-batch diagnosis note (not yet independently reviewed); recorded at the coordinator's request, no code change; L-H10 and L-H4: decision 49's pooling across harnesses, recorded at the coordinator's request (2026-10-09)",
+   "status": "active"
+  },
+  {
+   "name": "V3_FREEZE_EVENT_TOLERANCE_S",
+   "value": 0.25,
+   "unit": "s",
+   "origin_type": "engineering default",
+   "origin_ref": "both B harness drafts' freezeEventToleranceSeconds (TeaStore FAULT_HARNESS, OTel verdict window): the pause event must map into the command interval widened by this; outside it the record is contradictory (decision 69)",
+   "status": "active"
+  },
+  {
+   "name": "V3_FREEZE_REPLAY_TOLERANCE_S",
+   "value": 1e-06,
+   "unit": "s",
+   "origin_type": "engineering default",
+   "origin_ref": "the B harness drafts' validators recompute event offsets and command stamps to 1e-6 s (DECLARATION_B_TEASTORE_DRAFT.md 'The validator recomputes it (tolerance 1e-6 s)'); the reader's replay check uses the same",
+   "status": "active"
+  },
+  {
+   "name": "V3_B_SCHEMA_ADDITIONS",
+   "value": {
+    "otel": {
+     "intervention.json": [
+      "freeze"
+     ]
+    }
+   },
+   "unit": "keys a campaign-B cell adds to a pinned sweep schema",
+   "origin_type": "upstream",
+   "origin_ref": "DECLARATION_B_OTEL_DRAFT.md 'H4: stamp the freeze' (receipt intervention.json, new key `freeze`); v2.4's OTel reader checks the intervention key set for equality (SCHEMAS otel intervention.json keys), so the key is admitted for B-epoch cells only and a sweep cell keeps the exact set. TeaStore's additions live under `sweep`, which v2.4 does not pin key by key.",
+   "status": "active"
+  },
+  {
+   "name": "V3_HARNESS_TAG_RULE",
+   "value": "every cell and episode carries its harness: `B` (a campaign-B study epoch, STUDY_EPOCHS_B: H10 and H4 in the harness) or `sweep` (the traffic sweep's and quiet runs' harness; Hotel's cells are all `sweep`). P2 and P4 pool the sweep's episode with B's three per (fault, rate), 'k of 4' against EPISODES_<SUT> = 4 (decision 49); beside every pooled verdict the readout prints the per-harness breakdown (P4 folds by the held-out episode's harness, P2 episodes, P1 episodes, H4 record status per fault cell).",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 49 (round 10: 'three more blocks on TeaStore and OTel, 4 in total like Hotel'); the per-harness breakdown beside the pooled verdict is the coordinator's instruction (2026-10-09), engineering default (coordinator, 2026-10-09)",
+   "status": "active"
+  },
+  {
+   "name": "V3_POOL_KEY_RULE",
+   "value": "a cell's identity in a pooled run is (its campaign directory, its path inside it); a cell given twice stops the run. Quiet run A2 repeats A's plan and run IDs under a new campaign (decision 68), so a run ID or run path alone is not an identity.",
+   "unit": "rule text",
+   "origin_type": "decision",
+   "origin_ref": "decision 68 (round 17: A2 pooled with A) and decision 69 (round 18: A2 campaigns per system); research/traffic-sweep/DECLARATION_QUIET_A2_HOTEL.md (5d018ab: same plan and run IDs as A, new campaign ID). The duplicate stop is engineering default (coordinator, 2026-10-09)",
+   "status": "active"
+  },
+  {
+   "name": "V3_ACCEPTED_DEFAULTS",
+   "value": [
+    "full nesting of the honest count: the inner fits exclude both the held-out and the inner cell (V3_NESTED_RULE)",
+    "a held-out fold that cannot arm a rule is no evidence (V3_TESTABLE_RULE)",
+    "inert = an `absent` whose calibrated gap exceeds the shortest episode hold, 60 s on the existing cells (V3_INERT_RULE)",
+    "P4 is — where an armed ledger rule is dropped at the rate (V3_P4_RULE) — superseded by decision 70 (round 19): the ledger is the OR of its calibrated rules",
+    "the throttle onset bound stays v2.4's (TeaStore command returned, OTel appliedMonotonic) (V3_FREEZE_EVENTS_RULE)",
+    "`appear` on a stream with fault-free records is unarmed; calibration is class-independent (V3_APPEAR_RULE, V3_CALIBRATION_SCOPE_RULE)"
+   ],
+   "unit": "list",
+   "origin_type": "engineering default",
+   "origin_ref": "engineering default (coordinator, 2026-10-09)",
+   "status": "active"
+  },
+  {
+   "name": "V3_B_RECORD_KEYS",
+   "value": {
+    "teastore": {
+     "freezeStamps": [
+      "schemaVersion",
+      "version",
+      "scenario",
+      "targetContainerId",
+      "toleranceSeconds",
+      "commands",
+      "readbacks",
+      "clock",
+      "events",
+      "status",
+      "failures",
+      "failureCount"
+     ],
+     "row": [
+      "action",
+      "type",
+      "containerId",
+      "timeNano",
+      "monotonicOffsetSeconds"
+     ]
+    },
+    "otel": {
+     "dockerEvents": [
+      "schemaVersion",
+      "kind",
+      "runId",
+      "service",
+      "containerId",
+      "clock",
+      "stream",
+      "raw",
+      "events",
+      "parseProblems",
+      "verdict"
+     ],
+     "verdict": [
+      "pauseEvents",
+      "unpauseEvents",
+      "pauseOffsetSeconds",
+      "unpauseOffsetSeconds",
+      "onsetIntervalSeconds",
+      "otherContainerEvents",
+      "status",
+      "failures",
+      "reasons"
+     ],
+     "event": [
+      "action",
+      "containerId",
+      "service",
+      "timeNano",
+      "offsetSeconds",
+      "monotonic"
+     ],
+     "freeze": [
+      "schemaVersion",
+      "kind",
+      "action",
+      "commandIssuedMonotonic",
+      "commandReturnedMonotonic",
+      "stateReadbackMonotonic",
+      "commandIssuedOffsetSeconds",
+      "commandReturnedOffsetSeconds",
+      "stateReadbackOffsetSeconds",
+      "dockerEventsFile",
+      "stampCheck"
+     ],
+     "stampCheck": [
+      "status",
+      "failures",
+      "reasons"
+     ]
+    }
+   },
+   "unit": "key sets of the campaign-B H4 records",
+   "origin_type": "upstream",
+   "origin_ref": "the harness writers at the decision-69 commits: TeaStore observability-placement-runtime-teastore-protocol bbb6b11 performance_campaign.build_freeze_stamps and collect_freeze_events (and its validator's key-set check); OTel observability-placement-runtime-otel-protocol 0ad9a2c (re-pinned c4aa313) candidate_remote.docker_events_record, docker_events_verdict, parse_docker_events_lenient, freeze_stamps, freeze_stamp_check. Pinning them is the independent v3.1 review (Fable, 2026-10-10), finding F3.",
+   "status": "active"
+  },
+  {
+   "name": "V3_P4_LEDGER_READING",
+   "value": "calibrated-ledger",
+   "unit": "one of dash-if-ledger-rule-dropped | calibrated-ledger",
+   "origin_type": "decision",
+   "origin_ref": "decision 70 (PROTOCOL_DRAFT_20261002.md round 19, 147c910; on the v3.1 review's finding F4): the ledger in P4 is the OR of its calibrated rules (`failed` exempt), symmetric with sensors; a dropped ledger rule is listed, not a reason for `—`. The alternative reading dash-if-ledger-rule-dropped (P4 — where an armed ledger rule is dropped) stays implemented as the planted defect of the tests.",
+   "status": "active"
+  },
+  {
+   "name": "V3_REPORT_LIST_MAX",
+   "value": 40,
+   "unit": "list items printed per list in the markdown readout",
+   "origin_type": "engineering default",
+   "origin_ref": "display only: the markdown readout prints at most this many items of a long list (dropped rules, non-placeable sensors) and says how many more there are; the JSON keeps every item",
+   "status": "active"
+  },
+  {
+   "name": "STUDY_EPOCHS_B",
+   "value": {
+    "teastore": [
+     "teastore-traffic-sweep-b-v1",
+     "teastore-traffic-sweep-c-v1"
+    ],
+    "otel": [
+     "otel-repeat-episodes-v1",
+     "otel-repeat-episodes-c-v1"
+    ]
+   },
+   "unit": "study-epoch names admitted beside SYSTEM_<SUT>.studyEpochs",
+   "origin_type": "decision",
+   "origin_ref": "decision 49 (round 10, campaign B). TeaStore: the B harness draft's epoch (candidate_sweep_b.py, DECLARATION_B_TEASTORE_DRAFT.md Binding: teastore-traffic-sweep-b-v1). OTel: DECLARATION_B_OTEL_DRAFT.md Binding changes, study epoch otel-repeat-episodes-v1 (draft read 2026-10-09). Decision 92 (round 27, 2026-10-12, before any campaign C cell is read): campaign C's epochs teastore-traffic-sweep-c-v1 and otel-repeat-episodes-c-v1 are admitted as campaign-B-shaped (DECLARATION_C_TEASTORE.md: \"campaign B's shape\"; DECLARATION_C_OTEL.md: C's per-epoch key sets equal B's); V3_B_RECORD_KEYS is unchanged, so a C record of another shape still stops the run. Any other epoch name stops the run (UnknownSchema).",
+   "status": "active"
+  }
+ ]
+}

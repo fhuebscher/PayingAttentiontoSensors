@@ -1,0 +1,22 @@
+schema_version: 1
+name: auth-subset-smoke
+control:
+  kind: aspectj-pointcut
+  requested_scope: tools.descartes.teastore.auth..*
+  applied_before_jvm_start: true
+activation_group:
+  selected:
+    - aspectj:auth-package
+  mandatory_coupled:
+    - manual-propagation:registryclient-tracking
+constraints:
+  - A selected service may emit cross-service propagation records created by manual TrackingFilter/ResponseWrapper instrumentation.
+  - Logical observations cannot be costed as independently activatable method sensors.
+smoke_observation_20260802:
+  events: 2334
+  services:
+    auth: 1946
+    persistence: 388
+  workload_cycles: 9
+  duration_seconds: 30
+canonical: false

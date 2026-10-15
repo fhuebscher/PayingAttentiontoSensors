@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "EXTRACTION_PROTOCOL.md stage 2, extractor B",
+    "service": "emailservice",
+    "notes": [
+      "replicas: no replicas or scale key in the emailservice block (docker-compose.yml:192-216); its deploy block sets only resources.limits.memory (docker-compose.yml:200-203). Library default, not in these files.",
+      "healthcheck: no healthcheck key in docker-compose.yml:192-216. The process is a Sinatra server (email_server.rb:6) and email_server.rb:18-33 defines no health route. No heartbeat or cleanup schedule.",
+      "registry, discovery, coordinator: none. No registry or discovery client in the Gemfile (Gemfile:5-12); docker-compose.yml:213-215 depends_on only otelcol.",
+      "messaging: none. No Kafka or other messaging client in Gemfile:5-12, and no kafka depends_on in docker-compose.yml:213-215.",
+      "syncEdges: none outbound in these files. email_server.rb:39-45 sends mail through Pony with via: :test, not a service call. The inbound route POST /send_order_confirmation (email_server.rb:18) has its caller outside these files.",
+      "telemetry destination: docker-compose.yml:210 sets OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}/v1/traces; .env:27 and .env:29 resolve it to otelcol:4318. Only a traces endpoint appears in docker-compose.yml:207-212; no metrics or logs endpoint is set there. OTEL_SERVICE_NAME=emailservice at docker-compose.yml:212.",
+      "exporter selection: email_server.rb:14-16 does not name an exporter. Exporter defaults and the batch export interval are library default, not in these files.",
+      "telemetry on or off: OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER are set for emailservice from OTEL_CANDIDATE_EMAILSERVICE_EXPORTER, and OTEL_SDK_DISABLED from OTEL_CANDIDATE_EMAILSERVICE_DISABLED (compose.candidate-postures.yml:53-58, harness repo). The values of those variables are not in these files."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "emailservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 192,
+        "quotedToken": "emailservice:"
+      },
+      "container": {
+        "value": "email-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 194,
+        "quotedToken": "container_name: email-service"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Resolves the OTEL_COLLECTOR_HOST reference in docker-compose.yml:210 (OTEL_EXPORTER_OTLP_TRACES_ENDPOINT); port 4318 at .env:29. Traces only. Active only if the candidate posture variables enable export (see extraction.notes)."
+        }
+      ]
+    }
+  ]
+}

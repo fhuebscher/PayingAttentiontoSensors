@@ -1,0 +1,43 @@
+{
+  "$schema": "https://observability-placement.local/contracts/optimization-goal.schema.json",
+  "schemaVersion": 1,
+  "id": "teastore-full-journey-structure-v1",
+  "status": "frozen-for-structural-oracle",
+  "operationalFreezeStatus": "open",
+  "module": "teastore",
+  "applicationFamily": "teastore",
+  "catalogBinding": {
+    "path": "modules/teastore/activation/catalog.json",
+    "id": "teastore-kieker-34b37f7",
+    "sha256": "062fc23b515fd7914f5169b25b6f85c9e2cae0b24afa20327c53866a86f43688"
+  },
+  "compatibleContextIds": ["teastore-compose-kieker-srv5-v1"],
+  "scenario": {
+    "id": "full-journey-no-fault",
+    "workloadPopulation": "login, browse, cart, checkout, and confirmation journey",
+    "intervention": "none",
+    "informationRole": "training"
+  },
+  "evidenceRequirements": {
+    "required": [
+      "operation:auth",
+      "operation:image",
+      "operation:persistence",
+      "operation:recommender",
+      "operation:webui"
+    ],
+    "optional": ["propagation:registry-client"],
+    "requiredRelations": []
+  },
+  "structuralObjectives": [
+    {"id": "required-evidence-coverage", "direction": "maximize"},
+    {"id": "structural-required-set-covered", "direction": "maximize"},
+    {"id": "structural-activation-count", "direction": "minimize"}
+  ],
+  "empiricalObjectives": [
+    {"id": "required_sensor_retention", "direction": "maximize", "requiredWindow": "held-out-transfer"},
+    {"id": "request_success_rate", "direction": "maximize", "requiredWindow": "held-out-transfer"},
+    {"id": "telemetry_records_per_success", "direction": "minimize", "requiredWindow": "no-fault-cost"}
+  ],
+  "claimBoundary": "This structural goal skeleton is frozen only for catalog enumeration; its operational workload, SLO, timing, utility, and measurement freeze remains open. It declares breadth across the five catalogued operation groups but does not assert service-edge completeness, diagnostic accuracy, or that retained record count is source cost."
+}

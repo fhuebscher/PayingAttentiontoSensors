@@ -1,0 +1,67 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "stage": 2,
+  "extractor": "A",
+  "service": "imageprovider",
+  "entry": 52,
+  "absent": {
+   "syncCalls": "none stated: src/imageprovider/nginx.conf.template:19-30 is a static file server (root /static); no proxy_pass or upstream",
+   "messaging": "none stated in the given files",
+   "registryOrCoordinator": "none stated in the given files",
+   "healthCheck": "no healthcheck key in the imageprovider block of docker-compose.yml:358-382",
+   "telemetrySignalsOtherThanTraces": "nginx.conf.template configures otel_trace only (line 11); compose.candidate-postures.yml:82-84 sets OTEL_*_EXPORTER env vars for this service but the nginx otel module is configured in the template, not read from those variables in these files",
+   "exportInterval": "not stated in these files (nginx otel module batch settings are library defaults, not in these files)"
+  },
+  "notes": "Harness compose.candidate-postures.yml:79 replaces /nginx.conf.template with the posture-specific template named by OTEL_CANDIDATE_IMAGEPROVIDER_NGINX_TEMPLATE (not provided); facts below are from the upstream template."
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "imageprovider",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 358,
+    "quotedToken": "imageprovider:"
+   },
+   "container": {
+    "value": "imageprovider",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 360,
+    "quotedToken": "container_name: imageprovider",
+    "note": "No healthcheck key in the compose block (lines 358-382); restart: unless-stopped (line 370); memory limit 120M (line 369)."
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "library default, not in these files: the imageprovider block (docker-compose.yml:358-382) and compose.candidate-postures.yml:77-84 set no deploy.replicas or scale; Compose default is 1."
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "src/imageprovider/nginx.conf.template",
+     "line": 9,
+     "quotedToken": "${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}",
+     "note": "otel_exporter endpoint (OTLP gRPC port variable); traces only (otel_trace on, line 11). Host resolved by .env:27 OTEL_COLLECTOR_HOST=otelcol and passed to the container at docker-compose.yml:375. No export interval stated."
+    }
+   ]
+  }
+ ]
+}

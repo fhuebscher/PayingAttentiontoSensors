@@ -1,0 +1,599 @@
+{
+  "amendments": [
+    "research/traffic-sweep/AMENDMENT_QUIET_OTEL_1.md (measurement repo): incomplete traces recorded as telemetry loss, never blocking, in this epoch's cells (research/PROTOCOL_DRAFT_20261002.md decision 56, user 2026-10-04); attempt 1 spent (stopped at cell 8, 7 of 8 valid; research/traffic-sweep/STOP_QUIET_OTEL_A1.md); relaunch 1 of 2, all 40 cells, attempt 2"
+  ],
+  "analysis": {
+    "analysisFreeze": "no analysis of this epoch's evidence until analysis v2 is frozen (BUDGET_CALIBRATION.md stop rule 4; research/protocol/METHODOLOGY_HARDENING.md section 4)",
+    "comparativeUnit": "rate; 10 no-fault cells per rate",
+    "forbidden": [
+      "observation-count-as-replication",
+      "source-off-as-none",
+      "unsupported-posture-imputation",
+      "cross-family-replication-from-channel-alias"
+    ],
+    "probeWindowsExcludedFromSensorScoring": true,
+    "traceCompleteness": {
+      "allowanceMinimum": 1,
+      "allowanceShare": 0.01,
+      "authority": "research/PROTOCOL_DRAFT_20261002.md decision 56 (user 2026-10-04, round 12, on research/traffic-sweep/STOP_QUIET_OTEL_A1.md); this epoch only, the sweep keeps decision 25",
+      "blocking": false,
+      "decision25Counterfactual": "recorded per cell, not applied: max(allowanceMinimum, floor(allowanceShare x successful requests)) and whether the incomplete count exceeds it",
+      "rule": "one whole-measurement window (every cell is a no-fault cell). Complete = the request's own trace id observed and exactly the route's services. A successful request without a complete trace is telemetry loss: counted and recorded, never blocking. trace-completeness.json records per window the successful, complete and incomplete requests (unsuccessful separately); for every incomplete request its scheduled offset, whether its own trace id was observed and which required path services were missing; the count of incomplete requests per missing service; and the contiguous runs of consecutively scheduled requests that are each successful and incomplete (first and last scheduled offset, request count, missing services), so a lost export batch shows as one run. Evaluated on the target before the next cell and replayed byte for byte by the terminal",
+      "ruleId": "protocol-decision-56",
+      "stillBlocking": "G1, G2, G4, the container-health guard, and the terminal's ledger, application-witness, generator-absence, posture and application-log checks",
+      "timingKey": "traceCompletenessRule"
+    }
+  },
+  "collection": {
+    "applicationLogs": "application.log: docker compose logs --no-color --timestamps for every started application service except the collector (its output is otelcol.log); Docker's RFC3339Nano receive stamp prefixes every line",
+    "collectorCarrier": "otelcol debug exporter, one unrotated json-file segment (otelcol.log), unchanged",
+    "cpu": "docker-engine cumulative CPU before and after the window, unchanged (diagnostic in every cell)",
+    "requestWitness": "frontendproxy JSON access log, unchanged",
+    "telemetryBytes": "sudo -n tcpdump on OTLP ports, unchanged (the only sudo on fb14srv6)"
+  },
+  "containerHealthGuard": {
+    "authority": "user 2026-10-03 (with option A)",
+    "rule": "every project container is inspected right before the warm-up (baseline) and after the cell's captures, before cleanup (final): State.OOMKilled, RestartCount, status and HostConfig.Memory are recorded in container-health.json; the cell is invalid if any container has OOMKilled true, if an application container restarted or was replaced between baseline and final, or if a declared memory limit is not in effect; replayed by the terminal"
+  },
+  "declaration": "research/traffic-sweep/DECLARATION_QUIET_OTEL.md (measurement repo; frozen and committed alone before the first cell)",
+  "derivedFrom": {
+    "authority": "main repo research/PROTOCOL_DRAFT_20261002.md decision 48 (user 2026-10-04: quiet calibration run at <= 6/h, 40 no-fault cells per system, 10 per rate x 4 rates, same cell shape as the sweep); budget and stop rule research/traffic-sweep/BUDGET_CALIBRATION.md (committed alone before the work); proposal research/traffic-sweep/NEXT_CAMPAIGNS_PROPOSAL.md section A",
+    "descriptorByteSha256": "1d007caa6b2be800abda763444779730be29bb0d6f48191aed315d2053f4e8ed",
+    "descriptorCanonicalSha256": "be5b0b4dcd212aaa47908a6dd533e5cb73a104ab22b1b9e04a147e21ccb2c86d",
+    "descriptorPath": "pipelines/campaigns/otel-traffic-sweep-v1.json",
+    "disposition": "the sweep epoch is not superseded: it keeps its own descriptor, plan, admission history and spent attempts; the quiet epoch is a separate epoch selected by execution/study-epoch.json",
+    "inheritedAmendments": [
+      "research/traffic-sweep/AMENDMENT_OTEL_1.md (measurement repo): shared trace-completeness rule, research/PROTOCOL_DRAFT_20261002.md decision 25 (user 2026-10-03); frontendproxy memory limit 50M -> 256M (user 2026-10-03, option A) and the per-cell container-health guard; relaunch 1 of 2, all 12 cells, attempt 2"
+    ],
+    "studyEpoch": "otel-traffic-sweep-v1"
+  },
+  "design": {
+    "blockRule": "each-block-holds-every-rate-exactly-once",
+    "blocks": 10,
+    "cellShape": "the sweep's no-fault calibration cell (candidate_sweep.cell_timing('no-fault-calibration', rate, 1)); only the pseudo window's seeded onset and the plan-level run count and minimum remaining time differ",
+    "cellsPerBlock": 4,
+    "coldStartEachRun": true,
+    "episodesPerRate": 10,
+    "faultAppliedToAnyCell": false,
+    "noFaultCellsCarryPseudoWindow": true,
+    "omittedRegimes": {
+      "frontend-pause-effect": "fault regime of the sweep; this epoch applies no fault (decision 48)",
+      "productcatalog-cpu-throttle-effect": "fault regime of the sweep; this epoch applies no fault (decision 48)"
+    },
+    "postureRule": "full only; placements are evaluated by restriction of full cells (an approximation: a sensor can behave differently when other sensors are off)",
+    "postures": [
+      "full"
+    ],
+    "purpose": "false-alarm calibration: certify a false-alarm rate <= 6/h per rate (95 %, 0 alarms: 3 / quiet hours) on no-fault time (research/PROTOCOL_DRAFT_20261002.md decision 48)",
+    "quietSecondsPerRate": 1800,
+    "rates": [
+      10.0,
+      1.0,
+      0.2,
+      0.05
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "calibration",
+        "fault": null,
+        "id": "no-fault-calibration",
+        "kind": "no-fault-calibration"
+      }
+    ],
+    "totalRuns": 40
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true,
+    "runtimeSuccessDoesNotPromote": true
+  },
+  "faultDesign": {
+    "containerResolvedBeforeOnset": true,
+    "holdSeconds": 60,
+    "metricExportIntervalMilliseconds": null,
+    "noFault": "no fault is applied in any cell; every cell carries the pseudo window [onset, onset + hold] at the seeded onset (the sweep's no-fault rule), used for G1/G2 and for false alarms at the same onset phase",
+    "omitted": {
+      "net-delay": "no no-sudo mechanism exists in this harness: fb14srv6 grants sudo only for tcpdump, the only netem mechanism the project has is `sudo -n nsenter -t <pid> -n tc` (Hotel faults/lmt_faults.py), and the docker-sidecar netem of decision round 4 item 6 is not built (it would also need an image with iproute2 pinned on the host)"
+    },
+    "onsetBaseSeconds": 60,
+    "onsetStamp": "pre-command (actualOnsetMonotonicOffsetSeconds is taken immediately before the command; F-ADH-085)",
+    "probes": "every route probe the fault worker sends inside the measurement (during-fault, post-revert readiness) is stamped into the receipt's probes list (phase, start/end monotonic, available) so the analysis can exclude its windows from sensor scoring; probe requests carry the token readiness-not-scored",
+    "scenarios": {}
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "detectionWindow": "[appliedMonotonic, revertingMonotonic]: after the pause is observed, before the unpause command (Hotel compose_pause.py); offsets are relative to the shared barrier",
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "independentOfScoredTelemetry": true,
+      "intervalLabel": "intervention-exposure",
+      "requiredReceiptFields": [
+        "actualOffsetMonotonicOffsetSeconds",
+        "actualOnsetMonotonicOffsetSeconds",
+        "appliedMonotonic",
+        "appliedMonotonicOffsetSeconds",
+        "barrierMonotonic",
+        "duringRouteAvailable",
+        "duringStateSamples",
+        "error",
+        "manifested",
+        "postState",
+        "preState",
+        "probes",
+        "recovered",
+        "revertingMonotonic",
+        "revertingMonotonicOffsetSeconds",
+        "scenario",
+        "service",
+        "successful",
+        "targetContainerId",
+        "targetImageId"
+      ],
+      "scenarioContracts": [],
+      "source": "controller-and-target-state-probes"
+    },
+    "path": {
+      "crossTraceAssemblyAllowed": false,
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "executedDenominator": "application-side-request-witness",
+      "expectedNoFaultPath": [
+        "frontendproxy",
+        "frontend",
+        "productcatalogservice"
+      ],
+      "faultSpecificTruth": {},
+      "missingWitnessOrCorrelationState": "unsupported",
+      "numericMissingValue": null,
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "requiredCorrelation": [
+        "opaque-request-token",
+        "application-side-request-witness",
+        "original-trace-id",
+        "one-to-one-token-trace-mapping"
+      ],
+      "scoredPhases": [
+        "pre-fault",
+        "during-fault",
+        "post-readiness"
+      ]
+    }
+  },
+  "id": "otel-quiet-calibration-v1",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "otel-demo",
+  "outcomes": {
+    "costRegimeOnly": null,
+    "offeredRequestsAreDenominator": true,
+    "primary": "quiet time per rate, for the false-alarm rate per hour of each detector at a common operating point (decisions 33 and 48); with 0 alarms in T quiet hours the 95 % upper bound is 3 / T per hour",
+    "secondary": null,
+    "windowMembership": "monotonic-shared-barrier"
+  },
+  "postureRealization": {
+    "async": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "closure": [
+        "accountingservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frauddetectionservice",
+        "frontend",
+        "frontendproxy",
+        "kafka",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "closureDecision": "instrumentation is activated on the selected closure plus accountingservice, frauddetectionservice, kafka (the orders topic's broker and its two consumers); every other application service runs uninstrumented",
+      "currentControl": "materialized-posture-controls-async-closure",
+      "reason": null,
+      "status": "implemented"
+    },
+    "full": {
+      "claimBoundary": null,
+      "currentControl": "upstream-all-services-enabled",
+      "reason": null,
+      "status": "implemented"
+    },
+    "none": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "emailservice",
+          "flagd",
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "currentControl": "materialized-posture-controls",
+      "reason": null,
+      "status": "implemented"
+    },
+    "selected": {
+      "claimBoundary": {
+        "decision": "D13 (user, 2026-09-06): none means no telemetry emitted, not no instrumentation loaded; the four loaded-but-silenced services are a named claim boundary, not a blocker",
+        "label": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+        "loadedButSilencedServices": [
+          "flagd-ui",
+          "loadgenerator"
+        ],
+        "residualCost": "their instrumentation is imported or compiled into the process, is source-verified to export nothing, and still costs CPU and memory in every posture",
+        "semantics": "no-telemetry-emitted",
+        "verification": "modules/otel-demo/tools/posture_connection_probe.sh must print PROBE OK: 0 OTLP connections with OTEL_PLACEMENT_ENABLED=false, more than 0 with true"
+      },
+      "closure": [
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frontend",
+        "frontendproxy",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "closureDecision": "instrumentation is activated on the synchronous checkout path (frontendproxy, frontend, cartservice, checkoutservice, productcatalogservice, currencyservice, shippingservice, quoteservice, paymentservice, emailservice, flagd); every other application service runs uninstrumented",
+      "currentControl": "materialized-posture-controls-selected-closure",
+      "derivation": [
+        "frontendproxy -> frontend: Envoy routes /api/* to the Next.js frontend (src/frontendproxy/envoy.tmpl.yaml)",
+        "add-to-cart: src/frontend/pages/api/cart.ts POST -> CartGateway.addItem + getCart (cartservice)",
+        "place-order: src/frontend/pages/api/checkout.ts POST -> CheckoutGateway.placeOrder (checkoutservice), then ProductCatalogService.getProduct per item (productcatalogservice)",
+        "src/checkoutservice/main.go PlaceOrder: cartservice GetCart, productcatalogservice GetProduct, currencyservice Convert, shippingservice GetQuote (-> quoteservice), paymentservice Charge, shippingservice ShipOrder, cartservice EmptyCart, emailservice POST /send_order_confirmation (an error is logged and swallowed), then sendToPostProcessor (Kafka produce with RequiredAcks = sarama.NoResponse, src/checkoutservice/kafka/producer.go:24; erratum 2: no broker acknowledgement)",
+        "flagd: checkoutservice (paymentServiceUnreachable, kafkaQueueProblems), paymentservice, cartservice and productcatalogservice evaluate feature flags through flagd on the request; measured: 600 of 600 offered-request traces of v3r1 no-fault-cost/b01-01-full contain flagd (and productcatalogservice), so flagd is on the traced synchronous path although the declaration's parenthetical list omits it",
+        "kafka, frauddetectionservice, accountingservice: consumers of the orders topic (src/frauddetectionservice/.../main.kt poll loop, src/accountingservice/Consumer.cs); excluded from the synchronous comparison and added by async"
+      ],
+      "reason": null,
+      "status": "implemented"
+    }
+  },
+  "protocolGates": {
+    "blocking": [
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "blockingNote": "F1 is evaluated in fault cells only; this epoch has none",
+    "evaluatedOn": "the target, per cell, before the next cell (candidate_remote); replayed by the terminal validator",
+    "g4ChannelScope": "ledger-only (no per-channel in-cell / total counts are recorded)",
+    "module": "modules/otel-demo/validation/protocol_gates.py",
+    "notEvaluated": {
+      "P0": "the per-cell posture proof is config- and probe-based; no per-service connection count is recorded",
+      "R1": "no per-channel recordsAfterWarmup and no per-route readiness map is recorded",
+      "R2": "fresh project and down -v are enforced by the cell runner, not recorded as a gate input"
+    },
+    "recordedNotBlocking": [
+      "R2.recovery"
+    ],
+    "stopRule": "first-invalid-cell",
+    "thresholds": {
+      "FLOOR": 0.5,
+      "G1_MIN_DISPATCHED": 1,
+      "HOLD_TOLERANCE_S": 1.0,
+      "ONSET_TOLERANCE_S": 1.0,
+      "PRE_FAIL_MAX": 0.05,
+      "SCOPE_MIN": 0.95,
+      "SCOPE_SLACK_S": 5.0
+    },
+    "vendoredFrom": "src/obsplacement/protocol_gates.py (measurement repo, d3fc741), byte-identical"
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "requestsPerSecond",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "onsetOffsetDependsOnAttempt": false,
+    "retryMayReplaceCell": false,
+    "runIdRule": "first 24 hex of sha256(canonical runKey) (the frozen compiler's rule)"
+  },
+  "schedule": {
+    "blocks": [
+      {
+        "block": 1,
+        "order": [
+          "no-fault-calibration@r0p2",
+          "no-fault-calibration@r1",
+          "no-fault-calibration@r10",
+          "no-fault-calibration@r0p05"
+        ],
+        "orderSha256": "021e3c130ab9ecd592cd84dffe853b69e8056d13221ef4802fe534960c14c193"
+      },
+      {
+        "block": 2,
+        "order": [
+          "no-fault-calibration@r0p2",
+          "no-fault-calibration@r1",
+          "no-fault-calibration@r0p05",
+          "no-fault-calibration@r10"
+        ],
+        "orderSha256": "fe73e9069c04858ce42910616dfee6b2dcd27a13c653500f9ca8f875b60f1d5b"
+      },
+      {
+        "block": 3,
+        "order": [
+          "no-fault-calibration@r1",
+          "no-fault-calibration@r0p2",
+          "no-fault-calibration@r0p05",
+          "no-fault-calibration@r10"
+        ],
+        "orderSha256": "36a1d5abb1154f8852e5fcddcee2bf200bb4d4dd3cc17a989e7e1a083cd12df6"
+      },
+      {
+        "block": 4,
+        "order": [
+          "no-fault-calibration@r10",
+          "no-fault-calibration@r0p2",
+          "no-fault-calibration@r0p05",
+          "no-fault-calibration@r1"
+        ],
+        "orderSha256": "43db884c20ef585c216f6abd9bf017ffd78f80e30ed47b70763ef792e1be3e6a"
+      },
+      {
+        "block": 5,
+        "order": [
+          "no-fault-calibration@r1",
+          "no-fault-calibration@r0p05",
+          "no-fault-calibration@r10",
+          "no-fault-calibration@r0p2"
+        ],
+        "orderSha256": "4c83991c8e12c2f452be07c236b8e4b152336274b4ffed9d8b900cf9d4bfbc40"
+      },
+      {
+        "block": 6,
+        "order": [
+          "no-fault-calibration@r1",
+          "no-fault-calibration@r0p05",
+          "no-fault-calibration@r10",
+          "no-fault-calibration@r0p2"
+        ],
+        "orderSha256": "4c83991c8e12c2f452be07c236b8e4b152336274b4ffed9d8b900cf9d4bfbc40"
+      },
+      {
+        "block": 7,
+        "order": [
+          "no-fault-calibration@r0p05",
+          "no-fault-calibration@r10",
+          "no-fault-calibration@r0p2",
+          "no-fault-calibration@r1"
+        ],
+        "orderSha256": "69cd353b4bb33e149cbebcf0b342a2393a3467f019ea135e53eeca0a769fd797"
+      },
+      {
+        "block": 8,
+        "order": [
+          "no-fault-calibration@r1",
+          "no-fault-calibration@r0p2",
+          "no-fault-calibration@r0p05",
+          "no-fault-calibration@r10"
+        ],
+        "orderSha256": "36a1d5abb1154f8852e5fcddcee2bf200bb4d4dd3cc17a989e7e1a083cd12df6"
+      },
+      {
+        "block": 9,
+        "order": [
+          "no-fault-calibration@r0p2",
+          "no-fault-calibration@r0p05",
+          "no-fault-calibration@r1",
+          "no-fault-calibration@r10"
+        ],
+        "orderSha256": "ff987beb367e36e837ef86c8e1f0a448fa81b0fdc025d51abb27e2a56d4ceddb"
+      },
+      {
+        "block": 10,
+        "order": [
+          "no-fault-calibration@r0p2",
+          "no-fault-calibration@r10",
+          "no-fault-calibration@r0p05",
+          "no-fault-calibration@r1"
+        ],
+        "orderSha256": "760d6a667344a06df1b4178126cc729edaf3c76359d41d492b1f138a7cfb4251"
+      }
+    ],
+    "drawEncoding": "UTF-8(seed || NUL || epoch || NUL || block-NN || NUL || draw-i || NUL || version)",
+    "leadCell": null,
+    "seed": 20261004,
+    "shuffle": "fisher-yates-over-rates-within-each-block-with-sha256-draws",
+    "version": "quiet-schedule-v1"
+  },
+  "setupPreconditions": [
+    {
+      "enforcedBy": "modules/otel-demo/drivers/campaign_setup.py: auto refuses without a recorded posture-probe receipt bound to the pinned upstream commit and the probe script bytes",
+      "id": "posture-connection-probe-ok",
+      "requiredCounts": {
+        "disabledOtlpConnections": 0,
+        "enabledOtlpConnectionsMinimum": 1
+      },
+      "requiredOutput": "PROBE OK",
+      "stage": "before-gate-setup-and-after-every-upstream-repin",
+      "tool": "modules/otel-demo/tools/posture_connection_probe.sh",
+      "why": "text-level guard proofs missed currencyservice's unguarded initLogger() on 2026-09-06; only counting OTLP connections per posture sees a missed SDK init"
+    },
+    {
+      "detail": "the standing teastore-demo Compose project on fb14srv6 (WebUI :8080, DB :3306) must be removed by its owner: docker compose -p teastore-demo down",
+      "enforcedBy": "candidate_setup.assert_no_active_foreign refuses any running container or active Compose project at install and at readiness",
+      "id": "demo-stack-torn-down",
+      "ports": [
+        8080,
+        3306
+      ],
+      "stage": "before-gate-setup"
+    },
+    {
+      "detail": "ports 18080-18084 free and /home/stig/observability-placement-candidate-v4-runs/.srv6-runtime.lock absent",
+      "enforcedBy": "candidate_setup.ports_free and the shared srv6 lease in candidate-target-allocation.json",
+      "id": "reserved-ports-free-and-lease-absent",
+      "ports": [
+        18080,
+        18081,
+        18082,
+        18083,
+        18084
+      ],
+      "stage": "before-gate-setup"
+    }
+  ],
+  "source": {
+    "applicationFamily": "otel-demo",
+    "channel": "compose-otel-collector",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "status": "method-design-only",
+  "sutDeviations": [
+    {
+      "mechanism": "docker update --memory <bytes> --memory-swap <same ratio as before> on the running container, right after compose up and before readiness; verified by inspect and recorded in container-health.json",
+      "reason": "attempt 1 (2026-10-03): Envoy killed by the memory cgroup 12 s into the frontend pause at 10/s (srv6 kernel log 11:46:59Z; again 11:59:31Z after cell 3's window); 124 of 1,800 requests lost their access-log line and the cell failed the terminal's witness check; user decision option A",
+      "scope": "this epoch only; the overlays and every frozen epoch keep upstream's limit",
+      "service": "frontendproxy",
+      "setting": "memory limit (HostConfig.Memory)",
+      "sweep": "268435456 bytes (256M)",
+      "upstream": "52428800 bytes (50M; upstream 2d4661e docker-compose.yml:319-320)"
+    }
+  ],
+  "target": {
+    "allocationPath": "modules/otel-demo/execution/candidate-target-allocation.json",
+    "dockerGid": 998,
+    "executionGid": 1016,
+    "executionUid": 1016,
+    "executionUser": "stig",
+    "host": "fb14srv6",
+    "leaseScope": "shared-srv6-host-exclusive-otel-then-online-boutique",
+    "setupUser": "root",
+    "transportUser": "root"
+  },
+  "timing": {
+    "budget": {
+      "approvalToFirstMutationSeconds": 3600,
+      "barrierLeadSeconds": 1,
+      "cellDeadlineReserveSeconds": 900,
+      "cellOverheadSeconds": 120,
+      "cellPeriodEstimateSeconds": 331,
+      "cleanupReserveSeconds": 600,
+      "measuredCellPeriodSeconds": {
+        "cells": 12,
+        "gaps": 11,
+        "maximum": 314.9,
+        "mean": 309.6,
+        "minimum": 302.7,
+        "source": "otel-traffic-sweep-v1 relaunch 1 (fb14srv6, 2026-10-03), consecutive request-ledger barrierEpoch gaps"
+      },
+      "minimumRemainingRule": "totalRuns x cellPeriod + cellDeadlineReserve + cleanupReserve",
+      "minimumRemainingSeconds": 14740,
+      "runWindowHours": 6,
+      "runWindowRule": "ceil-to-whole-hours(minimumRemaining + approvalToFirstMutation)",
+      "timedSecondsPerCell": 211
+    },
+    "faultEdgeSlackSeconds": 5,
+    "faultHoldSeconds": 60,
+    "faultOnsetAcceptanceSeconds": [
+      -1.0,
+      1.0
+    ],
+    "faultOnsetBaseSeconds": 60,
+    "faultOnsetPhaseOffset": "seeded-stratified-within-one-inter-arrival",
+    "faultOnsetPhaseSelectorEncoding": "stratum order: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || onset-stratum || NUL || stratum); position: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || bNN || NUL || onset-phase)",
+    "faultOnsetStrata": 10,
+    "measurementSeconds": 180,
+    "metricExportIntervalMilliseconds": null,
+    "metricExportIntervalNote": "not set: every SDK keeps its own default (60 s observed, research/system-profiles/otel.md); changing it is an emission change this initial test does not make (a declared limit)",
+    "offeredByRate": {
+      "0p05": 9,
+      "0p2": 36,
+      "1": 180,
+      "10": 1800
+    },
+    "offeredRule": "requests-per-second-x-measurement-seconds-integral",
+    "postRecoveryAllowanceSeconds": 2.0,
+    "requestTimeoutSeconds": 15.0,
+    "warmupRequestsPerSecond": 10.0,
+    "warmupSeconds": 30
+  },
+  "workflow": {
+    "candidateExecutionEnabled": false,
+    "constructionBlockers": [
+      "gate-plan-pending",
+      "gate-run-not-requested"
+    ],
+    "externalMutationAllowed": false,
+    "runtimeAuthorized": false
+  },
+  "workload": {
+    "arrivals": "constant spacing (offset = sequence / rate) from the shared barrier",
+    "concurrency": 300,
+    "concurrencyRule": "ceil(2 x max rate x request timeout): the worker cap covers rate x timeout with a 2x margin",
+    "entry": "frontendproxy",
+    "kind": "single-route-open-loop",
+    "ledger": "request-ledger.json: one row per scheduled request with scheduledOffsetSeconds, scheduledAtEpoch, startedAtEpoch/endedAtEpoch, startedMonotonic/endedMonotonic (the fault receipt's clock), status, bytes, error and outcome ok|timeout|failed",
+    "method": "GET",
+    "path": "/api/products/66VCHSJNUP",
+    "productId": "66VCHSJNUP",
+    "readiness": "the harness's checkout-journey readiness (one complete journey, stack-wide) and then one route request returning 200; both carry the token readiness-not-scored and run before the warm-up",
+    "requestTimeoutSeconds": 15.0,
+    "requestsPerSecondLevels": [
+      10.0,
+      1.0,
+      0.2,
+      0.05
+    ],
+    "routeDerivation": [
+      "frontendproxy -> frontend: Envoy routes /api/* to the Next.js frontend (src/frontendproxy/envoy.tmpl.yaml)",
+      "frontend: src/frontend/pages/api/products/[productId]/index.ts GET -> ProductCatalogService.getProduct (services/ProductCatalog.service.ts) -> ProductCatalogGateway.getProduct (productcatalogservice gRPC); CurrencyGateway.convert only when currencyCode is set and not USD (none is sent)",
+      "productcatalogservice: src/productcatalogservice/main.go GetProduct; checkProductFailure asks flagd only for id OLJCESPC7Z, so the route product 66VCHSJNUP keeps flagd off the route"
+    ],
+    "routeServices": [
+      "frontendproxy",
+      "frontend",
+      "productcatalogservice"
+    ],
+    "traceContext": "every request carries traceparent 00-<trace id>-<span id>-01 and x-obsplacement-request-token, the offpath identity rule (candidate_remote.request_identity)",
+    "upstreamGenerators": {
+      "mechanism": "docker compose rm --stop --force loadgenerator, after up and before readiness",
+      "off": [
+        "loadgenerator"
+      ],
+      "proof": "upstream-generator.json per cell: zero containers carrying the project's service label after the removal and after the window (asked of the Docker engine)",
+      "runsOnlyBetweenUpAndRemoval": true,
+      "why": "the upstream Locust loadgenerator runs in every offpath/v3 cell (LOCUST_HEADLESS true overrides LOCUST_AUTOSTART false; retained v3a2 b03-03-full otelcol.log: 360 loadgenerator records, Starting Locust 2.18.2, GET http://frontend-proxy:18080/ failing) and asks flagd on every task; the sweep's rate must be the only traffic"
+    },
+    "warmup": "30 s at 10/s for every rate on the same route, never scored",
+    "window": "the workload returns no earlier than barrier + measurementSeconds at every rate (the CPU and capture windows are the same length at every rate)"
+  }
+}

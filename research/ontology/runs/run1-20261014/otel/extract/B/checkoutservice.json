@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+    "stage": 2,
+    "extractor": "B",
+    "model": "haiku",
+    "entry": 41,
+    "notes": [
+      "No registry, discovery or coordinator client in the entry's files; coordinators and consumerGroups are empty because none is stated.",
+      "No consumer code in the entry's files; no consumes entries.",
+      "Replicas: docker-compose.yml:114-163 (checkoutservice block) has no replicas or scale key; the value 1 is the Compose default, library default, not in these files.",
+      "Container health check: docker-compose.yml:114-163 has no healthcheck key; no container health check is configured in these files (library default). The gRPC health service is registered at src/checkoutservice/main.go:220 (RegisterHealthServer); it is an endpoint, not a heartbeat to a registry, and no heartbeat or cleanup interval is stated.",
+      "Telemetry frequency: traces use sdktrace.WithBatcher (src/checkoutservice/main.go:98) and metrics use NewPeriodicReader (src/checkoutservice/main.go:115) with no interval set; batch and export intervals are library defaults, not in these files. Metric temporality is cumulative (.env:39).",
+      "Logs: logrus writes JSON to stdout (src/checkoutservice/main.go:70); no OTLP log exporter appears in these files.",
+      "Telemetry posture overlay: modules/otel-demo/deployment/compose.candidate-postures.yml:39-45 sets OTEL_SDK_DISABLED and the OTEL_*_EXPORTER variables for checkoutservice from variables whose values are not in these files.",
+      "Conditional dial to the hardcoded address badAddress:50051 (src/checkoutservice/main.go:446) when feature flag paymentServiceUnreachable is set; not a configured service, so no edge is reported.",
+      "Kafka publish occurs only when KAFKA_SERVICE_ADDR is non-empty (src/checkoutservice/main.go:200 and main.go:320)."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "checkoutservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 143,
+        "quotedToken": "OTEL_SERVICE_NAME=checkoutservice"
+      },
+      "container": {
+        "value": "checkout-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 116,
+        "quotedToken": "container_name: checkout-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/",
+        "note": "No replicas or scale key in the checkoutservice block (docker-compose.yml:114-163); the Compose default is 1. Library default, not in these files."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Endpoint http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} (.env:32, token OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}) used by the traces exporter (src/checkoutservice/main.go:93) and the metrics exporter (src/checkoutservice/main.go:109). Traces and metrics only."
+        }
+      ],
+      "publishesTo": [
+        {
+          "value": "orders",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "src/checkoutservice/kafka/producer.go",
+          "line": 11,
+          "quotedToken": "\"orders\"",
+          "note": "Async sarama producer; the message is sent via Input() (src/checkoutservice/main.go:511) from sendToPostProcessor, which runs only when KAFKA_SERVICE_ADDR is set (src/checkoutservice/main.go:320)."
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": { "caller": "checkoutservice", "callee": "shippingservice" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 390,
+      "quotedToken": "GetQuote",
+      "note": "gRPC: client built by mustCreateClient (main.go:377, grpc.NewClient). Callee from SHIPPING_SERVICE_ADDR (.env:122, token SHIPPING_SERVICE_ADDR=shippingservice)."
+    },
+    {
+      "value": { "caller": "checkoutservice", "callee": "shippingservice" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 483,
+      "quotedToken": "ShipOrder",
+      "note": "gRPC ShipOrder call. Same client and callee as the GetQuote edge (main.go:377; .env:122)."
+    },
+    {
+      "value": { "caller": "checkoutservice", "callee": "productcatalogservice" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 418,
+      "quotedToken": "GetProduct",
+      "note": "gRPC: mustCreateClient (main.go:377). Callee from PRODUCT_CATALOG_SERVICE_ADDR (.env:107, token PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice)."
+    },
+    {
+      "value": { "caller": "checkoutservice", "callee": "cartservice" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 400,
+      "quotedToken": "GetCart",
+      "note": "gRPC: mustCreateClient (main.go:377). Callee from CART_SERVICE_ADDR (.env:54, token CART_SERVICE_ADDR=cartservice)."
+    },
+    {
+      "value": { "caller": "checkoutservice", "callee": "cartservice" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 408,
+      "quotedToken": "EmptyCart",
+      "note": "gRPC EmptyCart call. Same client and callee as the GetCart edge (main.go:377; .env:54)."
+    },
+    {
+      "value": { "caller": "checkoutservice", "callee": "currencyservice" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 434,
+      "quotedToken": "Convert",
+      "note": "gRPC: mustCreateClient (main.go:377). Callee from CURRENCY_SERVICE_ADDR (.env:64, token CURRENCY_SERVICE_ADDR=currencyservice)."
+    },
+    {
+      "value": { "caller": "checkoutservice", "callee": "paymentservice" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 451,
+      "quotedToken": "Charge",
+      "note": "gRPC: mustCreateClient (main.go:377). Callee from PAYMENT_SERVICE_ADDR (.env:102, token PAYMENT_SERVICE_ADDR=paymentservice)."
+    },
+    {
+      "value": { "caller": "checkoutservice", "callee": "emailservice" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 469,
+      "quotedToken": "otelhttp.Post",
+      "note": "HTTP POST to EMAIL_SERVICE_ADDR + /send_order_confirmation (main.go:469). Callee from EMAIL_SERVICE_ADDR=http://emailservice (.env:69)."
+    },
+    {
+      "value": { "caller": "checkoutservice", "callee": "flagd" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 589,
+      "quotedToken": "BooleanValue",
+      "note": "OpenFeature flag evaluation through the flagd provider set at main.go:163 (token flagd.NewProvider). Callee from FLAGD_HOST=flagd (.env:129). Protocol is not stated in these files (library default)."
+    },
+    {
+      "value": { "caller": "checkoutservice", "callee": "flagd" },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/checkoutservice/main.go",
+      "line": 603,
+      "quotedToken": "IntValue",
+      "note": "OpenFeature integer flag evaluation through the flagd provider (main.go:163; .env:129). Protocol is not stated in these files (library default)."
+    }
+  ],
+  "topics": [
+    {
+      "name": {
+        "value": "orders",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "src/checkoutservice/kafka/producer.go",
+        "line": 11,
+        "quotedToken": "\"orders\""
+      },
+      "broker": {
+        "value": "kafka",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": ".env",
+        "line": 139,
+        "quotedToken": "KAFKA_SERVICE_ADDR=kafka",
+        "note": "Broker address KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT} (.env:139), read at src/checkoutservice/main.go:200."
+      }
+    }
+  ],
+  "consumerGroups": [],
+  "coordinators": []
+}

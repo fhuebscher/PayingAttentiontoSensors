@@ -1,0 +1,29 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "service": "prometheus",
+  "extractor": "A",
+  "registryDiscoveryCoordinator": "none stated in the given files; the only scrape target is a static_configs entry (src/prometheus/prometheus-config.yaml:12-14), no service discovery block",
+  "heartbeat": "none stated; scrape_interval 5s (src/prometheus/prometheus-config.yaml:6) and evaluation_interval 30s (line 5) are pull-scrape and rule-evaluation settings, not a registry heartbeat",
+  "healthCheck": "none in the prometheus block of docker-compose.yml:751-773 and none for prometheus in modules/otel-demo/deployment/compose.candidate-postures.yml (no prometheus match)",
+  "messaging": "no topics published or consumed in the given files",
+  "telemetryOut": "none stated for prometheus; its own container logging is 'logging: *logging' (docker-compose.yml:773), a Compose logging anchor, not a telemetry export. Inbound: the collector pushes metrics to it via http://prometheus:9090/api/v1/otlp (src/otelcollector/otelcol-config.yml:98), an otelcol fact"
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  }
+ },
+ "services": [
+  {
+   "name": {"value": "prometheus", "basis": "cited", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 751, "quotedToken": "prometheus:"},
+   "container": {"value": "prometheus", "basis": "cited", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 753, "quotedToken": "container_name: prometheus"},
+   "replicas": {"value": 1, "basis": "documented-default", "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas", "note": "library default, not in these files: the prometheus block (docker-compose.yml:751-773) has no deploy.replicas or scale; Compose default 1"}
+  }
+ ],
+ "syncEdges": [
+  {"value": {"caller": "prometheus", "callee": "otelcol"}, "basis": "cited", "repo": "upstream", "sourceFile": "src/prometheus/prometheus-config.yaml", "line": 14, "quotedToken": "otelcol:8888", "note": "HTTP scrape (pull) of job_name otel-collector (line 11) every scrape_interval 5s (line 6); protocol inferred from Prometheus scrape semantics, the file states only the target host:port"}
+ ]
+}

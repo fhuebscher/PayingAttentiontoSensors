@@ -1,0 +1,12 @@
+{
+  "fixtureId": "runtime-self-authorized",
+  "checkId": "runtime-boundary",
+  "expectedStatus": "fail",
+  "expectedDiagnostic": "every dangerous permission must remain false",
+  "mutation": {
+    "kind": "json-set",
+    "path": "openspec/changes/change-one/governance.json",
+    "keys": ["permissions", "runtimeAllowed"],
+    "value": true
+  }
+}

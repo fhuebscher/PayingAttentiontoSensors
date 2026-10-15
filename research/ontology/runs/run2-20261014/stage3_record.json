@@ -1,0 +1,18 @@
+{
+ "run": "run2-20261014",
+ "stage": "3 (Amendment 3: library module, identifier normalisation, attachments)",
+ "checkoutHead": "f3d19e9d2ca805c50549c3c3c9d514510dc7ab44",
+ "tools": {
+  "merge.py": "cea33b0516acc87471cdfbc1a7c477bdc194dd06ea4f37a5a245295a80c282f1",
+  "library_merge.py": "74526a918b8c5e904db48e8136b5b94efe56036357de91a3905906d82f6f48fc",
+  "judge_inputs.py": "cd51650e9b85108f2acdd55522477faa5c072aadb6eb43c91c0b21e98d1d4c13",
+  "check_citations.py": "27f22db1a3249d4942255121ff0134036e0a89f54a9d7e8e2ad8362cfcd8b48e",
+  "libraries.py": "b5a770017cc46582a6c510ec4e181dcb4a67a2edecb141b4fc2fbebeda7ca1fe",
+  "extraction.schema.json": "9e3e1360b32e4c9e64a30fe2d738789f125eaf4e0a184e25a3268ce504b29fda"
+ },
+ "libraryPromptSha256": "b4c719bd34519c69d1a8d724c04d20df7f87b4d4d5c4c5315317bcdb32624941",
+ "judgePrompt": "b1c5099d83179242fa4dae96935f6b8f9ed411597ee8e00363d093e8c3477a98 (run1, to be used for the new chunks)",
+ "reusedFromRun1": "stage1.json and the 78 extractor outputs per <system>/reuse.json; answers by unchanged (id, packetDigest)",
+ "stage4Chunks": "stage4_chunks.json",
+ "status": "stage 3 committed; new packets await the judge; no judge has run on them"
+}

@@ -1,0 +1,103 @@
+{
+ "schemaVersion": 1,
+ "sut": "hotel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+   "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-hotel-protocol",
+   "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+  }
+ },
+ "syncEdges": [
+  {
+   "value": {"caller": "user", "callee": "mongodb-user"},
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/user/server.go",
+   "line": 112,
+   "quotedToken": "collection.Find(context.TODO(), bson.D{})",
+   "note": "MongoDB query (protocol: MongoDB wire, mongo-driver v1.12.2 per go.mod) against database user-db, collection user; address from config.json:25 UserMongoAddress mongodb-user:27017 (cmd/user/main.go:38); the query runs in loadUsers (server.go:110-112), called once from Run (server.go:46), not per request"
+  }
+ ],
+ "services": [
+  {
+   "name": {
+    "value": "user",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 178,
+    "quotedToken": "user:"
+   },
+   "container": {
+    "value": "user",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 178,
+    "quotedToken": "user:",
+    "note": "no container_name in block lines 178-197 of docker-compose.yml nor in overlay block lines 37-41 of compose.observability-placement.yml; container name is the compose service key, library default, not in these files. No healthcheck key in either block: health check absent, library default, not in these files."
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 195,
+    "quotedToken": "replicas: 1",
+    "note": "the overlay compose.observability-placement.yml:37-41 sets no replicas key"
+   },
+   "registersWith": [
+    {
+     "value": "consul",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 2,
+     "quotedToken": "\"consulAddress\": \"consul:8500\"",
+     "note": "registration call: server.go:76 s.Registry.Register(name, ...) with name srv-user (server.go:23), before srv.Serve (server.go:82); address via flag default cmd/user/main.go:46; the consul API call is registry/registry.go:92 c.Agent().ServiceRegister(reg). The registration (registry.go:85-90) carries no Check, so no heartbeat, TTL, failure timeout or cleanup interval is stated in these files: library default, not in these files. Heartbeat independence of request processing: no heartbeat in these files. Shutdown deregisters (server.go:87) but cmd/user/main.go never calls Shutdown (main.go:64-73)."
+    }
+   ],
+   "emits": [
+    {
+     "kind": "span",
+     "id": {
+      "value": "user",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/user/main.go",
+      "line": 51,
+      "quotedToken": "tracing.Init(\"user\", *jaegerAddr)",
+      "note": "Jaeger service name; sent to the Jaeger agent at config.json:3 jaeger:6831 (exportsTelemetryTo). Reporter buffer flush interval 1 s (tracing/tracer.go:36, BufferFlushInterval). Probabilistic sampler ratio read from env JAEGER_SAMPLE_RATIO (tracer.go:20), default 0.01 when unset (tracer.go:14, library default not applicable: set in code); the overlay sets JAEGER_SAMPLE_RATIO to HR_JAEGER_SAMPLE_RATIO default 1 (compose.observability-placement.yml:40). gRPC server spans via otgrpc interceptor (services/user/server.go:59)."
+     }
+    },
+    {
+     "kind": "log",
+     "id": {
+      "value": "zerolog",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/user/main.go",
+      "line": 22,
+      "quotedToken": "zerolog.ConsoleWriter{Out: os.Stdout",
+      "note": "console log writer to stdout; no log exporter in these files. Level from env LOG_LEVEL (tune/setting.go:34), default info (tune/setting.go:19). Log emission frequency not stated in these files. No metric emitter stated in these files."
+     }
+    }
+   ],
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "\"jaegerAddress\": \"jaeger:6831\"",
+     "note": "traces: Jaeger agent address from flag default cmd/user/main.go:45 and used by tracing/tracer.go:37 (LocalAgentHostPort)"
+    }
+   ]
+  }
+ ]
+}

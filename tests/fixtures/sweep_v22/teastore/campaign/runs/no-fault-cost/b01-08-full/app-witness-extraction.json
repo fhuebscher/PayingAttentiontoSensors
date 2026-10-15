@@ -1,0 +1,37 @@
+{
+  "appWitnessSha256": "a047dd34e694becaa0fbec99ca1afbbacb1ffa03589e21c8fd81bb450ed524af",
+  "counts": {
+    "authObservations": 36,
+    "completeWitnessPaths": 36,
+    "ledgerOpportunities": 36,
+    "partialOptionalObservations": 0,
+    "persistenceObservations": 36,
+    "phases": {
+      "measurement": 36
+    },
+    "requiredScoredOpportunities": 36,
+    "unscoredExcludedObservations": 0
+  },
+  "inputs": {
+    "authLogSha256": "bf8ff1b032064d73663135d9dc64604e947add20153ac50f24a9a40bc48dddb7",
+    "journeyLedgerSha256": "d05b705bc7cf285fc3e75cf4d7986f658eddeb12db29553c6f823a5acdff02c3",
+    "journeyPlanSha256": "7fdae76f1ece67afb9e4edaf8f195194777c173499daa0ddb1e8a87f8f884aa3",
+    "persistenceLogSha256": "0f751967eb3c3253d37d076e7c743a365910d723b87d057f9f9388aa3230c75a"
+  },
+  "journeyLedgerValidation": {
+    "lastRecordSha256": "f40f1ded7831f98bb0f1044390cdc14e9780a2e7d299bef35bf18c0a9e1ac8eb",
+    "planSha256": "feab35ab973048a7e2c747916f28fb3c2d0e717901a6a603ea4ee1db00e2818a",
+    "state": "completed",
+    "terminalJourneys": 36,
+    "verdict": "pass"
+  },
+  "measurementWindow": {
+    "endedAt": "2026-10-03T01:03:50Z",
+    "startedAt": "2026-10-03T01:00:50Z"
+  },
+  "regime": "no-fault-cost",
+  "schema": "teastore.app-witness-extraction-receipt",
+  "schemaVersion": 1,
+  "sourceCommit": "34b37f7e7be433ce72d5f9455e66922a13116749",
+  "status": "complete"
+}

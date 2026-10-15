@@ -1,0 +1,43 @@
+{
+ "argv": [
+  "otel",
+  "--training-readout",
+  "research/traffic-sweep/readout-otel-f-nolag-train-v3.5/sweep_analysis_v3_5.json",
+  "--scoring-readout",
+  "research/traffic-sweep/readout-otel-f-nolag-score-v3.5/sweep_analysis_v3_5.json",
+  "--placement",
+  "research/placement/test-f-nolag/placement-nolag.json",
+  "--out-dir",
+  "research/lanes/out-f-nolag-posthoc"
+ ],
+ "fileDigests": {
+  "research/detection-time/sweep_analysis_v3_5.py": "69ec63b3e099a664ad4b75f59ece4a28b5d8ebaeeb159ef94250d2219e61509b",
+  "research/lanes/posthoc_lanes_v33.py": "b203c2c3da2859686ac7a5f392d0dca184063870b20864849bbd02644d56b0c8",
+  "research/placement/celf_v3_5.py": "e934d5e0c75f33ead5bf64cf3d1109b85e7728894874bfe33edbb4777e8bc890",
+  "research/placement/score_test_v3_5.py": "447219bc4832cb7fdb446721033715e33da0efdfa30efe8eca7fcc94b7bea72e",
+  "research/protocol/parameters_v3_5.json": "d3b72bf9a255bbb5cac091c6e319485e25ea7e3759ed9e792c45f7702216977b",
+  "script": "research/lanes/posthoc_lanes_v35.py",
+  "scriptSha256": "dbf6781c86d37710db42f2c40e19ab8930d280fbe0cab228ef019136e892d328"
+ },
+ "inputs": {
+  "placementSha256": "8263bfd0b16659e82c8d43f9835772c4f279918262b84a37f1c0e5d3e5425085",
+  "scoringReadoutSha256": "ad54cdbc7c7ab894a6bf57c99f442dcbb0599a756c105ee43143f0e3c78df2df",
+  "trainingReadoutSha256": "e4f81b81f85f2655342cf561595fb6d3736f0714ead060073bfeb9b1c15ef558"
+ },
+ "label": "POST HOC (not a preregistered verdict); posthoc_lanes_v33 otel over v3.5 readouts",
+ "pins": {
+  "pinnedParametersV35": "d3b72bf9a255bbb5cac091c6e319485e25ea7e3759ed9e792c45f7702216977b",
+  "pinnedV33": "c8cd5072ed4b22cae9360e6446f969c75b4e66b900a08d3cfe0efbdadcd36e18",
+  "pinnedV35": "69ec63b3e099a664ad4b75f59ece4a28b5d8ebaeeb159ef94250d2219e61509b",
+  "scorerPinnedPlacements": {}
+ },
+ "python": "3.13.12 (main, Mar  6 2026, 04:10:39) [Clang 14.0.3 (clang-1403.0.22.14.1)]",
+ "rebound": {
+  "c3": "celf_v3_5",
+  "check_readout_pins": "posthoc_lanes_v35.check_readout_pins35",
+  "module": "posthoc_lanes_v33",
+  "s3": "score_test_v3_5"
+ },
+ "scope": "instance",
+ "version": "posthoc-lanes-v35-wrapper-v1"
+}

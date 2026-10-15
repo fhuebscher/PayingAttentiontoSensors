@@ -1,0 +1,102 @@
+{
+ "TS3-C": {
+  "episodes": 4,
+  "hit": true,
+  "ledgerDetected": 4,
+  "rows": [
+   {
+    "block": 4,
+    "ledgerTtd": 0.8718943316489458,
+    "rate": "1"
+   },
+   {
+    "block": 5,
+    "ledgerTtd": 1.0739955250173807,
+    "rate": "1"
+   },
+   {
+    "block": 4,
+    "ledgerTtd": 0.3780115433037281,
+    "rate": "10"
+   },
+   {
+    "block": 5,
+    "ledgerTtd": 0.42326847463846207,
+    "rate": "10"
+   }
+  ]
+ },
+ "TS3-L": {
+  "episodes": 4,
+  "hit": true,
+  "ledgerMissed": 4
+ },
+ "TS3-S": {
+  "hit": false,
+  "sets": [
+   {
+    "rate": "1",
+    "sensors": [
+     "log:webui:d4d75ec135e6"
+    ],
+    "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+   },
+   {
+    "rate": "10",
+    "sensors": [
+     "span:auth:BCryptProvider.checkPassword"
+    ],
+    "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+   }
+  ]
+ },
+ "TS3-T": {
+  "episodes": 4,
+  "hit": false,
+  "rows": [
+   {
+    "block": 4,
+    "ledgerTtd": null,
+    "rate": "1",
+    "setTtd": 11.375856637954712
+   },
+   {
+    "block": 5,
+    "ledgerTtd": null,
+    "rate": "1",
+    "setTtd": 12.143930912017822
+   },
+   {
+    "block": 4,
+    "ledgerTtd": null,
+    "rate": "10",
+    "setTtd": null
+   },
+   {
+    "block": 5,
+    "ledgerTtd": null,
+    "rate": "10",
+    "setTtd": 0.22863364219665527
+   }
+  ]
+ },
+ "TS3-V": {
+  "hit": false,
+  "verdicts": [
+   {
+    "gE": 48.45990736968815,
+    "improved": 2,
+    "rate": "1",
+    "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+    "verdict": "PASS"
+   },
+   {
+    "gE": 29.986835659481585,
+    "improved": 1,
+    "rate": "10",
+    "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+    "verdict": "FAIL"
+   }
+  ]
+ }
+}

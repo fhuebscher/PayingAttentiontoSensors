@@ -1,0 +1,30 @@
+schema_version: 1
+id: teastore-native-smoke
+evidence_label: smoke-validation
+module: teastore
+target: fb14srv5
+executor: ssh-compose
+source:
+  framework_commit: required-at-materialization
+  sut_commit: 34b37f7e7be433ce72d5f9455e66922a13116749
+lifecycle:
+  reset: cold
+  broker_first: true
+  readiness:
+    services_ok: 5
+    storefront_categories: true
+  stop_after_collect: true
+posture: modules/teastore/postures/native-full.yaml
+scenario:
+  kind: baseline
+  workload: modules/teastore/workload/load_gen_loop.sh
+  duration_seconds: 60
+  collector_duration_seconds: 90
+validation:
+  - native-kieker-contract
+  - queue-purge-recorded
+  - exclusive-consumer
+  - complete-shutdown
+promotion:
+  canonical: false
+  reason: Single short baseline; validates execution and evidence contracts only.

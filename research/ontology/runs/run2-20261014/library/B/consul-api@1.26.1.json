@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "library": "consul-api",
+  "version": "1.26.1",
+  "sources": {
+    "obsplacement": {
+      "path": ".",
+      "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+    }
+  },
+  "extraction": {
+    "extractor": "B",
+    "model": "haiku",
+    "filesRead": [
+      "research/ontology/vendor/libs/consul-api@1.26.1/api/agent.go",
+      "research/ontology/vendor/libs/consul-api@1.26.1/api/api.go"
+    ],
+    "notes": [
+      "config-default: none stated. Interval, Timeout, TTL, FailuresBeforeWarning, FailuresBeforeCritical and DeregisterCriticalServiceAfter are declared with omitempty (agent.go:344-374) and no default value is given in these files, so no config-default fact is reported.",
+      "failure-detector: the file states that a service is deregistered automatically when its check stays critical longer than DeregisterCriticalServiceAfter (agent.go:370-373). The file does not name the component that performs this; value registry-agent is a reading based on the file's API surface (ServiceRegister registers with the local agent, agent.go:819-820; checks are 'locally registered', agent.go:594). Treat as a reading, not a verbatim statement.",
+      "heartbeat-thread-independent: not reported. No heartbeat, keepalive or ticker loop exists in agent.go or api.go. The only goroutine is at agent.go:1298, which reads a log stream, not a heartbeat.",
+      "removal-signal: not reported. ForceLeave, ForceLeavePrune and ForceLeaveOptions (agent.go:1084-1104) are operator-invoked calls that eject or prune a node; the files state no log, metric, event or API signal that the coordinator emits when it removes a member automatically.",
+      "Client-side TTL updates (UpdateTTL, agent.go:959-963) are stated, but the files do not say what happens to a TTL check that is not updated, so no fact is reported for that."
+    ]
+  },
+  "facts": [
+    {
+      "kind": "failure-detector",
+      "subject": "DeregisterCriticalServiceAfter",
+      "value": "registry-agent",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/consul-api@1.26.1/api/agent.go",
+      "line": 373,
+      "quotedToken": "automatically be deregistered.",
+      "note": "Line 370-373: a check in the critical state for longer than DeregisterCriticalServiceAfter causes its service and checks to be deregistered automatically. The file does not name the detecting component; registry-agent is inferred from the local-agent API surface (agent.go:820, agent.go:594)."
+    }
+  ]
+}

@@ -1,0 +1,569 @@
+{
+  "analysis": {
+    "analysisCode": "fixed by analysis v3 before any cell of this epoch is read (measurement repo)",
+    "analysisFreeze": "no analysis of this epoch's evidence until analysis v3 is frozen and reviewed (BUDGET_B.md stop rule 4)",
+    "comparativeUnit": "(fault, rate); 3 episodes each in this epoch, one more in the sweep",
+    "detectionTimeMissCharge": "window-end (hold end), averaged over all episodes",
+    "forbidden": [
+      "p-value",
+      "confirmatory-interval",
+      "carryover-adjusted-effect",
+      "optimizer-front",
+      "generality-claim",
+      "observation-count-as-replication"
+    ]
+  },
+  "collection": {
+    "applicationLogTimestamps": "docker-compose-logs-timestamps (application.log, every service)",
+    "freezeStamps": "fault cells: intervention.json sweep.freezeStamps (Docker pause/unpause events for the auth pause; command and applied-state readback stamps for both faults) and sweep.probePolicy",
+    "systemSamples": "cgroup-v2 system-samples.json in every cell as frozen",
+    "traces": "kieker AMQP spool and traces.json as frozen",
+    "witnessLogSecretScan": "fail-closed raw-text secret scan of auth.log and persistence.log as frozen (modules/teastore/validation/secret_scan.py), except that a JVM stack-frame source location '(<File>.java|kt|scala|groovy:<ASCII digits>)' followed by whitespace or the end of the text, with a key of at most 256 characters, is not an assignment (sweep only; TeaStore relaunch 1 cell 11, 2026-10-03); every other assignment, including a frame-shaped location with any other value or with text glued to its ')', still blocks the cell",
+    "witnessLogs": "auth.log and persistence.log as frozen (docker logs --since/--until)"
+  },
+  "continuation": {
+    "earlySuccessStopAllowed": false,
+    "furtherBlocksRequireNewPreOutcomeEpoch": true,
+    "outcomeTriggeredExtensionAllowed": false,
+    "repeatOfSweepEpoch": "teastore-traffic-sweep-v1",
+    "selectedRecompilationAllowed": false
+  },
+  "declaration": "research/traffic-sweep/DECLARATION_B_TEASTORE.md (measurement repo; frozen and committed alone before the first cell)",
+  "derivedFrom": {
+    "authority": "measurement repo research/PROTOCOL_DRAFT_20261002.md decision 49 (user 2026-10-04: three more blocks on TeaStore and OTel after the H10/H4 harness change) and decision 50 (fault doses inherited, a fixed factor); budget and stop rule research/traffic-sweep/BUDGET_B.md (92ca1c7, committed alone before the work); proposal research/traffic-sweep/NEXT_CAMPAIGNS_PROPOSAL.md section B; harness change research/protocol/METHODOLOGY_HARDENING.md H4 and H10",
+    "descriptorByteSha256": "e2aa24a4aada6c7955ab6632f03b29531d372112684ba716bc67e165f29a6a82",
+    "descriptorCanonicalSha256": "f90bd64c13075c3019c03c4aee4df3744bb1494b194645b17d246bea063b160a",
+    "descriptorPath": "pipelines/campaigns/teastore-traffic-sweep-v1.json",
+    "disposition": "the sweep and quiet epochs are not superseded: each keeps its own descriptor, plan and admission history; this epoch is a separate epoch selected by modules/teastore/execution/study-epoch.json",
+    "planCanonicalSha256": "88a3017a781233a4848f7ea638b4763f82f63bc902d848514cd8ae5089529355",
+    "studyEpoch": "teastore-traffic-sweep-v1"
+  },
+  "design": {
+    "blockRule": "each-block-holds-every-(regime,rate)-pair-exactly-once",
+    "blocks": 3,
+    "cellShape": "the sweep's cell of the same regime and rate (candidate_sweep.cell_timing(<sweep run ID>, regime, rate)); only the seeded onset (faultOnsetPhaseOffsetSeconds, faultOnsetSeconds, scoredWindowSeconds), the plan-derived phase floors that follow from it, and the harness declaration (faultHarness) differ",
+    "cellsPerBlock": 12,
+    "coldStartEachRun": true,
+    "deploymentQueueAttemptArtifactReuse": false,
+    "episodesPerRegimeAndRate": 3,
+    "faultAppliedToEveryEffectCell": true,
+    "faultDoses": "inherited from the sweep, a fixed factor (decision 50): pause on auth; --cpus 0.1 on persistence",
+    "noFaultCellsCarryPseudoWindow": true,
+    "noFaultRegimeReusesFrozenPath": "no-fault-cost: the frozen no-fault code path (performance probe, resources.json) runs unchanged; the sweep reads its cells as calibration, not cost",
+    "omittedRegimes": {
+      "net-delay": "no mechanism without sudo: netem needs root in the target's network namespace and fb14srv5 grants the execution user no passwordless sudo; a docker sidecar sharing the netns needs an image with tc that is not provisioned or digest-pinned on fb14srv5"
+    },
+    "postures": [
+      "full"
+    ],
+    "purpose": "repeat episodes: three more blocks of the traffic sweep's 12 (regime, rate) cells on the H10/H4 harness (research/PROTOCOL_DRAFT_20261002.md decision 49; four blocks with the sweep's one, like Hotel)",
+    "rates": [
+      10.0,
+      1.0,
+      0.2,
+      0.05
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "cost",
+        "fault": null,
+        "id": "no-fault-cost",
+        "kind": "no-fault-calibration"
+      },
+      {
+        "artifactRootClass": "effect/auth-freeze",
+        "fault": "auth-freeze",
+        "id": "auth-freeze-effect",
+        "kind": "effect"
+      },
+      {
+        "artifactRootClass": "effect/persistence-cpu-throttle",
+        "fault": "persistence-cpu-throttle",
+        "id": "persistence-cpu-throttle-effect",
+        "kind": "effect"
+      }
+    ],
+    "selectedSource": null,
+    "totalRuns": 36
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "diagnosticLabel": "smoke-validation",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true
+  },
+  "faultParameters": {
+    "auth-freeze": {
+      "command": "docker compose pause auth",
+      "revert": "docker compose unpause auth",
+      "target": "auth"
+    },
+    "persistence-cpu-throttle": {
+      "command": "docker update --cpus 0.1 <persistence container>",
+      "cpus": "0.1",
+      "nanoCpus": 100000000,
+      "revert": "docker update --cpus <docker info NCPU> <persistence container>",
+      "revertRule": "docker update --cpus 0 is a no-op (Hotel LMT pilot, fb14srv4 2026-09-28), so the quota is lifted to every host CPU instead of unset; the pre-state must be unset (0) or that value",
+      "target": "persistence"
+    }
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "freezeStamps": "sweep.freezeStamps (H4), schema h4-h10-v1",
+      "functionalOutageWithoutContinuousWitness": null,
+      "intervalLabel": "intervention-exposure",
+      "onsetStamp": "pre-command (commandStamps.onsetCommandIssuedMonotonicOffsetSeconds)",
+      "probeStamps": "every post-revert readiness request (GET /status) is stamped in the receipt's probes list; none starts before the revert command returned (H10: sweep.probePolicy)",
+      "requiredReceiptFields": [
+        "schemaVersion",
+        "scenario",
+        "service",
+        "independentOfKieker",
+        "intervalLabel",
+        "functionalOutage",
+        "measurementBarrier",
+        "requestedHoldSeconds",
+        "targetContainerId",
+        "targetImage",
+        "preState",
+        "commandVector",
+        "commandResult",
+        "actualOnsetWall",
+        "actualOnsetMonotonicOffsetSeconds",
+        "actualOffsetWall",
+        "actualOffsetMonotonicOffsetSeconds",
+        "duringStateSamples",
+        "recoveryAction",
+        "sameTargetIdentity",
+        "readiness",
+        "postState",
+        "interventionThreadJoined",
+        "laterInterventionMutationObserved",
+        "manifested",
+        "recovered",
+        "outageHeld",
+        "successful",
+        "error",
+        "operational"
+      ],
+      "scenarioContracts": [
+        {
+          "commandFamily": "docker-pause-unpause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "postPredicate": "running-and-unpaused",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "auth-freeze",
+          "service": "auth"
+        },
+        {
+          "commandFamily": "docker-update-cpus",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-unpaused-and-nanocpus-equal-throttle",
+          "postPredicate": "running-and-unpaused-and-nanocpus-lifted-to-host-ncpu",
+          "prePredicate": "running-and-unpaused-and-cpu-unthrottled",
+          "scenario": "persistence-cpu-throttle",
+          "service": "persistence"
+        }
+      ],
+      "source": "controller-and-target-state-probes-independent-of-kieker"
+    },
+    "path": {
+      "correlation": "pre-outcome-opaque-token-one-to-one-original-native-trace",
+      "crossTraceAssemblyAllowed": false,
+      "directEdgePredicate": "persistence.parentId == auth.spanId in same original native trace",
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "executedDenominator": "independent-application-side-witness",
+      "expectedOpportunityIsExecutionProof": false,
+      "missingWitnessOrCorrelationState": "unsupported",
+      "missingWitnessOrCorrelationValue": null,
+      "noneZeroRequires": [
+        "independently-proven-executed-opportunity",
+        "terminal-complete-hash-reconciled-empty-capture"
+      ],
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "opportunityWorkload": "login-only-v1",
+      "requiredEdge": "auth->persistence",
+      "requiredSensors": [
+        "operation:auth",
+        "operation:persistence"
+      ],
+      "scoredPhases": [
+        "pre",
+        "post-readiness"
+      ],
+      "tokenContractFrozenBeforeOutcomes": true,
+      "tokenContractRequiredCoverage": [
+        "generation",
+        "login-request-injection",
+        "application-witness-extraction",
+        "native-trace-extraction",
+        "uniqueness",
+        "one-to-one-mapping"
+      ]
+    }
+  },
+  "id": "teastore-traffic-sweep-b-v1",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "teastore",
+  "outcomes": {
+    "collectorTailUse": "diagnostic-only",
+    "costRegimeOnly": null,
+    "effectResourcesAreCostEstimates": false,
+    "emptyLatencyValue": null,
+    "latencyPopulation": "successful-journeys-only",
+    "offeredJourneysAreDenominator": true,
+    "primary": "time to detection per sensor and for the ledger, per (fault, rate), repeated over blocks",
+    "primaryCostEndpoint": null,
+    "retainedTraceBytesAreWireBytes": false,
+    "windowMembership": "native-event-timestamps-clipped-to-shared-interval"
+  },
+  "postureProof": {
+    "full": {
+      "requires": [
+        "all-declared-groups-active",
+        "exact-aop-bytes",
+        "goal-and-catalog-digests"
+      ]
+    }
+  },
+  "protocolGates": {
+    "blocking": [
+      "F1",
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "g4ChannelScope": "ledger-only (no per-channel in-cell / total counts are recorded)",
+    "module": "modules/teastore/validation/protocol_gates.py",
+    "notEvaluated": {
+      "P0": "harness records no per-service connection counts or emitted-byte observations",
+      "R1": "harness records no per-channel recordsAfterWarmup and no per-route readiness map",
+      "R2": "fresh project and down -v are enforced by the cell producer, not recorded as a gate input"
+    },
+    "recordedNotBlocking": [
+      "R2.recovery"
+    ],
+    "stopRule": "first-invalid-cell",
+    "thresholds": {
+      "FLOOR": 0.5,
+      "G1_MIN_DISPATCHED": 1,
+      "HOLD_TOLERANCE_S": 1.0,
+      "ONSET_TOLERANCE_S": 1.0,
+      "PRE_FAIL_MAX": 0.05,
+      "SCOPE_MIN": 0.95,
+      "SCOPE_SLACK_S": 5.0
+    },
+    "vendoredFrom": "src/obsplacement/protocol_gates.py (measurement repo), byte-identical"
+  },
+  "queueProof": {
+    "manyRowsPerMessageAllowed": true,
+    "postureLabelAloneProvesMaterialization": false,
+    "requires": [
+      "purge-with-zero-consumers",
+      "zero-messages-at-measurement-barrier",
+      "exactly-one-collector",
+      "settled-drain",
+      "complete-message-sha1",
+      "complete-signature-sha1",
+      "no-redelivered-message-body",
+      "terminal-reconciliation"
+    ]
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "diagnosticRerunMayRestoreComparativeEligibility": false,
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "maximumLaterDiagnosticAttempts": 1,
+    "rateCarriedBy": [
+      "runId",
+      "timing.journeysPerSecond"
+    ],
+    "retryMayReplaceCell": false,
+    "runIdShape": "{studyEpoch}/{regime}/r{rate token}/b{block}/{posture}/a01",
+    "runKeyFields": [
+      "studyEpoch",
+      "regime",
+      "block",
+      "posture",
+      "attempt"
+    ]
+  },
+  "schedule": {
+    "blocks": [
+      {
+        "block": 1,
+        "orderSha256": "64686ea6a3719208e8fb7bb49e7fc60744930f509c2d04f50866765c3dc6d737",
+        "runIds": [
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r10/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r10/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r1/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r1/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r0p05/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r1/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r0p2/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r0p2/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r0p2/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r0p05/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r0p05/b01/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r10/b01/full/a01"
+        ]
+      },
+      {
+        "block": 2,
+        "orderSha256": "6b458e7fe7cc05baa0b7371a24d788b8dbeccc5a5f128b8c2c30800ebb167a5b",
+        "runIds": [
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r0p2/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r0p05/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r10/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r1/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r1/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r0p05/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r0p2/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r10/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r0p05/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r1/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r10/b02/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r0p2/b02/full/a01"
+        ]
+      },
+      {
+        "block": 3,
+        "orderSha256": "9372bdf05de63ea53ca95a7822734aa1d259ced29dc8eaf047113b57854dd681",
+        "runIds": [
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r0p05/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r0p2/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r1/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r0p05/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r1/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r0p2/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/persistence-cpu-throttle-effect/r10/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r1/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r10/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r0p05/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/auth-freeze-effect/r0p2/b03/full/a01",
+          "teastore-traffic-sweep-b-v1/no-fault-cost/r10/b03/full/a01"
+        ]
+      }
+    ],
+    "drawEncoding": "UTF-8(seed || NUL || epoch || NUL || block-NN || NUL || draw-i || NUL || version)",
+    "leadCell": null,
+    "seed": 20261009,
+    "shuffle": "fisher-yates-over-regimes-x-rates-with-sha256-draws",
+    "version": "sweep-b-schedule-v1"
+  },
+  "schemaVersion": 1,
+  "source": {
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "status": "method-design-only",
+  "systemSamples": {
+    "artifact": "system-samples.json",
+    "cells": "every-cell-cost-and-effect",
+    "collector": "modules/teastore/collectors/system_probe.py",
+    "faultWindowSamplesAreCostEstimates": false,
+    "intervalSeconds": 5,
+    "kind": "teastore-system-samples-v1",
+    "noFaultNullSampleAllowed": false,
+    "requiredServicesAtFirstSample": [
+      "auth",
+      "image",
+      "persistence",
+      "recommender",
+      "webui"
+    ],
+    "samplesPerRun": 37,
+    "sharedBarrierParticipant": false,
+    "source": "cgroup-v2-per-container-scope-and-docker-containerd-units",
+    "stoppedContainerValue": null,
+    "use": "detection-signal-only-in-effect-cells",
+    "windowSeconds": 180
+  },
+  "targetHost": "fb14srv5",
+  "timing": {
+    "barrierLeadSeconds": 15.0,
+    "budget": {
+      "cellOverheadLowerSeconds": 130,
+      "cellOverheadSeconds": 300,
+      "cellPeriodEstimateSeconds": 525,
+      "cleanupReserveSeconds": 300,
+      "maximumWallSeconds": 21600,
+      "measuredCellPeriodSeconds": {
+        "cells": 12,
+        "gaps": 11,
+        "maximum": 423.4,
+        "mean": 343.2,
+        "median": 330.5,
+        "minimum": 324.9,
+        "source": "teastore-traffic-sweep-v1 relaunch 2 (fb14srv5, 2026-10-04 07:53-08:57Z), consecutive runtime-journal recordedAt gaps; its 12 cells are this epoch's cell shape"
+      },
+      "minimumFirstMutationRemainingSeconds": 19200,
+      "minimumFirstMutationRule": "totalRuns x cellPeriodEstimate + cleanupReserve",
+      "prepareReserveSeconds": 1800,
+      "runWindowHours": 6,
+      "runWindowRule": "ceil-to-whole-hours(minimumFirstMutationRemaining + prepareReserve)",
+      "timedSecondsPerCell": 225
+    },
+    "drainAllowanceMarginSeconds": 2.0,
+    "drainAllowanceRule": "fault cells: a journey that STARTS in [readiness, readiness + requestTimeoutSeconds + 2 s) may fail without invalidating the cell; it is recorded (count and ids in candidate-validation.json) and excluded from the zero-failure rule and from the scored population; no-fault cells have none",
+    "faultHarness": {
+      "appliesTo": "fault cells only (timing.faultHarness is null in a no-fault cell)",
+      "freezeEventToleranceSeconds": 0.25,
+      "freezeFailure": "record-not-block",
+      "freezeStamps": true,
+      "h10": "no readiness probe from the fault onset (the onset command's issue) to the later of the scored window's end and the revert command's return; the producer refuses to probe earlier, records the window in sweep.probePolicy, and the validator rejects any probe that starts inside it",
+      "h4": "sweep.freezeStamps: pause = the Docker pause and unpause events of the target container (event time in ns, mapped to the cell's monotonic offsets by linear interpolation between the barrier and the collection instant) beside the command stamps; throttle = the command-issued and command-returned stamps plus the applied-state readback stamps; both = one readback stamp pair per target-state sample",
+      "h4Failure": "record, don't block (protocol decision 69): a failed or contradictory Docker events query or freeze-stamp check leaves the cell valid; the record carries status 'missing', every reason in failures and their number in failureCount, and the reader falls back to [onset command issued, onset command returned].  H10 stays blocking.",
+      "noProbeDuringFault": true,
+      "version": "h4-h10-v1"
+    },
+    "faultHoldSeconds": 60,
+    "faultOnsetAcceptanceSeconds": [
+      0.0,
+      1.0
+    ],
+    "faultOnsetBaseSeconds": 60,
+    "faultOnsetPhaseOffset": "seeded-stratified-within-one-inter-arrival",
+    "faultOnsetPhaseSelectorEncoding": "stratum order: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || onset-stratum || NUL || stratum); position: UTF-8(seed || NUL || epoch || NUL || runId || NUL || onset-phase)",
+    "faultOnsetStrata": 3,
+    "holdRule": "revert issued after the last hold sample, taken >= hold after the first post-command sample",
+    "leadCell": null,
+    "lifecycleIncludedInMinimum": false,
+    "measurementSeconds": 180,
+    "minimumActualStartsByPhaseRule": "max(1, ceil(protocol_gates.FLOOR x scheduled slots in the phase)); before = slots before onset, during = slots in [onset, onset + hold), after = slots from onset + hold + postRecoveryAllowanceSeconds",
+    "minimumTimedSeconds": 7560,
+    "offeredByRate": {
+      "0p05": 9,
+      "0p2": 36,
+      "1": 180,
+      "10": 1800
+    },
+    "offeredRule": "journeys-per-second-x-measurement-seconds-integral",
+    "operationalEstimateSeconds": {
+      "lower": 12780,
+      "upper": 18900
+    },
+    "phaseAssignmentSource": "observed-intervention-and-readiness-monotonic-times",
+    "phaseNames": [
+      "before",
+      "during",
+      "recovery",
+      "after"
+    ],
+    "postRecoveryAllowanceSeconds": 2.0,
+    "requestTimeoutSeconds": 15.0,
+    "sharedBarrierParticipants": [
+      "workload",
+      "resource-probe",
+      "collector",
+      "intervention"
+    ],
+    "traceCompleteness": {
+      "fraction": 0.01,
+      "harnessProbeOrphans": "excused as before (F-ADH-083)",
+      "incompleteJourney": "any record of the journey's native trace(s) carries a correlation error (missing or ambiguous parent, conflicting native identity), the trace has an execution-order-index gap or a repeated (message, trace, eoi/ess) identity, or it lacks the required auth->persistence edge; traces are attributed to journeys by the auth native-trace bridge",
+      "source": "research/PROTOCOL_DRAFT_20261002.md decision 25 (shared by the three sweeps)",
+      "unattributable": "an incomplete native trace no journey's bridge names is one cluster; inside window I by the logging time of all its defective records: recorded; otherwise it counts as one incomplete journey in window II",
+      "unit": "journey (one login request)",
+      "windowI": "fault cells: start in [onset command issued, readiness + drainAllowanceSeconds): recorded as fault effect, never blocking",
+      "windowII": "pre-onset, after the drain window, and every no-fault cell: block only if incomplete journeys > max(1, floor(fraction x successful journeys there))"
+    },
+    "warmupJourneysPerSecond": 10.0,
+    "warmupSeconds": 30
+  },
+  "workload": {
+    "concurrency": 240,
+    "concurrencyRule": "ceil(1.6 x max rate x request timeout)",
+    "excludedActions": [
+      "cart",
+      "checkout",
+      "confirmation",
+      "browse-home",
+      "browse-category",
+      "browse-product",
+      "return-home"
+    ],
+    "id": "login-only-v1",
+    "journeyKind": "login-only",
+    "journeyLedger": {
+      "appendOnly": true,
+      "oneRowPerOfferedJourney": true,
+      "requestRequiredFields": [
+        "sequence",
+        "step",
+        "routeId",
+        "target",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "latencyMs",
+        "statusCode",
+        "outcome",
+        "error"
+      ],
+      "requiredFields": [
+        "recordType",
+        "recordSequence",
+        "previousRecordSha256",
+        "recordSha256",
+        "planSha256",
+        "workloadId",
+        "barrierId",
+        "sequence",
+        "journeyId",
+        "opportunityId",
+        "opaqueToken",
+        "tokenAllocatedAt",
+        "scheduledAt",
+        "scheduledMonotonicOffsetSeconds",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "expectedPath",
+        "requests",
+        "requestCount",
+        "outcome",
+        "errors",
+        "terminalSettled",
+        "endedAfterNominalWindow"
+      ]
+    },
+    "journeysPerSecondLevels": [
+      10.0,
+      1.0,
+      0.2,
+      0.05
+    ],
+    "kind": "fixed-open-loop",
+    "population": "login only (one POST /loginAction per journey; the 302 to / is followed)",
+    "redirectFollowed": true,
+    "requestTimeoutSeconds": 15.0,
+    "requestTimeoutSource": "workload/fixed_load.py --timeout default (the frozen cell runner passes none)",
+    "route": "POST /tools.descartes.teastore.webui/loginAction"
+  }
+}

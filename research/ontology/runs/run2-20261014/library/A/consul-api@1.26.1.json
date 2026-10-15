@@ -1,0 +1,15 @@
+{
+ "schemaVersion": 1,
+ "library": "consul-api",
+ "version": "1.26.1",
+ "extraction": {
+  "note": "No fact reported: agent.go and api.go state no default value for Interval, Timeout, TTL or DeregisterCriticalServiceAfter (agent.go:344-346, 374), and name no component that detects a check failure or removes a service (agent.go:369-373 says only that the service 'will automatically be deregistered'). They state no heartbeat thread and no removal log or metric."
+ },
+ "sources": {
+  "obsplacement": {
+   "path": ".",
+   "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+  }
+ },
+ "facts": []
+}

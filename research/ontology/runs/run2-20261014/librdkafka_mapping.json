@@ -1,0 +1,13 @@
+{
+ "library": "librdkafka",
+ "version": "2.5.3",
+ "via": "Confluent.Kafka 2.5.3 (otel/accountingservice)",
+ "rule": "libraries.py docstring: no package metadata in the bundle; version from Confluent.Kafka's own project file at tag v2.5.3",
+ "mappingSource": {
+  "file": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Confluent.Kafka.csproj",
+  "line": 28,
+  "quotedToken": "<PackageReference Include=\"librdkafka.redist\" Version=\"2.5.3\">",
+  "upstream": "https://github.com/confluentinc/confluent-kafka-dotnet/blob/5be2102e271aedc8795e8858a337018095b834c8/src/Confluent.Kafka/Confluent.Kafka.csproj#L28",
+  "sha256": "5a4ca6a410f81303f1e343cdb9cae5c2a487bc1033ec217ccffd70315ccce8a2"
+ }
+}

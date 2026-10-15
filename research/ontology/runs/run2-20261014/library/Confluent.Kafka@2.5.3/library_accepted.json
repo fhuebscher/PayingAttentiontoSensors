@@ -1,0 +1,150 @@
+{
+ "library": "Confluent.Kafka@2.5.3",
+ "accepted": [
+  {
+   "id": "83a591b2ae2c6386",
+   "acceptance": "agreed",
+   "key": [
+    "Confluent.Kafka@2.5.3|coordinator.query.interval.ms",
+    "library:config-default",
+    "600000.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "coordinator.query.interval.ms",
+    "value": 600000,
+    "unit": "ms",
+    "scope": "group-membership",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+    "line": 1394,
+    "quotedToken": "default: 600000",
+    "note": "Doc comment of CoordinatorQueryIntervalMs (how often to query for the current group coordinator; divided by ten if the coordinator is down, line 1392). The key string \"coordinator.query.interval.ms\" is on line 1397."
+   }
+  },
+  {
+   "id": "6244c26c0844edb8",
+   "acceptance": "agreed",
+   "key": [
+    "Confluent.Kafka@2.5.3|group.instance.id",
+    "library:config-default",
+    "''"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "group.instance.id",
+    "value": "''",
+    "unit": "none",
+    "scope": "group-membership",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+    "line": 1338,
+    "quotedToken": "default: ''",
+    "note": "Doc comment of GroupInstanceId (static group membership; members may rejoin within session.timeout.ms without a rebalance, line 1336). Default is the empty string as the file states it. The key string \"group.instance.id\" is on line 1341."
+   }
+  },
+  {
+   "id": "a5dd1877e9d7637d",
+   "acceptance": "agreed",
+   "key": [
+    "Confluent.Kafka@2.5.3|group.protocol",
+    "library:config-default",
+    "classic"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "group.protocol",
+    "value": "classic",
+    "unit": "none",
+    "scope": "group-membership",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+    "line": 1378,
+    "quotedToken": "default: classic",
+    "note": "Doc comment of GroupProtocol (classic or consumer/KIP-848, line 1376). The key string \"group.protocol\" is on line 1381."
+   }
+  },
+  {
+   "id": "4e3978c4e83bf99f",
+   "acceptance": "agreed",
+   "key": [
+    "Confluent.Kafka@2.5.3|heartbeat.interval.ms",
+    "library:config-default",
+    "3000.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "heartbeat.interval.ms",
+    "value": 3000,
+    "unit": "ms",
+    "scope": "liveness",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+    "line": 1362,
+    "quotedToken": "default: 3000",
+    "note": "Doc comment of HeartbeatIntervalMs (\"Group session keepalive heartbeat interval.\", line 1360); the key string \"heartbeat.interval.ms\" is on line 1365."
+   }
+  },
+  {
+   "id": "a2584f323c3fa682",
+   "acceptance": "agreed",
+   "key": [
+    "Confluent.Kafka@2.5.3|max.poll.interval.ms",
+    "library:config-default",
+    "300000.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "max.poll.interval.ms",
+    "value": 300000,
+    "unit": "ms",
+    "scope": "group-membership",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+    "line": 1402,
+    "quotedToken": "default: 300000",
+    "note": "Doc comment of MaxPollIntervalMs; line 1400 states that if the interval between consume calls is exceeded the consumer is considered failed and the group rebalances. The key string \"max.poll.interval.ms\" is on line 1405."
+   }
+  },
+  {
+   "id": "e6ca9c46f9e3f40e",
+   "acceptance": "agreed",
+   "key": [
+    "Confluent.Kafka@2.5.3|session.timeout.ms",
+    "library:config-default",
+    "45000.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "session.timeout.ms",
+    "value": 45000,
+    "unit": "ms",
+    "scope": "group-membership",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+    "line": 1354,
+    "quotedToken": "default: 45000",
+    "note": "Doc comment of SessionTimeoutMs; the key string \"session.timeout.ms\" is on line 1357."
+   }
+  },
+  {
+   "id": "528f1dd53dcdcc89",
+   "acceptance": "agreed",
+   "key": [
+    "Confluent.Kafka@2.5.3|session.timeout.ms",
+    "library:failure-detector",
+    "group-coordinator"
+   ],
+   "fact": {
+    "kind": "failure-detector",
+    "subject": "session.timeout.ms",
+    "value": "group-coordinator",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs",
+    "line": 1352,
+    "quotedToken": "the broker will remove the consumer from the group",
+    "note": "Line 1352 states that if the broker receives no heartbeats from a member within the session timeout the broker removes the consumer from the group and triggers a rebalance. The file says \"the broker\" and does not name the group coordinator; value group-coordinator is the schema's category for the broker-side group membership authority."
+   }
+  }
+ ]
+}

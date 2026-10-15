@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "library": "librdkafka",
+ "version": "2.5.3",
+ "sources": {
+  "obsplacement": {
+   "path": ".",
+   "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+  }
+ },
+ "facts": [
+  {
+   "kind": "config-default",
+   "subject": "session.timeout.ms",
+   "value": 45000,
+   "unit": "ms",
+   "scope": "liveness",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+   "line": 110,
+   "quotedToken": "session.timeout.ms                       |  C  | 1 .. 3600000    |         45000",
+   "note": "Consumer-only (C) property; the table row states default 45000."
+  },
+  {
+   "kind": "config-default",
+   "subject": "heartbeat.interval.ms",
+   "value": 3000,
+   "unit": "ms",
+   "scope": "liveness",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+   "line": 111,
+   "quotedToken": "heartbeat.interval.ms                    |  C  | 1 .. 3600000    |          3000",
+   "note": "Described as 'Group session keepalive heartbeat interval.'"
+  },
+  {
+   "kind": "config-default",
+   "subject": "max.poll.interval.ms",
+   "value": 300000,
+   "unit": "ms",
+   "scope": "group-membership",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+   "line": 116,
+   "quotedToken": "max.poll.interval.ms                     |  C  | 1 .. 86400000   |        300000",
+   "note": "If exceeded the consumer is considered failed and the group rebalances; the same line says the interval is checked two times per second."
+  },
+  {
+   "kind": "config-default",
+   "subject": "coordinator.query.interval.ms",
+   "value": 600000,
+   "unit": "ms",
+   "scope": "group-membership",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+   "line": 115,
+   "quotedToken": "coordinator.query.interval.ms            |  C  | 1 .. 3600000    |        600000",
+   "note": "How often to query for the current group coordinator; divided by ten while the assigned coordinator is down."
+  },
+  {
+   "kind": "config-default",
+   "subject": "group.protocol",
+   "value": "classic",
+   "unit": "none",
+   "scope": "group-membership",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+   "line": 113,
+   "quotedToken": "group.protocol                           |  C  | classic, consumer |       classic",
+   "note": "Selects the original (classic) or the KIP-848 (consumer) protocol; the line says the default will change to consumer in next releases."
+  },
+  {
+   "kind": "failure-detector",
+   "subject": "session.timeout.ms",
+   "value": "group-coordinator",
+   "scope": "liveness",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/CONFIGURATION.md",
+   "line": 110,
+   "quotedToken": "the broker will remove the consumer from the group",
+   "note": "Property text: if no heartbeats are received by the broker within the session timeout, the broker removes the consumer and triggers a rebalance. Allowed range is set by broker configs group.min.session.timeout.ms and group.max.session.timeout.ms."
+  },
+  {
+   "kind": "failure-detector",
+   "subject": "session.timeout.ms",
+   "value": "client",
+   "scope": "liveness",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+   "line": 5711,
+   "quotedToken": "group_session_timeout_ms",
+   "note": "Client-side check rd_kafka_cgrp_session_timeout_check: the client itself declares the session timed out after session.timeout.ms without a successful response from the group coordinator, then revokes the assignment and rejoins (line 5725); called from rd_kafka_cgrp_serve at line 6264 only in join state STEADY."
+  },
+  {
+   "kind": "failure-detector",
+   "subject": "max.poll.interval.ms",
+   "value": "client",
+   "scope": "group-membership",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+   "line": 4990,
+   "quotedToken": "rk->rk_conf.max_poll_interval_ms",
+   "note": "rd_kafka_cgrp_max_poll_interval_check_tmr_cb (line 4973) runs in the client; on exceeding it the client logs, flags MAX_POLL_EXCEEDED and leaves the group (line 5023, except static members) and triggers a rebalance (line 5030)."
+  },
+  {
+   "kind": "heartbeat-thread-independent",
+   "subject": "rd_kafka_cgrp_heartbeat",
+   "value": true,
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+   "line": 5811,
+   "quotedToken": "rd_kafka_cgrp_heartbeat(rkcg)",
+   "note": "Heartbeat is sent from the cgrp serve path, which line 6229 documents as 'Called from main thread to serve the operational aspects of a cgrp' (rdkafka main thread, not the application poll call); it is rate-limited by group_heartbeat_intvl_ms (line 5809) and skipped once max.poll.interval.ms was exceeded (line 3287)."
+  },
+  {
+   "kind": "removal-signal",
+   "subject": "librdkafka client (MAXPOLL log)",
+   "value": "Application maximum poll interval (%dms) exceeded by %dms (adjust max.poll.interval.ms for long-running message processing): leaving group",
+   "signal": "log",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+   "line": 4984,
+   "quotedToken": "\"MAXPOLL\"",
+   "note": "Emitted by the client at LOG_WARNING when it removes itself after max.poll.interval.ms; not a group-coordinator log (no broker-side code in these files)."
+  },
+  {
+   "kind": "removal-signal",
+   "subject": "librdkafka client (MAXPOLL consumer error)",
+   "value": "RD_KAFKA_RESP_ERR__MAX_POLL_EXCEEDED",
+   "signal": "api",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+   "line": 4993,
+   "quotedToken": "RD_KAFKA_RESP_ERR__MAX_POLL_EXCEEDED",
+   "note": "Enqueued to the application's consumer queue via rd_kafka_consumer_err (line 4992) with message 'Application maximum poll interval (%dms) exceeded by %dms'."
+  },
+  {
+   "kind": "removal-signal",
+   "subject": "librdkafka client (SESSTMOUT log)",
+   "value": "Consumer group session timed out (in join-state %s) after %ld ms without a successful response from the group coordinator (broker %d, last error was %s): revoking assignment and rejoining group",
+   "signal": "log",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c",
+   "line": 5724,
+   "quotedToken": "\"SESSTMOUT\"",
+   "note": "Emitted by the client at LOG_WARNING (text assembled at lines 5713-5720 and 5725); the %ld stands for PRId64 in the source. Not a group-coordinator log."
+  }
+]
+}

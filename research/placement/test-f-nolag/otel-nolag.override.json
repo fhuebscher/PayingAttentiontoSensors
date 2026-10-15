@@ -1,0 +1,67 @@
+{
+ "fPin": {
+  "after": {
+   "otel": "ce6bfc1b9addbb1771b189c9330b1930f0d84c9890c1fd8d8e8cae0978d20a3d"
+  },
+  "before": {
+   "otel": "ce6bfc1b9addbb1771b189c9330b1930f0d84c9890c1fd8d8e8cae0978d20a3d"
+  },
+  "fPlacementFile": "research/placement/test-f/placement-f.json",
+  "module": "score_test_v3_3.PINNED_PLACEMENTS",
+  "recorded": {
+   "otel": "ce6bfc1b9addbb1771b189c9330b1930f0d84c9890c1fd8d8e8cae0978d20a3d"
+  },
+  "unchanged": true
+ },
+ "fileDigests": {
+  "research/detection-time/sweep_analysis_v3_3.py": "c8cd5072ed4b22cae9360e6446f969c75b4e66b900a08d3cfe0efbdadcd36e18",
+  "research/detection-time/sweep_analysis_v3_5.py": "69ec63b3e099a664ad4b75f59ece4a28b5d8ebaeeb159ef94250d2219e61509b",
+  "research/placement/celf_v3_3.py": "5d801f634d4d359a0b49c51faf390244eee99c09241c99bc778f0e20929d1ead",
+  "research/placement/celf_v3_5.py": "e934d5e0c75f33ead5bf64cf3d1109b85e7728894874bfe33edbb4777e8bc890",
+  "research/placement/score_test_v3_3.py": "704cf341ae23e09a123915e14b4546dc1e3b02b3cf7bf2fa4808059acbd2e442",
+  "research/placement/score_test_v3_5.py": "447219bc4832cb7fdb446721033715e33da0efdfa30efe8eca7fcc94b7bea72e",
+  "research/protocol/parameters_v3_2.json": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "research/protocol/parameters_v3_3.json": "a85daa482b487e4600d11c91dbdecac9a98b01fcd542b9ef051c06cf1268f4b7",
+  "research/protocol/parameters_v3_5.json": "d3b72bf9a255bbb5cac091c6e319485e25ea7e3759ed9e792c45f7702216977b",
+  "script": "research/placement/test-f-nolag/score_nolag.py",
+  "scriptSha256": "36dbb326a4316f27a7ac9ad83ab7f46d51e57bf2769740129d718b7f97f785ed"
+ },
+ "override": {
+  "ablationPlacementSha256": "8263bfd0b16659e82c8d43f9835772c4f279918262b84a37f1c0e5d3e5425085",
+  "module": "score_test_v3_5.PINNED_PLACEMENTS",
+  "placement": "research/placement/test-f-nolag/placement-nolag.json",
+  "placementSha256": "8263bfd0b16659e82c8d43f9835772c4f279918262b84a37f1c0e5d3e5425085",
+  "scope": "this process, this one main() call",
+  "system": "otel"
+ },
+ "python": "3.13.12 (main, Mar  6 2026, 04:10:39) [Clang 14.0.3 (clang-1403.0.22.14.1)]",
+ "readerAndRegistryPins": {
+  "pinnedCelfV3Sha256": "3823722125e9796e6716a830b01d12c69177c7ab6b0a0d7a5fa3984ab6205e97",
+  "pinnedParametersV32Sha256": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "pinnedParametersV33Sha256": "a85daa482b487e4600d11c91dbdecac9a98b01fcd542b9ef051c06cf1268f4b7",
+  "pinnedParametersV35Sha256": "d3b72bf9a255bbb5cac091c6e319485e25ea7e3759ed9e792c45f7702216977b",
+  "pinnedV31ReaderSha256": "2e7ec5c387fa906a02026f0d1a5212b974f17751c24f76526a1d8418b2fd4fdd",
+  "pinnedV32ReaderSha256": "97eb0a1d4f3f7e0daecee447113fdd14bd14b84812f420ddb3903bfe16759465",
+  "pinnedV33ReaderSha256": "c8cd5072ed4b22cae9360e6446f969c75b4e66b900a08d3cfe0efbdadcd36e18",
+  "pinnedV35ReaderSha256": "69ec63b3e099a664ad4b75f59ece4a28b5d8ebaeeb159ef94250d2219e61509b"
+ },
+ "scope": "instance",
+ "scorerArgv": [
+  "research/traffic-sweep/readout-otel-f-nolag-score-v3.5/sweep_analysis_v3_5.json",
+  "--placement",
+  "research/placement/test-f-nolag/placement-nolag.json",
+  "--training-readout",
+  "research/traffic-sweep/readout-otel-f-nolag-train-v3.5/sweep_analysis_v3_5.json",
+  "--test-blocks",
+  "4",
+  "5",
+  "--out",
+  "research/placement/test-f-nolag/otel-nolag.json"
+ ],
+ "scorerPin": {
+  "after": {},
+  "before": {},
+  "unchanged": true
+ },
+ "version": "score-nolag-f-nolag-v1"
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "library": "grpc-consul-resolver",
+  "version": "1.5.3",
+  "extraction": {
+    "extractor": "B",
+    "model": "haiku",
+    "scope": "consul.go and target.go only, as vendored at tag v1.5.3",
+    "notes": [
+      "No session, heartbeat, health-check interval or deregistration setting appears in these files.",
+      "No default is stated for wait (target.go:20, consul.go:58), timeout (target.go:21, target.go:89) or healthy (target.go:26, consul.go:54); not reported.",
+      "Near defaults to _agent (target.go:70) but only sets query locality (consul.go:57); not a membership setting, not reported.",
+      "Retry Min of 10 ms is hardcoded (consul.go:45); it is not a configuration key, not reported.",
+      "No heartbeat exists in these files; the goroutine at consul.go:48 is a blocking-query loop, not a heartbeat, so no heartbeat-thread fact is reported.",
+      "The client does not detect member failure itself; it replaces its address set with whatever the registry returns (consul.go:139-140). On a fetch error it sleeps and retries without updating the set (consul.go:64-75).",
+      "No removal is logged: populateEndpoints (consul.go:127-150) calls UpdateState without a removal log. The logs at consul.go:72, 79, 142 and 146 are fetch errors, a per-fetch endpoint count, an update error and watch end.",
+      "Whether the Consul agent or server runs the health check, and its interval, are outside these files (the Consul api package is not vendored here)."
+    ]
+  },
+  "sources": {
+    "obsplacement": {
+      "path": ".",
+      "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+    }
+  },
+  "facts": [
+    {
+      "kind": "config-default",
+      "subject": "max-backoff",
+      "value": "time.Second",
+      "unit": "s",
+      "scope": "registration",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/target.go",
+      "line": 73,
+      "quotedToken": "time.Second",
+      "note": "Key is form:\"max-backoff\" at target.go:22. The default is applied when the value is zero, at target.go:72-74 in parseURL. It bounds the retry delay for the registry query that supplies endpoints (consul.go:42-46, 64-75)."
+    },
+    {
+      "kind": "failure-detector",
+      "subject": "healthy",
+      "value": "other",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/consul.go",
+      "line": 54,
+      "quotedToken": "tgt.Healthy",
+      "note": "Member health comes from the registry. The resolver only requests healthy instances through this flag and the files state no timeout key for detection. The files do not say whether the Consul agent or server runs the check, so the value is other."
+    }
+  ]
+}

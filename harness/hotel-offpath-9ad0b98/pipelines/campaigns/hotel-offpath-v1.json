@@ -1,0 +1,518 @@
+{
+  "schemaVersion": 1,
+  "id": "hotel-offpath-v1",
+  "status": "method-design-only",
+  "module": "hotel-reservation",
+  "declaration": "research/traffic-sweep/DECLARATION_HOTEL_OFFPATH.md (measurement repo; committed alone before the first cell)",
+  "source": {
+    "sutCommit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization"
+  },
+  "workload": {
+    "id": "hotel-search-v1",
+    "kind": "fixed-open-loop",
+    "method": "GET",
+    "route": "/hotels",
+    "requestsPerSecondLevels": [
+      10.0,
+      1.0
+    ],
+    "concurrency": 16,
+    "requestTimeoutSeconds": 1.0,
+    "opportunityLedger": {
+      "appendOnly": true,
+      "oneRowPerOfferedRequest": true,
+      "allocatedBeforeTelemetry": true,
+      "requiredFields": [
+        "recordSequence",
+        "previousRecordSha256",
+        "recordSha256",
+        "planSha256",
+        "workloadId",
+        "barrierId",
+        "sequence",
+        "opportunityId",
+        "opaqueToken",
+        "scheduledAt",
+        "scheduledMonotonicOffsetSeconds",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "outcome",
+        "statusCode",
+        "error",
+        "terminalSettled"
+      ]
+    }
+  },
+  "design": {
+    "postures": [
+      "full"
+    ],
+    "postureRoles": {
+      "full": "logs-info-sampler-on-tracer-full-sampling"
+    },
+    "unsupportedPostures": [
+      {
+        "id": "source-off",
+        "state": "unsupported",
+        "numericValue": null
+      }
+    ],
+    "regimes": [
+      {
+        "id": "no-fault-calibration",
+        "kind": "no-fault-calibration",
+        "fault": null,
+        "artifactRootClass": "calibration",
+        "role": "no-fault"
+      },
+      {
+        "id": "consul-pause-effect",
+        "kind": "effect",
+        "fault": "consul-pause",
+        "artifactRootClass": "effect/consul-pause",
+        "role": "off-path-pause"
+      },
+      {
+        "id": "search-pause-effect",
+        "kind": "effect",
+        "fault": "search-pause",
+        "artifactRootClass": "effect/search-pause",
+        "role": "on-path-control"
+      }
+    ],
+    "rates": [
+      10.0,
+      1.0
+    ],
+    "episodesPerRegimeAndRate": 5,
+    "blocks": 5,
+    "cellsPerBlock": 6,
+    "totalRuns": 30,
+    "blockRule": "each-block-holds-every-(regime,rate)-pair-exactly-once",
+    "coldStartEachRun": true,
+    "faultAppliedToEveryEffectCell": true,
+    "noFaultCellsCarryPseudoWindow": true,
+    "offPathRegime": "consul-pause-effect",
+    "onPathControlRegime": "search-pause-effect",
+    "offPathRouteOutageRequired": false
+  },
+  "timing": {
+    "warmupSeconds": 30,
+    "warmupRequestsPerSecond": 10.0,
+    "leadCell": null,
+    "measurementSeconds": 180,
+    "offeredRule": "requests-per-second-x-measurement-seconds-integral",
+    "offeredByRate": {
+      "10": 1800,
+      "1": 180
+    },
+    "faultOnsetBaseSeconds": 60,
+    "faultOnsetPhaseOffset": "seeded-stratified-within-one-inter-arrival",
+    "faultOnsetPhaseSelectorEncoding": "stratum order: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || onset-stratum || NUL || stratum); position: UTF-8(seed || NUL || epoch || NUL || runId || NUL || onset-phase)",
+    "faultHoldSeconds": 60,
+    "faultOnsetAcceptanceSeconds": [
+      -0.05,
+      2.0
+    ],
+    "faultHoldAcceptanceSeconds": [
+      0.0,
+      2.0
+    ],
+    "minimumWitnessedStartsByPhaseRule": "max(1, ceil(protocol_gates.FLOOR x scheduled slots in the phase)); pre = slots before onset, during = slots in [onset, onset + hold), post-readiness = slots from onset + hold + postRecoveryAllowanceSeconds",
+    "postRecoveryAllowanceSeconds": 2.0,
+    "phaseNames": [
+      "pre",
+      "during",
+      "post-readiness"
+    ],
+    "requestTimeoutSeconds": 1.0,
+    "jaegerQueryWindowSeconds": 185,
+    "minimumTimedSeconds": 6300,
+    "budget": {
+      "barrierLeadSeconds": 5,
+      "cellOverheadSeconds": 60,
+      "cellPeriodEstimateSeconds": 275,
+      "prepareReserveSeconds": 600,
+      "cleanupReserveSeconds": 300,
+      "rule": "ceil-to-whole-hours(totalRuns x cellPeriod + prepare + cleanup)",
+      "maximumWallSeconds": 10800,
+      "minimumFirstMutationRemainingSeconds": 10500
+    },
+    "onsetStrataPerRegimeAndRate": 5
+  },
+  "schedule": {
+    "version": "offpath-schedule-v1",
+    "seed": 20261015,
+    "shuffle": "fisher-yates-over-regimes-x-rates-with-sha256-draws",
+    "drawEncoding": "UTF-8(seed || NUL || epoch || NUL || block-NN || NUL || draw-i || NUL || version)",
+    "blocks": [
+      {
+        "block": 1,
+        "runIds": [
+          "no-fault-calibration-r10-b01-full-a01",
+          "search-pause-effect-r10-b01-full-a01",
+          "consul-pause-effect-r10-b01-full-a01",
+          "consul-pause-effect-r1-b01-full-a01",
+          "no-fault-calibration-r1-b01-full-a01",
+          "search-pause-effect-r1-b01-full-a01"
+        ],
+        "orderSha256": "675f0493ed9454d68158b28f8cdd7b8e3a953edaba104638a2d4892f2ac8995f"
+      },
+      {
+        "block": 2,
+        "runIds": [
+          "consul-pause-effect-r1-b02-full-a01",
+          "search-pause-effect-r1-b02-full-a01",
+          "search-pause-effect-r10-b02-full-a01",
+          "consul-pause-effect-r10-b02-full-a01",
+          "no-fault-calibration-r1-b02-full-a01",
+          "no-fault-calibration-r10-b02-full-a01"
+        ],
+        "orderSha256": "56045254df85fd923e45aab44dc84c9c3ef455a22b7ed56d8a0662056e8c165c"
+      },
+      {
+        "block": 3,
+        "runIds": [
+          "no-fault-calibration-r10-b03-full-a01",
+          "consul-pause-effect-r10-b03-full-a01",
+          "no-fault-calibration-r1-b03-full-a01",
+          "consul-pause-effect-r1-b03-full-a01",
+          "search-pause-effect-r10-b03-full-a01",
+          "search-pause-effect-r1-b03-full-a01"
+        ],
+        "orderSha256": "3082f4fc31b690fa766c591781266633efaa5f91b827851277650ff013aa0b85"
+      },
+      {
+        "block": 4,
+        "runIds": [
+          "no-fault-calibration-r1-b04-full-a01",
+          "search-pause-effect-r10-b04-full-a01",
+          "no-fault-calibration-r10-b04-full-a01",
+          "consul-pause-effect-r10-b04-full-a01",
+          "search-pause-effect-r1-b04-full-a01",
+          "consul-pause-effect-r1-b04-full-a01"
+        ],
+        "orderSha256": "651d0971f0f71e89b520c359a7d9919bc719b889d2822432cbc4dad7e330e631"
+      },
+      {
+        "block": 5,
+        "runIds": [
+          "consul-pause-effect-r10-b05-full-a01",
+          "search-pause-effect-r10-b05-full-a01",
+          "no-fault-calibration-r10-b05-full-a01",
+          "search-pause-effect-r1-b05-full-a01",
+          "no-fault-calibration-r1-b05-full-a01",
+          "consul-pause-effect-r1-b05-full-a01"
+        ],
+        "orderSha256": "5b6232e39af7ff33f0254c47eec02be3e6b98cb9a21c4ae986d0c10b01c8033f"
+      }
+    ]
+  },
+  "runIdentity": {
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "requestsPerSecond",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "attemptBeginsBeforeExternalMutation": true,
+    "retryMayReplaceCell": false,
+    "failedAttemptsRetainedAndCharged": true
+  },
+  "groundTruth": {
+    "fault": {
+      "source": "controller-target-state-and-route-probes-independent-of-jaeger",
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "scenarioContracts": [
+        {
+          "scenario": "search-pause",
+          "service": "search",
+          "prePredicate": "running-and-unpaused",
+          "duringPredicate": "running-and-paused-and-route-fails",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-search-pause-prefix-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        },
+        {
+          "scenario": "consul-pause",
+          "service": "consul",
+          "prePredicate": "running-and-unpaused",
+          "duringPredicate": "running-and-paused-and-docker-pause-event",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "routeOutageDuringHold": "recorded-not-required",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-normal-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        }
+      ],
+      "offPathManifestation": {
+        "scenarios": [
+          "consul-pause"
+        ],
+        "rule": "container read back as paused (receipt duringState.paused) and docker pause then unpause events on the target's own container id (terminal replay); the route outage is recorded (outageObserved) and not required",
+        "onPathRule": "manifested = paused and route outage observed (unchanged for search-pause)"
+      }
+    },
+    "path": {
+      "normal": {
+        "id": "hotel-search-normal-v1",
+        "requiredSensors": [
+          "span:frontend:HTTP GET /hotels",
+          "span:search:/search.Search/Nearby",
+          "span:geo:/geo.Geo/Nearby",
+          "span:rate:/rate.Rate/GetRates",
+          "span:reservation:/reservation.Reservation/CheckAvailability",
+          "span:profile:/profile.Profile/GetProfiles"
+        ],
+        "requiredServiceEdges": [
+          [
+            "frontend",
+            "search"
+          ],
+          [
+            "search",
+            "geo"
+          ],
+          [
+            "search",
+            "rate"
+          ],
+          [
+            "frontend",
+            "reservation"
+          ],
+          [
+            "frontend",
+            "profile"
+          ]
+        ],
+        "oneOriginalNativeTraceRequired": true,
+        "crossTraceAssemblyAllowed": false
+      },
+      "faultSpecific": [
+        {
+          "id": "hotel-search-search-pause-prefix-v1",
+          "fault": "search-pause",
+          "targetService": "search",
+          "requiredAttemptedPrefix": [
+            "frontend",
+            "search"
+          ],
+          "downstreamNotRequiredDuringFault": [
+            "search->geo",
+            "search->rate",
+            "frontend->reservation",
+            "frontend->profile"
+          ],
+          "nativeOperationQualification": "unsupported-until-runtime-characterization",
+          "numericValueWhenUnsupported": null
+        }
+      ],
+      "opportunitySource": "offered-request-ledger-before-scored-telemetry",
+      "executedDenominator": "independent-application-side-witness",
+      "expectedOpportunityIsExecutionProof": false,
+      "correlation": "opaque-token-one-to-one-original-native-trace",
+      "tokenContractRequiredCoverage": [
+        "generation",
+        "request-injection",
+        "application-witness-extraction",
+        "native-trace-extraction",
+        "uniqueness",
+        "one-to-one-mapping"
+      ],
+      "missingWitnessOrCorrelationState": "unsupported",
+      "missingWitnessOrCorrelationValue": null,
+      "sampleZeroFalseRequires": [
+        "independently-proven-executed-opportunity",
+        "terminal-complete-empty-capture"
+      ]
+    }
+  },
+  "protocolGates": {
+    "module": "modules/hotel-reservation/validation/protocol_gates.py",
+    "vendoredFrom": "src/obsplacement/protocol_gates.py (measurement repo), byte-identical",
+    "blocking": [
+      "F1",
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "recordedNotBlocking": [
+      "R2.recovery"
+    ],
+    "notEvaluated": {
+      "P0": "harness records no per-service connection counts or emitted-byte observations",
+      "R1": "harness records no per-channel recordsAfterWarmup and no per-route readiness map",
+      "R2": "fresh project and down -v are enforced by the cell runner, not recorded as a gate input"
+    },
+    "g4ChannelScope": "ledger-only (no per-channel in-cell / total counts are recorded)",
+    "thresholds": {
+      "FLOOR": 0.5,
+      "PRE_FAIL_MAX": 0.05,
+      "SCOPE_MIN": 0.95,
+      "SCOPE_SLACK_S": 5.0,
+      "ONSET_TOLERANCE_S": 1.0,
+      "HOLD_TOLERANCE_S": 1.0,
+      "G1_MIN_DISPATCHED": 1
+    },
+    "stopRule": "first-invalid-cell",
+    "f1OffPathManifestation": "an off-path pause is manifested by the receipt's container read back as paused; the docker pause/unpause events on the target are checked at terminal replay before the gates run; the route outage is recorded"
+  },
+  "outcomes": {
+    "offeredRequestsAreDenominator": true,
+    "costRegimeOnly": "no-fault-cost",
+    "sourceCostComparisonState": "unsupported",
+    "sourceCostComparisonValue": null,
+    "sourceCostUnsupportedReason": "no-posture-is-source-off",
+    "retainedTraceBytesAreWireBytes": false,
+    "effectResourcesAreCostEstimates": false,
+    "emptyLatencyValue": null,
+    "windowMembership": "native-event-timestamps-clipped-to-shared-interval",
+    "collectorTailUse": "diagnostic-only"
+  },
+  "postureProof": {
+    "full": {
+      "sourceWorkDisabled": false,
+      "logLevel": "info",
+      "metricSampler": true,
+      "requires": [
+        "sample-ratio-one-all-declared-services",
+        "immutable-image-ids",
+        "log-level-info-all-declared-services"
+      ]
+    }
+  },
+  "collection": {
+    "logLevelByPosture": {
+      "full": "info"
+    },
+    "metricSamplerPostures": [
+      "full"
+    ],
+    "metricSamplerIntervalSeconds": 1,
+    "tracePostures": [
+      "full"
+    ],
+    "tracedServicesByPosture": {
+      "full": [
+        "frontend",
+        "search",
+        "geo",
+        "rate",
+        "reservation",
+        "profile",
+        "user",
+        "recommendation",
+        "review",
+        "attractions"
+      ]
+    },
+    "alwaysOn": [
+      "request-witness-stdout",
+      "docker-events-stream",
+      "system-sampler-cgroup-5s",
+      "cost-cgroup-cpu-window-edges"
+    ],
+    "applicationLogTimestamps": "docker-compose-logs-timestamps",
+    "jaegerCapture": "frontend-query-plus-deduplicated-remainder-of-the-other-application-services",
+    "costAxis": "cgroup-cpu-usage-delta-ten-app-containers-plus-docker-and-containerd",
+    "alwaysOnCostMeasured": false,
+    "scopeServices": [
+      "frontend",
+      "search",
+      "geo",
+      "rate",
+      "reservation",
+      "profile",
+      "user",
+      "recommendation",
+      "review",
+      "attractions",
+      "consul"
+    ],
+    "extraScopeServices": [
+      "consul"
+    ],
+    "extraScopeChannels": [
+      "application-log",
+      "docker-stats-cpu",
+      "cost-cgroup",
+      "system-sampler-cgroup-5s",
+      "tcp-snapshots",
+      "image-receipt"
+    ],
+    "extraScopeRule": "consul is collected beside the ten application services in this epoch only; applicationCpu* sums the ten application containers, consul is a separate row"
+  },
+  "faultParameters": {
+    "targets": {
+      "consul-pause": "consul",
+      "search-pause": "search"
+    },
+    "cpuThrottleCpus": "0.1",
+    "netDelayMilliseconds": 100,
+    "netDelayMechanism": "sudo-nsenter-net-tc-netem-on-eth0",
+    "cpuThrottleMechanism": "docker-update-cpus",
+    "windowEdges": "post-apply-command-to-pre-revert-command"
+  },
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "abstentionState": "unsupported",
+    "abstentionNumericValue": null,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "analysis": {
+    "comparativeUnit": "(fault, rate) over blocks",
+    "descriptiveOnly": true,
+    "detectionTimeMissCharge": "window-end (hold end), averaged over all episodes",
+    "analysisCode": "research/detection-time/ (measurement repo), frozen by digest before any off-path cell is read",
+    "placementVerdict": null,
+    "forbidden": [
+      "source-off-claim",
+      "selected-posture-claim",
+      "source-cost-effect",
+      "p-value",
+      "confirmatory-interval",
+      "optimizer-front",
+      "observation-count-as-replication"
+    ]
+  },
+  "evidence": {
+    "designLabel": "method-design-only",
+    "maximumSupportedFutureLabel": "candidate-evidence",
+    "placementOrSourceCostEligible": false,
+    "canonical": false,
+    "promotionRequiresSeparateHumanGate": true
+  },
+  "transport": {
+    "executor": null,
+    "transport": null,
+    "runtimeAllowed": false,
+    "externalMutationAllowed": false,
+    "runtimeAdapterState": "absent-by-design"
+  },
+  "derivedFrom": {
+    "studyEpoch": "hotel-traffic-sweep-v1",
+    "descriptorCanonicalSha256": "788ff28cc44248fec518fd04e3e0f91ab6d92229888a1412a52e50f9dd889dab",
+    "planCanonicalSha256": "766063c5a0f0b90ab1aba1ada29b86e152e8ec1e7f7bd048d4c802c10b7bbc72",
+    "regimes": [
+      "no-fault-calibration",
+      "search-pause-effect"
+    ]
+  }
+}

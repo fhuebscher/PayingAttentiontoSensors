@@ -1,0 +1,35 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {"stage": 2, "extractor": "A", "service": "shippingservice", "entry": 64},
+ "sources": {
+  "upstream": {"path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo", "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"},
+  "harness": {"path": "../observability-placement-runtime-otel-protocol", "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"}
+ },
+ "services": [
+  {
+   "name": {"value": "shippingservice", "basis": "cited", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 549, "quotedToken": "shippingservice:"},
+   "container": {
+    "value": "shipping-service", "basis": "cited", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 551, "quotedToken": "container_name: shipping-service",
+    "note": "Image is ${IMAGE_NAME}:${DEMO_VERSION}-shippingservice (docker-compose.yml:550). Compose block lines 549-573 has no healthcheck key, so no container health check is configured in compose. The Dockerfile installs /bin/grpc_health_probe (src/shippingservice/Dockerfile:44) and main.rs:22-25 registers a tonic-health serving status, but no file in the given set invokes the probe. restart: unless-stopped (line 561), memory limit 20M (line 560)."
+   },
+   "replicas": {
+    "value": 1, "basis": "cited", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 551, "quotedToken": "container_name: shipping-service",
+    "note": "No deploy.replicas or scale key in docker-compose.yml:549-573; a fixed container_name admits one container. The count is not stated explicitly."
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol", "basis": "cited", "repo": "upstream", "sourceFile": "docker-compose.yml", "line": 567, "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}",
+     "note": "OTLP over gRPC: OTEL_COLLECTOR_HOST=otelcol (.env:27), OTEL_COLLECTOR_PORT_GRPC=4317 (.env:28); the collector's otlp receiver has a grpc protocol (src/otelcollector/otelcol-config.yml:6-7). Traces: src/shippingservice/src/telemetry/traces_conf.rs:16 opentelemetry_otlp::new_exporter().tonic() with install_batch(runtime::Tokio) at traces_conf.rs:18; no export interval or batch setting is set in these files (library default, not in these files). Metrics: Cargo.toml:22 enables only the opentelemetry 'trace' feature and no metrics pipeline is built in the given src files, so no metric export is stated. Logs: telemetry/logs_conf.rs:7 CombinedLogger of SimpleLogger only, no OTLP log exporter in code, so no log export to the collector is stated (logs go to the container stdout via the json-file driver, docker-compose.yml:573 'logging: *logging'). Harness override compose.candidate-postures.yml:126-130 sets OTEL_PLACEMENT_ENABLED, OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER from ${OTEL_CANDIDATE_SHIPPINGSERVICE_*}; whether the Rust SDK reads these is not stated in the given files."
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {"caller": "shippingservice", "callee": "quoteservice"},
+   "basis": "cited", "repo": "upstream", "sourceFile": "src/shippingservice/src/shipping_service/quote.rs", "line": 44, "quotedToken": "http://quoteservice:8090",
+   "note": "HTTP POST (quote.rs:58 client.post(quote_service_addr)) to QUOTE_SERVICE_ADDR + \"/getquote\" (quote.rs:43,47); default http://quoteservice:8090, and docker-compose.yml:566 passes QUOTE_SERVICE_ADDR, set to http://quoteservice:${QUOTE_SERVICE_PORT} at .env:112 (QUOTE_SERVICE_PORT=8090, .env:111). The service makes no other outgoing call in the given files. No Kafka topic is published or consumed in these files. No registry, discovery service or coordinator registration appears in these files (no heartbeat, failure timeout or cleanup interval)."
+  }
+ ]
+}

@@ -1,0 +1,184 @@
+{
+ "schemaVersion": 1,
+ "sut": "teastore",
+ "extraction": {
+  "stage": 2,
+  "extractor": "A",
+  "service": "registry",
+  "absences": [
+   "Synchronous calls: none made by the registry in its files (Registry.java, RegistryREST.java, RegistryStartup.java, IndexServlet.java contain no outbound client call; it only serves PUT/DELETE/GET on services/{name}/{location}).",
+   "Messages: none published or consumed in the registry files.",
+   "Registers with: nothing. It is itself the registry (RegistryREST.java:31 @Path(\"services\")).",
+   "Telemetry: registry environment in docker-compose_kieker.yaml:45-47 sets only KIEKER_AMQP_HEARTBEAT_SECONDS, no RABBITMQ_HOST. dockerbase Dockerfile:31 defaults RABBITMQ_HOST unset and :30 LOG_TO_FILE false; start.sh:39-41 then sets kieker.monitoring.enabled=false. So no trace, metric or log destination is configured for this service in these files. Log output goes through slf4j-simple (registry pom.xml:61), destination not stated in these files.",
+   "Health check: none in the compose block (docker-compose_kieker.yaml:41-49) or in the registry/dockerbase Dockerfiles.",
+   "Client-side heartbeat sender interval: not in these files (clients are other services)."
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+   "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-teastore-protocol",
+   "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "registry",
+    "basis": "cited",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 41,
+    "quotedToken": "registry:"
+   },
+   "role": {
+    "value": "registry",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/Registry.java",
+    "line": 34,
+    "quotedToken": "public final class Registry"
+   },
+   "container": {
+    "value": "descartesresearch/teastore-registry",
+    "basis": "cited",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 42,
+    "quotedToken": "image: descartesresearch/teastore-registry"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "library default, not in these files: the registry service block (docker-compose_kieker.yaml:41-49) has no deploy.replicas or scale key, so Compose runs its default of one container."
+   }
+  }
+ ],
+ "coordinators": [
+  {
+   "name": {
+    "value": "teastore-registry",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/Registry.java",
+    "line": 34,
+    "quotedToken": "public final class Registry"
+   },
+   "type": {
+    "value": "ServiceRegistry",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/Registry.java",
+    "line": 37,
+    "quotedToken": "serviceLocationMap"
+   },
+   "hostedBy": {
+    "value": "registry",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryREST.java",
+    "line": 31,
+    "quotedToken": "@Path(\"services\")"
+   },
+   "liveness": [
+    {
+     "mechanism": {
+      "value": "heartbeat: PUT services/{name}/{location} refreshes the entry's last-heartbeat time (updateHeartbeatMap); a registry-side scheduled task removes entries not refreshed within the failure timeout",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+      "line": 68,
+      "quotedToken": "heartbeatScheduler.scheduleAtFixedRate"
+     },
+     "monitors": [
+      {
+       "value": "persistence",
+       "basis": "cited",
+       "repo": "harness",
+       "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+       "line": 64,
+       "quotedToken": "REGISTRY_HOST: \"registry\"",
+       "note": "compose points this service at the registry; that it then heartbeats is in the service's own files, not these"
+      },
+      {
+       "value": "auth",
+       "basis": "cited",
+       "repo": "harness",
+       "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+       "line": 78,
+       "quotedToken": "REGISTRY_HOST: \"registry\"",
+       "note": "compose points this service at the registry; that it then heartbeats is in the service's own files, not these"
+      },
+      {
+       "value": "image",
+       "basis": "cited",
+       "repo": "harness",
+       "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+       "line": 91,
+       "quotedToken": "REGISTRY_HOST: \"registry\"",
+       "note": "compose points this service at the registry; that it then heartbeats is in the service's own files, not these"
+      },
+      {
+       "value": "recommender",
+       "basis": "cited",
+       "repo": "harness",
+       "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+       "line": 102,
+       "quotedToken": "REGISTRY_HOST: \"registry\"",
+       "note": "compose points this service at the registry; that it then heartbeats is in the service's own files, not these"
+      },
+      {
+       "value": "webui",
+       "basis": "cited",
+       "repo": "harness",
+       "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+       "line": 112,
+       "quotedToken": "REGISTRY_HOST: \"registry\"",
+       "note": "compose points this service at the registry; that it then heartbeats is in the service's own files, not these"
+      }
+     ],
+     "failureTimeoutSeconds": {
+      "value": 10,
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/HeartbeatInfo.java",
+      "line": 32,
+      "quotedToken": "< 10000",
+      "note": "isAlive() is true while now - lastHeartbeat < 10000 ms"
+     },
+     "cleanupIntervalSeconds": {
+      "value": 2.5,
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+      "line": 40,
+      "quotedToken": "HEARTBEAT_INTERVAL_MS = 2500",
+      "note": "used as both initial delay and period of heartBeatCleanup() at RegistryStartup.java:73; the client heartbeat sending interval is not in these files"
+     },
+     "heartbeatThreadIndependentOfWork": {
+      "value": true,
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+      "line": 67,
+      "quotedToken": "Executors.newSingleThreadScheduledExecutor()",
+      "note": "applies to the registry-side cleanup scheduler, a dedicated thread separate from request threads; whether the clients' heartbeat senders are independent is not in these files"
+     },
+     "healthCheckConfigured": {
+      "value": false,
+      "basis": "cited",
+      "repo": "harness",
+      "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+      "line": 41,
+      "quotedToken": "registry:",
+      "note": "absence: the registry compose block (lines 41-49) has no healthcheck key, and neither the registry nor the dockerbase Dockerfile has a HEALTHCHECK instruction"
+     }
+    }
+   ]
+  }
+ ]
+}

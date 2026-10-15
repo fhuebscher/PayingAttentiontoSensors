@@ -1,0 +1,5 @@
+repository: https://github.com/DescartesResearch/TeaStore.git
+commit: 34b37f7e7be433ce72d5f9455e66922a13116749
+subdirectory: .
+inspection_status: clean_committed_object
+legacy_adapter_source: test-repos/TeaStore

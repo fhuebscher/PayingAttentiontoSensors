@@ -1,0 +1,524 @@
+{
+ "inputs": {
+  "research/lanes/out-f3-posthoc/posthoc_lanes_v33_otel.json": "6a1dd40bbddf62cf4ab3ca44a7c04cc19c7a96155d651b10ab8a867bc36a7e97",
+  "research/placement/test-f-rep1/fresh-fa-f3-own/fresh_fa_f.json": "aa8e2749ff5f9b6dab4b502ba861ea570da5484cc0e99ca2a6442bcccf645803",
+  "research/placement/test-f-rep1/fresh-fa-f3/fresh_fa_f.json": "93d606314db24ab61dc04b842137c302094a391521fd8e7fa91d9d9af5e75119",
+  "research/placement/test-f-rep1/otel-f3.json": "6c91c967edaedcfdf398d8dd1deb4353cbcd010ffaf6e7e69fa378bbefdb459d",
+  "research/protocol/PREDICTIONS_OVERNIGHT_20261014.json": "57529300012ea7d52848f10c574e8089596010c5705d01a7f9b13c8d0d743a0d"
+ },
+ "label": "FR1 predictions (8b89d43) scored against the replicate's committed outputs; attempt 3 launched after 8b89d43 (attempt 2 launched before it and is not read)",
+ "results": [
+  {
+   "basis": {
+    "measuredRow": {
+     "coordinator": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       42.94,
+       43.33
+      ],
+      "rangeCounted": [
+       42.94,
+       43.33
+      ]
+     },
+     "episodes": 2,
+     "lag": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       8.9,
+       9.4
+      ]
+     },
+     "ledger": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "own": {
+      "any": 2,
+      "counted": 0,
+      "episodes": 2,
+      "range": [
+       1.15,
+       1.18
+      ]
+     }
+    }
+   },
+   "id": "FR1-ONT-fraud",
+   "items": [
+    {
+     "item": "lane:own",
+     "measured": {
+      "any": 2,
+      "counted": 0,
+      "episodes": 2,
+      "range": [
+       1.15,
+       1.18
+      ]
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "disagree"
+    },
+    {
+     "item": "lane:coordinator",
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       42.94,
+       43.33
+      ],
+      "rangeCounted": [
+       42.94,
+       43.33
+      ]
+     },
+     "note": "",
+     "predicted": true,
+     "verdict": "agree"
+    },
+    {
+     "item": "lane:lag",
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       8.9,
+       9.4
+      ]
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "disagree"
+    },
+    {
+     "item": "CQ-C1 class",
+     "measured": "coordinator fired",
+     "note": "from the coordinator lane (no class table for this campaign)",
+     "predicted": "tracked",
+     "verdict": "agree"
+    },
+    {
+     "item": "CQ-L2 window",
+     "measured": [
+      42.94,
+      43.33
+     ],
+     "note": "range is the any-field earliest per episode; counted-only range [42.94, 43.33]",
+     "predicted": [
+      45.0,
+      45.0
+     ],
+     "verdict": "disagree"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "agree"
+    }
+   ],
+   "rule": "Scored with the rules of research/ontology/compare.py (docstring, lines 1-24): each lane = detected in >= 1 episode of the row, any field (counted field reported beside it), measured lane not collected -> not comparable; CQ-C1 class by the measured coordinator class map; CQ-L2 window agree iff the measured coordinator range lies inside [low, high], partial if it overlaps, disagree otherwise; CQ-B1 entry-service-reached against the request-ledger lane as a proxy. Each item is scored separately; no item is edited after reading.",
+   "verdict": "items"
+  },
+  {
+   "basis": {
+    "measuredRow": {
+     "coordinator": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       26.0,
+       43.78
+      ],
+      "rangeCounted": [
+       43.78,
+       43.79
+      ]
+     },
+     "episodes": 2,
+     "lag": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       4.38,
+       9.29
+      ]
+     },
+     "ledger": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "own": {
+      "any": 2,
+      "counted": 0,
+      "episodes": 2,
+      "range": [
+       0.95,
+       1.0
+      ]
+     }
+    }
+   },
+   "id": "FR1-ONT-accounting",
+   "items": [
+    {
+     "item": "lane:own",
+     "measured": {
+      "any": 2,
+      "counted": 0,
+      "episodes": 2,
+      "range": [
+       0.95,
+       1.0
+      ]
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "disagree"
+    },
+    {
+     "item": "lane:coordinator",
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       26.0,
+       43.78
+      ],
+      "rangeCounted": [
+       43.78,
+       43.79
+      ]
+     },
+     "note": "",
+     "predicted": true,
+     "verdict": "agree"
+    },
+    {
+     "item": "lane:lag",
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       4.38,
+       9.29
+      ]
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "disagree"
+    },
+    {
+     "item": "CQ-C1 class",
+     "measured": "coordinator fired",
+     "note": "from the coordinator lane (no class table for this campaign)",
+     "predicted": "tracked",
+     "verdict": "agree"
+    },
+    {
+     "item": "CQ-L2 window",
+     "measured": [
+      26.0,
+      43.78
+     ],
+     "note": "range is the any-field earliest per episode; counted-only range [43.78, 43.79]",
+     "predicted": [
+      45.0,
+      45.0
+     ],
+     "verdict": "disagree"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "agree"
+    }
+   ],
+   "rule": "Scored with the rules of research/ontology/compare.py (docstring, lines 1-24): each lane = detected in >= 1 episode of the row, any field (counted field reported beside it), measured lane not collected -> not comparable; CQ-C1 class by the measured coordinator class map; CQ-L2 window agree iff the measured coordinator range lies inside [low, high], partial if it overlaps, disagree otherwise; CQ-B1 entry-service-reached against the request-ledger lane as a proxy. Each item is scored separately; no item is edited after reading.",
+   "verdict": "items"
+  },
+  {
+   "basis": {
+    "measuredRow": {
+     "coordinator": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "episodes": 2,
+     "lag": null,
+     "ledger": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       0.37,
+       0.4
+      ]
+     },
+     "own": null
+    }
+   },
+   "id": "FR1-ONT-frontend",
+   "items": [
+    {
+     "item": "lane:own",
+     "measured": null,
+     "note": "",
+     "predicted": false,
+     "verdict": "not comparable"
+    },
+    {
+     "item": "lane:coordinator",
+     "measured": {
+      "any": 0,
+      "counted": 0,
+      "episodes": 2,
+      "range": null
+     },
+     "note": "",
+     "predicted": false,
+     "verdict": "agree"
+    },
+    {
+     "item": "lane:lag",
+     "measured": null,
+     "note": "",
+     "predicted": false,
+     "verdict": "not comparable"
+    },
+    {
+     "item": "CQ-C1 class",
+     "measured": "coordinator silent",
+     "note": "from the coordinator lane (no class table for this campaign)",
+     "predicted": "not-a-member",
+     "verdict": "agree"
+    },
+    {
+     "item": "CQ-L2 window",
+     "measured": null,
+     "note": "no predicted window; coordinator silent",
+     "predicted": null,
+     "verdict": "agree"
+    },
+    {
+     "item": "CQ-B1 entry reached (proxy: ledger lane)",
+     "measured": {
+      "any": 2,
+      "counted": 2,
+      "episodes": 2,
+      "range": [
+       0.37,
+       0.4
+      ]
+     },
+     "note": "",
+     "predicted": true,
+     "verdict": "agree"
+    }
+   ],
+   "rule": "Scored with the rules of research/ontology/compare.py (docstring, lines 1-24): each lane = detected in >= 1 episode of the row, any field (counted field reported beside it), measured lane not collected -> not comparable; CQ-C1 class by the measured coordinator class map; CQ-L2 window agree iff the measured coordinator range lies inside [low, high], partial if it overlaps, disagree otherwise; CQ-B1 entry-service-reached against the request-ledger lane as a proxy. Each item is scored separately; no item is edited after reading.",
+   "verdict": "items"
+  },
+  {
+   "basis": {
+    "k": 4,
+    "n": 4,
+    "ttd": [
+     [
+      "fraud-pause-effect",
+      4,
+      1.1542789936065674,
+      "by-construction"
+     ],
+     [
+      "fraud-pause-effect",
+      5,
+      1.1767044067382812,
+      "by-construction"
+     ],
+     [
+      "accounting-pause-effect",
+      4,
+      0.9527275562286377,
+      "by-construction"
+     ],
+     [
+      "accounting-pause-effect",
+      5,
+      1.0007774829864502,
+      "by-construction"
+     ]
+    ]
+   },
+   "id": "FR1-L1",
+   "rule": "hit iff 4/4 off-path test episodes have an own-lane earliest fire < 2.0 s; miss otherwise; \u2014 if an episode has no own sensors collected",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "countedTtd": [
+     [
+      "fraud-pause-effect",
+      4,
+      42.93950295448303
+     ],
+     [
+      "fraud-pause-effect",
+      5,
+      43.325910568237305
+     ],
+     [
+      "accounting-pause-effect",
+      4,
+      43.77522873878479
+     ],
+     [
+      "accounting-pause-effect",
+      5,
+      43.79254627227783
+     ]
+    ],
+    "frontendNoFireEitherField": true,
+    "offpathInWindow": 4
+   },
+   "id": "FR1-L2",
+   "rule": "hit iff 4/4 off-path test episodes have a counted coordinator fire in [42, 47] s and both frontend episodes have no coordinator fire in either field",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "additionallyStated_lagInBand_3_15": "4/4",
+    "armed": 2,
+    "armedIds": [
+     "metric:kafka:kafka.consumer_group.lag",
+     "metric:kafka:kafka.consumer_group.lag_sum"
+    ],
+    "lagBeforeCoordinator": 4,
+    "lagFireSeconds": [
+     8.902467727661133,
+     9.39865779876709,
+     4.377531051635742,
+     9.287614583969116
+    ],
+    "n": 4
+   },
+   "id": "FR1-L3",
+   "rule": "hit iff armed and lag fire < coordinator fire in >= 3/4 episodes; additionally stated: lag earliest fire in [3.0, 15.0] s in >= 3/4 episodes (F: 4.5-9.3 s, 4/4)",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "placeableNonFlagdSdk": 236,
+    "placeableNonFlagdSpanmetrics": 44
+   },
+   "id": "FR1-M",
+   "rule": "hit iff numbers.placeableNonFlagdSdk >= 1 or numbers.placeableNonFlagdSpanmetrics >= 1",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "sensors": [
+     "metric:kafka:kafka.purgatory.size"
+    ],
+    "set": "frontier (effort<=any, runtime<=any) @6/T_r",
+    "size": 1
+   },
+   "id": "FR1-V1",
+   "rule": "hit iff the set's sensors include >= 1 id starting `metric:kafka:`; the set's members are reported either way (not a pass criterion)",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "episodesInPool": 2,
+    "gE": 53.654993411153555,
+    "improved": 2,
+    "verdict": "PASS"
+   },
+   "id": "FR1-V2",
+   "rule": "hit iff the scorer's verdict for class fraud-pause-effect is PASS; miss if FAIL; \u2014 if fewer than 2 valid test episodes. Weakest link: the strict-improvement count (a lag fire that is threshold-marginal, or a ledger fire first in an episode, gives < 2 of 2).",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "episodesInPool": 2,
+    "gE": 58.546938721090555,
+    "improved": 2,
+    "verdict": "PASS"
+   },
+   "id": "FR1-V3",
+   "rule": "hit iff the scorer's verdict for class accounting-pause-effect is PASS; miss if FAIL; \u2014 if fewer than 2 valid test episodes. Weakest link: the strict-improvement count (a lag fire that is threshold-marginal, or a ledger fire first in an episode, gives < 2 of 2).",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "improved": 0,
+    "of": 2
+   },
+   "id": "FR1-V4",
+   "rule": "hit iff improved == 0 of 2 for class frontend-pause-effect in the scorer's per-episode rows; miss otherwise",
+   "verdict": "hit"
+  },
+  {
+   "basis": {
+    "fSetOnReplicateCells": [
+     [
+      "metric:kafka:kafka.consumer_group.lag",
+      0,
+      0.2,
+      35.04344969580511,
+      14.978661367769948
+     ]
+    ],
+    "replicateOwnSet": [
+     [
+      "metric:kafka:kafka.purgatory.size",
+      1,
+      0.2,
+      9.985774245179966,
+      23.71932259195289
+     ]
+    ],
+    "totalAlarms": 1
+   },
+   "id": "FR1-V5",
+   "rule": "hit iff the sum of `union of the sensor's 3 rules` alarms over the set's sensors <= 4; reported with the training honest bound",
+   "verdict": "hit"
+  }
+ ],
+ "scope": "instance (fb14srv6, one SUT, one host, one pinned harness)",
+ "script": "research/placement/test-f-rep1/score_predictions_fr1.py",
+ "scriptSha256": "8c07864c64c3f1ca0622e067d6378b12c6a515fd810032d20be60159f80e7526"
+}

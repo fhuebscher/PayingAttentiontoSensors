@@ -1,0 +1,210 @@
+{
+  "analysis": {
+    "comparativeUnit": "complete-(regime,block)",
+    "costAndEffectPoolable": false,
+    "descriptiveOnly": true,
+    "forbidden": [
+      "observation-count-as-replication",
+      "source-off-as-none",
+      "unsupported-posture-imputation",
+      "cross-family-replication-from-channel-alias"
+    ],
+    "report": [
+      "raw-blocks",
+      "paired-deltas",
+      "ranges",
+      "order-time-thermal-diagnostics",
+      "typed-abstentions"
+    ]
+  },
+  "design": {
+    "blocksPerRegime": 3,
+    "coldStartEachRun": true,
+    "postures": [
+      "none",
+      "selected",
+      "full"
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "cost",
+        "fault": null,
+        "id": "no-fault-cost",
+        "kind": "cost"
+      },
+      {
+        "artifactRootClass": "effect/frontend-pause",
+        "fault": "frontend-pause",
+        "id": "frontend-pause-effect",
+        "kind": "effect"
+      }
+    ],
+    "runsPerBlock": 3,
+    "totalRuns": 18
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true,
+    "runtimeSuccessDoesNotPromote": true
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "independentOfScoredTelemetry": true,
+      "intervalLabel": "intervention-exposure",
+      "requiredReceiptFields": [
+        "scenario",
+        "service",
+        "targetContainerId",
+        "targetImageId",
+        "preState",
+        "duringStateSamples",
+        "postState",
+        "actualOnsetMonotonicOffsetSeconds",
+        "actualOffsetMonotonicOffsetSeconds",
+        "manifested",
+        "recovered",
+        "successful",
+        "error"
+      ],
+      "scenarioContracts": [
+        {
+          "commandFamily": "container-pause-unpause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "postPredicate": "running-and-unpaused-and-ready",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "frontend-pause",
+          "service": "frontend"
+        }
+      ],
+      "source": "controller-and-target-state-probes"
+    },
+    "path": {
+      "crossTraceAssemblyAllowed": false,
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "expectedNoFaultPath": [
+        "frontendproxy",
+        "frontend",
+        "recommendationservice"
+      ],
+      "executedDenominator": "application-side-request-witness",
+      "faultSpecificTruth": {
+        "frontend-pause": {
+          "duringFaultExpectedOutcome": "offered-request-with-frontend-unavailable",
+          "duringFaultFullPathRequired": false,
+          "postRecoveryFullPathRequired": true,
+          "preFaultFullPathRequired": true
+        }
+      },
+      "missingWitnessOrCorrelationState": "unsupported",
+      "numericMissingValue": null,
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "requiredCorrelation": [
+        "opaque-request-token",
+        "application-side-request-witness",
+        "original-trace-id",
+        "one-to-one-token-trace-mapping"
+      ],
+      "scoredPhases": [
+        "pre-fault",
+        "during-fault",
+        "post-readiness"
+      ]
+    }
+  },
+  "id": "otel-demo-candidate-pilot-v1",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "otel-demo",
+  "outcomes": {
+    "costRegimeOnly": "no-fault-cost",
+    "effectResourcesAreCostEstimates": false,
+    "offeredRequestsAreDenominator": true,
+    "primaryCostEndpoint": "application-cpu-seconds-per-offered-request",
+    "retainedTraceBytesAreWireBytes": false,
+    "windowMembership": "monotonic-shared-barrier"
+  },
+  "postureRealization": {
+    "full": {
+      "currentControl": "upstream-all-services-enabled",
+      "reason": null,
+      "status": "implemented"
+    },
+    "none": {
+      "currentControl": "legacy-source-off",
+      "reason": "target services still call no-op APIs and non-target services remain instrumented",
+      "status": "unsupported"
+    },
+    "selected": {
+      "currentControl": null,
+      "reason": "no audited closure materializes only the required target-path sensors while disabling other application instrumentation",
+      "status": "unsupported"
+    }
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "retryMayReplaceCell": false
+  },
+  "schedule": {
+    "algorithm": "sha256-regime-indexed-latin-rotation-v1",
+    "context": "schedule-v1",
+    "postureCodes": {
+      "F": "full",
+      "N": "none",
+      "S": "selected"
+    },
+    "seedSource": "study-epoch-and-regime-only"
+  },
+  "source": {
+    "applicationFamily": "otel-demo",
+    "channel": "compose-otel-collector",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "status": "method-design-only",
+  "timing": {
+    "faultOnsetSeconds": 180,
+    "interventionHoldSeconds": 150,
+    "measurementSeconds": 600,
+    "offeredRequestsPerRun": 600,
+    "requestsPerSecond": 1.0,
+    "warmupSeconds": 120
+  },
+  "workflow": {
+    "candidateExecutionEnabled": false,
+    "constructionBlockers": [
+      "none-posture-not-realized",
+      "selected-posture-not-realized",
+      "application-request-witness-not-implemented",
+      "request-token-to-original-trace-correlation-not-implemented",
+      "candidate-terminal-validator-not-implemented",
+      "gate-plan-pending",
+      "gate-run-not-requested"
+    ],
+    "externalMutationAllowed": false,
+    "runtimeAuthorized": false
+  }
+}

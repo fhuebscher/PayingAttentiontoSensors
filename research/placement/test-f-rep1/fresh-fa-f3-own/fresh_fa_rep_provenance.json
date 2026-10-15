@@ -1,0 +1,26 @@
+{
+ "campaign": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/f3-fetch2/x",
+ "freshFaF": "research/placement/test-f/fresh-fa/fresh_fa_f.py",
+ "freshFaFSha256": "df6d4a98dd8d31d228c1fea40044a742732a158c4911b0cbfc922aa414f94093",
+ "heldOutCells": [
+  "r25-b04-16-full",
+  "r25-b04-17-full",
+  "r25-b05-21-full",
+  "r25-b05-22-full"
+ ],
+ "label": "POST HOC fresh false alarms, campaign F replicate (attempt 3); instance scope",
+ "note": "fresh_fa_f's own output files say 'after RESULT_F.md' and name F; their rows are the replicate's",
+ "readoutDir": "tmp/fresh-fa-f3-own/readout-v3.3-validation",
+ "readoutSha256": "641ccfd935f8a9b08a0683d148b89629329e9bd96116d04553114a1024e2a2d4",
+ "sets": {
+  "@3/T_r": "metric:kafka:kafka.purgatory.size",
+  "@6/T_r": "metric:kafka:kafka.purgatory.size"
+ },
+ "setsAre": "given by --set",
+ "split": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/protocol/split_f_otel.json",
+ "splitSha256": "107cb13aeb52e009754744b136f33b63af69c67d9a2b50e8d9bce14a0e719844",
+ "trainReadout": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/research/traffic-sweep/readout-otel-f3-train-v3.3/sweep_analysis_v3_3.json",
+ "trainReadoutSha256": "f56feb556d319443eeaaa398a5e1a998a61de7cabb62702a2278780e1c4a7f11",
+ "wrapper": "research/placement/test-f-rep1/fresh_fa_rep_f3.py",
+ "wrapperSha256": "3f57646d42a0c701a869a1991708e340feba812f31340a521e8e520de743fd9f"
+}

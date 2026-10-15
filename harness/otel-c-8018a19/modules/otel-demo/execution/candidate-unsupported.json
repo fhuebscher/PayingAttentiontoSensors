@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "kind": "otel-demo-candidate-unsupported-disposition-v1",
+  "changeId": "admit-otel-demo-candidate-runtime",
+  "studyEpoch": "otel-demo-candidate-pilot-v1",
+  "module": "otel-demo",
+  "scope": {
+    "appliesToStudyEpochs": ["otel-demo-candidate-pilot-v1"],
+    "supersededBy": {
+      "studyEpoch": "otel-demo-candidate-pilot-v2",
+      "changeId": "admit-otel-demo-candidate-pilot-v2",
+      "descriptorPath": "pipelines/campaigns/otel-demo-candidate-pilot-v2.json"
+    },
+    "rule": "this UNSUPPORTED disposition is the terminal result of study epoch otel-demo-candidate-pilot-v1 only; it neither blocks nor pre-judges any cell of a later study epoch, and no v1 cell is ever re-scored"
+  },
+  "executionDisposition": "unsupported",
+  "empiricalResultState": "UNSUPPORTED",
+  "frozenDesign": {
+    "descriptorPath": "pipelines/campaigns/otel-demo-candidate-pilot-v1.json",
+    "descriptorByteSha256": "fb43212b38ce0cd53538ee654b825574ee415dc4624fc2cc32bcc6d82504cbaa",
+    "descriptorCanonicalSha256": "daffe1cafc502bc0ff79da25d8233cd69c5882091628c2d83fb82e851be5307e",
+    "cellCount": 18,
+    "postures": [
+      "none",
+      "selected",
+      "full"
+    ],
+    "randomizedRepeatedBlocks": true,
+    "separateCostAndFaultEffectWindows": true,
+    "explicitFaultAndPathGroundTruth": true
+  },
+  "targetBinding": {
+    "allocationPath": "modules/otel-demo/execution/candidate-target-allocation.json",
+    "allocationByteSha256": "1a48cc116864a4d4bfee7d443e18ad10220714f744ef95ba6146f4f1d3a6c7b3",
+    "preservedAsProvenanceOnly": true,
+    "runtimeAuthority": false,
+    "externalMutationAllowed": false
+  },
+  "fundamentalReasons": [
+    {
+      "id": "none-posture-not-structurally-realizable",
+      "scope": [
+        "none"
+      ],
+      "descriptorPointer": "/postureRealization/none",
+      "detail": "The legacy source-off control leaves non-target application instrumentation active and does not establish the frozen none posture."
+    },
+    {
+      "id": "selected-posture-not-structurally-realizable",
+      "scope": [
+        "selected"
+      ],
+      "descriptorPointer": "/postureRealization/selected",
+      "detail": "No audited closure realizes only the selected target-path sensors while disabling all other application instrumentation."
+    },
+    {
+      "id": "comparative-block-invalid-without-all-postures",
+      "scope": [
+        "none",
+        "selected",
+        "full"
+      ],
+      "descriptorPointer": "/analysis/comparativeUnit",
+      "detail": "The frozen comparative unit is a complete (regime, block) containing none, selected, and full; unsupported required postures invalidate every block, so full-only cells may not run."
+    }
+  ],
+  "comparativePolicy": {
+    "unit": "complete-(regime,block)",
+    "requiredPostures": [
+      "none",
+      "selected",
+      "full"
+    ],
+    "partialBlockAllowed": false,
+    "fullOnlyExecutionAllowed": false,
+    "resultIfAnyRequiredPostureUnsupported": "UNSUPPORTED"
+  },
+  "cellLedger": [
+    {
+      "runId": "0a8980615fc6b8552341ab09",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "no-fault-cost", "block": 1, "posture": "selected", "attempt": 1},
+      "artifactRoot": "runs/no-fault-cost/b01-01-selected",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["selected-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "cd2769ad80edb050eca91d31",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "no-fault-cost", "block": 1, "posture": "none", "attempt": 1},
+      "artifactRoot": "runs/no-fault-cost/b01-02-none",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["none-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "94ae89ef1658aac7db645043",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "no-fault-cost", "block": 1, "posture": "full", "attempt": 1},
+      "artifactRoot": "runs/no-fault-cost/b01-03-full",
+      "frozenRealizationStatus": "implemented",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "4d32a508fa02234a247086f9",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "no-fault-cost", "block": 2, "posture": "none", "attempt": 1},
+      "artifactRoot": "runs/no-fault-cost/b02-01-none",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["none-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "55df241324adbfa5bbc12b34",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "no-fault-cost", "block": 2, "posture": "full", "attempt": 1},
+      "artifactRoot": "runs/no-fault-cost/b02-02-full",
+      "frozenRealizationStatus": "implemented",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "86c7987ee1b6436eb174cfbb",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "no-fault-cost", "block": 2, "posture": "selected", "attempt": 1},
+      "artifactRoot": "runs/no-fault-cost/b02-03-selected",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["selected-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "d54130bccb0f5a75e90acd2b",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "no-fault-cost", "block": 3, "posture": "full", "attempt": 1},
+      "artifactRoot": "runs/no-fault-cost/b03-01-full",
+      "frozenRealizationStatus": "implemented",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "eb74fe990e6a374e492e3940",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "no-fault-cost", "block": 3, "posture": "selected", "attempt": 1},
+      "artifactRoot": "runs/no-fault-cost/b03-02-selected",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["selected-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "e9025c85723974836b903b93",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "no-fault-cost", "block": 3, "posture": "none", "attempt": 1},
+      "artifactRoot": "runs/no-fault-cost/b03-03-none",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["none-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "0be8ca2f028598baa2b92424",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "frontend-pause-effect", "block": 1, "posture": "full", "attempt": 1},
+      "artifactRoot": "runs/frontend-pause-effect/b01-01-full",
+      "frozenRealizationStatus": "implemented",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "3b8c2ed40f9cc58e5a510818",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "frontend-pause-effect", "block": 1, "posture": "selected", "attempt": 1},
+      "artifactRoot": "runs/frontend-pause-effect/b01-02-selected",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["selected-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "e0c1eb977bdc86671967928c",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "frontend-pause-effect", "block": 1, "posture": "none", "attempt": 1},
+      "artifactRoot": "runs/frontend-pause-effect/b01-03-none",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["none-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "8ab4cd708491806db7bc7232",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "frontend-pause-effect", "block": 2, "posture": "selected", "attempt": 1},
+      "artifactRoot": "runs/frontend-pause-effect/b02-01-selected",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["selected-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "922740ee1459cbad3fd6214e",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "frontend-pause-effect", "block": 2, "posture": "none", "attempt": 1},
+      "artifactRoot": "runs/frontend-pause-effect/b02-02-none",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["none-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "739af4beb903a5f9fe48c35c",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "frontend-pause-effect", "block": 2, "posture": "full", "attempt": 1},
+      "artifactRoot": "runs/frontend-pause-effect/b02-03-full",
+      "frozenRealizationStatus": "implemented",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "e9b93d3244dd70428d4d535a",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "frontend-pause-effect", "block": 3, "posture": "none", "attempt": 1},
+      "artifactRoot": "runs/frontend-pause-effect/b03-01-none",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["none-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "8a60cbbdb3328333886ea4f1",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "frontend-pause-effect", "block": 3, "posture": "full", "attempt": 1},
+      "artifactRoot": "runs/frontend-pause-effect/b03-02-full",
+      "frozenRealizationStatus": "implemented",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["comparative-block-invalid-without-all-postures"]
+    },
+    {
+      "runId": "1a5ba084b532901680494273",
+      "runKey": {"studyEpoch": "otel-demo-candidate-pilot-v1", "regime": "frontend-pause-effect", "block": 3, "posture": "selected", "attempt": 1},
+      "artifactRoot": "runs/frontend-pause-effect/b03-03-selected",
+      "frozenRealizationStatus": "unsupported",
+      "empiricalResultState": "UNSUPPORTED",
+      "externalAttempt": false,
+      "numericResults": null,
+      "reasonIds": ["selected-posture-not-structurally-realizable", "comparative-block-invalid-without-all-postures"]
+    }
+  ],
+  "permissions": {
+    "setupAllowed": false,
+    "readinessAllowed": false,
+    "launchAllowed": false,
+    "statusOrFetchAllowed": false,
+    "cellMutationAllowed": false,
+    "externalMutationAllowed": false
+  },
+  "gateStates": {
+    "GATE-PLAN": "not-requested",
+    "GATE-SETUP": "not-requested",
+    "GATE-RUN": "not-requested"
+  },
+  "maximumEvidenceLabel": null,
+  "canonical": false,
+  "promotionAuthorized": false
+}

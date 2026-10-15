@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "teastore-candidate-readiness-retained-pairs-v1",
+  "pairs": [
+    {
+      "seam": "patched-sut-images",
+      "facts": {"inputContract": "pass", "platform": "linux/amd64", "services": ["auth", "persistence", "webui"], "remoteImageInspection": "pass", "runtimeReady": false},
+      "plantedDefect": {"field": "remoteImageInspection", "value": "blocked"}
+    },
+    {
+      "seam": "application-witness-finalization",
+      "facts": {"manifestSchemaVersion": 3, "patchDigestBound": true, "authEvent": "login-persistence-request", "persistenceEvent": "login-user-lookup"},
+      "plantedDefect": {"field": "patchDigestBound", "value": false}
+    },
+    {
+      "seam": "measurement-scoped-auth-log-capture",
+      "facts": {"captureContract": "measurement-window", "runtimeCapture": "not-measured", "postRunValidationRequired": true},
+      "plantedDefect": {"field": "runtimeCapture", "value": "complete"}
+    },
+    {
+      "seam": "parameter-logging-disabled",
+      "facts": {"composeContract": "LOG_PARAMETERS-absent", "runtimeEnvironment": "not-measured", "postRunValidationRequired": true},
+      "plantedDefect": {"field": "composeContract", "value": "LOG_PARAMETERS-present"}
+    },
+    {
+      "seam": "native-token-correlation",
+      "facts": {"validatorAst": "pass", "reconcileEntryPoint": "present", "runtimeMapping": "not-measured", "postRunValidationRequired": true},
+      "plantedDefect": {"field": "reconcileEntryPoint", "value": "missing"}
+    },
+    {
+      "seam": "cross-message-parent-and-service-attribution",
+      "facts": {"collectorSelfCheck": "4/4-pass", "parentTree": "eoi/ess-correct", "fieldRoundTrip": "exact", "runtimeAttribution": "not-measured"},
+      "plantedDefect": {"field": "parentTree", "value": "incorrect"}
+    },
+    {
+      "seam": "none-selected-full-materialization",
+      "facts": {"descriptorValidation": "pass", "compiledRunCount": 27, "regimes": ["auth-freeze-effect", "no-fault-cost", "persistence-crash-effect"], "postures": ["full", "none", "selected"]},
+      "plantedDefect": {"field": "compiledRunCount", "value": 26}
+    },
+    {
+      "seam": "queue-and-capture-reconciliation",
+      "facts": {"brokerState": "not-measured", "reason": "requires-running-cell", "postRunValidationRequired": true},
+      "plantedDefect": {"field": "brokerState", "value": "clean"}
+    },
+    {
+      "seam": "candidate-cell-validation",
+      "facts": {"validatorLoad": "pass", "emptyArtifactFixture": "blocked", "runtimeCell": "not-measured", "postRunValidationRequired": true},
+      "plantedDefect": {"field": "emptyArtifactFixture", "value": "pass"}
+    },
+    {
+      "seam": "candidate-terminal-validation",
+      "facts": {"validatorLoad": "pass", "expectedRunRoots": 27, "runtimeTerminal": "not-measured", "postRunValidationRequired": true},
+      "plantedDefect": {"field": "runtimeTerminal", "value": "complete"}
+    },
+    {
+      "seam": "bounded-transport",
+      "facts": {"implementationAst": "pass", "subprocessCalls": "argv-only", "shellEvaluationAllowed": false, "runtimeTransport": "not-measured", "target": "fb14srv5"},
+      "plantedDefect": {"field": "subprocessCalls", "value": "shell-capable"}
+    },
+    {
+      "seam": "outer-lease-deadline-and-cleanup",
+      "facts": {"controllerAst": "pass", "leaseGuard": "present", "deadlineGuard": "present", "cleanupGuard": "present", "runtimeLifecycle": "not-measured", "postRunValidationRequired": true},
+      "plantedDefect": {"field": "cleanupGuard", "value": "missing"}
+    }
+  ],
+  "claimBoundary": "Checker replay only; no live host readiness, runtime authorization, evidence promotion, or empirical result follows."
+}

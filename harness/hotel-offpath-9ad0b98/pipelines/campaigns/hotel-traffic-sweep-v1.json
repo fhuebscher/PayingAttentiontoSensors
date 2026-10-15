@@ -1,0 +1,518 @@
+{
+  "schemaVersion": 1,
+  "id": "hotel-traffic-sweep-v1",
+  "status": "method-design-only",
+  "module": "hotel-reservation",
+  "declaration": "research/traffic-sweep/DECLARATION.md (measurement repo; frozen 2026-10-03)",
+  "source": {
+    "sutCommit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization"
+  },
+  "workload": {
+    "id": "hotel-search-v1",
+    "kind": "fixed-open-loop",
+    "method": "GET",
+    "route": "/hotels",
+    "requestsPerSecondLevels": [
+      10.0,
+      1.0,
+      0.2,
+      0.05
+    ],
+    "concurrency": 16,
+    "requestTimeoutSeconds": 1.0,
+    "opportunityLedger": {
+      "appendOnly": true,
+      "oneRowPerOfferedRequest": true,
+      "allocatedBeforeTelemetry": true,
+      "requiredFields": [
+        "recordSequence",
+        "previousRecordSha256",
+        "recordSha256",
+        "planSha256",
+        "workloadId",
+        "barrierId",
+        "sequence",
+        "opportunityId",
+        "opaqueToken",
+        "scheduledAt",
+        "scheduledMonotonicOffsetSeconds",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "outcome",
+        "statusCode",
+        "error",
+        "terminalSettled"
+      ]
+    }
+  },
+  "design": {
+    "postures": [
+      "full"
+    ],
+    "postureRoles": {
+      "full": "logs-info-sampler-on-tracer-full-sampling"
+    },
+    "unsupportedPostures": [
+      {
+        "id": "source-off",
+        "state": "unsupported",
+        "numericValue": null
+      }
+    ],
+    "regimes": [
+      {
+        "id": "no-fault-calibration",
+        "kind": "no-fault-calibration",
+        "fault": null,
+        "artifactRootClass": "calibration"
+      },
+      {
+        "id": "search-pause-effect",
+        "kind": "effect",
+        "fault": "search-pause",
+        "artifactRootClass": "effect/search-pause"
+      },
+      {
+        "id": "cpu-throttle-effect",
+        "kind": "effect",
+        "fault": "profile-cpu-throttle",
+        "artifactRootClass": "effect/cpu-throttle"
+      },
+      {
+        "id": "net-delay-effect",
+        "kind": "effect",
+        "fault": "rate-net-delay",
+        "artifactRootClass": "effect/net-delay"
+      }
+    ],
+    "rates": [
+      10.0,
+      1.0,
+      0.2,
+      0.05
+    ],
+    "episodesPerRegimeAndRate": 4,
+    "blocks": 4,
+    "cellsPerBlock": 16,
+    "totalRuns": 64,
+    "blockRule": "each-block-holds-every-(regime,rate)-pair-exactly-once",
+    "coldStartEachRun": true,
+    "faultAppliedToEveryEffectCell": true,
+    "noFaultCellsCarryPseudoWindow": true
+  },
+  "timing": {
+    "warmupSeconds": 30,
+    "warmupRequestsPerSecond": 10.0,
+    "leadCell": "search-pause-effect-r10-b01 first in block 1",
+    "measurementSeconds": 180,
+    "offeredRule": "requests-per-second-x-measurement-seconds-integral",
+    "offeredByRate": {
+      "10": 1800,
+      "1": 180,
+      "0p2": 36,
+      "0p05": 9
+    },
+    "faultOnsetBaseSeconds": 60,
+    "faultOnsetPhaseOffset": "seeded-stratified-within-one-inter-arrival",
+    "faultOnsetPhaseSelectorEncoding": "stratum order: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || onset-stratum || NUL || stratum); position: UTF-8(seed || NUL || epoch || NUL || runId || NUL || onset-phase)",
+    "faultHoldSeconds": 60,
+    "faultOnsetAcceptanceSeconds": [
+      -0.05,
+      2.0
+    ],
+    "faultHoldAcceptanceSeconds": [
+      0.0,
+      2.0
+    ],
+    "minimumWitnessedStartsByPhaseRule": "max(1, ceil(protocol_gates.FLOOR x scheduled slots in the phase)); pre = slots before onset, during = slots in [onset, onset + hold), post-readiness = slots from onset + hold + postRecoveryAllowanceSeconds",
+    "postRecoveryAllowanceSeconds": 2.0,
+    "phaseNames": [
+      "pre",
+      "during",
+      "post-readiness"
+    ],
+    "requestTimeoutSeconds": 1.0,
+    "jaegerQueryWindowSeconds": 185,
+    "minimumTimedSeconds": 13440,
+    "budget": {
+      "barrierLeadSeconds": 5,
+      "cellOverheadSeconds": 60,
+      "cellPeriodEstimateSeconds": 275,
+      "prepareReserveSeconds": 600,
+      "cleanupReserveSeconds": 300,
+      "rule": "ceil-to-whole-hours(totalRuns x cellPeriod + prepare + cleanup)",
+      "maximumWallSeconds": 21600,
+      "minimumFirstMutationRemainingSeconds": 21300
+    }
+  },
+  "schedule": {
+    "version": "sweep-schedule-v1",
+    "seed": 20261003,
+    "shuffle": "fisher-yates-over-regimes-x-rates-with-sha256-draws",
+    "drawEncoding": "UTF-8(seed || NUL || epoch || NUL || block-NN || NUL || draw-i || NUL || version)",
+    "blocks": [
+      {
+        "block": 1,
+        "runIds": [
+          "search-pause-effect-r10-b01-full-a01",
+          "search-pause-effect-r0p05-b01-full-a01",
+          "search-pause-effect-r0p2-b01-full-a01",
+          "no-fault-calibration-r0p2-b01-full-a01",
+          "no-fault-calibration-r1-b01-full-a01",
+          "no-fault-calibration-r0p05-b01-full-a01",
+          "cpu-throttle-effect-r10-b01-full-a01",
+          "net-delay-effect-r1-b01-full-a01",
+          "cpu-throttle-effect-r0p05-b01-full-a01",
+          "net-delay-effect-r0p05-b01-full-a01",
+          "search-pause-effect-r1-b01-full-a01",
+          "no-fault-calibration-r10-b01-full-a01",
+          "net-delay-effect-r0p2-b01-full-a01",
+          "cpu-throttle-effect-r0p2-b01-full-a01",
+          "net-delay-effect-r10-b01-full-a01",
+          "cpu-throttle-effect-r1-b01-full-a01"
+        ],
+        "orderSha256": "0562a01bdbdba0bd3ab5174842571cb7c35d144428b5c352ab37d2ffb47c9345"
+      },
+      {
+        "block": 2,
+        "runIds": [
+          "cpu-throttle-effect-r0p2-b02-full-a01",
+          "net-delay-effect-r10-b02-full-a01",
+          "no-fault-calibration-r0p2-b02-full-a01",
+          "search-pause-effect-r0p05-b02-full-a01",
+          "search-pause-effect-r10-b02-full-a01",
+          "net-delay-effect-r0p2-b02-full-a01",
+          "no-fault-calibration-r10-b02-full-a01",
+          "net-delay-effect-r0p05-b02-full-a01",
+          "search-pause-effect-r0p2-b02-full-a01",
+          "cpu-throttle-effect-r10-b02-full-a01",
+          "cpu-throttle-effect-r0p05-b02-full-a01",
+          "no-fault-calibration-r1-b02-full-a01",
+          "cpu-throttle-effect-r1-b02-full-a01",
+          "net-delay-effect-r1-b02-full-a01",
+          "no-fault-calibration-r0p05-b02-full-a01",
+          "search-pause-effect-r1-b02-full-a01"
+        ],
+        "orderSha256": "f010471bb697e56b48245b6da7fd45fea60f3c1b9025c2fd0d675574fd309680"
+      },
+      {
+        "block": 3,
+        "runIds": [
+          "cpu-throttle-effect-r10-b03-full-a01",
+          "search-pause-effect-r10-b03-full-a01",
+          "cpu-throttle-effect-r0p05-b03-full-a01",
+          "no-fault-calibration-r1-b03-full-a01",
+          "no-fault-calibration-r0p05-b03-full-a01",
+          "cpu-throttle-effect-r1-b03-full-a01",
+          "net-delay-effect-r1-b03-full-a01",
+          "search-pause-effect-r1-b03-full-a01",
+          "net-delay-effect-r0p05-b03-full-a01",
+          "no-fault-calibration-r0p2-b03-full-a01",
+          "search-pause-effect-r0p2-b03-full-a01",
+          "search-pause-effect-r0p05-b03-full-a01",
+          "cpu-throttle-effect-r0p2-b03-full-a01",
+          "net-delay-effect-r10-b03-full-a01",
+          "net-delay-effect-r0p2-b03-full-a01",
+          "no-fault-calibration-r10-b03-full-a01"
+        ],
+        "orderSha256": "6c050730edd454bfe413d83294f573bc725775219e5eedd38b0a324f1b0b63c4"
+      },
+      {
+        "block": 4,
+        "runIds": [
+          "cpu-throttle-effect-r10-b04-full-a01",
+          "no-fault-calibration-r10-b04-full-a01",
+          "no-fault-calibration-r1-b04-full-a01",
+          "net-delay-effect-r0p2-b04-full-a01",
+          "search-pause-effect-r0p2-b04-full-a01",
+          "search-pause-effect-r10-b04-full-a01",
+          "cpu-throttle-effect-r0p05-b04-full-a01",
+          "no-fault-calibration-r0p2-b04-full-a01",
+          "search-pause-effect-r0p05-b04-full-a01",
+          "net-delay-effect-r0p05-b04-full-a01",
+          "search-pause-effect-r1-b04-full-a01",
+          "cpu-throttle-effect-r0p2-b04-full-a01",
+          "net-delay-effect-r10-b04-full-a01",
+          "no-fault-calibration-r0p05-b04-full-a01",
+          "cpu-throttle-effect-r1-b04-full-a01",
+          "net-delay-effect-r1-b04-full-a01"
+        ],
+        "orderSha256": "b69d268f5cf9d317db7084f17486c2980319172213b921402745ed7f09cee08c"
+      }
+    ]
+  },
+  "runIdentity": {
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "requestsPerSecond",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "attemptBeginsBeforeExternalMutation": true,
+    "retryMayReplaceCell": false,
+    "failedAttemptsRetainedAndCharged": true
+  },
+  "groundTruth": {
+    "fault": {
+      "source": "controller-target-state-and-route-probes-independent-of-jaeger",
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "scenarioContracts": [
+        {
+          "scenario": "profile-cpu-throttle",
+          "service": "profile",
+          "prePredicate": "running-and-unthrottled",
+          "duringPredicate": "running-and-nanocpus-0.1",
+          "postPredicate": "running-and-unthrottled-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-normal-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        },
+        {
+          "scenario": "rate-net-delay",
+          "service": "rate",
+          "prePredicate": "running-and-no-qdisc",
+          "duringPredicate": "running-and-netem-delay-100ms",
+          "postPredicate": "running-and-no-qdisc-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-normal-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        },
+        {
+          "scenario": "search-pause",
+          "service": "search",
+          "prePredicate": "running-and-unpaused",
+          "duringPredicate": "running-and-paused-and-route-fails",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-search-pause-prefix-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        }
+      ]
+    },
+    "path": {
+      "normal": {
+        "id": "hotel-search-normal-v1",
+        "requiredSensors": [
+          "span:frontend:HTTP GET /hotels",
+          "span:search:/search.Search/Nearby",
+          "span:geo:/geo.Geo/Nearby",
+          "span:rate:/rate.Rate/GetRates",
+          "span:reservation:/reservation.Reservation/CheckAvailability",
+          "span:profile:/profile.Profile/GetProfiles"
+        ],
+        "requiredServiceEdges": [
+          [
+            "frontend",
+            "search"
+          ],
+          [
+            "search",
+            "geo"
+          ],
+          [
+            "search",
+            "rate"
+          ],
+          [
+            "frontend",
+            "reservation"
+          ],
+          [
+            "frontend",
+            "profile"
+          ]
+        ],
+        "oneOriginalNativeTraceRequired": true,
+        "crossTraceAssemblyAllowed": false
+      },
+      "faultSpecific": [
+        {
+          "id": "hotel-search-search-pause-prefix-v1",
+          "fault": "search-pause",
+          "targetService": "search",
+          "requiredAttemptedPrefix": [
+            "frontend",
+            "search"
+          ],
+          "downstreamNotRequiredDuringFault": [
+            "search->geo",
+            "search->rate",
+            "frontend->reservation",
+            "frontend->profile"
+          ],
+          "nativeOperationQualification": "unsupported-until-runtime-characterization",
+          "numericValueWhenUnsupported": null
+        }
+      ],
+      "opportunitySource": "offered-request-ledger-before-scored-telemetry",
+      "executedDenominator": "independent-application-side-witness",
+      "expectedOpportunityIsExecutionProof": false,
+      "correlation": "opaque-token-one-to-one-original-native-trace",
+      "tokenContractRequiredCoverage": [
+        "generation",
+        "request-injection",
+        "application-witness-extraction",
+        "native-trace-extraction",
+        "uniqueness",
+        "one-to-one-mapping"
+      ],
+      "missingWitnessOrCorrelationState": "unsupported",
+      "missingWitnessOrCorrelationValue": null,
+      "sampleZeroFalseRequires": [
+        "independently-proven-executed-opportunity",
+        "terminal-complete-empty-capture"
+      ]
+    }
+  },
+  "protocolGates": {
+    "module": "modules/hotel-reservation/validation/protocol_gates.py",
+    "vendoredFrom": "src/obsplacement/protocol_gates.py (measurement repo), byte-identical",
+    "blocking": [
+      "F1",
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "recordedNotBlocking": [
+      "R2.recovery"
+    ],
+    "notEvaluated": {
+      "P0": "harness records no per-service connection counts or emitted-byte observations",
+      "R1": "harness records no per-channel recordsAfterWarmup and no per-route readiness map",
+      "R2": "fresh project and down -v are enforced by the cell runner, not recorded as a gate input"
+    },
+    "g4ChannelScope": "ledger-only (no per-channel in-cell / total counts are recorded)",
+    "thresholds": {
+      "FLOOR": 0.5,
+      "PRE_FAIL_MAX": 0.05,
+      "SCOPE_MIN": 0.95,
+      "SCOPE_SLACK_S": 5.0,
+      "ONSET_TOLERANCE_S": 1.0,
+      "HOLD_TOLERANCE_S": 1.0,
+      "G1_MIN_DISPATCHED": 1
+    },
+    "stopRule": "first-invalid-cell"
+  },
+  "outcomes": {
+    "offeredRequestsAreDenominator": true,
+    "costRegimeOnly": "no-fault-cost",
+    "sourceCostComparisonState": "unsupported",
+    "sourceCostComparisonValue": null,
+    "sourceCostUnsupportedReason": "no-posture-is-source-off",
+    "retainedTraceBytesAreWireBytes": false,
+    "effectResourcesAreCostEstimates": false,
+    "emptyLatencyValue": null,
+    "windowMembership": "native-event-timestamps-clipped-to-shared-interval",
+    "collectorTailUse": "diagnostic-only"
+  },
+  "postureProof": {
+    "full": {
+      "sourceWorkDisabled": false,
+      "logLevel": "info",
+      "metricSampler": true,
+      "requires": [
+        "sample-ratio-one-all-declared-services",
+        "immutable-image-ids",
+        "log-level-info-all-declared-services"
+      ]
+    }
+  },
+  "collection": {
+    "logLevelByPosture": {
+      "full": "info"
+    },
+    "metricSamplerPostures": [
+      "full"
+    ],
+    "metricSamplerIntervalSeconds": 1,
+    "tracePostures": [
+      "full"
+    ],
+    "tracedServicesByPosture": {
+      "full": [
+        "frontend",
+        "search",
+        "geo",
+        "rate",
+        "reservation",
+        "profile",
+        "user",
+        "recommendation",
+        "review",
+        "attractions"
+      ]
+    },
+    "alwaysOn": [
+      "request-witness-stdout",
+      "docker-events-stream",
+      "system-sampler-cgroup-5s",
+      "cost-cgroup-cpu-window-edges"
+    ],
+    "applicationLogTimestamps": "docker-compose-logs-timestamps",
+    "jaegerCapture": "frontend-query-plus-deduplicated-remainder-of-the-other-application-services",
+    "costAxis": "cgroup-cpu-usage-delta-ten-app-containers-plus-docker-and-containerd",
+    "alwaysOnCostMeasured": false
+  },
+  "faultParameters": {
+    "targets": {
+      "profile-cpu-throttle": "profile",
+      "rate-net-delay": "rate",
+      "search-pause": "search"
+    },
+    "cpuThrottleCpus": "0.1",
+    "netDelayMilliseconds": 100,
+    "netDelayMechanism": "sudo-nsenter-net-tc-netem-on-eth0",
+    "cpuThrottleMechanism": "docker-update-cpus",
+    "windowEdges": "post-apply-command-to-pre-revert-command"
+  },
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "abstentionState": "unsupported",
+    "abstentionNumericValue": null,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "analysis": {
+    "comparativeUnit": "(fault, rate) over episodes",
+    "descriptiveOnly": true,
+    "detectionTimeMissCharge": "window-end (hold end), averaged over all episodes",
+    "analysisCode": "research/detection-time/ (measurement repo), to be extended and fixed before the first cell",
+    "forbidden": [
+      "source-off-claim",
+      "selected-posture-claim",
+      "source-cost-effect",
+      "p-value",
+      "confirmatory-interval",
+      "optimizer-front",
+      "observation-count-as-replication"
+    ]
+  },
+  "evidence": {
+    "designLabel": "method-design-only",
+    "maximumSupportedFutureLabel": "candidate-evidence",
+    "placementOrSourceCostEligible": false,
+    "canonical": false,
+    "promotionRequiresSeparateHumanGate": true
+  },
+  "transport": {
+    "executor": null,
+    "transport": null,
+    "runtimeAllowed": false,
+    "externalMutationAllowed": false,
+    "runtimeAdapterState": "absent-by-design"
+  }
+}

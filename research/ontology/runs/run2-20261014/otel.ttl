@@ -1,0 +1,3900 @@
+@prefix ev: <http://obsplacement.example/evidence#> .
+@prefix omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#> .
+@prefix ops: <http://obsplacement.example/ops#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sut: <http://obsplacement.example/sut/otel#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sut:ev-00776992d37cf3bd a ev:Evidence ;
+    ev:aboutObject sut:svc-cartservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-cartservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "No deploy.replicas or scale key in the cartservice block (docker-compose.yml:80-110; deploy block at :88-91 sets only resources.limits.memory) nor in compose.candidate-postures.yml:32-38; Compose default is 1. Library default, not in these files." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-00946f34f071a213 a ev:Evidence ;
+    ev:aboutObject sut:svc-quoteservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-quoteservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for quoteservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-029cd4062f07c418 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-productcatalogservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Image ${IMAGE_NAME}:${DEMO_VERSION}-productcatalogservice (docker-compose.yml:455); Dockerfile release stage FROM alpine (src/productcatalogservice/Dockerfile:26), ENTRYPOINT ./productcatalogservice (Dockerfile:34). The compose block (lines 454-482) has no healthcheck key, so no container health check is configured by these files. The process does register a gRPC health server (src/productcatalogservice/main.go:160 healthpb.RegisterHealthServer, Check returns SERVING at main.go:230-231), but no file given here probes it. memory limit 20M (docker-compose.yml:465), restart: unless-stopped (docker-compose.yml:466)." ;
+    ev:quotedToken "container_name: product-catalog-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 456 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-02b6ffa9bd180d42 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-opensearch ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for opensearch in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-02bc41d0d7ff1dc0 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-adservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM eclipse-temurin:21-jre" ;
+    ev:quotedToken "eclipse-temurin:21-jre" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/adservice/Dockerfile" ;
+    ev:sourceLine 21 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-039deedcfd782c34 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM alpine" ;
+    ev:quotedToken "alpine" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/checkoutservice/Dockerfile" ;
+    ev:sourceLine 26 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-040dc6c3e4994f60 a ev:Evidence ;
+    ev:aboutObject sut:svc-loadgenerator ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-loadgenerator ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No deploy.replicas or scale key in the block (docker-compose.yml:385-420); a fixed container_name admits one container. Replica count is not stated explicitly." ;
+    ev:quotedToken "container_name: load-generator" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 387 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0429f735b1e6d80f a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-quoteservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for quoteservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-062f8e6ab6158cdc a ev:Evidence ;
+    ev:aboutObject sut:svc-loadgenerator ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP; prefix /loadgen; cluster address ${LOCUST_WEB_HOST} (envoy.tmpl.yaml:157) = loadgenerator (.env:95)" ;
+    ev:quotedToken "cluster: loadgen" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/envoy.tmpl.yaml" ;
+    ev:sourceLine 41 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0634fb65ff23b92f a ev:Evidence ;
+    ev:aboutObject sut:ctr-loadgenerator ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-loadgenerator ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Image ${IMAGE_NAME}:${DEMO_VERSION}-loadgenerator (docker-compose.yml:386), built from src/loadgenerator/Dockerfile (.env:98), base python:3.12-slim-bookworm (Dockerfile:5), ENTRYPOINT locust --skip-log-setup (Dockerfile:23). The compose block (lines 385-420) has no healthcheck key, so no container health check is configured; the Dockerfile has no HEALTHCHECK either. restart: unless-stopped (line 397), memory limit 1G (line 396), depends_on frontend and flagd with condition service_started (lines 416-419). Harness override compose.candidate-postures.yml:85-91 sets LOCUST_AUTOSTART false and the OTEL_* exporter variables from ${OTEL_CANDIDATE_LOADGENERATOR_*}, unresolved in these files." ;
+    ev:quotedToken "container_name: load-generator" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 387 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-06752174e93baa04 a ev:Evidence ;
+    ev:aboutObject ops:LogTemplate ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject <http://obsplacement.example/sut/otel#sensor-Charge_request_received.> ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "Charge request received." ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/index.js" ;
+    ev:sourceLine 19 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-098c47b367c9306a a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-imageprovider ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "otel_span_name imageprovider;" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/imageprovider/nginx.conf.template" ;
+    ev:sourceLine 14 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-09cb0b0aa62717d6 a ev:Evidence ;
+    ev:aboutObject sut:svc-adservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-adservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for adservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-0a85cd8fc3cd789f a ev:Evidence ;
+    ev:aboutObject sut:group-accountingservice ;
+    ev:aboutPredicate ops:memberOf ;
+    ev:aboutSubject sut:svc-accountingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "EnableAutoCommit = true and AutoOffsetReset.Earliest at Consumer.cs:80-81." ;
+    ev:quotedToken "GroupId = $\"accountingservice\"" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/accountingservice/Consumer.cs" ;
+    ev:sourceLine 77 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0aa9506ccbadbb94 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-valkey-cart ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-0abbdf80959d3b75 a ev:Evidence ;
+    ev:aboutObject omsac:Technology ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-jaeger ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image jaegertracing/all-in-one:1.60" ;
+    ev:quotedToken "image: ${JAEGERTRACING_IMAGE}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 680 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0ad01b13f74e4b5f a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-emailservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for emailservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-0cc957c53bb8b593 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces only (envoy.tracers.opentelemetry, OTLP over gRPC); cluster address is ${OTEL_COLLECTOR_HOST} (envoy.tmpl.yaml:85) = otelcol (.env:27); export frequency not stated in these files" ;
+    ev:quotedToken "opentelemetry_collector_grpc" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/envoy.tmpl.yaml" ;
+    ev:sourceLine 26 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0e28b0d0c8284e49 a ev:Evidence ;
+    ev:aboutObject sut:ctr-productcatalogservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-productcatalogservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Image ${IMAGE_NAME}:${DEMO_VERSION}-productcatalogservice (docker-compose.yml:455); Dockerfile release stage FROM alpine (src/productcatalogservice/Dockerfile:26), ENTRYPOINT ./productcatalogservice (Dockerfile:34). The compose block (lines 454-482) has no healthcheck key, so no container health check is configured by these files. The process does register a gRPC health server (src/productcatalogservice/main.go:160 healthpb.RegisterHealthServer, Check returns SERVING at main.go:230-231), but no file given here probes it. memory limit 20M (docker-compose.yml:465), restart: unless-stopped (docker-compose.yml:466)." ;
+    ev:quotedToken "container_name: product-catalog-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 456 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0e41470ab963659f a ev:Evidence ;
+    ev:aboutObject sut:svc-stats.grafana.org ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-grafana ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "Usage counters, sent every 24 hours (line 197 comment, 'every 24 hours' on the same line). Not OTel traces, metrics or logs. The enable switch ';reporting_enabled = true' (line 201) is commented out, so the effective value is the library default (true), not in these files." ;
+    ev:quotedToken "stats.grafana.org" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/grafana/grafana.ini" ;
+    ev:sourceLine 197 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0f1d9dbc2ee7e4a2 a ev:Evidence ;
+    ev:aboutObject sut:svc-imageprovider ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-imageprovider ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the imageprovider block (docker-compose.yml:358-382) and compose.candidate-postures.yml:77-84 set no deploy.replicas or scale; Compose default is 1." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-1045a588950f4c67 a ev:Evidence ;
+    ev:aboutObject sut:svc-checkoutservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol gRPC (@grpc/grpc-js imported at Checkout.gateway.ts:4, rpc placeOrder at :14); callee host from .env:59 CHECKOUT_SERVICE_ADDR=checkoutservice:${CHECKOUT_SERVICE_PORT}" ;
+    ev:quotedToken "new CheckoutServiceClient(CHECKOUT_SERVICE_ADDR, ChannelCredentials.createInsecure())" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontend/gateways/rpc/Checkout.gateway.ts" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1046993c54ea1fc0 a ev:Evidence ;
+    ev:aboutObject ops:LogTemplate ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject <http://obsplacement.example/sut/otel#sensor-Transaction_complete.> ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "Transaction complete." ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/charge.js" ;
+    ev:sourceLine 65 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-112ee79de4f2b85e a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-shippingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "OTLP over gRPC: OTEL_COLLECTOR_HOST=otelcol (.env:27), OTEL_COLLECTOR_PORT_GRPC=4317 (.env:28); the collector's otlp receiver has a grpc protocol (src/otelcollector/otelcol-config.yml:6-7). Traces: src/shippingservice/src/telemetry/traces_conf.rs:16 opentelemetry_otlp::new_exporter().tonic() with install_batch(runtime::Tokio) at traces_conf.rs:18; no export interval or batch setting is set in these files (library default, not in these files). Metrics: Cargo.toml:22 enables only the opentelemetry 'trace' feature and no metrics pipeline is built in the given src files, so no metric export is stated. Logs: telemetry/logs_conf.rs:7 CombinedLogger of SimpleLogger only, no OTLP log exporter in code, so no log export to the collector is stated (logs go to the container stdout via the json-file driver, docker-compose.yml:573 'logging: *logging'). Harness override compose.candidate-postures.yml:126-130 sets OTEL_PLACEMENT_ENABLED, OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER from ${OTEL_CANDIDATE_SHIPPINGSERVICE_*}; whether the Rust SDK reads these is not stated in the given files." ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 567 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-11ec23b08b58b8d6 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-currencyservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale for currencyservice in docker-compose.yml:166-189 or compose.candidate-postures.yml:46-52; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-130989dfec8054a0 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-productcatalogservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "Compose default 1; library default, not in these files. The block docker-compose.yml:454-482 has a deploy: key (line 462) with resources.limits only and no replicas or scale key; compose.candidate-postures.yml:103-109 sets only environment for this service." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-13144af05680bca0 a ev:Evidence ;
+    ev:aboutObject ops:Collector ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image otel/opentelemetry-collector-contrib:0.108.0" ;
+    ev:quotedToken "image: ${COLLECTOR_CONTRIB_IMAGE}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 720 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-142904c4bae9565f a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-frauddetectionservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-148a96bd843607fb a ev:Evidence ;
+    ev:aboutObject sut:ctr-shippingservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-shippingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Image is ${IMAGE_NAME}:${DEMO_VERSION}-shippingservice (docker-compose.yml:550). Compose block lines 549-573 has no healthcheck key, so no container health check is configured in compose. The Dockerfile installs /bin/grpc_health_probe (src/shippingservice/Dockerfile:44) and main.rs:22-25 registers a tonic-health serving status, but no file in the given set invokes the probe. restart: unless-stopped (line 561), memory limit 20M (line 560)." ;
+    ev:quotedToken "container_name: shipping-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 551 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-14a8c0517e77d5d8 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-valkey-cart ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for valkey-cart in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-1506025b90635bdc a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale in the frontendproxy block (upstream docker-compose.yml:311-344, deploy block lines 317-320 sets only resources.limits.memory); Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-173479f17aceae21 a ev:Evidence ;
+    ev:aboutObject true ;
+    ev:aboutPredicate ops:heartbeatThreadIndependentOfWork ;
+    ev:aboutSubject sut:live-kafka_consumer-group-session-0 ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): heartbeatThreadIndependentOfWork; via uses-fact src/accountingservice/AccountingService.csproj:12 Confluent.Kafka@2.5.3; heartbeat thread rd_kafka_cgrp_heartbeat" ;
+    ev:quotedToken "rd_kafka_cgrp_heartbeat(rkcg)" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/librdkafka@2.5.3/src/rdkafka_cgrp.c" ;
+    ev:sourceLine 5811 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-18ae3eb678457689 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-recommendationservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM base" ;
+    ev:quotedToken "base" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/recommendationservice/Dockerfile" ;
+    ev:sourceLine 34 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-19a20843a7eff52e a ev:Evidence ;
+    ev:aboutObject omsac:Technology ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-opensearch ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image opensearchproject/opensearch:2.17.1" ;
+    ev:quotedToken "image: ${OPENSEARCH_IMAGE}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 777 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1a7bf478e314e212 a ev:Evidence ;
+    ev:aboutObject sut:svc-frontendproxy ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-loadgenerator ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP. FRONTEND_PROXY_ADDR=frontend-proxy:${ENVOY_PORT} (.env:83); the compose block passes LOCUST_HOST through (docker-compose.yml:403). Requests are issued with self.client.get (src/loadgenerator/locustfile.py:111, HttpUser at line 106) to paths such as /api/checkout (locustfile.py:157). Callee is the frontend-proxy service, not frontend directly." ;
+    ev:quotedToken "LOCUST_HOST=http://${FRONTEND_PROXY_ADDR}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 94 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1abc929562e92711 a ev:Evidence ;
+    ev:aboutObject sut:svc-opensearch ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "opensearch:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 776 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1afcc491b1f73620 a ev:Evidence ;
+    ev:aboutObject <http://obsplacement.example/sut/otel#sensor-Transaction_complete.> ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-paymentservice ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "Transaction complete." ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/charge.js" ;
+    ev:sourceLine 65 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1cbdce47e9e87aba a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: frontend-proxy" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 313 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1d574795d0a44a8f a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-flagd ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "flagd sets FLAGD_OTEL_COLLECTOR_URI=${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} (docker-compose.yml:588), port 4317 from .env:28, and FLAGD_METRICS_EXPORTER=otel (docker-compose.yml:589): metrics via OTLP gRPC. Export interval and traces/logs destination are not stated in these files. The candidate-postures overlay overrides these via OTEL_CANDIDATE_FLAGD_* variables (modules/otel-demo/deployment/compose.candidate-postures.yml:133-138) whose values are not in these files." ;
+    ev:quotedToken "OTEL_COLLECTOR_HOST=otelcol" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 27 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1e19cec086e149c4 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: checkout-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 116 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1ef23a737e01a975 a ev:Evidence ;
+    ev:aboutObject sut:svc-currencyservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "currencyservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 166 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1ef60d4f22c7185a a ev:Evidence ;
+    ev:aboutObject sut:svc-currencyservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-currencyservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale for currencyservice in docker-compose.yml:166-189 or compose.candidate-postures.yml:46-52; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-1f49b06e5e7bcd76 a ev:Evidence ;
+    ev:aboutObject sut:svc-productcatalogservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "productcatalogservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 454 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-20569023977ffeb8 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the otelcol block (docker-compose.yml:719-748) has a deploy: block (line 722) with resources only and no replicas; Compose default is 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-206a61f28e25685f a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-paymentservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces and metrics via OTLP/gRPC (opentelemetry.js:16, :25-26); docker-compose.yml:442 passes OTEL_EXPORTER_OTLP_ENDPOINT, .env:32 defines it as http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}; no OTLP log exporter configured" ;
+    ev:quotedToken "OTEL_COLLECTOR_HOST=otelcol" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 27 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-20cbea79d1580634 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-cartservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM mcr.microsoft.com/dotnet/runtime-deps:8.0.10-alpine3.20" ;
+    ev:quotedToken "mcr.microsoft.com/dotnet/runtime-deps:8.0.10-alpine3.20" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/cartservice/src/Dockerfile" ;
+    ev:sourceLine 33 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-21246bef2ba8a6ff a ev:Evidence ;
+    ev:aboutObject sut:svc-accountingservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "accountingservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 21 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-229b529f1eaabaab a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-flagd ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-243559573f1e525e a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-checkoutservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-258f26e326060af0 a ev:Evidence ;
+    ev:aboutObject sut:sensor-imageprovider ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-imageprovider ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "otel_span_name imageprovider;" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/imageprovider/nginx.conf.template" ;
+    ev:sourceLine 14 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-25e2d344695424b9 a ev:Evidence ;
+    ev:aboutObject sut:svc-valkey-cart ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "valkey-cart:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 661 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-265c2a707741c8cf a ev:Evidence ;
+    ev:aboutObject ops:LivenessMechanism ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:live-kafka_consumer-group-session-0 ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): liveness; via uses-fact src/accountingservice/AccountingService.csproj:12 Confluent.Kafka@2.5.3; session.timeout.ms" ;
+    ev:quotedToken "the broker will remove the consumer from the group" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs" ;
+    ev:sourceLine 1352 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-26bfeeb976f06742 a ev:Evidence ;
+    ev:aboutObject sut:svc-grafana ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP; prefix /grafana; cluster address ${GRAFANA_SERVICE_HOST} (envoy.tmpl.yaml:169) = grafana (.env:151)" ;
+    ev:quotedToken "cluster: grafana" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/envoy.tmpl.yaml" ;
+    ev:sourceLine 47 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-274c85e0fd0e286e a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-loadgenerator ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Value http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} = http://otelcol:4317 (.env:32, .env:27, .env:28). Traces (locustfile.py:62 BatchSpanProcessor(OTLPSpanExporter())), metrics (locustfile.py:58 PeriodicExportingMetricReader(exporter)) and logs (locustfile.py:50 BatchLogRecordProcessor(exporter)) all use the OTLP gRPC exporters (locustfile.py:22, 23, 29-31). Export intervals are not set in these files (library default, not in these files); the metric temporality preference is cumulative (.env:39). Harness override compose.candidate-postures.yml:88-91 sets OTEL_SDK_DISABLED and OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER from ${OTEL_CANDIDATE_LOADGENERATOR_*}, unresolved in these files; whether the exporter is otlp or none per posture is not stated here." ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 407 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-280c6d816dd03827 a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-paymentservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "flag evaluation at charge.js:20 (getBooleanValue paymentServiceFailure); target host FLAGD_HOST at docker-compose.yml:440" ;
+    ev:quotedToken "new FlagdProvider()" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/charge.js" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-2862fe2cc3600c6e a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-currencyservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-28e5070c0476d3d7 a ev:Evidence ;
+    ev:aboutObject sut:svc-kafka ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-kafka ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the deploy block for kafka (upstream docker-compose.yml:640-643) sets only resources.limits.memory 600M, no replicas or scale; compose.candidate-postures.yml:145-151 sets only environment. Compose default is 1." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-2abac1e040913f95 a ev:Evidence ;
+    ev:aboutObject ops:Span ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-charge ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "tracer.startSpan('charge')" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/charge.js" ;
+    ev:sourceLine 17 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-2c1dcc10a1475629 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-frontend ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-2cc9e5e1748123c5 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-kafka ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-2d55561223bf77a8 a ev:Evidence ;
+    ev:aboutObject sut:ctr-emailservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-emailservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: email-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 194 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-2dbffe9296b5e8df a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-kafka ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the deploy block for kafka (upstream docker-compose.yml:640-643) sets only resources.limits.memory 600M, no replicas or scale; compose.candidate-postures.yml:145-151 sets only environment. Compose default is 1." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-2dc196675dd10b39 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-shippingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Image is ${IMAGE_NAME}:${DEMO_VERSION}-shippingservice (docker-compose.yml:550). Compose block lines 549-573 has no healthcheck key, so no container health check is configured in compose. The Dockerfile installs /bin/grpc_health_probe (src/shippingservice/Dockerfile:44) and main.rs:22-25 registers a tonic-health serving status, but no file in the given set invokes the probe. restart: unless-stopped (line 561), memory limit 20M (line 560)." ;
+    ev:quotedToken "container_name: shipping-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 551 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-2ea055f73f705919 a ev:Evidence ;
+    ev:aboutObject sut:svc-checkoutservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "checkoutservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 114 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-30c2cfa5c06b5854 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "OTLP gRPC exporter (protocol: OTLP/gRPC by port 4317 in the exporter key 'otlp'; tls insecure line 96)" ;
+    ev:quotedToken "jaeger:4317" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/otelcollector/otelcol-config.yml" ;
+    ev:sourceLine 94 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-313769977e0d7870 a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd-ui ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-flagd-ui ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale for flagd-ui in upstream:docker-compose.yml:605-629 or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:139-144; Compose default 1; library default, not in these files" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-3163ab5240b510be a ev:Evidence ;
+    ev:aboutObject sut:coord-kafka_consumer-group-session ;
+    ev:aboutPredicate ops:enforcedBy ;
+    ev:aboutSubject sut:live-kafka_consumer-group-session-0 ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): liveness; via uses-fact src/accountingservice/AccountingService.csproj:12 Confluent.Kafka@2.5.3; session.timeout.ms" ;
+    ev:quotedToken "the broker will remove the consumer from the group" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs" ;
+    ev:sourceLine 1352 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-32011f26b9a8fd43 a ev:Evidence ;
+    ev:aboutObject sut:svc-opensearch ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-opensearch ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for opensearch in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-34e62b333796de87 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-frauddetectionservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale in the service block docker-compose.yml:229-230 (deploy only sets resources.limits.memory) nor in compose.candidate-postures.yml:59-65; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-36636d8a4a43d266 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "otelcol:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 719 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-398d9285cce23624 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-flagd-ui ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-3bf06f26dcc6b7e9 a ev:Evidence ;
+    ev:aboutObject omsac:Cache ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-valkey-cart ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image valkey/valkey:8.0-alpine" ;
+    ev:quotedToken "image: ${VALKEY_IMAGE}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 662 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3bfece84efb84481 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-frauddetectionservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "no healthcheck: key in the service block docker-compose.yml:219-247 (health check: none configured; restart: unless-stopped at line 231)" ;
+    ev:quotedToken "container_name: frauddetection-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 221 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3ca4b45d81bbd3c3 a ev:Evidence ;
+    ev:aboutObject sut:svc-frontend ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "frontend:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 250 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3e2152e2e8b9d9d7 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: otel-col" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 721 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3e44ee44ea4c2cf1 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommendationservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-recommendationservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale key in the recommendationservice block (docker-compose.yml:513-546, deploy block at 521-524 sets only a memory limit) or in compose.candidate-postures.yml:117-123; library default, not in these files" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-3e8835d93cffd175 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-imageprovider ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the imageprovider block (docker-compose.yml:358-382) and compose.candidate-postures.yml:77-84 set no deploy.replicas or scale; Compose default is 1." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-3f7304e37b3801d7 a ev:Evidence ;
+    ev:aboutObject sut:svc-grafana ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "grafana:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 701 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3fa67911912dcead a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-prometheus ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-401cd70d8228bf45 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-grafana ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP datasource query (type: jaeger, line 10)." ;
+    ev:quotedToken "http://jaeger:16686/jaeger/ui" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/grafana/provisioning/datasources/jaeger.yaml" ;
+    ev:sourceLine 11 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-40eafe11010f12b9 a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd-ui ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP; prefix /feature; cluster address ${FLAGD_UI_HOST} (envoy.tmpl.yaml:145) = flagd-ui (.env:133)" ;
+    ev:quotedToken "cluster: flagd-ui" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/envoy.tmpl.yaml" ;
+    ev:sourceLine 53 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-413ab6ae0334e13d a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-flagd-ui ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale for flagd-ui in upstream:docker-compose.yml:605-629 or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:139-144; Compose default 1; library default, not in these files" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-419119dca2a7ceb8 a ev:Evidence ;
+    ev:aboutObject sut:svc-adservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "adservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 48 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-419eef15876e0193 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-opensearch ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for opensearch in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-41ef781066b32bd8 a ev:Evidence ;
+    ev:aboutObject sut:svc-opensearch ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "logs, exporter opensearch, used in logs pipeline line 135" ;
+    ev:quotedToken "http://opensearch:9200" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/otelcollector/otelcol-config.yml" ;
+    ev:sourceLine 104 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4326a675713e56fa a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the otelcol block (docker-compose.yml:719-748) has a deploy: block (line 722) with resources only and no replicas; Compose default is 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-48a860cd7503510f a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-cartservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Flag evaluation GetBooleanValueAsync(\"cartServiceFailure\") at src/cartservice/src/services/CartService.cs:84. Callee host from env FLAGD_HOST (docker-compose.yml:97, .env:129 FLAGD_HOST=flagd). Wire protocol is not stated in these files (library default of the OpenFeature flagd provider, not in these files)." ;
+    ev:quotedToken "new FlagdProvider()" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/cartservice/src/Program.cs" ;
+    ev:sourceLine 42 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-49f57fd220234b7e a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-adservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "feature-flag evaluation client; target FLAGD_HOST/FLAGD_PORT from docker-compose.yml:65-66, .env:129-130 (flagd:8013); protocol not stated in these files (library default, not in these files)" ;
+    ev:quotedToken "new FlagdProvider(options)" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/adservice/src/main/java/oteldemo/AdService.java" ;
+    ev:sourceLine 92 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4ad1df9fce5ba1b4 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-recommendationservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale key in the recommendationservice block (docker-compose.yml:513-546, deploy block at 521-524 sets only a memory limit) or in compose.candidate-postures.yml:117-123; library default, not in these files" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-4b4d08edaafa6176 a ev:Evidence ;
+    ev:aboutObject omsac:MicroserviceArchitecture ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "architecture = the services of the compose files upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml" ;
+    ev:quotedToken "services:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 16 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4cdc833ead8fb1e9 a ev:Evidence ;
+    ev:aboutObject sut:svc-cartservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC: pb.NewCartServiceClient (main.go:182); address .env:54 cartservice:${CART_SERVICE_PORT}; calls GetCart main.go:400, EmptyCart main.go:408" ;
+    ev:quotedToken "CART_SERVICE_ADDR" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/checkoutservice/main.go" ;
+    ev:sourceLine 180 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4ef9cffb87c0dc18 a ev:Evidence ;
+    ev:aboutObject 3.0 ;
+    ev:aboutPredicate ops:heartbeatIntervalSeconds ;
+    ev:aboutSubject sut:live-kafka_consumer-group-session-0 ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): heartbeatIntervalSeconds; via uses-fact src/accountingservice/AccountingService.csproj:12 Confluent.Kafka@2.5.3; default of heartbeat.interval.ms" ;
+    ev:quotedToken "default: 3000" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs" ;
+    ev:sourceLine 1362 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-501c3eecf585da36 a ev:Evidence ;
+    ev:aboutObject sut:svc-currencyservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol gRPC (@grpc/grpc-js imported at Currency.gateway.ts:4, rpcs convert/getSupportedCurrencies at :14, :19); callee host from .env:64 CURRENCY_SERVICE_ADDR=currencyservice:${CURRENCY_SERVICE_PORT}" ;
+    ev:quotedToken "new CurrencyServiceClient(CURRENCY_SERVICE_ADDR, ChannelCredentials.createInsecure())" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontend/gateways/rpc/Currency.gateway.ts" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5091b52b2216a2bc a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-emailservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-51c90f2ad19b60cb a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-accountingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "OTLP over HTTP; OTEL_COLLECTOR_HOST=otelcol and OTEL_COLLECTOR_PORT_HTTP=4318 in .env:27 and .env:29. Instrumentation is OpenTelemetry.AutoInstrumentation 1.8.0 (AccountingService.csproj:20) launched through ./instrument.sh (Dockerfile:32). No export interval is set in these files (library default, not in these files). Harness override compose.candidate-postures.yml:22-24 sets OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER from ${OTEL_CANDIDATE_ACCOUNTINGSERVICE_EXPORTER}, unresolved in these files; whether the exporter is otlp or none per posture is not stated here." ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 36 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-521bee6ac2bde7c0 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale in the frontendproxy block (upstream docker-compose.yml:311-344, deploy block lines 317-320 sets only resources.limits.memory); Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-52d4cdba865b99d6 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-kafka ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: kafka" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 634 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-52d9e52cd5bde774 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-kafka ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the deploy block for kafka (upstream docker-compose.yml:640-643) sets only resources.limits.memory 600M, no replicas or scale; compose.candidate-postures.yml:145-151 sets only environment. Compose default is 1." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-53ff48706ce37753 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommendationservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol gRPC (@grpc/grpc-js imported at Recommendations.gateway.ts:4, rpc listRecommendations at :14); callee host from .env:117 RECOMMENDATION_SERVICE_ADDR=recommendationservice:${RECOMMENDATION_SERVICE_PORT}" ;
+    ev:quotedToken "new RecommendationServiceClient(RECOMMENDATION_SERVICE_ADDR, ChannelCredentials.createInsecure())" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontend/gateways/rpc/Recommendations.gateway.ts" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-540a39e51290ffdc a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the frontend block at docker-compose.yml:250-309 has no deploy.replicas key (its deploy block sets only resources.limits.memory), so the Compose default of one container applies" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/" .
+
+sut:ev-54d822bb9e68340a a ev:Evidence ;
+    ev:aboutObject <http://obsplacement.example/sut/otel#sensor-Charge_request_received.> ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-paymentservice ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "Charge request received." ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/index.js" ;
+    ev:sourceLine 19 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-54f69db9054f8dd5 a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-recommendationservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "feature-flag evaluation via openfeature flagd provider (check_feature_flag line 126); FLAGD_HOST=flagd at .env:129, FLAGD_PORT=8013 at .env:130; wire protocol is the provider library default, not in these files" ;
+    ev:quotedToken "FlagdProvider(host=os.environ.get('FLAGD_HOST', 'flagd'), port=os.environ.get('FLAGD_PORT', 8013))" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/recommendationservice/recommendation_server.py" ;
+    ev:sourceLine 131 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-55d3d268791e4979 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-shippingservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-560adf131dab51c1 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-frauddetectionservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "OTLP over HTTP (port 4318 via .env:29) for traces, metrics and logs; the export interval is not stated in the service's files (library default, not in these files); the java agent is attached at Dockerfile:22 JAVA_TOOL_OPTIONS" ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 236 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5684cbd27e5dea31 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-loadgenerator ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No deploy.replicas or scale key in the block (docker-compose.yml:385-420); a fixed container_name admits one container. Replica count is not stated explicitly." ;
+    ev:quotedToken "container_name: load-generator" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 387 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-56b5345d63dd560b a ev:Evidence ;
+    ev:aboutObject sut:svc-valkey-cart ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "redis receiver scrape, collection_interval 10s (line 23)" ;
+    ev:quotedToken "valkey-cart:6379" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/otelcollector/otelcol-config.yml" ;
+    ev:sourceLine 21 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-56c05c94963c82f9 a ev:Evidence ;
+    ev:aboutObject sut:svc-currencyservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC: pb.NewCurrencyServiceClient (main.go:187); address .env:64 currencyservice:${CURRENCY_SERVICE_PORT}; call Convert main.go:434" ;
+    ev:quotedToken "CURRENCY_SERVICE_ADDR" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/checkoutservice/main.go" ;
+    ev:sourceLine 185 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-576afcd99e987ed4 a ev:Evidence ;
+    ev:aboutObject sut:ctr-frauddetectionservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-frauddetectionservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "no healthcheck: key in the service block docker-compose.yml:219-247 (health check: none configured; restart: unless-stopped at line 231)" ;
+    ev:quotedToken "container_name: frauddetection-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 221 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-57abd46255ef528d a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-loadgenerator ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Image ${IMAGE_NAME}:${DEMO_VERSION}-loadgenerator (docker-compose.yml:386), built from src/loadgenerator/Dockerfile (.env:98), base python:3.12-slim-bookworm (Dockerfile:5), ENTRYPOINT locust --skip-log-setup (Dockerfile:23). The compose block (lines 385-420) has no healthcheck key, so no container health check is configured; the Dockerfile has no HEALTHCHECK either. restart: unless-stopped (line 397), memory limit 1G (line 396), depends_on frontend and flagd with condition service_started (lines 416-419). Harness override compose.candidate-postures.yml:85-91 sets LOCUST_AUTOSTART false and the OTEL_* exporter variables from ${OTEL_CANDIDATE_LOADGENERATOR_*}, unresolved in these files." ;
+    ev:quotedToken "container_name: load-generator" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 387 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-57d04028bb72ce45 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-emailservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM base" ;
+    ev:quotedToken "base" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/emailservice/Dockerfile" ;
+    ev:sourceLine 15 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5865610e6aad44b1 a ev:Evidence ;
+    ev:aboutObject ops:ConsumerGroupCoordinator ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:coord-kafka_consumer-group-session ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): coordinatorType; via uses-fact src/accountingservice/AccountingService.csproj:12 Confluent.Kafka@2.5.3; detector session.timeout.ms" ;
+    ev:quotedToken "the broker will remove the consumer from the group" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs" ;
+    ev:sourceLine 1352 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-58793a0f310dfeb4 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-imageprovider ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the imageprovider block (docker-compose.yml:358-382) and compose.candidate-postures.yml:77-84 set no deploy.replicas or scale; Compose default is 1." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-5959e31ada352690 a ev:Evidence ;
+    ev:aboutObject sut:coord-kafka_consumer-group-session ;
+    ev:aboutPredicate ops:coordinatedBy ;
+    ev:aboutSubject sut:group-frauddetectionservice ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): coordinatedBy; via uses-fact src/frauddetectionservice/build.gradle.kts:33 kafka-clients@3.6.0; group of frauddetectionservice" ;
+    ev:quotedToken "then the broker will remove this client from the group" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/CommonClientConfigs.java" ;
+    ev:sourceLine 181 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-5a9f53e44a2cad1d a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-currencyservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces, metrics and logs all via OTLP/gRPC; docker-compose.yml:184 passes OTEL_EXPORTER_OTLP_ENDPOINT, .env:32 defines it as http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}" ;
+    ev:quotedToken "OTEL_COLLECTOR_HOST=otelcol" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 27 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5c29a2307b2ff036 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-currencyservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale for currencyservice in docker-compose.yml:166-189 or compose.candidate-postures.yml:46-52; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-5d31a94699c130b8 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-emailservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces only, OTLP/HTTP to ${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}/v1/traces; host resolves to otelcol at .env:27" ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 210 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5f2a7fb0b36095b1 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-currencyservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: currency-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 168 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-607409f3f4c9ae72 a ev:Evidence ;
+    ev:aboutObject sut:svc-grafana ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-grafana ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for grafana in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-615581c813397921 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale for checkoutservice in upstream:docker-compose.yml:114-163 (deploy block at lines 122-125 sets only resources.limits.memory) or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:39-45; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-61b25dda123e96b4 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-recommendationservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale key in the recommendationservice block (docker-compose.yml:513-546, deploy block at 521-524 sets only a memory limit) or in compose.candidate-postures.yml:117-123; library default, not in these files" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-61ba3578e873f673 a ev:Evidence ;
+    ev:aboutObject sut:svc-productcatalogservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-productcatalogservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "Compose default 1; library default, not in these files. The block docker-compose.yml:454-482 has a deploy: key (line 462) with resources.limits only and no replicas or scale key; compose.candidate-postures.yml:103-109 sets only environment for this service." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-6286cd5e331e4093 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-prometheus ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "HTTP scrape (pull) of job_name otel-collector (line 11) every scrape_interval 5s (line 6); protocol inferred from Prometheus scrape semantics, the file states only the target host:port" ;
+    ev:quotedToken "otelcol:8888" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/prometheus/prometheus-config.yaml" ;
+    ev:sourceLine 14 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-643fb0abe8e90a25 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-paymentservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale for paymentservice in docker-compose.yml:423-451 (deploy block has only resources.limits.memory) or compose.candidate-postures.yml:92-102; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-6587ed38b37d80fc a ev:Evidence ;
+    ev:aboutObject sut:svc-shippingservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol gRPC (@grpc/grpc-js imported at Shipping.gateway.ts:4, rpc getQuote at :14); callee host from .env:122 SHIPPING_SERVICE_ADDR=shippingservice:${SHIPPING_SERVICE_PORT}" ;
+    ev:quotedToken "new ShippingServiceClient(SHIPPING_SERVICE_ADDR, ChannelCredentials.createInsecure())" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontend/gateways/rpc/Shipping.gateway.ts" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6752d447b667706b a ev:Evidence ;
+    ev:aboutObject omsac:Technology ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-grafana ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image grafana/grafana:11.2.0" ;
+    ev:quotedToken "image: ${GRAFANA_IMAGE}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 702 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-67e8d55a53111050 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-adservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: ad-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 50 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-68a9591021b0ce8c a ev:Evidence ;
+    ev:aboutObject sut:ctr-checkoutservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: checkout-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 116 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-692d157ca42b3a78 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-paymentservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: payment-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 425 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6aff3eb4afc39569 a ev:Evidence ;
+    ev:aboutObject sut:svc-productcatalogservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-recommendationservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC (grpc.insecure_channel line 157; ListProducts call at line 95); address from PRODUCT_CATALOG_SERVICE_ADDR (line 156), .env:107 productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}" ;
+    ev:quotedToken "ProductCatalogServiceStub" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/recommendationservice/recommendation_server.py" ;
+    ev:sourceLine 158 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6be4a9bdacdba178 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-valkey-cart ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: valkey-cart" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 663 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6e498838c4efcbbb a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces, OTLP exporter 'otlp' (gRPC port 4317), used in traces pipeline line 127" ;
+    ev:quotedToken "jaeger:4317" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/otelcollector/otelcol-config.yml" ;
+    ev:sourceLine 94 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6f06f07807294b1f a ev:Evidence ;
+    ev:aboutObject sut:svc-adservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol gRPC (@grpc/grpc-js imported at Ad.gateway.ts:4, rpc getAds at :14); callee host from .env:49 AD_SERVICE_ADDR=adservice:${AD_SERVICE_PORT}" ;
+    ev:quotedToken "new AdServiceClient(AD_SERVICE_ADDR, ChannelCredentials.createInsecure())" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontend/gateways/rpc/Ad.gateway.ts" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6f1987636867c3f0 a ev:Evidence ;
+    ev:aboutObject sut:svc-paymentservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-paymentservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale for paymentservice in docker-compose.yml:423-451 (deploy block has only resources.limits.memory) or compose.candidate-postures.yml:92-102; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-70b72b999b6d6443 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-accountingservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM base" ;
+    ev:quotedToken "base" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/accountingservice/Dockerfile" ;
+    ev:sourceLine 22 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-711b50bd520ac894 a ev:Evidence ;
+    ev:aboutObject sut:svc-accountingservice ;
+    ev:aboutPredicate ops:monitors ;
+    ev:aboutSubject sut:live-kafka_consumer-group-session-0 ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): monitors; via uses-fact src/accountingservice/AccountingService.csproj:12 Confluent.Kafka@2.5.3; session.timeout.ms" ;
+    ev:quotedToken "the broker will remove the consumer from the group" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs" ;
+    ev:sourceLine 1352 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-732f476cc222fa4b a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-frauddetectionservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM gcr.io/distroless/java17-debian11" ;
+    ev:quotedToken "gcr.io/distroless/java17-debian11" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frauddetectionservice/Dockerfile" ;
+    ev:sourceLine 15 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-73a6fd7c1a3183da a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-flagd-ui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "OTLP/HTTP; host otelcol from .env:27 OTEL_COLLECTOR_HOST=otelcol, port 4318 from .env:29; signals exported by @vercel/otel (instrumentation.ts:6) not stated in these files; export interval not set in these files (library default, not in these files)" ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 617 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-73b74741a02ebb67 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-jaeger ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for jaeger in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-7542990280b703cd a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM envoyproxy/envoy:v1.30-latest" ;
+    ev:quotedToken "envoyproxy/envoy:v1.30-latest" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/Dockerfile" ;
+    ev:sourceLine 4 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-76b59362a7ba7bf9 a ev:Evidence ;
+    ev:aboutObject sut:svc-quoteservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "quoteservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 485 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-782415873c5ecee5 a ev:Evidence ;
+    ev:aboutObject 45.0 ;
+    ev:aboutPredicate ops:failureTimeoutSeconds ;
+    ev:aboutSubject sut:live-kafka_consumer-group-session-0 ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): failureTimeoutSeconds; via uses-fact src/accountingservice/AccountingService.csproj:12 Confluent.Kafka@2.5.3; default of session.timeout.ms" ;
+    ev:quotedToken "default: 45000" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs" ;
+    ev:sourceLine 1354 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-796c3bf0bc5a9e24 a ev:Evidence ;
+    ev:aboutObject sut:ctr-otelcol ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: otel-col" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 721 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7972bb67a5258adf a ev:Evidence ;
+    ev:aboutObject ops:Broker ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-kafka ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM apache/kafka:3.7.0" ;
+    ev:quotedToken "apache/kafka:3.7.0" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/kafka/Dockerfile" ;
+    ev:sourceLine 5 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7a1272076cfaa3b0 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-accountingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No deploy.replicas or scale key in the block (docker-compose.yml:21-45); a fixed container_name admits one container. Replica count is not stated explicitly." ;
+    ev:quotedToken "container_name: accounting-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 23 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7ab98af1dd0c37d9 a ev:Evidence ;
+    ev:aboutObject omsac:Technology ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-flagd ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image ghcr.io/open-feature/flagd:v0.11.2" ;
+    ev:quotedToken "image: ${FLAGD_IMAGE}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 580 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7cbe64afb2edf480 a ev:Evidence ;
+    ev:aboutObject sut:ctr-currencyservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-currencyservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: currency-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 168 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7e03d30678b4291b a ev:Evidence ;
+    ev:aboutObject ops:Host ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:host-fb14srv6 ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-7e50a2bdce3ada20 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-prometheus ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for prometheus in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-7e7d659400d6a859 a ev:Evidence ;
+    ev:aboutObject sut:svc-prometheus ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-prometheus ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for prometheus in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-7ecd01de5ac91ade a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-quoteservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-815e7333f47e6012 a ev:Evidence ;
+    ev:aboutObject sut:ctr-valkey-cart ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-valkey-cart ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: valkey-cart" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 663 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-81640e5c133699c1 a ev:Evidence ;
+    ev:aboutObject sut:svc-prometheus ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-grafana ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP datasource query (type: prometheus, line 10)." ;
+    ev:quotedToken "http://prometheus:9090" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/grafana/provisioning/datasources/default.yaml" ;
+    ev:sourceLine 11 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8253a77228e5a6b9 a ev:Evidence ;
+    ev:aboutObject sut:svc-shippingservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-shippingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No deploy.replicas or scale key in docker-compose.yml:549-573; a fixed container_name admits one container. The count is not stated explicitly." ;
+    ev:quotedToken "container_name: shipping-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 551 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-82b39ef4973df67e a ev:Evidence ;
+    ev:aboutObject sut:sensor-app.payment.transactions ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-paymentservice ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "app.payment.transactions" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/charge.js" ;
+    ev:sourceLine 14 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8321a61ab493b830 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-shippingservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM debian:bookworm-slim" ;
+    ev:quotedToken "debian:bookworm-slim" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/shippingservice/Dockerfile" ;
+    ev:sourceLine 47 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-840c1a6bb23e3017 a ev:Evidence ;
+    ev:aboutObject sut:svc-prometheus ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "prometheus:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 751 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-843d8b550697fa75 a ev:Evidence ;
+    ev:aboutObject sut:ctr-grafana ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-grafana ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: grafana" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 703 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-853321af183a48bb a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-jaeger ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for jaeger in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-86485cf7779bd3b7 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-flagd-ui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: flagd-ui" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 607 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-87b7cecace726ef8 a ev:Evidence ;
+    ev:aboutObject sut:svc-valkey-cart ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-cartservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Protocol: Redis client (StackExchange.Redis) via ConnectionMultiplexer.Connect, src/cartservice/src/cartstore/ValkeyCartStore.cs:72; address read from env VALKEY_ADDR at Program.cs:23 and passed through compose at docker-compose.yml:99" ;
+    ev:quotedToken "VALKEY_ADDR=valkey-cart:${VALKEY_PORT}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 144 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-880c3aec7d0f32aa a ev:Evidence ;
+    ev:aboutObject sut:ctr-flagd ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-flagd ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No healthcheck, replicas or scale key in the flagd block (docker-compose.yml:579-602); only deploy.resources.limits.memory 50M (line 585) and restart: unless-stopped (line 586). Not in these files." ;
+    ev:quotedToken "container_name: flagd" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 581 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8814ee88dea6ce25 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "jaeger:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 679 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-89df39db6814ce03 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-flagd ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No healthcheck, replicas or scale key in the flagd block (docker-compose.yml:579-602); only deploy.resources.limits.memory 50M (line 585) and restart: unless-stopped (line 586). Not in these files." ;
+    ev:quotedToken "container_name: flagd" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 581 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8a5d42335c60f56c a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "server-side (Node) traces and metrics over OTLP gRPC: host otelcol (.env:27), gRPC port 4317 (.env:28); passed to the container at docker-compose.yml:275 (OTEL_EXPORTER_OTLP_ENDPOINT); exporters constructed with no arguments at src/frontend/utils/telemetry/Instrumentation.js:16 (OTLPTraceExporter) and :26 (OTLPMetricExporter). Metric export interval: PeriodicExportingMetricReader at Instrumentation.js:25 sets no interval, library default, not in these files. Logs: no log exporter in the frontend files. The candidate-postures overlay sets OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER, OTEL_LOGS_EXPORTER and OTEL_SDK_DISABLED from unresolved OTEL_CANDIDATE_FRONTEND_* variables (compose.candidate-postures.yml:66-73), so the effective posture is not determined by these files" ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 32 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8c9f5985d616a10e a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-cartservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: cart-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 82 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8cbc7e9f23b9e966 a ev:Evidence ;
+    ev:aboutObject ops:ConsumerGroup ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:group-accountingservice ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "GroupId = $\"accountingservice\"" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/accountingservice/Consumer.cs" ;
+    ev:sourceLine 77 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8ebdc73897fdbf88 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-loadgenerator ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-8f38fb15c374606b a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-productcatalogservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM alpine" ;
+    ev:quotedToken "alpine" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/productcatalogservice/Dockerfile" ;
+    ev:sourceLine 26 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8f3a448bf882fad2 a ev:Evidence ;
+    ev:aboutObject sut:svc-kafka ;
+    ev:aboutPredicate ops:hostedBy ;
+    ev:aboutSubject sut:coord-kafka_consumer-group-session ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): hostedBy; via uses-fact src/accountingservice/AccountingService.csproj:12 Confluent.Kafka@2.5.3; broker of orders" ;
+    ev:quotedToken "the broker will remove the consumer from the group" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs" ;
+    ev:sourceLine 1352 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-8f436d7611a60b97 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-grafana ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for grafana in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-90beed12f6970100 a ev:Evidence ;
+    ev:aboutObject sut:svc-emailservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-emailservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for emailservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-91365187d14010de a ev:Evidence ;
+    ev:aboutObject sut:ctr-imageprovider ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-imageprovider ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No healthcheck key in the compose block (lines 358-382); restart: unless-stopped (line 370); memory limit 120M (line 369)." ;
+    ev:quotedToken "container_name: imageprovider" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 360 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-913b191e82cf23fa a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM node:20-alpine" ;
+    ev:quotedToken "node:20-alpine" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontend/Dockerfile" ;
+    ev:sourceLine 23 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-91f017f88ed69f94 a ev:Evidence ;
+    ev:aboutObject sut:ctr-cartservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-cartservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: cart-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 82 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-92fb2a16dcdd4c46 a ev:Evidence ;
+    ev:aboutObject sut:svc-frontendproxy ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP, httpcheck/frontendproxy receiver target" ;
+    ev:quotedToken "http://frontendproxy:${env:ENVOY_PORT}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/otelcollector/otelcol-config.yml" ;
+    ev:sourceLine 17 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-932461f3ed98d307 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-opensearch ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-939b5cddbbb937bb a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-prometheus ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for prometheus in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-94108bc15ced0d13 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-flagd ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for flagd in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-969e2a6d085454fd a ev:Evidence ;
+    ev:aboutObject sut:svc-frontendproxy ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "frontendproxy:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 311 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-97096b2b79896bfe a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-shippingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No deploy.replicas or scale key in docker-compose.yml:549-573; a fixed container_name admits one container. The count is not stated explicitly." ;
+    ev:quotedToken "container_name: shipping-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 551 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-997563b450da8643 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-adservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces, metrics and logs over OTLP/HTTP; host otelcol from .env:27 OTEL_COLLECTOR_HOST=otelcol, port 4318 from .env:29; logs exporter set explicitly at docker-compose.yml:70 OTEL_LOGS_EXPORTER=otlp; export interval not set in these files (library default, not in these files)" ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 67 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9a2014f7f6b31c4d a ev:Evidence ;
+    ev:aboutObject ops:Topic ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:topic-orders ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "TopicName = \"orders\"" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/accountingservice/Consumer.cs" ;
+    ev:sourceLine 12 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9aa675c40970d6ad a ev:Evidence ;
+    ev:aboutObject sut:svc-loadgenerator ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "loadgenerator:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 385 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9b9ccda9360b4f7d a ev:Evidence ;
+    ev:aboutObject sut:svc-productcatalogservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol gRPC (@grpc/grpc-js imported at ProductCatalog.gateway.ts:4, rpcs listProducts/getProduct at :14, :19); callee host from .env:107 PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}" ;
+    ev:quotedToken "new ProductCatalogServiceClient(PRODUCT_CATALOG_SERVICE_ADDR, ChannelCredentials.createInsecure())" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontend/gateways/rpc/ProductCatalog.gateway.ts" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9c2b2891a05d2f7c a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-quoteservice ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: quote-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 487 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9c53b18f5d31a695 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-recommendationservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: recommendation-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 515 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9c700ec650a7692c a ev:Evidence ;
+    ev:aboutObject sut:ctr-frontendproxy ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: frontend-proxy" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 313 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9d8de274e5973175 a ev:Evidence ;
+    ev:aboutObject sut:ctr-frontend ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "memory limit 250M at docker-compose.yml:261; restart: unless-stopped at :262; no healthcheck key in the frontend block (docker-compose.yml:250-309), only kafka (:652) and opensearch (:801) have one" ;
+    ev:quotedToken "container_name: frontend" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 252 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9dc00b860b098fb3 a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-productcatalogservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Feature-flag evaluation: openfeature.SetProvider(flagd.NewProvider()) at main.go:132, evaluated per GetProduct for product id OLJCESPC7Z via client.BooleanValue at main.go:306-307 (flag productCatalogFailure). Target host/port come from FLAGD_HOST and FLAGD_PORT (docker-compose.yml:471-472; .env:129-130 flagd and 8013). The wire protocol is not stated in these files (flagd provider v0.2.1, go.mod:8; NewProvider is called with no options): protocol library default, not in these files. depends_on flagd service_started at docker-compose.yml:480. createClient (main.go:312, grpc.DialContext) is defined but has no call site in the given files, so it is not reported as an edge." ;
+    ev:quotedToken "flagd.NewProvider()" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/productcatalogservice/main.go" ;
+    ev:sourceLine 132 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9eb4cef805235be9 a ev:Evidence ;
+    ev:aboutObject sut:svc-paymentservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "paymentservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 423 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a0ce77c178c29f56 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-cartservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces: WithTracing(...AddOtlpExporter) at Program.cs:63-69; OTLP endpoint from env OTEL_EXPORTER_OTLP_ENDPOINT (docker-compose.yml:100), value http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} at .env:32 with OTEL_COLLECTOR_HOST=otelcol at .env:27; this fact cites the exporter call, the target host is .env:27" ;
+    ev:quotedToken ".AddOtlpExporter())" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/cartservice/src/Program.cs" ;
+    ev:sourceLine 69 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a169e3434bcab3e2 a ev:Evidence ;
+    ev:aboutObject sut:group-frauddetectionservice ;
+    ev:aboutPredicate ops:memberOf ;
+    ev:aboutSubject sut:svc-frauddetectionservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "const val groupID = \"frauddetectionservice\"" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt" ;
+    ev:sourceLine 27 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a38f348d901552f3 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-jaeger ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-a3bcba66a91d195d a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-productcatalogservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-a4a5f66abc3dd195 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-opensearch ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: opensearch" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 778 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a5a667f06e8b7383 a ev:Evidence ;
+    ev:aboutObject sut:ctr-recommendationservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-recommendationservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: recommendation-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 515 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a61b373c30e71f46 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-adservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for adservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-a7d48e932d16d258 a ev:Evidence ;
+    ev:aboutObject sut:svc-checkoutservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale for checkoutservice in upstream:docker-compose.yml:114-163 (deploy block at lines 122-125 sets only resources.limits.memory) or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:39-45; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-a8b3f2905750468b a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-productcatalogservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Traces and metrics, over OTLP gRPC: otlptracegrpc.New at src/productcatalogservice/main.go:86 and otlpmetricgrpc.New at main.go:102. Endpoint is OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} (.env:32) with OTEL_COLLECTOR_HOST=otelcol (.env:27) and OTEL_COLLECTOR_PORT_GRPC=4317 (.env:28). Traces use sdktrace.WithBatcher(exporter) with no options (main.go:91); metrics use sdkmetric.NewPeriodicReader(exporter) with no interval option (main.go:108); no OTEL_METRIC_EXPORT_INTERVAL, OTEL_BSP_SCHEDULE_DELAY or similar is set in docker-compose.yml, .env or compose.candidate-postures.yml, so the export intervals are library default, not in these files. Logs: logrus (main.go:57 logrus.New()) with no OTLP log exporter in main.go; container stdout goes to the json-file driver (docker-compose.yml:482 logging: *logging, defined docker-compose.yml:4-9). Harness override compose.candidate-postures.yml:105-109 sets OTEL_PLACEMENT_ENABLED, OTEL_SDK_DISABLED and OTEL_TRACES_EXPORTER/OTEL_METRICS_EXPORTER/OTEL_LOGS_EXPORTER from OTEL_CANDIDATE_PRODUCTCATALOGSERVICE_* variables that are unresolved in these files; whether the exporter is otlp or none per posture is not stated here (the Go code in main.go does not read OTEL_TRACES_EXPORTER or OTEL_METRICS_EXPORTER)." ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 473 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-a9306032254667b1 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-paymentservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale for paymentservice in docker-compose.yml:423-451 (deploy block has only resources.limits.memory) or compose.candidate-postures.yml:92-102; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-aa2265ce6a43a75e a ev:Evidence ;
+    ev:aboutObject sut:svc-frauddetectionservice ;
+    ev:aboutPredicate ops:monitors ;
+    ev:aboutSubject sut:live-kafka_consumer-group-session-0 ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): monitors; via uses-fact src/frauddetectionservice/build.gradle.kts:33 kafka-clients@3.6.0; session.timeout.ms" ;
+    ev:quotedToken "then the broker will remove this client from the group" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/CommonClientConfigs.java" ;
+    ev:sourceLine 181 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-aa44923dd8c23e4b a ev:Evidence ;
+    ev:aboutObject sut:svc-kafka ;
+    ev:aboutPredicate ops:onBroker ;
+    ev:aboutSubject sut:topic-orders ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Bootstrap address read from env KAFKA_SERVICE_ADDR (Consumer.cs:22); passed through in docker-compose.yml:35." ;
+    ev:quotedToken "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 139 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-aa490f543d462529 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-prometheus ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: prometheus" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 753 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ac901565479a1a8a a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale for checkoutservice in upstream:docker-compose.yml:114-163 (deploy block at lines 122-125 sets only resources.limits.memory) or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:39-45; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-acf87d4ea1595261 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-recommendationservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-ad6cbd61c75d0190 a ev:Evidence ;
+    ev:aboutObject sut:svc-frontend ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP; default route prefix '/'; cluster address ${FRONTEND_HOST} (envoy.tmpl.yaml:109) = frontend (.env:81)" ;
+    ev:quotedToken "cluster: frontend" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/envoy.tmpl.yaml" ;
+    ev:sourceLine 55 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-aef9d25c9d287644 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-shippingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No deploy.replicas or scale key in docker-compose.yml:549-573; a fixed container_name admits one container. The count is not stated explicitly." ;
+    ev:quotedToken "container_name: shipping-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 551 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b10f12e383901f22 a ev:Evidence ;
+    ev:aboutObject sut:svc-frauddetectionservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "frauddetectionservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 219 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b1d4862854fb7a3c a ev:Evidence ;
+    ev:aboutObject sut:svc-paymentservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC: pb.NewPaymentServiceClient (main.go:197); address .env:102 paymentservice:${PAYMENT_SERVICE_PORT}; call Charge main.go:451 (main.go:446 swaps in badAddress:50051 when feature flag paymentServiceUnreachable is on)" ;
+    ev:quotedToken "PAYMENT_SERVICE_ADDR" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/checkoutservice/main.go" ;
+    ev:sourceLine 195 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b333530d225973bc a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-grafana ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for grafana in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-b5c15abe5301bb78 a ev:Evidence ;
+    ev:aboutObject sut:svc-cartservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "cartservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 80 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b70747376fd1da89 a ev:Evidence ;
+    ev:aboutObject sut:svc-cartservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol gRPC (@grpc/grpc-js imported at Cart.gateway.ts:4, rpcs getCart/addItem/emptyCart at :14, :19, :24); callee host from .env:54 CART_SERVICE_ADDR=cartservice:${CART_SERVICE_PORT}" ;
+    ev:quotedToken "new CartServiceClient(CART_SERVICE_ADDR, ChannelCredentials.createInsecure())" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontend/gateways/rpc/Cart.gateway.ts" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b799941cdbad1685 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-imageprovider ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No healthcheck key in the compose block (lines 358-382); restart: unless-stopped (line 370); memory limit 120M (line 369)." ;
+    ev:quotedToken "container_name: imageprovider" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 360 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b8623265adf4acff a ev:Evidence ;
+    ev:aboutObject sut:ctr-flagd-ui ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-flagd-ui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: flagd-ui" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 607 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b91ef390634e96e6 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-recommendationservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces and metrics: opentelemetry-instrument entrypoint (Dockerfile:43) reads OTEL_EXPORTER_OTLP_ENDPOINT passed at docker-compose.yml:534; OTEL_COLLECTOR_HOST=otelcol at .env:27, port 4317 at .env:28" ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 32 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ba7f79cf151575ae a ev:Evidence ;
+    ev:aboutObject sut:svc-emailservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "emailservice" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 192 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-baa3b3b1d3c0ed5e a ev:Evidence ;
+    ev:aboutObject sut:ctr-paymentservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-paymentservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: payment-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 425 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-bae96fa99c90e660 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-productcatalogservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "Compose default 1; library default, not in these files. The block docker-compose.yml:454-482 has a deploy: key (line 462) with resources.limits only and no replicas or scale key; compose.candidate-postures.yml:103-109 sets only environment for this service." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-bb44e46f4ae6251c a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-adservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-bb8b9cd023f8d1e5 a ev:Evidence ;
+    ev:aboutObject sut:ctr-adservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-adservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: ad-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 50 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-bbe4435fd99b9c4c a ev:Evidence ;
+    ev:aboutObject sut:coord-kafka_consumer-group-session ;
+    ev:aboutPredicate ops:coordinatedBy ;
+    ev:aboutSubject sut:group-accountingservice ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): coordinatedBy; via uses-fact src/accountingservice/AccountingService.csproj:12 Confluent.Kafka@2.5.3; group of accountingservice" ;
+    ev:quotedToken "the broker will remove the consumer from the group" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/Confluent.Kafka@2.5.3/src/Confluent.Kafka/Config_gen.cs" ;
+    ev:sourceLine 1352 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-bc5f3acf2e0c7e5c a ev:Evidence ;
+    ev:aboutObject sut:ctr-quoteservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-quoteservice ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: quote-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 487 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-be0534340d47571f a ev:Evidence ;
+    ev:aboutObject sut:svc-frauddetectionservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-frauddetectionservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale in the service block docker-compose.yml:229-230 (deploy only sets resources.limits.memory) nor in compose.candidate-postures.yml:59-65; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-be31a3f35be0b437 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-grafana ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-be45f17c39cacb39 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-frontendproxy ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-bf4127a9dd1721e5 a ev:Evidence ;
+    ev:aboutObject sut:svc-prometheus ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "OTLP/HTTP exporter" ;
+    ev:quotedToken "http://prometheus:9090/api/v1/otlp" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/otelcollector/otelcol-config.yml" ;
+    ev:sourceLine 98 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-bf5fbef260a6444a a ev:Evidence ;
+    ev:aboutObject sut:sensor-charge ;
+    ev:aboutPredicate ops:emits ;
+    ev:aboutSubject sut:svc-paymentservice ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "tracer.startSpan('charge')" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/charge.js" ;
+    ev:sourceLine 17 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c0a06fcc68808712 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-currencyservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "oteldemo::CurrencyService::Service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/currencyservice/src/server.cpp" ;
+    ev:sourceLine 103 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c0a1ec35f2f4a834 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "memory limit 250M at docker-compose.yml:261; restart: unless-stopped at :262; no healthcheck key in the frontend block (docker-compose.yml:250-309), only kafka (:652) and opensearch (:801) have one" ;
+    ev:quotedToken "container_name: frontend" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 252 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c0bd2926614cc52d a ev:Evidence ;
+    ev:aboutObject sut:topic-orders ;
+    ev:aboutPredicate ops:consumesFrom ;
+    ev:aboutSubject sut:svc-accountingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Subscribed at Consumer.cs:26 (_consumer.Subscribe(TopicName))." ;
+    ev:quotedToken "TopicName = \"orders\"" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/accountingservice/Consumer.cs" ;
+    ev:sourceLine 12 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c12408ed3a908f22 a ev:Evidence ;
+    ev:aboutObject sut:svc-frontend ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the frontend block at docker-compose.yml:250-309 has no deploy.replicas key (its deploy block sets only resources.limits.memory), so the Compose default of one container applies" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/" .
+
+sut:ev-c259065ef01e185c a ev:Evidence ;
+    ev:aboutObject sut:svc-frontendproxy ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: no deploy.replicas or scale in the frontendproxy block (upstream docker-compose.yml:311-344, deploy block lines 317-320 sets only resources.limits.memory); Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-c31a8d48a4e7a1ea a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-emailservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for emailservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-c323f12a4085effb a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-cartservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "No deploy.replicas or scale key in the cartservice block (docker-compose.yml:80-110; deploy block at :88-91 sets only resources.limits.memory) nor in compose.candidate-postures.yml:32-38; Compose default is 1. Library default, not in these files." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-c60c02831dacc0e9 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-flagd-ui ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM node:20-alpine" ;
+    ev:quotedToken "node:20-alpine" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/flagd-ui/Dockerfile" ;
+    ev:sourceLine 18 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c645c9c649ff994f a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-accountingservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-c65f3edf9ac4cde0 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-jaeger ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: jaeger" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 681 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c81128011d7d1f66 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-quoteservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for quoteservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-ca79838a5fa1bd91 a ev:Evidence ;
+    ev:aboutObject sut:svc-imageprovider ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP; prefix /images/; cluster address ${IMAGE_PROVIDER_HOST} (envoy.tmpl.yaml:121) = imageprovider (.env:87)" ;
+    ev:quotedToken "cluster: imageprovider" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/envoy.tmpl.yaml" ;
+    ev:sourceLine 49 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-caf91c305d1c054c a ev:Evidence ;
+    ev:aboutObject sut:ctr-accountingservice ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-accountingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Image is ${IMAGE_NAME}:${DEMO_VERSION}-accountingservice (docker-compose.yml:22). The compose block (lines 21-45) has no healthcheck key, so no container health check is configured for this service; it is a consumer and exposes no port. restart: unless-stopped (line 33), memory limit 120M (line 32)." ;
+    ev:quotedToken "container_name: accounting-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 23 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cb9bd4647a5e267a a ev:Evidence ;
+    ev:aboutObject sut:svc-prometheus ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "metrics, exporter otlphttp/prometheus, used in metrics pipeline line 131" ;
+    ev:quotedToken "http://prometheus:9090/api/v1/otlp" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/otelcollector/otelcol-config.yml" ;
+    ev:sourceLine 98 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cbb67973bc390748 a ev:Evidence ;
+    ev:aboutObject sut:topic-orders ;
+    ev:aboutPredicate ops:publishesTo ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "kafka.Topic used as the sarama.ProducerMessage Topic at src/checkoutservice/main.go:500; published only when KAFKA_SERVICE_ADDR is non-empty (main.go:320)" ;
+    ev:quotedToken "\"orders\"" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/checkoutservice/kafka/producer.go" ;
+    ev:sourceLine 11 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ceaf063a2d7fd836 a ev:Evidence ;
+    ev:aboutObject sut:topic-orders ;
+    ev:aboutPredicate ops:consumesFrom ;
+    ev:aboutSubject sut:svc-frauddetectionservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "const val topic = \"orders\"" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt" ;
+    ev:sourceLine 26 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cff4c52b9a754d26 a ev:Evidence ;
+    ev:aboutObject sut:svc-accountingservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-accountingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No deploy.replicas or scale key in the block (docker-compose.yml:21-45); a fixed container_name admits one container. Replica count is not stated explicitly." ;
+    ev:quotedToken "container_name: accounting-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 23 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d01f6683f66f1fc0 a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "flagd:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 579 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d06b95cb1dd31d00 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-otelcol ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-d208d9f4ed8f69cf a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP; prefix /flagservice/ with timeout 0s; cluster address ${FLAGD_HOST} (envoy.tmpl.yaml:133) = flagd (.env:129)" ;
+    ev:quotedToken "cluster: flagservice" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/envoy.tmpl.yaml" ;
+    ev:sourceLine 51 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d33db9807b8df346 a ev:Evidence ;
+    ev:aboutObject sut:svc-valkey-cart ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-valkey-cart ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for valkey-cart in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-d37bd625f2a687d6 a ev:Evidence ;
+    ev:aboutObject omsac:Technology ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-prometheus ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: image-only service, image quay.io/prometheus/prometheus:v2.54.1" ;
+    ev:quotedToken "image: ${PROMETHEUS_IMAGE}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 752 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d3a00039af261a49 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-accountingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Image is ${IMAGE_NAME}:${DEMO_VERSION}-accountingservice (docker-compose.yml:22). The compose block (lines 21-45) has no healthcheck key, so no container health check is configured for this service; it is a consumer and exposes no port. restart: unless-stopped (line 33), memory limit 120M (line 32)." ;
+    ev:quotedToken "container_name: accounting-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 23 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d4a1b0a74573ced4 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-accountingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No deploy.replicas or scale key in the block (docker-compose.yml:21-45); a fixed container_name admits one container. Replica count is not stated explicitly." ;
+    ev:quotedToken "container_name: accounting-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 23 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d4fff72f7a9c21c1 a ev:Evidence ;
+    ev:aboutObject sut:svc-productcatalogservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC: pb.NewProductCatalogServiceClient (main.go:177); address .env:107 productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}; call GetProduct main.go:418" ;
+    ev:quotedToken "PRODUCT_CATALOG_SERVICE_ADDR" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/checkoutservice/main.go" ;
+    ev:sourceLine 175 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d5da35c91304ed6b a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-loadgenerator ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM base" ;
+    ev:quotedToken "base" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/loadgenerator/Dockerfile" ;
+    ev:sourceLine 15 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d643c931969b64ac a ev:Evidence ;
+    ev:aboutObject sut:svc-quoteservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-shippingservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP POST (quote.rs:58 client.post(quote_service_addr)) to QUOTE_SERVICE_ADDR + \"/getquote\" (quote.rs:43,47); default http://quoteservice:8090, and docker-compose.yml:566 passes QUOTE_SERVICE_ADDR, set to http://quoteservice:${QUOTE_SERVICE_PORT} at .env:112 (QUOTE_SERVICE_PORT=8090, .env:111). The service makes no other outgoing call in the given files. No Kafka topic is published or consumed in these files. No registry, discovery service or coordinator registration appears in these files (no heartbeat, failure timeout or cleanup interval)." ;
+    ev:quotedToken "http://quoteservice:8090" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/shippingservice/src/shipping_service/quote.rs" ;
+    ev:sourceLine 44 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d657491376361f8d a ev:Evidence ;
+    ev:aboutObject sut:svc-opensearch ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-otelcol ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "HTTP, opensearch exporter" ;
+    ev:quotedToken "http://opensearch:9200" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/otelcollector/otelcol-config.yml" ;
+    ev:sourceLine 104 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d71e13d8e53b4e01 a ev:Evidence ;
+    ev:aboutObject sut:svc-shippingservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "gRPC: pb.NewShippingServiceClient (main.go:172) over grpc.NewClient (main.go:377); address .env:122 shippingservice:${SHIPPING_SERVICE_PORT}; calls GetQuote main.go:389, ShipOrder main.go:483" ;
+    ev:quotedToken "SHIPPING_SERVICE_ADDR" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/checkoutservice/main.go" ;
+    ev:sourceLine 170 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d8ebac4b92879952 a ev:Evidence ;
+    ev:aboutObject sut:ctr-opensearch ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-opensearch ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: opensearch" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 778 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-da2977f72a524243 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-quoteservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM base" ;
+    ev:quotedToken "base" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/quoteservice/Dockerfile" ;
+    ev:sourceLine 33 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-dbd19c45dfe0ac93 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-flagd ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for flagd in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-dc57c836d1ea04bd a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-loadgenerator ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "OpenFeature flag evaluation (get_integer_value at locustfile.py:78, flag loadgeneratorFloodHomepage at line 171). FLAGD_HOST=flagd and FLAGD_PORT=8013 (.env:129, .env:130; docker-compose.yml:413-414). Wire protocol is not stated in these files (library default of openfeature-provider-flagd==0.1.5, requirements.txt:34, not in these files)." ;
+    ev:quotedToken "FlagdProvider(host=os.environ.get('FLAGD_HOST', 'flagd')" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/loadgenerator/locustfile.py" ;
+    ev:sourceLine 72 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-dcae046ad30b7373 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-otelcol ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the otelcol block (docker-compose.yml:719-748) has a deploy: block (line 722) with resources only and no replicas; Compose default is 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-de3c7b790d7843c4 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-emailservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: email-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 194 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-de6252669493c331 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-frontend ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the frontend block at docker-compose.yml:250-309 has no deploy.replicas key (its deploy block sets only resources.limits.memory), so the Compose default of one container applies" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/" .
+
+sut:ev-e0768e2aa2411805 a ev:Evidence ;
+    ev:aboutObject sut:svc-opensearch ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-grafana ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP datasource query (type grafana-opensearch-datasource, line 8; access: proxy, line 10)." ;
+    ev:quotedToken "http://opensearch:9200/" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/grafana/provisioning/datasources/opensearch.yaml" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e0f3402ac0b42645 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-paymentservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM node:21-alpine" ;
+    ev:quotedToken "node:21-alpine" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/Dockerfile" ;
+    ev:sourceLine 15 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e1c2d9b66e24a91a a ev:Evidence ;
+    ev:aboutObject sut:svc-prometheus ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-jaeger ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D4: environment METRICS_STORAGE_TYPE=prometheus" ;
+    ev:quotedToken "- METRICS_STORAGE_TYPE=prometheus" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 697 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e4aa2b37b8260660 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommendationservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "OTEL_SERVICE_NAME=recommendationservice" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 537 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e5d6ecbd5569ec37 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-imageprovider ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-e63caf6ed9964b60 a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd-ui ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "flagd-ui:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 605 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e9872b9dafe88578 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "traces: otlptracegrpc.New (src/checkoutservice/main.go:93) with sdktrace.WithBatcher (main.go:98); metrics: otlpmetricgrpc.New (main.go:109) with NewPeriodicReader (main.go:115); endpoint value is .env:32 OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} with .env:27 OTEL_COLLECTOR_HOST=otelcol. Export interval not stated in these files (library default, not in these files). Logs: stdout only (main.go:70)." ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 140 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e98b666228f23f9d a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-adservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for adservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-eb7011e63289fd88 a ev:Evidence ;
+    ev:aboutObject ops:ConsumerGroup ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:group-frauddetectionservice ;
+    ev:acceptance "library" ;
+    ev:basis "cited" ;
+    ev:note "Amendment 3 attachment (library_merge.py ATTACH): consumerGroup; via uses-fact src/frauddetectionservice/build.gradle.kts:33 kafka-clients@3.6.0; group of frauddetectionservice" ;
+    ev:quotedToken "then the broker will remove this client from the group" ;
+    ev:sourceCommit "fb6e8c4d58f48513f6ce8f660137526ac858c5b8" ;
+    ev:sourceFile "research/ontology/vendor/libs/kafka-clients@3.6.0/clients/src/main/java/org/apache/kafka/clients/CommonClientConfigs.java" ;
+    ev:sourceLine 181 ;
+    ev:sourceRepo "libvendor" .
+
+sut:ev-eb8232d74a6759fd a ev:Evidence ;
+    ev:aboutObject sut:svc-shippingservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "shippingservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 549 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ec4fe5879633b684 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-valkey-cart ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for valkey-cart in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-ed4ac9dead5c7dfc a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-kafka ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "OTEL_COLLECTOR_HOST=otelcol at .env:27, OTLP over HTTP port 4318 (.env:29); traces, metrics and logs exporters are set per posture in compose.candidate-postures.yml:149-151" ;
+    ev:quotedToken "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 647 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-eddbc3320b5f8303 a ev:Evidence ;
+    ev:aboutObject sut:svc-emailservice ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-checkoutservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP POST to cs.emailSvcAddr+\"/send_order_confirmation\" (main.go:469); address env EMAIL_SERVICE_ADDR main.go:190, value .env:69 http://emailservice:${EMAIL_SERVICE_PORT}. Protocol HTTP, not gRPC (pb.NewEmailServiceClient at main.go:192 is created but the call at line 469 is HTTP)." ;
+    ev:quotedToken "otelhttp.Post" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/checkoutservice/main.go" ;
+    ev:sourceLine 469 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ede8dd85e66291fc a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-flagd-ui ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale for flagd-ui in upstream:docker-compose.yml:605-629 or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:139-144; Compose default 1; library default, not in these files" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-ee1bd6c5dc05eae0 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-imageprovider ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM nginx:1.27.0-otel" ;
+    ev:quotedToken "nginx:1.27.0-otel" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/imageprovider/Dockerfile" ;
+    ev:sourceLine 4 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f0f0412127d363a7 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-cartservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-f1196e5e58390118 a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-flagd ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for flagd in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-f14f22d8544a2901 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-loadgenerator ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "No deploy.replicas or scale key in the block (docker-compose.yml:385-420); a fixed container_name admits one container. Replica count is not stated explicitly." ;
+    ev:quotedToken "container_name: load-generator" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 387 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f4ea92b0f72a263c a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-imageprovider ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "otel_exporter endpoint (OTLP gRPC port variable); traces only (otel_trace on, line 11). Host resolved by .env:27 OTEL_COLLECTOR_HOST=otelcol and passed to the container at docker-compose.yml:375. No export interval stated." ;
+    ev:quotedToken "${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/imageprovider/nginx.conf.template" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f4ebbafd89377a18 a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP; prefix /otlp-http/ forwarded to the collector OTLP/HTTP port; cluster address ${OTEL_COLLECTOR_HOST} (envoy.tmpl.yaml:97) = otelcol (.env:27)" ;
+    ev:quotedToken "opentelemetry_collector_http" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/envoy.tmpl.yaml" ;
+    ev:sourceLine 43 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f70ff8e9779ea57b a ev:Evidence ;
+    ev:aboutObject sut:svc-flagd ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frauddetectionservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "feature-flag evaluation (getIntegerValue, main.kt:86) via the flagd OpenFeature provider; host from FLAGD_HOST at docker-compose.yml:233; wire protocol not stated in these files" ;
+    ev:quotedToken "FlagdProvider(options)" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frauddetectionservice/src/main/kotlin/frauddetectionservice/main.kt" ;
+    ev:sourceLine 35 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f74e1a164535b57c a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-jaeger ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for jaeger in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-f7689d1217e05629 a ev:Evidence ;
+    ev:aboutObject ops:Metric ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:sensor-app.payment.transactions ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "app.payment.transactions" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/paymentservice/charge.js" ;
+    ev:sourceLine 14 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f7edc7b95bf181cb a ev:Evidence ;
+    ev:aboutObject sut:svc-imageprovider ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "imageprovider:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 358 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f89ce8645b3f706c a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-frauddetectionservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale in the service block docker-compose.yml:229-230 (deploy only sets resources.limits.memory) nor in compose.candidate-postures.yml:59-65; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-f927645c0a766b98 a ev:Evidence ;
+    ev:aboutObject sut:svc-kafka ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "kafka:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 632 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f9b36b70b4292594 a ev:Evidence ;
+    ev:aboutObject sut:ctr-kafka ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-kafka ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: kafka" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 634 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-fa6bab438a8962ca a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-paymentservice ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-fb0c692b5280a37b a ev:Evidence ;
+    ev:aboutObject sut:ctr-prometheus ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-prometheus ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: prometheus" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 753 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-fc8808f815a831b0 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-cartservice ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "No deploy.replicas or scale key in the cartservice block (docker-compose.yml:80-110; deploy block at :88-91 sets only resources.limits.memory) nor in compose.candidate-postures.yml:32-38; Compose default is 1. Library default, not in these files." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-fd65912f9c6da522 a ev:Evidence ;
+    ev:aboutObject sut:ctr-jaeger ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-jaeger ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: jaeger" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 681 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-feb8739ba45d93e0 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-grafana ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: grafana" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 703 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ff83e8944e05ee12 a ev:Evidence ;
+    ev:aboutObject sut:svc-jaeger ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-frontendproxy ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP; prefix /jaeger; cluster address ${JAEGER_SERVICE_HOST} (envoy.tmpl.yaml:181) = jaeger (.env:155)" ;
+    ev:quotedToken "cluster: jaeger" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/frontendproxy/envoy.tmpl.yaml" ;
+    ev:sourceLine 45 ;
+    ev:sourceRepo "upstream" .
+
+sut:rs-accountingservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-accountingservice .
+
+sut:rs-adservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-adservice .
+
+sut:rs-cartservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-cartservice .
+
+sut:rs-checkoutservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-checkoutservice .
+
+sut:rs-currencyservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-currencyservice .
+
+sut:rs-emailservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-emailservice .
+
+sut:rs-flagd a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-flagd .
+
+sut:rs-flagd-ui a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-flagd-ui .
+
+sut:rs-frauddetectionservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-frauddetectionservice .
+
+sut:rs-frontend a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-frontend .
+
+sut:rs-frontendproxy a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-frontendproxy .
+
+sut:rs-grafana a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-grafana .
+
+sut:rs-imageprovider a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-imageprovider .
+
+sut:rs-jaeger a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-jaeger .
+
+sut:rs-kafka a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-kafka .
+
+sut:rs-loadgenerator a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-loadgenerator .
+
+sut:rs-opensearch a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-opensearch .
+
+sut:rs-otelcol a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-otelcol .
+
+sut:rs-paymentservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-paymentservice .
+
+sut:rs-productcatalogservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-productcatalogservice .
+
+sut:rs-prometheus a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-prometheus .
+
+sut:rs-quoteservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-quoteservice .
+
+sut:rs-recommendationservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-recommendationservice .
+
+sut:rs-shippingservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-shippingservice .
+
+sut:rs-valkey-cart a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-valkey-cart .
+
+<http://obsplacement.example/sut/otel#sensor-Charge_request_received.> a ops:LogTemplate .
+
+<http://obsplacement.example/sut/otel#sensor-Transaction_complete.> a ops:LogTemplate .
+
+sut:sensor-app.payment.transactions a ops:Metric .
+
+sut:sensor-charge a ops:Span .
+
+sut:sensor-imageprovider a ops:Span .
+
+sut:ctr-accountingservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-adservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-cartservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-checkoutservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-currencyservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-emailservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-flagd a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-flagd-ui a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-frauddetectionservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-frontend a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-frontendproxy a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-grafana a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-imageprovider a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-jaeger a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-kafka a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-loadgenerator a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-opensearch a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-otelcol a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-paymentservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-productcatalogservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-prometheus a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-quoteservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-recommendationservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-shippingservice a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:ctr-valkey-cart a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:group-accountingservice a ops:ConsumerGroup ;
+    ops:coordinatedBy sut:coord-kafka_consumer-group-session .
+
+sut:group-frauddetectionservice a ops:ConsumerGroup ;
+    ops:coordinatedBy sut:coord-kafka_consumer-group-session .
+
+sut:live-kafka_consumer-group-session-0 a ops:LivenessMechanism ;
+    ops:enforcedBy sut:coord-kafka_consumer-group-session ;
+    ops:failureTimeoutSeconds 45.0 ;
+    ops:heartbeatIntervalSeconds 3.0 ;
+    ops:heartbeatThreadIndependentOfWork true ;
+    ops:monitors sut:svc-accountingservice,
+        sut:svc-frauddetectionservice .
+
+sut:coord-kafka_consumer-group-session a ops:ConsumerGroupCoordinator ;
+    ops:hostedBy sut:svc-kafka .
+
+sut:svc-quoteservice a omsac:Microservice ;
+    ops:runsIn sut:ctr-quoteservice .
+
+sut:topic-orders a ops:Topic ;
+    ops:onBroker sut:svc-kafka .
+
+sut:svc-emailservice a omsac:Microservice ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-emailservice .
+
+sut:svc-flagd-ui a omsac:Microservice ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-flagd-ui .
+
+sut:svc-adservice a omsac:Microservice ;
+    ops:callsSync sut:svc-flagd ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-adservice .
+
+sut:svc-imageprovider a omsac:Microservice ;
+    ops:emits sut:sensor-imageprovider ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-imageprovider .
+
+sut:svc-valkey-cart a omsac:Cache ;
+    ops:runsIn sut:ctr-valkey-cart .
+
+sut:svc-accountingservice a omsac:Microservice ;
+    ops:consumesFrom sut:topic-orders ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:memberOf sut:group-accountingservice ;
+    ops:runsIn sut:ctr-accountingservice .
+
+sut:svc-currencyservice a omsac:Microservice ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-currencyservice .
+
+sut:svc-kafka a ops:Broker ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-kafka .
+
+sut:svc-loadgenerator a omsac:Microservice ;
+    ops:callsSync sut:svc-flagd,
+        sut:svc-frontendproxy ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-loadgenerator .
+
+sut:svc-recommendationservice a omsac:Microservice ;
+    ops:callsSync sut:svc-flagd,
+        sut:svc-productcatalogservice ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-recommendationservice .
+
+sut:svc-frauddetectionservice a omsac:Microservice ;
+    ops:callsSync sut:svc-flagd ;
+    ops:consumesFrom sut:topic-orders ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:memberOf sut:group-frauddetectionservice ;
+    ops:runsIn sut:ctr-frauddetectionservice .
+
+sut:svc-grafana a omsac:Technology ;
+    ops:callsSync sut:svc-jaeger,
+        sut:svc-opensearch,
+        sut:svc-prometheus ;
+    ops:exportsTelemetryTo sut:svc-stats.grafana.org ;
+    ops:runsIn sut:ctr-grafana .
+
+sut:svc-opensearch a omsac:Technology ;
+    ops:runsIn sut:ctr-opensearch .
+
+sut:svc-shippingservice a omsac:Microservice ;
+    ops:callsSync sut:svc-quoteservice ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-shippingservice .
+
+sut:svc-cartservice a omsac:Microservice ;
+    ops:callsSync sut:svc-flagd,
+        sut:svc-valkey-cart ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-cartservice .
+
+sut:svc-paymentservice a omsac:Microservice ;
+    ops:callsSync sut:svc-flagd ;
+    ops:emits <http://obsplacement.example/sut/otel#sensor-Charge_request_received.>,
+        <http://obsplacement.example/sut/otel#sensor-Transaction_complete.>,
+        sut:sensor-app.payment.transactions,
+        sut:sensor-charge ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-paymentservice .
+
+sut:svc-productcatalogservice a omsac:Microservice ;
+    ops:callsSync sut:svc-flagd ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-productcatalogservice .
+
+sut:svc-jaeger a omsac:Technology ;
+    ops:callsSync sut:svc-prometheus ;
+    ops:runsIn sut:ctr-jaeger .
+
+sut:svc-prometheus a omsac:Technology ;
+    ops:callsSync sut:svc-otelcol ;
+    ops:runsIn sut:ctr-prometheus .
+
+sut:svc-checkoutservice a omsac:Microservice ;
+    ops:callsSync sut:svc-cartservice,
+        sut:svc-currencyservice,
+        sut:svc-emailservice,
+        sut:svc-paymentservice,
+        sut:svc-productcatalogservice,
+        sut:svc-shippingservice ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:publishesTo sut:topic-orders ;
+    ops:runsIn sut:ctr-checkoutservice .
+
+sut:svc-frontend a omsac:Microservice ;
+    ops:callsSync sut:svc-adservice,
+        sut:svc-cartservice,
+        sut:svc-checkoutservice,
+        sut:svc-currencyservice,
+        sut:svc-productcatalogservice,
+        sut:svc-recommendationservice,
+        sut:svc-shippingservice ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-frontend .
+
+sut:svc-frontendproxy a omsac:Microservice ;
+    ops:callsSync sut:svc-flagd,
+        sut:svc-flagd-ui,
+        sut:svc-frontend,
+        sut:svc-grafana,
+        sut:svc-imageprovider,
+        sut:svc-jaeger,
+        sut:svc-loadgenerator,
+        sut:svc-otelcol ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-frontendproxy .
+
+sut:svc-flagd a omsac:Technology ;
+    ops:exportsTelemetryTo sut:svc-otelcol ;
+    ops:runsIn sut:ctr-flagd .
+
+sut:arch-otel a omsac:MicroserviceArchitecture ;
+    omsac:isComposedOf sut:svc-accountingservice,
+        sut:svc-adservice,
+        sut:svc-cartservice,
+        sut:svc-checkoutservice,
+        sut:svc-currencyservice,
+        sut:svc-emailservice,
+        sut:svc-flagd,
+        sut:svc-flagd-ui,
+        sut:svc-frauddetectionservice,
+        sut:svc-frontend,
+        sut:svc-frontendproxy,
+        sut:svc-grafana,
+        sut:svc-imageprovider,
+        sut:svc-jaeger,
+        sut:svc-kafka,
+        sut:svc-loadgenerator,
+        sut:svc-opensearch,
+        sut:svc-otelcol,
+        sut:svc-paymentservice,
+        sut:svc-productcatalogservice,
+        sut:svc-prometheus,
+        sut:svc-quoteservice,
+        sut:svc-recommendationservice,
+        sut:svc-shippingservice,
+        sut:svc-valkey-cart .
+
+sut:host-fb14srv6 a ops:Host .
+
+sut:svc-otelcol a ops:Collector ;
+    ops:callsSync sut:svc-frontendproxy,
+        sut:svc-jaeger,
+        sut:svc-opensearch,
+        sut:svc-prometheus,
+        sut:svc-valkey-cart ;
+    ops:exportsTelemetryTo sut:svc-jaeger,
+        sut:svc-opensearch,
+        sut:svc-prometheus ;
+    ops:runsIn sut:ctr-otelcol .
+

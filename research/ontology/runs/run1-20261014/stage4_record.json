@@ -1,0 +1,7 @@
+{
+ "judgePromptSha256": "b1c5099d83179242fa4dae96935f6b8f9ed411597ee8e00363d093e8c3477a98",
+ "judgeModel": "opus (Opus 5.5)",
+ "chunks": 12,
+ "packets": 254,
+ "chunkSize": 25
+}

@@ -1,0 +1,22 @@
+# CQ-S1. Shared-fate groups: for every anchor (Host, Collector, Broker, Registry/Coordinator), the components that depend on it.
+#   Host         components that runsIn a container placedOn the host
+#   Collector    components that exportsTelemetryTo the collector (their telemetry shares its fate)
+#   Broker       producers and consumers of topics on the broker
+#   Coordinator  registrants of a ServiceRegistry/DiscoveryService and members of groups a ConsumerGroupCoordinator coordinates
+PREFIX ops:   <http://obsplacement.example/ops#>
+PREFIX omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#>
+SELECT DISTINCT ?arch ?anchorType ?anchor ?member WHERE {
+  ?arch a omsac:MicroserviceArchitecture ; omsac:isComposedOf ?member .
+  {
+    ?member ops:runsIn ?ctr . ?ctr ops:placedOn ?anchor . BIND ("Host" AS ?anchorType)
+  } UNION {
+    ?member ops:exportsTelemetryTo ?anchor . BIND ("Collector" AS ?anchorType)
+  } UNION {
+    ?t ops:onBroker ?anchor . { ?member ops:publishesTo ?t } UNION { ?member ops:consumesFrom ?t }
+    BIND ("Broker" AS ?anchorType)
+  } UNION {
+    { ?member ops:registersWith ?anchor } UNION { ?member ops:memberOf ?g . ?g ops:coordinatedBy ?anchor }
+    BIND ("Coordinator" AS ?anchorType)
+  }
+}
+ORDER BY ?arch ?anchorType ?anchor ?member

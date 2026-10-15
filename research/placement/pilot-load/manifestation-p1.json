@@ -1,0 +1,160 @@
+{
+ "criterion": "DECLARATION_PILOT_LOAD_OTEL.md",
+ "root": "tmp/otel-load-pilot-evidence/p1-fetch/x",
+ "cells": [
+  {
+   "cell": "runs/calibration/r100-b01-05-full",
+   "runId": "3d3478a6c2ec896bf7bf0cb3",
+   "rate": "r100",
+   "kind": "no-fault",
+   "valid": true,
+   "receiptState": "valid",
+   "onsetOffsetSeconds": 60.002331,
+   "ratios": {
+    "server": {
+     "ratio": 1.002079002079002,
+     "preSpans": 5997,
+     "holdSpans": 6000,
+     "preMedianMs": 0.11467933654785156,
+     "holdMedianMs": 0.11491775512695312
+    },
+    "client": {
+     "ratio": 0.9584213209058472,
+     "preSpans": 5998,
+     "holdSpans": 6000,
+     "preMedianMs": 1.637101173400879,
+     "holdMedianMs": 1.5690326690673828
+    }
+   }
+  },
+  {
+   "cell": "runs/calibration/r50-b01-02-full",
+   "runId": "439ae180b4d7272e0e80e062",
+   "rate": "r50",
+   "kind": "no-fault",
+   "valid": true,
+   "receiptState": "valid",
+   "onsetOffsetSeconds": 60.006104,
+   "ratios": {
+    "server": {
+     "ratio": 0.9930795847750865,
+     "preSpans": 2998,
+     "holdSpans": 3000,
+     "preMedianMs": 0.13780593872070312,
+     "holdMedianMs": 0.13685226440429688
+    },
+    "client": {
+     "ratio": 0.8757464400551217,
+     "preSpans": 2997,
+     "holdSpans": 3000,
+     "preMedianMs": 2.0761489868164062,
+     "holdMedianMs": 1.8181800842285156
+    }
+   }
+  },
+  {
+   "cell": "runs/effect/productcatalog-cpu-throttle/r100-b01-04-full",
+   "runId": "59d84e9497cc604c35b14f9d",
+   "rate": "r100",
+   "kind": "throttle",
+   "valid": true,
+   "receiptState": "valid",
+   "onsetOffsetSeconds": 60.00600092113018,
+   "ratios": {
+    "server": {
+     "ratio": 0.9875776397515528,
+     "preSpans": 5997,
+     "holdSpans": 6000,
+     "preMedianMs": 0.11515617370605469,
+     "holdMedianMs": 0.11372566223144531
+    },
+    "client": {
+     "ratio": 0.993993993993994,
+     "preSpans": 5997,
+     "holdSpans": 6000,
+     "preMedianMs": 1.5878677368164062,
+     "holdMedianMs": 1.5783309936523438
+    }
+   }
+  },
+  {
+   "cell": "runs/effect/productcatalog-cpu-throttle/r100-b02-06-full",
+   "runId": "c21a646ed08dd6537199a487",
+   "rate": "r100",
+   "kind": "throttle",
+   "valid": true,
+   "receiptState": "valid",
+   "onsetOffsetSeconds": 60.00322611629963,
+   "ratios": {
+    "server": {
+     "ratio": 0.987603305785124,
+     "preSpans": 5998,
+     "holdSpans": 5996,
+     "preMedianMs": 0.11539459228515625,
+     "holdMedianMs": 0.11396408081054688
+    },
+    "client": {
+     "ratio": 0.9514353550615152,
+     "preSpans": 5998,
+     "holdSpans": 5999,
+     "preMedianMs": 1.6568899154663086,
+     "holdMedianMs": 1.5764236450195312
+    }
+   }
+  },
+  {
+   "cell": "runs/effect/productcatalog-cpu-throttle/r50-b01-01-full",
+   "runId": "008d8350117501e8e35b8210",
+   "rate": "r50",
+   "kind": "throttle",
+   "valid": true,
+   "receiptState": "valid",
+   "onsetOffsetSeconds": 60.02174733579159,
+   "ratios": {
+    "server": {
+     "ratio": 1.0124555160142348,
+     "preSpans": 2997,
+     "holdSpans": 3001,
+     "preMedianMs": 0.13399124145507812,
+     "holdMedianMs": 0.13566017150878906
+    },
+    "client": {
+     "ratio": 0.912605435801312,
+     "preSpans": 2997,
+     "holdSpans": 3001,
+     "preMedianMs": 2.0351409912109375,
+     "holdMedianMs": 1.8572807312011719
+    }
+   }
+  },
+  {
+   "cell": "runs/effect/productcatalog-cpu-throttle/r50-b02-03-full",
+   "runId": "0d773d51279c48103b7aaed9",
+   "rate": "r50",
+   "kind": "throttle",
+   "valid": true,
+   "receiptState": "valid",
+   "onsetOffsetSeconds": 60.00730611383915,
+   "ratios": {
+    "server": {
+     "ratio": 1.0165137614678899,
+     "preSpans": 2998,
+     "holdSpans": 3000,
+     "preMedianMs": 0.12993812561035156,
+     "holdMedianMs": 0.13208389282226562
+    },
+    "client": {
+     "ratio": 0.8542166559372623,
+     "preSpans": 2998,
+     "holdSpans": 3000,
+     "preMedianMs": 2.036929130554199,
+     "holdMedianMs": 1.7399787902832031
+    }
+   }
+  }
+ ],
+ "verdict": {
+  "r50": "does not manifest",
+  "r100": "does not manifest"
+ }
+}

@@ -1,0 +1,56 @@
+{
+  "allowance": 1,
+  "allowanceMinimum": 1,
+  "allowanceShare": 0.01,
+  "blockingWindows": [
+    "pre-onset",
+    "after-drain"
+  ],
+  "drainSeconds": 17.0,
+  "faultAndDrainWindowSeconds": [
+    60.6454037502408,
+    139.71215621381998
+  ],
+  "incomplete": 0,
+  "kind": "otel-demo-sweep-trace-completeness-v2",
+  "recordedFaultEffectIncomplete": 0,
+  "requiredPathServices": [
+    "frontend",
+    "frontendproxy",
+    "productcatalogservice"
+  ],
+  "rule": "protocol-decision-25",
+  "runId": "7c56c9161957c584bf4d7dfc",
+  "schemaVersion": 2,
+  "successful": 101,
+  "valid": true,
+  "windows": {
+    "after-drain": {
+      "complete": 40,
+      "incomplete": 0,
+      "incompleteRequestTokens": [],
+      "requests": 40,
+      "successful": 40,
+      "unsuccessful": 0,
+      "unsuccessfulIncomplete": 0
+    },
+    "fault-and-drain": {
+      "complete": 79,
+      "incomplete": 0,
+      "incompleteRequestTokens": [],
+      "requests": 79,
+      "successful": 79,
+      "unsuccessful": 0,
+      "unsuccessfulIncomplete": 0
+    },
+    "pre-onset": {
+      "complete": 61,
+      "incomplete": 0,
+      "incompleteRequestTokens": [],
+      "requests": 61,
+      "successful": 61,
+      "unsuccessful": 0,
+      "unsuccessfulIncomplete": 0
+    }
+  }
+}

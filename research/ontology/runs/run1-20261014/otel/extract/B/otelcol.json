@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "run": "run1-20261014",
+    "system": "otel",
+    "service": "otelcol",
+    "extractor": "B",
+    "entryIndex": 75,
+    "model": "haiku (Haiku 5.5)",
+    "promptSha256": "d29393e563c713440288700e6956dd33ec3c01b7e2a4d217cef08300edae00f7",
+    "notes": [
+      "image: otel/opentelemetry-collector-contrib:0.108.0, from docker-compose.yml:720 (image: ${COLLECTOR_CONTRIB_IMAGE}) and .env:9. Not a schema field; recorded here only.",
+      "healthcheck: absent. No healthcheck key in the otelcol block docker-compose.yml:719-742, and no health_check extension in otelcol-config.yml (service block lines 122-135 lists pipelines only). Library default, not in these files.",
+      "replicas: no deploy.replicas or scale key in docker-compose.yml:719-742 (the deploy block at lines 722-725 sets resources.limits.memory only). The harness compose.candidate-postures.yml has no otelcol entry. Library default, not in these files (Compose default 1).",
+      "syncEdges: the factEdge value has no protocol field, so the protocol is stated in each edge's note. The httpcheck receiver (otelcol-config.yml:15) uses http://, and the redis receiver (otelcol-config.yml:20) is the Redis protocol. Both receivers are pulls on a schedule; they are kept as sync edges because they are request/response calls configured at these lines.",
+      "syncEdges not reported: hostmetrics reads /hostfs (otelcol-config.yml:26) and docker_stats reads unix:///var/run/docker.sock (otelcol-config.yml:19); both are host resources, not services. The prometheus receiver scrapes the collector's own 0.0.0.0:8888 (otelcol-config.yml:89).",
+      "inbound: the otlp receiver (otelcol-config.yml:5-14) accepts telemetry from other services; inbound calls are not reported here.",
+      "publishesTo: none stated. consumes: none stated. No Kafka or message-broker configuration in the otelcol files or the compose block lines 719-742.",
+      "registersWith and coordinators: none stated. No registry, discovery or coordinator configuration in these files.",
+      "telemetry frequency: no export interval is set for the otlp exporter (otelcol-config.yml:93-96), otlphttp/prometheus (97-100) or opensearch (101-106). The batch processor at otelcol-config.yml:109 has no body. Export cadence is library default, not in these files. The 10s values at otelcol-config.yml:23 (redis collection_interval) and :87 (prometheus scrape_interval, self-scrape) are receiver intervals, not export frequency. The docker_stats and hostmetrics collection intervals are absent. Library default, not in these files.",
+      "the debug exporter (otelcol-config.yml:92) has no endpoint in these files and is not counted as a telemetry sink. The otelcol-config-extras.yml file is all comments (lines 11-18) and adds no configuration."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "otelcol",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 719,
+        "quotedToken": "otelcol:"
+      },
+      "container": {
+        "value": "otel-col",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 721,
+        "quotedToken": "container_name: otel-col"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "docker-compose.yml:719-742 has no deploy.replicas or scale key. Library default, not in these files (Compose default 1)."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "jaeger",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "src/otelcollector/otelcol-config.yml",
+          "line": 94,
+          "quotedToken": "endpoint: \"jaeger:4317\"",
+          "note": "traces: otlp exporter (line 93); traces pipeline line 127 exporters [otlp, debug, spanmetrics]. No export interval stated (see extraction.notes)."
+        },
+        {
+          "value": "prometheus",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "src/otelcollector/otelcol-config.yml",
+          "line": 98,
+          "quotedToken": "endpoint: \"http://prometheus:9090/api/v1/otlp\"",
+          "note": "metrics: otlphttp/prometheus exporter (line 97); metrics pipeline line 131 exporters [otlphttp/prometheus, debug]. No export interval stated."
+        },
+        {
+          "value": "opensearch",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "src/otelcollector/otelcol-config.yml",
+          "line": 104,
+          "quotedToken": "endpoint: \"http://opensearch:9200\"",
+          "note": "logs: opensearch exporter (line 101); logs pipeline line 135 exporters [opensearch, debug]. No export interval stated."
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "otelcol",
+        "callee": "frontendproxy"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/otelcollector/otelcol-config.yml",
+      "line": 17,
+      "quotedToken": "endpoint: http://frontendproxy:${env:ENVOY_PORT}",
+      "note": "protocol HTTP (http:// scheme). httpcheck/frontendproxy receiver, line 15; the target is the frontendproxy service."
+    },
+    {
+      "value": {
+        "caller": "otelcol",
+        "callee": "valkey-cart"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/otelcollector/otelcol-config.yml",
+      "line": 21,
+      "quotedToken": "endpoint: \"valkey-cart:6379\"",
+      "note": "protocol Redis (redis receiver, line 20). username valkey at line 22. The callee is the valkey-cart service (docker-compose.yml:661)."
+    }
+  ]
+}

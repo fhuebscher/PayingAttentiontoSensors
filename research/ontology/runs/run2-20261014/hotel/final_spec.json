@@ -1,0 +1,1692 @@
+{
+ "schemaVersion": 1,
+ "sut": "hotel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+   "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-hotel-protocol",
+   "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "6897a5d921c3fd8f2df642bece7315589c426f45"
+  },
+  "libvendor": {
+   "path": ".",
+   "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+  }
+ },
+ "extraction": {
+  "stage": "final",
+  "procedure": "research/ontology/EXTRACTION_PROTOCOL.md (Amendments 1-3)",
+  "runId": "run2-20261014-hotel",
+  "judge": "opus (Opus 5.5), judge prompt b1c5099d",
+  "rebuildLog": {
+   "incomplete": [
+    {
+     "entity": "service",
+     "subject": "memcached-review",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "recommendation",
+     "reason": "second container dropped",
+     "id": "3ccdbd7e74976028"
+    },
+    {
+     "entity": "service",
+     "subject": "search",
+     "reason": "second container dropped",
+     "id": "37dca50d0ce915e1"
+    },
+    {
+     "entity": "service",
+     "subject": "user",
+     "reason": "second container dropped",
+     "id": "c3291965e7106fb4"
+    },
+    {
+     "entity": "liveness",
+     "subject": [
+      "consul/registry-heartbeat",
+      "registry-heartbeat"
+     ],
+     "missing": [
+      "monitors"
+     ]
+    }
+   ],
+   "orphaned": [
+    {
+     "id": "1b52ad13beca6e3f",
+     "key": [
+      [
+       "consul/registry-heartbeat",
+       "registry-heartbeat"
+      ],
+      "healthCheckConfigured",
+      false
+     ]
+    },
+    {
+     "id": "5cc39afcf02ea8f5",
+     "key": [
+      [
+       "consul/registry-heartbeat",
+       "registry-heartbeat"
+      ],
+      "liveness",
+      "registry-heartbeat"
+     ]
+    },
+    {
+     "id": "68016a3940656a9a",
+     "key": [
+      "memcached-review",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "53cc3873c6e4ed87",
+     "key": [
+      "memcached-review",
+      "role",
+      "cache"
+     ]
+    },
+    {
+     "id": "c61e1ffcb20f83b0",
+     "key": [
+      "memcached-review",
+      "service",
+      "memcached-review"
+     ]
+    },
+    {
+     "id": "3ccdbd7e74976028",
+     "key": [
+      "recommendation",
+      "container",
+      "obsplacement-hotel-reservation:6ecb09706140"
+     ]
+    },
+    {
+     "id": "37dca50d0ce915e1",
+     "key": [
+      "search",
+      "container",
+      "obsplacement-hotel-reservation:6ecb09706140"
+     ]
+    },
+    {
+     "id": "c3291965e7106fb4",
+     "key": [
+      "user",
+      "container",
+      "obsplacement-hotel-reservation:6ecb09706140"
+     ]
+    }
+   ]
+  },
+  "attachmentResolution": {
+   "accepted": 0,
+   "unmet": [],
+   "overridden": [],
+   "alreadyAccepted": 0
+  },
+  "factsByAcceptance": {
+   "deterministic": 42,
+   "agreed": 65,
+   "supported": 41
+  },
+  "acceptedKeys": {
+   "agreed": 67,
+   "deterministic": 44,
+   "supported": 45,
+   "libraryAttached": 0
+  }
+ },
+ "architecture": {
+  "name": {
+   "value": "hotel",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/docker-compose.yml",
+   "line": 3,
+   "quotedToken": "services:",
+   "note": "architecture = the services of the compose files upstream:hotelReservation/docker-compose.yml, harness:modules/hotel-reservation/deployment/compose.observability-placement.yml",
+   "acceptance": "deterministic"
+  }
+ },
+ "host": {
+  "id": {
+   "value": "fb14srv4",
+   "repo": "obsplacement",
+   "sourceFile": "research/host-topology.json",
+   "line": 184,
+   "quotedToken": "\"hostId\": \"fb14srv4\"",
+   "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host",
+   "acceptance": "deterministic"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "attractions",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 141,
+    "quotedToken": "attractions:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "attractions",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 151,
+    "quotedToken": "container_name: 'hotel_reserv_attractions'",
+    "acceptance": "agreed"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "note": "library default, not in these files: the attractions block (upstream docker-compose.yml:141-155) has no deploy.replicas or scale, and neither has compose.observability-placement.yml:52-56; Compose default is 1.",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "acceptance": "agreed"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "jaegerAddress read in cmd/attractions/main.go:57 and passed to tracing.Init at main.go:67; reporter LocalAgentHostPort at tracing/tracer.go:37; flush interval 1s at tracing/tracer.go:36",
+     "acceptance": "agreed"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul/registry-heartbeat",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/attractions/server.go",
+     "line": 96,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "registers once at startup as name srv-attractions (server.go:24); consul address from config.json:2 consulAddress (consul:8500)",
+     "acceptance": "agreed"
+    }
+   ],
+   "emits": [
+    {
+     "kind": "log",
+     "id": {
+      "value": "stdout",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/attractions/main.go",
+      "line": 24,
+      "quotedToken": "Out: os.Stdout",
+      "note": "zerolog ConsoleWriter to stdout. Level from LOG_LEVEL; when LOG_LEVEL is unset the level is info (tune/setting.go:19, 33-34). The comment at setting.go:38 says ERROR, which applies only to an empty value.",
+      "acceptance": "supported"
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "mongo_cinema",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/attractions/server.go",
+      "line": 188,
+      "quotedToken": "mongo_cinema",
+      "acceptance": "supported"
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "mongo_museum",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/attractions/server.go",
+      "line": 151,
+      "quotedToken": "mongo_museum",
+      "acceptance": "supported"
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "mongo_restaurant",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/attractions/server.go",
+      "line": 114,
+      "quotedToken": "mongo_restaurant",
+      "acceptance": "supported"
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "otgrpc.OpenTracingServerInterceptor",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/attractions/server.go",
+      "line": 78,
+      "quotedToken": "otgrpc.OpenTracingServerInterceptor(s.Tracer)",
+      "note": "Server span per gRPC call from the interceptor; span names and tags are set by the grpc-opentracing library, not in these files.",
+      "acceptance": "supported"
+     }
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "consul",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 4,
+    "quotedToken": "consul:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "registry",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 3,
+    "quotedToken": "image: ${HR_CONSUL_IMAGE:-hashicorp/consul:1.13}",
+    "note": "stage-1 rule D1: image-only service, image hashicorp/consul:1.13",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "consul",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 4,
+    "quotedToken": "consul:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-consul-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 13,
+    "quotedToken": "replicas: 1",
+    "acceptance": "supported"
+   }
+  },
+  {
+   "name": {
+    "value": "frontend",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 17,
+    "quotedToken": "frontend:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "frontend",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 17,
+    "quotedToken": "frontend:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-frontend-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 35,
+    "quotedToken": "replicas: 1",
+    "acceptance": "agreed"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces, Jaeger agent UDP address read as jaegerAddress in cmd/frontend/main.go:40; flush every 1 s per tracing/tracer.go:36",
+     "acceptance": "agreed"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "geo",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 81,
+    "quotedToken": "geo:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "geo",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 81,
+    "quotedToken": "geo:",
+    "note": "no container_name in the geo block (lines 81-100). Health check: no healthcheck key in that block and no HEALTHCHECK in hotelReservation/Dockerfile; none configured in these files. The harness overlay only overrides image and JAEGER_* env (compose.observability-placement.yml:17-21).",
+    "acceptance": "agreed"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 98,
+    "quotedToken": "replicas: 1",
+    "acceptance": "agreed"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "\"jaegerAddress\": \"jaeger:6831\"",
+     "note": "traces only, via jaeger-client-go reporter with LocalAgentHostPort (tracing/tracer.go:37); BufferFlushInterval 1s (tracing/tracer.go:36, token '1 * time.Second'); sampler probabilistic, default ratio 0.01 (tracing/tracer.go:14) overridden by harness env JAEGER_SAMPLE_RATIO default 1 (compose.observability-placement.yml:20). No metrics export found. Logs: zerolog to os.Stdout (cmd/geo/main.go:21), no log shipper in these files.",
+     "acceptance": "agreed"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul/registry-heartbeat",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/geo/server.go",
+     "line": 81,
+     "quotedToken": "s.Registry.Register(name",
+     "note": "consul address from hotelReservation/config.json:2 (consulAddress). Registration (registry/registry.go:85-90) sets only ID, Name, Port, Address: no Check, no TTL, no heartbeat call, no deregister timeout; heartbeat interval, failure timeout and cleanup interval are not set in these files (library default, not in these files). Only Deregister on Shutdown (server.go:92). The gRPC keepalive Timeout 120s (server.go:57) is a transport setting, not a registry heartbeat.",
+     "acceptance": "agreed"
+    }
+   ],
+   "emits": [
+    {
+     "kind": "log",
+     "id": {
+      "value": "zerolog console writer to stdout",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/geo/main.go",
+      "line": 21,
+      "quotedToken": "zerolog.ConsoleWriter{Out: os.Stdout",
+      "acceptance": "supported"
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "otgrpc server interceptor (gRPC server spans)",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/geo/server.go",
+      "line": 63,
+      "quotedToken": "otgrpc.OpenTracingServerInterceptor(s.Tracer)",
+      "acceptance": "supported"
+     }
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "jaeger",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 221,
+    "quotedToken": "jaeger:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "telemetry-backend",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 58,
+    "quotedToken": "image: ${HR_JAEGER_IMAGE:-jaegertracing/all-in-one:1.60}",
+    "note": "stage-1 rule D1: image-only service, image jaegertracing/all-in-one:1.60",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "jaeger",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 221,
+    "quotedToken": "jaeger:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-jaeger-<n>",
+    "acceptance": "deterministic"
+   }
+  },
+  {
+   "name": {
+    "value": "memcached-profile",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 265,
+    "quotedToken": "memcached-profile:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "cache",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 64,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}",
+    "note": "stage-1 rule D1: image-only service, image memcached:1.6.24",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "memcached-profile",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 265,
+    "quotedToken": "memcached-profile:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-memcached-profile-<n>",
+    "acceptance": "deterministic"
+   }
+  },
+  {
+   "name": {
+    "value": "memcached-rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 238,
+    "quotedToken": "memcached-rate:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "cache",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 60,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}",
+    "note": "stage-1 rule D1: image-only service, image memcached:1.6.24",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "memcached-rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 238,
+    "quotedToken": "memcached-rate:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-memcached-rate-<n>",
+    "acceptance": "deterministic"
+   }
+  },
+  {
+   "name": {
+    "value": "memcached-reserve",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 280,
+    "quotedToken": "memcached-reserve:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "cache",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 66,
+    "quotedToken": "image: ${HR_MEMCACHED_IMAGE:-memcached:1.6.24}",
+    "note": "stage-1 rule D1: image-only service, image memcached:1.6.24",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "memcached-reserve",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 280,
+    "quotedToken": "memcached-reserve:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-memcached-reserve-<n>",
+    "acceptance": "deterministic"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-attractions",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 339,
+    "quotedToken": "mongodb-attractions:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 76,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "mongodb-attractions",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 339,
+    "quotedToken": "mongodb-attractions:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-attractions-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 346,
+    "quotedToken": "replicas: 1",
+    "acceptance": "supported"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-geo",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 295,
+    "quotedToken": "mongodb-geo:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 68,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "mongodb-geo",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 295,
+    "quotedToken": "mongodb-geo:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-geo-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 302,
+    "quotedToken": "replicas: 1",
+    "acceptance": "supported"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-profile",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 306,
+    "quotedToken": "mongodb-profile:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 70,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "mongodb-profile",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 306,
+    "quotedToken": "mongodb-profile:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-profile-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 313,
+    "quotedToken": "replicas: 1",
+    "acceptance": "supported"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 317,
+    "quotedToken": "mongodb-rate:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 72,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "mongodb-rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 317,
+    "quotedToken": "mongodb-rate:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-rate-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 324,
+    "quotedToken": "replicas: 1",
+    "acceptance": "supported"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-recommendation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 350,
+    "quotedToken": "mongodb-recommendation:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 78,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "mongodb-recommendation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 350,
+    "quotedToken": "mongodb-recommendation:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-recommendation-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 357,
+    "quotedToken": "replicas: 1",
+    "acceptance": "supported"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-reservation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 361,
+    "quotedToken": "mongodb-reservation:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 80,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "mongodb-reservation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 361,
+    "quotedToken": "mongodb-reservation:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-reservation-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 368,
+    "quotedToken": "replicas: 1",
+    "acceptance": "supported"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-review",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 328,
+    "quotedToken": "mongodb-review:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 74,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "mongodb-review",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 328,
+    "quotedToken": "mongodb-review:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-review-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 335,
+    "quotedToken": "replicas: 1",
+    "acceptance": "supported"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-user",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 372,
+    "quotedToken": "mongodb-user:",
+    "acceptance": "supported"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 82,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "mongodb-user",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 372,
+    "quotedToken": "mongodb-user:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-user-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 379,
+    "quotedToken": "replicas: 1",
+    "acceptance": "supported"
+   }
+  },
+  {
+   "name": {
+    "value": "profile",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 39,
+    "quotedToken": "profile:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "profile",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 39,
+    "quotedToken": "profile:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-profile-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 57,
+    "quotedToken": "replicas: 1",
+    "acceptance": "agreed"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces, Jaeger agent address read as jaegerAddress in cmd/profile/main.go:49; flush every 1 s per tracing/tracer.go:36",
+     "acceptance": "agreed"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul/registry-heartbeat",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/profile/server.go",
+     "line": 78,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "registered once at startup as srv-profile (server.go:25); consul address consul:8500 at config.json:2; no check/heartbeat configured (registry/registry.go:85-90)",
+     "acceptance": "agreed"
+    }
+   ],
+   "emits": [
+    {
+     "kind": "span",
+     "id": {
+      "value": "memcached_get_profile",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/profile/server.go",
+      "line": 107,
+      "quotedToken": "memcached_get_profile",
+      "acceptance": "supported"
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "mongo_profile",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/profile/server.go",
+      "line": 135,
+      "quotedToken": "mongo_profile",
+      "acceptance": "supported"
+     }
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 102,
+    "quotedToken": "rate:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 102,
+    "quotedToken": "rate:",
+    "note": "container_name not set; Compose names the container <project>-rate-<n>",
+    "acceptance": "agreed"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 120,
+    "quotedToken": "replicas: 1",
+    "acceptance": "agreed"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces to Jaeger agent, BufferFlushInterval 1s (tracing/tracer.go:36)",
+     "acceptance": "agreed"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul/registry-heartbeat",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/cmd/rate/main.go",
+     "line": 63,
+     "quotedToken": "registry.NewClient",
+     "note": "registers as srv-rate at services/rate/server.go:78; consul address config.json:2",
+     "acceptance": "agreed"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "recommendation",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 157,
+    "quotedToken": "recommendation:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 168,
+    "quotedToken": "entrypoint: recommendation",
+    "note": "role read from the entrypoint binary built by cmd/recommendation/main.go; gRPC server on RecommendPort (config.json:18)",
+    "acceptance": "agreed"
+   },
+   "container": {
+    "value": "recommendation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 157,
+    "quotedToken": "recommendation:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-recommendation-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 174,
+    "quotedToken": "replicas: 1",
+    "acceptance": "agreed"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces, Jaeger agent UDP address read as jaegerAddress in cmd/recommendation/main.go:45; flush every 1 s per tracing/tracer.go:36",
+     "acceptance": "agreed"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul/registry-heartbeat",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/recommendation/server.go",
+     "line": 77,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "consul address consul:8500 from config.json:2; registered under name srv-recommendation (server.go:24); no Check/TTL set (registry/registry.go:85-90); heartbeat/failure-timeout/cleanup intervals not stated in these files",
+     "acceptance": "agreed"
+    }
+   ],
+   "emits": [
+    {
+     "kind": "log",
+     "id": {
+      "value": "zerolog console writer to stdout",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/recommendation/main.go",
+      "line": 22,
+      "quotedToken": "zerolog.ConsoleWriter{Out: os.Stdout",
+      "acceptance": "supported"
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "otgrpc server interceptor: gRPC unary server spans",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/recommendation/server.go",
+      "line": 60,
+      "quotedToken": "otgrpc.OpenTracingServerInterceptor(s.Tracer)",
+      "acceptance": "supported"
+     }
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "reservation",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 199,
+    "quotedToken": "reservation:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 210,
+    "quotedToken": "entrypoint: reservation",
+    "note": "gRPC server binary built from cmd/reservation; the role label itself is not stated in the files",
+    "acceptance": "agreed"
+   },
+   "container": {
+    "value": "reservation",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 199,
+    "quotedToken": "reservation:",
+    "note": "compose service name; container_name not set in the files. No healthcheck key appears anywhere in the compose files for this service",
+    "acceptance": "agreed"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 217,
+    "quotedToken": "replicas: 1",
+    "acceptance": "agreed"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces: main.go:55 tracing.Init(\"reservation\", *jaegerAddr) passes this address as LocalAgentHostPort (tracer.go:37); Reporter BufferFlushInterval is 1 second (tracer.go:36); sampler probabilistic, code default ratio 0.01 (tracer.go:14) overridden by JAEGER_SAMPLE_RATIO (compose overlay line 30, default 1). No metrics or log export is stated in the files; logs go to stdout (main.go:21)",
+     "acceptance": "agreed"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul/registry-heartbeat",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/reservation/server.go",
+     "line": 79,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "registers as srv-reservation (server.go:26) once at startup via Consul agent API (registry.go:92 ServiceRegister) at consul:8500 (config.json:2). The AgentServiceRegistration (registry.go:85) sets only ID, Name, Port, Address: no Check, TTL, heartbeat interval, failure timeout or cleanup interval in these files; no periodic heartbeat is scheduled in this service's code",
+     "acceptance": "agreed"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "review",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 124,
+    "quotedToken": "review:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "review",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 134,
+    "quotedToken": "container_name: 'hotel_reserv_review'",
+    "note": "Replica count: no deploy/replicas key in the review block (lines 124-139) and none in the harness overlay (compose.observability-placement.yml:47-51); not stated in these files, so no replicas fact is reported. Health check: no healthcheck key in the review block and no HEALTHCHECK in hotelReservation/Dockerfile; none configured in these files. Block sets restart: always (docker-compose.yml:139). Harness overlay only overrides image and JAEGER_* env.",
+    "acceptance": "agreed"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "note": "stage-1 rule D3: no deploy.replicas or scale for review in upstream:hotelReservation/docker-compose.yml, harness:modules/hotel-reservation/deployment/compose.observability-placement.yml; Compose default 1",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "acceptance": "deterministic"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "\"jaegerAddress\": \"jaeger:6831\"",
+     "note": "traces only, via jaeger-client-go reporter with LocalAgentHostPort (tracing/tracer.go:37, called from cmd/review/main.go:67); BufferFlushInterval 1s (tracing/tracer.go:36, token '1 * time.Second'); sampler probabilistic, default ratio 0.01 (tracing/tracer.go:14) overridden by harness env JAEGER_SAMPLE_RATIO default 1 (compose.observability-placement.yml:50); JAEGER_DISABLED default false (compose.observability-placement.yml:51). No metrics export found. Logs: zerolog to os.Stdout (cmd/review/main.go:24), no log shipper in these files.",
+     "acceptance": "agreed"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul/registry-heartbeat",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/review/server.go",
+     "line": 84,
+     "quotedToken": "s.Registry.Register(name",
+     "note": "consul address from hotelReservation/config.json:2 (consulAddress). Registration (registry/registry.go:85-90) sets only ID, Name, Port, Address: no Check, no TTL, no heartbeat call, no deregister timeout; heartbeat interval, failure timeout and cleanup interval are not set in these files (library default, not in these files). Only Deregister on Shutdown (server.go:95). The gRPC keepalive Timeout 120s (server.go:61) is a transport setting, not a registry heartbeat.",
+     "acceptance": "agreed"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "search",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 61,
+    "quotedToken": "search:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "search",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 61,
+    "quotedToken": "search:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-search-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 77,
+    "quotedToken": "replicas: 1",
+    "acceptance": "agreed"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces, Jaeger agent address read as jaegerAddress in cmd/search/main.go:42; flush every 1 s per tracing/tracer.go:36",
+     "acceptance": "agreed"
+    },
+    {
+     "value": "stdout",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/cmd/search/main.go",
+     "line": 22,
+     "quotedToken": "Out: os.Stdout",
+     "note": "Logs: zerolog ConsoleWriter to stdout. No log shipping and no log flush interval in these files.",
+     "acceptance": "supported"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul/registry-heartbeat",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/search/server.go",
+     "line": 82,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "registered once at startup as srv-search (server.go:24); consul address consul:8500 at config.json:2; no check/heartbeat configured (registry/registry.go:85-90)",
+     "acceptance": "agreed"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "user",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 178,
+    "quotedToken": "user:",
+    "acceptance": "agreed"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21",
+    "acceptance": "deterministic"
+   },
+   "container": {
+    "value": "user",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 178,
+    "quotedToken": "user:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-user-<n>",
+    "acceptance": "deterministic"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 195,
+    "quotedToken": "replicas: 1",
+    "acceptance": "agreed"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces, Jaeger agent address read as jaegerAddress in cmd/user/main.go:45; flush every 1 s per tracing/tracer.go:36",
+     "acceptance": "agreed"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul/registry-heartbeat",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/user/server.go",
+     "line": 76,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "registered once at startup as srv-user (server.go:23); consul address consul:8500 at config.json:2; no check/heartbeat configured (registry/registry.go:85-90)",
+     "acceptance": "agreed"
+    }
+   ],
+   "emits": [
+    {
+     "kind": "log",
+     "id": {
+      "value": "zerolog",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/user/main.go",
+      "line": 22,
+      "quotedToken": "zerolog.ConsoleWriter{Out: os.Stdout",
+      "note": "console log writer to stdout; no log exporter in these files. Level from env LOG_LEVEL (tune/setting.go:34), default info (tune/setting.go:19). Log emission frequency not stated in these files. No metric emitter stated in these files.",
+      "acceptance": "supported"
+     }
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "attractions",
+    "callee": "mongodb-attractions"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/cmd/attractions/db.go",
+   "line": 67,
+   "quotedToken": "mongo.Connect(context.TODO(), opts)",
+   "note": "protocol MongoDB (mongodb:// URI at db.go:63); address from config.json:14 AttractionsMongoAddress mongodb-attractions:27017",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "attractions"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 430,
+   "quotedToken": "attractionsClient.NearbyRest",
+   "note": "gRPC",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "profile"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 280,
+   "quotedToken": "profileClient.GetProfiles",
+   "note": "gRPC",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "recommendation"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 316,
+   "quotedToken": "recommendationClient.GetRecommendations",
+   "note": "gRPC",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "reservation"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 263,
+   "quotedToken": "reservationClient.CheckAvailability",
+   "note": "gRPC",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "review"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 378,
+   "quotedToken": "reviewClient.GetReviews",
+   "note": "gRPC",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "search"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 241,
+   "quotedToken": "searchClient.Nearby",
+   "note": "gRPC",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "user"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 356,
+   "quotedToken": "userClient.CheckUser",
+   "note": "gRPC",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "profile",
+    "callee": "memcached-profile"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 9,
+   "quotedToken": "memcached-profile:11211",
+   "note": "memcached protocol via gomemcache (GetMulti at services/profile/server.go:109)",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "profile",
+    "callee": "mongodb-profile"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 8,
+   "quotedToken": "mongodb-profile:27017",
+   "note": "MongoDB (mongodb:// URI, cmd/profile/db.go:162; FindOne at services/profile/server.go:137)",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "rate",
+    "callee": "memcached-rate"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 17,
+   "quotedToken": "memcached-rate:11211",
+   "note": "call site services/rate/server.go:108 GetMulti; memcached client, cache not an application service",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "rate",
+    "callee": "mongodb-rate"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 16,
+   "quotedToken": "mongodb-rate:27017",
+   "note": "call site services/rate/server.go:141 Collection(\"inventory\"); MongoDB driver, datastore not an application service",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "reservation",
+    "callee": "memcached-reserve"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 22,
+   "quotedToken": "memcached-reserve:11211",
+   "note": "protocol: memcached via gomemcache (main.go:42 tune.NewMemCClient2(result[\"ReserveMemcAddress\"]); calls at services/reservation/server.go:123 s.MemcClient.Get)",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "reservation",
+    "callee": "mongodb-reservation"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 21,
+   "quotedToken": "mongodb-reservation:27017",
+   "note": "protocol: MongoDB wire protocol via mongo-driver (cmd/reservation/db.go:55 mongodb://%s, db.go:59 mongo.Connect); address read at main.go:37 ReserveMongoAddress",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "review",
+    "callee": "memcached-review"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/cmd/review/main.go",
+   "line": 50,
+   "quotedToken": "result[\"ReviewMemcAddress\"]",
+   "note": "protocol memcached (gomemcache client, tune/setting.go:89; Get at services/review/server.go:121); address memcached-review:11211 at config.json:12",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "review",
+    "callee": "mongodb-review"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/cmd/review/main.go",
+   "line": 41,
+   "quotedToken": "result[\"ReviewMongoAddress\"]",
+   "note": "protocol MongoDB (mongodb:// URI, cmd/review/db.go:84); address mongodb-review:27017 at config.json:11",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "user",
+    "callee": "mongodb-user"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/cmd/user/main.go",
+   "line": 38,
+   "quotedToken": "initializeDatabase(result[\"UserMongoAddress\"])",
+   "note": "MongoDB wire protocol; address mongodb-user:27017 at config.json:25; users read once at startup (services/user/server.go:112), not per request",
+   "acceptance": "agreed"
+  },
+  {
+   "value": {
+    "caller": "reservation",
+    "callee": "consul"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/reservation/server.go",
+   "line": 79,
+   "quotedToken": "s.Registry.Register(",
+   "note": "startup registration call; callee address from config.json:2 consulAddress via main.go:62",
+   "acceptance": "supported"
+  },
+  {
+   "value": {
+    "caller": "review",
+    "callee": "consul"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/review/server.go",
+   "line": 84,
+   "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+   "note": "HTTP agent API via consul client (registry/registry.go:92 c.Agent().ServiceRegister); HTTP is the consul client default (library default, not in these files); consul address config.json:2",
+   "acceptance": "supported"
+  },
+  {
+   "value": {
+    "caller": "search",
+    "callee": "geo"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/search/server.go",
+   "line": 136,
+   "quotedToken": "s.geoClient.Nearby(ctx, &geo.Request{",
+   "note": "gRPC; client initialised at server.go:70 with consul name srv-geo",
+   "acceptance": "supported"
+  },
+  {
+   "value": {
+    "caller": "search",
+    "callee": "rate"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/search/server.go",
+   "line": 149,
+   "quotedToken": "s.rateClient.GetRates(ctx, &rate.Request{",
+   "note": "gRPC; client initialised at server.go:73 with consul name srv-rate",
+   "acceptance": "supported"
+  },
+  {
+   "value": {
+    "caller": "search",
+    "callee": "srv-geo"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/search/server.go",
+   "line": 70,
+   "quotedToken": "s.initGeoClient(\"srv-geo\")",
+   "note": "gRPC: geo.NewGeoClient (server.go:101), Geo.Nearby call (server.go:136, proto geo.proto:9); dialled with grpc.Dial (dialer/dialer.go:55). Callee is the Consul service name passed to the dialer; compose key is geo (docker-compose.yml:81).",
+   "acceptance": "supported"
+  },
+  {
+   "value": {
+    "caller": "search",
+    "callee": "srv-rate"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/search/server.go",
+   "line": 73,
+   "quotedToken": "s.initRateClient(\"srv-rate\")",
+   "note": "gRPC: rate.NewRateClient (server.go:110), Rate.GetRates call (server.go:149, proto rate.proto:9). Callee is the Consul service name; compose key is rate (docker-compose.yml:102).",
+   "acceptance": "supported"
+  }
+ ],
+ "coordinators": [
+  {
+   "name": {
+    "value": "consul/registry-heartbeat",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/config.json",
+    "line": 2,
+    "quotedToken": "consul:8500",
+    "acceptance": "agreed"
+   },
+   "type": {
+    "value": "ServiceRegistry",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 92,
+    "quotedToken": "c.Agent().ServiceRegister(reg)",
+    "acceptance": "agreed"
+   },
+   "hostedBy": {
+    "value": "consul",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 4,
+    "quotedToken": "consul:",
+    "acceptance": "agreed"
+   }
+  }
+ ]
+}

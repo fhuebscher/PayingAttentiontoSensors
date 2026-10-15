@@ -1,0 +1,87 @@
+{
+ "stage1": {
+  "path": "research/ontology/runs/run1-20261014/teastore/stage1.json",
+  "sha256": "077f01a1aa96487dc0e476c239ba34cf8d5830bd4df3b6185ee62c8826d7dc50"
+ },
+ "extractors": [
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/auth.json",
+   "sha256": "10d8ea3644d3041f4eb94cfdb5d0df7291d9cfaf19b932397a020d1963ad2784"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/db.json",
+   "sha256": "76c1f39de51f3f03157f1ce6610bbca057ac7cbfb480cc1dfe55f7077334ab63"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/image.json",
+   "sha256": "bf08badb8c6d083005e109e385443c31d1d670e0f3a811eb42e9faca3282733d"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/persistence.json",
+   "sha256": "0b9d561ce0ce1eb193189eea4e65262ba8323a0cc18ce170d6c8db4e82cf99b2"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/recommender.json",
+   "sha256": "0311efe8d4ece59084edfd642ad172d0dea95a040fb0281919f7f919a7282fb3"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/registry.json",
+   "sha256": "77f4feb247abeefe936a9188c0830c46075dd904e4092987c830f231177ca028"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/A/webui.json",
+   "sha256": "e268a00b79ccfebc515a643a0c5e560d25ad64d5f6623d7f2f58366aac9b00ad"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/auth.json",
+   "sha256": "941e8c26c466306b5390daa39f7e00b3b1170550889a310cbc06fa30fc41609e"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/db.json",
+   "sha256": "66d27ab0621c68b97ec420dd71e7f36fce5a3b0aba6d2b375db88d74910cd31d"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/image.json",
+   "sha256": "685e3d42ed6972d49878f915c5b9ac8a38e337f16a09b31546323282e21f576a"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/persistence.json",
+   "sha256": "0b4e18da2a590b30eabe4fa10f48d27ca3b110b4cc1fe93232a87d63eb2c501c"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/recommender.json",
+   "sha256": "9bdd2fc80ba4f26481c4a5fbd6a153fc9eaf52f6c5dd9ba0f8289c7fd7d14acb"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/registry.json",
+   "sha256": "390d7abd0d6676e453112a018f45d37e67073adda2e476c0356e6a79df613bbc"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/teastore/extract/B/webui.json",
+   "sha256": "6acf6cd2b902c22363f51a36fec0ef8c3b78172d54a5dbf3a0bb1c23cc499ed1"
+  }
+ ],
+ "answers": {
+  "from": "research/ontology/runs/run1-20261014/teastore/judge/answers_all.jsonl",
+  "reused": 16,
+  "new": 2,
+  "newIds": [
+   "1d3de04df609c818",
+   "8f745c0c0380875f"
+  ]
+ }
+}

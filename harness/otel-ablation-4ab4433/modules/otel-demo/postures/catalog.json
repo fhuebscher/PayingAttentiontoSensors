@@ -1,0 +1,543 @@
+{
+  "schemaVersion": 2,
+  "kind": "otel-demo-candidate-posture-catalog",
+  "applicationServices": [
+    "accountingservice",
+    "adservice",
+    "cartservice",
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "flagd",
+    "flagd-ui",
+    "frauddetectionservice",
+    "frontend",
+    "frontendproxy",
+    "imageprovider",
+    "kafka",
+    "loadgenerator",
+    "paymentservice",
+    "productcatalogservice",
+    "quoteservice",
+    "recommendationservice",
+    "shippingservice"
+  ],
+  "costApplicationServices": [
+    "accountingservice",
+    "adservice",
+    "cartservice",
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "flagd",
+    "flagd-ui",
+    "frauddetectionservice",
+    "frontend",
+    "frontendproxy",
+    "imageprovider",
+    "kafka",
+    "paymentservice",
+    "productcatalogservice",
+    "quoteservice",
+    "recommendationservice",
+    "shippingservice"
+  ],
+  "postures": {
+    "none": {
+      "activeApplicationServices": [],
+      "envoyTracing": false,
+      "sourceInstrumentationLoadedServices": []
+    },
+    "selected": {
+      "activeApplicationServices": [
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frontend",
+        "frontendproxy",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "envoyTracing": true,
+      "sourceInstrumentationLoadedServices": [
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frontend",
+        "frontendproxy",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ]
+    },
+    "async": {
+      "activeApplicationServices": [
+        "accountingservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frauddetectionservice",
+        "frontend",
+        "frontendproxy",
+        "kafka",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ],
+      "envoyTracing": true,
+      "sourceInstrumentationLoadedServices": [
+        "accountingservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "frauddetectionservice",
+        "frontend",
+        "frontendproxy",
+        "kafka",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "shippingservice"
+      ]
+    },
+    "full": {
+      "activeApplicationServices": [
+        "accountingservice",
+        "adservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "flagd-ui",
+        "frauddetectionservice",
+        "frontend",
+        "frontendproxy",
+        "imageprovider",
+        "kafka",
+        "loadgenerator",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "recommendationservice",
+        "shippingservice"
+      ],
+      "envoyTracing": true,
+      "sourceInstrumentationLoadedServices": [
+        "accountingservice",
+        "adservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "flagd",
+        "flagd-ui",
+        "frauddetectionservice",
+        "frontend",
+        "frontendproxy",
+        "imageprovider",
+        "kafka",
+        "loadgenerator",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "recommendationservice",
+        "shippingservice"
+      ]
+    }
+  },
+  "proofRule": {
+    "disabledService": "sdk-disabled-and-all-exporters-none-and-nothing-emitted",
+    "enabledService": "sdk-enabled-and-runtime-source-bound-and-exporter-target-bound",
+    "renderedComposeAndRuntimeMustAgree": true,
+    "zeroStartupApplicationSignalsRequiredForNone": true,
+    "nestedLattice": "none-subset-selected-subset-async-subset-full",
+    "disabledLoadStateRequired": "not-exporting",
+    "noneSemantics": "no-telemetry-emitted",
+    "loadedButSilencedIsClaimBoundaryNotBlocker": true,
+    "decision": "D13 (user, 2026-09-06): none means NO TELEMETRY EMITTED, not no instrumentation loaded. not-loaded and loaded-silenced both satisfy disabledService; only loaded-exporting blocks a posture. The loaded-silenced services keep running instrumentation code and keep costing, and that residual cost is carried as postureRealization.claimBoundary, not as a blocker."
+  },
+  "disabledLoadStateVocabulary": {
+    "not-loaded": "The disabled posture never loads the instrumentation agent, SDK, module, or autoloader; the process starts through the plain entrypoint with no instrumentation code path. This is the strongest state that satisfies proofRule.disabledService, and the only one that also removes the residual instrumentation cost.",
+    "loaded-silenced": "Instrumentation code is compiled or imported into the process, but a source-verified SDK switch makes it a no-op and it exports nothing; residual instrumentation work remains, so a cost baseline is still perturbed. Under D13 this satisfies proofRule.disabledService (nothing is emitted) and is reported as postureRealization.claimBoundary; it is NOT a claim that the instrumentation is absent.",
+    "loaded-exporting": "Instrumentation code is compiled into the process and the pinned SDK honours neither OTEL_SDK_DISABLED nor OTEL_*_EXPORTER=none; the service exports telemetry in every posture and structurally breaks the disabled posture."
+  },
+  "serviceInstrumentation": {
+    "accountingservice": {
+      "language": "dotnet",
+      "mechanism": "auto-instrumentation-shim",
+      "upstreamLoadSite": "src/accountingservice/Dockerfile ENTRYPOINT [\"./instrument.sh\", \"dotnet\", \"AccountingService.dll\"]; instrument.sh (OpenTelemetry.AutoInstrumentation 1.8.0 contentFiles) exports CORECLR_ENABLE_PROFILING=1, CORECLR_PROFILER, DOTNET_STARTUP_HOOKS and exec's dotnet",
+      "disabledControl": "compose-entrypoint-guard",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.accountingservice.entrypoint",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "pid1-environ",
+        "variable": "CORECLR_ENABLE_PROFILING",
+        "loadedWhenEquals": "1"
+      }
+    },
+    "adservice": {
+      "language": "java",
+      "mechanism": "jvm-javaagent-via-JAVA_TOOL_OPTIONS",
+      "upstreamLoadSite": "src/adservice/Dockerfile ENV JAVA_TOOL_OPTIONS=-javaagent:/usr/src/app/opentelemetry-javaagent.jar",
+      "disabledControl": "compose-environment-clears-JAVA_TOOL_OPTIONS",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.adservice.environment.JAVA_TOOL_OPTIONS",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "JAVA_TOOL_OPTIONS",
+        "loadedWhenContains": "-javaagent:",
+        "notLoadedWhenEquals": ""
+      }
+    },
+    "cartservice": {
+      "language": "dotnet",
+      "mechanism": "in-code-sdk",
+      "upstreamLoadSite": "src/cartservice/src/Program.cs builder.Services.AddOpenTelemetry().WithTracing(...AddOtlpExporter()).WithMetrics(...AddOtlpExporter()); builder.Logging.AddOpenTelemetry(options => options.AddOtlpExporter())",
+      "disabledControl": "materialized-source-guard",
+      "disabledControlSite": "modules/otel-demo/materialize.py SOURCE_PLACEMENT_GUARDS['cartservice'] (Program.cs logging/services/metrics registration and the StackExchangeRedisInstrumentation lookup, each gated on OTEL_PLACEMENT_ENABLED)",
+      "disabledLoadState": "not-loaded",
+      "sdkEnvironmentSwitches": {
+        "OTEL_SDK_DISABLED": false,
+        "OTEL_TRACES_EXPORTER": false
+      },
+      "sdkEvidence": "OpenTelemetry .NET core-1.9.0: no OTEL_SDK_DISABLED or OTEL_TRACES_EXPORTER handling in src/OpenTelemetry/Sdk.cs or Trace/TracerProviderSdk.cs; the pinned SDK ignores both, so the materialized guard skips the AddOpenTelemetry()/AddRedisInstrumentation()/AddAspNetCoreInstrumentation()/AddOtlpExporter() registrations entirely rather than relying on either variable",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "OTEL_PLACEMENT_ENABLED",
+        "loadedWhenEquals": "true",
+        "notLoadedWhenEquals": "false"
+      }
+    },
+    "checkoutservice": {
+      "language": "go",
+      "mechanism": "in-code-sdk",
+      "upstreamLoadSite": "src/checkoutservice/main.go initTracerProvider()/initMeterProvider() construct otlptracegrpc/otlpmetricgrpc exporters unconditionally; grpc.StatsHandler(otelgrpc.NewServerHandler())",
+      "disabledControl": "materialized-source-guard",
+      "disabledControlSite": "modules/otel-demo/materialize.py SOURCE_PLACEMENT_GUARDS['checkoutservice'] (main.go gates initTracerProvider/initMeterProvider/runtime.Start/the openfeature tracing hook and the grpc.StatsHandler registration on OTEL_PLACEMENT_ENABLED; the manual tracer is otel.Tracer(...) against the default no-op global provider when disabled)",
+      "disabledLoadState": "not-loaded",
+      "sdkEnvironmentSwitches": {
+        "OTEL_SDK_DISABLED": false,
+        "OTEL_TRACES_EXPORTER": false
+      },
+      "sdkEvidence": "go.opentelemetry.io/otel/sdk v1.27.0: sdk/trace/provider.go and sdk/internal/env/env.go contain no OTEL_SDK_DISABLED or OTEL_TRACES_EXPORTER handling; the pinned SDK ignores both, so the materialized guard skips constructing the exporter/provider and registering the otelgrpc stats handler entirely rather than relying on either variable",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "OTEL_PLACEMENT_ENABLED",
+        "loadedWhenEquals": "true",
+        "notLoadedWhenEquals": "false"
+      }
+    },
+    "currencyservice": {
+      "language": "cpp",
+      "mechanism": "in-code-sdk",
+      "upstreamLoadSite": "src/currencyservice/src/server.cpp initTracer(); initMeter(); (tracer_common.h OtlpGrpcExporterFactory::Create(), meter_common.h OtlpGrpcMetricExporterFactory::Create())",
+      "disabledControl": "materialized-source-guard",
+      "disabledControlSite": "modules/otel-demo/materialize.py SOURCE_PLACEMENT_GUARDS['currencyservice'] (server.cpp main() calls initTracer()/initMeter()/initLogger() only when OTEL_PLACEMENT_ENABLED != \"false\"; get_tracer()/GetMeterProvider()/getLogger() then resolve the SDK's default no-op providers, since Provider::SetTracerProvider/SetMeterProvider/SetLoggerProvider are never called. initLogger() was missed by the first guard and observed connecting to the OTLP endpoint in the disabled posture on 2026-09-06)",
+      "disabledLoadState": "not-loaded",
+      "sdkEnvironmentSwitches": {
+        "OTEL_SDK_DISABLED": false,
+        "OTEL_TRACES_EXPORTER": false
+      },
+      "sdkEvidence": "opentelemetry-cpp v1.15.0/v1.16.0 sdk/src/trace/tracer_provider.cc contains no OTEL_SDK_DISABLED handling; the pinned SDK ignores both variables, so the materialized guard skips calling initTracer()/initMeter() (and therefore OtlpGrpcExporterFactory::Create()/OtlpGrpcMetricExporterFactory::Create()) entirely rather than relying on either variable",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "OTEL_PLACEMENT_ENABLED",
+        "loadedWhenEquals": "true",
+        "notLoadedWhenEquals": "false"
+      }
+    },
+    "emailservice": {
+      "language": "ruby",
+      "mechanism": "in-code-sdk",
+      "upstreamLoadSite": "src/emailservice/email_server.rb OpenTelemetry::SDK.configure { |c| c.use 'OpenTelemetry::Instrumentation::Sinatra' }",
+      "disabledControl": "sdk-exporter-none",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.emailservice.environment.OTEL_TRACES_EXPORTER",
+      "disabledLoadState": "loaded-silenced",
+      "sdkEnvironmentSwitches": {
+        "OTEL_SDK_DISABLED": false,
+        "OTEL_TRACES_EXPORTER": true
+      },
+      "sdkEvidence": "opentelemetry-sdk 1.3.1 (Gemfile.lock) sdk/lib/opentelemetry/sdk/configurator.rb:176-180 wrapped_exporters_from_env maps OTEL_TRACES_EXPORTER=none to no span processor; Sinatra instrumentation still installs",
+      "runtimeProbe": null
+    },
+    "flagd": {
+      "language": "go",
+      "mechanism": "in-code-sdk",
+      "upstreamLoadSite": "ghcr.io/open-feature/flagd:v0.11.2 FromConfig: BuildTraceProvider skips when FLAGD_OTEL_COLLECTOR_URI is empty; buildMetricReader returns the Prometheus reader when FLAGD_METRICS_EXPORTER is empty and errors for any value other than otel",
+      "disabledControl": "compose-environment-clears-FLAGD_OTEL_COLLECTOR_URI-and-FLAGD_METRICS_EXPORTER",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.flagd.environment",
+      "disabledLoadState": "loaded-silenced",
+      "sdkEnvironmentSwitches": {
+        "OTEL_SDK_DISABLED": false,
+        "OTEL_TRACES_EXPORTER": false
+      },
+      "sdkEvidence": "flagd v0.11.2 core/pkg/telemetry/builder.go BuildTraceProvider (empty target => NoopTracerProvider), buildMetricReader (empty => Prometheus pull reader; otel => OTLP push; other => error logged by flagd/pkg/runtime/from_config.go)",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "FLAGD_OTEL_COLLECTOR_URI",
+        "loadedWhenContains": ":",
+        "notLoadedWhenEquals": ""
+      }
+    },
+    "flagd-ui": {
+      "language": "node",
+      "mechanism": "in-code-sdk",
+      "upstreamLoadSite": "src/flagd-ui/src/instrumentation.ts registerOTel({ serviceName: 'flagd-ui' }) from @vercel/otel ^1.10.0",
+      "disabledControl": "sdk-disabled-environment",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.flagd-ui.environment.OTEL_SDK_DISABLED",
+      "disabledLoadState": "loaded-silenced",
+      "sdkEnvironmentSwitches": {
+        "OTEL_SDK_DISABLED": true,
+        "OTEL_TRACES_EXPORTER": false
+      },
+      "sdkEvidence": "@vercel/otel 1.10.0 dist/node/index.js Sdk.start(): if OTEL_SDK_DISABLED is set the SDK returns before registering any provider",
+      "runtimeProbe": null
+    },
+    "frauddetectionservice": {
+      "language": "java",
+      "mechanism": "jvm-javaagent-via-JAVA_TOOL_OPTIONS",
+      "upstreamLoadSite": "src/frauddetectionservice/Dockerfile ENV JAVA_TOOL_OPTIONS=-javaagent:/app/opentelemetry-javaagent.jar",
+      "disabledControl": "compose-environment-clears-JAVA_TOOL_OPTIONS",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.frauddetectionservice.environment.JAVA_TOOL_OPTIONS",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "JAVA_TOOL_OPTIONS",
+        "loadedWhenContains": "-javaagent:",
+        "notLoadedWhenEquals": ""
+      }
+    },
+    "frontend": {
+      "language": "node",
+      "mechanism": "node-require-preload",
+      "upstreamLoadSite": "src/frontend/package.json start: node --require ./Instrumentation.js server.js",
+      "disabledControl": "materialized-source-guard",
+      "disabledControlSite": "modules/otel-demo/materialize.py Instrumentation.js placement guard (OTEL_PLACEMENT_ENABLED=false exports {} and never requires InstrumentationEnabled.js)",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "OTEL_PLACEMENT_ENABLED",
+        "loadedWhenEquals": "true",
+        "notLoadedWhenEquals": "false"
+      }
+    },
+    "frontendproxy": {
+      "language": "envoy",
+      "mechanism": "envoy-tracing-config",
+      "upstreamLoadSite": "src/frontendproxy/envoy.tmpl.yaml tracing: block (OpenTelemetry tracer to otelcol)",
+      "disabledControl": "materialized-no-tracing-template",
+      "disabledControlSite": "modules/otel-demo/materialize.py envoy.no-tracing.tmpl.yaml derived from envoy.tmpl.yaml by removing the tracing block; mounted via OTEL_CANDIDATE_ENVOY_CONFIG",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "container-file",
+        "path": "/home/envoy/envoy.tmpl.yaml",
+        "loadedWhenContains": "                tracing:\n"
+      }
+    },
+    "imageprovider": {
+      "language": "nginx",
+      "mechanism": "nginx-otel-module",
+      "upstreamLoadSite": "src/imageprovider/nginx.conf.template load_module modules/ngx_otel_module.so; otel_exporter {...}; otel_trace on; (hardcoded, not env-substituted; OTEL_SDK_DISABLED and OTEL_*_EXPORTER have no effect)",
+      "disabledControl": "materialized-no-otel-template",
+      "disabledControlSite": "modules/otel-demo/materialize.py nginx.no-otel.conf.template derived from nginx.conf.template by removing load_module and every otel_* directive; mounted via OTEL_CANDIDATE_IMAGEPROVIDER_NGINX_TEMPLATE",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "container-file",
+        "path": "/etc/nginx/nginx.conf",
+        "loadedWhenContains": "load_module modules/ngx_otel_module.so;"
+      }
+    },
+    "kafka": {
+      "language": "java",
+      "mechanism": "jvm-javaagent-via-KAFKA_OPTS",
+      "upstreamLoadSite": "src/kafka/Dockerfile ENV KAFKA_OPTS=\"-javaagent:/tmp/opentelemetry-javaagent.jar -Dotel.jmx.target.system=kafka-broker\"; apache/kafka 3.7.0 bin/kafka-run-class.sh expands $KAFKA_OPTS unquoted into the java argv",
+      "disabledControl": "compose-environment-clears-KAFKA_OPTS",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.kafka.environment.KAFKA_OPTS",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "process-args",
+        "loadedWhenContains": "-javaagent:"
+      }
+    },
+    "loadgenerator": {
+      "language": "python",
+      "mechanism": "in-code-sdk",
+      "upstreamLoadSite": "src/loadgenerator/locustfile.py constructs TracerProvider/MeterProvider/LoggerProvider with OTLP exporters and calls Jinja2/Requests/SystemMetrics/URLLib3 Instrumentor().instrument()",
+      "disabledControl": "sdk-disabled-environment",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.loadgenerator.environment.OTEL_SDK_DISABLED",
+      "disabledLoadState": "loaded-silenced",
+      "sdkEnvironmentSwitches": {
+        "OTEL_SDK_DISABLED": true,
+        "OTEL_TRACES_EXPORTER": false
+      },
+      "sdkEvidence": "opentelemetry-sdk 1.25.0 trace/__init__.py:1200-1217, metrics/_internal/__init__.py:399-523, _logs/_internal/__init__.py:615-631 return no-op providers when OTEL_SDK_DISABLED=true; the instrumentors still monkey-patch",
+      "runtimeProbe": null
+    },
+    "paymentservice": {
+      "language": "node",
+      "mechanism": "node-require-preload",
+      "upstreamLoadSite": "src/paymentservice/Dockerfile ENTRYPOINT [\"npm\", \"run\", \"start\"]; package.json start: node --require ./opentelemetry.js index.js (opentelemetry.js starts NodeSDK with getNodeAutoInstrumentations())",
+      "disabledControl": "compose-entrypoint-guard",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.paymentservice.entrypoint",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "process-args",
+        "loadedWhenContains": "--require ./opentelemetry.js"
+      }
+    },
+    "productcatalogservice": {
+      "language": "go",
+      "mechanism": "in-code-sdk",
+      "upstreamLoadSite": "src/productcatalogservice/main.go initTracerProvider()/initMeterProvider() construct otlptracegrpc/otlpmetricgrpc exporters unconditionally; grpc.StatsHandler(otelgrpc.NewServerHandler())",
+      "disabledControl": "materialized-source-guard",
+      "disabledControlSite": "modules/otel-demo/materialize.py SOURCE_PLACEMENT_GUARDS['productcatalogservice'] (main.go gates initTracerProvider/initMeterProvider/the openfeature tracing hook/runtime.Start and the grpc.StatsHandler registration on OTEL_PLACEMENT_ENABLED)",
+      "disabledLoadState": "not-loaded",
+      "sdkEnvironmentSwitches": {
+        "OTEL_SDK_DISABLED": false,
+        "OTEL_TRACES_EXPORTER": false
+      },
+      "sdkEvidence": "go.opentelemetry.io/otel/sdk v1.27.0: sdk/trace/provider.go and sdk/internal/env/env.go contain no OTEL_SDK_DISABLED or OTEL_TRACES_EXPORTER handling; the pinned SDK ignores both, so the materialized guard skips constructing the exporter/provider and registering the otelgrpc stats handler entirely rather than relying on either variable",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "OTEL_PLACEMENT_ENABLED",
+        "loadedWhenEquals": "true",
+        "notLoadedWhenEquals": "false"
+      }
+    },
+    "quoteservice": {
+      "language": "php",
+      "mechanism": "php-sdk-autoload",
+      "upstreamLoadSite": "docker-compose.yml quoteservice OTEL_PHP_AUTOLOAD_ENABLED=true (open-telemetry/sdk autoloader registers the SDK and instrumentation hooks)",
+      "disabledControl": "sdk-autoload-environment",
+      "disabledControlSite": "modules/otel-demo/deployment/compose.candidate-postures.yml services.quoteservice.environment.OTEL_PHP_AUTOLOAD_ENABLED",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "OTEL_PHP_AUTOLOAD_ENABLED",
+        "loadedWhenEquals": "true",
+        "notLoadedWhenEquals": "false"
+      }
+    },
+    "recommendationservice": {
+      "language": "python",
+      "mechanism": "opentelemetry-instrument-wrapper",
+      "upstreamLoadSite": "src/recommendationservice/Dockerfile ENTRYPOINT [ \"opentelemetry-instrument\", \"python\", \"recommendation_server.py\" ]; auto_instrumentation/_load.py _load_instrumentors() patches every installed instrumentor before OTEL_SDK_DISABLED is consulted",
+      "disabledControl": "materialized-entrypoint-guard",
+      "disabledControlSite": "modules/otel-demo/materialize.py apply_recommendation_entrypoint_guard",
+      "disabledLoadState": "not-loaded",
+      "runtimeProbe": {
+        "kind": "pid1-environ",
+        "variable": "PYTHONPATH",
+        "loadedWhenContains": "opentelemetry/instrumentation/auto_instrumentation"
+      }
+    },
+    "shippingservice": {
+      "language": "rust",
+      "mechanism": "in-code-sdk",
+      "upstreamLoadSite": "src/shippingservice/src/main.rs init_reqwest_tracing(init_tracer()?) (telemetry/traces_conf.rs opentelemetry_otlp::new_pipeline().tracing().with_exporter(tonic()))",
+      "disabledControl": "materialized-source-guard",
+      "disabledControlSite": "modules/otel-demo/materialize.py SOURCE_PLACEMENT_GUARDS['shippingservice'] (main.rs calls init_tracer()/init_reqwest_tracing(...) only when OTEL_PLACEMENT_ENABLED != \"false\"; telemetry/traces_conf.rs's install_batch(...) pipeline is never invoked when disabled)",
+      "disabledLoadState": "not-loaded",
+      "sdkEnvironmentSwitches": {
+        "OTEL_SDK_DISABLED": false,
+        "OTEL_TRACES_EXPORTER": false
+      },
+      "sdkEvidence": "opentelemetry_sdk 0.22.0: opentelemetry-sdk/src/trace/provider.rs and config.rs contain no OTEL_SDK_DISABLED or OTEL_TRACES_EXPORTER handling (only OTEL_TRACES_SAMPLER); the pinned SDK ignores both, so the materialized guard skips calling init_tracer()/init_reqwest_tracing(...) (and therefore install_batch(...)) entirely rather than relying on either variable",
+      "runtimeProbe": {
+        "kind": "container-env",
+        "variable": "OTEL_PLACEMENT_ENABLED",
+        "loadedWhenEquals": "true",
+        "notLoadedWhenEquals": "false"
+      }
+    }
+  },
+  "postureRealization": {
+    "none": {
+      "status": "implemented",
+      "rule": "no application service may emit telemetry: every service must reach disabledLoadState not-loaded or loaded-silenced (D13)",
+      "disabledSetSemantics": "no-telemetry-emitted",
+      "claimBoundary": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+      "blockingServices": [],
+      "silencedButLoadedServices": [
+        "emailservice",
+        "flagd",
+        "flagd-ui",
+        "loadgenerator"
+      ],
+      "notLoadedServices": [
+        "accountingservice",
+        "adservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "frauddetectionservice",
+        "frontend",
+        "frontendproxy",
+        "imageprovider",
+        "kafka",
+        "paymentservice",
+        "productcatalogservice",
+        "quoteservice",
+        "recommendationservice",
+        "shippingservice"
+      ]
+    },
+    "selected": {
+      "status": "implemented",
+      "rule": "no application service outside the selected closure may emit telemetry: each must reach disabledLoadState not-loaded or loaded-silenced (D13)",
+      "disabledSetSemantics": "no-telemetry-emitted",
+      "claimBoundary": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+      "blockingServices": [],
+      "silencedButLoadedServices": [
+        "flagd-ui",
+        "loadgenerator"
+      ],
+      "notLoadedServices": [
+        "accountingservice",
+        "adservice",
+        "frauddetectionservice",
+        "imageprovider",
+        "kafka",
+        "recommendationservice"
+      ]
+    },
+    "async": {
+      "status": "implemented",
+      "rule": "no application service outside the async closure may emit telemetry: each must reach disabledLoadState not-loaded or loaded-silenced (D13)",
+      "disabledSetSemantics": "no-telemetry-emitted",
+      "claimBoundary": "loaded-but-silenced-instrumentation-still-runs-and-still-costs",
+      "blockingServices": [],
+      "silencedButLoadedServices": [
+        "flagd-ui",
+        "loadgenerator"
+      ],
+      "notLoadedServices": [
+        "adservice",
+        "imageprovider",
+        "recommendationservice"
+      ]
+    },
+    "full": {
+      "status": "implemented",
+      "rule": "every application service loads its upstream instrumentation",
+      "disabledSetSemantics": "no-telemetry-emitted",
+      "claimBoundary": null,
+      "blockingServices": [],
+      "silencedButLoadedServices": [],
+      "notLoadedServices": []
+    }
+  }
+}

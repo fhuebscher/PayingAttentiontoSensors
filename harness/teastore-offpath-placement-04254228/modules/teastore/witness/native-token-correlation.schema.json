@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.invalid/contracts/teastore-native-token-correlation-v1.schema.json",
+  "title": "TeaStore workload-token to original Kieker-trace correlation",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "mappingId",
+      "token",
+      "nativeTraceId",
+      "service"
+    ],
+    "properties": {
+      "mappingId": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      },
+      "token": {
+        "type": "string",
+        "pattern": "^journey-[0-9a-f]{32}$"
+      },
+      "nativeTraceId": {
+        "type": "string",
+        "pattern": "^-?(0|[1-9][0-9]*)$"
+      },
+      "service": {
+        "const": "auth"
+      }
+    }
+  }
+}

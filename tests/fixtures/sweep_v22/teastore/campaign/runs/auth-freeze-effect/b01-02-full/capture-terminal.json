@@ -1,0 +1,1 @@
+{"complete": true, "exclusiveCollector": true, "foreignWriters": 0, "hashReconciled": true, "measurementRecords": 72, "queueMessagesAtBarrier": 0, "queuePurgedBefore": true, "rawRecords": 72, "redeliveredMessageSha1": [], "settled": true, "uniqueMessageBodies": 36, "uniqueNativeTraces": 36, "uniqueSignatures": 2, "unjoinedChildren": 0}

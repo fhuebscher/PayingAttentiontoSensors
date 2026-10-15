@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "sut": "hotel",
+  "extraction": {
+    "stage": 2,
+    "extractor": "B",
+    "model": "haiku",
+    "system": "hotel",
+    "service": "reservation",
+    "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+    "notes": [
+      "Heartbeat/TTL: none configured in these files. registry.go:85-90 builds consul.AgentServiceRegistration with ID, Name, Port and Address only (no Check or TTL block). No heartbeat interval, failure timeout or cleanup interval appears in these files; consul library default, not in these files. Heartbeat independence of request processing is therefore not established.",
+      "Deregistration: server.go:89-91 Shutdown calls s.Registry.Deregister(s.uuid). cmd/reservation/main.go:78 runs srv.Run() and no Shutdown call appears in these files.",
+      "Health check: no healthcheck key in the reservation block of docker-compose.yml:199-219 or in compose.observability-placement.yml:27-31; Compose/library default, not in these files.",
+      "Replicas: compose.observability-placement.yml:27-31 sets no deploy block; replicas 1 comes from docker-compose.yml:217.",
+      "Traces: tracing/tracer.go:37 LocalAgentHostPort is the jaeger address (config.json:3 via main.go:49). Sampler is probabilistic with default ratio 0.01 (tracer.go:14), overridden by JAEGER_SAMPLE_RATIO (tracer.go:20); the overlay sets JAEGER_SAMPLE_RATIO to ${HR_JAEGER_SAMPLE_RATIO:-1} (compose.observability-placement.yml:30). BufferFlushInterval is 1 second (tracer.go:36). tracer.go:42 FromEnv may override these; JAEGER_DISABLED is read by the jaeger client library, not in these files.",
+      "Logs: zerolog ConsoleWriter to os.Stdout (cmd/reservation/main.go:21). Level from LOG_LEVEL (tune/setting.go:34), default info (tune/setting.go:19).",
+      "Metrics: no metrics export in these files.",
+      "Protocols of syncEdges (not a schema field): consul via the consul API client (registry.go:17; library default protocol, not in these files); mongodb-reservation via the MongoDB driver (server.go:21 import); memcached-reserve via gomemcache (server.go:12 import). The inbound gRPC server (server.go:70) is not reported.",
+      "Messaging: no topics published or consumed in these files."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+      "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-hotel-protocol",
+      "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "reservation",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 199,
+        "quotedToken": "reservation:"
+      },
+      "role": {
+        "value": "microservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/Dockerfile",
+        "line": 19,
+        "quotedToken": "go install -ldflags",
+        "note": "Go binaries from ./cmd/... are built into the image"
+      },
+      "container": {
+        "value": "reservation",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 199,
+        "quotedToken": "reservation:",
+        "note": "container_name is not set in the reservation block (lines 199-219); Compose default naming, library default, not in these files"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 217,
+        "quotedToken": "replicas: 1"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "jaeger",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "hotelReservation/config.json",
+          "line": 3,
+          "quotedToken": "jaeger:6831",
+          "note": "traces; address read by main.go:49 and passed to tracing.Init at main.go:55"
+        }
+      ],
+      "registersWith": [
+        {
+          "value": "consul",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "hotelReservation/cmd/reservation/main.go",
+          "line": 62,
+          "quotedToken": "registry.NewClient(*consulAddr)",
+          "note": "consul address from config.json:2 (consul:8500) via main.go:50; registration call at services/reservation/server.go:79"
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "reservation",
+        "callee": "consul"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/reservation/server.go",
+      "line": 79,
+      "quotedToken": "s.Registry.Register(",
+      "note": "startup registration call; callee address from config.json:2 consulAddress via main.go:62"
+    },
+    {
+      "value": {
+        "caller": "reservation",
+        "callee": "mongodb-reservation"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/config.json",
+      "line": 21,
+      "quotedToken": "mongodb-reservation:27017",
+      "note": "ReserveMongoAddress via main.go:37 initializeDatabase; call sites use s.MongoClient at server.go:98 (Database(\"reservation-db\")), server.go:135 and server.go:199 (InsertOne)"
+    },
+    {
+      "value": {
+        "caller": "reservation",
+        "callee": "memcached-reserve"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/config.json",
+      "line": 22,
+      "quotedToken": "memcached-reserve:11211",
+      "note": "ReserveMemcAddress via main.go:42 tune.NewMemCClient2; call sites use s.MemcClient, e.g. server.go:123"
+    }
+  ],
+  "coordinators": [
+    {
+      "name": {
+        "value": "consul",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/registry/registry.go",
+        "line": 8,
+        "quotedToken": "consul \"github.com/hashicorp/consul/api\"",
+        "note": "consul API client imported by the registry package used by this service"
+      },
+      "type": {
+        "value": "ServiceRegistry",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/registry/registry.go",
+        "line": 92,
+        "quotedToken": "c.Agent().ServiceRegister(reg)"
+      },
+      "hostedBy": {
+        "value": "consul",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 4,
+        "quotedToken": "consul:"
+      }
+    }
+  ]
+}

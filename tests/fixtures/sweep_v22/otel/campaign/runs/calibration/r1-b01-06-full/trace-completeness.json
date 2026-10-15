@@ -1,0 +1,34 @@
+{
+  "allowance": 1,
+  "allowanceMinimum": 1,
+  "allowanceShare": 0.01,
+  "blockingWindows": [
+    "whole-measurement"
+  ],
+  "drainSeconds": 17.0,
+  "faultAndDrainWindowSeconds": null,
+  "incomplete": 0,
+  "kind": "otel-demo-sweep-trace-completeness-v2",
+  "recordedFaultEffectIncomplete": null,
+  "requiredPathServices": [
+    "frontend",
+    "frontendproxy",
+    "productcatalogservice"
+  ],
+  "rule": "protocol-decision-25",
+  "runId": "60f669fb6a4f16d86dfa53db",
+  "schemaVersion": 2,
+  "successful": 180,
+  "valid": true,
+  "windows": {
+    "whole-measurement": {
+      "complete": 180,
+      "incomplete": 0,
+      "incompleteRequestTokens": [],
+      "requests": 180,
+      "successful": 180,
+      "unsuccessful": 0,
+      "unsuccessfulIncomplete": 0
+    }
+  }
+}

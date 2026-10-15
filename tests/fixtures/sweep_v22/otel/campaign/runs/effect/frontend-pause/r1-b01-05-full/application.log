@@ -1,0 +1,923 @@
+frontend-1  | 2026-10-03T06:00:00.123456789Z started ¿
+frontendproxy-1  | 2026-10-03T06:00:01.123456789Z started ¿
+productcatalogservice-1  | 2026-10-03T06:00:02.123456789Z started ¿
+frontendproxy-1  | 2026-10-04T13:23:10.768713236Z {"obsplacement_kind": "application-request-witness", "request_token": "readiness-not-scored", "response_code": 200, "start_time": "1791120190.768", "duration_ms": 0}
+frontend-1  | 2026-10-04T13:23:10.767713308Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:10.788604498Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0891206c3d957a7fd1d87bf4", "response_code": 200, "start_time": "1791120190.788", "duration_ms": 0, "traceparent": "00-0891206c3d957a7fd1d87bf4f5863c43-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:10.787604570Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:10.933920860Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-cb772b1f74980a0b0c48e08f", "response_code": 200, "start_time": "1791120190.933", "duration_ms": 0, "traceparent": "00-cb772b1f74980a0b0c48e08ffa3955d7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:10.932920933Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.083684683Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e0fa29140d1ea92220f1745a", "response_code": 200, "start_time": "1791120191.083", "duration_ms": 0, "traceparent": "00-e0fa29140d1ea92220f1745a36491f26-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.082684755Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.232924461Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-75a3fcfb4847b8c32b1a04f9", "response_code": 200, "start_time": "1791120191.232", "duration_ms": 0, "traceparent": "00-75a3fcfb4847b8c32b1a04f92787fbe5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.231924534Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.233342171Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1466bd8e0a1d7b3c3fca8b07", "response_code": 200, "start_time": "1791120191.233", "duration_ms": 0, "traceparent": "00-1466bd8e0a1d7b3c3fca8b074e11fc46-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.232342243Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.451027155Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-27d3f27401dba961389f9e56", "response_code": 200, "start_time": "1791120191.450", "duration_ms": 0, "traceparent": "00-27d3f27401dba961389f9e565b00d8ae-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.450027227Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.452953339Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d9583f815e77848987c8a26e", "response_code": 200, "start_time": "1791120191.452", "duration_ms": 0, "traceparent": "00-d9583f815e77848987c8a26ec63fce80-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.451953411Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.786770821Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4e88034d81defdecdfa5aaad", "response_code": 200, "start_time": "1791120191.786", "duration_ms": 0, "traceparent": "00-4e88034d81defdecdfa5aaad086a8fb4-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.785770893Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.860503197Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3c5310213e203fd0993dcff9", "response_code": 200, "start_time": "1791120191.860", "duration_ms": 0, "traceparent": "00-3c5310213e203fd0993dcff931262677-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.859503269Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.986668348Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9df1887e41c4546e274c756c", "response_code": 200, "start_time": "1791120191.986", "duration_ms": 0, "traceparent": "00-9df1887e41c4546e274c756c8f098e8f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.985668421Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.987623215Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-948fef58ab3a073a91e0b4f3", "response_code": 200, "start_time": "1791120191.987", "duration_ms": 0, "traceparent": "00-948fef58ab3a073a91e0b4f3795fddac-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.986623287Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:11.988070965Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-337fbd41490263221d04989c", "response_code": 200, "start_time": "1791120191.988", "duration_ms": 0, "traceparent": "00-337fbd41490263221d04989ca972c9e5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:11.987071037Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.287203312Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4c4c38b94a2e406d3e14d1f2", "response_code": 200, "start_time": "1791120192.286", "duration_ms": 0, "traceparent": "00-4c4c38b94a2e406d3e14d1f242c4fe0f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.286203384Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.288758278Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3cbad387293eaf9eb5031b13", "response_code": 200, "start_time": "1791120192.288", "duration_ms": 0, "traceparent": "00-3cbad387293eaf9eb5031b132ac77733-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.287758350Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.289055824Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4b10f90761db0504b20a6673", "response_code": 200, "start_time": "1791120192.289", "duration_ms": 0, "traceparent": "00-4b10f90761db0504b20a6673cbdb4cc5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.288055897Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.289469481Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-54b371443b53cb1f80f29cb4", "response_code": 200, "start_time": "1791120192.289", "duration_ms": 0, "traceparent": "00-54b371443b53cb1f80f29cb455814d4e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.288469553Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.686538219Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1feb1d0cf592625c67316d7c", "response_code": 200, "start_time": "1791120192.686", "duration_ms": 0, "traceparent": "00-1feb1d0cf592625c67316d7cf1e3ef9e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.685538292Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.687839508Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b36b8e4944fc5fd5fe071ba7", "response_code": 200, "start_time": "1791120192.687", "duration_ms": 0, "traceparent": "00-b36b8e4944fc5fd5fe071ba7de8fc6d1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.686839581Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.688218355Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-80b97668e3fcd890d2ce745d", "response_code": 200, "start_time": "1791120192.688", "duration_ms": 0, "traceparent": "00-80b97668e3fcd890d2ce745d6597bc4d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.687218428Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.688557148Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-52a758aa816fd0aa19b8a692", "response_code": 200, "start_time": "1791120192.688", "duration_ms": 0, "traceparent": "00-52a758aa816fd0aa19b8a6927d651dcc-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.687557220Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.912928343Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ca723b13d6c36375a34d48b1", "response_code": 200, "start_time": "1791120192.912", "duration_ms": 0, "traceparent": "00-ca723b13d6c36375a34d48b11c11671c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.911928415Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:12.913494587Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-19eceb97f6343fb7d900331e", "response_code": 200, "start_time": "1791120192.913", "duration_ms": 0, "traceparent": "00-19eceb97f6343fb7d900331eba6e9d22-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:12.912494659Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:13.150113344Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2ba83eb883c13f718825bf22", "response_code": 200, "start_time": "1791120193.149", "duration_ms": 0, "traceparent": "00-2ba83eb883c13f718825bf222ff5f274-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:13.149113417Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:13.151503325Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-41e64087e1e6c955f8969544", "response_code": 200, "start_time": "1791120193.151", "duration_ms": 0, "traceparent": "00-41e64087e1e6c955f8969544036b144a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:13.150503397Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:13.486978292Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-bdd060799bf5d2925da8b229", "response_code": 200, "start_time": "1791120193.486", "duration_ms": 0, "traceparent": "00-bdd060799bf5d2925da8b2290f89d607-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:13.485978365Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:13.487888336Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f8e863c1dddb44115cb28f13", "response_code": 200, "start_time": "1791120193.487", "duration_ms": 0, "traceparent": "00-f8e863c1dddb44115cb28f135c25c68e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:13.486888409Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:13.488302231Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2c20bfa03410315849ec0fa4", "response_code": 200, "start_time": "1791120193.488", "duration_ms": 0, "traceparent": "00-2c20bfa03410315849ec0fa4bee7c667-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:13.487302303Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:13.488615751Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f4b7868cfaf6136e191bb237", "response_code": 200, "start_time": "1791120193.488", "duration_ms": 0, "traceparent": "00-f4b7868cfaf6136e191bb2378b2048da-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:13.487615824Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:13.607467175Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1e8bfadffa51eada4ef5b64d", "response_code": 200, "start_time": "1791120193.607", "duration_ms": 0, "traceparent": "00-1e8bfadffa51eada4ef5b64dd525e167-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:13.606467247Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:13.797170877Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-632603ee5bf34dcc98b38138", "response_code": 200, "start_time": "1791120193.797", "duration_ms": 0, "traceparent": "00-632603ee5bf34dcc98b38138ff26e00f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:13.796170950Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.086793184Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2e1a47478faf1da6fdebfc76", "response_code": 200, "start_time": "1791120194.086", "duration_ms": 0, "traceparent": "00-2e1a47478faf1da6fdebfc7668d5d9e3-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.085793257Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.087707043Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0ea75613e5d3d00e72371d3a", "response_code": 200, "start_time": "1791120194.087", "duration_ms": 0, "traceparent": "00-0ea75613e5d3d00e72371d3aa100f080-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.086707115Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.088043213Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-48b38e016699adf6026c6c93", "response_code": 200, "start_time": "1791120194.087", "duration_ms": 0, "traceparent": "00-48b38e016699adf6026c6c93e8c79e28-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.087043285Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.088344574Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f3f839d07ae97554405c6f87", "response_code": 200, "start_time": "1791120194.088", "duration_ms": 0, "traceparent": "00-f3f839d07ae97554405c6f873acaac20-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.087344646Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.486758232Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f1140d12c10dc263593cda6d", "response_code": 200, "start_time": "1791120194.486", "duration_ms": 0, "traceparent": "00-f1140d12c10dc263593cda6dd8d9bcf4-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.485758305Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.487804413Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0b7a5f6e82fe32ab7afdb943", "response_code": 200, "start_time": "1791120194.487", "duration_ms": 0, "traceparent": "00-0b7a5f6e82fe32ab7afdb943625036b7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.486804485Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.488192081Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-63e884598eddd4d41d9f4cc4", "response_code": 200, "start_time": "1791120194.488", "duration_ms": 0, "traceparent": "00-63e884598eddd4d41d9f4cc47650531c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.487192154Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.512028217Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-eb069fe5d30ed47f4358e8fc", "response_code": 200, "start_time": "1791120194.511", "duration_ms": 0, "traceparent": "00-eb069fe5d30ed47f4358e8fca76fa38d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.511028290Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.887774706Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5d7080329802000b70d3fbbe", "response_code": 200, "start_time": "1791120194.887", "duration_ms": 0, "traceparent": "00-5d7080329802000b70d3fbbe5d89b963-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.886774778Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.889829636Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a2aca08fd3ee92b1389c00cc", "response_code": 200, "start_time": "1791120194.889", "duration_ms": 0, "traceparent": "00-a2aca08fd3ee92b1389c00cc437b0b23-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.888829708Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.890595913Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-648d7ea0fb1e255bc173dd94", "response_code": 200, "start_time": "1791120194.890", "duration_ms": 0, "traceparent": "00-648d7ea0fb1e255bc173dd94566a70b7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.889595985Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:14.891097069Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-60d48e52a982aedeac04997f", "response_code": 200, "start_time": "1791120194.891", "duration_ms": 0, "traceparent": "00-60d48e52a982aedeac04997fde82bb8f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:14.890097141Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.286985874Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c65d0c716af7f73dceb42d81", "response_code": 200, "start_time": "1791120195.286", "duration_ms": 0, "traceparent": "00-c65d0c716af7f73dceb42d81e47118a6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.285985947Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.288267136Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-70ac29f539afc8948e2d4ea2", "response_code": 200, "start_time": "1791120195.288", "duration_ms": 0, "traceparent": "00-70ac29f539afc8948e2d4ea2a7b9539a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.287267208Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.288897038Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3b6877885aa03b1e842320e9", "response_code": 200, "start_time": "1791120195.288", "duration_ms": 0, "traceparent": "00-3b6877885aa03b1e842320e9b31e05db-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.287897110Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.289794445Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-912769a09a3692876e51be3c", "response_code": 200, "start_time": "1791120195.289", "duration_ms": 0, "traceparent": "00-912769a09a3692876e51be3ccd67332d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.288794518Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.514728308Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c1a628863e226c17eee6f7ae", "response_code": 200, "start_time": "1791120195.514", "duration_ms": 0, "traceparent": "00-c1a628863e226c17eee6f7ae33e4ed1c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.513728380Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.687704563Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-57912f2fcf8b94b273e9688e", "response_code": 200, "start_time": "1791120195.687", "duration_ms": 0, "traceparent": "00-57912f2fcf8b94b273e9688eadfcdacd-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.686704636Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.887389660Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-82692491d763810d36f192c2", "response_code": 200, "start_time": "1791120195.887", "duration_ms": 0, "traceparent": "00-82692491d763810d36f192c282a7538e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.886389732Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.889127016Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8a920ffe2e2d972d04008972", "response_code": 200, "start_time": "1791120195.888", "duration_ms": 0, "traceparent": "00-8a920ffe2e2d972d040089725e899a1c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.888127089Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.890025854Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b5e24717c44722a681419a08", "response_code": 200, "start_time": "1791120195.889", "duration_ms": 0, "traceparent": "00-b5e24717c44722a681419a0834c79f43-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.889025927Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:15.953549623Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-eec7cbfea42fec5071c7e8ca", "response_code": 200, "start_time": "1791120195.953", "duration_ms": 0, "traceparent": "00-eec7cbfea42fec5071c7e8caf74523d2-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:15.952549696Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:16.182353258Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ff2375b6264e22dbc14314bb", "response_code": 200, "start_time": "1791120196.182", "duration_ms": 0, "traceparent": "00-ff2375b6264e22dbc14314bbbc5d4c74-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:16.181353331Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:16.328288317Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-47f59479f73942e5d78f715c", "response_code": 200, "start_time": "1791120196.327", "duration_ms": 0, "traceparent": "00-47f59479f73942e5d78f715c772089da-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:16.327288389Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:16.329722166Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5107aa64122540247df4d7d7", "response_code": 200, "start_time": "1791120196.329", "duration_ms": 0, "traceparent": "00-5107aa64122540247df4d7d79ea0d32d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:16.328722239Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:16.330440760Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b04c49181dd6293c4b3023a3", "response_code": 200, "start_time": "1791120196.330", "duration_ms": 0, "traceparent": "00-b04c49181dd6293c4b3023a3a09d12b9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:16.329440832Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:16.660448313Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-66d5d78a0b5099dfc62629d1", "response_code": 200, "start_time": "1791120196.660", "duration_ms": 0, "traceparent": "00-66d5d78a0b5099dfc62629d1b0b5fde1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:16.659448385Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:16.662464619Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-00c9fefab12c753e5fb5b16a", "response_code": 200, "start_time": "1791120196.662", "duration_ms": 0, "traceparent": "00-00c9fefab12c753e5fb5b16a7e33fbbb-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:16.661464691Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:16.663193226Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3e04d69e3abe96a10a5147cd", "response_code": 200, "start_time": "1791120196.663", "duration_ms": 0, "traceparent": "00-3e04d69e3abe96a10a5147cdc7ebc691-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:16.662193298Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:16.861602068Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5a68ff2afcb5c47146addb67", "response_code": 200, "start_time": "1791120196.861", "duration_ms": 0, "traceparent": "00-5a68ff2afcb5c47146addb671c1b7a7b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:16.860602140Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:16.919816971Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0b141f9ca3809bb1c2a72e53", "response_code": 200, "start_time": "1791120196.919", "duration_ms": 0, "traceparent": "00-0b141f9ca3809bb1c2a72e53d3f883aa-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:16.918817043Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:17.187054634Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b0ae7f093ada59e5d95c3d92", "response_code": 200, "start_time": "1791120197.186", "duration_ms": 0, "traceparent": "00-b0ae7f093ada59e5d95c3d925778e341-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:17.186054707Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:17.188956976Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1627257a414eb95a623f3732", "response_code": 200, "start_time": "1791120197.188", "duration_ms": 0, "traceparent": "00-1627257a414eb95a623f37323d2090e9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:17.187957048Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:17.189739466Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6c376041ee5c8ee138135813", "response_code": 200, "start_time": "1791120197.189", "duration_ms": 0, "traceparent": "00-6c376041ee5c8ee1381358139cf1a3cf-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:17.188739538Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:17.190445900Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a6f4850d66fcb817e5d9cc51", "response_code": 200, "start_time": "1791120197.190", "duration_ms": 0, "traceparent": "00-a6f4850d66fcb817e5d9cc51dfb3669d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:17.189445972Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:17.673014641Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2a7ac9900aa52681348189ee", "response_code": 200, "start_time": "1791120197.672", "duration_ms": 0, "traceparent": "00-2a7ac9900aa52681348189eef27a1354-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:17.672014713Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:17.675748348Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f3ad6914a860c89781f25e98", "response_code": 200, "start_time": "1791120197.675", "duration_ms": 0, "traceparent": "00-f3ad6914a860c89781f25e982b7ee160-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:17.674748421Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:17.677698374Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9880d441d3e3ad1cac9526d8", "response_code": 200, "start_time": "1791120197.677", "duration_ms": 0, "traceparent": "00-9880d441d3e3ad1cac9526d80340cce3-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:17.676698446Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:17.889308214Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5d93822e4e03f6af34e31075", "response_code": 200, "start_time": "1791120197.888", "duration_ms": 1, "traceparent": "00-5d93822e4e03f6af34e31075bd83c530-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:17.888308287Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:17.893378258Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8cfd99c49edf58a2b06b762a", "response_code": 200, "start_time": "1791120197.893", "duration_ms": 0, "traceparent": "00-8cfd99c49edf58a2b06b762a960140fb-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:17.892378330Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:18.055062056Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-287356c68bb00c5b0a24c842", "response_code": 200, "start_time": "1791120198.054", "duration_ms": 1, "traceparent": "00-287356c68bb00c5b0a24c842392434f9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.054062128Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:18.086987019Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d18b2b4ea84462ad1da2d50f", "response_code": 200, "start_time": "1791120198.086", "duration_ms": 0, "traceparent": "00-d18b2b4ea84462ad1da2d50ff19e00e3-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.085987091Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:18.089596987Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4abb4c260e410fc7b0b68044", "response_code": 200, "start_time": "1791120198.089", "duration_ms": 0, "traceparent": "00-4abb4c260e410fc7b0b68044642fa9db-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.088597059Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:18.389218330Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ebe75d5d226a9b885271498e", "response_code": 200, "start_time": "1791120198.388", "duration_ms": 1, "traceparent": "00-ebe75d5d226a9b885271498e68301de2-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.388218403Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:18.449949503Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-32e30fc089ab7b0de5ba7d86", "response_code": 200, "start_time": "1791120198.449", "duration_ms": 0, "traceparent": "00-32e30fc089ab7b0de5ba7d86964fad99-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.448949575Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:18.452219486Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5d022d2aed9aaf29bdfc8d5b", "response_code": 200, "start_time": "1791120198.451", "duration_ms": 0, "traceparent": "00-5d022d2aed9aaf29bdfc8d5ba6274e5e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.451219559Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:18.687916994Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-193c54279080f7d633d6f518", "response_code": 200, "start_time": "1791120198.687", "duration_ms": 1, "traceparent": "00-193c54279080f7d633d6f5188645f46d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.686917067Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:18.690650702Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6a75d7d33f0115ec365114f8", "response_code": 200, "start_time": "1791120198.690", "duration_ms": 0, "traceparent": "00-6a75d7d33f0115ec365114f8f1a70e0e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.689650774Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:18.787847042Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d446b108393390b2c4de8948", "response_code": 200, "start_time": "1791120198.787", "duration_ms": 0, "traceparent": "00-d446b108393390b2c4de894868576036-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.786847115Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:18.790399551Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8323490c3cad8c16d220b83b", "response_code": 200, "start_time": "1791120198.790", "duration_ms": 0, "traceparent": "00-8323490c3cad8c16d220b83bae0d6abc-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:18.789399624Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:19.213769674Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-685b39e30a67ff3049f6f16b", "response_code": 200, "start_time": "1791120199.212", "duration_ms": 1, "traceparent": "00-685b39e30a67ff3049f6f16b0c643051-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.212769747Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:19.235620737Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-364019d24109d7956dd119cb", "response_code": 200, "start_time": "1791120199.234", "duration_ms": 1, "traceparent": "00-364019d24109d7956dd119cb483cd2b7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.234620810Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:19.287017107Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-86ff78ebca86e1fcbd8ad5a0", "response_code": 200, "start_time": "1791120199.286", "duration_ms": 0, "traceparent": "00-86ff78ebca86e1fcbd8ad5a01e7ed7a6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.286017179Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:19.289232016Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5bb0b52c87f2d184f54c6749", "response_code": 200, "start_time": "1791120199.288", "duration_ms": 0, "traceparent": "00-5bb0b52c87f2d184f54c6749a8e56807-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.288232088Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:19.439224482Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-26cb0f9a8c3c043ff7ca48ed", "response_code": 200, "start_time": "1791120199.438", "duration_ms": 1, "traceparent": "00-26cb0f9a8c3c043ff7ca48ed1d0a1575-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.438224554Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:19.443597078Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-867d6676789ee0d69a77ae2a", "response_code": 200, "start_time": "1791120199.443", "duration_ms": 0, "traceparent": "00-867d6676789ee0d69a77ae2a0e6f2655-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.442597151Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:19.444522142Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0eb71590cb79736601222b67", "response_code": 200, "start_time": "1791120199.444", "duration_ms": 0, "traceparent": "00-0eb71590cb79736601222b67f08ad915-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.443522215Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:19.501461983Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-90701793987bcae5ac3713f3", "response_code": 200, "start_time": "1791120199.501", "duration_ms": 0, "traceparent": "00-90701793987bcae5ac3713f38ae90d75-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.500462055Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:19.635775805Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9c1bd7de0f150b760898c453", "response_code": 200, "start_time": "1791120199.635", "duration_ms": 1, "traceparent": "00-9c1bd7de0f150b760898c4537ca490e2-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.634775877Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:19.987705946Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6990439ca0ee7b88f07ea357", "response_code": 200, "start_time": "1791120199.987", "duration_ms": 0, "traceparent": "00-6990439ca0ee7b88f07ea3572c879257-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:19.986706018Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:20.086910725Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5a0c8546a0a352d7bd97f74e", "response_code": 200, "start_time": "1791120200.086", "duration_ms": 0, "traceparent": "00-5a0c8546a0a352d7bd97f74ec27c7728-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.085910797Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:20.088923454Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1865e1b148cbb18d0bacf662", "response_code": 200, "start_time": "1791120200.088", "duration_ms": 0, "traceparent": "00-1865e1b148cbb18d0bacf6623a03dd98-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.087923527Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:20.194435835Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-deb5c9a46c583ef76af37d03", "response_code": 200, "start_time": "1791120200.194", "duration_ms": 0, "traceparent": "00-deb5c9a46c583ef76af37d037187dbc4-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.193435907Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:20.195940733Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-98a8e0bc101448c0178c5ff6", "response_code": 200, "start_time": "1791120200.195", "duration_ms": 0, "traceparent": "00-98a8e0bc101448c0178c5ff6ba1cbc40-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.194940805Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:20.197905779Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-fca75d5fcf4d1eecef03fc48", "response_code": 200, "start_time": "1791120200.197", "duration_ms": 0, "traceparent": "00-fca75d5fcf4d1eecef03fc482a513e51-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.196905851Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:20.588990927Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c0339b4f4f2699ed8fc90e22", "response_code": 200, "start_time": "1791120200.588", "duration_ms": 1, "traceparent": "00-c0339b4f4f2699ed8fc90e22d4505d58-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.587990999Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:20.593638420Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a8bc1c2aff9c54d1fe3dc03c", "response_code": 200, "start_time": "1791120200.593", "duration_ms": 0, "traceparent": "00-a8bc1c2aff9c54d1fe3dc03cedac30b1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.592638493Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:20.777169466Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-66738e6909800d80f40c2df9", "response_code": 200, "start_time": "1791120200.776", "duration_ms": 1, "traceparent": "00-66738e6909800d80f40c2df9637edfd8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.776169538Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:20.780893326Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-203f4d4353659eb6df9fa98d", "response_code": 200, "start_time": "1791120200.780", "duration_ms": 0, "traceparent": "00-203f4d4353659eb6df9fa98dac6c33e8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.779893398Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:20.992810965Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6cb0b3ec0446f78dc3f4623d", "response_code": 200, "start_time": "1791120200.992", "duration_ms": 0, "traceparent": "00-6cb0b3ec0446f78dc3f4623d8f026a3f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:20.991811037Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.075385809Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-59604237c3b48e49266e064d", "response_code": 200, "start_time": "1791120201.075", "duration_ms": 0, "traceparent": "00-59604237c3b48e49266e064d6334210d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.074385881Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.078024626Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3b7d69cbfa6ac2a18da17072", "response_code": 200, "start_time": "1791120201.077", "duration_ms": 0, "traceparent": "00-3b7d69cbfa6ac2a18da17072c8f71fc9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.077024698Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.080043316Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-dbe005ba275aa37c6de6bc02", "response_code": 200, "start_time": "1791120201.079", "duration_ms": 0, "traceparent": "00-dbe005ba275aa37c6de6bc02d0fd359d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.079043388Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.303599596Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f13934193c0d76bcdebe87ca", "response_code": 200, "start_time": "1791120201.303", "duration_ms": 0, "traceparent": "00-f13934193c0d76bcdebe87ca3f4efd24-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.302599669Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.305788279Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-02709ff92c9456b3fe179f02", "response_code": 200, "start_time": "1791120201.305", "duration_ms": 0, "traceparent": "00-02709ff92c9456b3fe179f02a9a333fc-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.304788351Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.306682110Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c458acaa2b669751e23f73a2", "response_code": 200, "start_time": "1791120201.306", "duration_ms": 0, "traceparent": "00-c458acaa2b669751e23f73a28b4272d9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.305682182Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.687695742Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0f2084fe879be3caa1fbf8b5", "response_code": 200, "start_time": "1791120201.687", "duration_ms": 0, "traceparent": "00-0f2084fe879be3caa1fbf8b51544c0e6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.686695814Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.773828268Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e9dfe0fb1fd6e5f96645124c", "response_code": 200, "start_time": "1791120201.773", "duration_ms": 0, "traceparent": "00-e9dfe0fb1fd6e5f96645124c479fcb5a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.772828341Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.775080919Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5bd0ee3e978e7659fc0128bf", "response_code": 200, "start_time": "1791120201.774", "duration_ms": 0, "traceparent": "00-5bd0ee3e978e7659fc0128bf17c23935-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.774080992Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:21.776090860Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f213b59f9abc214e52a5c85b", "response_code": 200, "start_time": "1791120201.776", "duration_ms": 0, "traceparent": "00-f213b59f9abc214e52a5c85b42cdd341-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:21.775090933Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.086756945Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c958df4d8b76770f9c608277", "response_code": 200, "start_time": "1791120202.086", "duration_ms": 0, "traceparent": "00-c958df4d8b76770f9c608277e54d781a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.085757017Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.087737083Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-af4c338769bf77d84108a9d3", "response_code": 200, "start_time": "1791120202.087", "duration_ms": 0, "traceparent": "00-af4c338769bf77d84108a9d3e7e03a80-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.086737156Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.088462114Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e4b82efb0d0e710694c1fdc3", "response_code": 200, "start_time": "1791120202.088", "duration_ms": 0, "traceparent": "00-e4b82efb0d0e710694c1fdc32487d738-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.087462187Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.089073420Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7ec9de9ba7907bd1280a41a8", "response_code": 200, "start_time": "1791120202.089", "duration_ms": 0, "traceparent": "00-7ec9de9ba7907bd1280a41a8e69dc865-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.088073492Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.313256979Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d9a6b2c3d51f82f7b6c7bd6c", "response_code": 200, "start_time": "1791120202.312", "duration_ms": 0, "traceparent": "00-d9a6b2c3d51f82f7b6c7bd6c1a4c5683-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.312257051Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.315914631Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5e399aea056e2e682ad7815e", "response_code": 200, "start_time": "1791120202.315", "duration_ms": 0, "traceparent": "00-5e399aea056e2e682ad7815ed15be8e2-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.314914703Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.616570711Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d3dcdcb26d973419d0937a5f", "response_code": 200, "start_time": "1791120202.616", "duration_ms": 0, "traceparent": "00-d3dcdcb26d973419d0937a5f4df9bd1c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.615570784Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.786931992Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f86f561fae61f1ccbef6a382", "response_code": 200, "start_time": "1791120202.786", "duration_ms": 0, "traceparent": "00-f86f561fae61f1ccbef6a38252fe6aa8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.785932064Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.788383245Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f9fb98cc0d08302da2f7417b", "response_code": 200, "start_time": "1791120202.788", "duration_ms": 0, "traceparent": "00-f9fb98cc0d08302da2f7417b4ffa06d5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.787383318Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.789237022Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8216363f5efbec026536e996", "response_code": 200, "start_time": "1791120202.789", "duration_ms": 0, "traceparent": "00-8216363f5efbec026536e9965ea49641-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.788237095Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.901412010Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4a23a46c41bf35df55c69b3a", "response_code": 200, "start_time": "1791120202.901", "duration_ms": 0, "traceparent": "00-4a23a46c41bf35df55c69b3af6bdb6ff-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.900412083Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.903075933Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e851eca0fa9d2a06c072c528", "response_code": 200, "start_time": "1791120202.903", "duration_ms": 0, "traceparent": "00-e851eca0fa9d2a06c072c528d2f64510-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.902076006Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:22.987514496Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-06d89cea9698bbb109d2e995", "response_code": 200, "start_time": "1791120202.987", "duration_ms": 0, "traceparent": "00-06d89cea9698bbb109d2e99595b10e97-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:22.986514568Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:23.386692047Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-859dd7eb661d0a6cafd12477", "response_code": 200, "start_time": "1791120203.386", "duration_ms": 0, "traceparent": "00-859dd7eb661d0a6cafd1247782b590b6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:23.385692120Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:23.388172150Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d3caefbb590017896d8dedd1", "response_code": 200, "start_time": "1791120203.388", "duration_ms": 0, "traceparent": "00-d3caefbb590017896d8dedd1ac72a7df-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:23.387172222Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:23.388505936Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8dc0a2cbd20b3701132db8be", "response_code": 200, "start_time": "1791120203.388", "duration_ms": 0, "traceparent": "00-8dc0a2cbd20b3701132db8bed458fab0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:23.387506008Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:23.488787174Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f5c43a780dfd1822ffff7dd6", "response_code": 200, "start_time": "1791120203.488", "duration_ms": 0, "traceparent": "00-f5c43a780dfd1822ffff7dd6fc7f8b67-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:23.487787247Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:23.706135750Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2e3e6f7b970f591afdbc053f", "response_code": 200, "start_time": "1791120203.705", "duration_ms": 0, "traceparent": "00-2e3e6f7b970f591afdbc053fa853d32a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:23.705135822Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:23.707670689Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d117d317438d0b29caf7a034", "response_code": 200, "start_time": "1791120203.707", "duration_ms": 0, "traceparent": "00-d117d317438d0b29caf7a03448697b8a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:23.706670761Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:23.772035837Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4a0d6401cd88b22e3273ac8e", "response_code": 200, "start_time": "1791120203.771", "duration_ms": 0, "traceparent": "00-4a0d6401cd88b22e3273ac8ed9b24ffa-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:23.771035910Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:23.999274492Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0c9b258598d6b9f8d66224bc", "response_code": 200, "start_time": "1791120203.998", "duration_ms": 0, "traceparent": "00-0c9b258598d6b9f8d66224bc6849d9c6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:23.998274565Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:24.031610727Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6b866e21381345c2b0ef98fd", "response_code": 200, "start_time": "1791120204.025", "duration_ms": 6, "traceparent": "00-6b866e21381345c2b0ef98fdaf60393c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.030610800Z GET /api/products/66VCHSJNUP 200 in 6 ms
+frontendproxy-1  | 2026-10-04T13:23:24.033390760Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-bc6c09bd33b3f61ee3aab0b3", "response_code": 200, "start_time": "1791120204.033", "duration_ms": 0, "traceparent": "00-bc6c09bd33b3f61ee3aab0b3386173c1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.032390833Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:24.111260891Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b9363c9c170d180634c2ea92", "response_code": 200, "start_time": "1791120204.110", "duration_ms": 0, "traceparent": "00-b9363c9c170d180634c2ea92c9e0d585-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.110260963Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:24.222397089Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7e5bd974fb063b8e5c7474b3", "response_code": 200, "start_time": "1791120204.222", "duration_ms": 0, "traceparent": "00-7e5bd974fb063b8e5c7474b3ea57803f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.221397161Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:24.583117008Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b9770aac33eb1c9bed3bbe38", "response_code": 200, "start_time": "1791120204.582", "duration_ms": 0, "traceparent": "00-b9770aac33eb1c9bed3bbe38e7f36b01-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.582117081Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:24.585005760Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-dda74c86d9fdf8dac63ac307", "response_code": 200, "start_time": "1791120204.584", "duration_ms": 0, "traceparent": "00-dda74c86d9fdf8dac63ac307e49a80dd-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.584005833Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:24.586367130Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1c1a4656d75e006d39ec58bd", "response_code": 200, "start_time": "1791120204.586", "duration_ms": 0, "traceparent": "00-1c1a4656d75e006d39ec58bdae3f9d17-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.585367203Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:24.587740898Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4496f86a57c95ec7036c5400", "response_code": 200, "start_time": "1791120204.587", "duration_ms": 0, "traceparent": "00-4496f86a57c95ec7036c540014d15f56-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.586740971Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:24.987782001Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-82bf4f23150be733623ceff4", "response_code": 200, "start_time": "1791120204.987", "duration_ms": 1, "traceparent": "00-82bf4f23150be733623ceff4a511b387-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.986782074Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:24.994220734Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-414593e4d5aae06545d1799b", "response_code": 200, "start_time": "1791120204.994", "duration_ms": 0, "traceparent": "00-414593e4d5aae06545d1799b6ef78cd9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:24.993220806Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:25.187185764Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e58e587dc05efe333c3e561e", "response_code": 200, "start_time": "1791120205.186", "duration_ms": 0, "traceparent": "00-e58e587dc05efe333c3e561e8936533f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:25.186185837Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:25.188968420Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-54afa9c06e28f6422fe4b230", "response_code": 200, "start_time": "1791120205.188", "duration_ms": 0, "traceparent": "00-54afa9c06e28f6422fe4b2307a31325a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:25.187968493Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:25.190557003Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ada5cdcd9e09a6532a2aa467", "response_code": 200, "start_time": "1791120205.190", "duration_ms": 0, "traceparent": "00-ada5cdcd9e09a6532a2aa46772ad5479-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:25.189557076Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:25.484022141Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9130ed48fc42b9c45601db15", "response_code": 200, "start_time": "1791120205.483", "duration_ms": 0, "traceparent": "00-9130ed48fc42b9c45601db155858de9f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:25.483022213Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:25.587358236Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d1ded4c498286255600a55da", "response_code": 200, "start_time": "1791120205.587", "duration_ms": 0, "traceparent": "00-d1ded4c498286255600a55da74ffcd66-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:25.586358309Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:25.591988325Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8042be0b99138618ffd29f3e", "response_code": 200, "start_time": "1791120205.591", "duration_ms": 0, "traceparent": "00-8042be0b99138618ffd29f3e81b7c98c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:25.590988398Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:25.758227110Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e310fc099cfbf302c0038e46", "response_code": 200, "start_time": "1791120205.757", "duration_ms": 0, "traceparent": "00-e310fc099cfbf302c0038e46166a3b0f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:25.757227182Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:25.760180950Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-05221678b0e30cb5df8f57a9", "response_code": 200, "start_time": "1791120205.760", "duration_ms": 0, "traceparent": "00-05221678b0e30cb5df8f57a956407fc8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:25.759181023Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:25.954090834Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-624316f61c4dc237e550fa4e", "response_code": 200, "start_time": "1791120205.953", "duration_ms": 0, "traceparent": "00-624316f61c4dc237e550fa4e51a38407-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:25.953090906Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:26.050629616Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c55e6e1513d794840c67b176", "response_code": 200, "start_time": "1791120206.050", "duration_ms": 0, "traceparent": "00-c55e6e1513d794840c67b1761fdcb3d5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.049629688Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:26.087550879Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-cc2ac673d3adca0a977aab6f", "response_code": 200, "start_time": "1791120206.086", "duration_ms": 1, "traceparent": "00-cc2ac673d3adca0a977aab6f769896d0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.086550951Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:26.288629532Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-684d8b99620320b42442a9ef", "response_code": 200, "start_time": "1791120206.288", "duration_ms": 1, "traceparent": "00-684d8b99620320b42442a9ef25792257-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.287629604Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:26.292129517Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0960ccf0b41d53831b81535b", "response_code": 200, "start_time": "1791120206.291", "duration_ms": 0, "traceparent": "00-0960ccf0b41d53831b81535beb202ceb-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.291129589Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:26.298028231Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-071dc25820d58184cbdb97ca", "response_code": 200, "start_time": "1791120206.297", "duration_ms": 0, "traceparent": "00-071dc25820d58184cbdb97ca645df258-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.297028303Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:26.591020823Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1ed856203476bd98d7134bed", "response_code": 200, "start_time": "1791120206.590", "duration_ms": 1, "traceparent": "00-1ed856203476bd98d7134bede1df1045-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.590020895Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:26.596167088Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c3c20928acff603abca7a4ad", "response_code": 200, "start_time": "1791120206.596", "duration_ms": 0, "traceparent": "00-c3c20928acff603abca7a4ad3fb6c5d0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.595167160Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:26.597297192Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-622736142a8444986cf129f5", "response_code": 200, "start_time": "1791120206.597", "duration_ms": 0, "traceparent": "00-622736142a8444986cf129f5e6f68362-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.596297264Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:26.835730791Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6952326152d2811120550c2c", "response_code": 200, "start_time": "1791120206.835", "duration_ms": 1, "traceparent": "00-6952326152d2811120550c2cf41a5f04-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.834730864Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:26.838970900Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4068152e1f83599b9451b91a", "response_code": 200, "start_time": "1791120206.838", "duration_ms": 0, "traceparent": "00-4068152e1f83599b9451b91a9b486263-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.837970972Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:26.841360807Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-cc7bc78fd1a5b0a8e07cc9b6", "response_code": 200, "start_time": "1791120206.841", "duration_ms": 0, "traceparent": "00-cc7bc78fd1a5b0a8e07cc9b6bf1aa41f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:26.840360880Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:27.188154459Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2fba2435f1e203ba6681c742", "response_code": 200, "start_time": "1791120207.187", "duration_ms": 0, "traceparent": "00-2fba2435f1e203ba6681c742346af91e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.187154531Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:27.190865755Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9f24a80b25f31904b238b92f", "response_code": 200, "start_time": "1791120207.190", "duration_ms": 0, "traceparent": "00-9f24a80b25f31904b238b92f44566af1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.189865828Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:27.193463326Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6d59716482f6f0d3a44f05fe", "response_code": 200, "start_time": "1791120207.193", "duration_ms": 0, "traceparent": "00-6d59716482f6f0d3a44f05fe092e5942-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.192463398Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:27.194510937Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ee764ef1866808946c2406c9", "response_code": 200, "start_time": "1791120207.194", "duration_ms": 0, "traceparent": "00-ee764ef1866808946c2406c9a858e406-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.193511009Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:27.588769674Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1b144004ab30f9a5d1820161", "response_code": 200, "start_time": "1791120207.588", "duration_ms": 1, "traceparent": "00-1b144004ab30f9a5d182016122c241b8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.587769747Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:27.594514608Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d6ffa7600e0110f609ee7a1d", "response_code": 200, "start_time": "1791120207.594", "duration_ms": 0, "traceparent": "00-d6ffa7600e0110f609ee7a1d8a83b2d6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.593514681Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:27.598580837Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b3715f188892723039922c21", "response_code": 200, "start_time": "1791120207.598", "duration_ms": 0, "traceparent": "00-b3715f188892723039922c210ac4461e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.597580910Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:27.792853355Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-44e791b43bae524c28ca5b16", "response_code": 200, "start_time": "1791120207.792", "duration_ms": 1, "traceparent": "00-44e791b43bae524c28ca5b16ec89777d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.791853428Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:27.801388264Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-61b0fbd576c784b2c0adbeba", "response_code": 200, "start_time": "1791120207.801", "duration_ms": 0, "traceparent": "00-61b0fbd576c784b2c0adbeba54a294ed-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.800388336Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:27.802873373Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-fa4a3fe6dfe4d501fc5958a0", "response_code": 200, "start_time": "1791120207.802", "duration_ms": 0, "traceparent": "00-fa4a3fe6dfe4d501fc5958a05e1ff8df-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:27.801873446Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:28.228590965Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c62b00b65c743abf776aa0f6", "response_code": 200, "start_time": "1791120208.227", "duration_ms": 1, "traceparent": "00-c62b00b65c743abf776aa0f6b88d32b0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:28.227591038Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:28.239677191Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f18e611ec3f4966f95fde7dd", "response_code": 200, "start_time": "1791120208.239", "duration_ms": 0, "traceparent": "00-f18e611ec3f4966f95fde7ddcc4000ba-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:28.238677263Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:28.256777048Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c75ae03e93bc75ae48df507f", "response_code": 200, "start_time": "1791120208.256", "duration_ms": 0, "traceparent": "00-c75ae03e93bc75ae48df507fed6baf80-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:28.255777121Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:28.284203291Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7b8138afe9e9e9da2371bf17", "response_code": 200, "start_time": "1791120208.283", "duration_ms": 0, "traceparent": "00-7b8138afe9e9e9da2371bf171c2ec6ab-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:28.283203363Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:28.516103268Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-694a563a50aff06501b1b00b", "response_code": 200, "start_time": "1791120208.515", "duration_ms": 1, "traceparent": "00-694a563a50aff06501b1b00b0483817a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:28.515103340Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:28.520240784Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0614a9c3127f3213258ba291", "response_code": 200, "start_time": "1791120208.520", "duration_ms": 0, "traceparent": "00-0614a9c3127f3213258ba2919bab6703-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:28.519240856Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:28.521651983Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-83aca4f8aec2bad8c3701104", "response_code": 200, "start_time": "1791120208.521", "duration_ms": 0, "traceparent": "00-83aca4f8aec2bad8c3701104d9d0da25-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:28.520652056Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:28.625288248Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6a1d17d8efceef9612bca260", "response_code": 200, "start_time": "1791120208.624", "duration_ms": 1, "traceparent": "00-6a1d17d8efceef9612bca260bba77021-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:28.624288321Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:28.731850863Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-97295d33f635e1d980b46527", "response_code": 200, "start_time": "1791120208.731", "duration_ms": 1, "traceparent": "00-97295d33f635e1d980b4652783188c84-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:28.730850935Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:29.087392092Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2f72a1114bfd4963ac0cc8af", "response_code": 200, "start_time": "1791120209.086", "duration_ms": 0, "traceparent": "00-2f72a1114bfd4963ac0cc8afdc318827-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.086392164Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.090260744Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a93a8472119272f003696047", "response_code": 200, "start_time": "1791120209.090", "duration_ms": 0, "traceparent": "00-a93a8472119272f00369604760452aa1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.089260817Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.092367172Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e5c7a9f2e9fc58dd8345b3c1", "response_code": 200, "start_time": "1791120209.092", "duration_ms": 0, "traceparent": "00-e5c7a9f2e9fc58dd8345b3c1c413d42c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.091367245Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.385438204Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-80565d8a8981b02f78917146", "response_code": 200, "start_time": "1791120209.385", "duration_ms": 0, "traceparent": "00-80565d8a8981b02f78917146129fd382-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.384438276Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.387798309Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-54b56fda11e75fa85cd39ca2", "response_code": 200, "start_time": "1791120209.387", "duration_ms": 0, "traceparent": "00-54b56fda11e75fa85cd39ca2f0b1321a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.386798382Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.590582132Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f00be43c877d41d0e6d6661c", "response_code": 200, "start_time": "1791120209.589", "duration_ms": 1, "traceparent": "00-f00be43c877d41d0e6d6661c9398c97e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.589582205Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:29.610811949Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-687fbcdd1d040fc34ae5753e", "response_code": 200, "start_time": "1791120209.610", "duration_ms": 0, "traceparent": "00-687fbcdd1d040fc34ae5753e18b1ab5b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.609812021Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.625680923Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-aad0d69ec58f6b9ddeadd2df", "response_code": 200, "start_time": "1791120209.625", "duration_ms": 0, "traceparent": "00-aad0d69ec58f6b9ddeadd2df03729763-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.624680996Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.630235910Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ff5ebed1ecf2fc33549e650f", "response_code": 200, "start_time": "1791120209.630", "duration_ms": 0, "traceparent": "00-ff5ebed1ecf2fc33549e650fbf84c94a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.629235983Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.988900900Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-191df625b5c3ca3e1c171792", "response_code": 200, "start_time": "1791120209.988", "duration_ms": 1, "traceparent": "00-191df625b5c3ca3e1c1717928d5e1bed-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.987900972Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:29.992782116Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-124a317be74a03685277d123", "response_code": 200, "start_time": "1791120209.992", "duration_ms": 0, "traceparent": "00-124a317be74a03685277d12374f9c5d0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.991782188Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.994263411Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5d5ee11d6ffa820a77d9c225", "response_code": 200, "start_time": "1791120209.994", "duration_ms": 0, "traceparent": "00-5d5ee11d6ffa820a77d9c225abe7b1e2-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.993263483Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:29.995538235Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4a36d4aeac1bb1c9e7865072", "response_code": 200, "start_time": "1791120209.995", "duration_ms": 0, "traceparent": "00-4a36d4aeac1bb1c9e786507249b41f10-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:29.994538307Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:30.388837099Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8ae469a2d2864b4a2f2968c4", "response_code": 200, "start_time": "1791120210.387", "duration_ms": 1, "traceparent": "00-8ae469a2d2864b4a2f2968c4f5617e29-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:30.387837172Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:30.393668413Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c177defa752a75b86328f8e0", "response_code": 200, "start_time": "1791120210.393", "duration_ms": 0, "traceparent": "00-c177defa752a75b86328f8e02a7a535e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:30.392668486Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:30.395532131Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-30b6c81cb11cd6721ef6495b", "response_code": 200, "start_time": "1791120210.395", "duration_ms": 0, "traceparent": "00-30b6c81cb11cd6721ef6495b1fbbc4df-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:30.394532204Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:30.396793365Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e29d5b67437832a021f191ce", "response_code": 200, "start_time": "1791120210.396", "duration_ms": 0, "traceparent": "00-e29d5b67437832a021f191ce28d7b0e5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:30.395793438Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:30.788199425Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0b524bac28cd8dc67e4369bb", "response_code": 200, "start_time": "1791120210.787", "duration_ms": 1, "traceparent": "00-0b524bac28cd8dc67e4369bb2e9abbe7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:30.787199497Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:30.793068171Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-74362dea07e1ba305c1083a1", "response_code": 200, "start_time": "1791120210.792", "duration_ms": 0, "traceparent": "00-74362dea07e1ba305c1083a124160b0b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:30.792068243Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:30.794405699Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-25b7ec70393b6c66702a6cc7", "response_code": 200, "start_time": "1791120210.794", "duration_ms": 0, "traceparent": "00-25b7ec70393b6c66702a6cc7a66fb3ed-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:30.793405771Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:30.795480728Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-25103a060a96a0beb26dc3b6", "response_code": 200, "start_time": "1791120210.795", "duration_ms": 0, "traceparent": "00-25103a060a96a0beb26dc3b6b427a1e9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:30.794480801Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:31.187937021Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5d17f15003e6c1994fd2acd5", "response_code": 200, "start_time": "1791120211.187", "duration_ms": 1, "traceparent": "00-5d17f15003e6c1994fd2acd5f426efff-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:31.186937094Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:31.191560745Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4ab302a44e973a6d77429eeb", "response_code": 200, "start_time": "1791120211.191", "duration_ms": 0, "traceparent": "00-4ab302a44e973a6d77429eeb5bff19d5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:31.190560818Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:31.193190813Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2a58839f80734835fa2c00f9", "response_code": 200, "start_time": "1791120211.193", "duration_ms": 0, "traceparent": "00-2a58839f80734835fa2c00f94dd0c8ba-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:31.192190886Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:31.473777056Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-875ceec3f42c33d3ce7a632d", "response_code": 200, "start_time": "1791120211.473", "duration_ms": 1, "traceparent": "00-875ceec3f42c33d3ce7a632d54f161b1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:31.472777128Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:31.479960918Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7a06f7f7fe9e09cf7cfb1bd1", "response_code": 200, "start_time": "1791120211.479", "duration_ms": 0, "traceparent": "00-7a06f7f7fe9e09cf7cfb1bd1c4243453-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:31.478960991Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:31.482048273Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-302ad0586b3d8f34ec224234", "response_code": 200, "start_time": "1791120211.481", "duration_ms": 0, "traceparent": "00-302ad0586b3d8f34ec224234d1f07118-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:31.481048346Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:31.727944613Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6be07bfb350b30d17e0dea3f", "response_code": 200, "start_time": "1791120211.727", "duration_ms": 1, "traceparent": "00-6be07bfb350b30d17e0dea3fb47e71e5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:31.726944685Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:31.731734514Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-34b6c8e66e7b34e67f77c45f", "response_code": 200, "start_time": "1791120211.731", "duration_ms": 0, "traceparent": "00-34b6c8e66e7b34e67f77c45f5267e1b8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:31.730734587Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:31.733865738Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9f2863596092b01e13108ce0", "response_code": 200, "start_time": "1791120211.733", "duration_ms": 0, "traceparent": "00-9f2863596092b01e13108ce0c7a1d950-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:31.732865810Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:32.101521969Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d534269c6269857ec9ef03a5", "response_code": 200, "start_time": "1791120212.100", "duration_ms": 1, "traceparent": "00-d534269c6269857ec9ef03a5e74811c8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.100522041Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:32.106450796Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-57a78b828706057a56842f00", "response_code": 200, "start_time": "1791120212.106", "duration_ms": 0, "traceparent": "00-57a78b828706057a56842f00a3b305f9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.105450869Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:32.133289576Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d220fa464a16216526d48388", "response_code": 200, "start_time": "1791120212.133", "duration_ms": 0, "traceparent": "00-d220fa464a16216526d48388d7ae6afe-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.132289648Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:32.382887125Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-914c257113f7a8ba6c42a2b1", "response_code": 200, "start_time": "1791120212.382", "duration_ms": 1, "traceparent": "00-914c257113f7a8ba6c42a2b1571e31d6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.381887197Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:32.394590855Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-cebfb4dc6714100e6b0024d7", "response_code": 200, "start_time": "1791120212.394", "duration_ms": 0, "traceparent": "00-cebfb4dc6714100e6b0024d70a352134-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.393590927Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:32.398613214Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b2de303b5947080adeb37d62", "response_code": 200, "start_time": "1791120212.398", "duration_ms": 0, "traceparent": "00-b2de303b5947080adeb37d62a4166a8f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.397613287Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:32.714748383Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ab321b04b4b9e3c28accb4ec", "response_code": 200, "start_time": "1791120212.714", "duration_ms": 1, "traceparent": "00-ab321b04b4b9e3c28accb4ecc12f6eee-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.713748455Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:32.835890770Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-108200be83eca5f93df1ec12", "response_code": 200, "start_time": "1791120212.835", "duration_ms": 1, "traceparent": "00-108200be83eca5f93df1ec126f5e2166-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.834890842Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:32.849908352Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-407a59b0807c8994b61a0331", "response_code": 200, "start_time": "1791120212.849", "duration_ms": 1, "traceparent": "00-407a59b0807c8994b61a0331455c51c4-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.848908424Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:32.853230715Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-109bc96c673a0a39ea89d17d", "response_code": 200, "start_time": "1791120212.852", "duration_ms": 0, "traceparent": "00-109bc96c673a0a39ea89d17ddb9640ee-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:32.852230787Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.005057096Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8fab97420cd7d05ad788b1e3", "response_code": 200, "start_time": "1791120213.004", "duration_ms": 0, "traceparent": "00-8fab97420cd7d05ad788b1e3be99cd29-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.004057169Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.007742167Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f0ebb4bb976330af64eb4e55", "response_code": 200, "start_time": "1791120213.007", "duration_ms": 0, "traceparent": "00-f0ebb4bb976330af64eb4e553aa2dc01-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.006742239Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.008945704Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f188e84f8f7f35b1d661485e", "response_code": 200, "start_time": "1791120213.008", "duration_ms": 0, "traceparent": "00-f188e84f8f7f35b1d661485e427e99fe-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.007945776Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.232925892Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d6d58d503f5110c6c06e69f7", "response_code": 200, "start_time": "1791120213.232", "duration_ms": 0, "traceparent": "00-d6d58d503f5110c6c06e69f76747cd9e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.231925964Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.325607061Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1d5c1f23b2f8d421cbde0c30", "response_code": 200, "start_time": "1791120213.325", "duration_ms": 0, "traceparent": "00-1d5c1f23b2f8d421cbde0c306368b312-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.324607134Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.327553272Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8b0a55bd64a346c29d6289ad", "response_code": 200, "start_time": "1791120213.327", "duration_ms": 0, "traceparent": "00-8b0a55bd64a346c29d6289adf4fa1e3b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.326553345Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.663922071Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6833c6922a86fa06b3262bc9", "response_code": 200, "start_time": "1791120213.663", "duration_ms": 1, "traceparent": "00-6833c6922a86fa06b3262bc9a7c84f9e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.662922144Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:33.668269634Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6c8635c4a766d45866107b2c", "response_code": 200, "start_time": "1791120213.668", "duration_ms": 0, "traceparent": "00-6c8635c4a766d45866107b2c013f9a88-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.667269707Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.669138193Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2c180777219639d390368182", "response_code": 200, "start_time": "1791120213.669", "duration_ms": 0, "traceparent": "00-2c180777219639d3903681823ec1cea6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.668138266Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.888569593Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-cbadba929164a6453efba609", "response_code": 200, "start_time": "1791120213.888", "duration_ms": 0, "traceparent": "00-cbadba929164a6453efba609bcedf484-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.887569666Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.889912128Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-aca14711ff8859ebc137d308", "response_code": 200, "start_time": "1791120213.889", "duration_ms": 0, "traceparent": "00-aca14711ff8859ebc137d3082db4ead0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.888912201Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:33.891015768Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b4fdd4d68d05d0ea1d0464ef", "response_code": 200, "start_time": "1791120213.890", "duration_ms": 0, "traceparent": "00-b4fdd4d68d05d0ea1d0464efb288bd2d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:33.890015841Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:34.287148237Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ebaedbc5c875f448cbcf19b1", "response_code": 200, "start_time": "1791120214.286", "duration_ms": 0, "traceparent": "00-ebaedbc5c875f448cbcf19b13205a611-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:34.286148310Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:34.288382053Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9a90349861ca3ff9c29fda1e", "response_code": 200, "start_time": "1791120214.288", "duration_ms": 0, "traceparent": "00-9a90349861ca3ff9c29fda1e342333f1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:34.287382126Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:34.289834499Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1b19e5b4729bf7d1b01ce26b", "response_code": 200, "start_time": "1791120214.289", "duration_ms": 0, "traceparent": "00-1b19e5b4729bf7d1b01ce26b3e4a5983-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:34.288834572Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:34.290824652Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b7e38221e4638f9035011667", "response_code": 200, "start_time": "1791120214.290", "duration_ms": 0, "traceparent": "00-b7e38221e4638f9035011667565d45cf-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:34.289824724Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:34.512597084Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-394d1d07e74bd4bfda500d37", "response_code": 200, "start_time": "1791120214.512", "duration_ms": 0, "traceparent": "00-394d1d07e74bd4bfda500d379761940f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:34.511597157Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:34.514286995Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9f91b57278e6657f7c1e945a", "response_code": 200, "start_time": "1791120214.514", "duration_ms": 0, "traceparent": "00-9f91b57278e6657f7c1e945a401706a9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:34.513287067Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:34.738281965Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-643728bd35b00b13b4daad3d", "response_code": 200, "start_time": "1791120214.738", "duration_ms": 0, "traceparent": "00-643728bd35b00b13b4daad3d724f1e70-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:34.737282038Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:34.886708260Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-37155bba1547cc9fb97d5b55", "response_code": 200, "start_time": "1791120214.886", "duration_ms": 0, "traceparent": "00-37155bba1547cc9fb97d5b551c3717b5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:34.885708332Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:35.086609602Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-26e00cb42e07a1a432b893f5", "response_code": 200, "start_time": "1791120215.086", "duration_ms": 0, "traceparent": "00-26e00cb42e07a1a432b893f5e4882c9a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.085609674Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:35.088388205Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-eace180cbaecfc9c099dfcab", "response_code": 200, "start_time": "1791120215.088", "duration_ms": 0, "traceparent": "00-eace180cbaecfc9c099dfcab315ba8fd-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.087388277Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:35.170179605Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-fd5d9bc76743e57171c29b18", "response_code": 200, "start_time": "1791120215.169", "duration_ms": 0, "traceparent": "00-fd5d9bc76743e57171c29b184e2572db-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.169179678Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:35.172415972Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-001f61477fd393567498c632", "response_code": 200, "start_time": "1791120215.172", "duration_ms": 0, "traceparent": "00-001f61477fd393567498c632948087b7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.171416044Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:35.487305880Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2c9a7981f7cdddffa51409c1", "response_code": 200, "start_time": "1791120215.487", "duration_ms": 0, "traceparent": "00-2c9a7981f7cdddffa51409c10397faef-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.486305952Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:35.490400791Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0fba1b8a718000b61e538149", "response_code": 200, "start_time": "1791120215.489", "duration_ms": 1, "traceparent": "00-0fba1b8a718000b61e538149766e7751-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.489400864Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:35.493944645Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6657c743a2c77d0878012a88", "response_code": 200, "start_time": "1791120215.493", "duration_ms": 0, "traceparent": "00-6657c743a2c77d0878012a88f4eba702-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.492944717Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:35.495420694Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-924ce67d9f9e1c6aeeae9265", "response_code": 200, "start_time": "1791120215.495", "duration_ms": 0, "traceparent": "00-924ce67d9f9e1c6aeeae92657d3bfc9c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.494420767Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:35.947507143Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-46dab5864fcd8f1a9d048af8", "response_code": 200, "start_time": "1791120215.946", "duration_ms": 1, "traceparent": "00-46dab5864fcd8f1a9d048af8d0efe129-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.946507215Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:35.995210886Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9625e9ccae075ff4d0868901", "response_code": 200, "start_time": "1791120215.994", "duration_ms": 0, "traceparent": "00-9625e9ccae075ff4d0868901aa1e7ccc-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.994210958Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:35.998803377Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-67dac491d7e600bd18ea38bf", "response_code": 200, "start_time": "1791120215.998", "duration_ms": 0, "traceparent": "00-67dac491d7e600bd18ea38bf0e6b46b8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.997803450Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.000205755Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-263d4e792aa91ad1d8e4f3ac", "response_code": 200, "start_time": "1791120216.000", "duration_ms": 0, "traceparent": "00-263d4e792aa91ad1d8e4f3ac3bb116a6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:35.999205828Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.287777185Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7662932d9818b9d4de77e36f", "response_code": 200, "start_time": "1791120216.287", "duration_ms": 0, "traceparent": "00-7662932d9818b9d4de77e36f6f53efb1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.286777258Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.290908337Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ff4bb598dcc7e7c0bc769ab4", "response_code": 200, "start_time": "1791120216.290", "duration_ms": 0, "traceparent": "00-ff4bb598dcc7e7c0bc769ab4c20432b6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.289908409Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.292782068Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8a0fafe06dc28979571c0f02", "response_code": 200, "start_time": "1791120216.292", "duration_ms": 0, "traceparent": "00-8a0fafe06dc28979571c0f02ed32c6b7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.291782141Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.583483219Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a118322311e9f467865876a1", "response_code": 200, "start_time": "1791120216.582", "duration_ms": 1, "traceparent": "00-a118322311e9f467865876a1046f7dd1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.582483292Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:36.688258410Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e0525448abbb4a99982d813b", "response_code": 200, "start_time": "1791120216.687", "duration_ms": 0, "traceparent": "00-e0525448abbb4a99982d813b6f8c163a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.687258482Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.692228317Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c62bf8e7d8a75574b706fb3e", "response_code": 200, "start_time": "1791120216.692", "duration_ms": 0, "traceparent": "00-c62bf8e7d8a75574b706fb3ee91573e3-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.691228390Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.693597078Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e60ea8691a14c86ea0101c1b", "response_code": 200, "start_time": "1791120216.693", "duration_ms": 0, "traceparent": "00-e60ea8691a14c86ea0101c1bddc4a782-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.692597151Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.988737106Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1cead898303875fefccb093e", "response_code": 200, "start_time": "1791120216.987", "duration_ms": 1, "traceparent": "00-1cead898303875fefccb093e0b28009c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.987737179Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:36.993792057Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b00f87da9aad452d1165128d", "response_code": 200, "start_time": "1791120216.993", "duration_ms": 0, "traceparent": "00-b00f87da9aad452d1165128d0534a06b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.992792130Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.995037079Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0f1392c085b12c56f275b7e6", "response_code": 200, "start_time": "1791120216.994", "duration_ms": 0, "traceparent": "00-0f1392c085b12c56f275b7e634358498-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.994037151Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:36.996175766Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c4469853633fbe5576aacb18", "response_code": 200, "start_time": "1791120216.996", "duration_ms": 0, "traceparent": "00-c4469853633fbe5576aacb18b09bf46f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:36.995175838Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:37.398868322Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e277f8a533810cd26c1227b7", "response_code": 200, "start_time": "1791120217.397", "duration_ms": 1, "traceparent": "00-e277f8a533810cd26c1227b7e7e93fd6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:37.397868395Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:37.406740904Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-951ef0ec09bf76e3d53378aa", "response_code": 200, "start_time": "1791120217.406", "duration_ms": 0, "traceparent": "00-951ef0ec09bf76e3d53378aa6c8ff349-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:37.405740976Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:37.408060789Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6e380a53a929f48a76791e87", "response_code": 200, "start_time": "1791120217.407", "duration_ms": 0, "traceparent": "00-6e380a53a929f48a76791e879823c1e6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:37.407060862Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:37.695303202Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-23aa34a70a6efdcae784565a", "response_code": 200, "start_time": "1791120217.694", "duration_ms": 1, "traceparent": "00-23aa34a70a6efdcae784565ac2ad8a8a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:37.694303274Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:37.699683189Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5bfc635bab6d6cc5ce3cfe34", "response_code": 200, "start_time": "1791120217.699", "duration_ms": 0, "traceparent": "00-5bfc635bab6d6cc5ce3cfe3416a1f3c6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:37.698683262Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:37.701004505Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-38ac5018521fbb667c92a0f6", "response_code": 200, "start_time": "1791120217.700", "duration_ms": 0, "traceparent": "00-38ac5018521fbb667c92a0f6529cc377-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:37.700004578Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:37.988653421Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e1061a88293693e313c2b4e0", "response_code": 200, "start_time": "1791120217.988", "duration_ms": 1, "traceparent": "00-e1061a88293693e313c2b4e07193dbfd-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:37.987653494Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:37.992524624Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-52bc9aea54b6e41637fe419e", "response_code": 200, "start_time": "1791120217.992", "duration_ms": 0, "traceparent": "00-52bc9aea54b6e41637fe419e98c09d62-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:37.991524696Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:37.993778229Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ccdd67bc9fe8680ffb4eb097", "response_code": 200, "start_time": "1791120217.993", "duration_ms": 0, "traceparent": "00-ccdd67bc9fe8680ffb4eb09721837e09-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:37.992778301Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:38.241853237Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-56f682af255ab79522619da8", "response_code": 200, "start_time": "1791120218.241", "duration_ms": 0, "traceparent": "00-56f682af255ab79522619da89b5c341b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.240853310Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:38.245790720Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6731ed679687dac6e0011152", "response_code": 200, "start_time": "1791120218.245", "duration_ms": 0, "traceparent": "00-6731ed679687dac6e00111525f45daaf-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.244790792Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:38.247248411Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e836049703820f4fb20443b0", "response_code": 200, "start_time": "1791120218.247", "duration_ms": 0, "traceparent": "00-e836049703820f4fb20443b0daf0d6cb-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.246248484Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:38.589951992Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f7ac714e2101933c17112ccc", "response_code": 200, "start_time": "1791120218.589", "duration_ms": 1, "traceparent": "00-f7ac714e2101933c17112ccc070417aa-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.588952065Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:38.594505787Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f8a3e413a2cf2e61ef008bab", "response_code": 200, "start_time": "1791120218.594", "duration_ms": 0, "traceparent": "00-f8a3e413a2cf2e61ef008bab58201fa0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.593505859Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:38.596339703Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f24c290f07662a516e14e186", "response_code": 200, "start_time": "1791120218.596", "duration_ms": 0, "traceparent": "00-f24c290f07662a516e14e1868a38634e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.595339775Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:38.598120928Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6d51711a6910667726454a5d", "response_code": 200, "start_time": "1791120218.598", "duration_ms": 0, "traceparent": "00-6d51711a6910667726454a5d0bb031b7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.597121000Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:38.988352060Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a73b81c0fe0f50c3f2db82b5", "response_code": 200, "start_time": "1791120218.987", "duration_ms": 1, "traceparent": "00-a73b81c0fe0f50c3f2db82b51c532f77-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.987352133Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:38.992943287Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-42ace68eee71c25232d40875", "response_code": 200, "start_time": "1791120218.992", "duration_ms": 0, "traceparent": "00-42ace68eee71c25232d408759269c8cb-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.991943359Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:38.994440794Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8ed8c8d60f0f661d74492bca", "response_code": 200, "start_time": "1791120218.994", "duration_ms": 0, "traceparent": "00-8ed8c8d60f0f661d74492bcab47f2c6b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.993440866Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:38.995938301Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c5c1dce8e0ce8b43d9bc421a", "response_code": 200, "start_time": "1791120218.995", "duration_ms": 0, "traceparent": "00-c5c1dce8e0ce8b43d9bc421af3bec737-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:38.994938374Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:39.387817144Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c4f6e89c0062f8a6824ca4e7", "response_code": 200, "start_time": "1791120219.387", "duration_ms": 0, "traceparent": "00-c4f6e89c0062f8a6824ca4e7e140b053-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:39.386817217Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:39.390874624Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-069e7da92c30db577f718ca0", "response_code": 200, "start_time": "1791120219.390", "duration_ms": 0, "traceparent": "00-069e7da92c30db577f718ca0b7ad497b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:39.389874697Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:39.392378330Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5ef8895a7036b0cb21679b02", "response_code": 200, "start_time": "1791120219.392", "duration_ms": 0, "traceparent": "00-5ef8895a7036b0cb21679b0203785d08-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:39.391378403Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:39.394968271Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a8a3f29a88e635f9a2d66b1e", "response_code": 200, "start_time": "1791120219.394", "duration_ms": 0, "traceparent": "00-a8a3f29a88e635f9a2d66b1e18464b55-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:39.393968344Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:39.927409649Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c6c8e0647d514a23b247759d", "response_code": 200, "start_time": "1791120219.926", "duration_ms": 1, "traceparent": "00-c6c8e0647d514a23b247759d9833152c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:39.926409721Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:40.091974735Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0cea9cb60d516921ea6f46a8", "response_code": 200, "start_time": "1791120220.091", "duration_ms": 0, "traceparent": "00-0cea9cb60d516921ea6f46a8a36301cb-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.090974808Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.094869614Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7e5bd9c8eb574bdc03e8dd53", "response_code": 200, "start_time": "1791120220.094", "duration_ms": 0, "traceparent": "00-7e5bd9c8eb574bdc03e8dd533cdc11ec-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.093869686Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.095772028Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7b985561d5512b47dc07c1ab", "response_code": 200, "start_time": "1791120220.095", "duration_ms": 0, "traceparent": "00-7b985561d5512b47dc07c1ab6d33bc60-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.094772100Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.127438307Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c6e576219f5a7894ae7da2a1", "response_code": 200, "start_time": "1791120220.127", "duration_ms": 0, "traceparent": "00-c6e576219f5a7894ae7da2a1e90a557f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.126438379Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.129335880Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9193a8cc335c7421d9df2a6e", "response_code": 200, "start_time": "1791120220.129", "duration_ms": 0, "traceparent": "00-9193a8cc335c7421d9df2a6ed879b5f5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.128335953Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.130853415Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-14ac13970a1193a8e12dc3f5", "response_code": 200, "start_time": "1791120220.130", "duration_ms": 0, "traceparent": "00-14ac13970a1193a8e12dc3f54b90a0b3-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.129853487Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.486755848Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-254b379796896541a6507826", "response_code": 200, "start_time": "1791120220.486", "duration_ms": 0, "traceparent": "00-254b379796896541a6507826fbf870a4-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.485755920Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.488569498Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c53810dadd84bea456df98c2", "response_code": 200, "start_time": "1791120220.488", "duration_ms": 0, "traceparent": "00-c53810dadd84bea456df98c2723942a3-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.487569571Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.489288330Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3a6b8eb190e43e9ae2118db5", "response_code": 200, "start_time": "1791120220.489", "duration_ms": 0, "traceparent": "00-3a6b8eb190e43e9ae2118db585599b27-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.488288403Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.490258455Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2140dac348e73e44992dea9b", "response_code": 200, "start_time": "1791120220.490", "duration_ms": 0, "traceparent": "00-2140dac348e73e44992dea9b71e120ff-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.489258528Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.657555819Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7081805e4de0624b54bdb76a", "response_code": 200, "start_time": "1791120220.657", "duration_ms": 0, "traceparent": "00-7081805e4de0624b54bdb76aa8e3cdb6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.656555891Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:40.987207174Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-713a22ddf01d88dcc70db7c9", "response_code": 200, "start_time": "1791120220.986", "duration_ms": 0, "traceparent": "00-713a22ddf01d88dcc70db7c926ef0ccc-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:40.986207247Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:42.398754597Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9e4e65566dc77e1bddd93fff", "response_code": 200, "start_time": "1791120222.398", "duration_ms": 0, "traceparent": "00-9e4e65566dc77e1bddd93fffac13ec4e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:42.397754669Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:43.693807125Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-163a0c2e139bd354d38b56f5", "response_code": 200, "start_time": "1791120223.693", "duration_ms": 1, "traceparent": "00-163a0c2e139bd354d38b56f557a839f8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:43.692807198Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:44.502008200Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e88fff5cdac794ffd09decd8", "response_code": 200, "start_time": "1791120224.500", "duration_ms": 1, "traceparent": "00-e88fff5cdac794ffd09decd8a4b2a4ac-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:44.501008272Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:45.634234667Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a84f2336cfdc0ae536df4f63", "response_code": 200, "start_time": "1791120225.632", "duration_ms": 1, "traceparent": "00-a84f2336cfdc0ae536df4f635f2bcfe8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:45.633234739Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:46.672095776Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d8403da943229f0d22190188", "response_code": 200, "start_time": "1791120226.670", "duration_ms": 2, "traceparent": "00-d8403da943229f0d221901889474fd9b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:46.671095848Z GET /api/products/66VCHSJNUP 200 in 2 ms
+frontendproxy-1  | 2026-10-04T13:23:47.457263470Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-002d37a7dca549226cf195d1", "response_code": 200, "start_time": "1791120227.456", "duration_ms": 1, "traceparent": "00-002d37a7dca549226cf195d1ab9cd7d1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:47.456263542Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:48.627690792Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7cca56b6e4545f13d9ccb91d", "response_code": 200, "start_time": "1791120228.627", "duration_ms": 1, "traceparent": "00-7cca56b6e4545f13d9ccb91d77cc3c19-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:48.626690865Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:49.808943272Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ed899057a0c607cc600277ee", "response_code": 200, "start_time": "1791120229.808", "duration_ms": 1, "traceparent": "00-ed899057a0c607cc600277ee75cb8aac-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:49.807943344Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:50.681419611Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8b3fa3374944b30d0f3a9d14", "response_code": 200, "start_time": "1791120230.681", "duration_ms": 0, "traceparent": "00-8b3fa3374944b30d0f3a9d14b69d256c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:50.680419683Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:51.567457199Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0b2e390e8013cb71dab2400e", "response_code": 200, "start_time": "1791120231.567", "duration_ms": 0, "traceparent": "00-0b2e390e8013cb71dab2400e6e2cb3b0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:51.566457272Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:52.552990913Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9a0ee9da84ad8c470ad38866", "response_code": 200, "start_time": "1791120232.552", "duration_ms": 0, "traceparent": "00-9a0ee9da84ad8c470ad3886684451e56-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:52.551990986Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:53.652702093Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-788a29007750e4aff00f2cce", "response_code": 200, "start_time": "1791120233.652", "duration_ms": 0, "traceparent": "00-788a29007750e4aff00f2ccec6704d12-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:53.651702166Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:54.646259546Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9442e7fee81dee6387b15c55", "response_code": 200, "start_time": "1791120234.645", "duration_ms": 1, "traceparent": "00-9442e7fee81dee6387b15c557f32fc08-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:54.645259619Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:55.535385847Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f9379df3d160b20b7fcf23be", "response_code": 200, "start_time": "1791120235.534", "duration_ms": 1, "traceparent": "00-f9379df3d160b20b7fcf23bec4b18087-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:55.534385920Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:56.672570944Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6867331daaf347db272ef2fd", "response_code": 200, "start_time": "1791120236.672", "duration_ms": 0, "traceparent": "00-6867331daaf347db272ef2fddf49396c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:56.671571016Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:57.526083231Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8c7908c13fbe9b34932c1fcc", "response_code": 200, "start_time": "1791120237.525", "duration_ms": 0, "traceparent": "00-8c7908c13fbe9b34932c1fcc01e02ff2-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:57.525083303Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:23:58.632838249Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6218d5db4bdfc0022d45ee05", "response_code": 200, "start_time": "1791120238.632", "duration_ms": 1, "traceparent": "00-6218d5db4bdfc0022d45ee052c8d92d9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:58.631838322Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:23:59.533512115Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-05545e4688fc490a227d0f6e", "response_code": 200, "start_time": "1791120239.532", "duration_ms": 1, "traceparent": "00-05545e4688fc490a227d0f6e8a67d056-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:23:59.532512188Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:00.627197027Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9144a6f1e35107da9be0516f", "response_code": 200, "start_time": "1791120240.626", "duration_ms": 0, "traceparent": "00-9144a6f1e35107da9be0516f5621a886-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:00.626197100Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:01.689375877Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-bca6dd89d2dfab103bb19be8", "response_code": 200, "start_time": "1791120241.689", "duration_ms": 0, "traceparent": "00-bca6dd89d2dfab103bb19be8dd649ae3-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:01.688375950Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:02.401605844Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ccc92c22ef9513a071ebfe33", "response_code": 200, "start_time": "1791120242.401", "duration_ms": 0, "traceparent": "00-ccc92c22ef9513a071ebfe33c2720a90-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:02.400605917Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:03.650618315Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-47c54871681ade6dfbef1242", "response_code": 200, "start_time": "1791120243.650", "duration_ms": 0, "traceparent": "00-47c54871681ade6dfbef12429dea7843-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:03.649618387Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:04.566339493Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-159ac5fdbc863e404b505320", "response_code": 200, "start_time": "1791120244.566", "duration_ms": 0, "traceparent": "00-159ac5fdbc863e404b505320ef3ea531-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:04.565339565Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:05.549485922Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-990a3e4c7feaa795d9baf629", "response_code": 200, "start_time": "1791120245.548", "duration_ms": 1, "traceparent": "00-990a3e4c7feaa795d9baf629bbc1ad3b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:05.548485994Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:06.596850872Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d1b434d9409c881532ccd3dc", "response_code": 200, "start_time": "1791120246.596", "duration_ms": 0, "traceparent": "00-d1b434d9409c881532ccd3dc98b121d6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:06.595850945Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:07.575031996Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-bd9cc27927965d674580e20a", "response_code": 200, "start_time": "1791120247.574", "duration_ms": 0, "traceparent": "00-bd9cc27927965d674580e20af56a38af-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:07.574032068Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:08.397772074Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6f190ad7064dba9766a0d5fb", "response_code": 200, "start_time": "1791120248.397", "duration_ms": 0, "traceparent": "00-6f190ad7064dba9766a0d5fb635a63ed-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:08.396772146Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:09.624935865Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b90a7d069b11ab325ceba5b1", "response_code": 200, "start_time": "1791120249.624", "duration_ms": 0, "traceparent": "00-b90a7d069b11ab325ceba5b14159a462-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:09.623935938Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:10.693802118Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9631f287bf1b85d0397a7e10", "response_code": 200, "start_time": "1791120250.692", "duration_ms": 1, "traceparent": "00-9631f287bf1b85d0397a7e10392b0c88-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:10.692802191Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:11.543298244Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c148c0a6690a8c4266b9b3ba", "response_code": 200, "start_time": "1791120251.542", "duration_ms": 1, "traceparent": "00-c148c0a6690a8c4266b9b3ba24477bb6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:11.542298317Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:12.560417175Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7f342a73b004a85dee54884e", "response_code": 200, "start_time": "1791120252.559", "duration_ms": 1, "traceparent": "00-7f342a73b004a85dee54884ee850b532-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:12.559417248Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:13.641734600Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0d0b030dc3a5ac062e2d7238", "response_code": 200, "start_time": "1791120253.641", "duration_ms": 1, "traceparent": "00-0d0b030dc3a5ac062e2d7238f5f1f7d3-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:13.640734673Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:14.626879692Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6f1d809dcaf0832a867dfd78", "response_code": 200, "start_time": "1791120254.626", "duration_ms": 1, "traceparent": "00-6f1d809dcaf0832a867dfd785fad8e61-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:14.625879765Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:15.657805920Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c263812e4101be182ac0ce5b", "response_code": 200, "start_time": "1791120255.657", "duration_ms": 1, "traceparent": "00-c263812e4101be182ac0ce5baa9bf6a8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:15.656805992Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:16.536995888Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-46faccf7dc5b797143955e6c", "response_code": 200, "start_time": "1791120256.536", "duration_ms": 1, "traceparent": "00-46faccf7dc5b797143955e6c96d6fa7c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:16.535995960Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:17.683499575Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5e6a7203b44f0701a424d29e", "response_code": 200, "start_time": "1791120257.681", "duration_ms": 2, "traceparent": "00-5e6a7203b44f0701a424d29ed9bc5b92-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:17.682499647Z GET /api/products/66VCHSJNUP 200 in 2 ms
+frontendproxy-1  | 2026-10-04T13:24:18.669022083Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-591456b941757f2235f3da88", "response_code": 200, "start_time": "1791120258.667", "duration_ms": 1, "traceparent": "00-591456b941757f2235f3da8840218884-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:18.668022156Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:19.442625761Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f8895392eb1fd0356ce8267e", "response_code": 200, "start_time": "1791120259.441", "duration_ms": 2, "traceparent": "00-f8895392eb1fd0356ce8267e0043f8f6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:19.441625834Z GET /api/products/66VCHSJNUP 200 in 2 ms
+frontendproxy-1  | 2026-10-04T13:24:20.605985880Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e949d5720ad6ed3169ad731c", "response_code": 200, "start_time": "1791120260.605", "duration_ms": 1, "traceparent": "00-e949d5720ad6ed3169ad731cd20d7d8f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:20.604985952Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:21.580933332Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3b778273f4ee383d7c2b4bf7", "response_code": 200, "start_time": "1791120261.580", "duration_ms": 0, "traceparent": "00-3b778273f4ee383d7c2b4bf75a28a933-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:21.579933405Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:22.542097092Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5e967c985d8a5363778e0ef8", "response_code": 200, "start_time": "1791120262.541", "duration_ms": 0, "traceparent": "00-5e967c985d8a5363778e0ef81a7b3efe-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:22.541097164Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:23.523468256Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2746b1c8c59e8c7cf068ff04", "response_code": 200, "start_time": "1791120263.523", "duration_ms": 0, "traceparent": "00-2746b1c8c59e8c7cf068ff04996ad406-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:23.522468328Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:24.582308292Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-904640ce3f74f4857f95adf5", "response_code": 200, "start_time": "1791120264.581", "duration_ms": 1, "traceparent": "00-904640ce3f74f4857f95adf567499aad-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:24.581308365Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:25.575120926Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b3a774671b9cefdc148e1110", "response_code": 200, "start_time": "1791120265.574", "duration_ms": 1, "traceparent": "00-b3a774671b9cefdc148e1110a34c840e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:25.574120998Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:26.501069546Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-591447f3b4d5c7555816eea3", "response_code": 200, "start_time": "1791120266.500", "duration_ms": 1, "traceparent": "00-591447f3b4d5c7555816eea3f826b4da-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:26.500069618Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:27.570913315Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-78624d42b3e4ab0f7183d74c", "response_code": 200, "start_time": "1791120267.570", "duration_ms": 1, "traceparent": "00-78624d42b3e4ab0f7183d74cb5bfbeda-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:27.569913387Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:28.439437151Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-0651ed75c77ca982602203fc", "response_code": 200, "start_time": "1791120268.439", "duration_ms": 0, "traceparent": "00-0651ed75c77ca982602203fcb9e18098-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:28.438437223Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:29.693189621Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e0d253778806b8b5f107c19a", "response_code": 200, "start_time": "1791120269.692", "duration_ms": 0, "traceparent": "00-e0d253778806b8b5f107c19a6cbba4b2-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:29.692189693Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:30.474452019Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7b88169779a591d1a902cf49", "response_code": 200, "start_time": "1791120270.474", "duration_ms": 0, "traceparent": "00-7b88169779a591d1a902cf49852b2d29-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:30.473452091Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:31.692998409Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5bf8d7715787de30e2ab2b06", "response_code": 200, "start_time": "1791120271.692", "duration_ms": 0, "traceparent": "00-5bf8d7715787de30e2ab2b06c534abe6-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:31.691998482Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:32.494849682Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7d897548cd5055519d1336aa", "response_code": 200, "start_time": "1791120272.493", "duration_ms": 1, "traceparent": "00-7d897548cd5055519d1336aa1c0cdb2e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:32.493849754Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:33.500267029Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-de62155b859f2ff8e39338e2", "response_code": 200, "start_time": "1791120273.499", "duration_ms": 1, "traceparent": "00-de62155b859f2ff8e39338e268224a33-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:33.499267101Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:34.410278320Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f51dd84fc4bc1376c22bf2b5", "response_code": 200, "start_time": "1791120274.410", "duration_ms": 0, "traceparent": "00-f51dd84fc4bc1376c22bf2b5372589f5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:34.409278393Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:35.485718250Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8c2cd472a14f345a1570ff13", "response_code": 200, "start_time": "1791120275.484", "duration_ms": 1, "traceparent": "00-8c2cd472a14f345a1570ff13e6887f1d-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:35.484718323Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:36.575368404Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-31991b85c5a108e1871331ab", "response_code": 200, "start_time": "1791120276.574", "duration_ms": 0, "traceparent": "00-31991b85c5a108e1871331ab385c539f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:36.574368477Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:37.697533369Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-777d4c1d2898d2b14824b154", "response_code": 200, "start_time": "1791120277.696", "duration_ms": 1, "traceparent": "00-777d4c1d2898d2b14824b154f33ed578-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:37.696533442Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:38.840271950Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c508f5a26941b1f06949e59a", "response_code": 200, "start_time": "1791120278.839", "duration_ms": 1, "traceparent": "00-c508f5a26941b1f06949e59a16ed1340-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:38.839272022Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:39.396774530Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-76bc6ab9904543b41010aed5", "response_code": 200, "start_time": "1791120279.396", "duration_ms": 0, "traceparent": "00-76bc6ab9904543b41010aed5c233f4f8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:39.395774603Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:40.694177151Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f138a17680d665ca8d9dcddb", "response_code": 200, "start_time": "1791120280.693", "duration_ms": 0, "traceparent": "00-f138a17680d665ca8d9dcddb339d43d8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:40.693177223Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:41.435243368Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-67af98fb14c09a916d9b7d52", "response_code": 200, "start_time": "1791120281.434", "duration_ms": 1, "traceparent": "00-67af98fb14c09a916d9b7d52d98f9e25-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:41.434243441Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:42.693760872Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b413b73fd70ae50ef5431144", "response_code": 200, "start_time": "1791120282.693", "duration_ms": 0, "traceparent": "00-b413b73fd70ae50ef5431144cfce3df9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:42.692760944Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:24:43.696062088Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c6c23944b44348a59a9dfa1a", "response_code": 200, "start_time": "1791120283.695", "duration_ms": 1, "traceparent": "00-c6c23944b44348a59a9dfa1ab50e632e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:43.695062160Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:44.696007013Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2deb2db41e40083e59438012", "response_code": 200, "start_time": "1791120284.694", "duration_ms": 1, "traceparent": "00-2deb2db41e40083e5943801241324aed-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:24:44.695007086Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:24:50.108728409Z {"obsplacement_kind": "application-request-witness", "request_token": "readiness-not-scored", "response_code": 504, "start_time": "1791120285.009", "duration_ms": 5099}
+frontendproxy-1  | 2026-10-04T13:25:00.762452126Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7433f1c372eeac4aed5ef2f0", "response_code": 504, "start_time": "1791120285.696", "duration_ms": 15066, "traceparent": "00-7433f1c372eeac4aed5ef2f0e254268f-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:01.912149429Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-cbe68923becc895d2796b09f", "response_code": 504, "start_time": "1791120286.694", "duration_ms": 15218, "traceparent": "00-cbe68923becc895d2796b09f20b8c84c-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:02.881541967Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-aeefbb617ca087e61618b614", "response_code": 504, "start_time": "1791120287.694", "duration_ms": 15187, "traceparent": "00-aeefbb617ca087e61618b614b104a75d-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:03.961520910Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-331a86be9ffee407a36cbef6", "response_code": 504, "start_time": "1791120288.694", "duration_ms": 15267, "traceparent": "00-331a86be9ffee407a36cbef61a7c3730-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:04.793320894Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e0f973bfe0ed0c092a28ed2c", "response_code": 504, "start_time": "1791120289.499", "duration_ms": 15294, "traceparent": "00-e0f973bfe0ed0c092a28ed2c0ff28b47-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:05.985447168Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a28c2af15965856d786b5155", "response_code": 504, "start_time": "1791120290.695", "duration_ms": 15290, "traceparent": "00-a28c2af15965856d786b515545bacf0d-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:06.920559406Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9115d8e7bde851fef36959b4", "response_code": 504, "start_time": "1791120291.670", "duration_ms": 15250, "traceparent": "00-9115d8e7bde851fef36959b43d2edbbe-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:07.971269608Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f576e1c711bae471c4b0b174", "response_code": 504, "start_time": "1791120292.692", "duration_ms": 15278, "traceparent": "00-f576e1c711bae471c4b0b1747d4307ef-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:08.836233377Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4eef5731d5b1a8a2ad2a663a", "response_code": 504, "start_time": "1791120293.533", "duration_ms": 15303, "traceparent": "00-4eef5731d5b1a8a2ad2a663ae7fa300c-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:09.911957026Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-df5edac0b6c634002c08d275", "response_code": 504, "start_time": "1791120294.679", "duration_ms": 15233, "traceparent": "00-df5edac0b6c634002c08d27584577057-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:10.932343245Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-05dc7efac36775116676b742", "response_code": 504, "start_time": "1791120295.694", "duration_ms": 15238, "traceparent": "00-05dc7efac36775116676b7421cdc6810-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:11.937904596Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d811893e6d7d023c1b76ed2b", "response_code": 504, "start_time": "1791120296.694", "duration_ms": 15243, "traceparent": "00-d811893e6d7d023c1b76ed2bceb1febf-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:12.840712070Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d1e30748243f9c5efb913e52", "response_code": 504, "start_time": "1791120297.536", "duration_ms": 15305, "traceparent": "00-d1e30748243f9c5efb913e52b2faafe8-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:13.485554695Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3e15e6a745f536eef6292bec", "response_code": 504, "start_time": "1791120298.482", "duration_ms": 15003, "traceparent": "00-3e15e6a745f536eef6292bec00e943b6-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:14.731042147Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-92c82d7b0c3657dbf223d3f4", "response_code": 504, "start_time": "1791120299.693", "duration_ms": 15037, "traceparent": "00-92c82d7b0c3657dbf223d3f413c2f042-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:16.017897129Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-63c4cb26835c137f20666ba5", "response_code": 504, "start_time": "1791120300.745", "duration_ms": 15272, "traceparent": "00-63c4cb26835c137f20666ba51ff01be3-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:16.689318419Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-305fe34cb3ef546b3150975f", "response_code": 504, "start_time": "1791120301.500", "duration_ms": 15189, "traceparent": "00-305fe34cb3ef546b3150975fc8e64908-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:17.748680830Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a425b499a37374472adfcfa5", "response_code": 504, "start_time": "1791120302.457", "duration_ms": 15291, "traceparent": "00-a425b499a37374472adfcfa5180dafa7-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:19.001168251Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3abb23162743118f06a995c5", "response_code": 504, "start_time": "1791120303.694", "duration_ms": 15307, "traceparent": "00-3abb23162743118f06a995c55ce3a8f9-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:19.914533377Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-99eafcc2d1cc5f73e5dd49f8", "response_code": 504, "start_time": "1791120304.611", "duration_ms": 15303, "traceparent": "00-99eafcc2d1cc5f73e5dd49f80d24decb-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:20.898662090Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e784914887bc0f5ce59550ce", "response_code": 504, "start_time": "1791120305.694", "duration_ms": 15204, "traceparent": "00-e784914887bc0f5ce59550ce919d6bc0-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:21.844370842Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f54cb0fb119b37387e08aeae", "response_code": 504, "start_time": "1791120306.695", "duration_ms": 15149, "traceparent": "00-f54cb0fb119b37387e08aeae2196565a-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:22.891128302Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f168f682972c9df675f0f300", "response_code": 504, "start_time": "1791120307.589", "duration_ms": 15302, "traceparent": "00-f168f682972c9df675f0f300ed5ca9f4-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:23.922045946Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1f7325f95480cd7a6fd583b3", "response_code": 504, "start_time": "1791120308.695", "duration_ms": 15227, "traceparent": "00-1f7325f95480cd7a6fd583b308f931ad-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:24.833017111Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1087af85ac35d7cb5cbf82ba", "response_code": 504, "start_time": "1791120309.694", "duration_ms": 15139, "traceparent": "00-1087af85ac35d7cb5cbf82ba92b64536-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:25.848772049Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e28154826d5df1c9458e7ffb", "response_code": 504, "start_time": "1791120310.706", "duration_ms": 15143, "traceparent": "00-e28154826d5df1c9458e7ffbf70270c6-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:26.593480825Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5d679ff3b37928a95dd4735a", "response_code": 504, "start_time": "1791120311.443", "duration_ms": 15150, "traceparent": "00-5d679ff3b37928a95dd4735a26dc8b8a-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:27.865918398Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-cc2643431284357f2f9b236a", "response_code": 504, "start_time": "1791120312.698", "duration_ms": 15167, "traceparent": "00-cc2643431284357f2f9b236aaa38dc74-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:28.705485821Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d923d9c62d1fd06f414132f8", "response_code": 504, "start_time": "1791120313.403", "duration_ms": 15302, "traceparent": "00-d923d9c62d1fd06f414132f81556065b-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:29.717818260Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b4e6e4e3e4aeb3148726458f", "response_code": 504, "start_time": "1791120314.421", "duration_ms": 15296, "traceparent": "00-b4e6e4e3e4aeb3148726458ff3aff8ec-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:30.814712048Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6eb97a3963f054882f85373d", "response_code": 504, "start_time": "1791120315.694", "duration_ms": 15120, "traceparent": "00-6eb97a3963f054882f85373df9e7314b-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:31.769540787Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-06d4a74fb4125d2f8c07e1d8", "response_code": 504, "start_time": "1791120316.466", "duration_ms": 15303, "traceparent": "00-06d4a74fb4125d2f8c07e1d881d242c6-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:32.794668436Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b218ade8a4224add983b6987", "response_code": 504, "start_time": "1791120317.695", "duration_ms": 15099, "traceparent": "00-b218ade8a4224add983b698702f1234b-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:33.817790747Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-21f20aa8c1bc4a5279a6f353", "response_code": 504, "start_time": "1791120318.697", "duration_ms": 15120, "traceparent": "00-21f20aa8c1bc4a5279a6f35323cda321-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:34.855098248Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7be4201563ae8599428dfe6d", "response_code": 504, "start_time": "1791120319.598", "duration_ms": 15256, "traceparent": "00-7be4201563ae8599428dfe6d4f479c31-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:35.817789555Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-429da74c83bb2a0c808a4c46", "response_code": 504, "start_time": "1791120320.699", "duration_ms": 15118, "traceparent": "00-429da74c83bb2a0c808a4c46256bccbe-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:37.017189503Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f1b9dbc378e5b90c2f3d1b59", "response_code": 504, "start_time": "1791120321.693", "duration_ms": 15323, "traceparent": "00-f1b9dbc378e5b90c2f3d1b599bf3b0f7-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:37.913504601Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7fac4f4458afca40293ff275", "response_code": 504, "start_time": "1791120322.612", "duration_ms": 15301, "traceparent": "00-7fac4f4458afca40293ff275cfd138c4-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:38.661353350Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e44034401ea477a6336e6cad", "response_code": 504, "start_time": "1791120323.565", "duration_ms": 15096, "traceparent": "00-e44034401ea477a6336e6cada495f6df-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:39.772735834Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f9f57122dd00db800351764b", "response_code": 504, "start_time": "1791120324.629", "duration_ms": 15144, "traceparent": "00-f9f57122dd00db800351764bc369c2d1-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:41.154083252Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-42c5ef425d8f961bd0063e8c", "response_code": 504, "start_time": "1791120325.847", "duration_ms": 15307, "traceparent": "00-42c5ef425d8f961bd0063e8c95b05874-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:41.653179407Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-40b199f34c6cbb4221f30432", "response_code": 504, "start_time": "1791120326.399", "duration_ms": 15254, "traceparent": "00-40b199f34c6cbb4221f30432f998870f-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:42.868269444Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-12160a94d25419ba3c198c18", "response_code": 504, "start_time": "1791120327.693", "duration_ms": 15175, "traceparent": "00-12160a94d25419ba3c198c18b4808397-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:43.954224586Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2923af1a9fc40451845ccf3a", "response_code": 504, "start_time": "1791120328.693", "duration_ms": 15261, "traceparent": "00-2923af1a9fc40451845ccf3ae2c56b81-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:44.925039530Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f505243487597eb83060ab98", "response_code": 504, "start_time": "1791120329.693", "duration_ms": 15232, "traceparent": "00-f505243487597eb83060ab9836c133f4-aaaaaaaaaaaaaaaa-01"}
+frontendproxy-1  | 2026-10-04T13:25:45.078057051Z {"obsplacement_kind": "application-request-witness", "request_token": "readiness-not-scored", "response_code": 200, "start_time": "1791120345.077", "duration_ms": 0}
+frontend-1  | 2026-10-04T13:25:45.077057123Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:25:45.087187052Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-e702f0ea695f0180cf6a3041", "response_code": 200, "start_time": "1791120330.577", "duration_ms": 14510, "traceparent": "00-e702f0ea695f0180cf6a3041428cdde5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.086187124Z GET /api/products/66VCHSJNUP 200 in 14510 ms
+frontendproxy-1  | 2026-10-04T13:25:45.089978218Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-50c33045b4637033928ac52c", "response_code": 200, "start_time": "1791120332.536", "duration_ms": 12553, "traceparent": "00-50c33045b4637033928ac52c73ddf4d4-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.088978291Z GET /api/products/66VCHSJNUP 200 in 12553 ms
+frontendproxy-1  | 2026-10-04T13:25:45.090744495Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8a269a77e7be8ec0a1b7ab98", "response_code": 200, "start_time": "1791120333.693", "duration_ms": 11397, "traceparent": "00-8a269a77e7be8ec0a1b7ab98a8a6862b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.089744568Z GET /api/products/66VCHSJNUP 200 in 11397 ms
+frontendproxy-1  | 2026-10-04T13:25:45.091526985Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-11a16014bbfd9d9755745524", "response_code": 200, "start_time": "1791120334.692", "duration_ms": 10399, "traceparent": "00-11a16014bbfd9d975574552454357c88-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.090527058Z GET /api/products/66VCHSJNUP 200 in 10399 ms
+frontendproxy-1  | 2026-10-04T13:25:45.092415810Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b54d65f5043f8ed8276a96e2", "response_code": 200, "start_time": "1791120335.622", "duration_ms": 9470, "traceparent": "00-b54d65f5043f8ed8276a96e20d4bd2fb-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.091415882Z GET /api/products/66VCHSJNUP 200 in 9470 ms
+frontendproxy-1  | 2026-10-04T13:25:45.093169689Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-2ec85fd0a2c5e7a794ef6c89", "response_code": 200, "start_time": "1791120336.559", "duration_ms": 8534, "traceparent": "00-2ec85fd0a2c5e7a794ef6c8995a936b7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.092169762Z GET /api/products/66VCHSJNUP 200 in 8534 ms
+frontendproxy-1  | 2026-10-04T13:25:45.093814611Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ad89e6783959d8261cd25dff", "response_code": 200, "start_time": "1791120337.692", "duration_ms": 7401, "traceparent": "00-ad89e6783959d8261cd25dff4885eac0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.092814684Z GET /api/products/66VCHSJNUP 200 in 7401 ms
+frontendproxy-1  | 2026-10-04T13:25:45.094679594Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d047b0efd7e4307e74e6c398", "response_code": 200, "start_time": "1791120338.606", "duration_ms": 6488, "traceparent": "00-d047b0efd7e4307e74e6c398b83e5c4e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.093679667Z GET /api/products/66VCHSJNUP 200 in 6488 ms
+frontendproxy-1  | 2026-10-04T13:25:45.095462084Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d162176eadd60295026efcb1", "response_code": 200, "start_time": "1791120339.559", "duration_ms": 5536, "traceparent": "00-d162176eadd60295026efcb14f8bee36-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.094462156Z GET /api/products/66VCHSJNUP 200 in 5536 ms
+frontendproxy-1  | 2026-10-04T13:25:45.096195936Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8958d106b6101f75edbd3d41", "response_code": 200, "start_time": "1791120340.695", "duration_ms": 4401, "traceparent": "00-8958d106b6101f75edbd3d417e88d3f3-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.095196009Z GET /api/products/66VCHSJNUP 200 in 4401 ms
+frontendproxy-1  | 2026-10-04T13:25:45.096819401Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-32269e94167880bf9417a6c7", "response_code": 200, "start_time": "1791120341.687", "duration_ms": 3409, "traceparent": "00-32269e94167880bf9417a6c7992eed3b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.095819473Z GET /api/products/66VCHSJNUP 200 in 3409 ms
+frontendproxy-1  | 2026-10-04T13:25:45.097479582Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b4b6cfcb7a97c812762694a2", "response_code": 200, "start_time": "1791120342.694", "duration_ms": 2403, "traceparent": "00-b4b6cfcb7a97c812762694a251ce0879-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.096479654Z GET /api/products/66VCHSJNUP 200 in 2403 ms
+frontendproxy-1  | 2026-10-04T13:25:45.098167181Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-066fef1c3576e12249a9177c", "response_code": 200, "start_time": "1791120343.692", "duration_ms": 1405, "traceparent": "00-066fef1c3576e12249a9177ca3d3f51e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.097167253Z GET /api/products/66VCHSJNUP 200 in 1405 ms
+frontendproxy-1  | 2026-10-04T13:25:45.098874569Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-46eb09f4e4061255593a1ec2", "response_code": 200, "start_time": "1791120344.692", "duration_ms": 406, "traceparent": "00-46eb09f4e4061255593a1ec299ff79ce-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.097874641Z GET /api/products/66VCHSJNUP 200 in 406 ms
+frontendproxy-1  | 2026-10-04T13:25:45.099498272Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6e426a5771b3ce625af2539d", "response_code": 200, "start_time": "1791120331.695", "duration_ms": 13404, "traceparent": "00-6e426a5771b3ce625af2539d9bf0c2a5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.098498344Z GET /api/products/66VCHSJNUP 200 in 13404 ms
+frontendproxy-1  | 2026-10-04T13:25:45.693260908Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-fed0bed23aef97b3962a49c8", "response_code": 200, "start_time": "1791120345.692", "duration_ms": 0, "traceparent": "00-fed0bed23aef97b3962a49c826acdb91-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:45.692260981Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:25:46.699257135Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-c665ae9566bd217456135845", "response_code": 200, "start_time": "1791120346.698", "duration_ms": 0, "traceparent": "00-c665ae9566bd2174561358455a8248d1-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:46.698257208Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:25:47.694952011Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1c5e38f51ea1bdf5eeaf98e3", "response_code": 200, "start_time": "1791120347.694", "duration_ms": 1, "traceparent": "00-1c5e38f51ea1bdf5eeaf98e3012ab563-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:47.693952084Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:25:48.695820808Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-91df6ec684e82551e24dea42", "response_code": 200, "start_time": "1791120348.694", "duration_ms": 1, "traceparent": "00-91df6ec684e82551e24dea427ef8cc53-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:48.694820881Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:25:49.700203419Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9a7925766b0101e619201204", "response_code": 200, "start_time": "1791120349.699", "duration_ms": 1, "traceparent": "00-9a7925766b0101e619201204d3dea8e7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:49.699203491Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:25:50.531913280Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-8e3f74ecd6a7c641d654300f", "response_code": 200, "start_time": "1791120350.531", "duration_ms": 0, "traceparent": "00-8e3f74ecd6a7c641d654300f301fefcc-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:50.530913353Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:25:51.693975925Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1ea1ee54cc91e5462a0ffa60", "response_code": 200, "start_time": "1791120351.693", "duration_ms": 0, "traceparent": "00-1ea1ee54cc91e5462a0ffa60f358753c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:51.692975998Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:25:52.693489552Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-44de071bf1cd7d3301de75a8", "response_code": 200, "start_time": "1791120352.693", "duration_ms": 0, "traceparent": "00-44de071bf1cd7d3301de75a815f6a623-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:52.692489624Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:25:53.569269419Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f82e1465c3aa46f4e1ac3acc", "response_code": 200, "start_time": "1791120353.568", "duration_ms": 0, "traceparent": "00-f82e1465c3aa46f4e1ac3acc5103df4a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:53.568269491Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:25:54.695233345Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9579be57ba44f58009c15033", "response_code": 200, "start_time": "1791120354.694", "duration_ms": 1, "traceparent": "00-9579be57ba44f58009c15033c276f67f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:54.694233418Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:25:55.695138216Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-65e29c3132cf73df4e922cb3", "response_code": 200, "start_time": "1791120355.694", "duration_ms": 1, "traceparent": "00-65e29c3132cf73df4e922cb36b69a240-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:55.694138288Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:25:56.612090826Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-48d6d3b93e44e7d767ae32cc", "response_code": 200, "start_time": "1791120356.610", "duration_ms": 1, "traceparent": "00-48d6d3b93e44e7d767ae32cc464fed05-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:56.611090899Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:25:57.659189463Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3b77d363ec8fdbd5f2fdec04", "response_code": 200, "start_time": "1791120357.657", "duration_ms": 2, "traceparent": "00-3b77d363ec8fdbd5f2fdec04fd69f7ef-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:57.658189535Z GET /api/products/66VCHSJNUP 200 in 2 ms
+frontendproxy-1  | 2026-10-04T13:25:58.728273153Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-ed98cda95c79a59ad64cf492", "response_code": 200, "start_time": "1791120358.727", "duration_ms": 1, "traceparent": "00-ed98cda95c79a59ad64cf49231fad5de-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:58.727273226Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:25:59.695845842Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-84539bdd186d00fa627b041d", "response_code": 200, "start_time": "1791120359.694", "duration_ms": 1, "traceparent": "00-84539bdd186d00fa627b041db5a7e7e2-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:25:59.694845915Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:00.602837086Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f08b5c9c8d54d8581183b0c8", "response_code": 200, "start_time": "1791120360.601", "duration_ms": 1, "traceparent": "00-f08b5c9c8d54d8581183b0c8f5344025-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:00.601837158Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:01.722875834Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-138dd2fd03660bad592c75c0", "response_code": 200, "start_time": "1791120361.721", "duration_ms": 1, "traceparent": "00-138dd2fd03660bad592c75c0169d3948-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:01.721875906Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:02.521892071Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-6a7d5d955fa7fce0d229008e", "response_code": 200, "start_time": "1791120362.521", "duration_ms": 1, "traceparent": "00-6a7d5d955fa7fce0d229008e5cdf79f9-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:02.520892143Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:03.590409517Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-080947d5f7faa5a2ce907cab", "response_code": 200, "start_time": "1791120363.589", "duration_ms": 1, "traceparent": "00-080947d5f7faa5a2ce907cab05283410-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:03.589409590Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:04.547544479Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1c6142a29372611c167fe175", "response_code": 200, "start_time": "1791120364.547", "duration_ms": 0, "traceparent": "00-1c6142a29372611c167fe175ce3d6404-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:04.546544552Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:05.687488317Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7d372db7286a6750eb5bd036", "response_code": 200, "start_time": "1791120365.683", "duration_ms": 4, "traceparent": "00-7d372db7286a6750eb5bd036fed24897-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:05.686488390Z GET /api/products/66VCHSJNUP 200 in 4 ms
+frontendproxy-1  | 2026-10-04T13:26:06.695629597Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d1e323ba5b02622529750e0f", "response_code": 200, "start_time": "1791120366.694", "duration_ms": 1, "traceparent": "00-d1e323ba5b02622529750e0f2f5bdfe0-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:06.694629669Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:07.695760727Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-bbebbd6313a7a28d8da3751d", "response_code": 200, "start_time": "1791120367.694", "duration_ms": 1, "traceparent": "00-bbebbd6313a7a28d8da3751dbacf8df7-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:07.694760799Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:08.640156984Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-9afe52389912b3c4271e5c0d", "response_code": 200, "start_time": "1791120368.639", "duration_ms": 1, "traceparent": "00-9afe52389912b3c4271e5c0d88c0e076-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:08.639157057Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:09.695179701Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-faf097236f6effa7da98c0c1", "response_code": 200, "start_time": "1791120369.694", "duration_ms": 1, "traceparent": "00-faf097236f6effa7da98c0c16e277857-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:09.694179773Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:10.695565939Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-517eab6e7fb7d84c7b7c344e", "response_code": 200, "start_time": "1791120370.694", "duration_ms": 1, "traceparent": "00-517eab6e7fb7d84c7b7c344e076036ca-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:10.694566011Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:11.694263220Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-aabea4c6858708bdbf6c6772", "response_code": 200, "start_time": "1791120371.693", "duration_ms": 1, "traceparent": "00-aabea4c6858708bdbf6c6772068a73d5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:11.693263292Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:12.612867117Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5575438d13c99885c345d1dd", "response_code": 200, "start_time": "1791120372.612", "duration_ms": 0, "traceparent": "00-5575438d13c99885c345d1dde398dabd-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:12.611867189Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:13.549629450Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-20e432f9223b176388660ae2", "response_code": 200, "start_time": "1791120373.549", "duration_ms": 0, "traceparent": "00-20e432f9223b176388660ae243278e38-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:13.548629522Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:14.694393158Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-868982c71787e3642d6abd03", "response_code": 200, "start_time": "1791120374.693", "duration_ms": 1, "traceparent": "00-868982c71787e3642d6abd0373f83078-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:14.693393230Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:15.693960905Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-bb420d581e97e09d930d142f", "response_code": 200, "start_time": "1791120375.693", "duration_ms": 1, "traceparent": "00-bb420d581e97e09d930d142f60ade183-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:15.692960978Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:16.695402145Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-7f5c279df7d331b8327c5f03", "response_code": 200, "start_time": "1791120376.694", "duration_ms": 1, "traceparent": "00-7f5c279df7d331b8327c5f03ad27d78c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:16.694402218Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:17.695582151Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-fe05cd1d0fda322c620adbd1", "response_code": 200, "start_time": "1791120377.694", "duration_ms": 1, "traceparent": "00-fe05cd1d0fda322c620adbd1e4e5e589-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:17.694582224Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:18.696367025Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-cad4b969d2b2f5117b7881ac", "response_code": 200, "start_time": "1791120378.695", "duration_ms": 1, "traceparent": "00-cad4b969d2b2f5117b7881ac24008628-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:18.695367098Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:19.699363232Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b64e532d7c7278e9266782b2", "response_code": 200, "start_time": "1791120379.698", "duration_ms": 1, "traceparent": "00-b64e532d7c7278e9266782b2b9a4eb22-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:19.698363304Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:20.695484638Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-588e6d3265425d693cd649e0", "response_code": 200, "start_time": "1791120380.694", "duration_ms": 1, "traceparent": "00-588e6d3265425d693cd649e06ced5f7a-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:20.694484711Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:21.521528244Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5a86438185d866d28191aedd", "response_code": 200, "start_time": "1791120381.521", "duration_ms": 0, "traceparent": "00-5a86438185d866d28191aedd2321a831-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:21.520528316Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:22.693803310Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-d82bb57e75790cfd354fc5c2", "response_code": 200, "start_time": "1791120382.693", "duration_ms": 0, "traceparent": "00-d82bb57e75790cfd354fc5c21341ab71-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:22.692803383Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:23.692948341Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-721deb1482a44378591a3e1a", "response_code": 200, "start_time": "1791120383.692", "duration_ms": 0, "traceparent": "00-721deb1482a44378591a3e1a673eb1df-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:23.691948414Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:24.631409645Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-16cf230b123011fa19358567", "response_code": 200, "start_time": "1791120384.630", "duration_ms": 1, "traceparent": "00-16cf230b123011fa19358567c313702b-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:24.630409718Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:25.705101967Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-1ef3525601597f2743f14360", "response_code": 200, "start_time": "1791120385.703", "duration_ms": 2, "traceparent": "00-1ef3525601597f2743f14360cba15f6c-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:25.704102039Z GET /api/products/66VCHSJNUP 200 in 2 ms
+frontendproxy-1  | 2026-10-04T13:26:26.693297148Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-a3b9d0ede66de55b176d9741", "response_code": 200, "start_time": "1791120386.693", "duration_ms": 0, "traceparent": "00-a3b9d0ede66de55b176d9741ea1f68f2-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:26.692297220Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:27.692792177Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-38f1753ca24b03c43709f49c", "response_code": 200, "start_time": "1791120387.692", "duration_ms": 0, "traceparent": "00-38f1753ca24b03c43709f49c158c9da5-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:27.691792250Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:28.692779541Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4c253622637ba6ffd9b404cf", "response_code": 200, "start_time": "1791120388.692", "duration_ms": 0, "traceparent": "00-4c253622637ba6ffd9b404cf24235103-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:28.691779613Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:29.692959547Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-4d99115168852c976354510c", "response_code": 200, "start_time": "1791120389.692", "duration_ms": 0, "traceparent": "00-4d99115168852c976354510cc6fc6eca-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:29.691959620Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:30.688195944Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-5096288b18de4b68cb33ac7f", "response_code": 200, "start_time": "1791120390.687", "duration_ms": 0, "traceparent": "00-5096288b18de4b68cb33ac7fd760e2de-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:30.687196016Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:31.693997145Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f5e8b943b39412644ad76629", "response_code": 200, "start_time": "1791120391.693", "duration_ms": 1, "traceparent": "00-f5e8b943b39412644ad7662954607857-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:31.692997217Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:32.693202019Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-031a3e19323d43351a551eb9", "response_code": 200, "start_time": "1791120392.692", "duration_ms": 0, "traceparent": "00-031a3e19323d43351a551eb9952b9a6e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:32.692202091Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:33.581084490Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-3f2b5791092f52b939c47c4c", "response_code": 200, "start_time": "1791120393.580", "duration_ms": 0, "traceparent": "00-3f2b5791092f52b939c47c4cc97ba475-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:33.580084562Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:34.609453201Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-f68137d57062b56bd70f7991", "response_code": 200, "start_time": "1791120394.609", "duration_ms": 0, "traceparent": "00-f68137d57062b56bd70f79911e4b55b8-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:34.608453274Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:35.693634510Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-263cec7f6e3913328d8faf17", "response_code": 200, "start_time": "1791120395.693", "duration_ms": 0, "traceparent": "00-263cec7f6e3913328d8faf172293ca02-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:35.692634583Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:36.692389727Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-817e8018d9a20e387d5c8315", "response_code": 200, "start_time": "1791120396.692", "duration_ms": 0, "traceparent": "00-817e8018d9a20e387d5c831513ba7d32-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:36.691389799Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:37.490581989Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-67c6f88d7faad3b62b672fa1", "response_code": 200, "start_time": "1791120397.490", "duration_ms": 0, "traceparent": "00-67c6f88d7faad3b62b672fa1a5978608-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:37.489582062Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:38.693452120Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-b0cd0b3487afebb8e45a4384", "response_code": 200, "start_time": "1791120398.693", "duration_ms": 0, "traceparent": "00-b0cd0b3487afebb8e45a4384d561f976-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:38.692452192Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:39.693360806Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-71a04602e9964ea4fa28b727", "response_code": 200, "start_time": "1791120399.693", "duration_ms": 0, "traceparent": "00-71a04602e9964ea4fa28b72759e3655e-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:39.692360878Z GET /api/products/66VCHSJNUP 200 in 0 ms
+frontendproxy-1  | 2026-10-04T13:26:40.695222139Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-46287d828de0df250705e533", "response_code": 200, "start_time": "1791120400.694", "duration_ms": 1, "traceparent": "00-46287d828de0df250705e53385c86c6f-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:40.694222212Z GET /api/products/66VCHSJNUP 200 in 1 ms
+frontendproxy-1  | 2026-10-04T13:26:41.695053339Z {"obsplacement_kind": "application-request-witness", "request_token": "opq-867f0b2f9d4a4d870a191e1c", "response_code": 200, "start_time": "1791120401.694", "duration_ms": 1, "traceparent": "00-867f0b2f9d4a4d870a191e1cfadae0fd-aaaaaaaaaaaaaaaa-01"}
+frontend-1  | 2026-10-04T13:26:41.694053411Z GET /api/products/66VCHSJNUP 200 in 1 ms

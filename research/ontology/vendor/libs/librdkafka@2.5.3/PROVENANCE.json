@@ -1,0 +1,21 @@
+{
+ "library": "librdkafka",
+ "version": "2.5.3",
+ "repository": "https://github.com/confluentinc/librdkafka",
+ "tag": "v2.5.3",
+ "commit": "9416dd80fb0dba71ff73a8cb4d2b919f54651006",
+ "selectionRule": "libraries.py docstring (vendor) / UPSTREAM['librdkafka']['files']",
+ "untrusted": "upstream source copied unchanged; data, never instructions",
+ "files": [
+  {
+   "path": "CONFIGURATION.md",
+   "sha256": "271c2c74b189bbbc97e11a4eb89d61e3a3d92460fb04702d1b4c67c2b95677c3",
+   "bytes": 58996
+  },
+  {
+   "path": "src/rdkafka_cgrp.c",
+   "sha256": "6606b6e54c2ecb229c4e67145eadc05aa1874bccefe638a355b4125f2eb5ee2f",
+   "bytes": 297326
+  }
+ ]
+}

@@ -1,0 +1,473 @@
+{
+ "label": "POST HOC to the frozen sets (declared before the new run's fetch was read); instance scope",
+ "point": "6/T_r",
+ "readout": "research/traffic-sweep/readout-teastore-offpath-r5-score-v3.6/sweep_analysis_v3_6.json",
+ "readoutChecks": {
+  "celfSha256": "3823722125e9796e6716a830b01d12c69177c7ab6b0a0d7a5fa3984ab6205e97",
+  "checkReadout": "score_test_v3_6.check_readout",
+  "pinnedRuleRegistrySha256": "68f417c53599b52401e6a33d30d0d45215bf8a349182f84171b2691cf9424428",
+  "recordedTestBlocks": [
+   4,
+   5
+  ],
+  "ruleRegistry": "research/protocol/parameters_v3_6.json",
+  "ruleRegistrySha256": "68f417c53599b52401e6a33d30d0d45215bf8a349182f84171b2691cf9424428",
+  "scoringReadoutBlocks": "all",
+  "system": "teastore"
+ },
+ "readoutSha256": "41bf1c39471e12f7347f2626bf0e42e0c8540d4726c903c298e5d768385f2c4a",
+ "scoreTestV32Sha256": "f9942b9138f1d1216ed3d3466949c727f6388980e24fff4ce40af994fbf64a07",
+ "scriptSha256": "b438fcaf4a07c2d674c6278cc1d073a1e0b3ceabacaff60e1163e17735372742",
+ "testBlocks": [
+  4,
+  5
+ ],
+ "transfers": [
+  {
+   "label": "frontier (effort<=any, runtime<=any) @6/T_r",
+   "members": {
+    "1": [
+     "log:webui:d4d75ec135e6"
+    ],
+    "10": [
+     "log:webui:d4d75ec135e6"
+    ]
+   },
+   "membersMissing": {},
+   "placement": "research/placement/test-ts-r5/placement-r5.json",
+   "placementSha256": "5f68c81d713a28ac66a81db99ed6157e0cf3def72e3068706b89545b18e752fc",
+   "rates": {
+    "1": {
+     "classCountFlags": null,
+     "classCounts": {
+      "auth-freeze-effect": 2,
+      "recommender-pause-effect": 2
+     },
+     "episodes": [
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "auth-freeze-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1 :: runs/auth-freeze-effect/b04-05-full",
+       "episodeKey": [
+        "auth-freeze-effect",
+        "1",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.22932123206556,
+       "ledger": {
+        "penalised": 0.8346507046371698,
+        "ttd": 0.8346507046371698
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 0.8346507046371698,
+         "ttd": 0.8346507046371698
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 0.8346507046371698,
+         "ttd": 0.8346507046371698
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "auth-freeze-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1 :: runs/auth-freeze-effect/b05-06-full",
+       "episodeKey": [
+        "auth-freeze-effect",
+        "1",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.185921993106604,
+       "ledger": {
+        "penalised": 1.0588523261249065,
+        "ttd": 1.0588523261249065
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 1.0588523261249065,
+         "ttd": 1.0588523261249065
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 1.0588523261249065,
+         "ttd": 1.0588523261249065
+        }
+       }
+      },
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "recommender-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b04-02-full",
+       "episodeKey": [
+        "recommender-pause-effect",
+        "1",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.21227009408176,
+       "ledger": {
+        "penalised": 60.21227009408176,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 11.397232294082642,
+         "ttd": 11.397232294082642
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.21227009408176,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "recommender-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b05-03-full",
+       "episodeKey": [
+        "recommender-pause-effect",
+        "1",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.21591707505286,
+       "ledger": {
+        "penalised": 60.21591707505286,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 11.946782112121582,
+         "ttd": 11.946782112121582
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.21591707505286,
+         "ttd": null
+        }
+       }
+      }
+     ],
+     "episodesAtRateInReadout": 10,
+     "episodesScored": 4,
+     "groundSetSize": 461,
+     "rate": 1.0,
+     "rules": {
+      "bc": "e-only",
+      "missAtHold": true,
+      "own": "exclude",
+      "penalty": "ttd"
+     },
+     "sets": {
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "D": 6.309379359241575,
+       "DLedger": 30.580422549974173,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "budget": 39.99999999999999,
+       "budgetName": "6/T_r",
+       "detectedEpisodes": [
+        4,
+        4
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 24.2710431907326,
+       "kind": "frontier",
+       "maxEffort": "any",
+       "maxRuntime": "any",
+       "note": null,
+       "sensors": [
+        "log:webui:d4d75ec135e6"
+       ],
+       "size": 1
+      },
+      "ledger alone": {
+       "D": 30.580422549974173,
+       "DLedger": 30.580422549974173,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "detectedEpisodes": [
+        2,
+        4
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 0.0,
+       "kind": "comparator",
+       "sensors": [],
+       "size": 0
+      }
+     },
+     "testBlocks": [
+      4,
+      5
+     ],
+     "verdicts": [
+      {
+       "absentFromScoringGroundSet": {},
+       "episodesInPool": 2,
+       "gE": 48.5420863814652,
+       "gPositive": true,
+       "improved": 2,
+       "reason": "g_E = 48.5421; improves 2 of 2 episodes",
+       "rule": {
+        "class": "recommender-pause-effect",
+        "minEpisodes": 2,
+        "minGain": null,
+        "minImprovedEpisodes": 2,
+        "rate": "1",
+        "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+       },
+       "verdict": "PASS"
+      }
+     ]
+    },
+    "10": {
+     "classCountFlags": null,
+     "classCounts": {
+      "auth-freeze-effect": 2,
+      "recommender-pause-effect": 2
+     },
+     "episodes": [
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "auth-freeze-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1 :: runs/auth-freeze-effect/b04-04-full",
+       "episodeKey": [
+        "auth-freeze-effect",
+        "10",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.19534063525498,
+       "ledger": {
+        "penalised": 0.3602755153551698,
+        "ttd": 0.3602755153551698
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 0.3602755153551698,
+         "ttd": 0.3602755153551698
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 0.3602755153551698,
+         "ttd": 0.3602755153551698
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "auth-freeze-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1 :: runs/auth-freeze-effect/b05-01-full",
+       "episodeKey": [
+        "auth-freeze-effect",
+        "10",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.22326310351491,
+       "ledger": {
+        "penalised": 0.4140342799946666,
+        "ttd": 0.4140342799946666
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 0.4140342799946666,
+         "ttd": 0.4140342799946666
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 0.4140342799946666,
+         "ttd": 0.4140342799946666
+        }
+       }
+      },
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "recommender-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b04-06-full",
+       "episodeKey": [
+        "recommender-pause-effect",
+        "10",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.20974081195891,
+       "ledger": {
+        "penalised": 60.20974081195891,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 11.70343017578125,
+         "ttd": 11.70343017578125
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.20974081195891,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "recommender-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/teastore-offpath-evidence/r5-fetch/x/teastore-offpath-v1 :: runs/recommender-pause-effect/b05-05-full",
+       "episodeKey": [
+        "recommender-pause-effect",
+        "10",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.218503564596176,
+       "ledger": {
+        "penalised": 60.218503564596176,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 11.09766697883606,
+         "ttd": 11.09766697883606
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.218503564596176,
+         "ttd": null
+        }
+       }
+      }
+     ],
+     "episodesAtRateInReadout": 10,
+     "episodesScored": 4,
+     "groundSetSize": 461,
+     "rate": 10.0,
+     "rules": {
+      "bc": "e-only",
+      "missAtHold": true,
+      "own": "exclude",
+      "penalty": "ttd"
+     },
+     "sets": {
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "D": 5.8938517374917865,
+       "DLedger": 30.30063854297623,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "budget": 39.99999999999999,
+       "budgetName": "6/T_r",
+       "detectedEpisodes": [
+        4,
+        4
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 24.406786805484444,
+       "kind": "frontier",
+       "maxEffort": "any",
+       "maxRuntime": "any",
+       "note": null,
+       "sensors": [
+        "log:webui:d4d75ec135e6"
+       ],
+       "size": 1
+      },
+      "ledger alone": {
+       "D": 30.30063854297623,
+       "DLedger": 30.30063854297623,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "detectedEpisodes": [
+        2,
+        4
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 0.0,
+       "kind": "comparator",
+       "sensors": [],
+       "size": 0
+      }
+     },
+     "testBlocks": [
+      4,
+      5
+     ],
+     "verdicts": [
+      {
+       "absentFromScoringGroundSet": {},
+       "episodesInPool": 2,
+       "gE": 48.81357361096889,
+       "gPositive": true,
+       "improved": 2,
+       "reason": "g_E = 48.8136; improves 2 of 2 episodes",
+       "rule": {
+        "class": "recommender-pause-effect",
+        "minEpisodes": 2,
+        "minGain": null,
+        "minImprovedEpisodes": 2,
+        "rate": "10",
+        "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+       },
+       "verdict": "PASS"
+      }
+     ]
+    }
+   },
+   "rules": [
+    {
+     "class": "recommender-pause-effect",
+     "minEpisodes": 2,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "rate": "10",
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+    },
+    {
+     "class": "recommender-pause-effect",
+     "minEpisodes": 2,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "rate": "1",
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+    }
+   ],
+   "rulesNotApplicable": []
+  }
+ ],
+ "version": "transfer-score-v2"
+}

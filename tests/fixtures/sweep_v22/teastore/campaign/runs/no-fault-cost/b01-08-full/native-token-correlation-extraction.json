@@ -1,0 +1,62 @@
+{
+  "counts": {
+    "bridgeObservations": 36,
+    "collapsedBridgeObservations": 0,
+    "correlationRows": 36,
+    "ledgerJourneys": 36,
+    "nativeEvents": 72,
+    "requiredScoredMappings": 36,
+    "uniqueNativeTraceIds": 36
+  },
+  "entryPointWoven": true,
+  "inputs": {
+    "authLog": {
+      "path": "auth.log",
+      "sha256": "bf8ff1b032064d73663135d9dc64604e947add20153ac50f24a9a40bc48dddb7"
+    },
+    "journeyLedger": {
+      "path": "journey-ledger.jsonl",
+      "sha256": "d05b705bc7cf285fc3e75cf4d7986f658eddeb12db29553c6f823a5acdff02c3"
+    },
+    "journeyPlan": {
+      "path": "journey-ledger.plan.json",
+      "sha256": "7fdae76f1ece67afb9e4edaf8f195194777c173499daa0ddb1e8a87f8f884aa3"
+    },
+    "postureProof": {
+      "path": "posture-proof.json",
+      "sha256": "0d5731ca45083b33420cbe8d246832cf1a969b7baab0111c8a5c0cabfe6a92d1"
+    },
+    "serviceLogCaptureReceipt": {
+      "path": "service-log-capture.json",
+      "sha256": "08eaca85ceeef0a5df52a9085093fe8b7e48c8781b827f1ca1a88762cea01db3"
+    },
+    "traces": {
+      "path": "traces.json",
+      "sha256": "791385f3e80abc7a2144d230540cffe97d1d279cd875d2082ea82f208c5ad869"
+    }
+  },
+  "journeyLedgerValidation": {
+    "lastRecordSha256": "f40f1ded7831f98bb0f1044390cdc14e9780a2e7d299bef35bf18c0a9e1ac8eb",
+    "planSha256": "feab35ab973048a7e2c747916f28fb3c2d0e717901a6a603ea4ee1db00e2818a",
+    "state": "completed",
+    "terminalJourneys": 36,
+    "verdict": "pass"
+  },
+  "measurementWindow": {
+    "endedAt": "2026-10-03T01:03:50Z",
+    "startedAt": "2026-10-03T01:00:50Z"
+  },
+  "nativeTokenCorrelationSha256": "e047747fe8171c745cc0f363021dafcc1f99d4f94db8900093453de7e8cfc12e",
+  "posture": "full",
+  "runId": "teastore-traffic-sweep-v1/no-fault-cost/r0p2/b01/full/a01",
+  "schema": "teastore.native-token-correlation-extraction-receipt",
+  "schemaVersion": 1,
+  "serviceLogCapture": {
+    "logParametersState": "absent",
+    "measurementScoped": true,
+    "parameterLoggingEnabled": false,
+    "status": "complete"
+  },
+  "sourceCommit": "34b37f7e7be433ce72d5f9455e66922a13116749",
+  "status": "complete"
+}

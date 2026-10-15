@@ -1,0 +1,5 @@
+DRY RUN
+inputs: 215 files, 722440 bytes; 7 services; excluded {'asset': 37, 'key-material': 2, 'tooling-dotfile': 11, 'vendored': 5}; unresolved vars 0
+stage1 services=recommender: 7 schema facts {'ok': 6, 'unchecked-default': 1}; 126 observations+literals {'ok': 126}; AST {"filesParsed": 53, "callSites": 71, "byCategory": {"config": 8, "http": 33, "registry": 32, "scheduler": 5}}
+merge: A files 0, B files 0; dropped {'A': 0, 'B': 0, 'stage1': 0}; schema-rejected 0; agreed 0, contested 7, agreement 0.0; per relation {"callsSync": "0/1", "container": "0/1", "id": "0/1", "name": "0/1", "replicas": "0/1", "role": "0/1", "service": "0/1"}; judge packets 7
+SHACL on the stage-1 spec (converter/shapes check, not an ontology): conforms=True, 119 triples

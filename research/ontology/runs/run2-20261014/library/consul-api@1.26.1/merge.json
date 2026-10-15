@@ -1,0 +1,90 @@
+{
+ "mergeVersion": 2,
+ "system": "library:consul-api@1.26.1",
+ "library": "consul-api@1.26.1",
+ "sources": {
+  "obsplacement": {
+   "path": ".",
+   "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+  }
+ },
+ "aliases": {},
+ "agreement": {
+  "agreed": 0,
+  "contested": 1,
+  "agreement": 0.0,
+  "byRelation": {
+   "library:failure-detector": {
+    "agreed": 0,
+    "contested": 1
+   }
+  }
+ },
+ "log": {
+  "inputs": [
+   {
+    "origin": "A",
+    "input": "research/ontology/runs/run2-20261014/library/A/consul-api@1.26.1.json",
+    "sha256": "cd939d26678121cfc39497640d578d51d1378e712e57870ab166b1199a722416"
+   },
+   {
+    "origin": "B",
+    "input": "research/ontology/runs/run2-20261014/library/B/consul-api@1.26.1.json",
+    "sha256": "d301edb44c2e04a4572437b6f8f8aaccadd8d636d75b9bf3033cd2f5dd7d8ee1"
+   }
+  ],
+  "schemaRejected": [],
+  "sourcesReplaced": [],
+  "dropped": [],
+  "droppedCount": {
+   "A": 0,
+   "B": 0
+  },
+  "checkedCount": {
+   "A": 0,
+   "B": 1
+  }
+ },
+ "agreed": [],
+ "contested": [
+  {
+   "key": [
+    "consul-api@1.26.1|deregistercriticalserviceafter",
+    "library:failure-detector",
+    "registry-agent"
+   ],
+   "relation": "library:failure-detector",
+   "library": "consul-api@1.26.1",
+   "instances": [
+    {
+     "origin": "B",
+     "input": "research/ontology/runs/run2-20261014/library/B/consul-api@1.26.1.json",
+     "path": "$.facts[0]",
+     "subject": "DeregisterCriticalServiceAfter",
+     "object": "registry-agent",
+     "slots": [
+      "const",
+      "const"
+     ],
+     "fact": {
+      "kind": "failure-detector",
+      "subject": "DeregisterCriticalServiceAfter",
+      "value": "registry-agent",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/consul-api@1.26.1/api/agent.go",
+      "line": 373,
+      "quotedToken": "automatically be deregistered.",
+      "note": "Line 370-373: a check in the critical state for longer than DeregisterCriticalServiceAfter causes its service and checks to be deregistered automatically. The file does not name the detecting component; registry-agent is inferred from the local-agent API surface (agent.go:820, agent.go:594)."
+     },
+     "check": "ok"
+    }
+   ],
+   "origins": [
+    "B"
+   ],
+   "id": "83b1bb9883906a89"
+  }
+ ],
+ "deterministic": []
+}

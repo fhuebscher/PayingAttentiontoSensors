@@ -1,0 +1,3654 @@
+{
+ "facts": {
+  "facts": 36,
+  "counts": {
+   "ok": 29,
+   "unchecked-default": 7
+  },
+  "ok": true,
+  "rows": [
+   {
+    "status": "ok",
+    "matchedLine": 40,
+    "offset": 0,
+    "path": "$.architecture.name",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 40,
+    "quotedToken": "services:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 9,
+    "offset": 0,
+    "path": "$.host.id",
+    "repo": "obsplacement",
+    "sourceFile": "research/host-topology.json",
+    "line": 9,
+    "quotedToken": "\"hostId\": \"fb14srv5\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 41,
+    "offset": 0,
+    "path": "$.services[0].container",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 41,
+    "quotedToken": "registry:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 41,
+    "offset": 0,
+    "path": "$.services[0].name",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 41,
+    "quotedToken": "registry:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[0].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[0].role",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.registry/Dockerfile",
+    "line": 1,
+    "quotedToken": "descartesresearch/teastore-base:latest"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 50,
+    "offset": 0,
+    "path": "$.services[1].container",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 50,
+    "quotedToken": "db:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 50,
+    "offset": 0,
+    "path": "$.services[1].name",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 50,
+    "quotedToken": "db:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[1].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[1].role",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.database/Dockerfile",
+    "line": 1,
+    "quotedToken": "mariadb:10.4.12"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 58,
+    "offset": 0,
+    "path": "$.services[2].container",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 58,
+    "quotedToken": "persistence:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 58,
+    "offset": 0,
+    "path": "$.services[2].name",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 58,
+    "quotedToken": "persistence:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[2].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[2].role",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/Dockerfile",
+    "line": 1,
+    "quotedToken": "descartesresearch/teastore-base:latest"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 72,
+    "offset": 0,
+    "path": "$.services[3].container",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 72,
+    "quotedToken": "auth:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 72,
+    "offset": 0,
+    "path": "$.services[3].name",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 72,
+    "quotedToken": "auth:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[3].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[3].role",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.auth/Dockerfile",
+    "line": 1,
+    "quotedToken": "descartesresearch/teastore-base:latest"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 84,
+    "offset": 0,
+    "path": "$.services[4].container",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 84,
+    "quotedToken": "image:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 84,
+    "offset": 0,
+    "path": "$.services[4].name",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 84,
+    "quotedToken": "image:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[4].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[4].role",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/Dockerfile",
+    "line": 1,
+    "quotedToken": "descartesresearch/teastore-base:latest"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 96,
+    "offset": 0,
+    "path": "$.services[5].container",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 96,
+    "quotedToken": "recommender:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 96,
+    "offset": 0,
+    "path": "$.services[5].name",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 96,
+    "quotedToken": "recommender:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[5].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[5].role",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/Dockerfile",
+    "line": 1,
+    "quotedToken": "descartesresearch/teastore-base:latest"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 108,
+    "offset": 0,
+    "path": "$.services[6].container",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 108,
+    "quotedToken": "webui:"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 108,
+    "offset": 0,
+    "path": "$.services[6].name",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 108,
+    "quotedToken": "webui:"
+   },
+   {
+    "status": "unchecked-default",
+    "detail": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "path": "$.services[6].replicas",
+    "repo": null,
+    "sourceFile": null,
+    "line": null,
+    "quotedToken": null
+   },
+   {
+    "status": "ok",
+    "matchedLine": 1,
+    "offset": 0,
+    "path": "$.services[6].role",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/Dockerfile",
+    "line": 1,
+    "quotedToken": "descartesresearch/teastore-base:latest"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 65,
+    "offset": 0,
+    "path": "$.syncEdges[0]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 65,
+    "quotedToken": "DB_HOST: \"db\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.syncEdges[1]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 64,
+    "quotedToken": "REGISTRY_HOST: \"registry\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 78,
+    "offset": 0,
+    "path": "$.syncEdges[2]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 78,
+    "quotedToken": "REGISTRY_HOST: \"registry\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 90,
+    "offset": 0,
+    "path": "$.syncEdges[3]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 90,
+    "quotedToken": "REGISTRY_HOST: \"registry\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 102,
+    "offset": 0,
+    "path": "$.syncEdges[4]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 102,
+    "quotedToken": "REGISTRY_HOST: \"registry\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 112,
+    "offset": 0,
+    "path": "$.syncEdges[5]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 112,
+    "quotedToken": "REGISTRY_HOST: \"registry\""
+   }
+  ]
+ },
+ "observations": {
+  "facts": 328,
+  "counts": {
+   "ok": 328
+  },
+  "ok": true,
+  "rows": [
+   {
+    "status": "ok",
+    "matchedLine": 42,
+    "offset": 0,
+    "path": "$.obs[0]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 42,
+    "quotedToken": "image: descartesresearch/teastore-registry"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 39,
+    "offset": 0,
+    "path": "$.obs[1]",
+    "repo": "upstream",
+    "sourceFile": "tools/build_docker.sh",
+    "line": 39,
+    "quotedToken": "docker buildx build -t \"${registry}teastore-registry\" ../services/tools.descartes.teastore.registry/ --load"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 51,
+    "offset": 0,
+    "path": "$.obs[2]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 51,
+    "quotedToken": "image: descartesresearch/teastore-db"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 36,
+    "offset": 0,
+    "path": "$.obs[3]",
+    "repo": "upstream",
+    "sourceFile": "tools/build_docker.sh",
+    "line": 36,
+    "quotedToken": "docker buildx build -t \"${registry}teastore-db\" ../utilities/tools.descartes.teastore.database/ --load"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 59,
+    "offset": 0,
+    "path": "$.obs[4]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 59,
+    "quotedToken": "image: descartesresearch/teastore-persistence"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 40,
+    "offset": 0,
+    "path": "$.obs[5]",
+    "repo": "upstream",
+    "sourceFile": "tools/build_docker.sh",
+    "line": 40,
+    "quotedToken": "docker buildx build -t \"${registry}teastore-persistence\" ../services/tools.descartes.teastore.persistence/ --load"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 73,
+    "offset": 0,
+    "path": "$.obs[6]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 73,
+    "quotedToken": "image: descartesresearch/teastore-auth"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 43,
+    "offset": 0,
+    "path": "$.obs[7]",
+    "repo": "upstream",
+    "sourceFile": "tools/build_docker.sh",
+    "line": 43,
+    "quotedToken": "docker buildx build -t \"${registry}teastore-auth\" ../services/tools.descartes.teastore.auth/ --load"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 85,
+    "offset": 0,
+    "path": "$.obs[8]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 85,
+    "quotedToken": "image: descartesresearch/teastore-image"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 41,
+    "offset": 0,
+    "path": "$.obs[9]",
+    "repo": "upstream",
+    "sourceFile": "tools/build_docker.sh",
+    "line": 41,
+    "quotedToken": "docker buildx build -t \"${registry}teastore-image\" ../services/tools.descartes.teastore.image/ --load"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 97,
+    "offset": 0,
+    "path": "$.obs[10]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 97,
+    "quotedToken": "image: descartesresearch/teastore-recommender"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 44,
+    "offset": 0,
+    "path": "$.obs[11]",
+    "repo": "upstream",
+    "sourceFile": "tools/build_docker.sh",
+    "line": 44,
+    "quotedToken": "docker buildx build -t \"${registry}teastore-recommender\" ../services/tools.descartes.teastore.recommender/ --load"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 109,
+    "offset": 0,
+    "path": "$.obs[12]",
+    "repo": "harness",
+    "sourceFile": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+    "line": 109,
+    "quotedToken": "image: descartesresearch/teastore-webui"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 42,
+    "offset": 0,
+    "path": "$.obs[13]",
+    "repo": "upstream",
+    "sourceFile": "tools/build_docker.sh",
+    "line": 42,
+    "quotedToken": "docker buildx build -t \"${registry}teastore-webui\" ../services/tools.descartes.teastore.webui/ --load"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 56,
+    "offset": 0,
+    "path": "$.obs[14]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/startup/AuthStartup.java",
+    "line": 56,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 66,
+    "offset": 0,
+    "path": "$.obs[15]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/startup/AuthStartup.java",
+    "line": 66,
+    "quotedToken": "RESTClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 37,
+    "offset": 0,
+    "path": "$.obs[16]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/startup/AuthStartup.java",
+    "line": 37,
+    "quotedToken": "1750"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 67,
+    "offset": 0,
+    "path": "$.obs[17]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/startup/AuthStartup.java",
+    "line": 67,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 68,
+    "offset": 0,
+    "path": "$.obs[18]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/startup/AuthStartup.java",
+    "line": 68,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 49,
+    "offset": 0,
+    "path": "$.obs[19]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageProviderStartup.java",
+    "line": 49,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.obs[20]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageProviderStartup.java",
+    "line": 60,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 61,
+    "offset": 0,
+    "path": "$.obs[21]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageProviderStartup.java",
+    "line": 61,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 66,
+    "offset": 0,
+    "path": "$.obs[22]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageProviderStartup.java",
+    "line": 66,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 158,
+    "offset": 0,
+    "path": "$.obs[23]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 158,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 158,
+    "offset": 0,
+    "path": "$.obs[24]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 158,
+    "quotedToken": "\"generatedb\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 381,
+    "offset": 0,
+    "path": "$.obs[25]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 381,
+    "quotedToken": "\"\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 162,
+    "offset": 0,
+    "path": "$.obs[26]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 162,
+    "quotedToken": "\"finished\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 161,
+    "offset": 0,
+    "path": "$.obs[27]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 161,
+    "quotedToken": "HttpWrapper.wrap(client.getService().path(client.getApplicationURI())"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 194,
+    "offset": 0,
+    "path": "$.obs[28]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 194,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 194,
+    "offset": 0,
+    "path": "$.obs[29]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 194,
+    "quotedToken": "\"products\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 381,
+    "offset": 0,
+    "path": "$.obs[30]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 381,
+    "quotedToken": "\"\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 197,
+    "offset": 0,
+    "path": "$.obs[31]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 197,
+    "quotedToken": "\"category\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 198,
+    "offset": 0,
+    "path": "$.obs[32]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 198,
+    "quotedToken": "\"start\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 198,
+    "offset": 0,
+    "path": "$.obs[33]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 198,
+    "quotedToken": "0"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 198,
+    "offset": 0,
+    "path": "$.obs[34]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 198,
+    "quotedToken": "\"max\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 198,
+    "offset": 0,
+    "path": "$.obs[35]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 198,
+    "quotedToken": "1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 196,
+    "offset": 0,
+    "path": "$.obs[36]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 196,
+    "quotedToken": "HttpWrapper.wrap(client.getService()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 227,
+    "offset": 0,
+    "path": "$.obs[37]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 227,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 227,
+    "offset": 0,
+    "path": "$.obs[38]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 227,
+    "quotedToken": "\"categories\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 381,
+    "offset": 0,
+    "path": "$.obs[39]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 381,
+    "quotedToken": "\"\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 229,
+    "offset": 0,
+    "path": "$.obs[40]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 229,
+    "quotedToken": "HttpWrapper.wrap("
+   },
+   {
+    "status": "ok",
+    "matchedLine": 712,
+    "offset": 0,
+    "path": "$.obs[41]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+    "line": 712,
+    "quotedToken": "RegistryClient.getClient().getServersForService(Service.IMAGE)"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 56,
+    "offset": 0,
+    "path": "$.obs[42]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/daemons/InitialDataGenerationDaemon.java",
+    "line": 56,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 67,
+    "offset": 0,
+    "path": "$.obs[43]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/daemons/InitialDataGenerationDaemon.java",
+    "line": 67,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 69,
+    "offset": 0,
+    "path": "$.obs[44]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/daemons/InitialDataGenerationDaemon.java",
+    "line": 69,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 76,
+    "offset": 0,
+    "path": "$.obs[45]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/daemons/InitialDataGenerationDaemon.java",
+    "line": 76,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 84,
+    "offset": 0,
+    "path": "$.obs[46]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/daemons/InitialDataGenerationDaemon.java",
+    "line": 84,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.obs[47]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceCategory.java",
+    "line": 64,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 65,
+    "offset": 0,
+    "path": "$.obs[48]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceCategory.java",
+    "line": 65,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 94,
+    "offset": 0,
+    "path": "$.obs[49]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrder.java",
+    "line": 94,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 95,
+    "offset": 0,
+    "path": "$.obs[50]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrder.java",
+    "line": 95,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 96,
+    "offset": 0,
+    "path": "$.obs[51]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrder.java",
+    "line": 96,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 58,
+    "offset": 0,
+    "path": "$.obs[52]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrderItem.java",
+    "line": 58,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 59,
+    "offset": 0,
+    "path": "$.obs[53]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrderItem.java",
+    "line": 59,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.obs[54]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrderItem.java",
+    "line": 60,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 61,
+    "offset": 0,
+    "path": "$.obs[55]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceProduct.java",
+    "line": 61,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 62,
+    "offset": 0,
+    "path": "$.obs[56]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceProduct.java",
+    "line": 62,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 75,
+    "offset": 0,
+    "path": "$.obs[57]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceUser.java",
+    "line": 75,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 76,
+    "offset": 0,
+    "path": "$.obs[58]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceUser.java",
+    "line": 76,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 52,
+    "offset": 0,
+    "path": "$.obs[59]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+    "line": 52,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 34,
+    "offset": 0,
+    "path": "$.obs[60]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+    "line": 34,
+    "quotedToken": "\"cache\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 81,
+    "offset": 0,
+    "path": "$.obs[61]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+    "line": 81,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 34,
+    "offset": 0,
+    "path": "$.obs[62]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+    "line": 34,
+    "quotedToken": "\"cache\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 112,
+    "offset": 0,
+    "path": "$.obs[63]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+    "line": 112,
+    "quotedToken": "target"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 137,
+    "offset": 0,
+    "path": "$.obs[64]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+    "line": 137,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 34,
+    "offset": 0,
+    "path": "$.obs[65]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+    "line": 34,
+    "quotedToken": "\"cache\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 154,
+    "offset": 0,
+    "path": "$.obs[66]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+    "line": 154,
+    "quotedToken": "target"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 415,
+    "offset": 0,
+    "path": "$.obs[67]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/DataGenerator.java",
+    "line": 415,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 416,
+    "offset": 0,
+    "path": "$.obs[68]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/DataGenerator.java",
+    "line": 416,
+    "quotedToken": "\"generatedb\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 426,
+    "offset": 0,
+    "path": "$.obs[69]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/DataGenerator.java",
+    "line": 426,
+    "quotedToken": "client.getEndpointTarget().path(\"maintenance\")"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 427,
+    "offset": 0,
+    "path": "$.obs[70]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/DataGenerator.java",
+    "line": 427,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 101,
+    "offset": 0,
+    "path": "$.obs[71]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java",
+    "line": 101,
+    "quotedToken": "new InitialContext()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 101,
+    "offset": 0,
+    "path": "$.obs[72]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java",
+    "line": 101,
+    "quotedToken": "\"java:comp/env/inMemoryDB\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 112,
+    "offset": 0,
+    "path": "$.obs[73]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java",
+    "line": 112,
+    "quotedToken": "new InitialContext()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 112,
+    "offset": 0,
+    "path": "$.obs[74]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java",
+    "line": 112,
+    "quotedToken": "\"java:comp/env/databaseHost\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 117,
+    "offset": 0,
+    "path": "$.obs[75]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java",
+    "line": 117,
+    "quotedToken": "new InitialContext()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 117,
+    "offset": 0,
+    "path": "$.obs[76]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java",
+    "line": 117,
+    "quotedToken": "\"java:comp/env/databasePort\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 43,
+    "offset": 0,
+    "path": "$.obs[77]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/CacheManagerEndpoint.java",
+    "line": 43,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.obs[78]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/CacheManagerEndpoint.java",
+    "line": 60,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 71,
+    "offset": 0,
+    "path": "$.obs[79]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/CacheManagerEndpoint.java",
+    "line": 71,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 39,
+    "offset": 0,
+    "path": "$.obs[80]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/CategoryEndpoint.java",
+    "line": 39,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 82,
+    "offset": 0,
+    "path": "$.obs[81]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/CategoryEndpoint.java",
+    "line": 82,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 58,
+    "offset": 0,
+    "path": "$.obs[82]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 58,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 59,
+    "offset": 0,
+    "path": "$.obs[83]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 59,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 62,
+    "offset": 0,
+    "path": "$.obs[84]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 62,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.obs[85]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 64,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 75,
+    "offset": 0,
+    "path": "$.obs[86]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 75,
+    "quotedToken": "Executors"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 76,
+    "offset": 0,
+    "path": "$.obs[87]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 76,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 79,
+    "offset": 0,
+    "path": "$.obs[88]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 79,
+    "quotedToken": "CacheManager.MANAGER"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 81,
+    "offset": 0,
+    "path": "$.obs[89]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 81,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 107,
+    "offset": 0,
+    "path": "$.obs[90]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 107,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 126,
+    "offset": 0,
+    "path": "$.obs[91]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 126,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 137,
+    "offset": 0,
+    "path": "$.obs[92]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+    "line": 137,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 42,
+    "offset": 0,
+    "path": "$.obs[93]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/OrderEndpoint.java",
+    "line": 42,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 85,
+    "offset": 0,
+    "path": "$.obs[94]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/OrderEndpoint.java",
+    "line": 85,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 42,
+    "offset": 0,
+    "path": "$.obs[95]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/OrderItemEndpoint.java",
+    "line": 42,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 85,
+    "offset": 0,
+    "path": "$.obs[96]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/OrderItemEndpoint.java",
+    "line": 85,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 43,
+    "offset": 0,
+    "path": "$.obs[97]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/ProductEndpoint.java",
+    "line": 43,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 86,
+    "offset": 0,
+    "path": "$.obs[98]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/ProductEndpoint.java",
+    "line": 86,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 44,
+    "offset": 0,
+    "path": "$.obs[99]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java",
+    "line": 44,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 93,
+    "offset": 0,
+    "path": "$.obs[100]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java",
+    "line": 93,
+    "quotedToken": "DataGenerator.GENERATOR"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 76,
+    "offset": 0,
+    "path": "$.obs[101]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/RecommenderSelector.java",
+    "line": 76,
+    "quotedToken": "new InitialContext()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 76,
+    "offset": 0,
+    "path": "$.obs[102]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/RecommenderSelector.java",
+    "line": 76,
+    "quotedToken": "\"java:comp/env/recommenderAlgorithm\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 61,
+    "offset": 0,
+    "path": "$.obs[103]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 61,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 71,
+    "offset": 0,
+    "path": "$.obs[104]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 71,
+    "quotedToken": "RESTClient"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 40,
+    "offset": 0,
+    "path": "$.obs[105]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 40,
+    "quotedToken": "1750"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 72,
+    "offset": 0,
+    "path": "$.obs[106]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 72,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 73,
+    "offset": 0,
+    "path": "$.obs[107]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 73,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 75,
+    "offset": 0,
+    "path": "$.obs[108]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 75,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 78,
+    "offset": 0,
+    "path": "$.obs[109]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 78,
+    "quotedToken": "new InitialContext()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 78,
+    "offset": 0,
+    "path": "$.obs[110]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+    "line": 78,
+    "quotedToken": "\"java:comp/env/recommenderLoopTime\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 61,
+    "offset": 0,
+    "path": "$.obs[111]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RetrainDaemon.java",
+    "line": 61,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 138,
+    "offset": 0,
+    "path": "$.obs[112]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+    "line": 138,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 138,
+    "offset": 0,
+    "path": "$.obs[113]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+    "line": 138,
+    "quotedToken": "\"generatedb\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 140,
+    "offset": 0,
+    "path": "$.obs[114]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+    "line": 140,
+    "quotedToken": "\"finished\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 214,
+    "offset": 0,
+    "path": "$.obs[115]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+    "line": 214,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 215,
+    "offset": 0,
+    "path": "$.obs[116]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+    "line": 215,
+    "quotedToken": "\"train/timestamp\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 67,
+    "offset": 0,
+    "path": "$.obs[117]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+    "line": 67,
+    "quotedToken": "Executors"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 68,
+    "offset": 0,
+    "path": "$.obs[118]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+    "line": 68,
+    "quotedToken": "heartbeatScheduler"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 40,
+    "offset": 0,
+    "path": "$.obs[119]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+    "line": 40,
+    "quotedToken": "2500"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 54,
+    "offset": 0,
+    "path": "$.obs[120]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 54,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 55,
+    "offset": 0,
+    "path": "$.obs[121]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 55,
+    "quotedToken": "\"andreBauer\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 55,
+    "offset": 0,
+    "path": "$.obs[122]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 55,
+    "quotedToken": "\"johannesGrohmann\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 55,
+    "offset": 0,
+    "path": "$.obs[123]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 55,
+    "quotedToken": "\"joakimKistowski\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 56,
+    "offset": 0,
+    "path": "$.obs[124]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 56,
+    "quotedToken": "\"simonEismann\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 56,
+    "offset": 0,
+    "path": "$.obs[125]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 56,
+    "quotedToken": "\"norbertSchmitt\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 56,
+    "offset": 0,
+    "path": "$.obs[126]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 56,
+    "quotedToken": "\"samuelKounev\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.obs[127]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 64,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.obs[128]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 64,
+    "quotedToken": "\"descartesLogo\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 66,
+    "offset": 0,
+    "path": "$.obs[129]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 66,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 66,
+    "offset": 0,
+    "path": "$.obs[130]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 66,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 68,
+    "offset": 0,
+    "path": "$.obs[131]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+    "line": 68,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.obs[132]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 60,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 66,
+    "offset": 0,
+    "path": "$.obs[133]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 66,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 77,
+    "offset": 0,
+    "path": "$.obs[134]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 77,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 113,
+    "offset": 0,
+    "path": "$.obs[135]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 113,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 113,
+    "offset": 0,
+    "path": "$.obs[136]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 113,
+    "quotedToken": "0"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 113,
+    "offset": 0,
+    "path": "$.obs[137]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 113,
+    "quotedToken": "\" \""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 113,
+    "offset": 0,
+    "path": "$.obs[138]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 113,
+    "quotedToken": "1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 113,
+    "offset": 0,
+    "path": "$.obs[139]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 113,
+    "quotedToken": "2"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 114,
+    "offset": 0,
+    "path": "$.obs[140]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 114,
+    "quotedToken": "3"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 114,
+    "offset": 0,
+    "path": "$.obs[141]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 114,
+    "quotedToken": "4"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 115,
+    "offset": 0,
+    "path": "$.obs[142]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 115,
+    "quotedToken": "6"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 115,
+    "offset": 0,
+    "path": "$.obs[143]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 115,
+    "quotedToken": "1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 109,
+    "offset": 0,
+    "path": "$.obs[144]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 109,
+    "quotedToken": "0"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 115,
+    "offset": 0,
+    "path": "$.obs[145]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 115,
+    "quotedToken": "5"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 155,
+    "offset": 0,
+    "path": "$.obs[146]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 155,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 156,
+    "offset": 0,
+    "path": "$.obs[147]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+    "line": 156,
+    "quotedToken": "\"orderitem_\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 80,
+    "offset": 0,
+    "path": "$.obs[148]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartServlet.java",
+    "line": 80,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 80,
+    "offset": 0,
+    "path": "$.obs[149]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartServlet.java",
+    "line": 80,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 86,
+    "offset": 0,
+    "path": "$.obs[150]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartServlet.java",
+    "line": 86,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 88,
+    "offset": 0,
+    "path": "$.obs[151]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartServlet.java",
+    "line": 88,
+    "quotedToken": "LoadBalancedRecommenderOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 101,
+    "offset": 0,
+    "path": "$.obs[152]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartServlet.java",
+    "line": 101,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 71,
+    "offset": 0,
+    "path": "$.obs[153]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+    "line": 71,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 72,
+    "offset": 0,
+    "path": "$.obs[154]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+    "line": 72,
+    "quotedToken": "\"products\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 74,
+    "offset": 0,
+    "path": "$.obs[155]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+    "line": 74,
+    "quotedToken": "\"count\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 73,
+    "offset": 0,
+    "path": "$.obs[156]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+    "line": 73,
+    "quotedToken": "HttpWrapper"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 97,
+    "offset": 0,
+    "path": "$.obs[157]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+    "line": 97,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 99,
+    "offset": 0,
+    "path": "$.obs[158]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+    "line": 99,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 99,
+    "offset": 0,
+    "path": "$.obs[159]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+    "line": 99,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 108,
+    "offset": 0,
+    "path": "$.obs[160]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+    "line": 108,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 67,
+    "offset": 0,
+    "path": "$.obs[161]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 67,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 67,
+    "offset": 0,
+    "path": "$.obs[162]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 67,
+    "quotedToken": "\"generatedb\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 70,
+    "offset": 0,
+    "path": "$.obs[163]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 70,
+    "quotedToken": "0"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 70,
+    "offset": 0,
+    "path": "$.obs[164]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 70,
+    "quotedToken": "1"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 71,
+    "offset": 0,
+    "path": "$.obs[165]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 71,
+    "quotedToken": "2"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 71,
+    "offset": 0,
+    "path": "$.obs[166]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 71,
+    "quotedToken": "3"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 80,
+    "offset": 0,
+    "path": "$.obs[167]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 80,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 84,
+    "offset": 0,
+    "path": "$.obs[168]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 84,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 84,
+    "offset": 0,
+    "path": "$.obs[169]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 84,
+    "quotedToken": "\"train\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 86,
+    "offset": 0,
+    "path": "$.obs[170]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+    "line": 86,
+    "quotedToken": "\"async\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 52,
+    "offset": 0,
+    "path": "$.obs[171]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseServlet.java",
+    "line": 52,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 52,
+    "offset": 0,
+    "path": "$.obs[172]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseServlet.java",
+    "line": 52,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 63,
+    "offset": 0,
+    "path": "$.obs[173]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ErrorServlet.java",
+    "line": 63,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 63,
+    "offset": 0,
+    "path": "$.obs[174]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ErrorServlet.java",
+    "line": 63,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 65,
+    "offset": 0,
+    "path": "$.obs[175]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ErrorServlet.java",
+    "line": 65,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 65,
+    "offset": 0,
+    "path": "$.obs[176]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ErrorServlet.java",
+    "line": 65,
+    "quotedToken": "\"error\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 67,
+    "offset": 0,
+    "path": "$.obs[177]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ErrorServlet.java",
+    "line": 67,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 58,
+    "offset": 0,
+    "path": "$.obs[178]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/IndexServlet.java",
+    "line": 58,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.obs[179]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/IndexServlet.java",
+    "line": 60,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.obs[180]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/IndexServlet.java",
+    "line": 60,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 62,
+    "offset": 0,
+    "path": "$.obs[181]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java",
+    "line": 62,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 63,
+    "offset": 0,
+    "path": "$.obs[182]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java",
+    "line": 63,
+    "quotedToken": "\"username\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 63,
+    "offset": 0,
+    "path": "$.obs[183]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java",
+    "line": 63,
+    "quotedToken": "\"password\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 80,
+    "offset": 0,
+    "path": "$.obs[184]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java",
+    "line": 80,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 57,
+    "offset": 0,
+    "path": "$.obs[185]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginServlet.java",
+    "line": 57,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 57,
+    "offset": 0,
+    "path": "$.obs[186]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginServlet.java",
+    "line": 57,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 59,
+    "offset": 0,
+    "path": "$.obs[187]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginServlet.java",
+    "line": 59,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 71,
+    "offset": 0,
+    "path": "$.obs[188]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/OrderServlet.java",
+    "line": 71,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 71,
+    "offset": 0,
+    "path": "$.obs[189]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/OrderServlet.java",
+    "line": 71,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 73,
+    "offset": 0,
+    "path": "$.obs[190]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/OrderServlet.java",
+    "line": 73,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 68,
+    "offset": 0,
+    "path": "$.obs[191]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProductServlet.java",
+    "line": 68,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 79,
+    "offset": 0,
+    "path": "$.obs[192]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProductServlet.java",
+    "line": 79,
+    "quotedToken": "LoadBalancedRecommenderOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 92,
+    "offset": 0,
+    "path": "$.obs[193]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProductServlet.java",
+    "line": 92,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 94,
+    "offset": 0,
+    "path": "$.obs[194]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProductServlet.java",
+    "line": 94,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 96,
+    "offset": 0,
+    "path": "$.obs[195]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProductServlet.java",
+    "line": 96,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 96,
+    "offset": 0,
+    "path": "$.obs[196]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProductServlet.java",
+    "line": 96,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 59,
+    "offset": 0,
+    "path": "$.obs[197]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProfileServlet.java",
+    "line": 59,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.obs[198]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProfileServlet.java",
+    "line": 64,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.obs[199]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProfileServlet.java",
+    "line": 64,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 73,
+    "offset": 0,
+    "path": "$.obs[200]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProfileServlet.java",
+    "line": 73,
+    "quotedToken": "LoadBalancedStoreOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 59,
+    "offset": 0,
+    "path": "$.obs[201]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 59,
+    "quotedToken": "LoadBalancedImageOperations"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 59,
+    "offset": 0,
+    "path": "$.obs[202]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 59,
+    "quotedToken": "\"icon\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 69,
+    "offset": 0,
+    "path": "$.obs[203]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 69,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 71,
+    "offset": 0,
+    "path": "$.obs[204]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 71,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 73,
+    "offset": 0,
+    "path": "$.obs[205]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 73,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 75,
+    "offset": 0,
+    "path": "$.obs[206]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 75,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 77,
+    "offset": 0,
+    "path": "$.obs[207]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 77,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 95,
+    "offset": 0,
+    "path": "$.obs[208]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 95,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 96,
+    "offset": 0,
+    "path": "$.obs[209]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 96,
+    "quotedToken": "\"generatedb\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 96,
+    "offset": 0,
+    "path": "$.obs[210]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 96,
+    "quotedToken": "\"finished\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 110,
+    "offset": 0,
+    "path": "$.obs[211]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 110,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 111,
+    "offset": 0,
+    "path": "$.obs[212]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 111,
+    "quotedToken": "\"image\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 111,
+    "offset": 0,
+    "path": "$.obs[213]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 111,
+    "quotedToken": "\"finished\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 129,
+    "offset": 0,
+    "path": "$.obs[214]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 129,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 130,
+    "offset": 0,
+    "path": "$.obs[215]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 130,
+    "quotedToken": "\"train\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 130,
+    "offset": 0,
+    "path": "$.obs[216]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+    "line": 130,
+    "quotedToken": "\"isready\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 45,
+    "offset": 0,
+    "path": "$.obs[217]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/startup/WebuiStartup.java",
+    "line": 45,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 54,
+    "offset": 0,
+    "path": "$.obs[218]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/startup/WebuiStartup.java",
+    "line": 54,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 56,
+    "offset": 0,
+    "path": "$.obs[219]",
+    "repo": "upstream",
+    "sourceFile": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/startup/WebuiStartup.java",
+    "line": 56,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 97,
+    "offset": 0,
+    "path": "$.obs[220]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+    "line": 97,
+    "quotedToken": "System"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 97,
+    "offset": 0,
+    "path": "$.obs[221]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+    "line": 97,
+    "quotedToken": "\"LOG_PARAMETERS\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 67,
+    "offset": 0,
+    "path": "$.obs[222]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 67,
+    "quotedToken": "Executors"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 69,
+    "offset": 0,
+    "path": "$.obs[223]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 69,
+    "quotedToken": "Executors"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 71,
+    "offset": 0,
+    "path": "$.obs[224]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 71,
+    "quotedToken": "Executors"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 81,
+    "offset": 0,
+    "path": "$.obs[225]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 81,
+    "quotedToken": "new InitialContext()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 81,
+    "offset": 0,
+    "path": "$.obs[226]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 81,
+    "quotedToken": "\"java:comp/env/useHostIP\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 89,
+    "offset": 0,
+    "path": "$.obs[227]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 89,
+    "quotedToken": "new InitialContext()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 89,
+    "offset": 0,
+    "path": "$.obs[228]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 89,
+    "quotedToken": "\"java:comp/env/hostName\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 97,
+    "offset": 0,
+    "path": "$.obs[229]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 97,
+    "quotedToken": "new InitialContext()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 97,
+    "offset": 0,
+    "path": "$.obs[230]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 97,
+    "quotedToken": "\"java:comp/env/servicePort\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 103,
+    "offset": 0,
+    "path": "$.obs[231]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 103,
+    "quotedToken": "new InitialContext()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 103,
+    "offset": 0,
+    "path": "$.obs[232]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 103,
+    "quotedToken": "\"java:comp/env/registryURL\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 159,
+    "offset": 0,
+    "path": "$.obs[233]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 159,
+    "quotedToken": "heartbeatScheduler"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 159,
+    "offset": 0,
+    "path": "$.obs[234]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 159,
+    "quotedToken": "0"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 65,
+    "offset": 0,
+    "path": "$.obs[235]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 65,
+    "quotedToken": "2500"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 161,
+    "offset": 0,
+    "path": "$.obs[236]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 161,
+    "quotedToken": "loadBalancerUpdateScheduler"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 161,
+    "offset": 0,
+    "path": "$.obs[237]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 161,
+    "quotedToken": "1000"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.obs[238]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 64,
+    "quotedToken": "2500"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 193,
+    "offset": 0,
+    "path": "$.obs[239]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 193,
+    "quotedToken": "getRESTClient(5000).target(registryRESTURL)"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 204,
+    "offset": 0,
+    "path": "$.obs[240]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 204,
+    "quotedToken": "Server"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 244,
+    "offset": 0,
+    "path": "$.obs[241]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 244,
+    "quotedToken": "getRESTClient(5000).target(registryRESTURL).path(service.getServiceName())"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 245,
+    "offset": 0,
+    "path": "$.obs[242]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 245,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 245,
+    "offset": 0,
+    "path": "$.obs[243]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 245,
+    "quotedToken": "\"\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 264,
+    "offset": 0,
+    "path": "$.obs[244]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 264,
+    "quotedToken": "getRESTClient(1000).target(registryRESTURL).path(service.getServiceName())"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 273,
+    "offset": 0,
+    "path": "$.obs[245]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 273,
+    "quotedToken": "ClientConfig"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 276,
+    "offset": 0,
+    "path": "$.obs[246]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 276,
+    "quotedToken": "ClientBuilder"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 291,
+    "offset": 0,
+    "path": "$.obs[247]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+    "line": 291,
+    "quotedToken": "Server"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 81,
+    "offset": 0,
+    "path": "$.obs[248]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+    "line": 81,
+    "quotedToken": "RESTClient<T>"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 81,
+    "offset": 0,
+    "path": "$.obs[249]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+    "line": 81,
+    "quotedToken": "\":\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 82,
+    "offset": 0,
+    "path": "$.obs[250]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+    "line": 82,
+    "quotedToken": "\"/\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 140,
+    "offset": 0,
+    "path": "$.obs[251]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 140,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 175,
+    "offset": 0,
+    "path": "$.obs[252]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 175,
+    "quotedToken": "LoadBalancerBuilder.newBuilder()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 218,
+    "offset": 0,
+    "path": "$.obs[253]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 218,
+    "quotedToken": "LoadBalancerCommand.<ServiceLoadBalancerResult<R>>builder()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 281,
+    "offset": 0,
+    "path": "$.obs[254]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 281,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 283,
+    "offset": 0,
+    "path": "$.obs[255]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+    "line": 283,
+    "quotedToken": "RegistryClient.getClient()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 43,
+    "offset": 0,
+    "path": "$.obs[256]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/HttpWrapper.java",
+    "line": 43,
+    "quotedToken": "target"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 62,
+    "offset": 0,
+    "path": "$.obs[257]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 62,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 93,
+    "offset": 0,
+    "path": "$.obs[258]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 93,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 119,
+    "offset": 0,
+    "path": "$.obs[259]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 119,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 145,
+    "offset": 0,
+    "path": "$.obs[260]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 145,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 173,
+    "offset": 0,
+    "path": "$.obs[261]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 173,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 202,
+    "offset": 0,
+    "path": "$.obs[262]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 202,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 238,
+    "offset": 0,
+    "path": "$.obs[263]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "line": 238,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 108,
+    "offset": 0,
+    "path": "$.obs[264]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 108,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 108,
+    "offset": 0,
+    "path": "$.obs[265]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 108,
+    "quotedToken": "\"image\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 109,
+    "offset": 0,
+    "path": "$.obs[266]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 109,
+    "quotedToken": "\"getProductImages\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 110,
+    "offset": 0,
+    "path": "$.obs[267]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 110,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 171,
+    "offset": 0,
+    "path": "$.obs[268]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 171,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 171,
+    "offset": 0,
+    "path": "$.obs[269]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 171,
+    "quotedToken": "\"image\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 172,
+    "offset": 0,
+    "path": "$.obs[270]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 172,
+    "quotedToken": "\"getWebImages\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 173,
+    "offset": 0,
+    "path": "$.obs[271]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 173,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 200,
+    "offset": 0,
+    "path": "$.obs[272]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 200,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 200,
+    "offset": 0,
+    "path": "$.obs[273]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 200,
+    "quotedToken": "\"image\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 201,
+    "offset": 0,
+    "path": "$.obs[274]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 201,
+    "quotedToken": "\"regenerateImages\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 201,
+    "offset": 0,
+    "path": "$.obs[275]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+    "line": 201,
+    "quotedToken": "client.getEndpointTarget().path(\"regenerateImages\")"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 45,
+    "offset": 0,
+    "path": "$.obs[276]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+    "line": 45,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 45,
+    "offset": 0,
+    "path": "$.obs[277]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+    "line": 45,
+    "quotedToken": "\"recommend\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 46,
+    "offset": 0,
+    "path": "$.obs[278]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+    "line": 46,
+    "quotedToken": "\"uid\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 47,
+    "offset": 0,
+    "path": "$.obs[279]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+    "line": 47,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 56,
+    "offset": 0,
+    "path": "$.obs[280]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 56,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 56,
+    "offset": 0,
+    "path": "$.obs[281]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 56,
+    "quotedToken": "\"useractions\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 59,
+    "offset": 0,
+    "path": "$.obs[282]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 59,
+    "quotedToken": "\"placeorder\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.obs[283]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 60,
+    "quotedToken": "\"addressName\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 60,
+    "offset": 0,
+    "path": "$.obs[284]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 60,
+    "quotedToken": "\"address1\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 61,
+    "offset": 0,
+    "path": "$.obs[285]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 61,
+    "quotedToken": "\"address2\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 61,
+    "offset": 0,
+    "path": "$.obs[286]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 61,
+    "quotedToken": "\"creditCardCompany\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 62,
+    "offset": 0,
+    "path": "$.obs[287]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 62,
+    "quotedToken": "\"creditCardNumber\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 63,
+    "offset": 0,
+    "path": "$.obs[288]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 63,
+    "quotedToken": "\"creditCardExpiryDate\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 64,
+    "offset": 0,
+    "path": "$.obs[289]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 64,
+    "quotedToken": "\"totalPriceInCents\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 65,
+    "offset": 0,
+    "path": "$.obs[290]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 65,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 87,
+    "offset": 0,
+    "path": "$.obs[291]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 87,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 87,
+    "offset": 0,
+    "path": "$.obs[292]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 87,
+    "quotedToken": "\"useractions\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 90,
+    "offset": 0,
+    "path": "$.obs[293]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 90,
+    "quotedToken": "\"login\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 90,
+    "offset": 0,
+    "path": "$.obs[294]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 90,
+    "quotedToken": "\"name\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 91,
+    "offset": 0,
+    "path": "$.obs[295]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 91,
+    "quotedToken": "\"password\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 92,
+    "offset": 0,
+    "path": "$.obs[296]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 92,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 110,
+    "offset": 0,
+    "path": "$.obs[297]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 110,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 110,
+    "offset": 0,
+    "path": "$.obs[298]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 110,
+    "quotedToken": "\"useractions\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 112,
+    "offset": 0,
+    "path": "$.obs[299]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 112,
+    "quotedToken": "\"logout\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 113,
+    "offset": 0,
+    "path": "$.obs[300]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 113,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 131,
+    "offset": 0,
+    "path": "$.obs[301]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 131,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 131,
+    "offset": 0,
+    "path": "$.obs[302]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 131,
+    "quotedToken": "\"useractions\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 134,
+    "offset": 0,
+    "path": "$.obs[303]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 134,
+    "quotedToken": "\"isloggedin\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 135,
+    "offset": 0,
+    "path": "$.obs[304]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 135,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 156,
+    "offset": 0,
+    "path": "$.obs[305]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 156,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 156,
+    "offset": 0,
+    "path": "$.obs[306]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 156,
+    "quotedToken": "\"cart\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 158,
+    "offset": 0,
+    "path": "$.obs[307]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 158,
+    "quotedToken": "\"add\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 158,
+    "offset": 0,
+    "path": "$.obs[308]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 158,
+    "quotedToken": "\"\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 159,
+    "offset": 0,
+    "path": "$.obs[309]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 159,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 179,
+    "offset": 0,
+    "path": "$.obs[310]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 179,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 179,
+    "offset": 0,
+    "path": "$.obs[311]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 179,
+    "quotedToken": "\"cart\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 181,
+    "offset": 0,
+    "path": "$.obs[312]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 181,
+    "quotedToken": "\"remove\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 181,
+    "offset": 0,
+    "path": "$.obs[313]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 181,
+    "quotedToken": "\"\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 182,
+    "offset": 0,
+    "path": "$.obs[314]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 182,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 207,
+    "offset": 0,
+    "path": "$.obs[315]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 207,
+    "quotedToken": "ServiceLoadBalancer"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 207,
+    "offset": 0,
+    "path": "$.obs[316]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 207,
+    "quotedToken": "\"cart\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 209,
+    "offset": 0,
+    "path": "$.obs[317]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 209,
+    "quotedToken": "\"\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 209,
+    "offset": 0,
+    "path": "$.obs[318]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 209,
+    "quotedToken": "\"quantity\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 210,
+    "offset": 0,
+    "path": "$.obs[319]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "line": 210,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 69,
+    "offset": 0,
+    "path": "$.obs[320]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+    "line": 69,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 115,
+    "offset": 0,
+    "path": "$.obs[321]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+    "line": 115,
+    "quotedToken": "Entity"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 79,
+    "offset": 0,
+    "path": "$.obs[322]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 79,
+    "quotedToken": "System"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 79,
+    "offset": 0,
+    "path": "$.obs[323]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 79,
+    "quotedToken": "\"USE_HTTPS\""
+   },
+   {
+    "status": "ok",
+    "matchedLine": 91,
+    "offset": 0,
+    "path": "$.obs[324]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 91,
+    "quotedToken": "ClientConfig"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 118,
+    "offset": 0,
+    "path": "$.obs[325]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 118,
+    "quotedToken": "ClientBuilder.newBuilder()"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 125,
+    "offset": 0,
+    "path": "$.obs[326]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 125,
+    "quotedToken": "ClientBuilder"
+   },
+   {
+    "status": "ok",
+    "matchedLine": 128,
+    "offset": 0,
+    "path": "$.obs[327]",
+    "repo": "upstream",
+    "sourceFile": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+    "line": 128,
+    "quotedToken": "client"
+   }
+  ]
+ }
+}

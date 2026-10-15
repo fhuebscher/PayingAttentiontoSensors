@@ -1,0 +1,115 @@
+{
+ "schemaVersion": 1,
+ "library": "sarama",
+ "version": "1.43.2",
+ "sources": {
+  "obsplacement": {
+   "path": ".",
+   "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+  }
+ },
+ "facts": [
+  {
+   "kind": "config-default",
+   "subject": "Consumer.Group.Session.Timeout",
+   "value": 10,
+   "unit": "s",
+   "scope": "liveness",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "line": 550,
+   "quotedToken": "c.Consumer.Group.Session.Timeout = 10 * time.Second",
+   "note": "Default set in NewConfig; the doc comment at line 294 also states (default 10s)."
+  },
+  {
+   "kind": "config-default",
+   "subject": "Consumer.Group.Heartbeat.Interval",
+   "value": 3,
+   "unit": "s",
+   "scope": "liveness",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "line": 551,
+   "quotedToken": "c.Consumer.Group.Heartbeat.Interval = 3 * time.Second",
+   "note": "Validation at line 820 requires Heartbeat.Interval < Session.Timeout."
+  },
+  {
+   "kind": "config-default",
+   "subject": "Consumer.Group.Rebalance.Timeout",
+   "value": 60,
+   "unit": "s",
+   "scope": "group-membership",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "line": 553,
+   "quotedToken": "c.Consumer.Group.Rebalance.Timeout = 60 * time.Second",
+   "note": "Doc comment at lines 318-321 states a worker that exceeds it is removed from the group; it does not name the component that removes it."
+  },
+  {
+   "kind": "config-default",
+   "subject": "Consumer.Group.Rebalance.Retry.Max",
+   "value": 4,
+   "unit": "count",
+   "scope": "group-membership",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "line": 554,
+   "quotedToken": "c.Consumer.Group.Rebalance.Retry.Max = 4"
+  },
+  {
+   "kind": "config-default",
+   "subject": "Consumer.Group.Rebalance.Retry.Backoff",
+   "value": 2,
+   "unit": "s",
+   "scope": "group-membership",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "line": 555,
+   "quotedToken": "c.Consumer.Group.Rebalance.Retry.Backoff = 2 * time.Second"
+  },
+  {
+   "kind": "config-default",
+   "subject": "Metadata.Retry.Max",
+   "value": 3,
+   "unit": "count",
+   "scope": "liveness",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "line": 520,
+   "quotedToken": "c.Metadata.Retry.Max = 3",
+   "note": "Governs group liveness indirectly: heartbeatLoop in consumer_group.go uses config.Metadata.Retry.Max (line 1009) as its retry budget for coordinator lookup and heartbeat request errors before the loop exits."
+  },
+  {
+   "kind": "config-default",
+   "subject": "Metadata.Retry.Backoff",
+   "value": 250,
+   "unit": "ms",
+   "scope": "liveness",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "line": 521,
+   "quotedToken": "c.Metadata.Retry.Backoff = 250 * time.Millisecond",
+   "note": "Used by heartbeatLoop (consumer_group.go line 1006) as the wait between failed coordinator lookups."
+  },
+  {
+   "kind": "failure-detector",
+   "subject": "Consumer.Group.Session.Timeout",
+   "value": "group-coordinator",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+   "line": 292,
+   "quotedToken": "then the broker will remove this consumer from the group",
+   "note": "Doc comment lines 289-292: if no heartbeats are received by the broker before the session timeout expires, the broker removes the consumer and initiates a rebalance. The broker's group coordinator is not named on this line; the heartbeat goes to the consumer coordinator (line 298)."
+  },
+  {
+   "kind": "heartbeat-thread-independent",
+   "subject": "consumerGroupSession.heartbeatLoop",
+   "value": true,
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/consumer_group.go",
+   "line": 838,
+   "quotedToken": "go sess.heartbeatLoop()",
+   "note": "The heartbeat loop is started in its own goroutine when the session is created (line 838); the doc comment at lines 29-30 says ConsumeClaim() runs in a separate goroutine, so the heartbeat is not driven by message processing."
+  }
+ ]
+}

@@ -1,0 +1,153 @@
+@prefix ev: <http://obsplacement.example/evidence#> .
+@prefix omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#> .
+@prefix ops: <http://obsplacement.example/ops#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sut: <http://obsplacement.example/sut/otel#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sut:ev-1fec9db983d14e32 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-accountingservice ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for accountingservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-201b40188f9ff484 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-accounting-service ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: accounting-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 23 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-21246bef2ba8a6ff a ev:Evidence ;
+    ev:aboutObject sut:svc-accountingservice ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:basis "cited" ;
+    ev:quotedToken "accountingservice:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 21 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4b4d08edaafa6176 a ev:Evidence ;
+    ev:aboutObject omsac:MicroserviceArchitecture ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:arch-otel ;
+    ev:basis "cited" ;
+    ev:note "architecture = the services of the compose files upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml" ;
+    ev:quotedToken "services:" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 16 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-4c573436d509513a a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-accountingservice ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for accountingservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-6ccab6318dbf1551 a ev:Evidence ;
+    ev:aboutObject sut:svc-kafka ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-accountingservice ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D4: bare entry docker-compose.yml:35 passes KAFKA_SERVICE_ADDR=kafka:9092 to accountingservice" ;
+    ev:quotedToken "KAFKA_SERVICE_ADDR=kafka:${KAFKA_SERVICE_PORT}" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 139 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-70b72b999b6d6443 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-accountingservice ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM base" ;
+    ev:quotedToken "base" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "src/accountingservice/Dockerfile" ;
+    ev:sourceLine 22 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7e03d30678b4291b a ev:Evidence ;
+    ev:aboutObject ops:Host ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:host-fb14srv6 ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-80330a54f34bb198 a ev:Evidence ;
+    ev:aboutObject sut:ctr-accounting-service ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-accountingservice ;
+    ev:basis "cited" ;
+    ev:quotedToken "container_name: accounting-service" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile "docker-compose.yml" ;
+    ev:sourceLine 23 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-80b98fad7abe994d a ev:Evidence ;
+    ev:aboutObject sut:svc-otelcol ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-accountingservice ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D4: entry docker-compose.yml:36 passes OTEL_EXPORTER_OTLP_ENDPOINT=http://otelcol:4318 to accountingservice" ;
+    ev:quotedToken "OTEL_COLLECTOR_HOST=otelcol" ;
+    ev:sourceCommit "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d" ;
+    ev:sourceFile ".env" ;
+    ev:sourceLine 27 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8dc7a0702fa620a9 a ev:Evidence ;
+    ev:aboutObject sut:svc-accountingservice ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-accountingservice ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for accountingservice in upstream:docker-compose.yml, harness:modules/otel-demo/deployment/compose.candidate-postures.yml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-a572db64108d9f35 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv6 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-accounting-service ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv6\"" ;
+    ev:sourceCommit "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 422 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:arch-otel a omsac:MicroserviceArchitecture ;
+    omsac:isComposedOf sut:svc-accountingservice .
+
+sut:host-fb14srv6 a ops:Host .
+
+sut:rs-accountingservice a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-accountingservice .
+
+sut:ctr-accounting-service a ops:Container ;
+    ops:placedOn sut:host-fb14srv6 .
+
+sut:svc-accountingservice a omsac:Microservice ;
+    ops:callsSync sut:svc-kafka,
+        sut:svc-otelcol ;
+    ops:runsIn sut:ctr-accounting-service .
+

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "extractor": "A",
+    "service": "adservice",
+    "notes": [
+      "Synchronous calls: adservice is a gRPC server (AdService.java:96-101 ServerBuilder.forPort(port).addService(new AdServiceImpl()); pb/demo.proto:244 rpc GetAds). Its only outbound dependency in these files is flagd: AdService.java:92 new FlagdProvider(options), evaluations at AdService.java:172, 205, 209 via ffClient.getBooleanValue; docker-compose.yml:65-66 FLAGD_HOST, FLAGD_PORT; .env:129-130 FLAGD_HOST=flagd, FLAGD_PORT=8013. The wire protocol of the flagd provider is not stated in these files (FlagdOptions.builder().withGlobalTelemetry(true).build() at AdService.java:88-90 sets no resolver): library default, not in these files. No other gRPC/HTTP client call sites in the given files.",
+      "Messages: no topics, producers, consumers or consumer groups in these files (no kafka dependency in build.gradle:43-58, no kafka env in docker-compose.yml:63-71).",
+      "Registry/discovery/coordinator: none stated in these files. adservice does not register with or heartbeat to any registry; heartbeat interval, failure timeout, cleanup interval and heartbeat independence: not applicable, not stated.",
+      "Container, replicas, health check: container_name ad-service (docker-compose.yml:50), image ${IMAGE_NAME}:${DEMO_VERSION}-adservice (line 49), memory limit 300M (line 59), restart: unless-stopped (line 60). No deploy.replicas or scale in docker-compose.yml:48-77 or modules/otel-demo/deployment/compose.candidate-postures.yml:25-31 (Compose default 1). No healthcheck key in the adservice compose block (docker-compose.yml:48-77) and no HEALTHCHECK in src/adservice/Dockerfile: no container health check configured. depends_on uses condition service_started for otelcol and flagd (docker-compose.yml:73-76). The service does expose a gRPC health service (AdService.java:99 healthMgr.getHealthService(), line 113 setStatus SERVING), but nothing in these files polls it.",
+      "Telemetry: all three signals go to the OTel collector (otelcol) over OTLP/HTTP: docker-compose.yml:67 OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}; .env:27 OTEL_COLLECTOR_HOST=otelcol, .env:29 OTEL_COLLECTOR_PORT_HTTP=4318. Traces and metrics come from the Java agent (Dockerfile:28 JAVA_TOOL_OPTIONS=-javaagent:/usr/src/app/opentelemetry-javaagent.jar, agent version Dockerfile:23 ARG version=2.6.0) plus API spans (AdService.java:62 getTracer, :230 @WithSpan, :244 spanBuilder) and the counter app.ads.ad_requests (AdService.java:67). Logs: OTEL_LOGS_EXPORTER=otlp at docker-compose.yml:70; log4j2.xml:9-10 also writes a console appender to STDOUT (collected by the docker json-file driver, docker-compose.yml:4-9, :77). Export intervals (batch span/log processor delay, metric export interval): not set in these files, library default, not in these files (no OTEL_BSP_*, OTEL_BLRP_*, OTEL_METRIC_EXPORT_INTERVAL in docker-compose.yml:63-71 or .env). Candidate-posture overlay compose.candidate-postures.yml:27-31 overrides JAVA_TOOL_OPTIONS, OTEL_SDK_DISABLED and the traces/metrics/logs exporters per posture from OTEL_CANDIDATE_ADSERVICE_* variables whose values are not in these files. Collector side (context): otelcol-config.yml:123-135 routes traces, metrics and logs pipelines from the otlp receiver."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "adservice",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 48,
+        "quotedToken": "adservice:"
+      },
+      "container": {
+        "value": "ad-service",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 50,
+        "quotedToken": "container_name: ad-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "no deploy.replicas or scale for adservice in upstream:docker-compose.yml:48-77 or harness:modules/otel-demo/deployment/compose.candidate-postures.yml:25-31; Compose default 1; library default, not in these files"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "docker-compose.yml",
+          "line": 67,
+          "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}",
+          "note": "traces, metrics and logs over OTLP/HTTP; host otelcol from .env:27 OTEL_COLLECTOR_HOST=otelcol, port 4318 from .env:29; logs exporter set explicitly at docker-compose.yml:70 OTEL_LOGS_EXPORTER=otlp; export interval not set in these files (library default, not in these files)"
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "adservice",
+        "callee": "flagd"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/adservice/src/main/java/oteldemo/AdService.java",
+      "line": 92,
+      "quotedToken": "new FlagdProvider(options)",
+      "note": "feature-flag evaluation client; target FLAGD_HOST/FLAGD_PORT from docker-compose.yml:65-66, .env:129-130 (flagd:8013); protocol not stated in these files (library default, not in these files)"
+    }
+  ]
+}

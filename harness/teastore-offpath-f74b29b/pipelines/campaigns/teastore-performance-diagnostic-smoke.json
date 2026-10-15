@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "teastore-performance-diagnostic-smoke",
+  "evidenceLabel": "smoke-validation",
+  "module": "teastore",
+  "target": "fb14srv5",
+  "executor": "ssh-compose",
+  "source": {
+    "frameworkCommit": "required-at-materialization",
+    "sutReferenceCommit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "runner": "modules/teastore/execution/performance_campaign.py",
+  "design": {
+    "blocks": 1,
+    "seed": 20260803,
+    "postures": [
+      {
+        "id": "full",
+        "contract": "modules/teastore/postures/native-full.yaml"
+      }
+    ],
+    "warmupSeconds": 120,
+    "measurementSeconds": 60,
+    "workload": {
+      "path": "modules/teastore/workload/fixed_load.py",
+      "kind": "fixed-open-loop",
+      "journeysPerSecond": 0.15,
+      "concurrency": 8
+    },
+    "fault": {
+      "scenario": "none"
+    },
+    "selectionId": "auth",
+    "coldStartEachRun": true
+  },
+  "collector": {
+    "path": "modules/teastore/collectors/kieker_native.py",
+    "durationSeconds": 90,
+    "inactivityTimeoutSeconds": 10,
+    "queue": "kieker",
+    "requiredConsumers": 1
+  },
+  "validation": [
+    "immutable-descriptor-binding",
+    "performance-receipt",
+    "native-kieker-contract",
+    "queue-purge-recorded",
+    "queue-proof-replay",
+    "exclusive-consumer",
+    "runtime-image-provenance",
+    "child-process-termination",
+    "sanitized-host-inventory",
+    "retained-60s-preflight",
+    "host-wide-execution-lease",
+    "external-manifest-anchor",
+    "deadline-enforced-owned-cleanup",
+    "runtime-admission-replay",
+    "complete-shutdown",
+    "content-manifest"
+  ],
+  "promotion": {
+    "canonical": false,
+    "reason": "One full-posture baseline run for execution-contract smoke only. The collector interval intentionally extends beyond the measurement interval, and consumer exclusivity is operational evidence rather than a continuous scientific-window guarantee."
+  }
+}

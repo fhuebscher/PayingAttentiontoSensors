@@ -1,0 +1,6 @@
+FROM --platform=linux/amd64 descartesresearch/teastore-auth@sha256:1babe5ca10bda103daa03f52db3e2357e0d3ec32a9ed549c4b2e2020152b0dac
+COPY services/tools.descartes.teastore.auth/target/tools.descartes.teastore.auth.war /usr/local/tomcat/webapps/tools.descartes.teastore.auth.war
+COPY utilities/tools.descartes.teastore.dockerbase/aop.xml /usr/local/tomcat/lib/aop.xml
+LABEL org.opencontainers.image.revision=34b37f7e7be433ce72d5f9455e66922a13116749
+LABEL org.observability-placement.patch.sha256=2199c0f6e9ab1098afcac3c6b5a68d7860ad1b94b70019d790862eb1a7d60094
+LABEL org.observability-placement.service=auth

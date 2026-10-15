@@ -1,0 +1,89 @@
+{
+  "provenance": "Shape-preserving regression fixture derived from retained diagnostic trace 1554867771349664037; parameter values and application data are excluded.",
+  "runtimeImages": {
+    "schemaVersion": 1,
+    "services": {
+      "auth": {
+        "containerId": "e9cabac075b71a0c79940dfddb966363c496d5fb41cb8e26d431e99ee1c139f0"
+      },
+      "persistence": {
+        "containerId": "182fea2c8696ee4d2d9f66de427c0b7ebd5306dd918934c7bd45097ae599e184"
+      },
+      "webui": {
+        "containerId": "17c8df7af5ea359613a7eb155b9cd1b708ef55e91507125ca29c00ed26c1903e"
+      }
+    }
+  },
+  "arrivalMessages": [
+    {
+      "label": "persistence-descendant-arrives-first",
+      "records": [
+        {
+          "operationSignature": "public jakarta.ws.rs.core.Response tools.descartes.teastore.persistence.rest.UserEndpoint.findById(java.lang.String)",
+          "sessionId": "fixture-session",
+          "traceId": 1554867771349664037,
+          "tin": 1787945800420416000,
+          "tout": 1787945800422029300,
+          "hostname": "182fea2c8696",
+          "eoi": 4,
+          "ess": 4
+        }
+      ]
+    },
+    {
+      "label": "auth-entry-arrives-second",
+      "records": [
+        {
+          "operationSignature": "public jakarta.ws.rs.core.Response tools.descartes.teastore.auth.rest.AuthUserActionsRest.login(tools.descartes.teastore.entities.message.SessionBlob, java.lang.String, java.lang.String)",
+          "sessionId": "fixture-session",
+          "traceId": 1554867771349664037,
+          "tin": 1787945800411207700,
+          "tout": 1787945800449621500,
+          "hostname": "e9cabac075b7",
+          "eoi": 2,
+          "ess": 2
+        }
+      ]
+    },
+    {
+      "label": "webui-ancestors-arrive-third",
+      "records": [
+        {
+          "operationSignature": "protected void tools.descartes.teastore.webui.servlet.LoginActionServlet.handlePOSTRequest(jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse)",
+          "sessionId": "fixture-session",
+          "traceId": 1554867771349664037,
+          "tin": 1787945800393747200,
+          "tout": 1787945800457839900,
+          "hostname": "17c8df7af5ea",
+          "eoi": 0,
+          "ess": 0
+        },
+        {
+          "operationSignature": "public static tools.descartes.teastore.entities.message.SessionBlob tools.descartes.teastore.registryclient.rest.LoadBalancedStoreOperations.login(tools.descartes.teastore.entities.message.SessionBlob, java.lang.String, java.lang.String)",
+          "sessionId": "fixture-session",
+          "traceId": 1554867771349664037,
+          "tin": 1787945800394069500,
+          "tout": 1787945800454431200,
+          "hostname": "17c8df7af5ea",
+          "eoi": 1,
+          "ess": 1
+        }
+      ]
+    },
+    {
+      "label": "shared-client-parent-arrives-last",
+      "records": [
+        {
+          "operationSignature": "public static java.lang.Object tools.descartes.teastore.registryclient.rest.LoadBalancedCRUDOperations.getEntityWithProperties(tools.descartes.teastore.registryclient.Service, java.lang.String, java.lang.Class, java.lang.String, java.lang.String)",
+          "sessionId": "fixture-session",
+          "traceId": 1554867771349664037,
+          "tin": 1787945800411265800,
+          "tout": 1787945800426078000,
+          "hostname": "e9cabac075b7",
+          "eoi": 3,
+          "ess": 3
+        }
+      ]
+    }
+  ]
+}

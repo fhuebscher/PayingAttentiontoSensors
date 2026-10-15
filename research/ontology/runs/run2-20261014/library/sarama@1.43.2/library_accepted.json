@@ -1,0 +1,229 @@
+{
+ "library": "sarama@1.43.2",
+ "accepted": [
+  {
+   "id": "c899a0f595825037",
+   "acceptance": "agreed",
+   "key": [
+    "sarama@1.43.2|consumer.group.heartbeat.interval",
+    "library:config-default",
+    "3.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "Consumer.Group.Heartbeat.Interval",
+    "value": 3,
+    "unit": "s",
+    "scope": "liveness",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+    "line": 551,
+    "quotedToken": "c.Consumer.Group.Heartbeat.Interval = 3 * time.Second",
+    "note": "Validation at line 820 requires Heartbeat.Interval < Session.Timeout."
+   }
+  },
+  {
+   "id": "2d6c52007eacc0a9",
+   "acceptance": "agreed",
+   "key": [
+    "sarama@1.43.2|consumer.group.rebalance.retry.backoff",
+    "library:config-default",
+    "2.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "Consumer.Group.Rebalance.Retry.Backoff",
+    "value": 2,
+    "unit": "s",
+    "scope": "group-membership",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+    "line": 555,
+    "quotedToken": "c.Consumer.Group.Rebalance.Retry.Backoff = 2 * time.Second"
+   }
+  },
+  {
+   "id": "74962c28633b0683",
+   "acceptance": "agreed",
+   "key": [
+    "sarama@1.43.2|consumer.group.rebalance.retry.max",
+    "library:config-default",
+    "4.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "Consumer.Group.Rebalance.Retry.Max",
+    "value": 4,
+    "unit": "count",
+    "scope": "group-membership",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+    "line": 554,
+    "quotedToken": "c.Consumer.Group.Rebalance.Retry.Max = 4"
+   }
+  },
+  {
+   "id": "c6394484687c6a66",
+   "acceptance": "agreed",
+   "key": [
+    "sarama@1.43.2|consumer.group.rebalance.timeout",
+    "library:config-default",
+    "60.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "Consumer.Group.Rebalance.Timeout",
+    "value": 60,
+    "unit": "s",
+    "scope": "group-membership",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+    "line": 553,
+    "quotedToken": "c.Consumer.Group.Rebalance.Timeout = 60 * time.Second",
+    "note": "Doc comment at lines 318-321 states a worker that exceeds it is removed from the group; it does not name the component that removes it."
+   }
+  },
+  {
+   "id": "795c4972d1143bdc",
+   "acceptance": "agreed",
+   "key": [
+    "sarama@1.43.2|consumer.group.session.timeout",
+    "library:config-default",
+    "10.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "Consumer.Group.Session.Timeout",
+    "value": 10,
+    "unit": "s",
+    "scope": "liveness",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+    "line": 550,
+    "quotedToken": "c.Consumer.Group.Session.Timeout = 10 * time.Second",
+    "note": "Default set in NewConfig; the doc comment at line 294 also states (default 10s)."
+   }
+  },
+  {
+   "id": "4ce4a184b91296a5",
+   "acceptance": "agreed",
+   "key": [
+    "sarama@1.43.2|consumer.group.session.timeout",
+    "library:failure-detector",
+    "group-coordinator"
+   ],
+   "fact": {
+    "kind": "failure-detector",
+    "subject": "Consumer.Group.Session.Timeout",
+    "value": "group-coordinator",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+    "line": 292,
+    "quotedToken": "then the broker will remove this consumer from the group",
+    "note": "Doc comment lines 289-292: if no heartbeats are received by the broker before the session timeout expires, the broker removes the consumer and initiates a rebalance. The broker's group coordinator is not named on this line; the heartbeat goes to the consumer coordinator (line 298)."
+   }
+  },
+  {
+   "id": "dc68345071c83e3f",
+   "acceptance": "agreed",
+   "key": [
+    "sarama@1.43.2|consumergroupsession.heartbeatloop",
+    "library:heartbeat-thread-independent",
+    true
+   ],
+   "fact": {
+    "kind": "heartbeat-thread-independent",
+    "subject": "consumerGroupSession.heartbeatLoop",
+    "value": true,
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/consumer_group.go",
+    "line": 838,
+    "quotedToken": "go sess.heartbeatLoop()",
+    "note": "The heartbeat loop is started in its own goroutine when the session is created (line 838); the doc comment at lines 29-30 says ConsumeClaim() runs in a separate goroutine, so the heartbeat is not driven by message processing."
+   }
+  },
+  {
+   "id": "0093ddc5c50c9ad5",
+   "acceptance": "agreed",
+   "key": [
+    "sarama@1.43.2|metadata.retry.backoff",
+    "library:config-default",
+    "250.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "Metadata.Retry.Backoff",
+    "value": 250,
+    "unit": "ms",
+    "scope": "liveness",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+    "line": 521,
+    "quotedToken": "c.Metadata.Retry.Backoff = 250 * time.Millisecond",
+    "note": "Used by heartbeatLoop (consumer_group.go line 1006) as the wait between failed coordinator lookups."
+   }
+  },
+  {
+   "id": "af5bd1708c8f50cd",
+   "acceptance": "agreed",
+   "key": [
+    "sarama@1.43.2|metadata.retry.max",
+    "library:config-default",
+    "3.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "Metadata.Retry.Max",
+    "value": 3,
+    "unit": "count",
+    "scope": "liveness",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+    "line": 520,
+    "quotedToken": "c.Metadata.Retry.Max = 3",
+    "note": "Governs group liveness indirectly: heartbeatLoop in consumer_group.go uses config.Metadata.Retry.Max (line 1009) as its retry budget for coordinator lookup and heartbeat request errors before the loop exits."
+   }
+  },
+  {
+   "id": "983bc0a90296553d",
+   "acceptance": "supported",
+   "key": [
+    "sarama@1.43.2|consumergroup client (heartbeatloop)",
+    "library:removal-signal",
+    "joingroup failed: group instance id %s has been fenced"
+   ],
+   "fact": {
+    "kind": "removal-signal",
+    "subject": "consumerGroup client (heartbeatLoop)",
+    "value": "JoinGroup failed: group instance id %s has been fenced",
+    "signal": "log",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/consumer_group.go",
+    "line": 1050,
+    "quotedToken": "JoinGroup failed: group instance id %s has been fenced",
+    "note": "Logged by the client when a heartbeat returns ErrFencedInstancedId. The same text is logged at lines 335 and 402. The files do not state that the coordinator itself logs or exposes a removal, and no removal event is named for the session or rebalance timeouts."
+   }
+  },
+  {
+   "id": "38e567052ac30963",
+   "acceptance": "supported",
+   "key": [
+    "sarama@1.43.2|metadata.refreshfrequency",
+    "library:config-default",
+    "600.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "Metadata.RefreshFrequency",
+    "value": 600,
+    "unit": "s",
+    "scope": "group-membership",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+    "line": 522,
+    "quotedToken": "c.Metadata.RefreshFrequency = 10 * time.Minute",
+    "note": "Set in NewConfig; 10 minutes. The comment at config.go line 149 says 0 disables it. Only the group leader runs the partition-count check, which cancels the session when the count changes (consumer_group.go lines 438-439, 699, 717)."
+   }
+  }
+ ]
+}

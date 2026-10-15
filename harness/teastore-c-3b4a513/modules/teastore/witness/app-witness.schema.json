@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.invalid/contracts/teastore-app-witness-v1.schema.json",
+  "title": "TeaStore application-side executed-path witness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "schemaVersion",
+    "journeyId",
+    "opportunityId",
+    "opaqueToken",
+    "source",
+    "independentOfKieker",
+    "observedAt",
+    "authObservedAtUtc",
+    "persistenceObservedAtUtc",
+    "authTraversed",
+    "persistenceTraversed",
+    "executedPath"
+  ],
+  "properties": {
+    "schema": {"const": "teastore.app-witness"},
+    "schemaVersion": {"const": 1},
+    "journeyId": {"type": "string", "minLength": 1},
+    "opportunityId": {"type": "string", "minLength": 1},
+    "opaqueToken": {"type": "string", "pattern": "^journey-[0-9a-f]{32}$"},
+    "source": {"const": "application-side"},
+    "independentOfKieker": {"const": true},
+    "observedAt": {"type": "string", "format": "date-time"},
+    "authObservedAtUtc": {"type": "string", "format": "date-time"},
+    "persistenceObservedAtUtc": {"type": "string", "format": "date-time"},
+    "authTraversed": {"const": true},
+    "persistenceTraversed": {"const": true},
+    "executedPath": {
+      "type": "array",
+      "prefixItems": [{"const": "auth"}, {"const": "persistence"}],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    }
+  }
+}

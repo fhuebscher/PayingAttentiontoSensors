@@ -1,0 +1,47 @@
+{
+ "library": "grpc-consul-resolver@1.5.3",
+ "accepted": [
+  {
+   "id": "98015aea8c1cc839",
+   "acceptance": "supported",
+   "key": [
+    "grpc-consul-resolver@1.5.3|max-backoff",
+    "library:config-default",
+    "1.0"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "max-backoff",
+    "value": 1,
+    "unit": "s",
+    "scope": "liveness",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/target.go",
+    "line": 73,
+    "quotedToken": "tgt.MaxBackoff = time.Second",
+    "note": "URL parameter max-backoff (form tag at line 22); default applied at line 72-73 when the parsed value is 0. It caps the retry sleep after a failed Consul service fetch (consul.go Max: tgt.MaxBackoff), not a heartbeat or session timeout. The files state no default for the wait, timeout or healthy parameters."
+   }
+  },
+  {
+   "id": "312851cb1aa3b1e5",
+   "acceptance": "supported",
+   "key": [
+    "grpc-consul-resolver@1.5.3|max-backoff",
+    "library:config-default",
+    "time.second"
+   ],
+   "fact": {
+    "kind": "config-default",
+    "subject": "max-backoff",
+    "value": "time.Second",
+    "unit": "s",
+    "scope": "registration",
+    "repo": "obsplacement",
+    "sourceFile": "research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/target.go",
+    "line": 73,
+    "quotedToken": "time.Second",
+    "note": "Key is form:\"max-backoff\" at target.go:22. The default is applied when the value is zero, at target.go:72-74 in parseURL. It bounds the retry delay for the registry query that supplies endpoints (consul.go:42-46, 64-75)."
+   }
+  }
+ ]
+}

@@ -1,0 +1,199 @@
+schema_version: 1
+module: otel-demo
+upstream:
+  repository: https://github.com/open-telemetry/opentelemetry-demo.git
+  commit: 2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d
+  path: upstream/opentelemetry-demo
+policy:
+  copied_upstream_application_source: forbidden
+  unclassified_files: forbidden
+  canonical_requires_clean_framework_tree: true
+extensions:
+  - path: goal.yaml
+    class: instrumentation-adapter
+    purpose: Declare the bounded frontend-proxy, frontend, and recommendation evidence goal and measured objectives.
+    origin: framework-owned
+    upstream_patch: false
+  - path: materialize.py
+    class: upstream-patch
+    purpose: Reproducibly generate every source-side posture control (Node, browser, Python entrypoint guard, Envoy tracing template, nginx otel template, JVM/.NET/Node launch guards and agent-environment pins) from the pinned checkout without modifying the submodule.
+    origin: framework-owned
+    upstream_patch: true
+  - path: deployment/compose.otel-placement.yml
+    class: deployment-overlay
+    purpose: Bind guarded images, source posture variables, collector configuration, and the exact Envoy template.
+    origin: framework-owned
+    upstream_patch: false
+  - path: workload.py
+    class: workload
+    purpose: Generate fixed-rate requests with per-request timing, status, and scheduling receipts.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/campaign.py
+    class: deployment-overlay
+    purpose: Build source-bound images and execute randomized posture, workload, intervention, collection, and teardown steps.
+    origin: framework-owned
+    upstream_patch: false
+  - path: analyze.py
+    class: evidence-normalizer
+    purpose: Recompute trace export summaries and paired diagnostic deltas while retaining candidate-only qualification.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_pilot.py
+    class: validator
+    purpose: Compile and immutably materialize the split-window candidate schedule while retaining unsupported-posture and runtime-denial semantics.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_runtime.py
+    class: validator
+    purpose: Derive posture realization from the frozen descriptor and the per-service catalog, prove every disabled-posture control against the pinned upstream at plan time, and refuse every setup, readiness, launch, status, fetch, and mutation entry point while any required posture is unrealized.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_setup.py
+    class: validator
+    purpose: Install the reviewed release on the target; admits no study epoch today and refuses before package reads, filesystem mutation, or external commands.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate-target-allocation.json
+    class: deployment-overlay
+    purpose: Project the eleven v4 srv6 target fields, root transport/setup identity, exact stig execution identity, shared host lease, preserved foreign inventory, and successor handoff.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_remote.py
+    class: validator
+    purpose: Execute cells on the target with the per-service instrumentation posture proof (schema 2); admits no study epoch today and refuses campaign, cell, cleanup, and CLI entry points before mutation.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate-unsupported.json
+    class: validator
+    purpose: Bind the frozen descriptor and reviewed srv6 allocation bytes to the exact 18-cell UNSUPPORTED ledger with no gates, attempts, numeric results, runtime authority, or full-only escape.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/compose.candidate-postures.yml
+    class: deployment-overlay
+    purpose: Materialize the per-service SDK, exporter, browser, Envoy, nginx, JVM-agent, .NET-shim, Node-preload, and flagd controls used by the exact none, selected, and full posture contract.
+    origin: framework-owned
+    upstream_patch: false
+  - path: postures/catalog.json
+    class: instrumentation-adapter
+    purpose: Declare the complete application-service sensor population, the exact active closure for none, selected, and full, and the per-service instrumentation mechanism, disabled load state, runtime probe, and posture realization.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/candidate_terminal.py
+    class: validator
+    purpose: Route-bound terminal validator; refuses through the descriptor-driven posture realization and otherwise replays every retained cell, per-phase correlation, workload identity, posture proof v2, and the nested posture lattice.
+    origin: framework-owned
+    upstream_patch: false
+  - path: tools/posture_connection_probe.sh
+    class: validator
+    purpose: Behavioural check of the five in-code-SDK source guards on local docker only -- build each service from a materialized tree, run it with OTEL_PLACEMENT_ENABLED false and true against a stand-in otelcol:4317 listener, and require zero OTLP connections when disabled and more than zero when enabled. Must print PROBE OK before any GATE-SETUP and after every upstream re-pin; a text-level guard proof cannot see a missed init call.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/candidate_unsupported.py
+    class: validator
+    purpose: Validate the exact 18-cell UNSUPPORTED disposition ledger of the v1 study epoch and reject attempts, numeric results, mutation permission, target authority, or design drift.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_runtime_adapter.py
+    class: deployment-overlay
+    purpose: Translate the shared gate-driver adapter contract onto candidate_runtime's own plan replay, operational binding, validation, and the three typed-sentence derivations, adding no governance logic of its own; carries the one-way release binding the GATE-PLAN's bundle digests require.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_transport.py
+    class: deployment-overlay
+    purpose: Translate the shared gate-driver transport contract onto ComposeSshAdapter's exact two-bundle build, one-shot installer, readiness capture and systemd launch, plus the two read-only ssh probes that answer for a campaign identity whose gate documents do not exist yet.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_release_installer.py
+    class: deployment-overlay
+    purpose: Derive the one authoritative release binding key set the driver hashes an installed release under by probing installed_bindings, so no hand-copied list can drift from it.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/gate_driver_config.py
+    class: governance-driver
+    purpose: Declare OTel Demo's per-SUT gate-driver configuration (fb14srv6, transport root, execution stig/1016, the three-posture design vocabulary) for the shared obsplacement.gate_driver library.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/gate_setup.py
+    class: governance-driver
+    purpose: Thin GATE-PLAN/GATE-SETUP CLI wrapper delegating byte-exact sentence verification and fail-closed writes to obsplacement.gate_driver.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/gate_run.py
+    class: governance-driver
+    purpose: Thin GATE-RUN CLI wrapper (refresh/dryrun/oneshot/execute/archive-run) delegating to obsplacement.gate_driver; the sole authorization that permits experimental cells.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/campaign_setup.py
+    class: governance-driver
+    purpose: Thin SETUP-CAMPAIGN CLI wrapper authorizing repeated setup attempts while campaign identity holds, without authorizing runtime.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/campaign_status.py
+    class: governance-driver
+    purpose: Read-only one-line campaign status poll and terminal-state detection for a watcher loop, including the pre-terminal not-launched state.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_sweep.py
+    class: validator
+    purpose: Compile the traffic-sweep epoch (otel-traffic-sweep-v1) beside the frozen offpath compiler, which it reads and never changes; per-cell timing (rate, onset, hold, offered), seeded schedule, derived budget; active only under the committed study-epoch selector.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_quiet.py
+    class: validator
+    purpose: Compile the quiet calibration epoch (otel-quiet-calibration-v1, decision 48) beside the sweep compiler, which it reads and never changes; 40 no-fault cells of the sweep's cell shape (10 blocks x 4 rates), seeded per-block order (seed 20261004), derived budget; incomplete traces recorded as telemetry loss, never blocking (decision 56); active only under the committed study-epoch selector.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_repeat.py
+    class: validator
+    purpose: Compile the repeat-episodes epoch (otel-repeat-episodes-v1, campaign B, decisions 49/50) beside the sweep and quiet compilers, which it reads and never changes; 36 cells of the sweep's cell shape (3 blocks x 3 regimes x 4 rates), seeded per-block order (seed 20261009), H10 (no probe during the fault) and H4 (the freeze is stamped), decision 56 in no-fault cells and decision 25 in fault cells; active only under the committed study-epoch selector.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_repeat_c.py
+    class: validator
+    purpose: Compile campaign C (otel-repeat-episodes-c-v1, decision 82, budget research/traffic-sweep/BUDGET_C.md) as campaign B's shape exactly; reads B's compiler and pinned descriptor and never changes them; every cell is B's cell for the same (regime, rate, block) apart from the onset drawn with seed 20261011 under the new epoch; new run IDs; active only under the committed study-epoch selector.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_load_pilot.py
+    class: validator
+    purpose: Compile the OTel load pilot (otel-load-pilot-v1, research/traffic-sweep/BUDGET_D.md amendment 1) as campaign C's cell at 50 and 100 req/s (user 2026-10-12); reads C's compiler and pinned descriptor and never changes them; 6 cells (per rate 2 productcatalog-throttle episodes and 1 no-fault cell, rate-ascending segments, seed 20261012), concurrency 3000, the generator's open-file minimum, frontendproxy memory 512 MiB; new run IDs; active only under the committed study-epoch selector.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_offpath_pilot.py
+    class: validator
+    purpose: Compile the OTel off-path manifestation pilot (otel-offpath-pilot-v1, research/traffic-sweep/BUDGET_E.md) as campaign C's cell at 100 and 150 req/s of the upstream Locust task mix (an open loop with one ledger row per request); reads C's compiler and pinned descriptor and never changes them; 10 cells (per rate one cell per regime: no fault, frontend pause, productcatalogservice throttle, frauddetectionservice pause, accountingservice pause; rate-ascending segments, seed 20261013), concurrency 4500, the generator's open-file minimum, frontendproxy, otelcol and jaeger memory 1 GiB, per-route required services for trace completeness; new run IDs; active only under the committed study-epoch selector.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_offpath_pilot_v2.py
+    class: validator
+    purpose: Compile the OTel off-path manifestation pilot v2 (otel-offpath-pilot-v2, research/traffic-sweep/BUDGET_E.md amendment 1, protocol decision 108) as v1's cell at 25 and 50 req/s of the same upstream task mix without the throttle; reads C's compiler and pinned descriptor and never changes them; 8 cells (per rate no fault, frauddetectionservice pause, accountingservice pause, frontend pause; rate-ascending segments, seed 20261012), concurrency 1500, the generator's open-file minimum, frontendproxy 256 MiB, otelcol and jaeger 1 GiB; new run IDs; active only under the committed study-epoch selector.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_offpath_e.py
+    class: validator
+    purpose: Compile the OTel Demo campaign-E epoch (otel-offpath-e-v1, research/traffic-sweep/BUDGET_E.md, protocol decisions 95-102) as the off-path pilot v2's cell in 5 blocks (blocks 1-3 training, 4-5 test) at one rate (RATE, 25 or 50 req/s of the upstream task mix) with a kept set of faults (KEPT_FAULTS, one of 6 prepared sets that include an off-path pause); each block runs the no-fault cell, the kept off-path pauses in a seeded order, then the frontend pause; reads C's compiler and pinned descriptor and never changes them; construction only, no Docker, SSH or subprocess; the descriptor digest of each of the 12 prepared variants is pinned in the file.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_offpath_f.py
+    class: validator
+    purpose: Compile the OTel Demo campaign-F epoch (otel-offpath-f-v1, research/traffic-sweep/BUDGET_F.md) as campaign E's design (the upstream task mix at 25 req/s, 5 blocks with blocks 1-3 training and 4-5 test, kept faults fraud-pause, accounting-pause, frontend-pause) with two no-fault cells per block (25 cells), a 5 s SDK metric export interval, a 5 s spanmetrics flush and the kafkametrics receiver declared in the descriptor; reads C's compiler and pinned descriptor and never changes them; construction only, no Docker, SSH or subprocess; the descriptor digest of its one prepared variant is pinned in the file.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/protocol_gates.py
+    class: validator
+    purpose: Byte-identical vendored copy of the measurement repo's shared protocol gates (src/obsplacement/protocol_gates.py, d3fc741); F1 G1 G2 G4 evaluated per sweep cell on the target and replayed by the terminal validator.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/study-epoch.json
+    class: validator
+    purpose: Study-epoch selector; names otel-offpath-f-v1 (2026-10-14, campaign F: E's design with 5 s metric export, spanmetrics flush 5 s, kafkametrics consumer-group lag and 2 no-fault cells per block, 25 cells, BUDGET_F.md; before it otel-offpath-e-v1 (campaign E, attempt 1 ran, 20/20 valid), otel-offpath-pilot-v2 (attempt 1 ran, 8/8 valid), otel-offpath-pilot-v1 (attempt 1 stopped at cell 2), otel-load-pilot-v1, otel-repeat-episodes-c-v1 (campaign C), otel-quiet-calibration-v1 (run A2), otel-repeat-episodes-v1 (campaign B), otel-quiet-calibration-v1 (run A) and otel-traffic-sweep-v1), which candidate_runtime then compiles, binds and admits (declaration research/traffic-sweep/DECLARATION_F_OTEL.md).
+    origin: framework-owned
+    upstream_patch: false
+classes:
+  upstream-patch: Reproducible changes applied only to a disposable materialization of pinned source.
+  deployment-overlay: Compose, environment, image, project, lifecycle, or executor binding outside the pinned submodule.
+  instrumentation-adapter: Logical-goal to source/runtime activation mapping.
+  workload: Offered-load generation and request outcome accounting.
+  evidence-normalizer: Native evidence parsing and comparison without claim promotion.
+  validator: Deterministic construction, schedule, and readiness validation without runtime authority.
+  governance-driver: Drives the shared GATE-PLAN/GATE-SETUP/GATE-RUN/SETUP-CAMPAIGN chain via obsplacement.gate_driver; no application source or deployment binding of its own.

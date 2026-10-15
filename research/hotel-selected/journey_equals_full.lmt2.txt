@@ -1,0 +1,6 @@
+full cells: 20 | spans per service (all full cells): {'frontend': 94499, 'geo': 23785, 'profile': 45838, 'rate': 46982, 'reservation': 69265, 'search': 70956}
+services with 0 spans in every full cell: ['attractions', 'recommendation', 'review', 'user']
+b01 metrics->full CPU-s  journey +8.619  idle -0.005  | idle per service {'attractions': 0.004, 'recommendation': -0.001, 'review': -0.008, 'user': 0.001}
+b02 metrics->full CPU-s  journey +8.614  idle -0.005  | idle per service {'attractions': -0.0, 'recommendation': -0.002, 'review': 0.0, 'user': -0.003}
+b03 metrics->full CPU-s  journey +8.618  idle -0.012  | idle per service {'attractions': -0.005, 'recommendation': -0.0, 'review': -0.001, 'user': -0.006}
+b04 metrics->full CPU-s  journey +8.745  idle -0.008  | idle per service {'attractions': -0.003, 'recommendation': -0.007, 'review': 0.002, 'user': 0.0}

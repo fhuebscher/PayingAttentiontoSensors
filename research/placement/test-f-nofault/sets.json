@@ -1,0 +1,17 @@
+{
+ "_note": "R4 price check (BUDGET amendment 2, a0e50a3): sets priced with their FROZEN training calibrations, never refitted. Entries are fixed before any R4 cell is fetched; an R2 entry may be added in its own commit before R4's fetch is opened (declared).",
+ "sets": [
+  {"label": "F @6/T_r (frozen)", "sensor": "metric:kafka:kafka.consumer_group.lag", "rules": ["spike", "run3", "median"],
+   "calibrationCampaign": "tmp/otel-f-evidence/f1-fetch/x", "trainingReadout": "research/traffic-sweep/readout-otel-f-train-v3.3/sweep_analysis_v3_3.json",
+   "source": "research/placement/test-f/placement-f.json"},
+  {"label": "F @3/T_r; ablation @6/T_r (frozen there, priced here with F's calibration)", "sensor": "metric:kafka:kafka.request.count", "rules": ["spike", "run3", "median"],
+   "calibrationCampaign": "tmp/otel-f-evidence/f1-fetch/x", "trainingReadout": "research/traffic-sweep/readout-otel-f-train-v3.3/sweep_analysis_v3_3.json",
+   "source": "research/placement/test-f/placement-f.json (3/T_r); research/placement/test-f-nolag/placement-nolag.json"},
+  {"label": "F rerun @6/T_r (frozen)", "sensor": "metric:kafka:kafka.purgatory.size", "rules": ["spike", "run3", "median"],
+   "calibrationCampaign": "tmp/otel-f-evidence/f3-fetch2/x", "trainingReadout": "research/traffic-sweep/readout-otel-f3-train-v3.3/sweep_analysis_v3_3.json",
+   "source": "research/placement/test-f-rep1/placement-f3.json"},
+  {"label": "ledger (baseline, unpriced)", "sensor": "ledger:frontendproxy:*", "rules": ["spike", "run3", "median", "absent"],
+   "calibrationCampaign": "tmp/otel-f-evidence/f1-fetch/x", "trainingReadout": "research/traffic-sweep/readout-otel-f-train-v3.3/sweep_analysis_v3_3.json",
+   "source": "the request ledger's 7 route streams"}
+ ]
+}

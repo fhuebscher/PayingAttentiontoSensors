@@ -1,0 +1,3 @@
+# Command (2026-10-15, laptop, Apple bytecode cache for the repo cleared first)
+/usr/bin/python3 -I -B research/placement/test-hotel-offpath-placement/replay_hotel_off2.py ../observability-placement-runtime-hotel-protocol tmp/hotel-offpath-evidence/off2-fetch/x research/placement/test-hotel-offpath-placement/terminal-replay-off2.json
+# interpreter: /usr/bin/python3 3.9.6; harness worktree HEAD 9ad0b98 (asserted, clean)

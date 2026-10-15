@@ -1,0 +1,25 @@
+{
+ "schemaVersion": 1,
+ "library": "grpc-consul-resolver",
+ "version": "1.5.3",
+ "sources": {
+  "obsplacement": {
+   "path": ".",
+   "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+  }
+ },
+ "facts": [
+  {
+   "kind": "config-default",
+   "subject": "max-backoff",
+   "value": 1,
+   "unit": "s",
+   "scope": "liveness",
+   "repo": "obsplacement",
+   "sourceFile": "research/ontology/vendor/libs/grpc-consul-resolver@1.5.3/target.go",
+   "line": 73,
+   "quotedToken": "tgt.MaxBackoff = time.Second",
+   "note": "URL parameter max-backoff (form tag at line 22); default applied at line 72-73 when the parsed value is 0. It caps the retry sleep after a failed Consul service fetch (consul.go Max: tgt.MaxBackoff), not a heartbeat or session timeout. The files state no default for the wait, timeout or healthy parameters."
+  }
+ ]
+}

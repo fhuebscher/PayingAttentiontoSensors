@@ -1,0 +1,395 @@
+{
+  "campaignId": "teastore-offpath-v1",
+  "campaignLevelReplay": {
+    "blockers": [
+      "TerminalError: at least one candidate cell failed terminal replay"
+    ],
+    "label": "blocked by host-path embedding (not an evidence defect)",
+    "runReportVerdicts": [
+      "blocked",
+      "pass"
+    ],
+    "verdict": "blocked"
+  },
+  "cells": [
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b01-01-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b01-01-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b01-01-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b01/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b01-02-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b01-02-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b01-02-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b01/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b01-03-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b01/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b01-04-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b01/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b01-05-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b01-05-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b01-05-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b01/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b01-06-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b01-06-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b01-06-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b01/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b02-01-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b02/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b02-02-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b02-02-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b02-02-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b02/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b02-03-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b02-03-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b02-03-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b02/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b02-04-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b02-04-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b02-04-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b02/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b02-05-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b02/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b02-06-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b02-06-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b02-06-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b02/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b03-01-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b03/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b03-02-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b03-02-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b03-02-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b03/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b03-03-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b03-03-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b03-03-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b03/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b03-04-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b03/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b03-05-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b03-05-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b03-05-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b03/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b03-06-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b03-06-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b03-06-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b03/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b04-01-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b04/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b04-02-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b04-02-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b04-02-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b04/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b04-03-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b04/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b04-04-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b04-04-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b04-04-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b04/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b04-05-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b04-05-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b04-05-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b04/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b04-06-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b04-06-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b04-06-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b04/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b05-01-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b05-01-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b05-01-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r10/b05/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b05-02-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r1/b05/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b05-03-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b05-03-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b05-03-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r1/b05/full/a01"
+    },
+    {
+      "byteEqualToRetained": true,
+      "differences": [],
+      "path": "runs/no-fault-cost/b05-04-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/no-fault-cost/r10/b05/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/recommender-pause-effect/b05-05-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/recommender-pause-effect/b05-05-full/intervention.json"
+        }
+      ],
+      "path": "runs/recommender-pause-effect/b05-05-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/recommender-pause-effect/r10/b05/full/a01"
+    },
+    {
+      "byteEqualToRetained": false,
+      "differences": [
+        {
+          "pointer": "/validationTable[15]/observation/path",
+          "replayed": "tmp/teastore-offpath-evidence/rep2-fetch/x/teastore-offpath-v1/runs/auth-freeze-effect/b05-06-full/intervention.json",
+          "retained": "/home/stig/.local/share/observability-placement/candidate-v4/teastore/results/cbe9920a4b95f47d60054186641e754c/teastore-offpath-v1/runs/auth-freeze-effect/b05-06-full/intervention.json"
+        }
+      ],
+      "path": "runs/auth-freeze-effect/b05-06-full",
+      "replayVerdict": "pass",
+      "retainedVerdict": "pass",
+      "runId": "teastore-offpath-v1/auth-freeze-effect/r1/b05/full/a01"
+    }
+  ],
+  "cellsByteEqualToRetained": 10,
+  "cellsDifferingOnlyInObservationPath": 20,
+  "cellsReplayPass": 30,
+  "cellsReplayed": 30,
+  "frameworkCommit": "04254228aba90566dfeca603dfcc7b05b7d8d2e3",
+  "hostTerminalValidation": {
+    "blockers": [],
+    "file": "x/teastore-offpath-v1/campaign-terminal-validation.json",
+    "runCount": 30,
+    "runReportVerdicts": [
+      "pass"
+    ],
+    "runReportsPass": 30,
+    "sha256": "2d27626a92d4da40885d3cdd373b35acfa6632271b6861aada639af9db1a986d",
+    "verdict": "pass"
+  },
+  "interpreter": "3.9.6 (default, May  7 2023, 23:32:44) \n[Clang 14.0.3 (clang-1403.0.22.14.1)]",
+  "kind": "teastore-offpath-rep2-per-cell-terminal-replay",
+  "setupId": "cbe9920a4b95f47d60054186641e754c"
+}

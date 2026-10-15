@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/signal-target.schema.json",
+  "title": "Signal target manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "signalChannelId", "sourceServices", "reconciliation", "postures"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "signalChannelId": {"type": "string", "minLength": 1},
+    "sourceServices": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "reconciliation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["requireDeclaredNativeNormalizedUniqueEquality", "allowMalformedRecords", "allowDuplicateSpanIdentities"],
+      "properties": {
+        "requireDeclaredNativeNormalizedUniqueEquality": {"const": true},
+        "allowMalformedRecords": {"const": 0}, "allowDuplicateSpanIdentities": {"const": 0}
+      }
+    },
+    "postures": {"type": "object", "minProperties": 1,
+                 "additionalProperties": {"$ref": "#/$defs/posture"}}
+  },
+  "$defs": {
+    "posture": {
+      "type": "object", "additionalProperties": false,
+      "required": ["requiredServices", "forbiddenServices", "targetSourceSpans", "backgroundSpans", "visibility"],
+      "properties": {
+        "requiredServices": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "forbiddenServices": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "targetSourceSpans": {"enum": ["required", "forbidden", "optional"]},
+        "backgroundSpans": {"enum": ["allowed", "forbidden"]},
+        "visibility": {"enum": ["required", "forbidden", "not-applicable"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "fixtureId": "tool-unavailable",
+  "checkId": "openspec-tool-pin",
+  "expectedStatus": "cannot_run",
+  "expectedDiagnostic": "isolated lockfile install failed",
+  "mutation": {
+    "kind": "runner-unavailable",
+    "tool": "npm-offline-install"
+  }
+}

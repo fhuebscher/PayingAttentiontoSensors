@@ -1,0 +1,242 @@
+schema_version: 1
+module: hotel-reservation
+upstream:
+  repository: https://github.com/delimitrou/DeathStarBench.git
+  commit: 6ecb09706140f8730b5385c08f1386c654c3c526
+  path: upstream/deathstarbench
+  subdirectory: hotelReservation
+policy:
+  copied_upstream_application_source: forbidden
+  unclassified_files: forbidden
+  canonical_requires_clean_framework_tree: true
+extensions:
+  - path: activation/catalog.json
+    class: instrumentation-adapter
+    purpose: Map audited logical spans to the stock tracer-enablement and root-sampling groups, and separate tracer-off and sampling-off from source-off.
+    origin: framework-owned
+    upstream_patch: false
+  - path: goals/search-path.json
+    class: instrumentation-adapter
+    purpose: Declare explicit sensor and service-edge ground truth for the non-mutating hotel search path.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/compose.observability-placement.yml
+    class: deployment-overlay
+    purpose: Apply the declared Jaeger posture and versioned image references consistently; runtime receipts bind exact image IDs.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/postures/none.env
+    class: instrumentation-adapter
+    purpose: Select the disabled tracer (NoopTracer) rung; tracer-off, not source-off.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/postures/full.env
+    class: instrumentation-adapter
+    purpose: Select full root sampling for visibility qualification.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/postures/sample-zero.env
+    class: instrumentation-adapter
+    purpose: Select stock zero root sampling without claiming source work is disabled.
+    origin: framework-owned
+    upstream_patch: false
+  - path: materialize.py
+    class: deployment-overlay
+    purpose: Export the exact clean pinned Git object, retain it, and generate a hashed isolation-only Compose copy without global names or ports.
+    origin: framework-owned
+    upstream_patch: false
+  - path: candidate_materialize.py
+    class: deployment-overlay
+    purpose: Export the exact pinned Hotel tree, verify and apply the reviewed request/emission witness patch, and bind the resulting source tree to digest-pinned runtime inputs.
+    origin: framework-owned
+    upstream_patch: false
+  - path: workload/fixed_search.py
+    class: workload
+    purpose: Apply deterministic fixed open-loop requests to the audited non-mutating hotel-search path.
+    origin: framework-owned
+    upstream_patch: false
+  - path: workload/candidate_search.py
+    class: workload
+    purpose: Preallocate all 1,200 measurement opportunities and write one terminal hash-chained row per offered request with an opaque application token.
+    origin: framework-owned
+    upstream_patch: false
+  - path: faults/compose_pause.py
+    class: fault-adapter
+    purpose: Prove an available precondition, pause search or reservation, retain state and route manifestation times, and recover exception-safely.
+    origin: framework-owned
+    upstream_patch: false
+  - path: faults/lmt_faults.py
+    class: fault-adapter
+    purpose: LMT+S pilot adapter that passes pause faults through and applies, proves on the container, holds, and reverts the profile CPU-throttle and rate netem-delay degradations with in-fault detection-window edges.
+    origin: framework-owned
+    upstream_patch: false
+  - path: collectors/jaeger_api.py
+    class: collector
+    purpose: Query raw Jaeger traces over an explicit microsecond window and retain unmodified responses.
+    origin: framework-owned
+    upstream_patch: false
+  - path: collectors/candidate_resources.py
+    class: collector
+    purpose: Collect and replay application-container CPU and source-emitted compact-Thrift span bytes in the exact measurement window without claiming wire bytes.
+    origin: framework-owned
+    upstream_patch: false
+  - path: collectors/system_state.py
+    class: collector
+    purpose: LMT+S pilot always-on collector for cgroup CPU cost edges of the application containers and container daemons, 5 s system samples, the Compose project's docker events, and per-container TCP snapshots.
+    origin: framework-owned
+    upstream_patch: false
+  - path: normalizers/jaeger.py
+    class: evidence-normalizer
+    purpose: Deduplicate cross-query traces while retaining native Jaeger trace/span identity and signature concentration.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/path_visibility.py
+    class: validator
+    purpose: Require complete per-trace sensor and service-edge retention against explicit source ground truth.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/candidate_terminal.py
+    class: validator
+    purpose: Replay sealed per-cell and 24-cell candidate evidence, including denominators, trace correlation, faults, resources, sample-zero emptiness, provenance, and cleanup.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/campaign.py
+    class: deployment-overlay
+    purpose: Strictly validate, randomize, and freeze paired campaign configuration before an executor runs.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_pilot.py
+    class: deployment-overlay
+    purpose: Compile the construction-only full/sample-zero candidate-pilot contract into an immutable pre-runtime plan without exposing an executor or transport seam.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/runtime-policy.json
+    class: deployment-overlay
+    purpose: Freeze the only local and srv5 transports, target roots, lease, ports, deadline, cell count, stop rule, and ownership-scoped cleanup policy.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_sweep.py
+    class: deployment-overlay
+    purpose: Compile the construction-only hotel-traffic-sweep-v1 contract (rate, measurement, onset, hold and offered count as per-cell plan values; 64 cells, seeded order and onset phase) beside the frozen candidate_pilot.py, without exposing an executor or transport seam.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/runtime-policy.hotel-traffic-sweep-v1.json
+    class: deployment-overlay
+    purpose: The frozen runtime policy with the traffic sweep's epoch, cell count and derived wall budget; read only when execution/study-epoch.json selects that epoch.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_quiet.py
+    class: deployment-overlay
+    purpose: Compile the construction-only hotel-quiet-calibration-v1 contract (the sweep's no-fault-calibration cell only; 40 cells = 10 blocks x 4 rates in one seeded order) from candidate_sweep.py, without exposing an executor or transport seam.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/runtime-policy.hotel-quiet-calibration-v1.json
+    class: deployment-overlay
+    purpose: The traffic sweep's runtime policy with the quiet calibration epoch, cell count and derived wall budget; read only when execution/study-epoch.json selects that epoch.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_offpath.py
+    class: deployment-overlay
+    purpose: Compile the construction-only hotel-offpath-v1 contract (no-fault, a 60 s pause of consul as the off-path fault, and the search pause as the on-path control; rates 10 and 1 req/s, 5 blocks = 30 cells) from candidate_sweep.py, without exposing an executor or transport seam.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/runtime-policy.hotel-offpath-v1.json
+    class: deployment-overlay
+    purpose: The traffic sweep's runtime policy with the off-path epoch, cell count and derived wall budget; read only when execution/study-epoch.json selects that epoch.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/study-epoch.json
+    class: deployment-overlay
+    purpose: Activation selector - selected hotel-traffic-sweep-v1 from 2026-10-03 (user-approved), hotel-quiet-calibration-v1 from 2026-10-04 (protocol decision 48) and hotel-offpath-v1 from 2026-10-15 (BUDGET_OVERNIGHT_20261014 item 4); without it the tree runs the frozen hotel-reservation-selected-v1.
+    origin: framework-owned
+    upstream_patch: false
+  - path: validation/protocol_gates.py
+    class: validator
+    purpose: Byte-identical vendored copy of the measurement repo's shared protocol gates (src/obsplacement/protocol_gates.py); F1, G1, G2 and G4 are evaluated on parameterised-epoch cells.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_runtime.py
+    class: deployment-overlay
+    purpose: Replay clean committed controller bindings and exact external GATE-PLAN, readiness, and fresh GATE-RUN receipts before exposing the bounded 24-cell transport.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_cell.py
+    class: deployment-overlay
+    purpose: Consume one admitted cell at a time through a cold-start Compose lifecycle with exact project, ports, deadline, artifacts, and owned cleanup.
+    origin: framework-owned
+    upstream_patch: false
+  - path: deployment/runtime-inputs.lock.json
+    class: deployment-overlay
+    purpose: Pin the Hotel builder and all third-party runtime images by manifest digest with no mutable fallback.
+    origin: framework-owned
+    upstream_patch: false
+  - path: witness/hotel-candidate-witness.patch
+    class: upstream-patch
+    purpose: Add an application-side request witness, opaque root-span token, source-emitted compact-Thrift byte receipt, and digest-pinned Go builder to the pinned Hotel source.
+    origin: framework-owned
+    upstream_patch: true
+  - path: witness/patch-manifest.json
+    class: instrumentation-adapter
+    purpose: Bind the candidate source patch to exact upstream preimages, reviewed postimages, patch bytes, and deliberately limited measurement claims.
+    origin: framework-owned
+    upstream_patch: false
+  - path: witness/candidate_evidence.py
+    class: evidence-normalizer
+    purpose: Replay application-request witnesses, explicit fault truth, sample-zero empty capture, and one-token-to-one-original-Jaeger-trace correlation while preserving unsupported values.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/smoke.py
+    class: deployment-overlay
+    purpose: Run the isolated none/sample-zero/full functional gate with immutable image, protected-project, path, intervention, and teardown receipts.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_runtime_adapter.py
+    class: deployment-overlay
+    purpose: Translate the shared gate-driver adapter contract onto the orchestrator's own binding, validation, and sentence derivations without adding governance logic of its own.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_transport.py
+    class: deployment-overlay
+    purpose: Translate the shared gate-driver transport contract onto the orchestrator's exact bundle build, one-shot installer, readiness capture, and detached launch and status controls.
+    origin: framework-owned
+    upstream_patch: false
+  - path: execution/candidate_release_installer.py
+    class: deployment-overlay
+    purpose: Declare the one authoritative release binding key set the driver hashes an installed release under, so no hand-copied list can drift from it.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/gate_driver_config.py
+    class: governance-driver
+    purpose: Declare Hotel's per-SUT gate-driver configuration (target host, execution user, posture ceiling) for the shared candidate_common library.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/gate_setup.py
+    class: governance-driver
+    purpose: Thin GATE-PLAN/GATE-SETUP CLI wrapper delegating byte-exact sentence verification and fail-closed writes to obsplacement.gate_driver.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/gate_run.py
+    class: governance-driver
+    purpose: Thin GATE-RUN CLI wrapper (refresh/dryrun/oneshot/execute) delegating to obsplacement.gate_driver; the sole authorization that permits experimental cells.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/campaign_setup.py
+    class: governance-driver
+    purpose: Thin SETUP-CAMPAIGN CLI wrapper authorizing repeated setup attempts while campaign identity holds, without authorizing runtime.
+    origin: framework-owned
+    upstream_patch: false
+  - path: drivers/campaign_status.py
+    class: governance-driver
+    purpose: Read-only one-line campaign status poll and terminal-state detection for a watcher loop.
+    origin: framework-owned
+    upstream_patch: false
+classes:
+  upstream-patch: Modification required inside pinned SUT source; must be a patch file with an upstream base hash.
+  deployment-overlay: Compose, environment, image, port, volume, or executor binding outside application source.
+  instrumentation-adapter: Maps logical sensors and activation groups to source/runtime controls.
+  collector: Acquires and decodes telemetry without defining research objectives.
+  workload: Generates declared offered load and reports completions.
+  fault-adapter: Applies and verifies an intervention.
+  evidence-normalizer: Converts native telemetry into versioned framework evidence.
+  validator: Tests provenance, completeness, denominators, and alternative explanations.
+  governance-driver: Drives the shared GATE-PLAN/GATE-SETUP/GATE-RUN/SETUP-CAMPAIGN chain via candidate_common; no application source or deployment binding of its own.

@@ -1,0 +1,975 @@
+{
+ "label": "POST HOC to the frozen sets (declared before the new run's fetch was read); instance scope",
+ "point": "6/T_r",
+ "readout": "research/traffic-sweep/readout-otel-r6-score-v3.3/sweep_analysis_v3_3.json",
+ "readoutChecks": {
+  "celfSha256": "3823722125e9796e6716a830b01d12c69177c7ab6b0a0d7a5fa3984ab6205e97",
+  "checkReadout": "score_test_v3_3.check_readout",
+  "pinnedRuleRegistrySha256": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "recordedTestBlocks": [
+   4,
+   5
+  ],
+  "ruleRegistry": "research/protocol/parameters_v3_2.json",
+  "ruleRegistrySha256": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "scoringReadoutBlocks": "all",
+  "system": "otel"
+ },
+ "readoutSha256": "13d7d5d5468e93b62b88e0c8e9c3789039cf088fdd38fd0f9af76fdf9f4b4fdf",
+ "scoreTestV32Sha256": "f9942b9138f1d1216ed3d3466949c727f6388980e24fff4ce40af994fbf64a07",
+ "scriptSha256": "b438fcaf4a07c2d674c6278cc1d073a1e0b3ceabacaff60e1163e17735372742",
+ "testBlocks": [
+  4,
+  5
+ ],
+ "transfers": [
+  {
+   "label": "frontier (effort<=any, runtime<=any) @6/T_r",
+   "members": {
+    "25": [
+     "metric:kafka:kafka.consumer_group.lag"
+    ]
+   },
+   "membersMissing": {},
+   "placement": "research/placement/test-f/placement-f.json",
+   "placementSha256": "ce6bfc1b9addbb1771b189c9330b1930f0d84c9890c1fd8d8e8cae0978d20a3d",
+   "rates": {
+    "25": {
+     "classCountFlags": null,
+     "classCounts": {
+      "accounting-pause-effect": 2,
+      "fraud-pause-effect": 2,
+      "frontend-pause-effect": 2
+     },
+     "episodes": [
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "accounting-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/accounting-pause/r25-b04-18-full",
+       "episodeKey": [
+        "accounting-pause-effect",
+        "25",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.048792257905006,
+       "ledger": {
+        "penalised": 60.048792257905006,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 4.094885587692261,
+         "ttd": 4.094885587692261
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.048792257905006,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "accounting-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/accounting-pause/r25-b05-24-full",
+       "episodeKey": [
+        "accounting-pause-effect",
+        "25",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05975629389286,
+       "ledger": {
+        "penalised": 60.05975629389286,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 4.5715978145599365,
+         "ttd": 4.5715978145599365
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.05975629389286,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "fraud-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/fraud-pause/r25-b04-19-full",
+       "episodeKey": [
+        "fraud-pause-effect",
+        "25",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05977422744036,
+       "ledger": {
+        "penalised": 60.05977422744036,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 4.134764671325684,
+         "ttd": 4.134764671325684
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.05977422744036,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "fraud-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/fraud-pause/r25-b05-23-full",
+       "episodeKey": [
+        "fraud-pause-effect",
+        "25",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05978982150555,
+       "ledger": {
+        "penalised": 60.05978982150555,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 4.359166622161865,
+         "ttd": 4.359166622161865
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.05978982150555,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "frontend-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/frontend-pause/r25-b04-20-full",
+       "episodeKey": [
+        "frontend-pause-effect",
+        "25",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.059786193072796,
+       "ledger": {
+        "penalised": 0.4197833612561226,
+        "ttd": 0.4197833612561226
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 0.4197833612561226,
+         "ttd": 0.4197833612561226
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 0.4197833612561226,
+         "ttd": 0.4197833612561226
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "frontend-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/frontend-pause/r25-b05-25-full",
+       "episodeKey": [
+        "frontend-pause-effect",
+        "25",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05977740138769,
+       "ledger": {
+        "penalised": 0.34646791219711304,
+        "ttd": 0.34646791219711304
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 0.34646791219711304,
+         "ttd": 0.34646791219711304
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 0.34646791219711304,
+         "ttd": 0.34646791219711304
+        }
+       }
+      }
+     ],
+     "episodesAtRateInReadout": 15,
+     "episodesScored": 6,
+     "groundSetSize": 4796,
+     "rate": 25.0,
+     "rules": {
+      "bc": "e-only",
+      "missAtHold": true,
+      "own": "exclude",
+      "penalty": "ttd"
+     },
+     "sets": {
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "D": 2.9877776615321636,
+       "DLedger": 40.165727312366165,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "budget": 19.999999999999996,
+       "budgetName": "6/T_r",
+       "detectedEpisodes": [
+        6,
+        6
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 37.177949650834,
+       "kind": "frontier",
+       "maxEffort": "any",
+       "maxRuntime": "any",
+       "note": null,
+       "sensors": [
+        "metric:kafka:kafka.consumer_group.lag"
+       ],
+       "size": 1
+      },
+      "ledger alone": {
+       "D": 40.165727312366165,
+       "DLedger": 40.165727312366165,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "detectedEpisodes": [
+        2,
+        6
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 0.0,
+       "kind": "comparator",
+       "sensors": [],
+       "size": 0
+      }
+     },
+     "testBlocks": [
+      4,
+      5
+     ],
+     "verdicts": [
+      {
+       "absentFromScoringGroundSet": {},
+       "episodesInPool": 2,
+       "gE": 55.81281637772918,
+       "gPositive": true,
+       "improved": 2,
+       "reason": "g_E = 55.8128; improves 2 of 2 episodes",
+       "rule": {
+        "class": "fraud-pause-effect",
+        "minEpisodes": 2,
+        "minGain": null,
+        "minImprovedEpisodes": 2,
+        "rate": null,
+        "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+       },
+       "verdict": "PASS"
+      },
+      {
+       "absentFromScoringGroundSet": {},
+       "episodesInPool": 2,
+       "gE": 55.721032574772835,
+       "gPositive": true,
+       "improved": 2,
+       "reason": "g_E = 55.721; improves 2 of 2 episodes",
+       "rule": {
+        "class": "accounting-pause-effect",
+        "minEpisodes": 2,
+        "minGain": null,
+        "minImprovedEpisodes": 2,
+        "rate": null,
+        "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+       },
+       "verdict": "PASS"
+      }
+     ]
+    }
+   },
+   "rules": [
+    {
+     "class": "fraud-pause-effect",
+     "minEpisodes": 2,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "rate": null,
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+    },
+    {
+     "class": "accounting-pause-effect",
+     "minEpisodes": 2,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "rate": null,
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+    }
+   ],
+   "rulesNotApplicable": []
+  },
+  {
+   "label": "frontier (effort<=any, runtime<=any) @6/T_r",
+   "members": {
+    "25": [
+     "metric:kafka:kafka.purgatory.size"
+    ]
+   },
+   "membersMissing": {},
+   "placement": "research/placement/test-f-rep1/placement-f3.json",
+   "placementSha256": "674580e08353e667ea32d587091fc38327db6d68e1d3f2142fdd94c9e433b606",
+   "rates": {
+    "25": {
+     "classCountFlags": null,
+     "classCounts": {
+      "accounting-pause-effect": 2,
+      "fraud-pause-effect": 2,
+      "frontend-pause-effect": 2
+     },
+     "episodes": [
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "accounting-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/accounting-pause/r25-b04-18-full",
+       "episodeKey": [
+        "accounting-pause-effect",
+        "25",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.048792257905006,
+       "ledger": {
+        "penalised": 60.048792257905006,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 60.048792257905006,
+         "ttd": null
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.048792257905006,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "accounting-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/accounting-pause/r25-b05-24-full",
+       "episodeKey": [
+        "accounting-pause-effect",
+        "25",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05975629389286,
+       "ledger": {
+        "penalised": 60.05975629389286,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 60.05975629389286,
+         "ttd": null
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.05975629389286,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "fraud-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/fraud-pause/r25-b04-19-full",
+       "episodeKey": [
+        "fraud-pause-effect",
+        "25",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05977422744036,
+       "ledger": {
+        "penalised": 60.05977422744036,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 60.05977422744036,
+         "ttd": null
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.05977422744036,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "fraud-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/fraud-pause/r25-b05-23-full",
+       "episodeKey": [
+        "fraud-pause-effect",
+        "25",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05978982150555,
+       "ledger": {
+        "penalised": 60.05978982150555,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 60.05978982150555,
+         "ttd": null
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.05978982150555,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "frontend-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/frontend-pause/r25-b04-20-full",
+       "episodeKey": [
+        "frontend-pause-effect",
+        "25",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.059786193072796,
+       "ledger": {
+        "penalised": 0.4197833612561226,
+        "ttd": 0.4197833612561226
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 0.4197833612561226,
+         "ttd": 0.4197833612561226
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 0.4197833612561226,
+         "ttd": 0.4197833612561226
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "frontend-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/frontend-pause/r25-b05-25-full",
+       "episodeKey": [
+        "frontend-pause-effect",
+        "25",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05977740138769,
+       "ledger": {
+        "penalised": 0.34646791219711304,
+        "ttd": 0.34646791219711304
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 0.34646791219711304,
+         "ttd": 0.34646791219711304
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 0.34646791219711304,
+         "ttd": 0.34646791219711304
+        }
+       }
+      }
+     ],
+     "episodesAtRateInReadout": 15,
+     "episodesScored": 6,
+     "groundSetSize": 4796,
+     "rate": 25.0,
+     "rules": {
+      "bc": "e-only",
+      "missAtHold": true,
+      "own": "exclude",
+      "penalty": "ttd"
+     },
+     "sets": {
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "D": 40.165727312366165,
+       "DLedger": 40.165727312366165,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "budget": 19.999999999999996,
+       "budgetName": "6/T_r",
+       "detectedEpisodes": [
+        2,
+        6
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 0.0,
+       "kind": "frontier",
+       "maxEffort": "any",
+       "maxRuntime": "any",
+       "note": null,
+       "sensors": [
+        "metric:kafka:kafka.purgatory.size"
+       ],
+       "size": 1
+      },
+      "ledger alone": {
+       "D": 40.165727312366165,
+       "DLedger": 40.165727312366165,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "detectedEpisodes": [
+        2,
+        6
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 0.0,
+       "kind": "comparator",
+       "sensors": [],
+       "size": 0
+      }
+     },
+     "testBlocks": [
+      4,
+      5
+     ],
+     "verdicts": [
+      {
+       "absentFromScoringGroundSet": {},
+       "episodesInPool": 2,
+       "gE": 0.0,
+       "gPositive": false,
+       "improved": 0,
+       "reason": "g_E = 0 is not above 0; improves 0 of 2 episodes (< 2)",
+       "rule": {
+        "class": "fraud-pause-effect",
+        "minEpisodes": 2,
+        "minGain": null,
+        "minImprovedEpisodes": 2,
+        "rate": null,
+        "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+       },
+       "verdict": "FAIL"
+      },
+      {
+       "absentFromScoringGroundSet": {},
+       "episodesInPool": 2,
+       "gE": 0.0,
+       "gPositive": false,
+       "improved": 0,
+       "reason": "g_E = 0 is not above 0; improves 0 of 2 episodes (< 2)",
+       "rule": {
+        "class": "accounting-pause-effect",
+        "minEpisodes": 2,
+        "minGain": null,
+        "minImprovedEpisodes": 2,
+        "rate": null,
+        "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+       },
+       "verdict": "FAIL"
+      }
+     ]
+    }
+   },
+   "rules": [
+    {
+     "class": "fraud-pause-effect",
+     "minEpisodes": 2,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "rate": null,
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+    },
+    {
+     "class": "accounting-pause-effect",
+     "minEpisodes": 2,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "rate": null,
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+    }
+   ],
+   "rulesNotApplicable": []
+  },
+  {
+   "label": "frontier (effort<=any, runtime<=any) @6/T_r",
+   "members": {
+    "25": [
+     "metric:kafka:kafka.consumer_group.lag",
+     "metric:flagd:feature_flag.flagd.impression"
+    ]
+   },
+   "membersMissing": {},
+   "placement": "research/placement/test-f-seed2/placement-fs1.json",
+   "placementSha256": "633b89f1beea3b6896488aa41de82983ac84c80d2230a768938190f0d181e560",
+   "rates": {
+    "25": {
+     "classCountFlags": null,
+     "classCounts": {
+      "accounting-pause-effect": 2,
+      "fraud-pause-effect": 2,
+      "frontend-pause-effect": 2
+     },
+     "episodes": [
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "accounting-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/accounting-pause/r25-b04-18-full",
+       "episodeKey": [
+        "accounting-pause-effect",
+        "25",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.048792257905006,
+       "ledger": {
+        "penalised": 60.048792257905006,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 4.094885587692261,
+         "ttd": 4.094885587692261
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.048792257905006,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "accounting-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/accounting-pause/r25-b05-24-full",
+       "episodeKey": [
+        "accounting-pause-effect",
+        "25",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05975629389286,
+       "ledger": {
+        "penalised": 60.05975629389286,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 4.5715978145599365,
+         "ttd": 4.5715978145599365
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.05975629389286,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "fraud-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/fraud-pause/r25-b04-19-full",
+       "episodeKey": [
+        "fraud-pause-effect",
+        "25",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05977422744036,
+       "ledger": {
+        "penalised": 60.05977422744036,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 4.134764671325684,
+         "ttd": 4.134764671325684
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.05977422744036,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "fraud-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/fraud-pause/r25-b05-23-full",
+       "episodeKey": [
+        "fraud-pause-effect",
+        "25",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05978982150555,
+       "ledger": {
+        "penalised": 60.05978982150555,
+        "ttd": null
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": true,
+         "penalised": 4.359166622161865,
+         "ttd": 4.359166622161865
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 60.05978982150555,
+         "ttd": null
+        }
+       }
+      },
+      {
+       "block": 4,
+       "calibrated": true,
+       "class": "frontend-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/frontend-pause/r25-b04-20-full",
+       "episodeKey": [
+        "frontend-pause-effect",
+        "25",
+        4,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.059786193072796,
+       "ledger": {
+        "penalised": 0.4197833612561226,
+        "ttd": 0.4197833612561226
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 0.4197833612561226,
+         "ttd": 0.4197833612561226
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 0.4197833612561226,
+         "ttd": 0.4197833612561226
+        }
+       }
+      },
+      {
+       "block": 5,
+       "calibrated": true,
+       "class": "frontend-pause-effect",
+       "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-f-evidence/r6-fetch/x :: runs/effect/frontend-pause/r25-b05-25-full",
+       "episodeKey": [
+        "frontend-pause-effect",
+        "25",
+        5,
+        0,
+        "B"
+       ],
+       "holdSeconds": 60.05977740138769,
+       "ledger": {
+        "penalised": 0.34646791219711304,
+        "ttd": 0.34646791219711304
+       },
+       "sets": {
+        "frontier (effort<=any, runtime<=any) @6/T_r": {
+         "improvesOnLedger": false,
+         "penalised": 0.34646791219711304,
+         "ttd": 0.34646791219711304
+        },
+        "ledger alone": {
+         "improvesOnLedger": false,
+         "penalised": 0.34646791219711304,
+         "ttd": 0.34646791219711304
+        }
+       }
+      }
+     ],
+     "episodesAtRateInReadout": 15,
+     "episodesScored": 6,
+     "groundSetSize": 4796,
+     "rate": 25.0,
+     "rules": {
+      "bc": "e-only",
+      "missAtHold": true,
+      "own": "exclude",
+      "penalty": "ttd"
+     },
+     "sets": {
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "D": 2.9877776615321636,
+       "DLedger": 40.165727312366165,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "budget": 19.999999999999996,
+       "budgetName": "6/T_r",
+       "detectedEpisodes": [
+        6,
+        6
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 37.177949650834,
+       "kind": "frontier",
+       "maxEffort": "any",
+       "maxRuntime": "any",
+       "note": null,
+       "sensors": [
+        "metric:flagd:feature_flag.flagd.impression",
+        "metric:kafka:kafka.consumer_group.lag"
+       ],
+       "size": 2
+      },
+      "ledger alone": {
+       "D": 40.165727312366165,
+       "DLedger": 40.165727312366165,
+       "absentFromScoringGroundSet": {
+        "count": 0,
+        "sensors": {}
+       },
+       "detectedEpisodes": [
+        2,
+        6
+       ],
+       "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+       "g": 0.0,
+       "kind": "comparator",
+       "sensors": [],
+       "size": 0
+      }
+     },
+     "testBlocks": [
+      4,
+      5
+     ],
+     "verdicts": [
+      {
+       "absentFromScoringGroundSet": {},
+       "episodesInPool": 2,
+       "gE": 55.81281637772918,
+       "gPositive": true,
+       "improved": 2,
+       "reason": "g_E = 55.8128; improves 2 of 2 episodes",
+       "rule": {
+        "class": "fraud-pause-effect",
+        "minEpisodes": 2,
+        "minGain": null,
+        "minImprovedEpisodes": 2,
+        "rate": null,
+        "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+       },
+       "verdict": "PASS"
+      },
+      {
+       "absentFromScoringGroundSet": {},
+       "episodesInPool": 2,
+       "gE": 55.721032574772835,
+       "gPositive": true,
+       "improved": 2,
+       "reason": "g_E = 55.721; improves 2 of 2 episodes",
+       "rule": {
+        "class": "accounting-pause-effect",
+        "minEpisodes": 2,
+        "minGain": null,
+        "minImprovedEpisodes": 2,
+        "rate": null,
+        "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+       },
+       "verdict": "PASS"
+      }
+     ]
+    }
+   },
+   "rules": [
+    {
+     "class": "fraud-pause-effect",
+     "minEpisodes": 2,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "rate": null,
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+    },
+    {
+     "class": "accounting-pause-effect",
+     "minEpisodes": 2,
+     "minGain": null,
+     "minImprovedEpisodes": 2,
+     "rate": null,
+     "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+    }
+   ],
+   "rulesNotApplicable": []
+  }
+ ],
+ "version": "transfer-score-v2"
+}

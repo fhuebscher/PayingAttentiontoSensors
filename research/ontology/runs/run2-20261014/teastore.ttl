@@ -1,0 +1,1261 @@
+@prefix ev: <http://obsplacement.example/evidence#> .
+@prefix omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#> .
+@prefix ops: <http://obsplacement.example/ops#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sut: <http://obsplacement.example/sut/teastore#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sut:ev-00b6b91d04e071ea a ev:Evidence ;
+    ev:aboutObject true ;
+    ev:aboutPredicate ops:heartbeatThreadIndependentOfWork ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "dedicated newSingleThreadScheduledExecutor (RegistryClient.java:69-70) started in register() (:159), not a request-handling thread; RegistryClientHeartbeatDaemon.java:40 does only registerOnce. failureTimeoutSeconds and cleanupIntervalSeconds are not stated in the given files." ;
+    ev:quotedToken "heartbeatScheduler = Executors" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 69 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-012c649cd30f2c31 a ev:Evidence ;
+    ev:aboutObject sut:svc-image ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "image:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 84 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-01e4a06f88750d20 a ev:Evidence ;
+    ev:aboutObject sut:coord-registry_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-image ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registerOnce() issues an HTTP PUT (line 245 .put(Entity.text(\"\"))) to registryRESTURL; the registry URL is rewritten from REGISTRY_HOST by dockerbase start.sh:9 and REGISTRY_HOST is \"registry\" at docker-compose_kieker.yaml:90." ;
+    ev:quotedToken ".path(service.getServiceName())" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 244 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0369c653be7cceda a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-recommender ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-recommender-<n>" ;
+    ev:quotedToken "recommender:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 96 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-0469d34862b240a2 a ev:Evidence ;
+    ev:aboutObject sut:svc-persistence ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-persistence ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol HTTP REST DELETE to other persistence instances for cache clearing (CacheManager.java:112); callee is the other instances, not itself" ;
+    ev:quotedToken "multicastRESTToOtherServiceInstances" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java" ;
+    ev:sourceLine 52 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0a695d7fea9a2a62 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-webui ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM descartesresearch/teastore-base:latest" ;
+    ev:quotedToken "descartesresearch/teastore-base:latest" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.webui/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-0b220b056e815d0f a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-image ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the image service block (docker-compose_kieker.yaml:84-95) has no deploy.replicas or scale key, so Compose runs its default of one container." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-0fe06c96ae29d746 a ev:Evidence ;
+    ev:aboutObject sut:svc-registry ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-image ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP/REST PUT heartbeat/registration (registerOnce, line 240-251). The same client also does GET of service locations at line 193-195 (getServersForService) and DELETE at line 265 on shutdown (unregisterOnce)." ;
+    ev:quotedToken ".put(Entity.text(\"\"))" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 245 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1119b4c26ab9b550 a ev:Evidence ;
+    ev:aboutObject sut:svc-persistence ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-auth ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Protocol HTTP REST/JSON via LoadBalancedCRUDOperations (client built with Jersey in RESTClient.java:71,128). Other call sites: AuthUserActionsRest.java:106,137; AuthCartRest.java:60." ;
+    ev:quotedToken "Service.PERSISTENCE" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java" ;
+    ev:sourceLine 96 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-11f80fec0dc3dd61 a ev:Evidence ;
+    ev:aboutObject sut:coord-registry_registry-heartbeat ;
+    ev:aboutPredicate ops:enforcedBy ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "heartbeat re-PUTs the registration (RegistryClientHeartbeatDaemon.java:40 registerOnce; RegistryClient.java:244-245)." ;
+    ev:quotedToken "new RegistryClientHeartbeatDaemon(service, host)" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 159 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1559d7cdfe01a514 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-db ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the db block (docker-compose_kieker.yaml:50-57) has no deploy.replicas or scale; Compose default is 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-1651b5fb8044e665 a ev:Evidence ;
+    ev:aboutObject sut:svc-auth ;
+    ev:aboutPredicate ops:monitors ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "RegistryClient.getClient().register(" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/startup/AuthStartup.java" ;
+    ev:sourceLine 68 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-1ca850940983c224 a ev:Evidence ;
+    ev:aboutObject sut:svc-registry ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-registry ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for registry in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-1d77b3944a976e43 a ev:Evidence ;
+    ev:aboutObject sut:svc-rabbitmq ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Kieker operation-execution records (traces). start.sh:35 switches kieker.monitoring.writer to ChunkingCollector when RABBITMQ_HOST is set; kieker.monitoring.properties:32 sets its writer to ChunkingAmqpWriter, queuename=kieker (line 28). Batching: chunkSize=32 (line 33), deferredWriteDelay=500 (line 34), taskRunInterval=20 (line 36); units not stated in these files." ;
+    ev:quotedToken "RABBITMQ_HOST: \"rabbitmq\"" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 113 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-1ebe9c99e89ca2a0 a ev:Evidence ;
+    ev:aboutObject sut:ctr-descartesresearch_teastore-image ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-image ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "image: descartesresearch/teastore-image" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 85 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-1f15137c183b1bff a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-auth ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM descartesresearch/teastore-base:latest" ;
+    ev:quotedToken "descartesresearch/teastore-base:latest" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.auth/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-22f6d8018e0853b9 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-persistence ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM descartesresearch/teastore-base:latest" ;
+    ev:quotedToken "descartesresearch/teastore-base:latest" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.persistence/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-252f45748d692398 a ev:Evidence ;
+    ev:aboutObject sut:svc-auth ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-auth ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the auth service block (docker-compose_kieker.yaml:72-83) sets no deploy.replicas; Compose runs one container per service by default." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-2807771c44dfce85 a ev:Evidence ;
+    ev:aboutObject sut:svc-registry ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP PUT register/heartbeat (RegistryClient.java:244-245); also DELETE :264-265 and GET :193-195." ;
+    ev:quotedToken "getRESTClient(5000).target(registryRESTURL).path(service.getServiceName())" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 244 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-282f8088adf7c12f a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale key in the webui block (harness modules/teastore/deployment/compose/docker-compose_kieker.yaml lines 108-119); library default, not in these files" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-3943d334204ec10e a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-registry ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for registry in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-39e308f0a2668ab4 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv5 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-recommender ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-3a10c5099f540f76 a ev:Evidence ;
+    ev:aboutObject sut:svc-registry ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP PUT register/heartbeat; the registry GET for load-balancer refresh is at RegistryClient.java:193 and ServiceLoadBalancer.java:140 (every 2500 ms, RegistryClient.java:64 and :161); unregister is an HTTP DELETE at line 265" ;
+    ev:quotedToken ".put(Entity.text(\"\"))" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 245 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-45c012555be2a0b4 a ev:Evidence ;
+    ev:aboutObject sut:ctr-persistence ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-persistence ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-persistence-<n>" ;
+    ev:quotedToken "persistence:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 58 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-4bf87f99d8a1063e a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv5 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-descartesresearch_teastore-image ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-4daab519f67acec3 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommender ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP REST GET train/timestamp multicast to all registered recommender instances (TrainingSynchronizer.java:214-217); instance-to-instance call, self is not yet registered at that point." ;
+    ev:quotedToken "Service.RECOMMENDER" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java" ;
+    ev:sourceLine 214 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5748df33aefd989c a ev:Evidence ;
+    ev:aboutObject sut:svc-registry ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:quotedToken "registry:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 41 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-57f62a9c6141e84b a ev:Evidence ;
+    ev:aboutObject sut:svc-persistence ;
+    ev:aboutPredicate ops:monitors ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "persistence:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 58 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-5cefd4f2d83ca70a a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-descartesresearch_teastore-auth ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "image: descartesresearch/teastore-auth" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 73 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-5d1b1d824a702770 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-registry ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM descartesresearch/teastore-base:latest" ;
+    ev:quotedToken "descartesresearch/teastore-base:latest" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.registry/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-5fe59a668bbd01bc a ev:Evidence ;
+    ev:aboutObject sut:svc-image ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-image ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the image service block (docker-compose_kieker.yaml:84-95) has no deploy.replicas or scale key, so Compose runs its default of one container." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-61bff295909b797c a ev:Evidence ;
+    ev:aboutObject sut:svc-rabbitmq ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-persistence ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Kieker records (traces/operation executions) via ChunkingAmqpWriter (start.sh:35); batching chunkSize=32, deferredWriteDelay=500, taskRunInterval=20 (kieker.monitoring.properties:33,34,36)" ;
+    ev:quotedToken "RABBITMQ_HOST: \"rabbitmq\"" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 67 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-65019b4169a58c90 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-recommender ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the recommender service block (docker-compose_kieker.yaml:96-107) sets no deploy.replicas; Compose runs one container per service by default." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-6b6816cc45a20b0f a ev:Evidence ;
+    ev:aboutObject sut:svc-persistence ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-image ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP/REST via Jersey client (HttpWrapper.wrap(client.getService()...).get(), lines 161-162). Same callee at SetupController.java:194 (path 'products') and :227 (path 'categories'). Called after startup via ImageProviderStartup.java:61 runAfterServiceIsAvailable(Service.PERSISTENCE ...)." ;
+    ev:quotedToken "loadBalanceRESTOperation(Service.PERSISTENCE" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java" ;
+    ev:sourceLine 158 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-72052206de604195 a ev:Evidence ;
+    ev:aboutObject sut:coord-registry_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registry host from REGISTRY_HOST: \"registry\" (harness docker-compose_kieker.yaml:102); registry URL placeholder in web.xml:31 registryURL. Called only after persistence is available and initial training finished (RecommenderStartup.java:73-76)." ;
+    ev:quotedToken "RegistryClient.getClient().register(" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java" ;
+    ev:sourceLine 75 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-72a13d893a998a56 a ev:Evidence ;
+    ev:aboutObject sut:svc-db ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "db:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 50 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-72a90e318d45dcd8 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM descartesresearch/teastore-base:latest" ;
+    ev:quotedToken "descartesresearch/teastore-base:latest" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.recommender/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7b187f4b432ea5a2 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-auth ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the auth service block (docker-compose_kieker.yaml:72-83) sets no deploy.replicas; Compose runs one container per service by default." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-7e1baf368371ee7b a ev:Evidence ;
+    ev:aboutObject sut:svc-recommender ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP/REST; webui call sites CartServlet.java:88 and ProductServlet.java:79; multicast train at DataBaseActionServlet.java:84 and StatusServlet.java:129" ;
+    ev:quotedToken "Service.RECOMMENDER" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java" ;
+    ev:sourceLine 45 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-7e1efd63774eaae9 a ev:Evidence ;
+    ev:aboutObject sut:svc-rabbitmq ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-image ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Traces (Kieker operation-execution records) go to the RabbitMQ host named by RABBITMQ_HOST; dockerbase start.sh:35 switches the Kieker writer to ChunkingCollector when RABBITMQ_HOST is set, kieker.monitoring.properties:28 gives AMQP queue name 'kieker'." ;
+    ev:quotedToken "RABBITMQ_HOST: \"rabbitmq\"" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 91 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-80180ed64a2a23d1 a ev:Evidence ;
+    ev:aboutObject sut:ctr-webui ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-webui ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-webui-<n>" ;
+    ev:quotedToken "webui:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 108 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-80c8fbf04f5962fc a ev:Evidence ;
+    ev:aboutObject sut:coord-registry_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registry host named by REGISTRY_HOST: \"registry\" at harness compose line 112" ;
+    ev:quotedToken "RegistryClient.getClient().register(" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/startup/WebuiStartup.java" ;
+    ev:sourceLine 56 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-81237d7de33f4af6 a ev:Evidence ;
+    ev:aboutObject sut:svc-registry ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-persistence ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol HTTP REST PUT, registration/heartbeat (registerOnce)" ;
+    ev:quotedToken ".put(Entity.text(\"\"))" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 245 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-814f87980c67a206 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv5 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-descartesresearch_teastore-auth ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-8726bbd61ec9cea0 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-persistence ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for persistence in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-88508008e7575a42 a ev:Evidence ;
+    ev:aboutObject sut:svc-webui ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale key in the webui block (harness modules/teastore/deployment/compose/docker-compose_kieker.yaml lines 108-119); library default, not in these files" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-8909be5009199825 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-persistence ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for persistence in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-8a8919b082b2a065 a ev:Evidence ;
+    ev:aboutObject sut:svc-image ;
+    ev:aboutPredicate ops:monitors ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "image:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 84 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-8bdd5688313d5dec a ev:Evidence ;
+    ev:aboutObject 2.5 ;
+    ev:aboutPredicate ops:heartbeatIntervalSeconds ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "scheduleAtFixedRate at RegistryClient.java:159-160 with unit MILLISECONDS." ;
+    ev:quotedToken "HEARTBEAT_INTERVAL_MS = 2500" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 65 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-8ce17901f51187c2 a ev:Evidence ;
+    ev:aboutObject ops:Host ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:host-fb14srv5 ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-95144d57946bb5de a ev:Evidence ;
+    ev:aboutObject sut:coord-registry_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-persistence ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registers after DB wait and data generation; registry host from REGISTRY_HOST: \"registry\" (docker-compose_kieker.yaml:64)" ;
+    ev:quotedToken "RegistryClient.getClient().register" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/daemons/InitialDataGenerationDaemon.java" ;
+    ev:sourceLine 76 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-95f9d21bab680ff6 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv5 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-registry ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-9956ad17dbebdd02 a ev:Evidence ;
+    ev:aboutObject sut:svc-persistence ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-persistence ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for persistence in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-9c96855e886c74af a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "no deploy.replicas or scale key in the webui block (harness modules/teastore/deployment/compose/docker-compose_kieker.yaml lines 108-119); library default, not in these files" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-9e86fad50ca24b32 a ev:Evidence ;
+    ev:aboutObject sut:svc-webui ;
+    ev:aboutPredicate ops:monitors ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "compose points this service at the registry; that it then heartbeats is in the service's own files, not these" ;
+    ev:quotedToken "REGISTRY_HOST: \"registry\"" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 112 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-a24fb8d9c882319f a ev:Evidence ;
+    ev:aboutObject sut:svc-rabbitmq ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-auth ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Kieker ChunkingAmqpWriter to queue 'kieker' (kieker.monitoring.properties:28,32), chunkSize=32 (:33), deferredWriteDelay=500 (:34), taskRunInterval=20 (:36). Jaeger tracer destination: library default, not in these files." ;
+    ev:quotedToken "RABBITMQ_HOST: \"rabbitmq\"" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 79 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-a46d3ec4815398f1 a ev:Evidence ;
+    ev:aboutObject sut:svc-webui ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "webui:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 108 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-a78d5d9e37a7d335 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-webui ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-webui-<n>" ;
+    ev:quotedToken "webui:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 108 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-aa6e0315533f7fbb a ev:Evidence ;
+    ev:aboutObject ops:ServiceRegistry ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:coord-registry_registry-heartbeat ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "registering with the registry" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 44 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ac6e47093e3a67c3 a ev:Evidence ;
+    ev:aboutObject sut:svc-persistence ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP REST/JSON, load-balanced via ServiceLoadBalancer/LoadBalancedCRUDOperations (REST client built with Jersey in RESTClient.java:71,128). Other call sites: TrainingSynchronizer.java:184,194." ;
+    ev:quotedToken "Service.PERSISTENCE" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java" ;
+    ev:sourceLine 138 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-b12e813e3b1e210b a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-recommender ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the recommender service block (docker-compose_kieker.yaml:96-107) sets no deploy.replicas; Compose runs one container per service by default." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-b5aa2ab0350acec1 a ev:Evidence ;
+    ev:aboutObject sut:svc-db ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-persistence ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "protocol JDBC/MySQL (persistence.xml:17 com.mysql.jdbc.Driver); DB host from DB_HOST: \"db\" (docker-compose_kieker.yaml:65)" ;
+    ev:quotedToken "java:comp/env/databaseHost" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java" ;
+    ev:sourceLine 112 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-bb104aa932475e3d a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-descartesresearch_teastore-image ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "image: descartesresearch/teastore-image" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 85 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-bd9341fbb5df498f a ev:Evidence ;
+    ev:aboutObject sut:ctr-registry ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-registry ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-registry-<n>" ;
+    ev:quotedToken "registry:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 41 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-c0b068380fb96c62 a ev:Evidence ;
+    ev:aboutObject sut:svc-auth ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP/REST; webui call site IndexServlet.java:58 LoadBalancedStoreOperations.isLoggedIn, also CartActionServlet.java:60 and LoginActionServlet.java:62" ;
+    ev:quotedToken "Service.AUTH" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java" ;
+    ev:sourceLine 56 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-c44e1996d2347e54 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-registry ;
+    ev:acceptance "deterministic" ;
+    ev:basis "documented-default" ;
+    ev:note "stage-1 rule D3: no deploy.replicas or scale for registry in harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml; Compose default 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-c597f5d1b38caf4b a ev:Evidence ;
+    ev:aboutObject sut:svc-auth ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "auth:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 72 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-c5f884aecbac9c7b a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-image ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the image service block (docker-compose_kieker.yaml:84-95) has no deploy.replicas or scale key, so Compose runs its default of one container." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-c8fa885c3aa1cc7b a ev:Evidence ;
+    ev:aboutObject sut:svc-persistence ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "persistence:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 58 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-c91aa6fc946b19e4 a ev:Evidence ;
+    ev:aboutObject sut:coord-registry_registry-heartbeat ;
+    ev:aboutPredicate ops:registersWith ;
+    ev:aboutSubject sut:svc-auth ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "registry host from REGISTRY_HOST: \"registry\" (harness docker-compose_kieker.yaml:78); registry URL placeholder in web.xml:31 registryURL." ;
+    ev:quotedToken "RegistryClient.getClient().register(" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/startup/AuthStartup.java" ;
+    ev:sourceLine 68 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ca027c6d348504b4 a ev:Evidence ;
+    ev:aboutObject sut:svc-registry ;
+    ev:aboutPredicate ops:hostedBy ;
+    ev:aboutSubject sut:coord-registry_registry-heartbeat ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "REGISTRY_HOST: \"registry\"" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 78 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-ca0bed8ae3a39835 a ev:Evidence ;
+    ev:aboutObject sut:svc-image ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP/REST; webui call site IndexServlet.java:60 LoadBalancedImageOperations.getWebImage; multicast at LoadBalancedImageOperations.java:200 and StatusServlet.java:110" ;
+    ev:quotedToken "Service.IMAGE" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java" ;
+    ev:sourceLine 108 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-cd379a0c2a69b426 a ev:Evidence ;
+    ev:aboutObject sut:ctr-descartesresearch_teastore-auth ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-auth ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "image: descartesresearch/teastore-auth" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 73 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-d1270b3f14fd401b a ev:Evidence ;
+    ev:aboutObject sut:ctr-db ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-db ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "image descartesresearch/teastore-db; no container_name set, so Compose derives the container name from the service key db" ;
+    ev:quotedToken "descartesresearch/teastore-db" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 51 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-d48c9a361e7ff001 a ev:Evidence ;
+    ev:aboutObject sut:svc-db ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-db ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the db block (docker-compose_kieker.yaml:50-57) has no deploy.replicas or scale; Compose default is 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-d532481606810a07 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommender ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "recommender:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 96 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-d8388ad554568c93 a ev:Evidence ;
+    ev:aboutObject ops:LivenessMechanism ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "heartbeat re-PUTs the registration (RegistryClientHeartbeatDaemon.java:40 registerOnce; RegistryClient.java:244-245)." ;
+    ev:quotedToken "new RegistryClientHeartbeatDaemon(service, host)" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java" ;
+    ev:sourceLine 159 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-d8ad7c8be87f6876 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv5 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-webui ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-d8fd4c86fb46bb79 a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-persistence ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-persistence-<n>" ;
+    ev:quotedToken "persistence:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 58 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-dba262a3c797bd56 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-db ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the db block (docker-compose_kieker.yaml:50-57) has no deploy.replicas or scale; Compose default is 1" ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-e39a53418a2572ae a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-registry ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-registry-<n>" ;
+    ev:quotedToken "registry:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 41 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-e71347639aa42cb5 a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-image ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM descartesresearch/teastore-base:latest" ;
+    ev:quotedToken "descartesresearch/teastore-base:latest" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.image/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-e948a505e28f327c a ev:Evidence ;
+    ev:aboutObject omsac:MicroserviceArchitecture ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:arch-teastore ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "architecture = the services of the compose files harness:modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:quotedToken "services:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 40 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-ea1a4aa55ba385af a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv5 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-persistence ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-eba97c65e0d788d6 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommender ;
+    ev:aboutPredicate ops:monitors ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:quotedToken "RegistryClient.getClient().register(" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java" ;
+    ev:sourceLine 75 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-eda836ec1f5da6c4 a ev:Evidence ;
+    ev:aboutObject sut:ctr-recommender ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-recommender-<n>" ;
+    ev:quotedToken "recommender:" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 96 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-ede7081b5ff8d1e8 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv5 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-db ;
+    ev:acceptance "deterministic" ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv5\"" ;
+    ev:sourceCommit "6897a5d921c3fd8f2df642bece7315589c426f45" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 9 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-f8cee32f951a2dcd a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-auth ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the auth service block (docker-compose_kieker.yaml:72-83) sets no deploy.replicas; Compose runs one container per service by default." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-f8fcab2ecbe70823 a ev:Evidence ;
+    ev:aboutObject false ;
+    ev:aboutPredicate ops:healthCheckConfigured ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "absence: auth service block lines 72-83 has no healthcheck key; auth and base Dockerfiles have no HEALTHCHECK." ;
+    ev:quotedToken "command: *kieker-heartbeat-start" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 81 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-f9268bae68e57dca a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-db ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "image descartesresearch/teastore-db; no container_name set, so Compose derives the container name from the service key db" ;
+    ev:quotedToken "descartesresearch/teastore-db" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 51 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-f93fc20a26e9c58d a ev:Evidence ;
+    ev:aboutObject sut:svc-rabbitmq ;
+    ev:aboutPredicate ops:exportsTelemetryTo ;
+    ev:aboutSubject sut:svc-recommender ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Kieker ChunkingAmqpWriter to queue 'kieker' (kieker.monitoring.properties:28,32), chunkSize=32 (:33), deferredWriteDelay=500 (:34), taskRunInterval=20 (:36). Jaeger tracer destination: library default, not in these files." ;
+    ev:quotedToken "RABBITMQ_HOST: \"rabbitmq\"" ;
+    ev:sourceCommit "f74b29b92de283878ca50ea4ab2a5e1beb74eef7" ;
+    ev:sourceFile "modules/teastore/deployment/compose/docker-compose_kieker.yaml" ;
+    ev:sourceLine 103 ;
+    ev:sourceRepo "harness" .
+
+sut:ev-f9cf46fc9342584f a ev:Evidence ;
+    ev:aboutObject sut:svc-persistence ;
+    ev:aboutPredicate ops:callsSync ;
+    ev:aboutSubject sut:svc-webui ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "HTTP/REST via LoadBalancedCRUDOperations (LoadBalancedCRUDOperations.java:62 ServiceLoadBalancer.loadBalanceRESTOperation); also CartServlet, ProductServlet, CategoryServlet, ProfileServlet, OrderServlet, ErrorServlet, LoginServlet, StatusServlet:95, DataBaseActionServlet:67" ;
+    ev:quotedToken "Service.PERSISTENCE" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/IndexServlet.java" ;
+    ev:sourceLine 56 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-fa25ba2f8c791802 a ev:Evidence ;
+    ev:aboutObject sut:svc-recommender ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-recommender ;
+    ev:acceptance "agreed" ;
+    ev:basis "documented-default" ;
+    ev:note "library default, not in these files: the recommender service block (docker-compose_kieker.yaml:96-107) sets no deploy.replicas; Compose runs one container per service by default." ;
+    ev:sourceUrl "https://docs.docker.com/reference/compose-file/deploy/#replicas" .
+
+sut:ev-fede967ca8683be4 a ev:Evidence ;
+    ev:aboutObject 10.0 ;
+    ev:aboutPredicate ops:failureTimeoutSeconds ;
+    ev:aboutSubject sut:live-registry_registry-heartbeat-0 ;
+    ev:acceptance "supported" ;
+    ev:basis "cited" ;
+    ev:note "isAlive() is true while now - lastHeartbeat < 10000 ms" ;
+    ev:quotedToken "< 10000" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/HeartbeatInfo.java" ;
+    ev:sourceLine 32 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-ffddd00dd4dcb494 a ev:Evidence ;
+    ev:aboutObject omsac:Database ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-db ;
+    ev:acceptance "agreed" ;
+    ev:basis "cited" ;
+    ev:note "Dockerfile builds on the mariadb image; setup.sql line 1 creates the database teadb" ;
+    ev:quotedToken "mariadb:10.4.12" ;
+    ev:sourceCommit "34b37f7e7be433ce72d5f9455e66922a13116749" ;
+    ev:sourceFile "utilities/tools.descartes.teastore.database/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:rs-auth a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-auth .
+
+sut:rs-db a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-db .
+
+sut:rs-image a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-image .
+
+sut:rs-persistence a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-persistence .
+
+sut:rs-recommender a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-recommender .
+
+sut:rs-registry a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-registry .
+
+sut:rs-webui a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-webui .
+
+sut:ctr-db a ops:Container ;
+    ops:placedOn sut:host-fb14srv5 .
+
+sut:ctr-descartesresearch_teastore-auth a ops:Container ;
+    ops:placedOn sut:host-fb14srv5 .
+
+sut:ctr-descartesresearch_teastore-image a ops:Container ;
+    ops:placedOn sut:host-fb14srv5 .
+
+sut:ctr-persistence a ops:Container ;
+    ops:placedOn sut:host-fb14srv5 .
+
+sut:ctr-recommender a ops:Container ;
+    ops:placedOn sut:host-fb14srv5 .
+
+sut:ctr-registry a ops:Container ;
+    ops:placedOn sut:host-fb14srv5 .
+
+sut:ctr-webui a ops:Container ;
+    ops:placedOn sut:host-fb14srv5 .
+
+sut:arch-teastore a omsac:MicroserviceArchitecture ;
+    omsac:isComposedOf sut:svc-auth,
+        sut:svc-db,
+        sut:svc-image,
+        sut:svc-persistence,
+        sut:svc-recommender,
+        sut:svc-registry,
+        sut:svc-webui .
+
+sut:svc-db a omsac:Database ;
+    ops:runsIn sut:ctr-db .
+
+sut:live-registry_registry-heartbeat-0 a ops:LivenessMechanism ;
+    ops:enforcedBy sut:coord-registry_registry-heartbeat ;
+    ops:failureTimeoutSeconds 10.0 ;
+    ops:healthCheckConfigured false ;
+    ops:heartbeatIntervalSeconds 2.5 ;
+    ops:heartbeatThreadIndependentOfWork true ;
+    ops:monitors sut:svc-auth,
+        sut:svc-image,
+        sut:svc-persistence,
+        sut:svc-recommender,
+        sut:svc-webui .
+
+sut:svc-auth a omsac:Microservice ;
+    ops:callsSync sut:svc-persistence ;
+    ops:exportsTelemetryTo sut:svc-rabbitmq ;
+    ops:registersWith sut:coord-registry_registry-heartbeat ;
+    ops:runsIn sut:ctr-descartesresearch_teastore-auth .
+
+sut:coord-registry_registry-heartbeat a ops:ServiceRegistry ;
+    ops:hostedBy sut:svc-registry .
+
+sut:svc-image a omsac:Microservice ;
+    ops:callsSync sut:svc-persistence,
+        sut:svc-registry ;
+    ops:exportsTelemetryTo sut:svc-rabbitmq ;
+    ops:registersWith sut:coord-registry_registry-heartbeat ;
+    ops:runsIn sut:ctr-descartesresearch_teastore-image .
+
+sut:host-fb14srv5 a ops:Host .
+
+sut:svc-webui a omsac:Microservice ;
+    ops:callsSync sut:svc-auth,
+        sut:svc-image,
+        sut:svc-persistence,
+        sut:svc-recommender,
+        sut:svc-registry ;
+    ops:exportsTelemetryTo sut:svc-rabbitmq ;
+    ops:registersWith sut:coord-registry_registry-heartbeat ;
+    ops:runsIn sut:ctr-webui .
+
+sut:svc-registry a omsac:Microservice ;
+    ops:runsIn sut:ctr-registry .
+
+sut:svc-recommender a omsac:Microservice ;
+    ops:callsSync sut:svc-persistence,
+        sut:svc-recommender,
+        sut:svc-registry ;
+    ops:exportsTelemetryTo sut:svc-rabbitmq ;
+    ops:registersWith sut:coord-registry_registry-heartbeat ;
+    ops:runsIn sut:ctr-recommender .
+
+sut:svc-persistence a omsac:Microservice ;
+    ops:callsSync sut:svc-db,
+        sut:svc-persistence,
+        sut:svc-registry ;
+    ops:exportsTelemetryTo sut:svc-rabbitmq ;
+    ops:registersWith sut:coord-registry_registry-heartbeat ;
+    ops:runsIn sut:ctr-persistence .
+

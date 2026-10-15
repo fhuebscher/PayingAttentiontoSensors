@@ -1,0 +1,4132 @@
+{
+ "manifestVersion": 1,
+ "system": "teastore",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-teastore-protocol/upstream/teastore",
+   "commit": "34b37f7e7be433ce72d5f9455e66922a13116749",
+   "pinnedAs": "34b37f7e7be4"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-teastore-protocol",
+   "commit": "f74b29b92de283878ca50ea4ab2a5e1beb74eef7",
+   "pinnedAs": "f74b29b"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "bb0bfda81078614d0b34de31dbec60351d07f0b1",
+   "pinnedAs": "HEAD"
+  }
+ },
+ "rules": "research/ontology/inputs.py module docstring, R1-R7",
+ "deploymentFiles": [
+  {
+   "role": "compose",
+   "repo": "harness",
+   "path": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+   "sha256": "a52531c8714c0748eb57ac59a7f69225fe406e956402f177d9b51596e5ba4bea",
+   "bytes": 4987
+  },
+  {
+   "role": "image-build-script",
+   "repo": "upstream",
+   "path": "tools/build_docker.sh",
+   "sha256": "e886c4b536b12173705ae5a8dca62ec932b64163617873eab7bc17ca676ee1e0",
+   "bytes": 3012
+  },
+  {
+   "role": "host-topology",
+   "repo": "obsplacement",
+   "path": "research/host-topology.json",
+   "sha256": "a259d0ccb0470155c032616fd2dbb7e4e8b941ce5cf2d103a5195c01faa30d15",
+   "bytes": 23283
+  }
+ ],
+ "services": {
+  "registry": {
+   "service": "registry",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.registry"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.registry/Dockerfile"
+   },
+   "buildScript": {
+    "repo": "upstream",
+    "path": "tools/build_docker.sh",
+    "line": 39
+   },
+   "rules": [
+    "R2:image-build-script",
+    "R4:services/tools.descartes.teastore.registry,interfaces/tools.descartes.teastore.entities",
+    "R3d:descartesresearch/teastore-base",
+    "R3b:utilities/tools.descartes.teastore.dockerbase/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/pom.xml",
+     "sha256": "264dddd13d4cdea7d56f1cc2a78ebd70b061f0654e4eec9fa6c07eb8c6ac3d8e",
+     "bytes": 1609
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Category.java",
+     "sha256": "717f76e3deca73a0039921e06d2a0e809d6b92b56e950815db280f87653073cd",
+     "bytes": 2637
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSize.java",
+     "sha256": "bda455560bde1be6906c22e3b422032a51df23c71123c66a6e44a4d682106cad",
+     "bytes": 3428
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSizePreset.java",
+     "sha256": "f49944be8ea7a69b74bba1e3c4501290ffd4f04c6a805e272901a0ff15b3b83f",
+     "bytes": 1111
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Order.java",
+     "sha256": "c8b14f5d7b4effee1cde52ee10b90b9cdeeb2bb46aea4d1302f3f61386f97811",
+     "bytes": 6290
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/OrderItem.java",
+     "sha256": "ac291ac0bb002bb8b312b5fdfd0333a77a692e04f30cbbc2815f9aa8fd98aa2d",
+     "bytes": 4273
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Product.java",
+     "sha256": "f66dc43f1df85cf1832fe4a81386e30ec1ca759dbb96e1a27d2cd5f128d34895",
+     "bytes": 4070
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/User.java",
+     "sha256": "8201622b8049e09b5c9a80c82340ea71787ee340c96b9a448addc9aab0ea13d6",
+     "bytes": 3833
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/message/SessionBlob.java",
+     "sha256": "cf9043a02f6444b654fd1c2c0e298e87fbdb4dd9c74e0ec62c30db28ce9d2b57",
+     "bytes": 2039
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.registry/Dockerfile",
+     "sha256": "6c112a0d13de3259e88bcd66ffcf1e9a94844415ca3f75fb2f1d10492ed1f568",
+     "bytes": 170
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.registry/pom.xml",
+     "sha256": "511cdbd64e9d692f1d71dfd980a53d38df8592276302a13e8656881fe72c9e39",
+     "bytes": 3510
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/HeartbeatInfo.java",
+     "sha256": "e664710a8a485d8d5100e6ed5593a67dd72331d48a3a53ee341d17b75d5c4bc3",
+     "bytes": 685
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/Registry.java",
+     "sha256": "284ac1e832d8005162e9f847afb6639fc03b3537719504124234560324c192ca",
+     "bytes": 4675
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryREST.java",
+     "sha256": "fbdabda3a0f376bc5fbf8a671c1e60ddfd16e6da641e58158c28dd397dccccf5",
+     "bytes": 2401
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+     "sha256": "eb5739938ab370933375681d22df60a74443030536a9934eb9e2a1e8e259c7c5",
+     "bytes": 2355
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/servlet/IndexServlet.java",
+     "sha256": "10801111a32f24bd11a5d731ca152cb01cdc9aa8e6fd5c941abca0d27d3ce6b4",
+     "bytes": 2263
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.registry/src/main/webapp/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.registry/src/main/webapp/WEB-INF/web.xml",
+     "sha256": "c9649a6b28c96ef3f0b9f4f1b4e6289cc3908ad3260a352504b4f8534cc4e68e",
+     "bytes": 968
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/Dockerfile",
+     "sha256": "e7e23482d000f90e403e7920a0800d169dc091b85e38f37b2503d7082b2e854f",
+     "bytes": 2524
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/aop.xml",
+     "sha256": "7fb0e74552189391b6f862c41bf81c1ca23a7fdc67297af7146ff5bac0396b45",
+     "bytes": 18647
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/baseContext.xml",
+     "sha256": "301de01d91f16e7b2bfa5ee9cd9659f54410358d197934a1fa919ffe9109257c",
+     "bytes": 1553
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/kieker.monitoring.properties",
+     "sha256": "36011936c25c8af781b205383041a8314fc5b709b8f0400c988a7624e0ca53a2",
+     "bytes": 2534
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/server.xml",
+     "sha256": "61499602b67c2659fa5d47b28c5899142b3fde7ca9fc85f7f2229a63d2d1187a",
+     "bytes": 2531
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/ssl/generate_cert.sh",
+     "sha256": "c835a1aee0e886993187e596da0596f39951e8132991b6979cc8165782c0aa87",
+     "bytes": 462
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/start.sh",
+     "sha256": "1e4d0fffe69e4777ac530c5363284428c3b6faa9706325ff49e22e57280abc89",
+     "bytes": 4657
+    }
+   ],
+   "fileCount": 26,
+   "bytes": 79297
+  },
+  "db": {
+   "service": "db",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "utilities/tools.descartes.teastore.database"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "utilities/tools.descartes.teastore.database/Dockerfile"
+   },
+   "buildScript": {
+    "repo": "upstream",
+    "path": "tools/build_docker.sh",
+    "line": 36
+   },
+   "rules": [
+    "R2:image-build-script",
+    "R3b:utilities/tools.descartes.teastore.database/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.database/Dockerfile",
+     "sha256": "ff737bb14570fe25309feef481501f03b2cfc757e67c070f1545771296dcd571",
+     "bytes": 568
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.database/setup.sql",
+     "sha256": "fd26dee31753a3836bb7e804aebaa2871911ff68d6a31ea2fceff0b63e98a9a3",
+     "bytes": 146
+    }
+   ],
+   "fileCount": 2,
+   "bytes": 714
+  },
+  "persistence": {
+   "service": "persistence",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.persistence"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.persistence/Dockerfile"
+   },
+   "buildScript": {
+    "repo": "upstream",
+    "path": "tools/build_docker.sh",
+    "line": 40
+   },
+   "rules": [
+    "R2:image-build-script",
+    "R4:services/tools.descartes.teastore.persistence,utilities/tools.descartes.teastore.registryclient,utilities/tools.descartes.teastore.kieker.probes,interfaces/tools.descartes.teastore.entities",
+    "R3d:descartesresearch/teastore-base",
+    "R3b:utilities/tools.descartes.teastore.dockerbase/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/pom.xml",
+     "sha256": "264dddd13d4cdea7d56f1cc2a78ebd70b061f0654e4eec9fa6c07eb8c6ac3d8e",
+     "bytes": 1609
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Category.java",
+     "sha256": "717f76e3deca73a0039921e06d2a0e809d6b92b56e950815db280f87653073cd",
+     "bytes": 2637
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSize.java",
+     "sha256": "bda455560bde1be6906c22e3b422032a51df23c71123c66a6e44a4d682106cad",
+     "bytes": 3428
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSizePreset.java",
+     "sha256": "f49944be8ea7a69b74bba1e3c4501290ffd4f04c6a805e272901a0ff15b3b83f",
+     "bytes": 1111
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Order.java",
+     "sha256": "c8b14f5d7b4effee1cde52ee10b90b9cdeeb2bb46aea4d1302f3f61386f97811",
+     "bytes": 6290
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/OrderItem.java",
+     "sha256": "ac291ac0bb002bb8b312b5fdfd0333a77a692e04f30cbbc2815f9aa8fd98aa2d",
+     "bytes": 4273
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Product.java",
+     "sha256": "f66dc43f1df85cf1832fe4a81386e30ec1ca759dbb96e1a27d2cd5f128d34895",
+     "bytes": 4070
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/User.java",
+     "sha256": "8201622b8049e09b5c9a80c82340ea71787ee340c96b9a448addc9aab0ea13d6",
+     "bytes": 3833
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/message/SessionBlob.java",
+     "sha256": "cf9043a02f6444b654fd1c2c0e298e87fbdb4dd9c74e0ec62c30db28ce9d2b57",
+     "bytes": 2039
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/Dockerfile",
+     "sha256": "4afc19b330293cf7f4e09967784171e5878a8c98adb6d999647ebf6ca537e909",
+     "bytes": 168
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/pom.xml",
+     "sha256": "df57b88246b776b3d5042d8be5c23caaaa4c73b1e839e943877b15c090192997",
+     "bytes": 2785
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/dev/webapp/META-INF/context.xml",
+     "sha256": "95f7bf35f1513063883709964c1ae37f68538ca5a543b97665bed7cb0f0fe93b",
+     "bytes": 292
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/daemons/InitialDataGenerationDaemon.java",
+     "sha256": "1c62e156007d780451fd4fcefe8539740c6b6427928fbe6c3fd40acf8dd44fcc",
+     "bytes": 3539
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/CategoryRepository.java",
+     "sha256": "b5073f4139fec408a7377d5867130ffc0a5f7cbabeab8128d49764e31734b4bb",
+     "bytes": 2501
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/OrderItemRepository.java",
+     "sha256": "b906a6f61ff058895f9a25f8c11be00db511d106d2eb7766569cee770def949a",
+     "bytes": 5390
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/OrderRepository.java",
+     "sha256": "52d2ac617aff4e8c8e6f4115e4d421c879f2348701ca1781952c54ede46d526a",
+     "bytes": 4594
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceCategory.java",
+     "sha256": "5c139bf21d8f492f4eb4c4bba988518b4403f2b8cbf5edd292c2cd69a1ac681d",
+     "bytes": 2606
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrder.java",
+     "sha256": "405cae191f42400904553e76d3a93b7e3771992f7319fa5843845e71b986d1f8",
+     "bytes": 6733
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrderItem.java",
+     "sha256": "a5904755e3657225d54d8513fb4dc1f74630da9b3c93e5baf0b368be55c0cb43",
+     "bytes": 3357
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceProduct.java",
+     "sha256": "b9710e8157e1f1c449d71d35236b492bb30f4c3490844063f446cd3e95e83667",
+     "bytes": 3441
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceUser.java",
+     "sha256": "7152016a3de35f5210ac7aedcb18834452028a27934cbcf0b323e9eaf3d35662",
+     "bytes": 3478
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/ProductRepository.java",
+     "sha256": "252a2e64901696ea53ba0e5176e21579c5907374ee24a7d4262cb872a8755ac1",
+     "bytes": 5123
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/UserRepository.java",
+     "sha256": "adf13497958e2fc52516310aaf75a4b3a92f508c1ad4d4007377605fcda8fe09",
+     "bytes": 3417
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/converters/LocalDateAttributeConverter.java",
+     "sha256": "104420ccdcbdb88d7e5ac1391da295c81080b0fb84192f5947518f9479ccfec0",
+     "bytes": 1601
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/converters/LocalDateTimeAttributeConverter.java",
+     "sha256": "70c92705196163f87d59df548fd0420a4df3f631304725ff2896d6d2a97eb91c",
+     "bytes": 1674
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/AbstractPersistenceRepository.java",
+     "sha256": "74c4d431ac54df9d7df30488291377cd1de1a5a89ee5d18247ffe310736e05ae",
+     "bytes": 5627
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+     "sha256": "6b355687e112e5a729d3f32a8ea74c4109335a4d71565445fe0c599b5c9c1959",
+     "bytes": 4948
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/DataGenerator.java",
+     "sha256": "8ff9fedd51f4963e9d70db80e090e5c79bb5f60377e906e78ad73379f324925a",
+     "bytes": 18773
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/DatabaseManagementEntity.java",
+     "sha256": "ab9d008fedadfe7a4bda1b488aa1ca594491ae319123d33d8420901e4acf62bd",
+     "bytes": 1676
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java",
+     "sha256": "b0a6e3e3008b0a305330ba4df26b8805c25f4ca1b2dbc82b11fa95b0ec68ad56",
+     "bytes": 5571
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/CacheManagerEndpoint.java",
+     "sha256": "91d47280cb03c00fe74eee4b3cb37d843c2789ef113042977b7de75597eafce3",
+     "bytes": 2212
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/CategoryEndpoint.java",
+     "sha256": "32eec82c3526ec1ff43576e8e65d8b6e2110d62f597981480e858ffa13a062a0",
+     "bytes": 2460
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+     "sha256": "4d24fc0cbbd19ed67edbd70f03e3c72a0dfa65dd6f3f76fb06454725fe6a0b0c",
+     "bytes": 5116
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/OrderEndpoint.java",
+     "sha256": "566359a3b651bb822c912ca4ec3cb0fda931684e6f7c35833c3d96e69b4b4251",
+     "bytes": 3366
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/OrderItemEndpoint.java",
+     "sha256": "50ddf3311bc096df8363b81a83dc7035855af7b471cc237118659e7a0c39429a",
+     "bytes": 4492
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/ProductEndpoint.java",
+     "sha256": "304a3912ef553a9decccc69eaa07a70f26b9d46458a4be3207c65b1ad7840f53",
+     "bytes": 4096
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java",
+     "sha256": "84dfbd88557d27de10117b8dfd75cb0c7d9124dd9f1e00a58bd90be079bbe948",
+     "bytes": 3179
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/servlet/IndexServlet.java",
+     "sha256": "94008ecdfe5758ef86c1463c594a76bddaf0a8ee39c9922e409a473ea3abe267",
+     "bytes": 2272
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/resources/META-INF/persistence.xml",
+     "sha256": "db9a562074fb5da457587a100ea45aad391edf5577e7885d783332ef27d2ced9",
+     "bytes": 1924
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/webapp/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.persistence/src/main/webapp/WEB-INF/web.xml",
+     "sha256": "35385743c07c59822dd9a757f15fc51f0b43819e0a5d2e4734f513061d64e659",
+     "bytes": 1647
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/Dockerfile",
+     "sha256": "e7e23482d000f90e403e7920a0800d169dc091b85e38f37b2503d7082b2e854f",
+     "bytes": 2524
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/aop.xml",
+     "sha256": "7fb0e74552189391b6f862c41bf81c1ca23a7fdc67297af7146ff5bac0396b45",
+     "bytes": 18647
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/baseContext.xml",
+     "sha256": "301de01d91f16e7b2bfa5ee9cd9659f54410358d197934a1fa919ffe9109257c",
+     "bytes": 1553
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/kieker.monitoring.properties",
+     "sha256": "36011936c25c8af781b205383041a8314fc5b709b8f0400c988a7624e0ca53a2",
+     "bytes": 2534
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/server.xml",
+     "sha256": "61499602b67c2659fa5d47b28c5899142b3fde7ca9fc85f7f2229a63d2d1187a",
+     "bytes": 2531
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/ssl/generate_cert.sh",
+     "sha256": "c835a1aee0e886993187e596da0596f39951e8132991b6979cc8165782c0aa87",
+     "bytes": 462
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/start.sh",
+     "sha256": "1e4d0fffe69e4777ac530c5363284428c3b6faa9706325ff49e22e57280abc89",
+     "bytes": 4657
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/pom.xml",
+     "sha256": "f9bd2df8b2673abc7cd63d5dd4a36d5568cfdd8111ea4258c76989d11bbe201a",
+     "bytes": 1240
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+     "sha256": "b3892064c6ac0ef83fa03c470e61f8b3fd8978c1de79e9d9a52a07d3c31b307f",
+     "bytes": 7355
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/IPayloadCharacterization.java",
+     "sha256": "fc786e0cdda388a045c01f2608f6cc56952c39d4e225d2a7797ad4cd20c6fc3f",
+     "bytes": 764
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/OperationExecutionWithParametersRecord.java",
+     "sha256": "b86b42af8dfeeb6509692ef9ff98d7d39918db59fc1dc64dd023f83ab5b9d559",
+     "bytes": 8506
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+     "sha256": "d5d01329c0bf238698dde32775dc54eb2da90ef5588de98de3090114e24bc81e",
+     "bytes": 3852
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+     "sha256": "a2e77b0e11bb8e2a6aefd3986ab5bb9a9fb3741b81fcb71b4ebe9c44ee18f302",
+     "bytes": 11497
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClientHeartbeatDaemon.java",
+     "sha256": "4c98cda83d106b633a3e7a3efc605e88ade6adfd37eddb4e041a96b9931d38b5",
+     "bytes": 1267
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/Service.java",
+     "sha256": "1316603bf0bf1d1b7e892708a921cb1f332247606fef9fa16b3f2e3368f8c5cc",
+     "bytes": 1559
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallback.java",
+     "sha256": "1ea2128167d33ecfe90672b60e7e63ac99fc9e2503d54cc9b0c43f8e600be4be",
+     "bytes": 809
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallbackTask.java",
+     "sha256": "46a72b8c386c7f62d3779410aa848c371240ec5faf92040f3cb80c55aa0df074",
+     "bytes": 1730
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+     "sha256": "65872a55c5b40d1dbdf174d43b29ba1efe010da804506e8e32e03204f6f19180",
+     "bytes": 3683
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerTimeoutException.java",
+     "sha256": "f64c244b8f672f118949dc4f5d8315faacdafd75c0d8c5f845f9271c083ab07d",
+     "bytes": 1458
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerUpdaterDaemon.java",
+     "sha256": "e4e2e77a955ee5c73ea3722f6f8d41fa20a4afc28b21b23a4f6ee200b79f0cfc",
+     "bytes": 1033
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+     "sha256": "e5d44e7bf7726341732b489a9503b9c36911a989b27da927ef9e01077abebb07",
+     "bytes": 13820
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancerResult.java",
+     "sha256": "40d70d0c3a59a225118cf32afc3a1697690db1ada241304155f4810e782ca417",
+     "bytes": 2757
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/CharResponseWrapper.java",
+     "sha256": "f432452c388c24df585772d4f19c1145d92dbec8056075b42f768e673a476066",
+     "bytes": 1666
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/HttpWrapper.java",
+     "sha256": "568c4566e66def2b1fbd1099cd55e0e6f1754d9b79ad941dea02d8022f81f010",
+     "bytes": 2697
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+     "sha256": "e9a182b0062d485390affce120017b1fee8ba0298ac51319e53821f55acf482f",
+     "bytes": 10044
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+     "sha256": "674ff353ef7fad3213cbc505738e91daecb768db799644d369ce41abaa40e7fa",
+     "bytes": 6907
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+     "sha256": "d2c4e98cd87fec32d38d60f8f685a8fd356a809c6460489c2876d08fcb8a0952",
+     "bytes": 1902
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+     "sha256": "0e9fa6e5e17b2b209f0cb74c84565d4de06f9e34776ed82eac5a484595ca547a",
+     "bytes": 8542
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+     "sha256": "e079a19079f29f3c9aa12737a97cbb6a0328f091a5cc75a5199495ca35364e1c",
+     "bytes": 13097
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/ResponseWrapper.java",
+     "sha256": "2e737d205f98bcc0cd33ad4b24ea2b03bbe85c50a78fbd2390865b95d37bdbb0",
+     "bytes": 3372
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/RestUtil.java",
+     "sha256": "56a2f01fa70e1d997dc223be47f7d38844433fa6767406a43ffbeb7fdd3aa084",
+     "bytes": 3148
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/TrackingFilter.java",
+     "sha256": "a9a866f88e0c5ad35dc3ef1f28f150b64cfe726f2378e15e0971814289a6d3d2",
+     "bytes": 5960
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/tracing/Tracing.java",
+     "sha256": "e0afaba653e20e11311e0b3f30c9542d584c09aff6a4395dc7186cc5bb8d9e23",
+     "bytes": 5014
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/AbstractCRUDEndpoint.java",
+     "sha256": "832c910c3bcc216258c00e9f158a48f77a87a19d7d232b8d2e62a5f668aa7389",
+     "bytes": 6890
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/NotFoundException.java",
+     "sha256": "6398f162b3ced7f941196f928f70b8431d9e5bc097f3ca3307612805dd9ae47b",
+     "bytes": 1072
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+     "sha256": "f3dfa9f1a80fee606c5bc566eac2926eb794c40f48bb3928aeca05867ec65210",
+     "bytes": 6736
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/TimeoutException.java",
+     "sha256": "5eb314a4b43547e19b0f2854b75af094628f786a6adc18f72f9a932fa56ec163",
+     "bytes": 1070
+    }
+   ],
+   "fileCount": 80,
+   "bytes": 319811
+  },
+  "auth": {
+   "service": "auth",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.auth"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.auth/Dockerfile"
+   },
+   "buildScript": {
+    "repo": "upstream",
+    "path": "tools/build_docker.sh",
+    "line": 43
+   },
+   "rules": [
+    "R2:image-build-script",
+    "R4:services/tools.descartes.teastore.auth,utilities/tools.descartes.teastore.registryclient,utilities/tools.descartes.teastore.kieker.probes,interfaces/tools.descartes.teastore.entities",
+    "R3d:descartesresearch/teastore-base",
+    "R3b:utilities/tools.descartes.teastore.dockerbase/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/pom.xml",
+     "sha256": "264dddd13d4cdea7d56f1cc2a78ebd70b061f0654e4eec9fa6c07eb8c6ac3d8e",
+     "bytes": 1609
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Category.java",
+     "sha256": "717f76e3deca73a0039921e06d2a0e809d6b92b56e950815db280f87653073cd",
+     "bytes": 2637
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSize.java",
+     "sha256": "bda455560bde1be6906c22e3b422032a51df23c71123c66a6e44a4d682106cad",
+     "bytes": 3428
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSizePreset.java",
+     "sha256": "f49944be8ea7a69b74bba1e3c4501290ffd4f04c6a805e272901a0ff15b3b83f",
+     "bytes": 1111
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Order.java",
+     "sha256": "c8b14f5d7b4effee1cde52ee10b90b9cdeeb2bb46aea4d1302f3f61386f97811",
+     "bytes": 6290
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/OrderItem.java",
+     "sha256": "ac291ac0bb002bb8b312b5fdfd0333a77a692e04f30cbbc2815f9aa8fd98aa2d",
+     "bytes": 4273
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Product.java",
+     "sha256": "f66dc43f1df85cf1832fe4a81386e30ec1ca759dbb96e1a27d2cd5f128d34895",
+     "bytes": 4070
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/User.java",
+     "sha256": "8201622b8049e09b5c9a80c82340ea71787ee340c96b9a448addc9aab0ea13d6",
+     "bytes": 3833
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/message/SessionBlob.java",
+     "sha256": "cf9043a02f6444b654fd1c2c0e298e87fbdb4dd9c74e0ec62c30db28ce9d2b57",
+     "bytes": 2039
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/Dockerfile",
+     "sha256": "4afc19b330293cf7f4e09967784171e5878a8c98adb6d999647ebf6ca537e909",
+     "bytes": 168
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/pom.xml",
+     "sha256": "8438b785ee478875f3ee074ebd1025ad0bb08d673b2ea1c510b5c1686032ff72",
+     "bytes": 2243
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthCartRest.java",
+     "sha256": "05da3d1a8d0edfc17eb50378fc59e808964b63e19d4a1ffed286ab13d88a03f2",
+     "bytes": 4361
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java",
+     "sha256": "ccd317759c23d8b09358ca2c19bf3e5da0c2ec1afb7f185f292fa2c3de3ec511",
+     "bytes": 6287
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/ReadyRest.java",
+     "sha256": "6a74a38fe2f6c3693405c008ce563c85c8555363d15cc9ee9b01fa0fd5465302",
+     "bytes": 1117
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/BCryptProvider.java",
+     "sha256": "05c191277c239eea01c12053799156280f0b1510f9b84bb14ba42f07234cf5b2",
+     "bytes": 544
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/ConstantKeyProvider.java",
+     "sha256": "3b498ee93ef31203e31889aaeac78d6c1c37a7fafc059e698c330c20f36ce1a9",
+     "bytes": 1045
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/IKeyProvider.java",
+     "sha256": "b50257cdeea2b944816961b577ee824b98c9cf428696d3ae4397d9e94984e25f",
+     "bytes": 1187
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/ISecurityProvider.java",
+     "sha256": "eec825421a8bc5852670a8a9a1714e660f334437faff438d2105cf2795bea86d",
+     "bytes": 1619
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/ISessionIdGenerator.java",
+     "sha256": "9fdf897edb6719f5289cd7b7362aab3ba057c49a6ed33a3f6e4228c079d5ba63",
+     "bytes": 271
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/RandomSessionIdGenerator.java",
+     "sha256": "a274c4a7710f0b53cf373ed63f468ec6edf4995294462d79f1250305cd71af8f",
+     "bytes": 365
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/ShaSecurityProvider.java",
+     "sha256": "71e8d063c98b0e3ae6be5809794057f8a1fb61665b0c7f7a211a769fb7154e29",
+     "bytes": 2330
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/startup/AuthStartup.java",
+     "sha256": "934daf4f595d95c77d976d515de25919da4fdfd41fa85fb8b085dd562e099d4a",
+     "bytes": 2426
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/webapp/META-INF/MANIFEST.MF",
+     "sha256": "4acc9fa0930443bfb74044ff6a6ea7da767c0cf64c8d50e61105b97835733a2a",
+     "bytes": 39
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/webapp/WEB-INF/lib/README.txt",
+     "sha256": "d504fa7b8f29953feb17300aa0e02319b2c92d3b6297c2b3790b286c76f74d3a",
+     "bytes": 64
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.auth/src/main/webapp/WEB-INF/web.xml",
+     "sha256": "97f626ad19d0f638bb0b932faba7365143a8cdd61a3d7d0cf988f313f1e0b1db",
+     "bytes": 1612
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/Dockerfile",
+     "sha256": "e7e23482d000f90e403e7920a0800d169dc091b85e38f37b2503d7082b2e854f",
+     "bytes": 2524
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/aop.xml",
+     "sha256": "7fb0e74552189391b6f862c41bf81c1ca23a7fdc67297af7146ff5bac0396b45",
+     "bytes": 18647
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/baseContext.xml",
+     "sha256": "301de01d91f16e7b2bfa5ee9cd9659f54410358d197934a1fa919ffe9109257c",
+     "bytes": 1553
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/kieker.monitoring.properties",
+     "sha256": "36011936c25c8af781b205383041a8314fc5b709b8f0400c988a7624e0ca53a2",
+     "bytes": 2534
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/server.xml",
+     "sha256": "61499602b67c2659fa5d47b28c5899142b3fde7ca9fc85f7f2229a63d2d1187a",
+     "bytes": 2531
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/ssl/generate_cert.sh",
+     "sha256": "c835a1aee0e886993187e596da0596f39951e8132991b6979cc8165782c0aa87",
+     "bytes": 462
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/start.sh",
+     "sha256": "1e4d0fffe69e4777ac530c5363284428c3b6faa9706325ff49e22e57280abc89",
+     "bytes": 4657
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/pom.xml",
+     "sha256": "f9bd2df8b2673abc7cd63d5dd4a36d5568cfdd8111ea4258c76989d11bbe201a",
+     "bytes": 1240
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+     "sha256": "b3892064c6ac0ef83fa03c470e61f8b3fd8978c1de79e9d9a52a07d3c31b307f",
+     "bytes": 7355
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/IPayloadCharacterization.java",
+     "sha256": "fc786e0cdda388a045c01f2608f6cc56952c39d4e225d2a7797ad4cd20c6fc3f",
+     "bytes": 764
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/OperationExecutionWithParametersRecord.java",
+     "sha256": "b86b42af8dfeeb6509692ef9ff98d7d39918db59fc1dc64dd023f83ab5b9d559",
+     "bytes": 8506
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+     "sha256": "d5d01329c0bf238698dde32775dc54eb2da90ef5588de98de3090114e24bc81e",
+     "bytes": 3852
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+     "sha256": "a2e77b0e11bb8e2a6aefd3986ab5bb9a9fb3741b81fcb71b4ebe9c44ee18f302",
+     "bytes": 11497
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClientHeartbeatDaemon.java",
+     "sha256": "4c98cda83d106b633a3e7a3efc605e88ade6adfd37eddb4e041a96b9931d38b5",
+     "bytes": 1267
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/Service.java",
+     "sha256": "1316603bf0bf1d1b7e892708a921cb1f332247606fef9fa16b3f2e3368f8c5cc",
+     "bytes": 1559
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallback.java",
+     "sha256": "1ea2128167d33ecfe90672b60e7e63ac99fc9e2503d54cc9b0c43f8e600be4be",
+     "bytes": 809
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallbackTask.java",
+     "sha256": "46a72b8c386c7f62d3779410aa848c371240ec5faf92040f3cb80c55aa0df074",
+     "bytes": 1730
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+     "sha256": "65872a55c5b40d1dbdf174d43b29ba1efe010da804506e8e32e03204f6f19180",
+     "bytes": 3683
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerTimeoutException.java",
+     "sha256": "f64c244b8f672f118949dc4f5d8315faacdafd75c0d8c5f845f9271c083ab07d",
+     "bytes": 1458
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerUpdaterDaemon.java",
+     "sha256": "e4e2e77a955ee5c73ea3722f6f8d41fa20a4afc28b21b23a4f6ee200b79f0cfc",
+     "bytes": 1033
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+     "sha256": "e5d44e7bf7726341732b489a9503b9c36911a989b27da927ef9e01077abebb07",
+     "bytes": 13820
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancerResult.java",
+     "sha256": "40d70d0c3a59a225118cf32afc3a1697690db1ada241304155f4810e782ca417",
+     "bytes": 2757
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/CharResponseWrapper.java",
+     "sha256": "f432452c388c24df585772d4f19c1145d92dbec8056075b42f768e673a476066",
+     "bytes": 1666
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/HttpWrapper.java",
+     "sha256": "568c4566e66def2b1fbd1099cd55e0e6f1754d9b79ad941dea02d8022f81f010",
+     "bytes": 2697
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+     "sha256": "e9a182b0062d485390affce120017b1fee8ba0298ac51319e53821f55acf482f",
+     "bytes": 10044
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+     "sha256": "674ff353ef7fad3213cbc505738e91daecb768db799644d369ce41abaa40e7fa",
+     "bytes": 6907
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+     "sha256": "d2c4e98cd87fec32d38d60f8f685a8fd356a809c6460489c2876d08fcb8a0952",
+     "bytes": 1902
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+     "sha256": "0e9fa6e5e17b2b209f0cb74c84565d4de06f9e34776ed82eac5a484595ca547a",
+     "bytes": 8542
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+     "sha256": "e079a19079f29f3c9aa12737a97cbb6a0328f091a5cc75a5199495ca35364e1c",
+     "bytes": 13097
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/ResponseWrapper.java",
+     "sha256": "2e737d205f98bcc0cd33ad4b24ea2b03bbe85c50a78fbd2390865b95d37bdbb0",
+     "bytes": 3372
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/RestUtil.java",
+     "sha256": "56a2f01fa70e1d997dc223be47f7d38844433fa6767406a43ffbeb7fdd3aa084",
+     "bytes": 3148
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/TrackingFilter.java",
+     "sha256": "a9a866f88e0c5ad35dc3ef1f28f150b64cfe726f2378e15e0971814289a6d3d2",
+     "bytes": 5960
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/tracing/Tracing.java",
+     "sha256": "e0afaba653e20e11311e0b3f30c9542d584c09aff6a4395dc7186cc5bb8d9e23",
+     "bytes": 5014
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/AbstractCRUDEndpoint.java",
+     "sha256": "832c910c3bcc216258c00e9f158a48f77a87a19d7d232b8d2e62a5f668aa7389",
+     "bytes": 6890
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/NotFoundException.java",
+     "sha256": "6398f162b3ced7f941196f928f70b8431d9e5bc097f3ca3307612805dd9ae47b",
+     "bytes": 1072
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+     "sha256": "f3dfa9f1a80fee606c5bc566eac2926eb794c40f48bb3928aeca05867ec65210",
+     "bytes": 6736
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/TimeoutException.java",
+     "sha256": "5eb314a4b43547e19b0f2854b75af094628f786a6adc18f72f9a932fa56ec163",
+     "bytes": 1070
+    }
+   ],
+   "fileCount": 64,
+   "bytes": 227395
+  },
+  "image": {
+   "service": "image",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.image"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.image/Dockerfile"
+   },
+   "buildScript": {
+    "repo": "upstream",
+    "path": "tools/build_docker.sh",
+    "line": 41
+   },
+   "rules": [
+    "R2:image-build-script",
+    "R4:services/tools.descartes.teastore.image,utilities/tools.descartes.teastore.registryclient,utilities/tools.descartes.teastore.kieker.probes,interfaces/tools.descartes.teastore.entities",
+    "R3d:descartesresearch/teastore-base",
+    "R3b:utilities/tools.descartes.teastore.dockerbase/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/pom.xml",
+     "sha256": "264dddd13d4cdea7d56f1cc2a78ebd70b061f0654e4eec9fa6c07eb8c6ac3d8e",
+     "bytes": 1609
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Category.java",
+     "sha256": "717f76e3deca73a0039921e06d2a0e809d6b92b56e950815db280f87653073cd",
+     "bytes": 2637
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSize.java",
+     "sha256": "bda455560bde1be6906c22e3b422032a51df23c71123c66a6e44a4d682106cad",
+     "bytes": 3428
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSizePreset.java",
+     "sha256": "f49944be8ea7a69b74bba1e3c4501290ffd4f04c6a805e272901a0ff15b3b83f",
+     "bytes": 1111
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Order.java",
+     "sha256": "c8b14f5d7b4effee1cde52ee10b90b9cdeeb2bb46aea4d1302f3f61386f97811",
+     "bytes": 6290
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/OrderItem.java",
+     "sha256": "ac291ac0bb002bb8b312b5fdfd0333a77a692e04f30cbbc2815f9aa8fd98aa2d",
+     "bytes": 4273
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Product.java",
+     "sha256": "f66dc43f1df85cf1832fe4a81386e30ec1ca759dbb96e1a27d2cd5f128d34895",
+     "bytes": 4070
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/User.java",
+     "sha256": "8201622b8049e09b5c9a80c82340ea71787ee340c96b9a448addc9aab0ea13d6",
+     "bytes": 3833
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/message/SessionBlob.java",
+     "sha256": "cf9043a02f6444b654fd1c2c0e298e87fbdb4dd9c74e0ec62c30db28ce9d2b57",
+     "bytes": 2039
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/Dockerfile",
+     "sha256": "4afc19b330293cf7f4e09967784171e5878a8c98adb6d999647ebf6ca537e909",
+     "bytes": 168
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/pom.xml",
+     "sha256": "c450fc8c7b9eb476651dee9c4b7c028fdbfb92639703b68c6a9efccf0ef4ba7a",
+     "bytes": 2013
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/ImageDB.java",
+     "sha256": "7b66fcc69e8fc0f43b8d3e9c021aff6322308e6d584babe84e2df061e9560232",
+     "bytes": 10489
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/ImageDBKey.java",
+     "sha256": "537e37b448e242269b78ef03cbdcd20f8ff92afe257691adb8518c4ead8468ea",
+     "bytes": 2077
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/ImageProvider.java",
+     "sha256": "714bd10b84751fc3d1066e8e035eb26c4a90ac0ff1a995e584bc645f78d62eeb",
+     "bytes": 5907
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/ImageScaler.java",
+     "sha256": "ab4f26b4495d8a6dc8bf73104625bdfd65fe70bd1ac41d5897dc7a7f81d64a39",
+     "bytes": 7305
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/StoreImage.java",
+     "sha256": "f39d864b026db647cfd5b7e5030844b7baa8f81b992032f5e9912259c37706b3",
+     "bytes": 5830
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/AbstractCache.java",
+     "sha256": "2922cf4f87fad2380f2a5ba6f09edcaf07010faa30c6ccb9bdfe9a70454eec59",
+     "bytes": 9277
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/AbstractQueueCache.java",
+     "sha256": "b8d3e1a8d225cd8c0d8f24a7699b100746cbc1f75d0a4400c0c3af8a9b011bc2",
+     "bytes": 1889
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/AbstractTreeCache.java",
+     "sha256": "edd4e514a3518c9b65fed2780b3e83a012166874b88ab933c0d7f189fecac6d8",
+     "bytes": 2198
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/FirstInFirstOut.java",
+     "sha256": "c2ddea3b654ee53eb2be4d02471fbc867a2f30eb2dd8ea0e1eb8ba0c873d8da4",
+     "bytes": 2819
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/IDataCache.java",
+     "sha256": "9ef3314605abc53e34df5171085ee2c4ab1f9db4ffbd38fddbee3b56b9ecc420",
+     "bytes": 3196
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/LastInFirstOut.java",
+     "sha256": "1bf9428ac6da9b7e6317cb4dc8b82b77f4b3567f610c2f02229511cd5d7fb763",
+     "bytes": 2817
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/LeastFrequentlyUsed.java",
+     "sha256": "1d143cabedf74953317021e6171bdec39b2a33ddb356a856a05dac7b674e3720",
+     "bytes": 3233
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/LeastRecentlyUsed.java",
+     "sha256": "7570f40d6d35721630f2911d18c6afc1fae07e61f0d15176694fa1c1bd261e28",
+     "bytes": 3232
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/MostRecentlyUsed.java",
+     "sha256": "e6d6c5ad1e1152934dfd841c74d6ce662ebc5301295d084e052509326c5ee23f",
+     "bytes": 3166
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/RandomReplacement.java",
+     "sha256": "8a737a52f2b004aa252c6e5c2862489fbbefda75f0ce6a73e08a28e6348cf8f8",
+     "bytes": 3980
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/AbstractEntry.java",
+     "sha256": "a1a4816a8eaab491426926a1a4d37aac4df24d357c0d6cd014333c5360aa3706",
+     "bytes": 2412
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/CountedEntry.java",
+     "sha256": "d46b259d04ad7684bbb323ecafa9b47d78af0a064e4b3d47583038320e0e1482",
+     "bytes": 1734
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/ICachable.java",
+     "sha256": "215e9eeeacfe46699201c6bd249a89c0eda2a9f0384b80bd5c4a38dfacfc7b12",
+     "bytes": 1385
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/ICacheEntry.java",
+     "sha256": "4d55fefff766b78b53efa04699028cf767b85f9a9392428ecbf8f9f7077f2ff8",
+     "bytes": 1237
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/SimpleEntry.java",
+     "sha256": "05f44e490045a0c30730ca722bc0b7b024ef3ec195b23375143021d728fa59e9",
+     "bytes": 1302
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/TimedEntry.java",
+     "sha256": "d5305841add9e1fc8b83d7d4927b4f05605625035f3d115587fe5c719d4c38cf",
+     "bytes": 1772
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/rules/CacheAll.java",
+     "sha256": "6b620854625b6da5ebc1959d23231342f41dc71d0029b3ed76a60ef37f26bfd8",
+     "bytes": 1016
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/rest/ImageProviderEndpoint.java",
+     "sha256": "49696c81aad54252733bc8c07825bbf61583b6b4aaae1f6c3b3165cce502d22c",
+     "bytes": 3990
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/CachingMode.java",
+     "sha256": "281d858097ebaf02dd4bccb52768b7595eb9706169b4daa8a610d281313ad7eb",
+     "bytes": 2248
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/CachingRule.java",
+     "sha256": "a63a6cacc17ca6405320979f1f802ad35449342041b8489704a94e1a3f52bc99",
+     "bytes": 1937
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/CreatorFactory.java",
+     "sha256": "7d78ef218a4832cf861bc300c7d43bc4fa5ad94e78f06f80f82e46a888e96d11",
+     "bytes": 3885
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/CreatorRunner.java",
+     "sha256": "140d66dc843e8d9bf3711f36027bff0e9a263f3c3ffe8893f66bba4dfa876d72",
+     "bytes": 3553
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageCreator.java",
+     "sha256": "f74c00324c5c6dde0e948ae0b299d689712b521bc096c2bb2b7c9f528757145e",
+     "bytes": 6407
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageIDFactory.java",
+     "sha256": "40725658abd496577a226c08260605b9f508f47c60df07e0157931cb00eab380",
+     "bytes": 1303
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageProviderStartup.java",
+     "sha256": "f3f5c514a53b3e49465aa0d74524f4b3d75f526715fb5b302ff7fb10a37bda4a",
+     "bytes": 2472
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+     "sha256": "6dc54d89723b5e57bc71408b176c48f9833adaf83ec41dc7f6d7db61064d5b53",
+     "bytes": 29411
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/StorageMode.java",
+     "sha256": "4f52df6aca04fe035e66b47a766d855b9e09dda6e759c332cd273939a723bc28",
+     "bytes": 1916
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/StorageRule.java",
+     "sha256": "4d13c1e086aca71f9a717830f91e82fe273bcb7c36499d0bce96fab3ce9a938b",
+     "bytes": 2106
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/DriveStorage.java",
+     "sha256": "00dd3bad5c968c7edfa6051e5e7ed1bdc857bf9e4564e139a7f868fb485d188c",
+     "bytes": 5800
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/IDataStorage.java",
+     "sha256": "213ea402ee053867d132bd2dc7778db74f4bb55567c0280c8ec1ee1c6cf75656",
+     "bytes": 2084
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/NoStorage.java",
+     "sha256": "bed51dcf14a67e0334e7415bc7fcd3d237ab449e5b3d93da40de86225f786214",
+     "bytes": 729
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/rules/StoreAll.java",
+     "sha256": "9246c523fd6f30cd18369783f82ab120bf7a1553c8a8187695029c5b340a46b9",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/rules/StoreLargeImages.java",
+     "sha256": "d2e2b361527e716951084508b3955120e0acbb52c78eb3c3be7d5eed1f3caa99",
+     "bytes": 1051
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/webapp/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.image/src/main/webapp/WEB-INF/web.xml",
+     "sha256": "4ddd23aaf13ae18e2391489b4b3c5208b9794938cbfd1ad3baf068d03eb00739",
+     "bytes": 1630
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/Dockerfile",
+     "sha256": "e7e23482d000f90e403e7920a0800d169dc091b85e38f37b2503d7082b2e854f",
+     "bytes": 2524
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/aop.xml",
+     "sha256": "7fb0e74552189391b6f862c41bf81c1ca23a7fdc67297af7146ff5bac0396b45",
+     "bytes": 18647
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/baseContext.xml",
+     "sha256": "301de01d91f16e7b2bfa5ee9cd9659f54410358d197934a1fa919ffe9109257c",
+     "bytes": 1553
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/kieker.monitoring.properties",
+     "sha256": "36011936c25c8af781b205383041a8314fc5b709b8f0400c988a7624e0ca53a2",
+     "bytes": 2534
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/server.xml",
+     "sha256": "61499602b67c2659fa5d47b28c5899142b3fde7ca9fc85f7f2229a63d2d1187a",
+     "bytes": 2531
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/ssl/generate_cert.sh",
+     "sha256": "c835a1aee0e886993187e596da0596f39951e8132991b6979cc8165782c0aa87",
+     "bytes": 462
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/start.sh",
+     "sha256": "1e4d0fffe69e4777ac530c5363284428c3b6faa9706325ff49e22e57280abc89",
+     "bytes": 4657
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/pom.xml",
+     "sha256": "f9bd2df8b2673abc7cd63d5dd4a36d5568cfdd8111ea4258c76989d11bbe201a",
+     "bytes": 1240
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+     "sha256": "b3892064c6ac0ef83fa03c470e61f8b3fd8978c1de79e9d9a52a07d3c31b307f",
+     "bytes": 7355
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/IPayloadCharacterization.java",
+     "sha256": "fc786e0cdda388a045c01f2608f6cc56952c39d4e225d2a7797ad4cd20c6fc3f",
+     "bytes": 764
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/OperationExecutionWithParametersRecord.java",
+     "sha256": "b86b42af8dfeeb6509692ef9ff98d7d39918db59fc1dc64dd023f83ab5b9d559",
+     "bytes": 8506
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+     "sha256": "d5d01329c0bf238698dde32775dc54eb2da90ef5588de98de3090114e24bc81e",
+     "bytes": 3852
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+     "sha256": "a2e77b0e11bb8e2a6aefd3986ab5bb9a9fb3741b81fcb71b4ebe9c44ee18f302",
+     "bytes": 11497
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClientHeartbeatDaemon.java",
+     "sha256": "4c98cda83d106b633a3e7a3efc605e88ade6adfd37eddb4e041a96b9931d38b5",
+     "bytes": 1267
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/Service.java",
+     "sha256": "1316603bf0bf1d1b7e892708a921cb1f332247606fef9fa16b3f2e3368f8c5cc",
+     "bytes": 1559
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallback.java",
+     "sha256": "1ea2128167d33ecfe90672b60e7e63ac99fc9e2503d54cc9b0c43f8e600be4be",
+     "bytes": 809
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallbackTask.java",
+     "sha256": "46a72b8c386c7f62d3779410aa848c371240ec5faf92040f3cb80c55aa0df074",
+     "bytes": 1730
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+     "sha256": "65872a55c5b40d1dbdf174d43b29ba1efe010da804506e8e32e03204f6f19180",
+     "bytes": 3683
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerTimeoutException.java",
+     "sha256": "f64c244b8f672f118949dc4f5d8315faacdafd75c0d8c5f845f9271c083ab07d",
+     "bytes": 1458
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerUpdaterDaemon.java",
+     "sha256": "e4e2e77a955ee5c73ea3722f6f8d41fa20a4afc28b21b23a4f6ee200b79f0cfc",
+     "bytes": 1033
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+     "sha256": "e5d44e7bf7726341732b489a9503b9c36911a989b27da927ef9e01077abebb07",
+     "bytes": 13820
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancerResult.java",
+     "sha256": "40d70d0c3a59a225118cf32afc3a1697690db1ada241304155f4810e782ca417",
+     "bytes": 2757
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/CharResponseWrapper.java",
+     "sha256": "f432452c388c24df585772d4f19c1145d92dbec8056075b42f768e673a476066",
+     "bytes": 1666
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/HttpWrapper.java",
+     "sha256": "568c4566e66def2b1fbd1099cd55e0e6f1754d9b79ad941dea02d8022f81f010",
+     "bytes": 2697
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+     "sha256": "e9a182b0062d485390affce120017b1fee8ba0298ac51319e53821f55acf482f",
+     "bytes": 10044
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+     "sha256": "674ff353ef7fad3213cbc505738e91daecb768db799644d369ce41abaa40e7fa",
+     "bytes": 6907
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+     "sha256": "d2c4e98cd87fec32d38d60f8f685a8fd356a809c6460489c2876d08fcb8a0952",
+     "bytes": 1902
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+     "sha256": "0e9fa6e5e17b2b209f0cb74c84565d4de06f9e34776ed82eac5a484595ca547a",
+     "bytes": 8542
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+     "sha256": "e079a19079f29f3c9aa12737a97cbb6a0328f091a5cc75a5199495ca35364e1c",
+     "bytes": 13097
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/ResponseWrapper.java",
+     "sha256": "2e737d205f98bcc0cd33ad4b24ea2b03bbe85c50a78fbd2390865b95d37bdbb0",
+     "bytes": 3372
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/RestUtil.java",
+     "sha256": "56a2f01fa70e1d997dc223be47f7d38844433fa6767406a43ffbeb7fdd3aa084",
+     "bytes": 3148
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/TrackingFilter.java",
+     "sha256": "a9a866f88e0c5ad35dc3ef1f28f150b64cfe726f2378e15e0971814289a6d3d2",
+     "bytes": 5960
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/tracing/Tracing.java",
+     "sha256": "e0afaba653e20e11311e0b3f30c9542d584c09aff6a4395dc7186cc5bb8d9e23",
+     "bytes": 5014
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/AbstractCRUDEndpoint.java",
+     "sha256": "832c910c3bcc216258c00e9f158a48f77a87a19d7d232b8d2e62a5f668aa7389",
+     "bytes": 6890
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/NotFoundException.java",
+     "sha256": "6398f162b3ced7f941196f928f70b8431d9e5bc097f3ca3307612805dd9ae47b",
+     "bytes": 1072
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+     "sha256": "f3dfa9f1a80fee606c5bc566eac2926eb794c40f48bb3928aeca05867ec65210",
+     "bytes": 6736
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/TimeoutException.java",
+     "sha256": "5eb314a4b43547e19b0f2854b75af094628f786a6adc18f72f9a932fa56ec163",
+     "bytes": 1070
+    }
+   ],
+   "fileCount": 90,
+   "bytes": 353668
+  },
+  "recommender": {
+   "service": "recommender",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.recommender"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.recommender/Dockerfile"
+   },
+   "buildScript": {
+    "repo": "upstream",
+    "path": "tools/build_docker.sh",
+    "line": 44
+   },
+   "rules": [
+    "R2:image-build-script",
+    "R4:services/tools.descartes.teastore.recommender,utilities/tools.descartes.teastore.registryclient,utilities/tools.descartes.teastore.kieker.probes,interfaces/tools.descartes.teastore.entities",
+    "R3d:descartesresearch/teastore-base",
+    "R3b:utilities/tools.descartes.teastore.dockerbase/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/pom.xml",
+     "sha256": "264dddd13d4cdea7d56f1cc2a78ebd70b061f0654e4eec9fa6c07eb8c6ac3d8e",
+     "bytes": 1609
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Category.java",
+     "sha256": "717f76e3deca73a0039921e06d2a0e809d6b92b56e950815db280f87653073cd",
+     "bytes": 2637
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSize.java",
+     "sha256": "bda455560bde1be6906c22e3b422032a51df23c71123c66a6e44a4d682106cad",
+     "bytes": 3428
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSizePreset.java",
+     "sha256": "f49944be8ea7a69b74bba1e3c4501290ffd4f04c6a805e272901a0ff15b3b83f",
+     "bytes": 1111
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Order.java",
+     "sha256": "c8b14f5d7b4effee1cde52ee10b90b9cdeeb2bb46aea4d1302f3f61386f97811",
+     "bytes": 6290
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/OrderItem.java",
+     "sha256": "ac291ac0bb002bb8b312b5fdfd0333a77a692e04f30cbbc2815f9aa8fd98aa2d",
+     "bytes": 4273
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Product.java",
+     "sha256": "f66dc43f1df85cf1832fe4a81386e30ec1ca759dbb96e1a27d2cd5f128d34895",
+     "bytes": 4070
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/User.java",
+     "sha256": "8201622b8049e09b5c9a80c82340ea71787ee340c96b9a448addc9aab0ea13d6",
+     "bytes": 3833
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/message/SessionBlob.java",
+     "sha256": "cf9043a02f6444b654fd1c2c0e298e87fbdb4dd9c74e0ec62c30db28ce9d2b57",
+     "bytes": 2039
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/Dockerfile",
+     "sha256": "7bd30eac19b7969297ae3084bf17d89e2298f6000c9a1f4dfd978de2d9d8366c",
+     "bytes": 167
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/pom.xml",
+     "sha256": "8ebdfc84127d7485549a027fa745e27a28bfc4860dcbeae7fe314cdbeef6d4a2",
+     "bytes": 2080
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/AbstractRecommender.java",
+     "sha256": "06ce4b4d24cc56c1cfc2b6f1fb4d53a1b0c5459afa09e13e7d4cf501b70976a8",
+     "bytes": 9977
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/IRecommender.java",
+     "sha256": "26b4a37c548f4094e3f25eedc4145acb8bbd4bdea85a981936eaffbe1425d9d5",
+     "bytes": 2786
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/OrderItemSet.java",
+     "sha256": "020ff4bd76a1e9d883e4c768d1d80ece90b630690a635f6cf352b6511dec03a1",
+     "bytes": 2217
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/RecommenderSelector.java",
+     "sha256": "11c8a3d4fd278f7fd39bbe1212313fbb165b49f295b9ec32ab5e77923c0ff6da",
+     "bytes": 6856
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/DummyRecommender.java",
+     "sha256": "e3a3c4bdba818efd8eef0309ffde1bbd2e74b669cb5f74b8934fcd29625f7af6",
+     "bytes": 1268
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/UseFallBackException.java",
+     "sha256": "346d6f75c749894a57830f08a6598369ea3431954841f0e33d0db999f57bf4bd",
+     "bytes": 1168
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/cf/PreprocessedSlopeOneRecommender.java",
+     "sha256": "0665e4ad7d798b3fd502dbf58fc2d09bad66f7560fa3ccad71dea79bf620fea9",
+     "bytes": 2067
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/cf/SlopeOneRecommender.java",
+     "sha256": "8f4434b517f886eff11ab312086fa4df77eaa8473df70eaefa8e6b4482406ea7",
+     "bytes": 7050
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/orderbased/OrderBasedRecommender.java",
+     "sha256": "f2021577ae925f36e539366c1a7d30ae36b5a68fcc822cd830f1ae12ecbacfa2",
+     "bytes": 3135
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/pop/PopularityBasedRecommender.java",
+     "sha256": "8c796b73460888b3b71b2179d037f6411c20588c2a78e99dce1757ba3eb9557f",
+     "bytes": 1976
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/rest/RecommendEndpoint.java",
+     "sha256": "36fa72e54a26a189f4d7de4dc6798be0ccfe586b3cb23624eb2610b8652f843e",
+     "bytes": 2303
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/rest/RecommendSingleEndpoint.java",
+     "sha256": "852f1f3c01ee51b76dd829d60a09f6abecd3401e1ab2edfc7dd75788f1eac9f2",
+     "bytes": 2449
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/rest/TrainEndpoint.java",
+     "sha256": "4bf361ba3e4caadb5f4a3768a0e5cb24b257aa9135742f8e9f6e653b47e2b36a",
+     "bytes": 4171
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/IndexServlet.java",
+     "sha256": "b1cdb879bc6dd0e52b13004e19bcae86b8f4a90640588ccb9cb9c853415000d9",
+     "bytes": 2401
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+     "sha256": "1822c0f8873589acf53f51ad4692da9968471ab66c8f2c2f89d7c02f129c0713",
+     "bytes": 3230
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RetrainDaemon.java",
+     "sha256": "5fd80216ce71ce32c5796998da610cf0de4daea5c6dc83fa140df09efe3b1d6e",
+     "bytes": 1907
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+     "sha256": "f2febb45e1e2f9325ef18dc1ed96497d0322eebe9b55b6a400b817a8dd58abad",
+     "bytes": 9043
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/webapp/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.recommender/src/main/webapp/WEB-INF/web.xml",
+     "sha256": "c556eb00f10d04d003cdd3dabdb19c85178183a38cded4fd6e08c60324676dbc",
+     "bytes": 1596
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/Dockerfile",
+     "sha256": "e7e23482d000f90e403e7920a0800d169dc091b85e38f37b2503d7082b2e854f",
+     "bytes": 2524
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/aop.xml",
+     "sha256": "7fb0e74552189391b6f862c41bf81c1ca23a7fdc67297af7146ff5bac0396b45",
+     "bytes": 18647
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/baseContext.xml",
+     "sha256": "301de01d91f16e7b2bfa5ee9cd9659f54410358d197934a1fa919ffe9109257c",
+     "bytes": 1553
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/kieker.monitoring.properties",
+     "sha256": "36011936c25c8af781b205383041a8314fc5b709b8f0400c988a7624e0ca53a2",
+     "bytes": 2534
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/server.xml",
+     "sha256": "61499602b67c2659fa5d47b28c5899142b3fde7ca9fc85f7f2229a63d2d1187a",
+     "bytes": 2531
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/ssl/generate_cert.sh",
+     "sha256": "c835a1aee0e886993187e596da0596f39951e8132991b6979cc8165782c0aa87",
+     "bytes": 462
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/start.sh",
+     "sha256": "1e4d0fffe69e4777ac530c5363284428c3b6faa9706325ff49e22e57280abc89",
+     "bytes": 4657
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/pom.xml",
+     "sha256": "f9bd2df8b2673abc7cd63d5dd4a36d5568cfdd8111ea4258c76989d11bbe201a",
+     "bytes": 1240
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+     "sha256": "b3892064c6ac0ef83fa03c470e61f8b3fd8978c1de79e9d9a52a07d3c31b307f",
+     "bytes": 7355
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/IPayloadCharacterization.java",
+     "sha256": "fc786e0cdda388a045c01f2608f6cc56952c39d4e225d2a7797ad4cd20c6fc3f",
+     "bytes": 764
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/OperationExecutionWithParametersRecord.java",
+     "sha256": "b86b42af8dfeeb6509692ef9ff98d7d39918db59fc1dc64dd023f83ab5b9d559",
+     "bytes": 8506
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+     "sha256": "d5d01329c0bf238698dde32775dc54eb2da90ef5588de98de3090114e24bc81e",
+     "bytes": 3852
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+     "sha256": "a2e77b0e11bb8e2a6aefd3986ab5bb9a9fb3741b81fcb71b4ebe9c44ee18f302",
+     "bytes": 11497
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClientHeartbeatDaemon.java",
+     "sha256": "4c98cda83d106b633a3e7a3efc605e88ade6adfd37eddb4e041a96b9931d38b5",
+     "bytes": 1267
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/Service.java",
+     "sha256": "1316603bf0bf1d1b7e892708a921cb1f332247606fef9fa16b3f2e3368f8c5cc",
+     "bytes": 1559
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallback.java",
+     "sha256": "1ea2128167d33ecfe90672b60e7e63ac99fc9e2503d54cc9b0c43f8e600be4be",
+     "bytes": 809
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallbackTask.java",
+     "sha256": "46a72b8c386c7f62d3779410aa848c371240ec5faf92040f3cb80c55aa0df074",
+     "bytes": 1730
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+     "sha256": "65872a55c5b40d1dbdf174d43b29ba1efe010da804506e8e32e03204f6f19180",
+     "bytes": 3683
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerTimeoutException.java",
+     "sha256": "f64c244b8f672f118949dc4f5d8315faacdafd75c0d8c5f845f9271c083ab07d",
+     "bytes": 1458
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerUpdaterDaemon.java",
+     "sha256": "e4e2e77a955ee5c73ea3722f6f8d41fa20a4afc28b21b23a4f6ee200b79f0cfc",
+     "bytes": 1033
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+     "sha256": "e5d44e7bf7726341732b489a9503b9c36911a989b27da927ef9e01077abebb07",
+     "bytes": 13820
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancerResult.java",
+     "sha256": "40d70d0c3a59a225118cf32afc3a1697690db1ada241304155f4810e782ca417",
+     "bytes": 2757
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/CharResponseWrapper.java",
+     "sha256": "f432452c388c24df585772d4f19c1145d92dbec8056075b42f768e673a476066",
+     "bytes": 1666
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/HttpWrapper.java",
+     "sha256": "568c4566e66def2b1fbd1099cd55e0e6f1754d9b79ad941dea02d8022f81f010",
+     "bytes": 2697
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+     "sha256": "e9a182b0062d485390affce120017b1fee8ba0298ac51319e53821f55acf482f",
+     "bytes": 10044
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+     "sha256": "674ff353ef7fad3213cbc505738e91daecb768db799644d369ce41abaa40e7fa",
+     "bytes": 6907
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+     "sha256": "d2c4e98cd87fec32d38d60f8f685a8fd356a809c6460489c2876d08fcb8a0952",
+     "bytes": 1902
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+     "sha256": "0e9fa6e5e17b2b209f0cb74c84565d4de06f9e34776ed82eac5a484595ca547a",
+     "bytes": 8542
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+     "sha256": "e079a19079f29f3c9aa12737a97cbb6a0328f091a5cc75a5199495ca35364e1c",
+     "bytes": 13097
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/ResponseWrapper.java",
+     "sha256": "2e737d205f98bcc0cd33ad4b24ea2b03bbe85c50a78fbd2390865b95d37bdbb0",
+     "bytes": 3372
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/RestUtil.java",
+     "sha256": "56a2f01fa70e1d997dc223be47f7d38844433fa6767406a43ffbeb7fdd3aa084",
+     "bytes": 3148
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/TrackingFilter.java",
+     "sha256": "a9a866f88e0c5ad35dc3ef1f28f150b64cfe726f2378e15e0971814289a6d3d2",
+     "bytes": 5960
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/tracing/Tracing.java",
+     "sha256": "e0afaba653e20e11311e0b3f30c9542d584c09aff6a4395dc7186cc5bb8d9e23",
+     "bytes": 5014
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/AbstractCRUDEndpoint.java",
+     "sha256": "832c910c3bcc216258c00e9f158a48f77a87a19d7d232b8d2e62a5f668aa7389",
+     "bytes": 6890
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/NotFoundException.java",
+     "sha256": "6398f162b3ced7f941196f928f70b8431d9e5bc097f3ca3307612805dd9ae47b",
+     "bytes": 1072
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+     "sha256": "f3dfa9f1a80fee606c5bc566eac2926eb794c40f48bb3928aeca05867ec65210",
+     "bytes": 6736
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/TimeoutException.java",
+     "sha256": "5eb314a4b43547e19b0f2854b75af094628f786a6adc18f72f9a932fa56ec163",
+     "bytes": 1070
+    }
+   ],
+   "fileCount": 69,
+   "bytes": 269600
+  },
+  "webui": {
+   "service": "webui",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.webui"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "services/tools.descartes.teastore.webui/Dockerfile"
+   },
+   "buildScript": {
+    "repo": "upstream",
+    "path": "tools/build_docker.sh",
+    "line": 42
+   },
+   "rules": [
+    "R2:image-build-script",
+    "R4:services/tools.descartes.teastore.webui,utilities/tools.descartes.teastore.registryclient,utilities/tools.descartes.teastore.kieker.probes,interfaces/tools.descartes.teastore.entities",
+    "R3d:descartesresearch/teastore-base",
+    "R3b:utilities/tools.descartes.teastore.dockerbase/Dockerfile"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/pom.xml",
+     "sha256": "264dddd13d4cdea7d56f1cc2a78ebd70b061f0654e4eec9fa6c07eb8c6ac3d8e",
+     "bytes": 1609
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Category.java",
+     "sha256": "717f76e3deca73a0039921e06d2a0e809d6b92b56e950815db280f87653073cd",
+     "bytes": 2637
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSize.java",
+     "sha256": "bda455560bde1be6906c22e3b422032a51df23c71123c66a6e44a4d682106cad",
+     "bytes": 3428
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSizePreset.java",
+     "sha256": "f49944be8ea7a69b74bba1e3c4501290ffd4f04c6a805e272901a0ff15b3b83f",
+     "bytes": 1111
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Order.java",
+     "sha256": "c8b14f5d7b4effee1cde52ee10b90b9cdeeb2bb46aea4d1302f3f61386f97811",
+     "bytes": 6290
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/OrderItem.java",
+     "sha256": "ac291ac0bb002bb8b312b5fdfd0333a77a692e04f30cbbc2815f9aa8fd98aa2d",
+     "bytes": 4273
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Product.java",
+     "sha256": "f66dc43f1df85cf1832fe4a81386e30ec1ca759dbb96e1a27d2cd5f128d34895",
+     "bytes": 4070
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/User.java",
+     "sha256": "8201622b8049e09b5c9a80c82340ea71787ee340c96b9a448addc9aab0ea13d6",
+     "bytes": 3833
+    },
+    {
+     "repo": "upstream",
+     "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/message/SessionBlob.java",
+     "sha256": "cf9043a02f6444b654fd1c2c0e298e87fbdb4dd9c74e0ec62c30db28ce9d2b57",
+     "bytes": 2039
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/Dockerfile",
+     "sha256": "b037e390c82ba78aa241acbad036c458cdcea9ac37f5ed86a1cd89689eb583ff",
+     "bytes": 498
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/pom.xml",
+     "sha256": "258f1f133f06cb9b56990b9950e5322f9b045b01eac53b299984e0692359bd33",
+     "bytes": 2064
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/rest/ReadyRest.java",
+     "sha256": "8c7e3b1969d67c06a808af22345f70bc9a05e8ee07ca089641b0003595aacc72",
+     "bytes": 1100
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+     "sha256": "9bc91b7d7fe0403407f2561559b7168dc969a29a45a89bcd5980a7f9d5360c33",
+     "bytes": 3032
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AbstractUIServlet.java",
+     "sha256": "76151fd6aea5e0c7a774c115816124c091b83d35332863070168203c4b7e7185",
+     "bytes": 11747
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+     "sha256": "6fddacc554c864c660f8c9fe757d9c5a1bf6aa0bffe348a158f00417a4905ea6",
+     "bytes": 5519
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartServlet.java",
+     "sha256": "2aba27e477eab705ec7c0e807914de1aaa525b639e84e6714149400d72925109",
+     "bytes": 4100
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+     "sha256": "415222f762846c2b04f8662cdc42038ecdeba100841a6ee56abf0373b95abeab",
+     "bytes": 7348
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+     "sha256": "9229209ab4a1aeb0f54b646ae40836a1464c52f01c15d36cbd439f1fa3c0ae68",
+     "bytes": 4214
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseServlet.java",
+     "sha256": "78363d36df1691a3e00a55b62125683f21dae17f08cf3434dcd34f03aad83cd9",
+     "bytes": 1924
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ErrorServlet.java",
+     "sha256": "3ab3d879833c02c4e49691845c9adeb5be088b3f295a3393a019fae528364e83",
+     "bytes": 2753
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/IndexServlet.java",
+     "sha256": "2aba333cf9314a40ceecf7807e2cfc44bbe05f6154917762d4932297676d342e",
+     "bytes": 2478
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java",
+     "sha256": "48eaac19966a768d549e90afb4135e6b70a22b3c826598d9ef208e22cba27258",
+     "bytes": 2930
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginServlet.java",
+     "sha256": "bd0d4b7a526a9b04bdd164a58bc0ecd183e2e2150119d624c4c8853fb5a9fc79",
+     "bytes": 2545
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/OrderServlet.java",
+     "sha256": "2b5cdd2e0adedc561d4c803cf1ded4f96caa4fbbc9adc65d09ae1040ee11e5ce",
+     "bytes": 2831
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProductServlet.java",
+     "sha256": "ccc5287576557ed362658846ed2770150c89d100c88107d895b6a9ca4e3eb806",
+     "bytes": 4318
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProfileServlet.java",
+     "sha256": "d06bb3330a07e3b1473ea4029bca80694cea74ffdc7772169c03cf3cf0725f87",
+     "bytes": 3259
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+     "sha256": "ddcb517d34839e8d0fb5e8ae6d32bc41b57f13881098eecdf3f1dee9b42188dc",
+     "bytes": 5183
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/elhelper/ELHelperUtils.java",
+     "sha256": "1481d82bbb162ecb19510cb3d99ee3308ca6e60e9c25b38c85dc798ad1150923",
+     "bytes": 1655
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/startup/WebuiStartup.java",
+     "sha256": "ef089cd628b60510664a402561a83ca168aeb7d70ba4214d339dafdecc052bdd",
+     "bytes": 2210
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/about.jsp",
+     "sha256": "2072fe6cdfa900a5bef97d40e155349af18d7d6e315901cc204e49e0b66ef7b4",
+     "bytes": 3886
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/cart.jsp",
+     "sha256": "c77617c9e75c2df4d4387837ea34b870d056db15652f36ea16f8b32bad46ac33",
+     "bytes": 2434
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/category.jsp",
+     "sha256": "2a1b47ed00be5dc02f9b8576b442c77e8a7e47018ee39593162d9daefc5618a6",
+     "bytes": 2251
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/categorylist.jsp",
+     "sha256": "e1d814de8770373f9e08eb17c206e266f89876f2e58f32d5c0486797a4f674ca",
+     "bytes": 616
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/database.jsp",
+     "sha256": "4cb3feba6b02a8e5d6f20904178eda37e499d98d9b4c980e24a5da3c924faa9e",
+     "bytes": 1779
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/error.jsp",
+     "sha256": "273c1e4a08abed26d243f4eea353288318f8522007a33ccfe4a51cc695ce20e1",
+     "bytes": 905
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/footer.jsp",
+     "sha256": "d2e4a2be52f03c26082c0f55a62d23155c425b35d6c1163cca121f0cbe863d7b",
+     "bytes": 1188
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/head.jsp",
+     "sha256": "e1db60bfe01d4dfc8beb7630a238f5d76edd55918054a674e197777cb5f48b79",
+     "bytes": 839
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/header.jsp",
+     "sha256": "758fab280780e5dce70d3dc73405d43f2670e437b7297faba99b2c2b310a04c7",
+     "bytes": 2102
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/index.jsp",
+     "sha256": "ec52d477e71940eec74c182e4e88bfe345eba8457a7050453379530783c818cc",
+     "bytes": 341
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/login.jsp",
+     "sha256": "780ac0bc27bebf39f7cbbdc6ff429bb8c4979fd3e37898bde680171dd42c1c23",
+     "bytes": 1360
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/order.jsp",
+     "sha256": "24622acd1c5c71db36a9f313133efef5f7c619bbb9f04dc75d29fa4b503372e5",
+     "bytes": 3581
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/product.jsp",
+     "sha256": "e3761f900f6e4173fd160f6a4ac3d7fa2779bb0490d4092b8e51e9d15749b480",
+     "bytes": 930
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/product_item.jsp",
+     "sha256": "5f5f14f0aef471679393f5b9b9553161b3031ce44973cb0219fc187978320b9c",
+     "bytes": 913
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/profile.jsp",
+     "sha256": "13d2224efb8820f43142537592edbce5ff5dc48dc1244e62e221e4803f5fbce1",
+     "bytes": 1270
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/recommender.jsp",
+     "sha256": "58872021cc114e0f930e1755c31e473945d784fe70d5fc9c72311b40812d6287",
+     "bytes": 545
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/status.jsp",
+     "sha256": "456082a433a9ce823cac3f1a7f635d50d957e0e4241af64c97276a857d882032",
+     "bytes": 5536
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/web.xml",
+     "sha256": "13b814ec7f29a86099af15c749fe7f3527eafec51189f7fb5eeceab4a06e4b97",
+     "bytes": 1682
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/autoRefreshScript.js",
+     "sha256": "df865c1d3a753078e0ad7f4f3d1c79572f6ac3a23e90ca47b70ae2066267decb",
+     "bytes": 1188
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/js/npm.js",
+     "sha256": "c7aa82a1aa7d45224a38d926d2adaff7fe4aef5bcdafa2a47bdac057f4422c2d",
+     "bytes": 484
+    },
+    {
+     "repo": "upstream",
+     "path": "services/tools.descartes.teastore.webui/src/main/webapp/resizingscript.js",
+     "sha256": "3825d96bf9307b2f0b6b6eed63ae4bc795c89b208011102d83b482605b2fbd6d",
+     "bytes": 2484
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/Dockerfile",
+     "sha256": "e7e23482d000f90e403e7920a0800d169dc091b85e38f37b2503d7082b2e854f",
+     "bytes": 2524
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/aop.xml",
+     "sha256": "7fb0e74552189391b6f862c41bf81c1ca23a7fdc67297af7146ff5bac0396b45",
+     "bytes": 18647
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/baseContext.xml",
+     "sha256": "301de01d91f16e7b2bfa5ee9cd9659f54410358d197934a1fa919ffe9109257c",
+     "bytes": 1553
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/kieker.monitoring.properties",
+     "sha256": "36011936c25c8af781b205383041a8314fc5b709b8f0400c988a7624e0ca53a2",
+     "bytes": 2534
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/server.xml",
+     "sha256": "61499602b67c2659fa5d47b28c5899142b3fde7ca9fc85f7f2229a63d2d1187a",
+     "bytes": 2531
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/ssl/generate_cert.sh",
+     "sha256": "c835a1aee0e886993187e596da0596f39951e8132991b6979cc8165782c0aa87",
+     "bytes": 462
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.dockerbase/start.sh",
+     "sha256": "1e4d0fffe69e4777ac530c5363284428c3b6faa9706325ff49e22e57280abc89",
+     "bytes": 4657
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/pom.xml",
+     "sha256": "f9bd2df8b2673abc7cd63d5dd4a36d5568cfdd8111ea4258c76989d11bbe201a",
+     "bytes": 1240
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+     "sha256": "b3892064c6ac0ef83fa03c470e61f8b3fd8978c1de79e9d9a52a07d3c31b307f",
+     "bytes": 7355
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/IPayloadCharacterization.java",
+     "sha256": "fc786e0cdda388a045c01f2608f6cc56952c39d4e225d2a7797ad4cd20c6fc3f",
+     "bytes": 764
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/OperationExecutionWithParametersRecord.java",
+     "sha256": "b86b42af8dfeeb6509692ef9ff98d7d39918db59fc1dc64dd023f83ab5b9d559",
+     "bytes": 8506
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+     "sha256": "d5d01329c0bf238698dde32775dc54eb2da90ef5588de98de3090114e24bc81e",
+     "bytes": 3852
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/META-INF/MANIFEST.MF",
+     "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+     "bytes": 36
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+     "sha256": "a2e77b0e11bb8e2a6aefd3986ab5bb9a9fb3741b81fcb71b4ebe9c44ee18f302",
+     "bytes": 11497
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClientHeartbeatDaemon.java",
+     "sha256": "4c98cda83d106b633a3e7a3efc605e88ade6adfd37eddb4e041a96b9931d38b5",
+     "bytes": 1267
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/Service.java",
+     "sha256": "1316603bf0bf1d1b7e892708a921cb1f332247606fef9fa16b3f2e3368f8c5cc",
+     "bytes": 1559
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallback.java",
+     "sha256": "1ea2128167d33ecfe90672b60e7e63ac99fc9e2503d54cc9b0c43f8e600be4be",
+     "bytes": 809
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallbackTask.java",
+     "sha256": "46a72b8c386c7f62d3779410aa848c371240ec5faf92040f3cb80c55aa0df074",
+     "bytes": 1730
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+     "sha256": "65872a55c5b40d1dbdf174d43b29ba1efe010da804506e8e32e03204f6f19180",
+     "bytes": 3683
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerTimeoutException.java",
+     "sha256": "f64c244b8f672f118949dc4f5d8315faacdafd75c0d8c5f845f9271c083ab07d",
+     "bytes": 1458
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerUpdaterDaemon.java",
+     "sha256": "e4e2e77a955ee5c73ea3722f6f8d41fa20a4afc28b21b23a4f6ee200b79f0cfc",
+     "bytes": 1033
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+     "sha256": "e5d44e7bf7726341732b489a9503b9c36911a989b27da927ef9e01077abebb07",
+     "bytes": 13820
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancerResult.java",
+     "sha256": "40d70d0c3a59a225118cf32afc3a1697690db1ada241304155f4810e782ca417",
+     "bytes": 2757
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/CharResponseWrapper.java",
+     "sha256": "f432452c388c24df585772d4f19c1145d92dbec8056075b42f768e673a476066",
+     "bytes": 1666
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/HttpWrapper.java",
+     "sha256": "568c4566e66def2b1fbd1099cd55e0e6f1754d9b79ad941dea02d8022f81f010",
+     "bytes": 2697
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+     "sha256": "e9a182b0062d485390affce120017b1fee8ba0298ac51319e53821f55acf482f",
+     "bytes": 10044
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+     "sha256": "674ff353ef7fad3213cbc505738e91daecb768db799644d369ce41abaa40e7fa",
+     "bytes": 6907
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+     "sha256": "d2c4e98cd87fec32d38d60f8f685a8fd356a809c6460489c2876d08fcb8a0952",
+     "bytes": 1902
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+     "sha256": "0e9fa6e5e17b2b209f0cb74c84565d4de06f9e34776ed82eac5a484595ca547a",
+     "bytes": 8542
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+     "sha256": "e079a19079f29f3c9aa12737a97cbb6a0328f091a5cc75a5199495ca35364e1c",
+     "bytes": 13097
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/ResponseWrapper.java",
+     "sha256": "2e737d205f98bcc0cd33ad4b24ea2b03bbe85c50a78fbd2390865b95d37bdbb0",
+     "bytes": 3372
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/RestUtil.java",
+     "sha256": "56a2f01fa70e1d997dc223be47f7d38844433fa6767406a43ffbeb7fdd3aa084",
+     "bytes": 3148
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/TrackingFilter.java",
+     "sha256": "a9a866f88e0c5ad35dc3ef1f28f150b64cfe726f2378e15e0971814289a6d3d2",
+     "bytes": 5960
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/tracing/Tracing.java",
+     "sha256": "e0afaba653e20e11311e0b3f30c9542d584c09aff6a4395dc7186cc5bb8d9e23",
+     "bytes": 5014
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/AbstractCRUDEndpoint.java",
+     "sha256": "832c910c3bcc216258c00e9f158a48f77a87a19d7d232b8d2e62a5f668aa7389",
+     "bytes": 6890
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/NotFoundException.java",
+     "sha256": "6398f162b3ced7f941196f928f70b8431d9e5bc097f3ca3307612805dd9ae47b",
+     "bytes": 1072
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+     "sha256": "f3dfa9f1a80fee606c5bc566eac2926eb794c40f48bb3928aeca05867ec65210",
+     "bytes": 6736
+    },
+    {
+     "repo": "upstream",
+     "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/TimeoutException.java",
+     "sha256": "5eb314a4b43547e19b0f2854b75af094628f786a6adc18f72f9a932fa56ec163",
+     "bytes": 1070
+    }
+   ],
+   "fileCount": 90,
+   "bytes": 309775
+  }
+ },
+ "files": [
+  {
+   "repo": "harness",
+   "path": "modules/teastore/deployment/compose/docker-compose_kieker.yaml",
+   "sha256": "a52531c8714c0748eb57ac59a7f69225fe406e956402f177d9b51596e5ba4bea",
+   "bytes": 4987
+  },
+  {
+   "repo": "obsplacement",
+   "path": "research/host-topology.json",
+   "sha256": "a259d0ccb0470155c032616fd2dbb7e4e8b941ce5cf2d103a5195c01faa30d15",
+   "bytes": 23283
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/pom.xml",
+   "sha256": "264dddd13d4cdea7d56f1cc2a78ebd70b061f0654e4eec9fa6c07eb8c6ac3d8e",
+   "bytes": 1609
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/src/main/java/META-INF/MANIFEST.MF",
+   "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+   "bytes": 36
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Category.java",
+   "sha256": "717f76e3deca73a0039921e06d2a0e809d6b92b56e950815db280f87653073cd",
+   "bytes": 2637
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSize.java",
+   "sha256": "bda455560bde1be6906c22e3b422032a51df23c71123c66a6e44a4d682106cad",
+   "bytes": 3428
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/ImageSizePreset.java",
+   "sha256": "f49944be8ea7a69b74bba1e3c4501290ffd4f04c6a805e272901a0ff15b3b83f",
+   "bytes": 1111
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Order.java",
+   "sha256": "c8b14f5d7b4effee1cde52ee10b90b9cdeeb2bb46aea4d1302f3f61386f97811",
+   "bytes": 6290
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/OrderItem.java",
+   "sha256": "ac291ac0bb002bb8b312b5fdfd0333a77a692e04f30cbbc2815f9aa8fd98aa2d",
+   "bytes": 4273
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/Product.java",
+   "sha256": "f66dc43f1df85cf1832fe4a81386e30ec1ca759dbb96e1a27d2cd5f128d34895",
+   "bytes": 4070
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/User.java",
+   "sha256": "8201622b8049e09b5c9a80c82340ea71787ee340c96b9a448addc9aab0ea13d6",
+   "bytes": 3833
+  },
+  {
+   "repo": "upstream",
+   "path": "interfaces/tools.descartes.teastore.entities/src/main/java/tools/descartes/teastore/entities/message/SessionBlob.java",
+   "sha256": "cf9043a02f6444b654fd1c2c0e298e87fbdb4dd9c74e0ec62c30db28ce9d2b57",
+   "bytes": 2039
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/Dockerfile",
+   "sha256": "4afc19b330293cf7f4e09967784171e5878a8c98adb6d999647ebf6ca537e909",
+   "bytes": 168
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/pom.xml",
+   "sha256": "8438b785ee478875f3ee074ebd1025ad0bb08d673b2ea1c510b5c1686032ff72",
+   "bytes": 2243
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthCartRest.java",
+   "sha256": "05da3d1a8d0edfc17eb50378fc59e808964b63e19d4a1ffed286ab13d88a03f2",
+   "bytes": 4361
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java",
+   "sha256": "ccd317759c23d8b09358ca2c19bf3e5da0c2ec1afb7f185f292fa2c3de3ec511",
+   "bytes": 6287
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/ReadyRest.java",
+   "sha256": "6a74a38fe2f6c3693405c008ce563c85c8555363d15cc9ee9b01fa0fd5465302",
+   "bytes": 1117
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/BCryptProvider.java",
+   "sha256": "05c191277c239eea01c12053799156280f0b1510f9b84bb14ba42f07234cf5b2",
+   "bytes": 544
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/ConstantKeyProvider.java",
+   "sha256": "3b498ee93ef31203e31889aaeac78d6c1c37a7fafc059e698c330c20f36ce1a9",
+   "bytes": 1045
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/IKeyProvider.java",
+   "sha256": "b50257cdeea2b944816961b577ee824b98c9cf428696d3ae4397d9e94984e25f",
+   "bytes": 1187
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/ISecurityProvider.java",
+   "sha256": "eec825421a8bc5852670a8a9a1714e660f334437faff438d2105cf2795bea86d",
+   "bytes": 1619
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/ISessionIdGenerator.java",
+   "sha256": "9fdf897edb6719f5289cd7b7362aab3ba057c49a6ed33a3f6e4228c079d5ba63",
+   "bytes": 271
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/RandomSessionIdGenerator.java",
+   "sha256": "a274c4a7710f0b53cf373ed63f468ec6edf4995294462d79f1250305cd71af8f",
+   "bytes": 365
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/security/ShaSecurityProvider.java",
+   "sha256": "71e8d063c98b0e3ae6be5809794057f8a1fb61665b0c7f7a211a769fb7154e29",
+   "bytes": 2330
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/startup/AuthStartup.java",
+   "sha256": "934daf4f595d95c77d976d515de25919da4fdfd41fa85fb8b085dd562e099d4a",
+   "bytes": 2426
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/webapp/META-INF/MANIFEST.MF",
+   "sha256": "4acc9fa0930443bfb74044ff6a6ea7da767c0cf64c8d50e61105b97835733a2a",
+   "bytes": 39
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/webapp/WEB-INF/lib/README.txt",
+   "sha256": "d504fa7b8f29953feb17300aa0e02319b2c92d3b6297c2b3790b286c76f74d3a",
+   "bytes": 64
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.auth/src/main/webapp/WEB-INF/web.xml",
+   "sha256": "97f626ad19d0f638bb0b932faba7365143a8cdd61a3d7d0cf988f313f1e0b1db",
+   "bytes": 1612
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/Dockerfile",
+   "sha256": "4afc19b330293cf7f4e09967784171e5878a8c98adb6d999647ebf6ca537e909",
+   "bytes": 168
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/pom.xml",
+   "sha256": "c450fc8c7b9eb476651dee9c4b7c028fdbfb92639703b68c6a9efccf0ef4ba7a",
+   "bytes": 2013
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/ImageDB.java",
+   "sha256": "7b66fcc69e8fc0f43b8d3e9c021aff6322308e6d584babe84e2df061e9560232",
+   "bytes": 10489
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/ImageDBKey.java",
+   "sha256": "537e37b448e242269b78ef03cbdcd20f8ff92afe257691adb8518c4ead8468ea",
+   "bytes": 2077
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/ImageProvider.java",
+   "sha256": "714bd10b84751fc3d1066e8e035eb26c4a90ac0ff1a995e584bc645f78d62eeb",
+   "bytes": 5907
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/ImageScaler.java",
+   "sha256": "ab4f26b4495d8a6dc8bf73104625bdfd65fe70bd1ac41d5897dc7a7f81d64a39",
+   "bytes": 7305
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/StoreImage.java",
+   "sha256": "f39d864b026db647cfd5b7e5030844b7baa8f81b992032f5e9912259c37706b3",
+   "bytes": 5830
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/AbstractCache.java",
+   "sha256": "2922cf4f87fad2380f2a5ba6f09edcaf07010faa30c6ccb9bdfe9a70454eec59",
+   "bytes": 9277
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/AbstractQueueCache.java",
+   "sha256": "b8d3e1a8d225cd8c0d8f24a7699b100746cbc1f75d0a4400c0c3af8a9b011bc2",
+   "bytes": 1889
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/AbstractTreeCache.java",
+   "sha256": "edd4e514a3518c9b65fed2780b3e83a012166874b88ab933c0d7f189fecac6d8",
+   "bytes": 2198
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/FirstInFirstOut.java",
+   "sha256": "c2ddea3b654ee53eb2be4d02471fbc867a2f30eb2dd8ea0e1eb8ba0c873d8da4",
+   "bytes": 2819
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/IDataCache.java",
+   "sha256": "9ef3314605abc53e34df5171085ee2c4ab1f9db4ffbd38fddbee3b56b9ecc420",
+   "bytes": 3196
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/LastInFirstOut.java",
+   "sha256": "1bf9428ac6da9b7e6317cb4dc8b82b77f4b3567f610c2f02229511cd5d7fb763",
+   "bytes": 2817
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/LeastFrequentlyUsed.java",
+   "sha256": "1d143cabedf74953317021e6171bdec39b2a33ddb356a856a05dac7b674e3720",
+   "bytes": 3233
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/LeastRecentlyUsed.java",
+   "sha256": "7570f40d6d35721630f2911d18c6afc1fae07e61f0d15176694fa1c1bd261e28",
+   "bytes": 3232
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/MostRecentlyUsed.java",
+   "sha256": "e6d6c5ad1e1152934dfd841c74d6ce662ebc5301295d084e052509326c5ee23f",
+   "bytes": 3166
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/RandomReplacement.java",
+   "sha256": "8a737a52f2b004aa252c6e5c2862489fbbefda75f0ce6a73e08a28e6348cf8f8",
+   "bytes": 3980
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/AbstractEntry.java",
+   "sha256": "a1a4816a8eaab491426926a1a4d37aac4df24d357c0d6cd014333c5360aa3706",
+   "bytes": 2412
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/CountedEntry.java",
+   "sha256": "d46b259d04ad7684bbb323ecafa9b47d78af0a064e4b3d47583038320e0e1482",
+   "bytes": 1734
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/ICachable.java",
+   "sha256": "215e9eeeacfe46699201c6bd249a89c0eda2a9f0384b80bd5c4a38dfacfc7b12",
+   "bytes": 1385
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/ICacheEntry.java",
+   "sha256": "4d55fefff766b78b53efa04699028cf767b85f9a9392428ecbf8f9f7077f2ff8",
+   "bytes": 1237
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/SimpleEntry.java",
+   "sha256": "05f44e490045a0c30730ca722bc0b7b024ef3ec195b23375143021d728fa59e9",
+   "bytes": 1302
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/entry/TimedEntry.java",
+   "sha256": "d5305841add9e1fc8b83d7d4927b4f05605625035f3d115587fe5c719d4c38cf",
+   "bytes": 1772
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/cache/rules/CacheAll.java",
+   "sha256": "6b620854625b6da5ebc1959d23231342f41dc71d0029b3ed76a60ef37f26bfd8",
+   "bytes": 1016
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/rest/ImageProviderEndpoint.java",
+   "sha256": "49696c81aad54252733bc8c07825bbf61583b6b4aaae1f6c3b3165cce502d22c",
+   "bytes": 3990
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/CachingMode.java",
+   "sha256": "281d858097ebaf02dd4bccb52768b7595eb9706169b4daa8a610d281313ad7eb",
+   "bytes": 2248
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/CachingRule.java",
+   "sha256": "a63a6cacc17ca6405320979f1f802ad35449342041b8489704a94e1a3f52bc99",
+   "bytes": 1937
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/CreatorFactory.java",
+   "sha256": "7d78ef218a4832cf861bc300c7d43bc4fa5ad94e78f06f80f82e46a888e96d11",
+   "bytes": 3885
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/CreatorRunner.java",
+   "sha256": "140d66dc843e8d9bf3711f36027bff0e9a263f3c3ffe8893f66bba4dfa876d72",
+   "bytes": 3553
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageCreator.java",
+   "sha256": "f74c00324c5c6dde0e948ae0b299d689712b521bc096c2bb2b7c9f528757145e",
+   "bytes": 6407
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageIDFactory.java",
+   "sha256": "40725658abd496577a226c08260605b9f508f47c60df07e0157931cb00eab380",
+   "bytes": 1303
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/ImageProviderStartup.java",
+   "sha256": "f3f5c514a53b3e49465aa0d74524f4b3d75f526715fb5b302ff7fb10a37bda4a",
+   "bytes": 2472
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/SetupController.java",
+   "sha256": "6dc54d89723b5e57bc71408b176c48f9833adaf83ec41dc7f6d7db61064d5b53",
+   "bytes": 29411
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/StorageMode.java",
+   "sha256": "4f52df6aca04fe035e66b47a766d855b9e09dda6e759c332cd273939a723bc28",
+   "bytes": 1916
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/setup/StorageRule.java",
+   "sha256": "4d13c1e086aca71f9a717830f91e82fe273bcb7c36499d0bce96fab3ce9a938b",
+   "bytes": 2106
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/DriveStorage.java",
+   "sha256": "00dd3bad5c968c7edfa6051e5e7ed1bdc857bf9e4564e139a7f868fb485d188c",
+   "bytes": 5800
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/IDataStorage.java",
+   "sha256": "213ea402ee053867d132bd2dc7778db74f4bb55567c0280c8ec1ee1c6cf75656",
+   "bytes": 2084
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/NoStorage.java",
+   "sha256": "bed51dcf14a67e0334e7415bc7fcd3d237ab449e5b3d93da40de86225f786214",
+   "bytes": 729
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/rules/StoreAll.java",
+   "sha256": "9246c523fd6f30cd18369783f82ab120bf7a1553c8a8187695029c5b340a46b9",
+   "bytes": 939
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/java/tools/descartes/teastore/image/storage/rules/StoreLargeImages.java",
+   "sha256": "d2e2b361527e716951084508b3955120e0acbb52c78eb3c3be7d5eed1f3caa99",
+   "bytes": 1051
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/webapp/META-INF/MANIFEST.MF",
+   "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+   "bytes": 36
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.image/src/main/webapp/WEB-INF/web.xml",
+   "sha256": "4ddd23aaf13ae18e2391489b4b3c5208b9794938cbfd1ad3baf068d03eb00739",
+   "bytes": 1630
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/Dockerfile",
+   "sha256": "4afc19b330293cf7f4e09967784171e5878a8c98adb6d999647ebf6ca537e909",
+   "bytes": 168
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/pom.xml",
+   "sha256": "df57b88246b776b3d5042d8be5c23caaaa4c73b1e839e943877b15c090192997",
+   "bytes": 2785
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/dev/webapp/META-INF/context.xml",
+   "sha256": "95f7bf35f1513063883709964c1ae37f68538ca5a543b97665bed7cb0f0fe93b",
+   "bytes": 292
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/daemons/InitialDataGenerationDaemon.java",
+   "sha256": "1c62e156007d780451fd4fcefe8539740c6b6427928fbe6c3fd40acf8dd44fcc",
+   "bytes": 3539
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/CategoryRepository.java",
+   "sha256": "b5073f4139fec408a7377d5867130ffc0a5f7cbabeab8128d49764e31734b4bb",
+   "bytes": 2501
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/OrderItemRepository.java",
+   "sha256": "b906a6f61ff058895f9a25f8c11be00db511d106d2eb7766569cee770def949a",
+   "bytes": 5390
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/OrderRepository.java",
+   "sha256": "52d2ac617aff4e8c8e6f4115e4d421c879f2348701ca1781952c54ede46d526a",
+   "bytes": 4594
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceCategory.java",
+   "sha256": "5c139bf21d8f492f4eb4c4bba988518b4403f2b8cbf5edd292c2cd69a1ac681d",
+   "bytes": 2606
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrder.java",
+   "sha256": "405cae191f42400904553e76d3a93b7e3771992f7319fa5843845e71b986d1f8",
+   "bytes": 6733
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceOrderItem.java",
+   "sha256": "a5904755e3657225d54d8513fb4dc1f74630da9b3c93e5baf0b368be55c0cb43",
+   "bytes": 3357
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceProduct.java",
+   "sha256": "b9710e8157e1f1c449d71d35236b492bb30f4c3490844063f446cd3e95e83667",
+   "bytes": 3441
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/PersistenceUser.java",
+   "sha256": "7152016a3de35f5210ac7aedcb18834452028a27934cbcf0b323e9eaf3d35662",
+   "bytes": 3478
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/ProductRepository.java",
+   "sha256": "252a2e64901696ea53ba0e5176e21579c5907374ee24a7d4262cb872a8755ac1",
+   "bytes": 5123
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/UserRepository.java",
+   "sha256": "adf13497958e2fc52516310aaf75a4b3a92f508c1ad4d4007377605fcda8fe09",
+   "bytes": 3417
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/converters/LocalDateAttributeConverter.java",
+   "sha256": "104420ccdcbdb88d7e5ac1391da295c81080b0fb84192f5947518f9479ccfec0",
+   "bytes": 1601
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/domain/converters/LocalDateTimeAttributeConverter.java",
+   "sha256": "70c92705196163f87d59df548fd0420a4df3f631304725ff2896d6d2a97eb91c",
+   "bytes": 1674
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/AbstractPersistenceRepository.java",
+   "sha256": "74c4d431ac54df9d7df30488291377cd1de1a5a89ee5d18247ffe310736e05ae",
+   "bytes": 5627
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/CacheManager.java",
+   "sha256": "6b355687e112e5a729d3f32a8ea74c4109335a4d71565445fe0c599b5c9c1959",
+   "bytes": 4948
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/DataGenerator.java",
+   "sha256": "8ff9fedd51f4963e9d70db80e090e5c79bb5f60377e906e78ad73379f324925a",
+   "bytes": 18773
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/DatabaseManagementEntity.java",
+   "sha256": "ab9d008fedadfe7a4bda1b488aa1ca594491ae319123d33d8420901e4acf62bd",
+   "bytes": 1676
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/repository/EMFManager.java",
+   "sha256": "b0a6e3e3008b0a305330ba4df26b8805c25f4ca1b2dbc82b11fa95b0ec68ad56",
+   "bytes": 5571
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/CacheManagerEndpoint.java",
+   "sha256": "91d47280cb03c00fe74eee4b3cb37d843c2789ef113042977b7de75597eafce3",
+   "bytes": 2212
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/CategoryEndpoint.java",
+   "sha256": "32eec82c3526ec1ff43576e8e65d8b6e2110d62f597981480e858ffa13a062a0",
+   "bytes": 2460
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/DatabaseGenerationEndpoint.java",
+   "sha256": "4d24fc0cbbd19ed67edbd70f03e3c72a0dfa65dd6f3f76fb06454725fe6a0b0c",
+   "bytes": 5116
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/OrderEndpoint.java",
+   "sha256": "566359a3b651bb822c912ca4ec3cb0fda931684e6f7c35833c3d96e69b4b4251",
+   "bytes": 3366
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/OrderItemEndpoint.java",
+   "sha256": "50ddf3311bc096df8363b81a83dc7035855af7b471cc237118659e7a0c39429a",
+   "bytes": 4492
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/ProductEndpoint.java",
+   "sha256": "304a3912ef553a9decccc69eaa07a70f26b9d46458a4be3207c65b1ad7840f53",
+   "bytes": 4096
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java",
+   "sha256": "84dfbd88557d27de10117b8dfd75cb0c7d9124dd9f1e00a58bd90be079bbe948",
+   "bytes": 3179
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/servlet/IndexServlet.java",
+   "sha256": "94008ecdfe5758ef86c1463c594a76bddaf0a8ee39c9922e409a473ea3abe267",
+   "bytes": 2272
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/resources/META-INF/persistence.xml",
+   "sha256": "db9a562074fb5da457587a100ea45aad391edf5577e7885d783332ef27d2ced9",
+   "bytes": 1924
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/webapp/META-INF/MANIFEST.MF",
+   "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+   "bytes": 36
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.persistence/src/main/webapp/WEB-INF/web.xml",
+   "sha256": "35385743c07c59822dd9a757f15fc51f0b43819e0a5d2e4734f513061d64e659",
+   "bytes": 1647
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/Dockerfile",
+   "sha256": "7bd30eac19b7969297ae3084bf17d89e2298f6000c9a1f4dfd978de2d9d8366c",
+   "bytes": 167
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/pom.xml",
+   "sha256": "8ebdfc84127d7485549a027fa745e27a28bfc4860dcbeae7fe314cdbeef6d4a2",
+   "bytes": 2080
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/AbstractRecommender.java",
+   "sha256": "06ce4b4d24cc56c1cfc2b6f1fb4d53a1b0c5459afa09e13e7d4cf501b70976a8",
+   "bytes": 9977
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/IRecommender.java",
+   "sha256": "26b4a37c548f4094e3f25eedc4145acb8bbd4bdea85a981936eaffbe1425d9d5",
+   "bytes": 2786
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/OrderItemSet.java",
+   "sha256": "020ff4bd76a1e9d883e4c768d1d80ece90b630690a635f6cf352b6511dec03a1",
+   "bytes": 2217
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/RecommenderSelector.java",
+   "sha256": "11c8a3d4fd278f7fd39bbe1212313fbb165b49f295b9ec32ab5e77923c0ff6da",
+   "bytes": 6856
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/DummyRecommender.java",
+   "sha256": "e3a3c4bdba818efd8eef0309ffde1bbd2e74b669cb5f74b8934fcd29625f7af6",
+   "bytes": 1268
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/UseFallBackException.java",
+   "sha256": "346d6f75c749894a57830f08a6598369ea3431954841f0e33d0db999f57bf4bd",
+   "bytes": 1168
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/cf/PreprocessedSlopeOneRecommender.java",
+   "sha256": "0665e4ad7d798b3fd502dbf58fc2d09bad66f7560fa3ccad71dea79bf620fea9",
+   "bytes": 2067
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/cf/SlopeOneRecommender.java",
+   "sha256": "8f4434b517f886eff11ab312086fa4df77eaa8473df70eaefa8e6b4482406ea7",
+   "bytes": 7050
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/orderbased/OrderBasedRecommender.java",
+   "sha256": "f2021577ae925f36e539366c1a7d30ae36b5a68fcc822cd830f1ae12ecbacfa2",
+   "bytes": 3135
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/algorithm/impl/pop/PopularityBasedRecommender.java",
+   "sha256": "8c796b73460888b3b71b2179d037f6411c20588c2a78e99dce1757ba3eb9557f",
+   "bytes": 1976
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/rest/RecommendEndpoint.java",
+   "sha256": "36fa72e54a26a189f4d7de4dc6798be0ccfe586b3cb23624eb2610b8652f843e",
+   "bytes": 2303
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/rest/RecommendSingleEndpoint.java",
+   "sha256": "852f1f3c01ee51b76dd829d60a09f6abecd3401e1ab2edfc7dd75788f1eac9f2",
+   "bytes": 2449
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/rest/TrainEndpoint.java",
+   "sha256": "4bf361ba3e4caadb5f4a3768a0e5cb24b257aa9135742f8e9f6e653b47e2b36a",
+   "bytes": 4171
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/IndexServlet.java",
+   "sha256": "b1cdb879bc6dd0e52b13004e19bcae86b8f4a90640588ccb9cb9c853415000d9",
+   "bytes": 2401
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RecommenderStartup.java",
+   "sha256": "1822c0f8873589acf53f51ad4692da9968471ab66c8f2c2f89d7c02f129c0713",
+   "bytes": 3230
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/RetrainDaemon.java",
+   "sha256": "5fd80216ce71ce32c5796998da610cf0de4daea5c6dc83fa140df09efe3b1d6e",
+   "bytes": 1907
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/java/tools/descartes/teastore/recommender/servlet/TrainingSynchronizer.java",
+   "sha256": "f2febb45e1e2f9325ef18dc1ed96497d0322eebe9b55b6a400b817a8dd58abad",
+   "bytes": 9043
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/webapp/META-INF/MANIFEST.MF",
+   "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+   "bytes": 36
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.recommender/src/main/webapp/WEB-INF/web.xml",
+   "sha256": "c556eb00f10d04d003cdd3dabdb19c85178183a38cded4fd6e08c60324676dbc",
+   "bytes": 1596
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.registry/Dockerfile",
+   "sha256": "6c112a0d13de3259e88bcd66ffcf1e9a94844415ca3f75fb2f1d10492ed1f568",
+   "bytes": 170
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.registry/pom.xml",
+   "sha256": "511cdbd64e9d692f1d71dfd980a53d38df8592276302a13e8656881fe72c9e39",
+   "bytes": 3510
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/HeartbeatInfo.java",
+   "sha256": "e664710a8a485d8d5100e6ed5593a67dd72331d48a3a53ee341d17b75d5c4bc3",
+   "bytes": 685
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/Registry.java",
+   "sha256": "284ac1e832d8005162e9f847afb6639fc03b3537719504124234560324c192ca",
+   "bytes": 4675
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryREST.java",
+   "sha256": "fbdabda3a0f376bc5fbf8a671c1e60ddfd16e6da641e58158c28dd397dccccf5",
+   "bytes": 2401
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/rest/RegistryStartup.java",
+   "sha256": "eb5739938ab370933375681d22df60a74443030536a9934eb9e2a1e8e259c7c5",
+   "bytes": 2355
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.registry/src/main/java/tools/descartes/teastore/registry/servlet/IndexServlet.java",
+   "sha256": "10801111a32f24bd11a5d731ca152cb01cdc9aa8e6fd5c941abca0d27d3ce6b4",
+   "bytes": 2263
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.registry/src/main/webapp/META-INF/MANIFEST.MF",
+   "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+   "bytes": 36
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.registry/src/main/webapp/WEB-INF/web.xml",
+   "sha256": "c9649a6b28c96ef3f0b9f4f1b4e6289cc3908ad3260a352504b4f8534cc4e68e",
+   "bytes": 968
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/Dockerfile",
+   "sha256": "b037e390c82ba78aa241acbad036c458cdcea9ac37f5ed86a1cd89689eb583ff",
+   "bytes": 498
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/pom.xml",
+   "sha256": "258f1f133f06cb9b56990b9950e5322f9b045b01eac53b299984e0692359bd33",
+   "bytes": 2064
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/rest/ReadyRest.java",
+   "sha256": "8c7e3b1969d67c06a808af22345f70bc9a05e8ee07ca089641b0003595aacc72",
+   "bytes": 1100
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AboutUsServlet.java",
+   "sha256": "9bc91b7d7fe0403407f2561559b7168dc969a29a45a89bcd5980a7f9d5360c33",
+   "bytes": 3032
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/AbstractUIServlet.java",
+   "sha256": "76151fd6aea5e0c7a774c115816124c091b83d35332863070168203c4b7e7185",
+   "bytes": 11747
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartActionServlet.java",
+   "sha256": "6fddacc554c864c660f8c9fe757d9c5a1bf6aa0bffe348a158f00417a4905ea6",
+   "bytes": 5519
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CartServlet.java",
+   "sha256": "2aba27e477eab705ec7c0e807914de1aaa525b639e84e6714149400d72925109",
+   "bytes": 4100
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/CategoryServlet.java",
+   "sha256": "415222f762846c2b04f8662cdc42038ecdeba100841a6ee56abf0373b95abeab",
+   "bytes": 7348
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseActionServlet.java",
+   "sha256": "9229209ab4a1aeb0f54b646ae40836a1464c52f01c15d36cbd439f1fa3c0ae68",
+   "bytes": 4214
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/DataBaseServlet.java",
+   "sha256": "78363d36df1691a3e00a55b62125683f21dae17f08cf3434dcd34f03aad83cd9",
+   "bytes": 1924
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ErrorServlet.java",
+   "sha256": "3ab3d879833c02c4e49691845c9adeb5be088b3f295a3393a019fae528364e83",
+   "bytes": 2753
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/IndexServlet.java",
+   "sha256": "2aba333cf9314a40ceecf7807e2cfc44bbe05f6154917762d4932297676d342e",
+   "bytes": 2478
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java",
+   "sha256": "48eaac19966a768d549e90afb4135e6b70a22b3c826598d9ef208e22cba27258",
+   "bytes": 2930
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginServlet.java",
+   "sha256": "bd0d4b7a526a9b04bdd164a58bc0ecd183e2e2150119d624c4c8853fb5a9fc79",
+   "bytes": 2545
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/OrderServlet.java",
+   "sha256": "2b5cdd2e0adedc561d4c803cf1ded4f96caa4fbbc9adc65d09ae1040ee11e5ce",
+   "bytes": 2831
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProductServlet.java",
+   "sha256": "ccc5287576557ed362658846ed2770150c89d100c88107d895b6a9ca4e3eb806",
+   "bytes": 4318
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/ProfileServlet.java",
+   "sha256": "d06bb3330a07e3b1473ea4029bca80694cea74ffdc7772169c03cf3cf0725f87",
+   "bytes": 3259
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/StatusServlet.java",
+   "sha256": "ddcb517d34839e8d0fb5e8ae6d32bc41b57f13881098eecdf3f1dee9b42188dc",
+   "bytes": 5183
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/elhelper/ELHelperUtils.java",
+   "sha256": "1481d82bbb162ecb19510cb3d99ee3308ca6e60e9c25b38c85dc798ad1150923",
+   "bytes": 1655
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/startup/WebuiStartup.java",
+   "sha256": "ef089cd628b60510664a402561a83ca168aeb7d70ba4214d339dafdecc052bdd",
+   "bytes": 2210
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/META-INF/MANIFEST.MF",
+   "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+   "bytes": 36
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/about.jsp",
+   "sha256": "2072fe6cdfa900a5bef97d40e155349af18d7d6e315901cc204e49e0b66ef7b4",
+   "bytes": 3886
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/cart.jsp",
+   "sha256": "c77617c9e75c2df4d4387837ea34b870d056db15652f36ea16f8b32bad46ac33",
+   "bytes": 2434
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/category.jsp",
+   "sha256": "2a1b47ed00be5dc02f9b8576b442c77e8a7e47018ee39593162d9daefc5618a6",
+   "bytes": 2251
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/categorylist.jsp",
+   "sha256": "e1d814de8770373f9e08eb17c206e266f89876f2e58f32d5c0486797a4f674ca",
+   "bytes": 616
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/database.jsp",
+   "sha256": "4cb3feba6b02a8e5d6f20904178eda37e499d98d9b4c980e24a5da3c924faa9e",
+   "bytes": 1779
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/error.jsp",
+   "sha256": "273c1e4a08abed26d243f4eea353288318f8522007a33ccfe4a51cc695ce20e1",
+   "bytes": 905
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/footer.jsp",
+   "sha256": "d2e4a2be52f03c26082c0f55a62d23155c425b35d6c1163cca121f0cbe863d7b",
+   "bytes": 1188
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/head.jsp",
+   "sha256": "e1db60bfe01d4dfc8beb7630a238f5d76edd55918054a674e197777cb5f48b79",
+   "bytes": 839
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/header.jsp",
+   "sha256": "758fab280780e5dce70d3dc73405d43f2670e437b7297faba99b2c2b310a04c7",
+   "bytes": 2102
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/index.jsp",
+   "sha256": "ec52d477e71940eec74c182e4e88bfe345eba8457a7050453379530783c818cc",
+   "bytes": 341
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/login.jsp",
+   "sha256": "780ac0bc27bebf39f7cbbdc6ff429bb8c4979fd3e37898bde680171dd42c1c23",
+   "bytes": 1360
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/order.jsp",
+   "sha256": "24622acd1c5c71db36a9f313133efef5f7c619bbb9f04dc75d29fa4b503372e5",
+   "bytes": 3581
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/product.jsp",
+   "sha256": "e3761f900f6e4173fd160f6a4ac3d7fa2779bb0490d4092b8e51e9d15749b480",
+   "bytes": 930
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/product_item.jsp",
+   "sha256": "5f5f14f0aef471679393f5b9b9553161b3031ce44973cb0219fc187978320b9c",
+   "bytes": 913
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/profile.jsp",
+   "sha256": "13d2224efb8820f43142537592edbce5ff5dc48dc1244e62e221e4803f5fbce1",
+   "bytes": 1270
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/recommender.jsp",
+   "sha256": "58872021cc114e0f930e1755c31e473945d784fe70d5fc9c72311b40812d6287",
+   "bytes": 545
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/pages/status.jsp",
+   "sha256": "456082a433a9ce823cac3f1a7f635d50d957e0e4241af64c97276a857d882032",
+   "bytes": 5536
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/WEB-INF/web.xml",
+   "sha256": "13b814ec7f29a86099af15c749fe7f3527eafec51189f7fb5eeceab4a06e4b97",
+   "bytes": 1682
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/autoRefreshScript.js",
+   "sha256": "df865c1d3a753078e0ad7f4f3d1c79572f6ac3a23e90ca47b70ae2066267decb",
+   "bytes": 1188
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/js/npm.js",
+   "sha256": "c7aa82a1aa7d45224a38d926d2adaff7fe4aef5bcdafa2a47bdac057f4422c2d",
+   "bytes": 484
+  },
+  {
+   "repo": "upstream",
+   "path": "services/tools.descartes.teastore.webui/src/main/webapp/resizingscript.js",
+   "sha256": "3825d96bf9307b2f0b6b6eed63ae4bc795c89b208011102d83b482605b2fbd6d",
+   "bytes": 2484
+  },
+  {
+   "repo": "upstream",
+   "path": "tools/build_docker.sh",
+   "sha256": "e886c4b536b12173705ae5a8dca62ec932b64163617873eab7bc17ca676ee1e0",
+   "bytes": 3012
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.database/Dockerfile",
+   "sha256": "ff737bb14570fe25309feef481501f03b2cfc757e67c070f1545771296dcd571",
+   "bytes": 568
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.database/setup.sql",
+   "sha256": "fd26dee31753a3836bb7e804aebaa2871911ff68d6a31ea2fceff0b63e98a9a3",
+   "bytes": 146
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.dockerbase/Dockerfile",
+   "sha256": "e7e23482d000f90e403e7920a0800d169dc091b85e38f37b2503d7082b2e854f",
+   "bytes": 2524
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.dockerbase/aop.xml",
+   "sha256": "7fb0e74552189391b6f862c41bf81c1ca23a7fdc67297af7146ff5bac0396b45",
+   "bytes": 18647
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.dockerbase/baseContext.xml",
+   "sha256": "301de01d91f16e7b2bfa5ee9cd9659f54410358d197934a1fa919ffe9109257c",
+   "bytes": 1553
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.dockerbase/kieker.monitoring.properties",
+   "sha256": "36011936c25c8af781b205383041a8314fc5b709b8f0400c988a7624e0ca53a2",
+   "bytes": 2534
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.dockerbase/server.xml",
+   "sha256": "61499602b67c2659fa5d47b28c5899142b3fde7ca9fc85f7f2229a63d2d1187a",
+   "bytes": 2531
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.dockerbase/ssl/generate_cert.sh",
+   "sha256": "c835a1aee0e886993187e596da0596f39951e8132991b6979cc8165782c0aa87",
+   "bytes": 462
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.dockerbase/start.sh",
+   "sha256": "1e4d0fffe69e4777ac530c5363284428c3b6faa9706325ff49e22e57280abc89",
+   "bytes": 4657
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.kieker.probes/pom.xml",
+   "sha256": "f9bd2df8b2673abc7cd63d5dd4a36d5568cfdd8111ea4258c76989d11bbe201a",
+   "bytes": 1240
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/AbstractOperationExecutionWithParameterAspect.java",
+   "sha256": "b3892064c6ac0ef83fa03c470e61f8b3fd8978c1de79e9d9a52a07d3c31b307f",
+   "bytes": 7355
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/IPayloadCharacterization.java",
+   "sha256": "fc786e0cdda388a045c01f2608f6cc56952c39d4e225d2a7797ad4cd20c6fc3f",
+   "bytes": 764
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.kieker.probes/src/main/java/tools/descartes/teastore/kieker/probes/records/OperationExecutionWithParametersRecord.java",
+   "sha256": "b86b42af8dfeeb6509692ef9ff98d7d39918db59fc1dc64dd023f83ab5b9d559",
+   "bytes": 8506
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/pom.xml",
+   "sha256": "d5d01329c0bf238698dde32775dc54eb2da90ef5588de98de3090114e24bc81e",
+   "bytes": 3852
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/META-INF/MANIFEST.MF",
+   "sha256": "4e1cfddbc5dd375b247af82e2a4c5f374b9064c640879e869f3acb0b1cc0ca24",
+   "bytes": 36
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClient.java",
+   "sha256": "a2e77b0e11bb8e2a6aefd3986ab5bb9a9fb3741b81fcb71b4ebe9c44ee18f302",
+   "bytes": 11497
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/RegistryClientHeartbeatDaemon.java",
+   "sha256": "4c98cda83d106b633a3e7a3efc605e88ade6adfd37eddb4e041a96b9931d38b5",
+   "bytes": 1267
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/Service.java",
+   "sha256": "1316603bf0bf1d1b7e892708a921cb1f332247606fef9fa16b3f2e3368f8c5cc",
+   "bytes": 1559
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallback.java",
+   "sha256": "1ea2128167d33ecfe90672b60e7e63ac99fc9e2503d54cc9b0c43f8e600be4be",
+   "bytes": 809
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/StartupCallbackTask.java",
+   "sha256": "46a72b8c386c7f62d3779410aa848c371240ec5faf92040f3cb80c55aa0df074",
+   "bytes": 1730
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/EndpointClientCollection.java",
+   "sha256": "65872a55c5b40d1dbdf174d43b29ba1efe010da804506e8e32e03204f6f19180",
+   "bytes": 3683
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerTimeoutException.java",
+   "sha256": "f64c244b8f672f118949dc4f5d8315faacdafd75c0d8c5f845f9271c083ab07d",
+   "bytes": 1458
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/LoadBalancerUpdaterDaemon.java",
+   "sha256": "e4e2e77a955ee5c73ea3722f6f8d41fa20a4afc28b21b23a4f6ee200b79f0cfc",
+   "bytes": 1033
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancer.java",
+   "sha256": "e5d44e7bf7726341732b489a9503b9c36911a989b27da927ef9e01077abebb07",
+   "bytes": 13820
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/loadbalancers/ServiceLoadBalancerResult.java",
+   "sha256": "40d70d0c3a59a225118cf32afc3a1697690db1ada241304155f4810e782ca417",
+   "bytes": 2757
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/CharResponseWrapper.java",
+   "sha256": "f432452c388c24df585772d4f19c1145d92dbec8056075b42f768e673a476066",
+   "bytes": 1666
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/HttpWrapper.java",
+   "sha256": "568c4566e66def2b1fbd1099cd55e0e6f1754d9b79ad941dea02d8022f81f010",
+   "bytes": 2697
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+   "sha256": "e9a182b0062d485390affce120017b1fee8ba0298ac51319e53821f55acf482f",
+   "bytes": 10044
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedImageOperations.java",
+   "sha256": "674ff353ef7fad3213cbc505738e91daecb768db799644d369ce41abaa40e7fa",
+   "bytes": 6907
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedRecommenderOperations.java",
+   "sha256": "d2c4e98cd87fec32d38d60f8f685a8fd356a809c6460489c2876d08fcb8a0952",
+   "bytes": 1902
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+   "sha256": "0e9fa6e5e17b2b209f0cb74c84565d4de06f9e34776ed82eac5a484595ca547a",
+   "bytes": 8542
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java",
+   "sha256": "e079a19079f29f3c9aa12737a97cbb6a0328f091a5cc75a5199495ca35364e1c",
+   "bytes": 13097
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/ResponseWrapper.java",
+   "sha256": "2e737d205f98bcc0cd33ad4b24ea2b03bbe85c50a78fbd2390865b95d37bdbb0",
+   "bytes": 3372
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/RestUtil.java",
+   "sha256": "56a2f01fa70e1d997dc223be47f7d38844433fa6767406a43ffbeb7fdd3aa084",
+   "bytes": 3148
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/TrackingFilter.java",
+   "sha256": "a9a866f88e0c5ad35dc3ef1f28f150b64cfe726f2378e15e0971814289a6d3d2",
+   "bytes": 5960
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/tracing/Tracing.java",
+   "sha256": "e0afaba653e20e11311e0b3f30c9542d584c09aff6a4395dc7186cc5bb8d9e23",
+   "bytes": 5014
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/AbstractCRUDEndpoint.java",
+   "sha256": "832c910c3bcc216258c00e9f158a48f77a87a19d7d232b8d2e62a5f668aa7389",
+   "bytes": 6890
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/NotFoundException.java",
+   "sha256": "6398f162b3ced7f941196f928f70b8431d9e5bc097f3ca3307612805dd9ae47b",
+   "bytes": 1072
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/RESTClient.java",
+   "sha256": "f3dfa9f1a80fee606c5bc566eac2926eb794c40f48bb3928aeca05867ec65210",
+   "bytes": 6736
+  },
+  {
+   "repo": "upstream",
+   "path": "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/util/TimeoutException.java",
+   "sha256": "5eb314a4b43547e19b0f2854b75af094628f786a6adc18f72f9a932fa56ec163",
+   "bytes": 1070
+  }
+ ],
+ "fileCount": 215,
+ "bytes": 722440,
+ "excluded": {
+  "asset": {
+   "count": 37,
+   "files": [
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/categoryimg/black-tea.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/categoryimg/filters.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/categoryimg/green-tea.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/categoryimg/herbal-tea.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/categoryimg/infusers.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/categoryimg/rooibos.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/categoryimg/tea-cups.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/categoryimg/tea-pots.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/categoryimg/white-tea.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/andreBauer.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/descartesLogo.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/error.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/front.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/icon.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/joakimKistowski.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/johannesGrohmann.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/norbertSchmitt.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/notFound.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/samuelKounev.png",
+    "upstream:services/tools.descartes.teastore.image/src/main/resources/tools/descartes/teastore/image/setup/existingimg/simonEismann.png",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/css/bootstrap-theme.css",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/css/bootstrap-theme.css.map",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/css/bootstrap-theme.min.css.map",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/css/bootstrap.css",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/css/bootstrap.css.map",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/css/bootstrap.min.css.map",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/fonts/glyphicons-halflings-regular.eot",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/fonts/glyphicons-halflings-regular.svg",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/fonts/glyphicons-halflings-regular.ttf",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/fonts/glyphicons-halflings-regular.woff",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/fonts/glyphicons-halflings-regular.woff2",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/images/front.png",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/images/icon.ico",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/images/separator.gif",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/teastore.css",
+    "upstream:utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar",
+    "upstream:utilities/tools.descartes.teastore.dockerbase/mysql-connector-java-5.1.44-bin.jar"
+   ]
+  },
+  "key-material": {
+   "count": 2,
+   "files": [
+    "upstream:utilities/tools.descartes.teastore.dockerbase/ssl/cert.pem",
+    "upstream:utilities/tools.descartes.teastore.dockerbase/ssl/key.pem"
+   ]
+  },
+  "tooling-dotfile": {
+   "count": 11,
+   "files": [
+    "upstream:interfaces/tools.descartes.teastore.entities/.gitignore",
+    "upstream:services/tools.descartes.teastore.auth/.checkstyle",
+    "upstream:services/tools.descartes.teastore.auth/.gitignore",
+    "upstream:services/tools.descartes.teastore.image/.gitignore",
+    "upstream:services/tools.descartes.teastore.persistence/.gitignore",
+    "upstream:services/tools.descartes.teastore.recommender/.gitignore",
+    "upstream:services/tools.descartes.teastore.registry/.gitignore",
+    "upstream:services/tools.descartes.teastore.webui/.gitignore",
+    "upstream:services/tools.descartes.teastore.webui/.tern-project",
+    "upstream:utilities/tools.descartes.teastore.kieker.probes/.gitignore",
+    "upstream:utilities/tools.descartes.teastore.registryclient/.gitignore"
+   ]
+  },
+  "vendored": {
+   "count": 5,
+   "files": [
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/css/bootstrap-theme.min.css",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/css/bootstrap.min.css",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/js/bootstrap.js",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/js/bootstrap.min.js",
+    "upstream:services/tools.descartes.teastore.webui/src/main/webapp/bootstrap/js/jquery.min.js"
+   ]
+  }
+ },
+ "unresolvedVariables": []
+}

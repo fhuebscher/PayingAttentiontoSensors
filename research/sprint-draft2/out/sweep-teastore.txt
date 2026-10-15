@@ -1,0 +1,2 @@
+TeaStore log warn+: auth-freeze-effect 0/9, no-fault-cost 0/12, persistence-crash-effect 11/11
+TeaStore log error+: auth-freeze-effect 0/9, no-fault-cost 0/12, persistence-crash-effect 0/11

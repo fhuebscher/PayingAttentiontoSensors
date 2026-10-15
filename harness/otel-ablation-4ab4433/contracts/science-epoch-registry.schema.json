@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/science-epoch-registry.schema.json",
+  "title": "Root-owned scientific epoch registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "permissions", "transition", "epochs"],
+  "properties": {
+    "$schema": {"const": "https://observability-placement.local/contracts/science-epoch-registry.schema.json"},
+    "schemaVersion": {"const": 1},
+    "permissions": {"$ref": "#/$defs/closedPermissions"},
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["parentCommit", "parentTree", "ownedPaths", "commitDerivation"],
+      "properties": {
+        "parentCommit": {"$ref": "#/$defs/gitCommit"},
+        "parentTree": {"$ref": "#/$defs/gitCommit"},
+        "ownedPaths": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/repositoryFile"}
+        },
+        "commitDerivation": {"const": "single-commit-last-change-of-every-owned-path"}
+      }
+    },
+    "epochs": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "items": {"$ref": "#/$defs/epoch"}
+    }
+  },
+  "$defs": {
+    "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "repositoryFile": {
+      "type": "string", "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*//)(?!.*\/$).+$"
+    },
+    "closedPermissions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["runtimeAllowed", "externalMutationAllowed", "heldOutOutcomeAccessAllowed", "aiSelectorAllowed", "evidencePromotionAllowed"],
+      "properties": {
+        "runtimeAllowed": {"const": false},
+        "externalMutationAllowed": {"const": false},
+        "heldOutOutcomeAccessAllowed": {"const": false},
+        "aiSelectorAllowed": {"const": false},
+        "evidencePromotionAllowed": {"const": false}
+      }
+    },
+    "fileBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "path", "sha256"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "sourceBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sourceCommit", "sha256", "role", "qualification"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "sourceCommit": {"$ref": "#/$defs/gitCommit"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "role": {"type": "string", "minLength": 1},
+        "qualification": {"enum": ["reviewed-parent", "diagnostic-source"]}
+      }
+    },
+    "snapshot": {
+      "type": "object", "additionalProperties": false,
+      "required": ["commit", "tree"],
+      "properties": {"commit": {"$ref": "#/$defs/gitCommit"}, "tree": {"$ref": "#/$defs/gitCommit"}}
+    },
+    "parent": {
+      "type": "object", "additionalProperties": false,
+      "required": ["epochId", "changeId", "commit", "tree"],
+      "properties": {
+        "epochId": {"$ref": "#/$defs/slug"},
+        "changeId": {"$ref": "#/$defs/slug"},
+        "commit": {"$ref": "#/$defs/gitCommit"},
+        "tree": {"$ref": "#/$defs/gitCommit"}
+      }
+    },
+    "observation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["campaignId", "terminalStatus", "manifestSha256", "externalSealSha256", "frameworkCommit", "qualification"],
+      "properties": {
+        "campaignId": {"type": "string", "minLength": 1},
+        "terminalStatus": {"enum": ["pass", "blocked"]},
+        "manifestSha256": {"$ref": "#/$defs/sha256"},
+        "externalSealSha256": {"$ref": "#/$defs/sha256"},
+        "frameworkCommit": {"$ref": "#/$defs/gitCommit"},
+        "qualification": {"const": "diagnostic-only"}
+      }
+    },
+    "supersession": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "kind", "predecessorCommit", "predecessorSha256", "successorChangeId"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repositoryFile"},
+        "kind": {"enum": ["authority-source", "append-only-ledger"]},
+        "predecessorCommit": {"$ref": "#/$defs/gitCommit"},
+        "predecessorSha256": {"$ref": "#/$defs/sha256"},
+        "predecessorLength": {"type": "integer", "minimum": 1},
+        "successorChangeId": {"$ref": "#/$defs/slug"},
+        "successorSourceCommit": {"$ref": "#/$defs/gitCommit"},
+        "successorSourceSha256": {"$ref": "#/$defs/sha256"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"kind": {"const": "authority-source"}}},
+          "then": {"required": ["successorSourceCommit", "successorSourceSha256"]},
+          "else": {"required": ["predecessorLength"]}
+        }
+      ]
+    },
+    "epoch": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "required", "changeIds", "schema", "validator", "snapshot", "parent", "allowedPaths", "sourceBindings", "protocolModule", "diagnosticObservations", "supersessions"],
+      "properties": {
+        "id": {"$ref": "#/$defs/slug"},
+        "required": {"type": "boolean"},
+        "changeIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/slug"}},
+        "schema": {"$ref": "#/$defs/fileBinding"},
+        "validator": {"$ref": "#/$defs/fileBinding"},
+        "snapshot": {"anyOf": [{"$ref": "#/$defs/snapshot"}, {"type": "null"}]},
+        "parent": {"anyOf": [{"$ref": "#/$defs/parent"}, {"type": "null"}]},
+        "allowedPaths": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/repositoryFile"}},
+        "sourceBindings": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/sourceBinding"}},
+        "protocolModule": {"anyOf": [{"$ref": "#/$defs/fileBinding"}, {"type": "null"}]},
+        "diagnosticObservations": {"type": "array", "items": {"$ref": "#/$defs/observation"}},
+        "supersessions": {"type": "array", "items": {"$ref": "#/$defs/supersession"}}
+      }
+    }
+  }
+}

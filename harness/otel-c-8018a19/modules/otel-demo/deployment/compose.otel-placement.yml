@@ -1,0 +1,36 @@
+services:
+  otelcol:
+    environment:
+      DOCKER_API_VERSION: "1.40"
+    # Trace carrier retention (OTel run-2 fix 1a.1). Upstream's x-default-logging
+    # (json-file, max-size 5m, max-file 2) kept only the last 9-14 s of each
+    # 599 s window in run 1, in 18 of 18 cells. One unrotated segment, bounded
+    # at 4g, holds a whole cell; containers are removed after every cell, so at
+    # most one segment exists at a time. Same bytes in every posture; the
+    # collector's own configuration and output are unchanged.
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "4g"
+        max-file: "1"
+  prometheus:
+    restart: unless-stopped
+  recommendationservice:
+    image: "obsplacement/otel-demo:${OTEL_IMAGE_TAG:?OTEL_IMAGE_TAG must bind the materialized source}-recommendationservice"
+    environment:
+      OTEL_SDK_DISABLED: "${OTEL_PLACEMENT_DISABLED:-false}"
+      OTEL_PLACEMENT_ENABLED: "${OTEL_PLACEMENT_ENABLED:-true}"
+  frontend:
+    image: "obsplacement/otel-demo:${OTEL_IMAGE_TAG:?OTEL_IMAGE_TAG must bind the materialized source}-frontend"
+    environment:
+      OTEL_SDK_DISABLED: "${OTEL_PLACEMENT_DISABLED:-false}"
+      OTEL_PLACEMENT_ENABLED: "${OTEL_PLACEMENT_ENABLED:-true}"
+      NEXT_PUBLIC_OTEL_PLACEMENT_ENABLED: "${OTEL_PLACEMENT_ENABLED:-true}"
+  loadgenerator:
+    environment:
+      LOCUST_AUTOSTART: "false"
+      LOCUST_HEADLESS: "true"
+  frontendproxy:
+    image: "obsplacement/otel-demo:${OTEL_IMAGE_TAG:?OTEL_IMAGE_TAG must bind the materialized source}-frontendproxy"
+    volumes:
+      - ${OTEL_ENVOY_CONFIG:-./src/frontendproxy/envoy.tmpl.yaml}:/home/envoy/envoy.tmpl.yaml:ro

@@ -1,0 +1,10 @@
+{
+  "fixtureId": "missing-change-artifact",
+  "checkId": "change-artifacts",
+  "expectedStatus": "fail",
+  "expectedDiagnostic": "invalid artifact",
+  "mutation": {
+    "kind": "remove-file",
+    "path": "openspec/changes/change-one/proposal.md"
+  }
+}

@@ -1,0 +1,642 @@
+{
+  "counts": {
+    "hit": 10,
+    "miss": 1,
+    "\u2014": 0
+  },
+  "inputs": {
+    "posthoc": "research/lanes/out-ts-rep2-posthoc/posthoc_lanes_v33_teastore.json",
+    "readout": "research/traffic-sweep/readout-teastore-offpath-rep2-v3.3/sweep_analysis_v3_3.json"
+  },
+  "kind": "teastore-offpath-rep2-predictions-scored",
+  "predictions": "research/protocol/PREDICTIONS_OVERNIGHT_20261014.json (8b89d43)",
+  "scope": "instance",
+  "scored": [
+    {
+      "claim": "Coordinator: the registry's heartbeat-removal line for the recommender fires 7.5-12.5 s after the pause command in >= 9/10 episodes, at both rates, in the by-construction field (`BC-caller-log`; 0 counted). Restated unchanged from T-L2 (field named).",
+      "id": "TSR-L2",
+      "note": "source: posthoc_lanes_v33_teastore.json predictions[T-L2]",
+      "numbers": {
+        "byRate": {
+          "1": [
+            5,
+            5
+          ],
+          "10": [
+            5,
+            5
+          ]
+        },
+        "countedFires": 0,
+        "fieldCounts": {
+          "by-construction": 10
+        },
+        "k": 10,
+        "n": 10,
+        "need": 9,
+        "perRate": {
+          "1": [
+            9.118203401565552,
+            11.808310270309448
+          ],
+          "10": [
+            9.09001111984253,
+            12.471067667007446
+          ]
+        },
+        "ttdRange": [
+          9.09001111984253,
+          12.471067667007446
+        ],
+        "window": [
+          7.5,
+          12.5
+        ]
+      },
+      "result": "hit",
+      "rule": "hit iff >= 9/10 episodes have the removal fire in [7.5, 12.5] s in either field; the field is reported (expected: by-construction, counted 0/10)"
+    },
+    {
+      "claim": "Coordinator on the on-path control: the registry removal line for auth fires 7.5-12.5 s after the freeze command in >= 9/10 episodes, both rates, by-construction field.",
+      "id": "TSR-L2a",
+      "note": "",
+      "numbers": {
+        "byConstructionFires": 10,
+        "byRate": {
+          "1": [
+            9.858073234558105,
+            12.191408634185791
+          ],
+          "10": [
+            10.015746831893921,
+            11.982378005981445
+          ]
+        },
+        "countedFires": 0,
+        "k": 10,
+        "n": 10,
+        "need": 9,
+        "ttdRange": [
+          9.858073234558105,
+          12.191408634185791
+        ]
+      },
+      "result": "hit",
+      "rule": "hit iff >= 9/10 auth-freeze episodes have a coordinator fire in [7.5, 12.5] s in either field"
+    },
+    {
+      "claim": "Own silence, declared form T-L1 (recommender cgroup CPU down-fire < 5 s in >= 9/10) is expected to MISS again: <= 1 of 10 episodes with an own earliest fire < 5 s (r1: 0/10).",
+      "id": "TSR-L1",
+      "note": "",
+      "numbers": {
+        "ceiling": 1,
+        "episodesCpuDownBelow5s_T-L1_k": 0,
+        "n": 10,
+        "ownLaneEarliestBelow5s_crossCheck": 1
+      },
+      "result": "hit",
+      "rule": "hit (of this prediction) iff the count of episodes with own earliest fire < 5 s is <= 1 of 10"
+    },
+    {
+      "claim": "Own lane by rate: at rate 10 an own fire (counted `median`/`run3` of sys_io / sys_psi_cpu) in [12, 18] s in >= 3/5 episodes; at rate 1 own fires in <= 1/5 episodes.",
+      "id": "TSR-L1b",
+      "note": "",
+      "numbers": {
+        "ownFiringSensorRulePairs(all rates, counted fires)": [
+          "metric:recommender:sys_io/median",
+          "metric:recommender:sys_memory/median",
+          "metric:recommender:sys_memory/run3",
+          "metric:recommender:sys_memory/spike"
+        ],
+        "rate1": {
+          "ceiling": 1,
+          "episodesWithOwnFire": 5,
+          "n": 5,
+          "ownTtdAny": [
+            14.472641468048096,
+            14.128252267837524,
+            14.721235513687134,
+            4.152919054031372,
+            14.966671228408813
+          ]
+        },
+        "rate10": {
+          "inBand12to18s": 5,
+          "n": 5,
+          "need": 3,
+          "ownTtdAny": [
+            14.877506732940674,
+            14.841520309448242,
+            14.927413940429688,
+            14.92274022102356,
+            14.91939401626587
+          ]
+        }
+      },
+      "result": "miss",
+      "rule": "hit iff both clauses hold (any field)"
+    },
+    {
+      "claim": "Own silence of the on-path control: the auth own lane detects 10/10 episodes, all < 1.0 s at rate 10 and all < 2.5 s at rate 1.",
+      "id": "TSR-L1c",
+      "note": "",
+      "numbers": {
+        "counted": {
+          "rate1": [
+            14.557251691818237,
+            14.345168590545654,
+            14.778738737106323,
+            14.740113496780396,
+            13.962405681610107
+          ],
+          "rate10": [
+            4.893861293792725,
+            4.9079670906066895,
+            4.923009872436523,
+            4.863541603088379,
+            4.918952941894531
+          ]
+        },
+        "detected": 10,
+        "n": 10,
+        "rate1": {
+          "limit": 2.5,
+          "max": 1.536977767944336,
+          "ttdAny": [
+            1.1202828884124756,
+            0.9227383136749268,
+            1.3568236827850342,
+            1.3134379386901855,
+            1.536977767944336
+          ]
+        },
+        "rate10": {
+          "limit": 1.0,
+          "max": 0.45879459381103516,
+          "ttdAny": [
+            0.4388859272003174,
+            0.4537477493286133,
+            0.45810842514038086,
+            0.3991425037384033,
+            0.45879459381103516
+          ]
+        }
+      },
+      "result": "hit",
+      "rule": "hit iff 10/10 detected, max(rate 10) < 1.0 s and max(rate 1) < 2.5 s (any field). Thresholds: pooled maxima 0.52 s (rate 10, n 7) and 1.66 s (rate 1, n 7); rate 10 = about 2x the pooled maximum, rate 1 adds one 1 s inter-arrival to it."
+    },
+    {
+      "claim": "The pause stays off the login route: ok share >= 95 % in >= 9/10 episodes (r1: 10/10, share 1.0) and at most 2 of 10 episodes with a counted ledger fire (r1: 1/10, a spike at 5.07 s). The declared T-OFF clause 'no counted ledger fire' is not predicted to hold in every episode.",
+      "id": "TSR-OFF",
+      "note": "",
+      "numbers": {
+        "declaredT-OFF_noCountedLedgerFireClause": false,
+        "declaredT-OFF_result": "miss",
+        "episodesWithCountedLedgerFire": {
+          "ceiling": 2,
+          "k": 1,
+          "n": 10
+        },
+        "episodesWithCountedLedgerFire_detail": [
+          {
+            "block": 3,
+            "cell": "runs/recommender-pause-effect/b03-03-full",
+            "fires": [
+              {
+                "bcFlags": [],
+                "counts": true,
+                "rule": "spike",
+                "sensor": "ledger:webui:login-only-v1",
+                "ttd": 27.86002754792571
+              }
+            ],
+            "rate": 1.0
+          }
+        ],
+        "okShareEpisodes": {
+          "k": 10,
+          "minShare": 0.95,
+          "n": 10,
+          "need": 9
+        }
+      },
+      "result": "hit",
+      "rule": "hit iff both clauses hold; the declared T-OFF itself is scored by the post hoc script as before. Threshold justification: r1 spike rule honest count 1 in 0.25 h at rate 10 gives about 0.07 expected per 60 s hold, 0.33 over 5 rate-10 episodes; P(>= 3 in 10) is below 1 % on that rate, so 2 is the stated ceiling."
+    },
+    {
+      "claim": "Webui discovery line: the counted fire of `log:webui:d4d75ec135e6` (Ribbon 'current list of Servers=[]') occurs in >= 9/10 recommender-pause episodes, 9.0-15.0 s after onset, 0.5-2.5 s after the registry removal. Not predicted for r1; found in review, so this is its first prediction before data.",
+      "id": "TSR-W",
+      "note": "",
+      "numbers": {
+        "afterRemovalRange": [
+          0.9423379898071289,
+          2.050189256668091
+        ],
+        "episodes": [
+          {
+            "afterRemovalS": 1.5038254261016846,
+            "block": 1,
+            "cell": "runs/recommender-pause-effect/b01-06-full",
+            "counted": true,
+            "rate": 10.0,
+            "ttd": 13.97489309310913
+          },
+          {
+            "afterRemovalS": 2.050189256668091,
+            "block": 2,
+            "cell": "runs/recommender-pause-effect/b02-03-full",
+            "counted": true,
+            "rate": 10.0,
+            "ttd": 11.328682899475098
+          },
+          {
+            "afterRemovalS": 1.4668400287628174,
+            "block": 3,
+            "cell": "runs/recommender-pause-effect/b03-06-full",
+            "counted": true,
+            "rate": 10.0,
+            "ttd": 10.946966886520386
+          },
+          {
+            "afterRemovalS": 1.259444236755371,
+            "block": 4,
+            "cell": "runs/recommender-pause-effect/b04-06-full",
+            "counted": true,
+            "rate": 10.0,
+            "ttd": 10.3494553565979
+          },
+          {
+            "afterRemovalS": 0.946044921875,
+            "block": 5,
+            "cell": "runs/recommender-pause-effect/b05-05-full",
+            "counted": true,
+            "rate": 10.0,
+            "ttd": 11.345354318618774
+          },
+          {
+            "afterRemovalS": 1.3710606098175049,
+            "block": 1,
+            "cell": "runs/recommender-pause-effect/b01-02-full",
+            "counted": true,
+            "rate": 1.0,
+            "ttd": 13.130501747131348
+          },
+          {
+            "afterRemovalS": 1.6831212043762207,
+            "block": 2,
+            "cell": "runs/recommender-pause-effect/b02-02-full",
+            "counted": true,
+            "rate": 1.0,
+            "ttd": 10.951574563980103
+          },
+          {
+            "afterRemovalS": 0.9423379898071289,
+            "block": 3,
+            "cell": "runs/recommender-pause-effect/b03-03-full",
+            "counted": true,
+            "rate": 1.0,
+            "ttd": 10.06054139137268
+          },
+          {
+            "afterRemovalS": 1.4799530506134033,
+            "block": 4,
+            "cell": "runs/recommender-pause-effect/b04-02-full",
+            "counted": true,
+            "rate": 1.0,
+            "ttd": 13.288263320922852
+          },
+          {
+            "afterRemovalS": 0.9843230247497559,
+            "block": 5,
+            "cell": "runs/recommender-pause-effect/b05-03-full",
+            "counted": true,
+            "rate": 1.0,
+            "ttd": 11.32062816619873
+          }
+        ],
+        "idInReadout": true,
+        "k": 10,
+        "n": 10,
+        "need": 9,
+        "ttdRange": [
+          10.06054139137268,
+          13.97489309310913
+        ],
+        "window": [
+          9.0,
+          15.0
+        ]
+      },
+      "result": "hit",
+      "rule": "hit iff >= 9/10 episodes have that sensor id as a counted fire in [9.0, 15.0] s; `\u2014` if the id is absent from this run's ground set (template hash differs)"
+    },
+    {
+      "claim": "On-path control: auth-freeze P1 holds in >= 9/10 episodes (r1: 10/10).",
+      "id": "TSR-C",
+      "note": "",
+      "numbers": {
+        "holds": true,
+        "k": 10,
+        "n": 10,
+        "perRate": {
+          "0.05": [
+            0,
+            0
+          ],
+          "0.2": [
+            0,
+            0
+          ],
+          "1": [
+            5,
+            5
+          ],
+          "10": [
+            5,
+            5
+          ]
+        }
+      },
+      "result": "hit",
+      "rule": "hit iff predictions.P1 holds with k >= 9 of n = 10"
+    },
+    {
+      "claim": "Own-silence traffic dependence: median own earliest fire at rate 10 <= 0.5 x median at rate 1, and max(rate 10) < min(rate 1) over the 5 + 5 auth-freeze episodes.",
+      "id": "TSR-D1",
+      "note": "",
+      "numbers": {
+        "max10": 0.45879459381103516,
+        "median1": 1.3134379386901855,
+        "median10": 0.4537477493286133,
+        "min1": 0.9227383136749268,
+        "ratio": 0.34546569423836593,
+        "ttd1": [
+          1.1202828884124756,
+          0.9227383136749268,
+          1.3568236827850342,
+          1.3134379386901855,
+          1.536977767944336
+        ],
+        "ttd10": [
+          0.4388859272003174,
+          0.4537477493286133,
+          0.45810842514038086,
+          0.3991425037384033,
+          0.45879459381103516
+        ]
+      },
+      "result": "hit",
+      "rule": "hit iff both hold. Threshold 0.5: pooled ratio 0.32 (0.47/1.49 = 0.32, POOLED.md:204; per campaign B 0.48/1.50 = 0.32 at :143-144, C 0.45/1.49 = 0.30 at :151-152); ranges disjoint in the pool (0.45-0.52 vs 0.93-1.66)."
+    },
+    {
+      "claim": "Coordinator times do not depend on rate: |median(rate 10) - median(rate 1)| <= 2.5 s and the two ranges overlap, separately for auth-freeze and recommender-pause (registry removal, either field).",
+      "id": "TSR-D2",
+      "note": "",
+      "numbers": {
+        "auth-freeze": {
+          "absDiff": 0.1440296173095703,
+          "median1": 9.969064235687256,
+          "median10": 10.113093852996826,
+          "ok": true,
+          "range1": [
+            9.858073234558105,
+            12.191408634185791
+          ],
+          "range10": [
+            10.015746831893921,
+            11.982378005981445
+          ],
+          "rangesOverlap": true
+        },
+        "recommender-pause": {
+          "absDiff": 0.8561782836914062,
+          "median1": 10.336305141448975,
+          "median10": 9.480126857757568,
+          "ok": true,
+          "range1": [
+            9.118203401565552,
+            11.808310270309448
+          ],
+          "range10": [
+            9.09001111984253,
+            12.471067667007446
+          ],
+          "rangesOverlap": true
+        }
+      },
+      "result": "hit",
+      "rule": "hit iff both clauses hold for both regimes. Threshold 2.5 s = one registry heartbeat / cleanup period (declaration basis); observed differences: auth pooled 1.21 s (10.20 vs 11.41, rho 0.07), recommender r1 0.54 s (9.70 vs 10.24)."
+    },
+    {
+      "claim": "Ledger traffic dependence on the on-path control: median ledger earliest fire at rate 10 <= 0.5 x median at rate 1 (pooled 0.51 / 1.61 = 0.32).",
+      "id": "TSR-D3",
+      "note": "",
+      "numbers": {
+        "episodesDetected": {
+          "rate1": 5,
+          "rate10": 5
+        },
+        "median1": 1.395432754419744,
+        "median10": 0.4999300967901945,
+        "note": "all 10 episodes detected",
+        "ratio": 0.3582616899358063,
+        "ttd1": [
+          1.2033298993483186,
+          1.0115733789280057,
+          1.4442378310486674,
+          1.395432754419744,
+          1.6269509987905622
+        ],
+        "ttd10": [
+          0.48366932943463326,
+          0.4999300967901945,
+          0.5018071308732033,
+          0.44167095609009266,
+          0.5087639931589365
+        ]
+      },
+      "result": "hit",
+      "rule": "hit iff ratio <= 0.5"
+    },
+    {
+      "claim": "Ontology answers for (teastore, pause, recommender), copied exactly from run2-20261014 PREDICTIONS.json row 13 (source label `TeaStore off-path`).",
+      "id": "TSR-ONT-recommender",
+      "note": "POST HOC label as in the prediction",
+      "numbers": {
+        "expected": "Same as the prior comparison: coordinator lane `no` and class `no-liveness-check` disagree with a measured registry-removal fire in 10/10 (by-construction field), own lane `no` disagrees with 5/10 own fires; entry service reached `yes` agrees.",
+        "items": [
+          {
+            "item": "lane:own",
+            "measured": {
+              "any": 10,
+              "counted": 10,
+              "episodes": 10,
+              "range": [
+                4.152919054031372,
+                14.966671228408813
+              ]
+            },
+            "predicted": false,
+            "verdict": "disagree"
+          },
+          {
+            "item": "lane:coordinator",
+            "measured": {
+              "any": 10,
+              "counted": 0,
+              "episodes": 10,
+              "range": [
+                9.09001111984253,
+                12.471067667007446
+              ]
+            },
+            "predicted": false,
+            "verdict": "disagree"
+          },
+          {
+            "item": "lane:lag",
+            "measured": null,
+            "predicted": false,
+            "verdict": "not comparable"
+          },
+          {
+            "item": "CQ-C1 class",
+            "measured": {
+              "classes": {
+                "d": 10
+              },
+              "mapped": {
+                "tracked": 10
+              }
+            },
+            "predicted": "no-liveness-check",
+            "verdict": "disagree"
+          },
+          {
+            "item": "CQ-L2 window",
+            "measured": [
+              9.09001111984253,
+              12.471067667007446
+            ],
+            "predicted": null,
+            "verdict": "not predicted"
+          },
+          {
+            "item": "CQ-B1 entry reached (proxy: ledger lane)",
+            "measured": {
+              "any": 1,
+              "counted": 1,
+              "episodes": 10,
+              "range": [
+                27.86002754792571,
+                27.86002754792571
+              ]
+            },
+            "predicted": true,
+            "verdict": "agree"
+          }
+        ],
+        "priorComparisonVerdicts": {
+          "CQ-B1 entry reached": "agree",
+          "CQ-C1 class": "disagree",
+          "CQ-L2 window": "not predicted",
+          "lane:coordinator": "disagree",
+          "lane:lag": "not comparable",
+          "lane:own": "disagree"
+        }
+      },
+      "result": "verdicts (ontology rows are agree/disagree items, not hit/miss)",
+      "rule": "Scored with the rules of research/ontology/compare.py (docstring, lines 1-24): each lane = detected in >= 1 episode of the row, any field (counted field reported beside it), measured lane not collected -> not comparable; CQ-C1 class by the measured coordinator class map; CQ-L2 window agree iff the measured coordinator range lies inside [low, high], partial if it overlaps, disagree otherwise; CQ-B1 entry-service-reached against the request-ledger lane as a proxy. Each item is scored separately; no item is edited after reading."
+    },
+    {
+      "claim": "Ontology answers for (teastore, pause, auth), copied exactly from run2-20261014 PREDICTIONS.json row 14 (source label `TeaStore off-path`).",
+      "id": "TSR-ONT-auth",
+      "note": "POST HOC label as in the prediction",
+      "numbers": {
+        "expected": "Prior comparison: not comparable on lanes (own / coordinator not collected in the earlier off-path scoring); the pooled TeaStore readouts show a registry-removal fire in 28/28 auth-freeze episodes (by-construction) against the predicted coordinator lane `no`.",
+        "items": [
+          {
+            "item": "lane:own",
+            "measured": {
+              "any": 10,
+              "counted": 10,
+              "episodes": 10,
+              "range": [
+                0.3991425037384033,
+                1.536977767944336
+              ]
+            },
+            "predicted": false,
+            "verdict": "disagree"
+          },
+          {
+            "item": "lane:coordinator",
+            "measured": {
+              "any": 10,
+              "counted": 0,
+              "episodes": 10,
+              "range": [
+                9.858073234558105,
+                12.191408634185791
+              ]
+            },
+            "predicted": false,
+            "verdict": "disagree"
+          },
+          {
+            "item": "lane:lag",
+            "measured": null,
+            "predicted": false,
+            "verdict": "not comparable"
+          },
+          {
+            "item": "CQ-C1 class",
+            "measured": {
+              "classes": {
+                "d": 10
+              },
+              "mapped": {
+                "tracked": 10
+              }
+            },
+            "predicted": "no-liveness-check",
+            "verdict": "disagree"
+          },
+          {
+            "item": "CQ-L2 window",
+            "measured": [
+              9.858073234558105,
+              12.191408634185791
+            ],
+            "predicted": null,
+            "verdict": "not predicted"
+          },
+          {
+            "item": "CQ-B1 entry reached (proxy: ledger lane)",
+            "measured": {
+              "any": 10,
+              "counted": 0,
+              "episodes": 10,
+              "range": [
+                0.44167095609009266,
+                1.6269509987905622
+              ]
+            },
+            "predicted": true,
+            "verdict": "agree"
+          }
+        ],
+        "priorComparisonVerdicts": {
+          "CQ-B1 entry reached": "agree",
+          "CQ-C1 class": "not comparable",
+          "CQ-L2 window": "not comparable",
+          "lane:coordinator": "not comparable",
+          "lane:lag": "not comparable",
+          "lane:own": "not comparable"
+        }
+      },
+      "result": "verdicts (ontology rows are agree/disagree items, not hit/miss)",
+      "rule": "Scored with the rules of research/ontology/compare.py (docstring, lines 1-24): each lane = detected in >= 1 episode of the row, any field (counted field reported beside it), measured lane not collected -> not comparable; CQ-C1 class by the measured coordinator class map; CQ-L2 window agree iff the measured coordinator range lies inside [low, high], partial if it overlaps, disagree otherwise; CQ-B1 entry-service-reached against the request-ledger lane as a proxy. Each item is scored separately; no item is edited after reading."
+    }
+  ]
+}

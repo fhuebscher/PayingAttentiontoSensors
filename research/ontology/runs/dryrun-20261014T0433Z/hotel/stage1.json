@@ -1,0 +1,660 @@
+{
+ "schemaVersion": 1,
+ "sut": "hotel",
+ "extraction": {
+  "stage": 1,
+  "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+  "tool": "research/ontology/extract_stage1.py",
+  "services": [
+   "search"
+  ],
+  "rules": "extract_stage1.py D1-D5, inputs.py R1-R7",
+  "astStats": {
+   "filesParsed": 8,
+   "filesSkippedByExtension": {
+    "Dockerfile": 1,
+    ".json": 1,
+    ".mod": 1,
+    ".proto": 3
+   },
+   "languages": [
+    "go"
+   ],
+   "callSites": 20,
+   "byCategory": {
+    "config": 6,
+    "grpc": 8,
+    "registry": 6
+   },
+   "grammarCache": "/Users/fhuebscher/Library/Caches/tree-sitter-language-pack/v1.22.1/libs"
+  },
+  "observations": [
+   {
+    "kind": "env-unresolved",
+    "service": "search",
+    "value": "GC",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 67,
+    "quotedToken": "- GC"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "search",
+    "value": "LOG_LEVEL",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 69,
+    "quotedToken": "- LOG_LEVEL"
+   },
+   {
+    "kind": "env-unresolved",
+    "service": "search",
+    "value": "TLS",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 66,
+    "quotedToken": "- TLS"
+   },
+   {
+    "kind": "depends_on",
+    "service": "search",
+    "value": {
+     "service": "consul",
+     "condition": null
+    },
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 74,
+    "quotedToken": "- consul"
+   },
+   {
+    "kind": "image",
+    "service": "search",
+    "value": "obsplacement-hotel-reservation:6ecb09706140",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 13,
+    "quotedToken": "image: ${HR_APP_IMAGE:-obsplacement-hotel-reservation:6ecb09706140}"
+   },
+   {
+    "kind": "build_context",
+    "service": "search",
+    "value": ".",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 70,
+    "quotedToken": "build: ."
+   },
+   {
+    "kind": "entrypoint",
+    "service": "search",
+    "value": "search",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 72,
+    "quotedToken": "entrypoint: search"
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "in-tree:hotelReservation/registry",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "go",
+    "value": "registry.NewClient",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/cmd/search/main.go",
+    "line": 55,
+    "quotedToken": "registry.NewClient",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "google.golang.org/grpc",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "grpc.Dial",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/dialer/dialer.go",
+    "line": 55,
+    "quotedToken": "grpc.Dial",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "github.com/hashicorp/consul/api",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "consul.DefaultConfig",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 14,
+    "quotedToken": "consul.DefaultConfig",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "github.com/hashicorp/consul/api",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "consul.NewClient",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 17,
+    "quotedToken": "consul.NewClient",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "os.Getenv",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 55,
+    "quotedToken": "os.Getenv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"DSB_GRPC_NETWORK\"",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/registry/registry.go",
+      "line": 55,
+      "quotedToken": "\"DSB_GRPC_NETWORK\""
+     }
+    ],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "github.com/hashicorp/consul/api",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "consul.AgentServiceRegistration",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 85,
+    "quotedToken": "consul.AgentServiceRegistration",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "github.com/hashicorp/consul/api",
+      "match": "method"
+     }
+    ],
+    "language": "go",
+    "value": "c.Agent().ServiceRegister",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 92,
+    "quotedToken": "c.Agent().ServiceRegister",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "registry",
+    "matches": [
+     {
+      "category": "registry",
+      "library": "github.com/hashicorp/consul/api",
+      "match": "method"
+     }
+    ],
+    "language": "go",
+    "value": "c.Agent().ServiceDeregister",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 97,
+    "quotedToken": "c.Agent().ServiceDeregister",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "generated-stub:hotelReservation/services/geo/proto",
+      "match": "generated-stub"
+     }
+    ],
+    "language": "go",
+    "value": "geo.NewGeoClient",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 101,
+    "quotedToken": "geo.NewGeoClient",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "generated-stub:hotelReservation/services/rate/proto",
+      "match": "generated-stub"
+     }
+    ],
+    "language": "go",
+    "value": "rate.NewRateClient",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 110,
+    "quotedToken": "rate.NewRateClient",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "in-tree:hotelReservation/dialer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "go",
+    "value": "dialer.Dial",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 116,
+    "quotedToken": "dialer.Dial",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"consul://%s/%s.%s\"",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/search/server.go",
+      "line": 117,
+      "quotedToken": "\"consul://%s/%s.%s\""
+     }
+    ],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "in-tree:hotelReservation/dialer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "go",
+    "value": "dialer.WithTracer",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 118,
+    "quotedToken": "dialer.WithTracer",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "in-tree:hotelReservation/dialer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "go",
+    "value": "dialer.Dial",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 120,
+    "quotedToken": "dialer.Dial",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"consul://%s/%s\"",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/search/server.go",
+      "line": 121,
+      "quotedToken": "\"consul://%s/%s\""
+     }
+    ],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "in-tree:hotelReservation/dialer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "go",
+    "value": "dialer.WithTracer",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 122,
+    "quotedToken": "dialer.WithTracer",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "grpc",
+    "matches": [
+     {
+      "category": "grpc",
+      "library": "in-tree:hotelReservation/dialer",
+      "match": "via-wrapper"
+     }
+    ],
+    "language": "go",
+    "value": "dialer.WithBalancer",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/search/server.go",
+    "line": 123,
+    "quotedToken": "dialer.WithBalancer",
+    "literals": [],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "os.LookupEnv",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tls/options.go",
+    "line": 57,
+    "quotedToken": "os.LookupEnv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"TLS\"",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/tls/options.go",
+      "line": 57,
+      "quotedToken": "\"TLS\""
+     }
+    ],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "os.LookupEnv",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tracing/tracer.go",
+    "line": 20,
+    "quotedToken": "os.LookupEnv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"JAEGER_SAMPLE_RATIO\"",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/tracing/tracer.go",
+      "line": 20,
+      "quotedToken": "\"JAEGER_SAMPLE_RATIO\""
+     }
+    ],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "os.LookupEnv",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tune/setting.go",
+    "line": 24,
+    "quotedToken": "os.LookupEnv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"GC\"",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/tune/setting.go",
+      "line": 24,
+      "quotedToken": "\"GC\""
+     }
+    ],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "os.LookupEnv",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tune/setting.go",
+    "line": 34,
+    "quotedToken": "os.LookupEnv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"LOG_LEVEL\"",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/tune/setting.go",
+      "line": 34,
+      "quotedToken": "\"LOG_LEVEL\""
+     }
+    ],
+    "services": [
+     "search"
+    ]
+   },
+   {
+    "kind": "ast-call-site",
+    "category": "config",
+    "matches": [
+     {
+      "category": "config",
+      "library": "os",
+      "match": "qualified"
+     }
+    ],
+    "language": "go",
+    "value": "os.LookupEnv",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/tune/setting.go",
+    "line": 57,
+    "quotedToken": "os.LookupEnv",
+    "literals": [
+     {
+      "kind": "literal",
+      "value": "\"MEMC_TIMEOUT\"",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/tune/setting.go",
+      "line": 57,
+      "quotedToken": "\"MEMC_TIMEOUT\""
+     }
+    ],
+    "services": [
+     "search"
+    ]
+   }
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+   "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-hotel-protocol",
+   "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67"
+  }
+ },
+ "architecture": {
+  "name": {
+   "value": "hotel",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/docker-compose.yml",
+   "line": 3,
+   "quotedToken": "services:",
+   "note": "architecture = the services of the compose files upstream:hotelReservation/docker-compose.yml, harness:modules/hotel-reservation/deployment/compose.observability-placement.yml"
+  }
+ },
+ "host": {
+  "id": {
+   "value": "fb14srv4",
+   "repo": "obsplacement",
+   "sourceFile": "research/host-topology.json",
+   "line": 184,
+   "quotedToken": "\"hostId\": \"fb14srv4\"",
+   "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "search",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 61,
+    "quotedToken": "search:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/Dockerfile",
+    "line": 1,
+    "quotedToken": "golang:1.21",
+    "note": "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21"
+   },
+   "container": {
+    "value": "search",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 61,
+    "quotedToken": "search:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-search-<n>"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 77,
+    "quotedToken": "replicas: 1"
+   }
+  }
+ ]
+}

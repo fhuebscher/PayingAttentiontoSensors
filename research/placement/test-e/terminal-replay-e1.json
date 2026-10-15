@@ -1,0 +1,5241 @@
+{
+  "campaignId": "otel-offpath-e-v1",
+  "canonical": false,
+  "cells": [
+    {
+      "applicationLog": {
+        "lines": 17654,
+        "stampedLines": 17654
+      },
+      "applicationWitnessSha256": "e42624a64ea1c7a9bb2ba8ffdaf64d82b4a6ebfb1b2efc3a54bc15c2bfe4c6c7",
+      "cleanupSha256": "0c26d50ea6869032037c05ccca5ec59ebe2ff2d18f055494380e4854472089fb",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791863014.5206487,
+        "windowStartEpoch": 1791863064.6389048
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "409c3a5e0dec9717f5a72209355efe8d1e5d0d64636e2debaac63cb3309a3182"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "409c3a5e0dec9717f5a72209355efe8d1e5d0d64636e2debaac63cb3309a3182",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "315cfd56c76d564fd2ee6ae77bc0069161014bffa887b5712eaad61c30b14d5d"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "315cfd56c76d564fd2ee6ae77bc0069161014bffa887b5712eaad61c30b14d5d",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "65ed2bbe2ce5ead6f55b9430b94379b04c7bebed233d91bc869f579ef9abea3c"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "65ed2bbe2ce5ead6f55b9430b94379b04c7bebed233d91bc869f579ef9abea3c",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "post-readiness": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "pre-fault": {
+            "fullPath": 4500,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 4500,
+            "successful": 4500
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": null,
+          "blockingWindows": [],
+          "faultAndDrainWindowSeconds": null,
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": null,
+          "successful": 4500,
+          "windows": {
+            "whole-measurement": {
+              "complete": 4500,
+              "incomplete": 0,
+              "incompleteByMissingService": {
+                "adservice": 0,
+                "cartservice": 0,
+                "checkoutservice": 0,
+                "currencyservice": 0,
+                "emailservice": 0,
+                "frontend": 0,
+                "frontendproxy": 0,
+                "paymentservice": 0,
+                "productcatalogservice": 0,
+                "quoteservice": 0,
+                "recommendationservice": 0,
+                "shippingservice": 0
+              },
+              "incompleteRequestTokens": [],
+              "incompleteRequests": [],
+              "incompleteRuns": [],
+              "requests": 4500,
+              "successful": 4500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": null,
+      "faultGroundTruthSha256": null,
+      "manifestSha256": "452c8689f4be8b00cc13aa3ca940dff41ecbaefcc9b01f1a8296e24be7aa1256",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "74de5ea9088fcc49b3e4480e9aa493eb52f84ded3d107c884d399e8b1cd59565",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": true,
+        "valid": true
+      },
+      "protocolGatesSha256": "dbee1c3af7474b1503d0c28c8c91339801a79440a76e38d6b79acf042ac7ab2f",
+      "requestLedgerSha256": "4abf5e02bb62c2f25545d66a3bd6fbc398ada8dbf85d18ce127a87f1e551a226",
+      "resourceEvidenceSha256": "c67816a63dd6d163405b23078fbecb1e77db05ce6bb0498d9fb8cf57a0f0ed35",
+      "runId": "228c02a78532d290528c5772",
+      "runKey": {
+        "attempt": 1,
+        "block": 1,
+        "posture": "full",
+        "regime": "no-fault-calibration",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "4b51ec203bf5800342174a1c2c098aad02b5bd70508dd32aa91b813387a84926",
+      "traceCompletenessSha256": "a94ddf0c0c36de6be3003eae59e52af0d3c5d62423a8fe2ab209c499d5984962",
+      "traceCorrelationSha256": "18a55bf16a3c1a30a21e2af23b2835e34f951b7c64f32dfa37971edacf0dc546"
+    },
+    {
+      "applicationLog": {
+        "lines": 17736,
+        "stampedLines": 17736
+      },
+      "applicationWitnessSha256": "50fab0ec7644e47f5f43a5c6e008b25b884deb254064202406186c50fd9c4677",
+      "cleanupSha256": "117cc79b9ab6b20029efdd31bdc2b946427ebc6adff9eaefc7df3c866faa15a4",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791863336.1049373,
+        "windowStartEpoch": 1791863385.966684
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "71f7e456d0d8d17bc7819b4dc35e66339db6ddea01a1354d7479e1d5839c585a"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "71f7e456d0d8d17bc7819b4dc35e66339db6ddea01a1354d7479e1d5839c585a",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "d8d71fa94b2ff764ff4fc01a06fde8a0cc4362c6b13df34d1ebdb60b2ced6448"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "d8d71fa94b2ff764ff4fc01a06fde8a0cc4362c6b13df34d1ebdb60b2ced6448",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "730e10a3cc54f9defc2642cce8dbf687ee0932925bd2967a784075e9a712015b"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "730e10a3cc54f9defc2642cce8dbf687ee0932925bd2967a784075e9a712015b",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1757,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1757,
+            "successful": 1757
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.016393430531025,
+            137.28691110759974
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2568,
+          "windows": {
+            "after-drain": {
+              "complete": 1068,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1068,
+              "successful": 1068,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1932,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1932,
+              "successful": 1932,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.016393430531025,
+            60.23903727531433
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.23903727531433,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.27567458152771
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.016393430531025,
+          "commandReturnedOffsetSeconds": 60.246065482497215,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.28839249163866
+        },
+        "holdSeconds": 60.05597164481878,
+        "onsetLatenessSeconds": 0.002956430531021681,
+        "onsetSeconds": 60.016393430531025,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.28271552175283,
+            120.28690727800131
+          ]
+        ],
+        "scenario": "fraud-pause"
+      },
+      "faultGroundTruthSha256": "aace84ee3b15bbc14ce1567d2fc4d00c772db281377d82d5a240f3417bb3be88",
+      "manifestSha256": "e0a055350e9809b5d89c47ddaf805c9724c2f35c48c6ef704e1723801f62b806",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "8cf37d02d9f2cb6a3ce715017a7a3d7f2b742bbd42bfdaf42a338536496f72f8",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "23b93194291734d423a0108cfd59c8fe31078dda0781c42998fdf803df93e671",
+      "requestLedgerSha256": "942f18db735b6cb91ba1937450c748f29637f035582d65e14afc80762577d982",
+      "resourceEvidenceSha256": "64eb5cd1b70e17b2c583288c8e979aad7cbed5c88b9c0c4e3f3241d51d064c7a",
+      "runId": "53fffae8935f25f7882d7bf8",
+      "runKey": {
+        "attempt": 1,
+        "block": 1,
+        "posture": "full",
+        "regime": "fraud-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "73ae3cd715a341ce3a3a6f705cf01feb81d72a00abd96abf74e99670701d1af0",
+      "traceCompletenessSha256": "f8dab8b489ed4ed551d3c538be4146574b2a4434887985918bed2b31190fbf6a",
+      "traceCorrelationSha256": "5a021350fc976aecfbade701cbc605cab7aeeeab003825f195778deb3b298312"
+    },
+    {
+      "applicationLog": {
+        "lines": 17666,
+        "stampedLines": 17666
+      },
+      "applicationWitnessSha256": "0ea11ccfad8f6d711b4e01516af799b6eb6b3672622258bd98ad153e3e1a3725",
+      "cleanupSha256": "c6a7eb68e6bf4816e8297be2b9ff1e52cf3161be5417a7249a83ea09ba923838",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791863665.4253833,
+        "windowStartEpoch": 1791863715.3715837
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "98b190e80ee2a324293ecccb069bc1539a558f01c5605ad6b4548cb130f570e5"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "98b190e80ee2a324293ecccb069bc1539a558f01c5605ad6b4548cb130f570e5",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "8ff39e19c22bfcdfefd27f7647ff43f70a85349647db83be08cc9a6e15f4c628"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "8ff39e19c22bfcdfefd27f7647ff43f70a85349647db83be08cc9a6e15f4c628",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "ac2e2b1509d367b530e0f3bbf06da879c79d45621698f4e6c3d3314b00efbf71"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "ac2e2b1509d367b530e0f3bbf06da879c79d45621698f4e6c3d3314b00efbf71",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1758,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1758,
+            "successful": 1758
+          },
+          "post-readiness": {
+            "fullPath": 1366,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1366,
+            "successful": 1366
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.035863660275936,
+            137.3414481729269
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2567,
+          "windows": {
+            "after-drain": {
+              "complete": 1066,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1066,
+              "successful": 1066,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1933,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1933,
+              "successful": 1933,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1501,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1501,
+              "successful": 1501,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.035863660275936,
+            60.24388790130615
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.24388790130615,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.31412100791931
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.035863660275936,
+          "commandReturnedOffsetSeconds": 60.24935272336006,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.285722963511944
+        },
+        "holdSeconds": 60.05962950736284,
+        "onsetLatenessSeconds": 0.0016526602759370235,
+        "onsetSeconds": 60.035863660275936,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.33699982613325,
+            120.3414426073432
+          ]
+        ],
+        "scenario": "accounting-pause"
+      },
+      "faultGroundTruthSha256": "7538d16886ab1a6395f070c0296e0c84076e475c46ee9f2e80c732c376d0e157",
+      "manifestSha256": "a26d8165711cfa96f841807af42e2fff4ea9c8e66ddef74afbd6ad05061b0427",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "57a6e98c13cd136343bddbee6a269ce1acbe0b2746c03ce67d89af2bdb850bdf",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "0928776ce85c677e794e2e23ed567727e2786ebf07e0d63ff45b218bb496c58b",
+      "requestLedgerSha256": "64a653e93a4987b8081a9c9ce2c2424d912b08734931541d4a7dfa60e9d4a8e6",
+      "resourceEvidenceSha256": "664ecb3f68f3e8046732d17e20f3cbf1e4199a35cc95b6222f4c00509faa9047",
+      "runId": "32d2e7db8ac2e7c24c84dd07",
+      "runKey": {
+        "attempt": 1,
+        "block": 1,
+        "posture": "full",
+        "regime": "accounting-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "42864235b0b307223a9312237993776daa39d4b8bc154901b4dd60b8391cb31d",
+      "traceCompletenessSha256": "f47df4fde279fd020c4bf33bdec163078dbb1a3ea9e5dde9e0dee0e12f74e22c",
+      "traceCorrelationSha256": "45c4ba908f3cf1cbc6e7eab6b0c4153561dfb74f70f0bcd8cc169fb0eb9fdae7"
+    },
+    {
+      "applicationLog": {
+        "lines": 15299,
+        "stampedLines": 15299
+      },
+      "applicationWitnessSha256": "3a1dc62bb3b0c5603516aa93fe2991bc4719fc20fca409b40a72688be70f545b",
+      "cleanupSha256": "92c02451db611c124435176425891d8de2f3b1a73326f56a070cb4ad44452670",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791863986.843441,
+        "windowStartEpoch": 1791864036.7961242
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "806a889372a0745b308cd1f7d43a32f50d99aa85fc3bfeb83a21201ac376a69e"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "806a889372a0745b308cd1f7d43a32f50d99aa85fc3bfeb83a21201ac376a69e",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "c3ee4ecdf299085a7e12f6f019b3c248cc2aef27410886a5466d07fd67aa8767"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "c3ee4ecdf299085a7e12f6f019b3c248cc2aef27410886a5466d07fd67aa8767",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "1318171277d50869cab91cde617c7d9b4b87cf0e84d5bf70cdbdb497681f5de3"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "1318171277d50869cab91cde617c7d9b4b87cf0e84d5bf70cdbdb497681f5de3",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 789,
+            "noTrace": 267,
+            "partialPath": 701,
+            "requests": 1757,
+            "successful": 282
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.03001746535301,
+            138.88300940394402
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 3,
+          "successful": 2528,
+          "windows": {
+            "after-drain": {
+              "complete": 1028,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1028,
+              "successful": 1028,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 494,
+              "incomplete": 3,
+              "incompleteRequestTokens": [
+                "opq-7d7973dd318ad54af03e131d",
+                "opq-bdf30eca2aec3a4dd45bf554",
+                "opq-404a6a0048f2190ab1eb9848"
+              ],
+              "requests": 1972,
+              "successful": 497,
+              "unsuccessful": 1475,
+              "unsuccessfulIncomplete": 965
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.03001746535301,
+            60.24082040786743
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.24082040786743,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.2974488735199
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.03001746535301,
+          "commandReturnedOffsetSeconds": 60.24634542316198,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.290014155209064
+        },
+        "holdSeconds": 60.05981583148241,
+        "onsetLatenessSeconds": 0.0030104653530145242,
+        "onsetSeconds": 60.03001746535301,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.30489628762007,
+            121.88299795240164
+          ]
+        ],
+        "scenario": "frontend-pause"
+      },
+      "faultGroundTruthSha256": "d54c3e331ec3037f826d36b5bb08ac2915fb3b44571970996101013df02e25ac",
+      "manifestSha256": "c2af6e097b9115a5806dd94e8057e73b84f240f425ee5363dff123daabe8350c",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "0e6044fa06c0fec340e08fad6dc800e664fe98c2e3ed0a57818a95a7f7119f15",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "9d8a2fa92190a7c9a7382661644577256ad400219bb378474106b18b1e546d5b",
+      "requestLedgerSha256": "c39721314f66dbf4871f27a304c4a4c9b3832c74340c5a81e4abe85b7601bace",
+      "resourceEvidenceSha256": "66b412160feed9f70fe55694d3801f2e36961148715550c08e537627dbf85ddd",
+      "runId": "beef5e77e6d80dd87c93d22f",
+      "runKey": {
+        "attempt": 1,
+        "block": 1,
+        "posture": "full",
+        "regime": "frontend-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "a6f661d33d5a8116e571cf5b7dfac990ab3d5ad7511e1f0b3d8d3eb36578f1e5",
+      "traceCompletenessSha256": "8efd95312708280ebb9b88be4f5584a43f28fe69f85bd4695573481ed106b7fc",
+      "traceCorrelationSha256": "6cba01e63e4f4afd1a16891a9cb3e3ef01d70568cc93d68f2bb043cfaebe1194"
+    },
+    {
+      "applicationLog": {
+        "lines": 17616,
+        "stampedLines": 17616
+      },
+      "applicationWitnessSha256": "bf5cb115186eb9026cfc1a3760f5bbcf445a9a2d8d0c8048617184678998618b",
+      "cleanupSha256": "422e72fba98b61ac8bce0fab0ff2561ab428868750819a4aa97fb9f9e55924dc",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791864305.3316317,
+        "windowStartEpoch": 1791864355.3783236
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "c8b4d8f8bfd8d055d4377da22178a075e4c7b315db30fafec12d8a2cfbd8c81a"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "c8b4d8f8bfd8d055d4377da22178a075e4c7b315db30fafec12d8a2cfbd8c81a",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "55e74b155857123f9da6b70db59047e4727d617c2fe7da2e9e0b5f0ac1abed68"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "55e74b155857123f9da6b70db59047e4727d617c2fe7da2e9e0b5f0ac1abed68",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "f2a68ba305ae49f01ee790ce91c9ed4e3b862d03174f6a11f0850962c99412ab"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "f2a68ba305ae49f01ee790ce91c9ed4e3b862d03174f6a11f0850962c99412ab",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "post-readiness": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "pre-fault": {
+            "fullPath": 4500,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 4500,
+            "successful": 4500
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": null,
+          "blockingWindows": [],
+          "faultAndDrainWindowSeconds": null,
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": null,
+          "successful": 4500,
+          "windows": {
+            "whole-measurement": {
+              "complete": 4500,
+              "incomplete": 0,
+              "incompleteByMissingService": {
+                "adservice": 0,
+                "cartservice": 0,
+                "checkoutservice": 0,
+                "currencyservice": 0,
+                "emailservice": 0,
+                "frontend": 0,
+                "frontendproxy": 0,
+                "paymentservice": 0,
+                "productcatalogservice": 0,
+                "quoteservice": 0,
+                "recommendationservice": 0,
+                "shippingservice": 0
+              },
+              "incompleteRequestTokens": [],
+              "incompleteRequests": [],
+              "incompleteRuns": [],
+              "requests": 4500,
+              "successful": 4500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": null,
+      "faultGroundTruthSha256": null,
+      "manifestSha256": "0c102d760fd2870ff6d41fa55abce816919d415c256c4b115440a96570c70bb0",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "5333b7b94c8b2d55aa5a39ff4d77dde03ccf3adbe07fcc205982c7eac32f9c21",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": true,
+        "valid": true
+      },
+      "protocolGatesSha256": "041975d580b4f745250ff305f914b472d3cc41a8f9c13bf1e1ef4c5bf7247edc",
+      "requestLedgerSha256": "0300e81c351ef8b5bcf87f69721998f9199de47807d482a1e9ed2fd159a86b1d",
+      "resourceEvidenceSha256": "ed567f463134848f066d1f70aee6c0c1fd18357cf511c0de2d87c06f621868dc",
+      "runId": "a558009b3aea7c1db0e4c5d0",
+      "runKey": {
+        "attempt": 1,
+        "block": 2,
+        "posture": "full",
+        "regime": "no-fault-calibration",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "e63399bb0a7fdf829bc93afcbaa44c1e7d01170e4250780f618090cf06cc4dbc",
+      "traceCompletenessSha256": "54f5bebc326d403b44df8c00495af55f040be23720b23204bbaef0abf7b11610",
+      "traceCorrelationSha256": "891f10cc32d51b7d79afeee7d630effb4019d912bb32af2de21baa57e38964a0"
+    },
+    {
+      "applicationLog": {
+        "lines": 17712,
+        "stampedLines": 17712
+      },
+      "applicationWitnessSha256": "8f3ec7460168cad55e936402e75cd603af6136d8c630f319a455fc25093e91af",
+      "cleanupSha256": "ff78db07cfaaf981a9efe7db1c6a496d6ae11759136a672dd191efab2f865c90",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791864627.186019,
+        "windowStartEpoch": 1791864677.0555058
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "22312910b06e6a0d6029426dab47b96420df619c5cb13f58177dcd66c8333e39"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "22312910b06e6a0d6029426dab47b96420df619c5cb13f58177dcd66c8333e39",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "c8087d39d092e7a7ef6588641e8eed18310630e140ebdb597019990ba52f47af"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "c8087d39d092e7a7ef6588641e8eed18310630e140ebdb597019990ba52f47af",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "07ae1f323444eb03d9c4110c3fec7876d2da58522572fc115b4cd3b2de686db3"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "07ae1f323444eb03d9c4110c3fec7876d2da58522572fc115b4cd3b2de686db3",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1757,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1757,
+            "successful": 1757
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.030514530837536,
+            137.32061563432217
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2568,
+          "windows": {
+            "after-drain": {
+              "complete": 1067,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1067,
+              "successful": 1067,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1932,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1932,
+              "successful": 1932,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1501,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1501,
+              "successful": 1501,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.030514530837536,
+            60.23378849029541
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.23378849029541,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.30914211273193
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.030514530837536,
+          "commandReturnedOffsetSeconds": 60.23992416262627,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.28255455195904
+        },
+        "holdSeconds": 60.05977946519852,
+        "onsetLatenessSeconds": 0.0021365308375393965,
+        "onsetSeconds": 60.030514530837536,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.3160474523902,
+            120.32060907036066
+          ]
+        ],
+        "scenario": "fraud-pause"
+      },
+      "faultGroundTruthSha256": "c150e00206d19845d58786bb79dee6b9dec093d84eff7a9fa1382c82e8cfe23e",
+      "manifestSha256": "0d4be6501970944dbf1f2b0bd5d00cb508205a49ff1ac8ffd756fa58efc71de0",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "967cf22de65029b86e580cbca0b4f3d30d2c7263d68a4649f8f713e80adca8b7",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "b63f4bb5d77d69a2d77236e4fea66cc2f216b40d66e1bc638b44dfd39237ef60",
+      "requestLedgerSha256": "1a4d1a232b771a801589e06e10880c03f19124246df7624d4796357eb0609d9e",
+      "resourceEvidenceSha256": "3fbd43b16127634a7b1f72085910fdad9f8fad13ee29a6d44da26ad08ec70849",
+      "runId": "661e38eca11e8cd714b057c0",
+      "runKey": {
+        "attempt": 1,
+        "block": 2,
+        "posture": "full",
+        "regime": "fraud-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "d29bf7dce06a5827301e052cb8a26e0f4ca9210941f77f1e6ba76d64c05ea51c",
+      "traceCompletenessSha256": "e2f6f91d14d41fbf4742540955529478b99c71ca0257cb08c4feddd9048aa512",
+      "traceCorrelationSha256": "bf14be30fa180a362aafb1571b481febe10932a405421a9988c5778bbbdceb6e"
+    },
+    {
+      "applicationLog": {
+        "lines": 17672,
+        "stampedLines": 17672
+      },
+      "applicationWitnessSha256": "8e38d17c5fad6c984d9722553d6e97c01a5e2a036f5bf37b532d4b82d25185f1",
+      "cleanupSha256": "3e00539cb8f61d9845be6540edeaff9cbf9db20f27a47bb965ec9565dea7240b",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791864948.5054948,
+        "windowStartEpoch": 1791864998.7849011
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "d92f774ced2252c04bd26e57277a4a8807819cf4173ae0e108949e1a97a3db03"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "d92f774ced2252c04bd26e57277a4a8807819cf4173ae0e108949e1a97a3db03",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "a33035575f5a82c0403683f8c428da0f0f75d9bfa2f827f32ad2bc8b01ee62f5"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "a33035575f5a82c0403683f8c428da0f0f75d9bfa2f827f32ad2bc8b01ee62f5",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "a9295f4740bbb669660cb61913e67357ff68226b1432ffab3f3621dac1f3f714"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "a9295f4740bbb669660cb61913e67357ff68226b1432ffab3f3621dac1f3f714",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1756,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1756,
+            "successful": 1756
+          },
+          "post-readiness": {
+            "fullPath": 1368,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1368,
+            "successful": 1368
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.00590334832668,
+            137.25660849362612
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2569,
+          "windows": {
+            "after-drain": {
+              "complete": 1069,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1069,
+              "successful": 1069,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1931,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1931,
+              "successful": 1931,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.00590334832668,
+            60.21867489814758
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.21867489814758,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.24493145942688
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.00590334832668,
+          "commandReturnedOffsetSeconds": 60.22582123428583,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.26214790344238
+        },
+        "holdSeconds": 60.05623147636652,
+        "onsetLatenessSeconds": 0.0029713483266817775,
+        "onsetSeconds": 60.00590334832668,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.25218676775694,
+            120.25660382956266
+          ]
+        ],
+        "scenario": "accounting-pause"
+      },
+      "faultGroundTruthSha256": "e0debccf88e086ab3e02bf9288e665a50d00b3a796a4cbf9f6b1bc8648b51974",
+      "manifestSha256": "0c3d929eff0dadf53ef32c2df92f727f9f4281d5d60db829353271ca44d16a37",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "0a2f17372e947c339aeb9b9c621c417654b7f7b18f9293d71f9cd12c5446afac",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "dd9d9fba65408e1d557c48bed70b7f4820e5812730c7a117cfd36955650589f4",
+      "requestLedgerSha256": "ca570cff24b0486e092b6d8c38a95c510a869e3b7e2f5d298bd14932052c4344",
+      "resourceEvidenceSha256": "5a02466dfa49825df609d97ae4430c0c9a2da898985f03d8800edb4bffb2856a",
+      "runId": "878d02a5ec7ccb964d928e60",
+      "runKey": {
+        "attempt": 1,
+        "block": 2,
+        "posture": "full",
+        "regime": "accounting-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "3cdce8b56eb5314da17477e29aab750d7bce41ce526e4aed7e50275f80fffe34",
+      "traceCompletenessSha256": "e72e109963df043366ce3c623dcba5936d0f90a1bba52795cd3d6886c6b6fac9",
+      "traceCorrelationSha256": "bea00f52cb465e968c3e54285eb177433b47f6f804868d0908c0e020161e48e5"
+    },
+    {
+      "applicationLog": {
+        "lines": 15106,
+        "stampedLines": 15106
+      },
+      "applicationWitnessSha256": "06b076cc4f8f92bc7c179a14aaf1061838d9bad869dbab0e112874b4bcacbb0f",
+      "cleanupSha256": "97d7012748f4e60b4b9c724e528d1363cb8fb5db1fb3c5eb6a0fb4d9af858225",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791865270.113668,
+        "windowStartEpoch": 1791865320.492262
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "cb4127b4c0f36a514acb6d2dd4080cd8ab6891f2f2bd2927de7ca6258212a55d"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "cb4127b4c0f36a514acb6d2dd4080cd8ab6891f2f2bd2927de7ca6258212a55d",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "ddc992e8dca8994317f6cffabb8e994a16d3b189d013cf8a50fb17bc2bc95d1f"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "ddc992e8dca8994317f6cffabb8e994a16d3b189d013cf8a50fb17bc2bc95d1f",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "22dc845a4865a9f6eaa9300082091118f8adc6e9ab40fb334a8164fb10c56424"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "22dc845a4865a9f6eaa9300082091118f8adc6e9ab40fb334a8164fb10c56424",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 791,
+            "noTrace": 281,
+            "partialPath": 685,
+            "requests": 1757,
+            "successful": 281
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.03881724178791,
+            138.89712865650654
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 1,
+          "successful": 2529,
+          "windows": {
+            "after-drain": {
+              "complete": 1028,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1028,
+              "successful": 1028,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 494,
+              "incomplete": 1,
+              "incompleteRequestTokens": [
+                "opq-6eb7f28b34c3fcc90bb713e8"
+              ],
+              "requests": 1971,
+              "successful": 495,
+              "unsuccessful": 1476,
+              "unsuccessfulIncomplete": 965
+            },
+            "pre-onset": {
+              "complete": 1501,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1501,
+              "successful": 1501,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.03881724178791,
+            60.23122239112854
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.23122239112854,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.297367811203
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.03881724178791,
+          "commandReturnedOffsetSeconds": 60.23801900446415,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.28082227706909
+        },
+        "holdSeconds": 60.05746675282717,
+        "onsetLatenessSeconds": 0.0012162417879082454,
+        "onsetSeconds": 60.03881724178791,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.30483014136553,
+            121.8971194550395
+          ]
+        ],
+        "scenario": "frontend-pause"
+      },
+      "faultGroundTruthSha256": "cc12dfdbd463a2598387c82869cf54cb002ca8a0e850d1451a0fa446d738b1f3",
+      "manifestSha256": "722d3fa7778ce0405fe3701691cb89ff47a061444a62097ba809c9810e172061",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "a11304dc8bd30a29b22e518d00a6cf94e4c0d90c90ab55581ac501d4805230eb",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "46d15f8d4583cb8382c4a0b2c8a260969ace58c9925e1e152daddd0ca7501422",
+      "requestLedgerSha256": "c03867bbffb7e6bc3a6b24a6b8979486fdc0bf791da86b56590961e371b5dfa1",
+      "resourceEvidenceSha256": "56781e500ae51ffe655bbc6ad70626c6505ee72f05fd06fbd705ca56f169ec5b",
+      "runId": "79344f5b56f18926f6eecbe4",
+      "runKey": {
+        "attempt": 1,
+        "block": 2,
+        "posture": "full",
+        "regime": "frontend-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "957e10e84731c6aefc0f5835ef8a54b5d6a1b5fa6162b8c3807e21b953a75182",
+      "traceCompletenessSha256": "4ead403a7ac8a337273727e04b2bbb4a50273216172978dbe95d0d3a05cc3046",
+      "traceCorrelationSha256": "58a4a8ed336dbae20a216e30df78576e5fa644723e49d83d5cafff19124d81bd"
+    },
+    {
+      "applicationLog": {
+        "lines": 17597,
+        "stampedLines": 17597
+      },
+      "applicationWitnessSha256": "179c144f875e454b3ae37736bff9e16de2c2e67380aef0ee30cddb2f92558f79",
+      "cleanupSha256": "111372928e0b79fdf2a54a5f570505c25eea98af2731ddcb74618a21c2fe9264",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791865588.9555378,
+        "windowStartEpoch": 1791865639.1266887
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "e96b19a278bd37084ae77003c05f5222850b694c1759bd4aea5d2f09612dc892"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "e96b19a278bd37084ae77003c05f5222850b694c1759bd4aea5d2f09612dc892",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "f8f75ee282e09cc2463049d37bb341141937460026ef9190663923335d379096"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "f8f75ee282e09cc2463049d37bb341141937460026ef9190663923335d379096",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "f97ea70af7d97f3f6a663c1d3819f2937097c05538b573323a4d8ff6dcb22fd3"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "f97ea70af7d97f3f6a663c1d3819f2937097c05538b573323a4d8ff6dcb22fd3",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "post-readiness": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "pre-fault": {
+            "fullPath": 4500,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 4500,
+            "successful": 4500
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": null,
+          "blockingWindows": [],
+          "faultAndDrainWindowSeconds": null,
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": null,
+          "successful": 4500,
+          "windows": {
+            "whole-measurement": {
+              "complete": 4500,
+              "incomplete": 0,
+              "incompleteByMissingService": {
+                "adservice": 0,
+                "cartservice": 0,
+                "checkoutservice": 0,
+                "currencyservice": 0,
+                "emailservice": 0,
+                "frontend": 0,
+                "frontendproxy": 0,
+                "paymentservice": 0,
+                "productcatalogservice": 0,
+                "quoteservice": 0,
+                "recommendationservice": 0,
+                "shippingservice": 0
+              },
+              "incompleteRequestTokens": [],
+              "incompleteRequests": [],
+              "incompleteRuns": [],
+              "requests": 4500,
+              "successful": 4500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": null,
+      "faultGroundTruthSha256": null,
+      "manifestSha256": "dc2aab6c607ffcac8406de5f7d6d4f66e31a36dff92fc0761d0e445c46b8d0c5",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "27b89df9c5ce0848ff9888138f10d034f4120661c8f7b81a2db04d5c19521856",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": true,
+        "valid": true
+      },
+      "protocolGatesSha256": "0ae6e8cde5b2977151568a0a9c9a9a96dbd2f90973cb7219fb72af34ef58ba22",
+      "requestLedgerSha256": "588dd4a47331a609174586abd4bff33d10f828e14ff71bfc23dda543ea34f94e",
+      "resourceEvidenceSha256": "6b05837e74702e22748df06b46e66dcae2f42f9e987da8d104b2eaaa4f7bbd9b",
+      "runId": "28ef8be55432e69d27326284",
+      "runKey": {
+        "attempt": 1,
+        "block": 3,
+        "posture": "full",
+        "regime": "no-fault-calibration",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "34e58604701774fab0da54498ce97d1614040130c0c5982bfbb9e99be403e061",
+      "traceCompletenessSha256": "254a89541b8f394e13c10563df2a219be2bfa840b5c370d40106bfb891399295",
+      "traceCorrelationSha256": "8c6635a2d4dccd66a984b8226d5e468890e16e9b3e387c92581f61d7e6451244"
+    },
+    {
+      "applicationLog": {
+        "lines": 17687,
+        "stampedLines": 17687
+      },
+      "applicationWitnessSha256": "e03120f975e907f12cd2df529fe6567980360f515ae1b4a46148b15f3d3e1d02",
+      "cleanupSha256": "5592b8123348eb66a6b321dae6fe6760e4632eda87892983f058c79a39a0036c",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791865918.9429493,
+        "windowStartEpoch": 1791865969.536648
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "702316ca1086428f4bdefc369ae7240c7cd36286cb25efff698e858fd47a7fba"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "702316ca1086428f4bdefc369ae7240c7cd36286cb25efff698e858fd47a7fba",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "dd3c7ca6a186a7902b5beb2f291027575761f21178fd0eadab7f5fad9931eb41"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "dd3c7ca6a186a7902b5beb2f291027575761f21178fd0eadab7f5fad9931eb41",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "d7d895a7b1e12410c50091f2798a1bc040cb05f0f40dd975e2c244d551ed49ec"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "d7d895a7b1e12410c50091f2798a1bc040cb05f0f40dd975e2c244d551ed49ec",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1756,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1756,
+            "successful": 1756
+          },
+          "post-readiness": {
+            "fullPath": 1368,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1368,
+            "successful": 1368
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.01044514030218,
+            137.27237579971552
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2568,
+          "windows": {
+            "after-drain": {
+              "complete": 1068,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1068,
+              "successful": 1068,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1932,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1932,
+              "successful": 1932,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.01044514030218,
+            60.225112438201904
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.225112438201904,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.26011037826538
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.01044514030218,
+          "commandReturnedOffsetSeconds": 60.231406301259995,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.26945099979639
+        },
+        "holdSeconds": 60.05981224030256,
+        "onsetLatenessSeconds": 0.0019341403021826409,
+        "onsetSeconds": 60.01044514030218,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.2670734450221,
+            120.27237023413181
+          ]
+        ],
+        "scenario": "accounting-pause"
+      },
+      "faultGroundTruthSha256": "baed716b596f251e91f493e578768ff6a0e0eb9ed86a238daa20c8340fdab050",
+      "manifestSha256": "992460f25540ee2512e6622dd50f03b0e8e083e3522567f2c67836a804681bc0",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "f5814cb8ed7774e106c7480f7eb8469db979035b7c8924efbc68e9bd82ec0759",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "6dd7eaeef64dee266e338608bff9a5f1ceee0e4e6c99684b7bdf1409f7712b5d",
+      "requestLedgerSha256": "23fd0cdbf9f6b7584026dd44a0f562db43ec1f72c0717453d2c089d4332a3975",
+      "resourceEvidenceSha256": "b385ebcb109edc6955f95f3591b94c00e5562d0a88e1eca8d5c5087da6d70901",
+      "runId": "8c450bfc644457440bdfedb7",
+      "runKey": {
+        "attempt": 1,
+        "block": 3,
+        "posture": "full",
+        "regime": "accounting-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "c210c15dfd17315792ce42ca31193463b741a326a5c98deab03631fb8310533f",
+      "traceCompletenessSha256": "2b9115f0e94f9f40bb74f831385fe48c00afc024c436bb5c385e5f6e171225f9",
+      "traceCorrelationSha256": "8b7e49b14f816e2b42fa6be9d8be3e861df1eaea808f266a2434dc59e5208394"
+    },
+    {
+      "applicationLog": {
+        "lines": 17727,
+        "stampedLines": 17727
+      },
+      "applicationWitnessSha256": "11e7713173024ebeb64d2a9cdbdfebbbadf312bdebfe86b3c90290d2341d4a9f",
+      "cleanupSha256": "68ea35d5ac0dde0cfcf6ea44427eb94280e9dc2f148f23e80658ff84fc235b16",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791866242.1648726,
+        "windowStartEpoch": 1791866292.624334
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "94baaab74e30a6c8015cec42221f124d342c22f7ca6b96287fd248de2b38e6f6"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "94baaab74e30a6c8015cec42221f124d342c22f7ca6b96287fd248de2b38e6f6",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "af1dcbf49ffdc8cf08a72b962e7a4a89ed3d29563d42aa21423859e2036386fe"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "af1dcbf49ffdc8cf08a72b962e7a4a89ed3d29563d42aa21423859e2036386fe",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "b019798814eee9cbfcb1fed4acac836a223c8652ca17af3993175f5b992b8517"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "b019798814eee9cbfcb1fed4acac836a223c8652ca17af3993175f5b992b8517",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1757,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1757,
+            "successful": 1757
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.00275057554245,
+            137.28655749559402
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2568,
+          "windows": {
+            "after-drain": {
+              "complete": 1068,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1068,
+              "successful": 1068,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1932,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1932,
+              "successful": 1932,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.00275057554245,
+            60.19751453399658
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.19751453399658,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.27448987960815
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.00275057554245,
+          "commandReturnedOffsetSeconds": 60.20415210723877,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.24837439507246
+        },
+        "holdSeconds": 60.05600278824568,
+        "onsetLatenessSeconds": 0.0006905755424497784,
+        "onsetSeconds": 60.00275057554245,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.28214623779058,
+            120.28655265271664
+          ]
+        ],
+        "scenario": "fraud-pause"
+      },
+      "faultGroundTruthSha256": "785972fc1063503f243fdc25b2eafe2687a112cd83559639bc13eea7b46d7bd0",
+      "manifestSha256": "c9ca7367bf98c34319d996f1fdc67a5035a9ddcb3d723f2a1584c338d00a2571",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "6b6d1cdbd728971224d1b9c20b2d31d3ff7eff0cfe78016f59fe4d191c82fb8c",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "8a9c948d80b2fa84a3ed1267f8c6097c9cc6f4a40fc54ce7933a0652b14eb6b9",
+      "requestLedgerSha256": "7d6952ffdd7b181e7541daf1f4e9ff77fff209d7ad202c7d81e930b81d3917c1",
+      "resourceEvidenceSha256": "04f7b0727afd6acdf4a8c9cda9d973d59bd4940471499fb594bc4b5ac6b38c85",
+      "runId": "c21f4cf72a0ce5bcad89dd96",
+      "runKey": {
+        "attempt": 1,
+        "block": 3,
+        "posture": "full",
+        "regime": "fraud-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "8a607facf97088898bb08ff0b24d1c262bfc2f1412fb321164e1fd59c8ccc8b5",
+      "traceCompletenessSha256": "fd9b4ec43b3a90750d1317bc039bde068a077cf9851541afff5aa19f27e0126b",
+      "traceCorrelationSha256": "507d38151590c5a60e871e5593dd042722588d286b14f78f6deb353e94f1b675"
+    },
+    {
+      "applicationLog": {
+        "lines": 15185,
+        "stampedLines": 15185
+      },
+      "applicationWitnessSha256": "d426a37da947d0c88e1183e75fc2a46794312276a1a7ffac05ddce7a2c1119a7",
+      "cleanupSha256": "fa38bb5f08c92216fe2b5abdcf144cad3e805ec94e87e59e24d1bd727f44fbaf",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791866564.8887327,
+        "windowStartEpoch": 1791866614.7854247
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "4be079ffd471455960027cf39e4c06dd00c92d53e27fe40f2c7638f4ee7ec4d2"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "4be079ffd471455960027cf39e4c06dd00c92d53e27fe40f2c7638f4ee7ec4d2",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "7d09c4779466fbc917bc5f12e4a8716cf2ae41ff08b1fb484aa37681873d563c"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "7d09c4779466fbc917bc5f12e4a8716cf2ae41ff08b1fb484aa37681873d563c",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "80b0044585c86d8ccecc15a81ec41a719b5270770ceec2aea179c6f60ca75be6"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "80b0044585c86d8ccecc15a81ec41a719b5270770ceec2aea179c6f60ca75be6",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 787,
+            "noTrace": 280,
+            "partialPath": 690,
+            "requests": 1757,
+            "successful": 279
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.005663342773914,
+            138.69319377094507
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 2,
+          "successful": 2533,
+          "windows": {
+            "after-drain": {
+              "complete": 1033,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1033,
+              "successful": 1033,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 487,
+              "incomplete": 2,
+              "incompleteRequestTokens": [
+                "opq-0edd1ffd92ff2fcf3feb4328",
+                "opq-c6ca10350d5314a078816934"
+              ],
+              "requests": 1967,
+              "successful": 489,
+              "unsuccessful": 1478,
+              "unsuccessfulIncomplete": 968
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.005663342773914,
+            60.2246458530426
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.2246458530426,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.28773808479309
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.005663342773914,
+          "commandReturnedOffsetSeconds": 60.23118185251951,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.27592820674181
+        },
+        "holdSeconds": 60.05762825906277,
+        "onsetLatenessSeconds": 0.0012953427739148538,
+        "onsetSeconds": 60.005663342773914,
+        "probeCount": 2,
+        "probeWindows": [
+          [
+            120.29421788454056,
+            120.66704730689526
+          ],
+          [
+            121.66811963170767,
+            121.69319110363722
+          ]
+        ],
+        "scenario": "frontend-pause"
+      },
+      "faultGroundTruthSha256": "6540ba9bb193d6b8fab42191c6ce316ef298534ad2fec5a03341c1bfa853c0be",
+      "manifestSha256": "3491281679121fb596fcf959204dd804f7b5f14fcc2863f2e6c95a7070ed7c97",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "e36d3890c25015067cec4740697589935ecc64478a1d585060f508ff02f7ed89",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "398e475edbb8d7fcb268076acf4a5064bff7dccc0acaaffd0f7bd6e865ff9c25",
+      "requestLedgerSha256": "5c00d143d4c10835198b99a0eaefcd009ec09fd0819033922a7dac360097c2e1",
+      "resourceEvidenceSha256": "98b1cbb92e875719628786560886794a11a38cf852b5cddd0a909d1811473b72",
+      "runId": "674e8a554be38b18b7a0ee8d",
+      "runKey": {
+        "attempt": 1,
+        "block": 3,
+        "posture": "full",
+        "regime": "frontend-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "c1ee69ae18dffb3a9384aa851aa93ab6ec453823b8eecb1282d7799a0c0d5072",
+      "traceCompletenessSha256": "7c2cfbf458fe4d02346f17796ee060b364d7ff10130b731e3753a65429c52b87",
+      "traceCorrelationSha256": "99144d0b258c5692832106baef2d37bb4c9041f4038dfbc55a91b1103c659d7e"
+    },
+    {
+      "applicationLog": {
+        "lines": 17639,
+        "stampedLines": 17639
+      },
+      "applicationWitnessSha256": "2be9b0bb91c63c64b386beec8b2cfa8face3722a7deee55d6f24e94c0b733b16",
+      "cleanupSha256": "e6ddd4cb3c31b7b19c7784088880557182e7e4ea2bb9191da979eedeb66e6001",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791866891.0319088,
+        "windowStartEpoch": 1791866941.2546515
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "4d86dfcf56f8f01c238d5676c5d23eccf1cb1662ee9a8def9e059a9740caae2a"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "4d86dfcf56f8f01c238d5676c5d23eccf1cb1662ee9a8def9e059a9740caae2a",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "87e5eb29b2f7f6e39ecae2fd6732cb43738307b39199533874f22a5eb379d8c0"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "87e5eb29b2f7f6e39ecae2fd6732cb43738307b39199533874f22a5eb379d8c0",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "858a53f1bf9bc71e8d7e735f55cce3bfa5625c13a002b3ee4777ccf7734576b9"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "858a53f1bf9bc71e8d7e735f55cce3bfa5625c13a002b3ee4777ccf7734576b9",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "post-readiness": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "pre-fault": {
+            "fullPath": 4500,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 4500,
+            "successful": 4500
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": null,
+          "blockingWindows": [],
+          "faultAndDrainWindowSeconds": null,
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": null,
+          "successful": 4500,
+          "windows": {
+            "whole-measurement": {
+              "complete": 4500,
+              "incomplete": 0,
+              "incompleteByMissingService": {
+                "adservice": 0,
+                "cartservice": 0,
+                "checkoutservice": 0,
+                "currencyservice": 0,
+                "emailservice": 0,
+                "frontend": 0,
+                "frontendproxy": 0,
+                "paymentservice": 0,
+                "productcatalogservice": 0,
+                "quoteservice": 0,
+                "recommendationservice": 0,
+                "shippingservice": 0
+              },
+              "incompleteRequestTokens": [],
+              "incompleteRequests": [],
+              "incompleteRuns": [],
+              "requests": 4500,
+              "successful": 4500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": null,
+      "faultGroundTruthSha256": null,
+      "manifestSha256": "08e6fdfee72985853c66ca0de378630964df9ac81171f2d34a01e6b866d2b11c",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "c85a4732fac81dda090bc96031697fb95c302cda0206ca765b3a9b9630223927",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": true,
+        "valid": true
+      },
+      "protocolGatesSha256": "d9eaaa635b2e1ec712dd03e9b8a91366e8a549787708d5fe63c31f039882742d",
+      "requestLedgerSha256": "aac237c82d29abfc6b7d8412e1e15950dfd649e0c4ca9725dbfff1eedf66a58c",
+      "resourceEvidenceSha256": "bfc318b8959bb878f6c0017c49f8e3bcd90394d4387771d2254a66d63a682acc",
+      "runId": "24e64e73e596ff1f3a38d845",
+      "runKey": {
+        "attempt": 1,
+        "block": 4,
+        "posture": "full",
+        "regime": "no-fault-calibration",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "5471728c05ecb77f50e9393c3338eb498a57670faf461d012729be706f135557",
+      "traceCompletenessSha256": "95f567a60ead2db215a48e76865a72347d3ab7ef8bb079338ac7195ea1f928c1",
+      "traceCorrelationSha256": "9aadec933ea173362db3d91a7295671df45fc486956fff5796c85282998e02be"
+    },
+    {
+      "applicationLog": {
+        "lines": 17743,
+        "stampedLines": 17743
+      },
+      "applicationWitnessSha256": "b42e38f72ac7a9ac07b1aac21ef490eb66eb775e6d9eb1bd57539e6f64a1567d",
+      "cleanupSha256": "52632b0533676dad12b7a53b272303975e6462766e366c8846fa1792aa9426ac",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791867217.1706357,
+        "windowStartEpoch": 1791867267.0488665
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "ab57e8be9ba5ccdb386cb20bcb1be54027a7afd50ea6bd27afeff9d7160764b0"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "ab57e8be9ba5ccdb386cb20bcb1be54027a7afd50ea6bd27afeff9d7160764b0",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "c30eeda147afcf63b4d1aa18d269541c7c482f30ef617b202fb99da707e64aae"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "c30eeda147afcf63b4d1aa18d269541c7c482f30ef617b202fb99da707e64aae",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "90939ef3c51ec895e29973c6b2024e3b3bc53ea7b850bfc70764c18f2bb5d70f"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "90939ef3c51ec895e29973c6b2024e3b3bc53ea7b850bfc70764c18f2bb5d70f",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1757,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1757,
+            "successful": 1757
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.0224724560976,
+            137.31454924494028
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2567,
+          "windows": {
+            "after-drain": {
+              "complete": 1067,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1067,
+              "successful": 1067,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1933,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1933,
+              "successful": 1933,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.0224724560976,
+            60.22871685028076
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.22871685028076,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.3033356666565
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.0224724560976,
+          "commandReturnedOffsetSeconds": 60.23574720323086,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.27231877297163
+        },
+        "holdSeconds": 60.05974119156599,
+        "onsetLatenessSeconds": 0.002967456097600518,
+        "onsetSeconds": 60.0224724560976,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.31002237647772,
+            120.31454360485077
+          ]
+        ],
+        "scenario": "fraud-pause"
+      },
+      "faultGroundTruthSha256": "3a0391f9972eca22898cbfd45d38a084dd48ce75c3f1229f3b57760259cfb430",
+      "manifestSha256": "30511096018118691a10ad5276de8881a5fcee48b2a73ad0e67fd97f6ca22078",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "a415b9162ed4902133f6d30ec698662edafb431bf4a517693e48f09c2009929d",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "a3ee40ad6810284b0053ee00430d28b06114f3219a06fd49f29a3d2585461f98",
+      "requestLedgerSha256": "dd239555035c3ac81cd294f752e006dc13b38a3a7fd5724cf6377af4fac7d32a",
+      "resourceEvidenceSha256": "134b7824552102f3147e5c6a9fa989d0a181af746912074756f20846e96cd218",
+      "runId": "2723fc2e4d519bfcf4f0b754",
+      "runKey": {
+        "attempt": 1,
+        "block": 4,
+        "posture": "full",
+        "regime": "fraud-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "54e66dd5aad606e9933efdaca46555682c52fc1f461b0afd6169c978fbbda5aa",
+      "traceCompletenessSha256": "babc56580adcdd526531fcc2626137fadf109592ec7ada51ff925c045ee20d26",
+      "traceCorrelationSha256": "b7146d9058772239e46a08a46959f47ece3aea70e1c4c7656f9f3edf89b1684b"
+    },
+    {
+      "applicationLog": {
+        "lines": 17672,
+        "stampedLines": 17672
+      },
+      "applicationWitnessSha256": "2dd426b225f8983f404ad7dd2ee90f9ea6ef0c293e3fef3c42f4ffb13824cd91",
+      "cleanupSha256": "2436cb00db6a3be0487fddcb68ef4fa3c8f34397d298cb9c15d5cbd825cdb18c",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791867539.7193997,
+        "windowStartEpoch": 1791867590.064117
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "3eabea5111451505b55d920037e337652a6e539dc9ead262961e5883c7794d0a"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "3eabea5111451505b55d920037e337652a6e539dc9ead262961e5883c7794d0a",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "71320a91ca62fc4cdebf633a77c26a093f0da09f2cadfe4e795b3159c5e9a35d"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "71320a91ca62fc4cdebf633a77c26a093f0da09f2cadfe4e795b3159c5e9a35d",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "156cb0e1fd0414dca2a1beb0b0dcbaca9bde2ac897fdc424e099c8e543bf60c8"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "156cb0e1fd0414dca2a1beb0b0dcbaca9bde2ac897fdc424e099c8e543bf60c8",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1757,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1757,
+            "successful": 1757
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.02409905940294,
+            137.30429587513208
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2568,
+          "windows": {
+            "after-drain": {
+              "complete": 1068,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1068,
+              "successful": 1068,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1932,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1932,
+              "successful": 1932,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.02409905940294,
+            60.239712715148926
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.239712715148926,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.28908324241638
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.02409905940294,
+          "commandReturnedOffsetSeconds": 60.24687834084034,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.285160794854164
+        },
+        "holdSeconds": 60.05885534733534,
+        "onsetLatenessSeconds": 0.0027940594029445265,
+        "onsetSeconds": 60.02409905940294,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.299740716815,
+            120.30429042875767
+          ]
+        ],
+        "scenario": "accounting-pause"
+      },
+      "faultGroundTruthSha256": "76bdebda52bcc2dd4c924167129b41f650ad7587ce6b7425dbca941648850ce1",
+      "manifestSha256": "511ce98aac81e884082cafcf8dc12b196ec0889d96eb152d6fb19c49dffdc272",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "310c2ce6f2835a98904aa16f3abf448ea3a7ed838ec29e5e91dce3bb3293d43c",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "a6129f2117579cf52e5f3e39b47c7c06331deea39a2e02b2bdbbdc02e5a6dbc9",
+      "requestLedgerSha256": "48583bf4463a3f1f88c56c49b07ea2b0df4b61929650865a7eded813de55f0cf",
+      "resourceEvidenceSha256": "d79dbbab1729c07e4ed9d54da72e79eac731af1911e4c9c2e7906621159df43a",
+      "runId": "a44cd6b8d7fcebb05787f7c9",
+      "runKey": {
+        "attempt": 1,
+        "block": 4,
+        "posture": "full",
+        "regime": "accounting-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "af65e038a584f2d67dd12e60ea4ae9a4154ba2709f59d12a634ac58c5976736c",
+      "traceCompletenessSha256": "8da390955eea407c0a57dea43dbb0c450bbbd91bc601cb546d6f863faf36665e",
+      "traceCorrelationSha256": "33eaf5f02a069f70cd486cf4dbd735c98b947a7cb7ef67db1eda0e8480b90bc4"
+    },
+    {
+      "applicationLog": {
+        "lines": 15064,
+        "stampedLines": 15064
+      },
+      "applicationWitnessSha256": "ad1c41e410a960bbf81e6bc020fa6c663c381c359d8e23a8050be5a6b0a22cee",
+      "cleanupSha256": "13ad2ed4e1570f145bc0fc7ff45339f107048fd12b591b933943bf59821701fa",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791867869.824962,
+        "windowStartEpoch": 1791867920.2760613
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "33d6a97c7469af8ebb4113bc8c6e3cdf00c0e4b11dfb3ca9779a3cfa5e7864aa"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "33d6a97c7469af8ebb4113bc8c6e3cdf00c0e4b11dfb3ca9779a3cfa5e7864aa",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "4999364206c0c1441c91312b90ffadbadae3367081e384974c5a5eaa53098bee"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "4999364206c0c1441c91312b90ffadbadae3367081e384974c5a5eaa53098bee",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "32251d310edc767bd4e7a938ed1fd06a0eb3c6889c2f43691b7692c2f52acf34"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "32251d310edc767bd4e7a938ed1fd06a0eb3c6889c2f43691b7692c2f52acf34",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 784,
+            "noTrace": 263,
+            "partialPath": 710,
+            "requests": 1757,
+            "successful": 274
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.014976382255554,
+            138.76340186595917
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 1,
+          "successful": 2531,
+          "windows": {
+            "after-drain": {
+              "complete": 1031,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1031,
+              "successful": 1031,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 485,
+              "incomplete": 1,
+              "incompleteRequestTokens": [
+                "opq-2bf45fd390c0d33848039b23"
+              ],
+              "requests": 1969,
+              "successful": 486,
+              "unsuccessful": 1483,
+              "unsuccessfulIncomplete": 972
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.014976382255554,
+            60.238266944885254
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.238266944885254,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.28690147399902
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.014976382255554,
+          "commandReturnedOffsetSeconds": 60.24524834007025,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.28523200750351
+        },
+        "holdSeconds": 60.05914402753115,
+        "onsetLatenessSeconds": 0.0023933822555548545,
+        "onsetSeconds": 60.014976382255554,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.29527577757835,
+            121.76338563114405
+          ]
+        ],
+        "scenario": "frontend-pause"
+      },
+      "faultGroundTruthSha256": "e2496d6f235ad6ed523a47e9d9a64356abfbb913802fed7f2abfffc3ff5639d9",
+      "manifestSha256": "b3f15a8299903fda82a931ef3c6c1f70dc6c7f78b1094bb83b94135e23e01bae",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "09d6f9fcea570f886f757be8b9ed2762770404ead3af4e1697b426732470531b",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "100fe7229dea9089abb4f63c0ada02abc4b69112ad38741a54e1cf9d99e637b9",
+      "requestLedgerSha256": "38cbc5aeb7670d2b71a9a1659839d57ddf292441cbfb03dc02bddae236eb7098",
+      "resourceEvidenceSha256": "3eee555c7bd3c4578a038b6c05956e01501079f9b807c243a3f309acab8e323e",
+      "runId": "e8015e480473539bf037ab0c",
+      "runKey": {
+        "attempt": 1,
+        "block": 4,
+        "posture": "full",
+        "regime": "frontend-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "b49e92497de2a6d56c61a9d4e35ed4ab8c7680ccba765da46dc4077ff19ad954",
+      "traceCompletenessSha256": "f485781b75c0cb87d0f91a5ed56590496da383050c6f70041e26b281a33769c0",
+      "traceCorrelationSha256": "289549fc8b6d33a0dbe54c34c6697eaaad6b75401d9f9b35f147127aab1f631d"
+    },
+    {
+      "applicationLog": {
+        "lines": 17624,
+        "stampedLines": 17624
+      },
+      "applicationWitnessSha256": "76a9bc7a86b1f3289313ec214494c21531bc341a95d407655a12b50e54cc91cf",
+      "cleanupSha256": "4e124fe02812ff3cdcd460ac9ec6f832b36d2a66953a6fcd71ef14ff7b79496d",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791868188.6431398,
+        "windowStartEpoch": 1791868239.046051
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "742556f0d505d1bc24076751de6235dd3e49277d099bcc510de0b23024e7ee25"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "742556f0d505d1bc24076751de6235dd3e49277d099bcc510de0b23024e7ee25",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "3b787364880a7843d0d90bdac763297ef0d707ccd19a55fa171a87c4951f287f"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "3b787364880a7843d0d90bdac763297ef0d707ccd19a55fa171a87c4951f287f",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "bd93d87d01892408cb784a76eaf2df24962243fa02dad9d47f309af0df5ce4c6"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "bd93d87d01892408cb784a76eaf2df24962243fa02dad9d47f309af0df5ce4c6",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "post-readiness": {
+            "fullPath": 0,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 0,
+            "successful": 0
+          },
+          "pre-fault": {
+            "fullPath": 4500,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 4500,
+            "successful": 4500
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": null,
+          "blockingWindows": [],
+          "faultAndDrainWindowSeconds": null,
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": null,
+          "successful": 4500,
+          "windows": {
+            "whole-measurement": {
+              "complete": 4500,
+              "incomplete": 0,
+              "incompleteByMissingService": {
+                "adservice": 0,
+                "cartservice": 0,
+                "checkoutservice": 0,
+                "currencyservice": 0,
+                "emailservice": 0,
+                "frontend": 0,
+                "frontendproxy": 0,
+                "paymentservice": 0,
+                "productcatalogservice": 0,
+                "quoteservice": 0,
+                "recommendationservice": 0,
+                "shippingservice": 0
+              },
+              "incompleteRequestTokens": [],
+              "incompleteRequests": [],
+              "incompleteRuns": [],
+              "requests": 4500,
+              "successful": 4500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": null,
+      "faultGroundTruthSha256": null,
+      "manifestSha256": "1990fdf2963533092547fccca858ed7daaea01099e9e739d5dac810805b9824b",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "e66a10a9687ded355a9d275dd08363d5c117ac012032a7e18927fa7e14bb196c",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": true,
+        "valid": true
+      },
+      "protocolGatesSha256": "e63fb977d64631010ec51fa0eb992d35b985b0e14cab41d76426d5b53a54c638",
+      "requestLedgerSha256": "019566d71bf1c103e99689f2f1b8e05155cfe8dae7e2b545bef74ac02873854c",
+      "resourceEvidenceSha256": "15be924ac925eb0f7c1a92d0d5c30bbbecfc8458a3b9ebb081245b4d1c5e1bb2",
+      "runId": "33d75886c508b74b2da298d2",
+      "runKey": {
+        "attempt": 1,
+        "block": 5,
+        "posture": "full",
+        "regime": "no-fault-calibration",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "88cb2375a2a400a700103af114b3b4dd5f936bd8fdb06c62a126d913123d1f72",
+      "traceCompletenessSha256": "d891e1960df49f23e607f2678b942605920e35f2e5098214010b5e3b1edb218c",
+      "traceCorrelationSha256": "17b6dd2f04ee232278b598631d0e45b69be747c08b6cf0fdff9fc66e3d0c6155"
+    },
+    {
+      "applicationLog": {
+        "lines": 17733,
+        "stampedLines": 17733
+      },
+      "applicationWitnessSha256": "6c622100f45a9a17ef8e1cfa53d0c80823495aab1e9cc1d041b7c47b8694d6ee",
+      "cleanupSha256": "39d03655d6a50eef55f37ee60e8bfdc7374b4091d1a17e3d065ce0b3f3705105",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791868515.1444483,
+        "windowStartEpoch": 1791868565.3952072
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "de578adf9d33421c51234f5fc78487fcbf0075745bd7da52e1c5edc0f2c97900"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "de578adf9d33421c51234f5fc78487fcbf0075745bd7da52e1c5edc0f2c97900",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "6df39cd341a9467f7e4c9278f3c3b822a27b6343dda91bc7e158856c39451d98"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "6df39cd341a9467f7e4c9278f3c3b822a27b6343dda91bc7e158856c39451d98",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "6d31c63d9509a9a379c438696c94be913a1a8c29d703e61829f70ef3ffab9f50"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "6d31c63d9509a9a379c438696c94be913a1a8c29d703e61829f70ef3ffab9f50",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1758,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1758,
+            "successful": 1758
+          },
+          "post-readiness": {
+            "fullPath": 1366,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1366,
+            "successful": 1366
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.03494504839182,
+            137.33773324638605
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2567,
+          "windows": {
+            "after-drain": {
+              "complete": 1066,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1066,
+              "successful": 1066,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1933,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1933,
+              "successful": 1933,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1501,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1501,
+              "successful": 1501,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.03494504839182,
+            60.25708031654358
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.25708031654358,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.32521462440491
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.03494504839182,
+          "commandReturnedOffsetSeconds": 60.26388839632273,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.30850948393345
+        },
+        "holdSeconds": 60.05979514122009,
+        "onsetLatenessSeconds": 0.002939048391816357,
+        "onsetSeconds": 60.03494504839182,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.33200109750032,
+            120.3377278521657
+          ]
+        ],
+        "scenario": "fraud-pause"
+      },
+      "faultGroundTruthSha256": "3518ca179348e9320265abf6deca84cd9484415d4e6bc525dc82c9d4cf20d0f2",
+      "manifestSha256": "e963417a0351ea0e658a6a33dbe0ae32e1649761ee87822088fb71a950643b81",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "97743b26e04a2ef7692273685fc00d36a9b1348ee6c6d89350182f1abf8301f0",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "b5fd79be8bd44447cc139aa04a8ff1ccc8232b7e557b3f35bcfc12238bfd8b08",
+      "requestLedgerSha256": "04c7f0a2547ffd55cc40cfea2f6eb44f8d18afef2425b41268cb87d406ee35f0",
+      "resourceEvidenceSha256": "0bf115a3507ebb4e23f71f4fc7d1c72d6b0652c0b684ffa9ec658bce12cd023c",
+      "runId": "1a037fc5e340665579f1a066",
+      "runKey": {
+        "attempt": 1,
+        "block": 5,
+        "posture": "full",
+        "regime": "fraud-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "9f3a6a5d630db1fbf3d47aadcf1b5aef5202adea2277b072175842574c338909",
+      "traceCompletenessSha256": "b6aea929e8706d2dc3ae18f117e9064c44dca5d5d705b30f00a6ea7d0d796ac3",
+      "traceCorrelationSha256": "91da7befaa82cb7f4b92e99733d887ec8ab1c6a4df1f6c351eb103dd15e7aa36"
+    },
+    {
+      "applicationLog": {
+        "lines": 17643,
+        "stampedLines": 17643
+      },
+      "applicationWitnessSha256": "74f05385fa6f1e1d8ccc6eb684edf80d8013af6d96d35c8de64061994d8e181d",
+      "cleanupSha256": "6f537701058aa55e7f75b66589aa894b85657446d434272ec4b7e2ef46e9d708",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791868837.4598033,
+        "windowStartEpoch": 1791868887.7010868
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "2f47284a3069949f5c1c8b161036a9bbf2d8e66b95b1a800bcabd45a1d94fe6d"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "2f47284a3069949f5c1c8b161036a9bbf2d8e66b95b1a800bcabd45a1d94fe6d",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "d1af60500623761d84d761a38ee83a187dc9612d47ecfaa2a01560068d0f3bc2"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "d1af60500623761d84d761a38ee83a187dc9612d47ecfaa2a01560068d0f3bc2",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "deab89bec5856b535916282fa12c2bf1eab351acaf929d92c68195806a823e1f"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "deab89bec5856b535916282fa12c2bf1eab351acaf929d92c68195806a823e1f",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 1758,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1758,
+            "successful": 1758
+          },
+          "post-readiness": {
+            "fullPath": 1366,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1366,
+            "successful": 1366
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.02831742167473,
+            137.33033626526594
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 0,
+          "successful": 2567,
+          "windows": {
+            "after-drain": {
+              "complete": 1067,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1067,
+              "successful": 1067,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 1933,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1933,
+              "successful": 1933,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.02831742167473,
+            60.25962591171265
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.25962591171265,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.31896162033081
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.02831742167473,
+          "commandReturnedOffsetSeconds": 60.26691763848066,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.30957069247961
+        },
+        "holdSeconds": 60.05950767546892,
+        "onsetLatenessSeconds": 0.0003644216747318296,
+        "onsetSeconds": 60.02831742167473,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.32586815208197,
+            120.33033014088869
+          ]
+        ],
+        "scenario": "accounting-pause"
+      },
+      "faultGroundTruthSha256": "89cd4bb92dc4421dc1aaaf79437cfdacf1b1f6a8005afa1e5d10aab139580bd8",
+      "manifestSha256": "37fddfd2325fc79f9030bf51c34b794cc05c8306d0dd2d33e7c888c8fcc8ddee",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "07d0142f5cdadc98b13a1b3448dc92d3ddf6a6f3f049c2fb33f62abf4e90c1d8",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "5c97302393cd616e33f5cc3d971442e65f1ca39c7f2d6541f71e8ae1132a27f0",
+      "requestLedgerSha256": "42c83e36ed20f1a1ba7b9d81d2f12bffa5ceb403530d15caaf812273d5aee7db",
+      "resourceEvidenceSha256": "66dd4f31ab594b81bd84c90ef63aa2f6dacb9758063ff0114b395021a40531ef",
+      "runId": "1f00ed7f4f28b30cd28aae8f",
+      "runKey": {
+        "attempt": 1,
+        "block": 5,
+        "posture": "full",
+        "regime": "accounting-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "650ec2c335f3800000931bc47f0986e652cbdaa87076d20e2843c1d23c36acd7",
+      "traceCompletenessSha256": "6ff5df078aae33c5be83b5a326e810d8f7cdb10cd3b53862c78d6afbd9905ed7",
+      "traceCorrelationSha256": "a33ec8f9caeb12242e8b10a0546a2b251c2d7b7af82c9f8866cd5f435393feed"
+    },
+    {
+      "applicationLog": {
+        "lines": 15100,
+        "stampedLines": 15100
+      },
+      "applicationWitnessSha256": "08656354277e50b943ad9854282d3d09022bf899ee531ad4f278af4f64c9b750",
+      "cleanupSha256": "f6072d8686a4538f010b6f266d7f98c5af44125d069db903cefeff75d5c01902",
+      "collectorCarrier": {
+        "coversWindow": true,
+        "firstRecordEpoch": 1791869159.5055397,
+        "windowStartEpoch": 1791869209.7269115
+      },
+      "containerHealth": {
+        "containers": 24,
+        "memoryLimitUpdates": [
+          {
+            "after": {
+              "memory": 268435456,
+              "memorySwap": 536870912
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "268435456",
+              "--memory-swap",
+              "536870912",
+              "363814d7194f7762c263553d5bd574d4d738a678939691d976ae3275053183b4"
+            ],
+            "before": {
+              "memory": 52428800,
+              "memorySwap": 104857600
+            },
+            "containerId": "363814d7194f7762c263553d5bd574d4d738a678939691d976ae3275053183b4",
+            "service": "frontendproxy"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "2ef32f3ad8b37dedb14387b4aa025b641e42ed3e7b7c0c137f28c322f372cd5c"
+            ],
+            "before": {
+              "memory": 419430400,
+              "memorySwap": 838860800
+            },
+            "containerId": "2ef32f3ad8b37dedb14387b4aa025b641e42ed3e7b7c0c137f28c322f372cd5c",
+            "service": "jaeger"
+          },
+          {
+            "after": {
+              "memory": 1073741824,
+              "memorySwap": 2147483648
+            },
+            "argv": [
+              "docker",
+              "update",
+              "--memory",
+              "1073741824",
+              "--memory-swap",
+              "2147483648",
+              "6027e8d28888beee61d1763ce50c6fb2391f229722000ecdd12a43b4e1c7e8bd"
+            ],
+            "before": {
+              "memory": 209715200,
+              "memorySwap": 419430400
+            },
+            "containerId": "6027e8d28888beee61d1763ce50c6fb2391f229722000ecdd12a43b4e1c7e8bd",
+            "service": "otelcol"
+          }
+        ]
+      },
+      "correlation": {
+        "phases": {
+          "during-fault": {
+            "fullPath": 792,
+            "noTrace": 264,
+            "partialPath": 701,
+            "requests": 1757,
+            "successful": 283
+          },
+          "post-readiness": {
+            "fullPath": 1367,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1367,
+            "successful": 1367
+          },
+          "pre-fault": {
+            "fullPath": 1376,
+            "noTrace": 0,
+            "partialPath": 0,
+            "requests": 1376,
+            "successful": 1376
+          }
+        },
+        "requiredPathServices": [
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "frontend",
+          "frontendproxy",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "traceCompleteness": {
+          "allowance": 25,
+          "blockingWindows": [
+            "pre-onset",
+            "after-drain"
+          ],
+          "faultAndDrainWindowSeconds": [
+            60.019529581069946,
+            138.97005111724138
+          ],
+          "incomplete": 0,
+          "recordedFaultEffectIncomplete": 2,
+          "successful": 2526,
+          "windows": {
+            "after-drain": {
+              "complete": 1026,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1026,
+              "successful": 1026,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            },
+            "fault-and-drain": {
+              "complete": 498,
+              "incomplete": 2,
+              "incompleteRequestTokens": [
+                "opq-9e21252cd315ea8041316a64",
+                "opq-c4b3b4fecf54852e3066b975"
+              ],
+              "requests": 1974,
+              "successful": 500,
+              "unsuccessful": 1474,
+              "unsuccessfulIncomplete": 963
+            },
+            "pre-onset": {
+              "complete": 1500,
+              "incomplete": 0,
+              "incompleteRequestTokens": [],
+              "requests": 1500,
+              "successful": 1500,
+              "unsuccessful": 0,
+              "unsuccessfulIncomplete": 0
+            }
+          }
+        }
+      },
+      "fault": {
+        "dockerEvents": {
+          "failures": 0,
+          "onsetIntervalSeconds": [
+            60.019529581069946,
+            60.23022770881653
+          ],
+          "otherContainerEvents": 0,
+          "pauseOffsetSeconds": 60.23022770881653,
+          "reasons": [],
+          "status": "ok",
+          "unpauseOffsetSeconds": 120.28227686882019
+        },
+        "freeze": {
+          "action": "pause",
+          "commandIssuedOffsetSeconds": 60.019529581069946,
+          "commandReturnedOffsetSeconds": 60.237702168524265,
+          "stampFailures": 0,
+          "stampStatus": "ok",
+          "stateReadbackOffsetSeconds": 60.2746521756053
+        },
+        "holdSeconds": 60.05977777391672,
+        "onsetLatenessSeconds": 0.0029295810699494496,
+        "onsetSeconds": 60.019529581069946,
+        "probeCount": 1,
+        "probeWindows": [
+          [
+            120.28970728069544,
+            121.97003899514675
+          ]
+        ],
+        "scenario": "frontend-pause"
+      },
+      "faultGroundTruthSha256": "b8bc9f7c5e7cf2f889c66d6db1a1546f46593487de38eacdebdffaccb1ff0ef7",
+      "manifestSha256": "87e0d8cad77d8943fad0fe1e0c9e950eb4984c53f92c18bbf8c56205084db11c",
+      "posture": {
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "observedSignalServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "emailservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "kafka",
+          "loadgenerator",
+          "otelcol",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "posture": "full",
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      },
+      "postureProofSha256": "2a19eba16df0e4729b16ce4278d8097cd35acc2d0df75965fac0a425c0bae394",
+      "promotionAuthorized": false,
+      "protocolGates": {
+        "blocking": [
+          "F1",
+          "G1",
+          "G2",
+          "G4"
+        ],
+        "canFire": null,
+        "valid": true
+      },
+      "protocolGatesSha256": "74902c344c34302b616ad6dbaccee4b515353aef3392a9505acce49d5d32b73f",
+      "requestLedgerSha256": "35044c3c3f5398e8e2fcde710b7f6cb32df8498326463eb883bf87b03af2d10c",
+      "resourceEvidenceSha256": "1f21b27df41464f42283ccbab99cb029a57c0af521e3cd08ba1e86e7bd634b26",
+      "runId": "6c3b8d871f75d34b855eb88f",
+      "runKey": {
+        "attempt": 1,
+        "block": 5,
+        "posture": "full",
+        "regime": "frontend-pause-effect",
+        "requestsPerSecond": 25.0,
+        "studyEpoch": "otel-offpath-e-v1"
+      },
+      "state": "valid",
+      "telemetryBytesSha256": "3b8355b6df314eae98a6a032663b0ffc5c4a1c3432eaebb833483601ebe31627",
+      "traceCompletenessSha256": "3b7a0b9cac35c4dd222f75470b378fbdc4b471e41e965bee14fe16ea58b5584f",
+      "traceCorrelationSha256": "dc52e8a86c4fab1abbd1da0275f5dbaae1c4933d89786aaccdc18d568db1693b"
+    }
+  ],
+  "expectedCells": 20,
+  "hostReleaseSha256": "016bcb8b8bfedb54f0a6f3ecc19b3d9476e4a8c2ef468e638cb885fbee9a8efd",
+  "kind": "otel-demo-candidate-terminal-validation-v2",
+  "maximumEvidenceLabel": "candidate-evidence",
+  "postureLattice": {
+    "notStartedServices": [
+      "loadgenerator"
+    ],
+    "postures": {
+      "full": {
+        "cells": 20,
+        "loadedServices": [
+          "accountingservice",
+          "adservice",
+          "cartservice",
+          "checkoutservice",
+          "currencyservice",
+          "flagd",
+          "frauddetectionservice",
+          "frontend",
+          "frontendproxy",
+          "imageprovider",
+          "kafka",
+          "paymentservice",
+          "productcatalogservice",
+          "quoteservice",
+          "recommendationservice",
+          "shippingservice"
+        ],
+        "postureConfigSha256": "e220594c585acb4cb38d47798393833908c68dd6d21742d8eb6b70c79ff56f71",
+        "renderedComposeConfigSha256": "f5f16ef4ed9498a99c17953ae04f4a9d19d9f935a84a5369520672589d3a8089"
+      }
+    },
+    "rule": "single-posture-full-consistent"
+  },
+  "promotionAuthorized": false,
+  "remoteTerminalSha256": "4bf947a0b64fdff45e9a96fca48eda992ec292279a66bc5c31170ca6e4f3ae99",
+  "schemaVersion": 2,
+  "studyEpoch": "otel-offpath-e-v1",
+  "validCells": 20,
+  "verdict": "pass",
+  "workloadPathCheck": null
+}

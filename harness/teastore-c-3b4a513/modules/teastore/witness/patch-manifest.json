@@ -1,0 +1,42 @@
+{
+  "schema": "teastore.app-witness-patch-manifest",
+  "schemaVersion": 1,
+  "source": {
+    "repositoryPath": "upstream/teastore",
+    "commit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "patch": {
+    "path": "modules/teastore/witness/teastore-app-witness-v1.patch",
+    "sha256": "0694a442eb992b5c415416982aea344502a87d79544af8950555494f58916fac"
+  },
+  "patchedPaths": [
+    "services/tools.descartes.teastore.auth/src/main/java/tools/descartes/teastore/auth/rest/AuthUserActionsRest.java",
+    "services/tools.descartes.teastore.persistence/src/main/java/tools/descartes/teastore/persistence/rest/UserEndpoint.java",
+    "services/tools.descartes.teastore.webui/src/main/java/tools/descartes/teastore/webui/servlet/LoginActionServlet.java",
+    "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/observability/ObservabilityJourney.java",
+    "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedCRUDOperations.java",
+    "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/LoadBalancedStoreOperations.java",
+    "utilities/tools.descartes.teastore.registryclient/src/main/java/tools/descartes/teastore/registryclient/rest/NonBalancedCRUDOperations.java"
+  ],
+  "correlation": {
+    "header": "X-Observability-Journey-Id",
+    "tokenRegex": "journey-[0-9a-f]{32}",
+    "maximumLength": 40,
+    "propagation": ["webui", "auth", "persistence"]
+  },
+  "observations": {
+    "logPrefix": "OBSERVABILITY_APP_WITNESS ",
+    "schema": "teastore.app-witness-observation",
+    "schemaVersion": 1,
+    "events": {
+      "auth": "login-persistence-request",
+      "persistence": "login-user-lookup"
+    }
+  },
+  "output": {
+    "filename": "app-witness.jsonl",
+    "schema": "teastore.app-witness",
+    "schemaVersion": 1,
+    "positiveExecutedPath": ["auth", "persistence"]
+  }
+}

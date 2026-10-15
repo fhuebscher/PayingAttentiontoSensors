@@ -1,0 +1,5 @@
+auth-1  | 2026-10-03T01:00:51.123456789Z started auth
+image-1  | 2026-10-03T01:00:51.123456789Z started image
+persistence-1  | 2026-10-03T01:00:51.123456789Z started persistence
+recommender-1  | 2026-10-03T01:00:51.123456789Z started recommender
+webui-1  | 2026-10-03T01:00:51.123456789Z started webui

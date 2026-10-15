@@ -1,0 +1,5033 @@
+{
+ "celfSha256": "3823722125e9796e6716a830b01d12c69177c7ab6b0a0d7a5fa3984ab6205e97",
+ "deviation": "scored by restriction of `full` cells: a declared deviation from protocol \u00a73 (:102), decision 80; decision 46.3's live run of the chosen placement is the later check",
+ "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+ "inputs": {
+  "parametersV32Sha256": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "pinnedParametersV32": "ab4a5af7243e776f536b09a39e649b1be968d23f1767ef2f5a166ac08e340a67",
+  "placement": "research/placement/test-e/placement-e.json",
+  "placementSha256": "cea91ebd49858fbcdfda18cf1dde41f46a769c6b214a4af39351ed965400b859",
+  "python": "3.13.12 (main, Mar  6 2026, 04:10:39) [Clang 14.0.3 (clang-1403.0.22.14.1)]",
+  "readout": "research/traffic-sweep/readout-otel-e-score-v3.2/sweep_analysis_v3_2.json",
+  "readoutSha256": "09aa5382a08f99e95132dca1c15576e5c56bb33eab2187790213b1916076b34a",
+  "script": "research/placement/score_test_v3_2.py",
+  "scriptSha256": "f9942b9138f1d1216ed3d3466949c727f6388980e24fff4ce40af994fbf64a07",
+  "trainingReadout": "research/traffic-sweep/readout-otel-e-train-v3.2/sweep_analysis_v3_2.json",
+  "trainingReadoutSha256": "1354af1fe47aecf98ecb8290cf96d5519fb37020eccf6304bd9a142c4254b8e1"
+ },
+ "limitation": "the scoring readout calibrates its detectors on the training blocks only (decision 102); exposure and the P1-P4 tables of the scoring readout still read every valid cell (report-only)",
+ "passRule": [
+  {
+   "class": "fraud-pause-effect",
+   "minEpisodes": 2,
+   "minGain": null,
+   "minImprovedEpisodes": 2,
+   "rate": null,
+   "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+  },
+  {
+   "class": "accounting-pause-effect",
+   "minEpisodes": 2,
+   "minGain": null,
+   "minImprovedEpisodes": 2,
+   "rate": null,
+   "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+  }
+ ],
+ "passRuleNote": "decision 99 (V32_PASS_RULE in the registry, digest recorded)",
+ "rates": {
+  "25": {
+   "classCountFlags": null,
+   "classCounts": {
+    "accounting-pause-effect": 2,
+    "fraud-pause-effect": 2,
+    "frontend-pause-effect": 2
+   },
+   "episodes": [
+    {
+     "block": 4,
+     "calibrated": true,
+     "class": "accounting-pause-effect",
+     "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-e-evidence/e1-fetch/x :: runs/effect/accounting-pause/r25-b04-15-full",
+     "episodeKey": [
+      "accounting-pause-effect",
+      "25",
+      4,
+      0,
+      "B"
+     ],
+     "holdSeconds": 60.05885534733534,
+     "ledger": {
+      "penalised": 60.05885534733534,
+      "ttd": null
+     },
+     "sets": {
+      "frontier (effort<=0, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @inf": {
+       "improvesOnLedger": true,
+       "penalised": 44.26869487762451,
+       "ttd": 44.26869487762451
+      },
+      "full": {
+       "improvesOnLedger": true,
+       "penalised": 3.8133952617645264,
+       "ttd": 3.8133952617645264
+      },
+      "ledger alone": {
+       "improvesOnLedger": false,
+       "penalised": 60.05885534733534,
+       "ttd": null
+      },
+      "out of the box": {
+       "improvesOnLedger": true,
+       "penalised": 13.077585220336914,
+       "ttd": 13.077585220336914
+      }
+     }
+    },
+    {
+     "block": 5,
+     "calibrated": true,
+     "class": "accounting-pause-effect",
+     "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-e-evidence/e1-fetch/x :: runs/effect/accounting-pause/r25-b05-19-full",
+     "episodeKey": [
+      "accounting-pause-effect",
+      "25",
+      5,
+      0,
+      "B"
+     ],
+     "holdSeconds": 60.05950767546892,
+     "ledger": {
+      "penalised": 60.05950767546892,
+      "ttd": null
+     },
+     "sets": {
+      "frontier (effort<=0, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @inf": {
+       "improvesOnLedger": true,
+       "penalised": 44.09879469871521,
+       "ttd": 44.09879469871521
+      },
+      "full": {
+       "improvesOnLedger": true,
+       "penalised": 3.397434711456299,
+       "ttd": 3.397434711456299
+      },
+      "ledger alone": {
+       "improvesOnLedger": false,
+       "penalised": 60.05950767546892,
+       "ttd": null
+      },
+      "out of the box": {
+       "improvesOnLedger": true,
+       "penalised": 16.41541028022766,
+       "ttd": 16.41541028022766
+      }
+     }
+    },
+    {
+     "block": 4,
+     "calibrated": true,
+     "class": "fraud-pause-effect",
+     "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-e-evidence/e1-fetch/x :: runs/effect/fraud-pause/r25-b04-14-full",
+     "episodeKey": [
+      "fraud-pause-effect",
+      "25",
+      4,
+      0,
+      "B"
+     ],
+     "holdSeconds": 60.05974119156599,
+     "ledger": {
+      "penalised": 60.05974119156599,
+      "ttd": null
+     },
+     "sets": {
+      "frontier (effort<=0, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=0, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=1, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=2, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "frontier (effort<=any, runtime<=any) @inf": {
+       "improvesOnLedger": true,
+       "penalised": 43.92435956001282,
+       "ttd": 43.92435956001282
+      },
+      "full": {
+       "improvesOnLedger": true,
+       "penalised": 2.3384084701538086,
+       "ttd": 2.3384084701538086
+      },
+      "ledger alone": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      },
+      "out of the box": {
+       "improvesOnLedger": false,
+       "penalised": 60.05974119156599,
+       "ttd": null
+      }
+     }
+    },
+    {
+     "block": 5,
+     "calibrated": true,
+     "class": "fraud-pause-effect",
+     "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-e-evidence/e1-fetch/x :: runs/effect/fraud-pause/r25-b05-18-full",
+     "episodeKey": [
+      "fraud-pause-effect",
+      "25",
+      5,
+      0,
+      "B"
+     ],
+     "holdSeconds": 60.05979514122009,
+     "ledger": {
+      "penalised": 20.248663872480392,
+      "ttd": 20.248663872480392
+     },
+     "sets": {
+      "frontier (effort<=0, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=0, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=1, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=2, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "frontier (effort<=any, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "full": {
+       "improvesOnLedger": true,
+       "penalised": 0.3224496841430664,
+       "ttd": 0.3224496841430664
+      },
+      "ledger alone": {
+       "improvesOnLedger": false,
+       "penalised": 20.248663872480392,
+       "ttd": 20.248663872480392
+      },
+      "out of the box": {
+       "improvesOnLedger": true,
+       "penalised": 0.3224496841430664,
+       "ttd": 0.3224496841430664
+      }
+     }
+    },
+    {
+     "block": 4,
+     "calibrated": true,
+     "class": "frontend-pause-effect",
+     "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-e-evidence/e1-fetch/x :: runs/effect/frontend-pause/r25-b04-16-full",
+     "episodeKey": [
+      "frontend-pause-effect",
+      "25",
+      4,
+      0,
+      "B"
+     ],
+     "holdSeconds": 60.05914402753115,
+     "ledger": {
+      "penalised": 0.4242291823029518,
+      "ttd": 0.4242291823029518
+     },
+     "sets": {
+      "frontier (effort<=0, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=0, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=1, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=2, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "frontier (effort<=any, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "full": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "ledger alone": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      },
+      "out of the box": {
+       "improvesOnLedger": false,
+       "penalised": 0.4242291823029518,
+       "ttd": 0.4242291823029518
+      }
+     }
+    },
+    {
+     "block": 5,
+     "calibrated": true,
+     "class": "frontend-pause-effect",
+     "episode": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-e-evidence/e1-fetch/x :: runs/effect/frontend-pause/r25-b05-20-full",
+     "episodeKey": [
+      "frontend-pause-effect",
+      "25",
+      5,
+      0,
+      "B"
+     ],
+     "holdSeconds": 60.05977777391672,
+     "ledger": {
+      "penalised": 0.2920834645628929,
+      "ttd": 0.2920834645628929
+     },
+     "sets": {
+      "frontier (effort<=0, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=0, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=1, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=2, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=1-10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=1-10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=1-10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=1-10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=<1%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=<1%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=<1%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=<1%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=>10%) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=>10%) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=>10%) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=>10%) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=any) @0": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=any) @3/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=any) @6/T_r": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=any) @6/h": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "frontier (effort<=any, runtime<=any) @inf": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "full": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "ledger alone": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      },
+      "out of the box": {
+       "improvesOnLedger": false,
+       "penalised": 0.2920834645628929,
+       "ttd": 0.2920834645628929
+      }
+     }
+    }
+   ],
+   "episodesAtRateInReadout": 15,
+   "episodesScored": 6,
+   "groundSetSize": 4417,
+   "rate": 25.0,
+   "rules": {
+    "bc": "e-only",
+    "missAtHold": true,
+    "own": "exclude",
+    "penalty": "ttd"
+   },
+   "sets": {
+    "frontier (effort<=0, runtime<=1-10%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=1-10%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=1-10%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=1-10%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=1-10%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=<1%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=<1%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=<1%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=<1%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=<1%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=>10%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=>10%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=0, runtime<=>10%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=0, runtime<=>10%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=>10%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=0, runtime<=any) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=any) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=0, runtime<=any) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=0, runtime<=any) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=0, runtime<=any) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 0,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=1, runtime<=1-10%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=1-10%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=1-10%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=1-10%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=1-10%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=<1%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=<1%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=<1%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=<1%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=<1%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=>10%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=>10%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=1, runtime<=>10%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=1, runtime<=>10%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=>10%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=1, runtime<=any) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=any) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=1, runtime<=any) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=1, runtime<=any) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=1, runtime<=any) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 1,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=2, runtime<=1-10%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=1-10%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=1-10%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=1-10%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=1-10%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=<1%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=<1%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=<1%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=<1%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=<1%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=>10%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=>10%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=2, runtime<=>10%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=2, runtime<=>10%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=>10%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=2, runtime<=any) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=any) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=2, runtime<=any) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=2, runtime<=any) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=2, runtime<=any) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": 2,
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=any, runtime<=1-10%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=1-10%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=1-10%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=1-10%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=1-10%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "1-10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=<1%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=<1%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=<1%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=<1%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=<1%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "<1%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=>10%) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=>10%) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=any, runtime<=>10%) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=any, runtime<=>10%) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=>10%) @inf": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": ">10%",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=any, runtime<=any) @0": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 0.0,
+     "budgetName": "0",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=any) @3/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 19.999999999999996,
+     "budgetName": "3/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=any, runtime<=any) @6/T_r": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 39.99999999999999,
+     "budgetName": "6/T_r",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=>10%) @3/T_r",
+     "sensors": [
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 1
+    },
+    "frontier (effort<=any, runtime<=any) @6/h": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": 6.0,
+     "budgetName": "6/h",
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "any",
+     "note": null,
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "frontier (effort<=any, runtime<=any) @inf": {
+     "D": 25.542804275949795,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "budget": "inf",
+     "budgetName": "inf",
+     "detectedEpisodes": [
+      6,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 7.981042513002951,
+     "kind": "frontier",
+     "maxEffort": "any",
+     "maxRuntime": "any",
+     "note": null,
+     "sensors": [
+      "log:kafka:28ec81d9cba3",
+      "log:kafka:8f9d8866e174",
+      "log:recommendationservice:271a57397c88",
+      "metric:flagd:http.server.duration~rate"
+     ],
+     "size": 4
+    },
+    "full": {
+     "D": 1.7646667957305908,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "detectedEpisodes": [
+      6,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 31.759179993222155,
+     "kind": "comparator",
+     "sensors": "V_r frozen (4417)",
+     "size": 4417,
+     "source": "the frozen training ground set V_r"
+    },
+    "ledger alone": {
+     "D": 33.523846788952746,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "detectedEpisodes": [
+      3,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 0.0,
+     "kind": "comparator",
+     "sameAs": "frontier (effort<=0, runtime<=<1%) @0",
+     "sensors": [],
+     "size": 0
+    },
+    "out of the box": {
+     "D": 15.098583170523245,
+     "DLedger": 33.523846788952746,
+     "absentFromScoringGroundSet": {
+      "count": 0,
+      "sensors": {}
+     },
+     "detectedEpisodes": [
+      5,
+      6
+     ],
+     "freshFalseAlarms": "\u2014 (decision 88 analogue: fresh false alarms of the frozen sets on E's no-fault cells need a validated path; none exists)",
+     "g": 18.4252636184295,
+     "kind": "comparator",
+     "label": "the upstream system as shipped (effort tier 0), the starting posture; a restriction estimate of `full` cells (decision 80)",
+     "note": null,
+     "sensors": [
+      "log:accountingservice:020200dc7516",
+      "log:accountingservice:0de465075c04",
+      "log:accountingservice:1beb330393a9",
+      "log:accountingservice:33a6342b9bdb",
+      "log:accountingservice:34d5bac2ad4c",
+      "log:accountingservice:396e4d6de49a",
+      "log:accountingservice:4effb619229a",
+      "log:accountingservice:4fafe2bb2232",
+      "log:accountingservice:6914926388fe",
+      "log:accountingservice:777c0dd6ebb5",
+      "log:accountingservice:7f002e6ec6b1",
+      "log:accountingservice:9a7a46c343db",
+      "log:accountingservice:9b571bf8f84c",
+      "log:accountingservice:b526f7e58c37",
+      "log:accountingservice:b6f2976d0cc7",
+      "log:accountingservice:b8c4b352bb62",
+      "log:accountingservice:d226aab7909f",
+      "log:accountingservice:d40fabb1daa8",
+      "log:accountingservice:ed7c55d1722e",
+      "log:accountingservice:f6d2a8fd7279",
+      "log:accountingservice:f70ba64be717",
+      "log:accountingservice:f904ab2a1231",
+      "log:adservice:15386f04ccf3",
+      "log:adservice:237bd2e48941",
+      "log:adservice:46aa7009ba09",
+      "log:adservice:5966dd28c645",
+      "log:adservice:6b83755ca1d0",
+      "log:adservice:eb13be1d2f61",
+      "log:adservice:ec57eec38dad",
+      "log:adservice:f7061b25a6f8",
+      "log:cartservice:9d2d534593fb",
+      "log:cartservice:aa11e5efcab9",
+      "log:cartservice:f3b5e31a4607",
+      "log:checkoutservice:033988248b04",
+      "log:checkoutservice:06fd3f03716d",
+      "log:checkoutservice:147d87eb4960",
+      "log:checkoutservice:1e40e2ad3d69",
+      "log:checkoutservice:32096e7e3b91",
+      "log:checkoutservice:59769c093aa4",
+      "log:checkoutservice:59a393244a02",
+      "log:checkoutservice:6062517a8cd1",
+      "log:checkoutservice:60a8b0f0c7b8",
+      "log:checkoutservice:747ccdbd9467",
+      "log:checkoutservice:90d69d29b1ad",
+      "log:checkoutservice:9cf11aad7bd2",
+      "log:checkoutservice:c320e11ae857",
+      "log:checkoutservice:cb9a7e50d345",
+      "log:checkoutservice:ce79c4908d58",
+      "log:checkoutservice:d46745a53c2d",
+      "log:checkoutservice:f96b0c4a40b9",
+      "log:emailservice:0f04157ef9ea",
+      "log:emailservice:3055294ea81b",
+      "log:emailservice:5b62ec7ec490",
+      "log:emailservice:5bf8742e2ee7",
+      "log:emailservice:822c4d423350",
+      "log:emailservice:89bb3e9a15ad",
+      "log:emailservice:9b25adc050ce",
+      "log:emailservice:9b3332c5d730",
+      "log:emailservice:a5e7b0396662",
+      "log:emailservice:af8fa412595c",
+      "log:emailservice:c34aa21b4b5b",
+      "log:emailservice:d830558daaff",
+      "log:flagd-ui:10faa18d5497",
+      "log:flagd-ui:db488ddd5733",
+      "log:flagd:65176cb800ae",
+      "log:flagd:69caec7680d3",
+      "log:flagd:a22f8eb70bdc",
+      "log:flagd:b3699cd88262",
+      "log:flagd:c1cb8b65b109",
+      "log:flagd:dfb7f7d4ed8a",
+      "log:flagd:f510edb53e6e",
+      "log:frauddetectionservice:0a3d12f34da2",
+      "log:frauddetectionservice:15386f04ccf3",
+      "log:frauddetectionservice:46aa7009ba09",
+      "log:frauddetectionservice:6b83755ca1d0",
+      "log:frauddetectionservice:d38110610098",
+      "log:frauddetectionservice:eb13be1d2f61",
+      "log:frauddetectionservice:f611e8e05685",
+      "log:frauddetectionservice:f7061b25a6f8",
+      "log:frontend:791fc0c1bc52",
+      "log:frontend:e1f734206391",
+      "log:imageprovider:351f78ef643e",
+      "log:imageprovider:a0ee11a25826",
+      "log:imageprovider:d5ed5e8dfb33",
+      "log:imageprovider:ddcebfc2d175",
+      "log:kafka:00f328a77b0f",
+      "log:kafka:03d55076ac71",
+      "log:kafka:0602eac7d477",
+      "log:kafka:063f1c9a3519",
+      "log:kafka:0da3a71e8f26",
+      "log:kafka:0f4c1f6f05a9",
+      "log:kafka:119acb1dd237",
+      "log:kafka:1235a2b2f4f7",
+      "log:kafka:129991ee8a87",
+      "log:kafka:12b2c8205326",
+      "log:kafka:13b2ad4a928b",
+      "log:kafka:14d1204ce5ac",
+      "log:kafka:17a757fd071c",
+      "log:kafka:1a0d9647fa7a",
+      "log:kafka:1aa99d9117b2",
+      "log:kafka:1b6f4d4d309a",
+      "log:kafka:1e7dd2decca3",
+      "log:kafka:2160ddf0966a",
+      "log:kafka:2380f166abae",
+      "log:kafka:23a009349390",
+      "log:kafka:26c258675622",
+      "log:kafka:2a0154327a86",
+      "log:kafka:2a37e59cca2b",
+      "log:kafka:2a65e65d0db5",
+      "log:kafka:2e31200f5652",
+      "log:kafka:2e910a7ff001",
+      "log:kafka:302f3c8b481f",
+      "log:kafka:30d61f64fd93",
+      "log:kafka:32a5e092f99f",
+      "log:kafka:33cde0b7a486",
+      "log:kafka:36e897157003",
+      "log:kafka:3a43f9ab7cbe",
+      "log:kafka:3a86162917af",
+      "log:kafka:3a9cbe240600",
+      "log:kafka:3af679f5a493",
+      "log:kafka:3c640d2beec3",
+      "log:kafka:3f21854baf66",
+      "log:kafka:432ddefb3cdc",
+      "log:kafka:4480e28e6e24",
+      "log:kafka:45faa121d71d",
+      "log:kafka:47f2d88e1d0b",
+      "log:kafka:49ecae86dd5a",
+      "log:kafka:4a052d499480",
+      "log:kafka:4b0b8d4420eb",
+      "log:kafka:4d44eb729d95",
+      "log:kafka:4ddbc16dc969",
+      "log:kafka:4dfb43646847",
+      "log:kafka:4e09d36c2ba6",
+      "log:kafka:4e2325f74c2e",
+      "log:kafka:4ed91c4ca157",
+      "log:kafka:50a008b49e52",
+      "log:kafka:512290071a1b",
+      "log:kafka:5165a039280a",
+      "log:kafka:516e96291555",
+      "log:kafka:518da027cd76",
+      "log:kafka:52e37146d0bb",
+      "log:kafka:54ec892689db",
+      "log:kafka:57b6cec34921",
+      "log:kafka:58cf172470c1",
+      "log:kafka:5a3446b46863",
+      "log:kafka:5ae7135b2689",
+      "log:kafka:5df7bb871e6f",
+      "log:kafka:60a3d40666a9",
+      "log:kafka:60b1ec16e4d4",
+      "log:kafka:61ceca134794",
+      "log:kafka:662dede880a5",
+      "log:kafka:66af4e6d7626",
+      "log:kafka:66b33837e4d3",
+      "log:kafka:685a6ae53d07",
+      "log:kafka:69657fa765af",
+      "log:kafka:699b0444f27d",
+      "log:kafka:6b83755ca1d0",
+      "log:kafka:6d2fc432fce3",
+      "log:kafka:6e4d5fa6f49b",
+      "log:kafka:6f6771d3c15f",
+      "log:kafka:7732ee59ae2e",
+      "log:kafka:794df5201c50",
+      "log:kafka:7c2475963700",
+      "log:kafka:7de5568a5ce1",
+      "log:kafka:7f314c46ac6f",
+      "log:kafka:80e584c2430c",
+      "log:kafka:82a94d6428bc",
+      "log:kafka:83740538e3bf",
+      "log:kafka:83904a374ff0",
+      "log:kafka:853a1389f91a",
+      "log:kafka:853de19f2048",
+      "log:kafka:86177657ebf9",
+      "log:kafka:87d270dd1e00",
+      "log:kafka:8e1c65ce3118",
+      "log:kafka:8ec2a30a14bb",
+      "log:kafka:8f1554dc0b9f",
+      "log:kafka:90a2e1e7d6ff",
+      "log:kafka:91f6bc047e23",
+      "log:kafka:92c98cf4bba0",
+      "log:kafka:9498703e3da3",
+      "log:kafka:954b2660250d",
+      "log:kafka:958774b60a3d",
+      "log:kafka:95bae6f2173d",
+      "log:kafka:968903fde8dd",
+      "log:kafka:98f9d689e530",
+      "log:kafka:9db5a69e9b03",
+      "log:kafka:a120e94d78d7",
+      "log:kafka:a404b5aba651",
+      "log:kafka:a5dff48c0de1",
+      "log:kafka:a79caba0c508",
+      "log:kafka:abac4b151780",
+      "log:kafka:ac636c247e11",
+      "log:kafka:aca846b15b02",
+      "log:kafka:ae156cf1bcf1",
+      "log:kafka:b23173084bca",
+      "log:kafka:b51d61fc0ce3",
+      "log:kafka:b7e37e53cd62",
+      "log:kafka:b8156940ddfb",
+      "log:kafka:b85ae608f657",
+      "log:kafka:bb20f474d1d2",
+      "log:kafka:bb4efffb76d5",
+      "log:kafka:bb5c86c83e34",
+      "log:kafka:be396d218b1d",
+      "log:kafka:bf5c32893c0a",
+      "log:kafka:c5d099a2cb3d",
+      "log:kafka:c63baf29bbe4",
+      "log:kafka:cb344b258f3d",
+      "log:kafka:cb779129445b",
+      "log:kafka:cdd55c59e792",
+      "log:kafka:d0205f512088",
+      "log:kafka:d3880b8339b8",
+      "log:kafka:d5e61a0dc7ba",
+      "log:kafka:d6a645b082df",
+      "log:kafka:d6eef7bca617",
+      "log:kafka:d76fa690419a",
+      "log:kafka:d9729519af0f",
+      "log:kafka:d9cac2fbdd28",
+      "log:kafka:da12da66097f",
+      "log:kafka:dd945154b57f",
+      "log:kafka:dee1d80a39b0",
+      "log:kafka:dfa85e71c254",
+      "log:kafka:e101b0422472",
+      "log:kafka:e1c65f7c655d",
+      "log:kafka:e1ddb7a6ed16",
+      "log:kafka:e209b130ab15",
+      "log:kafka:e3f698b0345b",
+      "log:kafka:e4ae0bcd53b6",
+      "log:kafka:e4c21c45e928",
+      "log:kafka:e4cee4552678",
+      "log:kafka:e6564fcf1f80",
+      "log:kafka:e6f1bb1ee21e",
+      "log:kafka:e7a4626a0656",
+      "log:kafka:e8088a8842ef",
+      "log:kafka:ebb54f2e4f65",
+      "log:kafka:ec078028dbff",
+      "log:kafka:ec844021157d",
+      "log:kafka:ecad6237dd0c",
+      "log:kafka:f1608878440b",
+      "log:kafka:f22dda5a6d7b",
+      "log:kafka:f27119262d74",
+      "log:kafka:f27a4babf9af",
+      "log:kafka:f64aced2e8ca",
+      "log:kafka:f68af2034241",
+      "log:kafka:f7061b25a6f8",
+      "log:kafka:f9b078cbe884",
+      "log:kafka:fb7aba79340d",
+      "log:kafka:fb8f8b6e91d7",
+      "log:kafka:fc82688ab34e",
+      "log:kafka:fe5bc2cd9f19",
+      "log:paymentservice:8ac3cee74f87",
+      "log:paymentservice:afe0910dfd88",
+      "log:paymentservice:c3c3724c55be",
+      "log:paymentservice:dd6e38de1f8e",
+      "log:paymentservice:eac01dfd20e8",
+      "log:paymentservice:f2f1ce47e416",
+      "log:productcatalogservice:26284667a8b7",
+      "log:productcatalogservice:ae6d10f23d60",
+      "log:quoteservice:691dd893d1f0",
+      "log:quoteservice:8b4d8c085284",
+      "log:recommendationservice:110fb96773e3",
+      "log:shippingservice:17afc12f5ea2",
+      "log:shippingservice:681d826afdbc",
+      "log:shippingservice:a2e8e33b4194",
+      "log:shippingservice:bd98c65ed9ed",
+      "log:shippingservice:fa378ac199b7",
+      "metric:flagd:feature_flag.flagd.evaluation.reason",
+      "metric:flagd:feature_flag.flagd.impression",
+      "metric:flagd:http.server.duration~mean",
+      "metric:flagd:http.server.duration~rate",
+      "metric:flagd:http.server.response.size~rate",
+      "span:accountingservice:orders_receive",
+      "span:accountingservice:orders_receive:error",
+      "span:cartservice:EXPIRE",
+      "span:cartservice:HGET",
+      "span:cartservice:HMSET",
+      "span:cartservice:POST",
+      "span:cartservice:POST_/oteldemo.CartService/AddItem",
+      "span:cartservice:POST_/oteldemo.CartService/EmptyCart",
+      "span:cartservice:POST_/oteldemo.CartService/GetCart",
+      "span:cartservice:flagd.evaluation.v1.Service/ResolveBoolean",
+      "span:checkoutservice:HTTP_POST",
+      "span:checkoutservice:orders_publish",
+      "span:checkoutservice:oteldemo.CartService/EmptyCart",
+      "span:checkoutservice:oteldemo.CartService/GetCart",
+      "span:checkoutservice:oteldemo.CheckoutService/PlaceOrder",
+      "span:checkoutservice:oteldemo.CurrencyService/Convert",
+      "span:checkoutservice:oteldemo.PaymentService/Charge",
+      "span:checkoutservice:oteldemo.ProductCatalogService/GetProduct",
+      "span:checkoutservice:oteldemo.ShippingService/GetQuote",
+      "span:checkoutservice:oteldemo.ShippingService/ShipOrder",
+      "span:checkoutservice:prepareOrderItemsAndShippingQuoteFromCart",
+      "span:currencyservice:CurrencyService/Convert",
+      "span:emailservice:POST_/send_order_confirmation",
+      "span:emailservice:send_email",
+      "span:emailservice:sinatra.render_template",
+      "span:flagd:flagd.evaluation.v1.Service/ResolveBoolean",
+      "span:flagd:flagd.evaluation.v1.Service/ResolveInt",
+      "span:flagd:resolveBoolean",
+      "span:flagd:resolveInt",
+      "span:flagd:schema.v1.Service/ResolveInt",
+      "span:frauddetectionservice:flagd.evaluation.v1.Service/ResolveInt",
+      "span:frauddetectionservice:orders_process",
+      "span:frauddetectionservice:orders_receive",
+      "span:frauddetectionservice:resolve",
+      "span:frontend:GET",
+      "span:frontend:GET:error",
+      "span:frontend:GET_/",
+      "span:frontend:GET_/api/products/{productId}",
+      "span:frontend:POST",
+      "span:frontend:POST_/api/cart",
+      "span:frontend:POST_/api/checkout",
+      "span:frontend:dns.lookup",
+      "span:frontend:executing_api_route_(pages)_/api/cart",
+      "span:frontend:executing_api_route_(pages)_/api/checkout",
+      "span:frontend:executing_api_route_(pages)_/api/products/[productId]",
+      "span:frontend:grpc.oteldemo.CartService/AddItem",
+      "span:frontend:grpc.oteldemo.CartService/GetCart",
+      "span:frontend:grpc.oteldemo.CheckoutService/PlaceOrder",
+      "span:frontend:grpc.oteldemo.ProductCatalogService/GetProduct",
+      "span:frontend:render_route_(pages)_/",
+      "span:frontend:resolve_page_components",
+      "span:frontend:tcp.connect",
+      "span:frontendproxy:ingress",
+      "span:frontendproxy:router_frontend_egress",
+      "span:loadgenerator:GET",
+      "span:loadgenerator:GET:error",
+      "span:loadgenerator:POST",
+      "span:loadgenerator:POST:error",
+      "span:paymentservice:GET",
+      "span:paymentservice:GET:error",
+      "span:paymentservice:charge",
+      "span:paymentservice:dns.lookup",
+      "span:paymentservice:dns.lookup:error",
+      "span:paymentservice:grpc.flagd.evaluation.v1.Service/ResolveBoolean",
+      "span:paymentservice:grpc.oteldemo.PaymentService/Charge",
+      "span:paymentservice:tcp.connect",
+      "span:paymentservice:tcp.connect:error",
+      "span:productcatalogservice:oteldemo.ProductCatalogService/GetProduct",
+      "span:quoteservice:POST_/getquote",
+      "span:quoteservice:calculate-quote",
+      "span:quoteservice:{closure}",
+      "span:shippingservice:POST",
+      "span:shippingservice:oteldemo.ShippingService/GetQuote",
+      "span:shippingservice:oteldemo.ShippingService/ShipOrder"
+     ],
+     "size": 344
+    }
+   },
+   "testBlocks": [
+    4,
+    5
+   ],
+   "verdicts": [
+    {
+     "absentFromScoringGroundSet": {},
+     "episodesInPool": 2,
+     "gE": 0.0,
+     "gPositive": false,
+     "improved": 0,
+     "reason": "g_E = 0 is not above 0; improves 0 of 2 episodes (< 2)",
+     "rule": {
+      "class": "fraud-pause-effect",
+      "minEpisodes": 2,
+      "minGain": null,
+      "minImprovedEpisodes": 2,
+      "rate": null,
+      "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+     },
+     "verdict": "FAIL"
+    },
+    {
+     "absentFromScoringGroundSet": {},
+     "episodesInPool": 2,
+     "gE": 0.0,
+     "gPositive": false,
+     "improved": 0,
+     "reason": "g_E = 0 is not above 0; improves 0 of 2 episodes (< 2)",
+     "rule": {
+      "class": "accounting-pause-effect",
+      "minEpisodes": 2,
+      "minGain": null,
+      "minImprovedEpisodes": 2,
+      "rate": null,
+      "set": "frontier (effort<=any, runtime<=any) @6/T_r"
+     },
+     "verdict": "FAIL"
+    }
+   ]
+  }
+ },
+ "scope": "instance",
+ "splitCheck": {
+  "checked": true,
+  "scoringReadoutBlocks": "all",
+  "testBlocks": [
+   4,
+   5
+  ],
+  "trainBlocks": [
+   1,
+   2,
+   3
+  ]
+ },
+ "switches": {
+  "ABSENT_NEVER_FIRES": true,
+  "BLOCK_BY_NUMBER": true,
+  "CLASS_G": true,
+  "ENFORCE_PINS": true,
+  "EPOCH_SELECT": true,
+  "FROZEN_SETS": true,
+  "NO_PASS_RULE_DASH": true,
+  "REFUSE_DUPLICATE_EPISODES": true,
+  "REFUSE_OVERLAP": true,
+  "REQUIRE_DECLARED_TEST": true,
+  "REQUIRE_HELD_OUT": true,
+  "REQUIRE_TRAINING": true,
+  "SAME_CALIBRATION": true,
+  "STRICT_IMPROVEMENT": true,
+  "TEST_ONLY": true
+ },
+ "system": "otel",
+ "version": "score-test-v3.2"
+}

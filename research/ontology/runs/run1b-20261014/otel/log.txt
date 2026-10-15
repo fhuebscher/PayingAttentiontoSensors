@@ -1,0 +1,4 @@
+rerun of run1-20261014 stages 3-5 under Amendment 2; inputs reused unchanged (reuse.json)
+merge: dropped {'A': 0, 'B': 7, 'stage1': 0}; agreed 124, deterministic 35, contested 57; agreement all keys 0.5741 (124/216), reportable 0.6508 (123/189)
+judge packets 57: reused answers 57, new or changed 0
+stage 4-5: {"accepted": {"agreed": 124, "deterministic": 35, "supported": 22}, "decisions": {"not decidable": 34, "not supported": 1, "supported": 22}, "rebuildLog": {"incomplete": 2, "orphaned": 3}, "schemaErrors": [], "shaclConforms": false, "shaclViolations": 2, "triples": 3342}

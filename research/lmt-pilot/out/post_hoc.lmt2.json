@@ -1,0 +1,316 @@
+{
+ "failedRequests": {
+  "cpu-throttle-effect:0": 16,
+  "net-delay-effect:0": 16,
+  "no-fault-cost:0": 16,
+  "reservation-pause-effect:140": 15,
+  "reservation-pause-effect:141": 1,
+  "search-pause-effect:140": 15,
+  "search-pause-effect:141": 1
+ },
+ "classes": {
+  "cpu-throttle-effect": {
+   "L": {
+    "n": 12,
+    "rawNonTargetTop": [],
+    "rawNonTargetTopCount": 0,
+    "rawNonTarget": {},
+    "target": {}
+   },
+   "M": {
+    "n": 8,
+    "rawNonTargetTop": [
+     "M:frontend:cpu"
+    ],
+    "rawNonTargetTopCount": 2,
+    "rawNonTarget": {
+     "M:frontend:cpu": 2,
+     "M:search:cpu": 1
+    },
+    "target": {}
+   },
+   "T": {
+    "n": 4,
+    "rawNonTargetTop": [],
+    "rawNonTargetTopCount": 0,
+    "rawNonTarget": {},
+    "target": {}
+   },
+   "S": {
+    "n": 16,
+    "rawNonTargetTop": [
+     "S:geo:sys_memory"
+    ],
+    "rawNonTargetTopCount": 5,
+    "rawNonTarget": {
+     "S:frontend:sys_memory": 1,
+     "S:geo:sys_memory": 5,
+     "S:rate:sys_memory": 3,
+     "S:reservation:sys_memory": 1,
+     "S:search:sys_memory": 2
+    },
+    "target": {
+     "S:profile:sys_memory": 1,
+     "S:profile:sys_psi_cpu": 15
+    }
+   }
+  },
+  "net-delay-effect": {
+   "L": {
+    "n": 12,
+    "rawNonTargetTop": [],
+    "rawNonTargetTopCount": 0,
+    "rawNonTarget": {},
+    "target": {}
+   },
+   "M": {
+    "n": 8,
+    "rawNonTargetTop": [
+     "M:frontend:cpu"
+    ],
+    "rawNonTargetTopCount": 3,
+    "rawNonTarget": {
+     "M:frontend:cpu": 3,
+     "M:profile:cpu": 1
+    },
+    "target": {
+     "M:rate:cpu": 1
+    }
+   },
+   "T": {
+    "n": 4,
+    "rawNonTargetTop": [
+     "T:frontend:/search.Search/Nearby",
+     "T:frontend:HTTP_GET_/hotels",
+     "T:search:/rate.Rate/GetRates",
+     "T:search:/search.Search/Nearby"
+    ],
+    "rawNonTargetTopCount": 4,
+    "rawNonTarget": {
+     "T:frontend:/search.Search/Nearby": 4,
+     "T:frontend:HTTP_GET_/hotels": 4,
+     "T:search:/rate.Rate/GetRates": 4,
+     "T:search:/search.Search/Nearby": 4
+    },
+    "target": {
+     "T:rate:/rate.Rate/GetRates": 4,
+     "T:rate:memcached_get_multi_rate": 4
+    }
+   },
+   "S": {
+    "n": 16,
+    "rawNonTargetTop": [
+     "S:search:sys_memory"
+    ],
+    "rawNonTargetTopCount": 3,
+    "rawNonTarget": {
+     "S:frontend:sys_memory": 1,
+     "S:geo:sys_memory": 2,
+     "S:profile:sys_memory": 2,
+     "S:reservation:sys_memory": 2,
+     "S:review:sys_memory": 1,
+     "S:search:sys_memory": 3
+    },
+    "target": {
+     "S:rate:sys_memory": 1
+    }
+   }
+  },
+  "no-fault-cost": {
+   "L": {
+    "n": 12,
+    "rawNonTargetTop": [],
+    "rawNonTargetTopCount": 0,
+    "rawNonTarget": {},
+    "target": {}
+   },
+   "M": {
+    "n": 8,
+    "rawNonTargetTop": [
+     "M:frontend:cpu"
+    ],
+    "rawNonTargetTopCount": 2,
+    "rawNonTarget": {
+     "M:frontend:cpu": 2,
+     "M:rate:cpu": 1,
+     "M:reservation:cpu": 1
+    },
+    "target": {}
+   },
+   "T": {
+    "n": 4,
+    "rawNonTargetTop": [],
+    "rawNonTargetTopCount": 0,
+    "rawNonTarget": {},
+    "target": {}
+   },
+   "S": {
+    "n": 16,
+    "rawNonTargetTop": [
+     "S:geo:sys_memory",
+     "S:profile:sys_memory",
+     "S:rate:sys_memory"
+    ],
+    "rawNonTargetTopCount": 4,
+    "rawNonTarget": {
+     "S:frontend:sys_memory": 2,
+     "S:geo:sys_memory": 4,
+     "S:profile:sys_memory": 4,
+     "S:rate:sys_memory": 4,
+     "S:reservation:sys_memory": 3,
+     "S:review:sys_memory": 1,
+     "S:search:sys_memory": 1
+    },
+    "target": {}
+   }
+  },
+  "reservation-pause-effect": {
+   "L": {
+    "n": 12,
+    "rawNonTargetTop": [
+     "L:frontend:4ae82b46d72e"
+    ],
+    "rawNonTargetTopCount": 12,
+    "rawNonTarget": {
+     "L:frontend:4ae82b46d72e": 12
+    },
+    "target": {}
+   },
+   "M": {
+    "n": 8,
+    "rawNonTargetTop": [
+     "M:frontend:cpu"
+    ],
+    "rawNonTargetTopCount": 8,
+    "rawNonTarget": {
+     "M:frontend:cpu": 8,
+     "M:profile:cpu": 7,
+     "M:rate:cpu": 1,
+     "M:search:cpu": 1
+    },
+    "target": {
+     "M:reservation:cpu": 8
+    }
+   },
+   "T": {
+    "n": 4,
+    "rawNonTargetTop": [
+     "T:frontend:/profile.Profile/GetProfiles",
+     "T:frontend:/reservation.Reservation/CheckAvailability",
+     "T:frontend:HTTP_GET_/hotels",
+     "T:profile:/profile.Profile/GetProfiles",
+     "T:profile:memcached_get_profile"
+    ],
+    "rawNonTargetTopCount": 4,
+    "rawNonTarget": {
+     "T:frontend:/profile.Profile/GetProfiles": 4,
+     "T:frontend:/reservation.Reservation/CheckAvailability": 4,
+     "T:frontend:HTTP_GET_/hotels": 4,
+     "T:profile:/profile.Profile/GetProfiles": 4,
+     "T:profile:memcached_get_profile": 4
+    },
+    "target": {
+     "T:reservation:/reservation.Reservation/CheckAvailability": 4,
+     "T:reservation:memcached_capacity_get_multi_number": 4,
+     "T:reservation:memcached_reserve_get_multi_number": 4
+    }
+   },
+   "S": {
+    "n": 16,
+    "rawNonTargetTop": [
+     "S:geo:sys_memory"
+    ],
+    "rawNonTargetTopCount": 5,
+    "rawNonTarget": {
+     "S:frontend:sys_memory": 2,
+     "S:geo:sys_memory": 5,
+     "S:profile:sys_memory": 1,
+     "S:rate:sys_memory": 1,
+     "S:search:sys_memory": 2
+    },
+    "target": {}
+   }
+  },
+  "search-pause-effect": {
+   "L": {
+    "n": 12,
+    "rawNonTargetTop": [],
+    "rawNonTargetTopCount": 0,
+    "rawNonTarget": {},
+    "target": {}
+   },
+   "M": {
+    "n": 8,
+    "rawNonTargetTop": [
+     "M:frontend:cpu",
+     "M:profile:cpu",
+     "M:rate:cpu",
+     "M:reservation:cpu"
+    ],
+    "rawNonTargetTopCount": 8,
+    "rawNonTarget": {
+     "M:frontend:cpu": 8,
+     "M:geo:cpu": 1,
+     "M:profile:cpu": 8,
+     "M:rate:cpu": 8,
+     "M:reservation:cpu": 8
+    },
+    "target": {
+     "M:search:cpu": 8
+    }
+   },
+   "T": {
+    "n": 4,
+    "rawNonTargetTop": [
+     "T:frontend:/profile.Profile/GetProfiles",
+     "T:frontend:/reservation.Reservation/CheckAvailability",
+     "T:frontend:/search.Search/Nearby",
+     "T:frontend:HTTP_GET_/hotels",
+     "T:geo:/geo.Geo/Nearby",
+     "T:profile:/profile.Profile/GetProfiles",
+     "T:profile:memcached_get_profile",
+     "T:rate:/rate.Rate/GetRates",
+     "T:rate:memcached_get_multi_rate",
+     "T:reservation:/reservation.Reservation/CheckAvailability",
+     "T:reservation:memcached_capacity_get_multi_number",
+     "T:reservation:memcached_reserve_get_multi_number"
+    ],
+    "rawNonTargetTopCount": 4,
+    "rawNonTarget": {
+     "T:frontend:/profile.Profile/GetProfiles": 4,
+     "T:frontend:/reservation.Reservation/CheckAvailability": 4,
+     "T:frontend:/search.Search/Nearby": 4,
+     "T:frontend:HTTP_GET_/hotels": 4,
+     "T:geo:/geo.Geo/Nearby": 4,
+     "T:profile:/profile.Profile/GetProfiles": 4,
+     "T:profile:memcached_get_profile": 4,
+     "T:rate:/rate.Rate/GetRates": 4,
+     "T:rate:memcached_get_multi_rate": 4,
+     "T:reservation:/reservation.Reservation/CheckAvailability": 4,
+     "T:reservation:memcached_capacity_get_multi_number": 4,
+     "T:reservation:memcached_reserve_get_multi_number": 4
+    },
+    "target": {
+     "T:search:/geo.Geo/Nearby": 4,
+     "T:search:/rate.Rate/GetRates": 4,
+     "T:search:/search.Search/Nearby": 4
+    }
+   },
+   "S": {
+    "n": 16,
+    "rawNonTargetTop": [
+     "S:frontend:sys_memory"
+    ],
+    "rawNonTargetTopCount": 6,
+    "rawNonTarget": {
+     "S:frontend:sys_memory": 6,
+     "S:geo:sys_memory": 2,
+     "S:rate:sys_memory": 1,
+     "S:recommendation:sys_memory": 1,
+     "S:review:sys_memory": 1
+    },
+    "target": {}
+   }
+  }
+ }
+}

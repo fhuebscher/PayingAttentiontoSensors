@@ -1,0 +1,453 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://observability-placement.local/contracts/science-change-control.schema.json",
+  "title": "OpenSpec scientific change-control envelope",
+  "description": "Fail-closed governance for repository-local OpenSpec design changes. Version 1 cannot authorize runtime activity, external mutation, held-out outcome access, AI selection, evidence promotion, or a passed verification state.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "id",
+    "baseCommit",
+    "claimCeiling",
+    "workflow",
+    "openSpec",
+    "artifacts",
+    "authorityBindings",
+    "permissions",
+    "checkIds",
+    "humanCheckpoints",
+    "pathOwnership",
+    "verification"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://observability-placement.local/contracts/science-change-control.schema.json"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "$ref": "#/$defs/slug"
+    },
+    "baseCommit": {
+      "$ref": "#/$defs/gitCommit"
+    },
+    "claimCeiling": {
+      "enum": [
+        "none",
+        "local-design-only",
+        "method-design-only"
+      ]
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "blockers"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "local-implementation",
+            "blocked"
+          ]
+        },
+        "blockers": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/slug"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "blocked"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "blockers": {
+                "minItems": 1
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "blockers": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "openSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "configPath",
+        "schemaName",
+        "schemaPath",
+        "packageJsonPath",
+        "lockFilePath",
+        "packageName",
+        "version"
+      ],
+      "properties": {
+        "configPath": {
+          "const": "openspec/config.yaml"
+        },
+        "schemaName": {
+          "const": "scientific-change"
+        },
+        "schemaPath": {
+          "const": "openspec/schemas/scientific-change/schema.yaml"
+        },
+        "packageJsonPath": {
+          "const": "package.json"
+        },
+        "lockFilePath": {
+          "const": "package-lock.json"
+        },
+        "packageName": {
+          "const": "@fission-ai/openspec"
+        },
+        "version": {
+          "const": "1.11.0"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proposal",
+        "authority",
+        "specs",
+        "design",
+        "tasks",
+        "verification",
+        "governance",
+        "findings"
+      ],
+      "properties": {
+        "proposal": {
+          "$ref": "#/$defs/repositoryFile"
+        },
+        "authority": {
+          "$ref": "#/$defs/repositoryFile"
+        },
+        "specs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/repositoryFile"
+          }
+        },
+        "design": {
+          "$ref": "#/$defs/repositoryFile"
+        },
+        "tasks": {
+          "$ref": "#/$defs/repositoryFile"
+        },
+        "verification": {
+          "$ref": "#/$defs/repositoryFile"
+        },
+        "governance": {
+          "$ref": "#/$defs/repositoryFile"
+        },
+        "findings": {
+          "$ref": "#/$defs/repositoryFile"
+        }
+      }
+    },
+    "authorityBindings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/authorityBinding"
+      }
+    },
+    "permissions": {
+      "$ref": "#/$defs/designOnlyPermissions"
+    },
+    "checkIds": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "prefixItems": [
+        {
+          "const": "openspec-config"
+        },
+        {
+          "const": "openspec-tool-pin"
+        },
+        {
+          "const": "change-artifacts"
+        },
+        {
+          "const": "governance-schema"
+        },
+        {
+          "const": "authority-bindings"
+        },
+        {
+          "const": "path-ownership"
+        },
+        {
+          "const": "findings-ledger"
+        },
+        {
+          "const": "runtime-boundary"
+        }
+      ],
+      "items": false
+    },
+    "humanCheckpoints": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/planCheckpoint"
+        },
+        {
+          "$ref": "#/$defs/runCheckpoint"
+        },
+        {
+          "$ref": "#/$defs/promotionCheckpoint"
+        }
+      ],
+      "items": false
+    },
+    "pathOwnership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed",
+        "forbidden"
+      ],
+      "properties": {
+        "allowed": {
+          "$ref": "#/$defs/nonEmptyUniquePaths"
+        },
+        "forbidden": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/repositoryPath"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": ".local/"
+              }
+            },
+            {
+              "contains": {
+                "const": "upstream/"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "independentReviewerRequired",
+        "reportBinding"
+      ],
+      "properties": {
+        "status": {
+          "const": "not-run"
+        },
+        "independentReviewerRequired": {
+          "const": true
+        },
+        "reportBinding": {
+          "type": "null"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "gitCommit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "repositoryPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*//)(?!.*\\\\)[A-Za-z0-9._@+ -]+(?:/[A-Za-z0-9._@+ -]+)*/?$"
+    },
+    "repositoryFile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/repositoryPath"
+        },
+        {
+          "pattern": "[^/]$"
+        }
+      ]
+    },
+    "nonEmptyUniquePaths": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/repositoryPath"
+      }
+    },
+    "authorityBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "role",
+        "qualification"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/repositoryFile"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "qualification": {
+          "enum": [
+            "current",
+            "historical-context"
+          ]
+        }
+      }
+    },
+    "designOnlyPermissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtimeAllowed",
+        "externalMutationAllowed",
+        "heldOutOutcomeAccessAllowed",
+        "aiSelectorAllowed",
+        "evidencePromotionAllowed"
+      ],
+      "properties": {
+        "runtimeAllowed": {
+          "const": false
+        },
+        "externalMutationAllowed": {
+          "const": false
+        },
+        "heldOutOutcomeAccessAllowed": {
+          "const": false
+        },
+        "aiSelectorAllowed": {
+          "const": false
+        },
+        "evidencePromotionAllowed": {
+          "const": false
+        }
+      }
+    },
+    "planCheckpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scope",
+        "status",
+        "decisionBinding"
+      ],
+      "properties": {
+        "id": {
+          "const": "GATE-PLAN"
+        },
+        "scope": {
+          "const": "plan-approval"
+        },
+        "status": {
+          "const": "pending"
+        },
+        "decisionBinding": {
+          "type": "null"
+        }
+      }
+    },
+    "runCheckpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scope",
+        "status",
+        "decisionBinding"
+      ],
+      "properties": {
+        "id": {
+          "const": "GATE-RUN"
+        },
+        "scope": {
+          "const": "run-authorization"
+        },
+        "status": {
+          "const": "not-requested"
+        },
+        "decisionBinding": {
+          "type": "null"
+        }
+      }
+    },
+    "promotionCheckpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "scope",
+        "status",
+        "decisionBinding"
+      ],
+      "properties": {
+        "id": {
+          "const": "GATE-PROMOTION"
+        },
+        "scope": {
+          "const": "evidence-promotion"
+        },
+        "status": {
+          "const": "not-requested"
+        },
+        "decisionBinding": {
+          "type": "null"
+        }
+      }
+    }
+  }
+}

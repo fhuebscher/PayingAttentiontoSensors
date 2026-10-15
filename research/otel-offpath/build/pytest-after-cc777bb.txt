@@ -1,0 +1,945 @@
+........................................................................ [  3%]
+........................................................................ [  6%]
+........................................................................ [ 10%]
+........................................................................ [ 13%]
+........................................................................ [ 16%]
+........................................................................ [ 20%]
+........................................................................ [ 23%]
+........................................................................ [ 27%]
+........................................................................ [ 30%]
+...........................................FF......F..F................. [ 33%]
+..................F..................................................... [ 37%]
+........................................................................ [ 40%]
+........................................................................ [ 44%]
+.......................FFFFFFFFFFF...................................... [ 47%]
+...............................F......................................F. [ 50%]
+........................................................................ [ 54%]
+........................................................................ [ 57%]
+........................................................................ [ 61%]
+........................................................................ [ 64%]
+........................................................................ [ 67%]
+........................................................................ [ 71%]
+........................................................................ [ 74%]
+........................................................................ [ 78%]
+............................................................F.FFFFF..... [ 81%]
+...................................................F.................... [ 84%]
+........................................................................ [ 88%]
+........................................................................ [ 91%]
+........................................................................ [ 94%]
+F..........................FF................F.......................... [ 98%]
+...................................                                      [100%]
+=================================== FAILURES ===================================
+__________ test_materialization_is_clean_pinned_and_content_addressed __________
+
+tmp_path = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_materialization_is_clean_0')
+
+    def test_materialization_is_clean_pinned_and_content_addressed(tmp_path: Path):
+>       proof = materialize.materialize(tmp_path / "source")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_hotel_materialize_campaign.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+modules/hotel-reservation/materialize.py:118: in materialize
+    proof = verify_source()
+            ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def verify_source() -> dict:
+        expected = pinned_commit()
+        actual = command(["git", "-C", str(UPSTREAM), "rev-parse", "HEAD"])
+        if actual != expected:
+>           raise RuntimeError(f"pinned checkout mismatch: expected {expected}, found {actual}")
+E           RuntimeError: pinned checkout mismatch: expected 6ecb09706140f8730b5385c08f1386c654c3c526, found cc777bb0b6f10edb56dce2de6565d6baeb0eaae3
+
+modules/hotel-reservation/materialize.py:85: RuntimeError
+______________ test_materializer_refuses_unowned_existing_target _______________
+
+tmp_path = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_materializer_refuses_unow0')
+
+    def test_materializer_refuses_unowned_existing_target(tmp_path: Path):
+        target = tmp_path / "not-ours"
+        target.mkdir()
+        (target / "keep.txt").write_text("user data")
+        with pytest.raises(RuntimeError, match="non-materialized"):
+>           materialize.materialize(target)
+
+tests/test_hotel_materialize_campaign.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+modules/hotel-reservation/materialize.py:118: in materialize
+    proof = verify_source()
+            ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def verify_source() -> dict:
+        expected = pinned_commit()
+        actual = command(["git", "-C", str(UPSTREAM), "rev-parse", "HEAD"])
+        if actual != expected:
+>           raise RuntimeError(f"pinned checkout mismatch: expected {expected}, found {actual}")
+E           RuntimeError: pinned checkout mismatch: expected 6ecb09706140f8730b5385c08f1386c654c3c526, found cc777bb0b6f10edb56dce2de6565d6baeb0eaae3
+
+modules/hotel-reservation/materialize.py:85: RuntimeError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_materializer_refuses_unow0')
+
+    def test_materializer_refuses_unowned_existing_target(tmp_path: Path):
+        target = tmp_path / "not-ours"
+        target.mkdir()
+        (target / "keep.txt").write_text("user data")
+>       with pytest.raises(RuntimeError, match="non-materialized"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'non-materialized'
+E        Input: 'pinned checkout mismatch: expected 6ecb09706140f8730b5385c08f1386c654c3c526, found cc777bb0b6f10edb56dce2de6565d6baeb0eaae3'
+
+tests/test_hotel_materialize_campaign.py:54: AssertionError
+__________ test_smoke_contract_accepts_only_fresh_isolated_namespace ___________
+
+tmp_path = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_smoke_contract_accepts_on0')
+
+    def test_smoke_contract_accepts_only_fresh_isolated_namespace(tmp_path: Path):
+        source = tmp_path / "source"
+>       proof = materialize.materialize(source)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_hotel_materialize_campaign.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+modules/hotel-reservation/materialize.py:118: in materialize
+    proof = verify_source()
+            ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def verify_source() -> dict:
+        expected = pinned_commit()
+        actual = command(["git", "-C", str(UPSTREAM), "rev-parse", "HEAD"])
+        if actual != expected:
+>           raise RuntimeError(f"pinned checkout mismatch: expected {expected}, found {actual}")
+E           RuntimeError: pinned checkout mismatch: expected 6ecb09706140f8730b5385c08f1386c654c3c526, found cc777bb0b6f10edb56dce2de6565d6baeb0eaae3
+
+modules/hotel-reservation/materialize.py:85: RuntimeError
+___________ test_smoke_recomputes_materialized_tree_and_bounds_work ____________
+
+tmp_path = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_smoke_recomputes_material0')
+
+    def test_smoke_recomputes_materialized_tree_and_bounds_work(tmp_path: Path):
+        source = tmp_path / "source"
+>       materialize.materialize(source)
+
+tests/test_hotel_materialize_campaign.py:232: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+modules/hotel-reservation/materialize.py:118: in materialize
+    proof = verify_source()
+            ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def verify_source() -> dict:
+        expected = pinned_commit()
+        actual = command(["git", "-C", str(UPSTREAM), "rev-parse", "HEAD"])
+        if actual != expected:
+>           raise RuntimeError(f"pinned checkout mismatch: expected {expected}, found {actual}")
+E           RuntimeError: pinned checkout mismatch: expected 6ecb09706140f8730b5385c08f1386c654c3c526, found cc777bb0b6f10edb56dce2de6565d6baeb0eaae3
+
+modules/hotel-reservation/materialize.py:85: RuntimeError
+_______ test_real_java_writer_fixture_has_reproducible_bound_provenance ________
+
+tmp_path = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_real_java_writer_fixture_0')
+
+    def test_real_java_writer_fixture_has_reproducible_bound_provenance(tmp_path):
+        provenance = json.loads(PROVENANCE.read_text())
+        assert set(provenance) == {
+            "schemaVersion", "generator", "inputs", "toolchain",
+            "compileCommand", "runCommand", "output",
+        }
+        assert provenance["schemaVersion"] == 1
+        assert provenance["generator"]["path"] == str(GENERATOR.relative_to(ROOT))
+        assert _sha256(GENERATOR) == provenance["generator"]["sha256"]
+        for item in provenance["inputs"]:
+>           assert _sha256(ROOT / item["path"]) == item["sha256"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_kieker_java_wire_fixture.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_kieker_java_wire_fixture.py:35: in _sha256
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+                          ^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:625: in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+______________ test_transform_rebinds_app_and_excludes_generators ______________
+
+    def test_transform_rebinds_app_and_excludes_generators():
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,proof=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                         ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:208: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+_ test_runtime_contract_rejects_source_service_environment_drift[frontend-SHOPPING_ASSISTANT_SERVICE_ADDR-UNBOUND_ASSISTANT_ADDR] _
+
+service = 'frontend', old = 'SHOPPING_ASSISTANT_SERVICE_ADDR'
+new = 'UNBOUND_ASSISTANT_ADDR'
+
+    @pytest.mark.parametrize(("service","old","new"),[
+        ("frontend","SHOPPING_ASSISTANT_SERVICE_ADDR","UNBOUND_ASSISTANT_ADDR"),
+        ("productcatalogservice",'value: "3550"','value: "3551"'),
+        ("currencyservice",'value: "7000"','value: "7001"'),
+    ])
+    def test_runtime_contract_rejects_source_service_environment_drift(service,old,new):
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:233: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+_ test_runtime_contract_rejects_source_service_environment_drift[productcatalogservice-value: "3550"-value: "3551"] _
+
+service = 'productcatalogservice', old = 'value: "3550"', new = 'value: "3551"'
+
+    @pytest.mark.parametrize(("service","old","new"),[
+        ("frontend","SHOPPING_ASSISTANT_SERVICE_ADDR","UNBOUND_ASSISTANT_ADDR"),
+        ("productcatalogservice",'value: "3550"','value: "3551"'),
+        ("currencyservice",'value: "7000"','value: "7001"'),
+    ])
+    def test_runtime_contract_rejects_source_service_environment_drift(service,old,new):
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:233: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+_ test_runtime_contract_rejects_source_service_environment_drift[currencyservice-value: "7000"-value: "7001"] _
+
+service = 'currencyservice', old = 'value: "7000"', new = 'value: "7001"'
+
+    @pytest.mark.parametrize(("service","old","new"),[
+        ("frontend","SHOPPING_ASSISTANT_SERVICE_ADDR","UNBOUND_ASSISTANT_ADDR"),
+        ("productcatalogservice",'value: "3550"','value: "3551"'),
+        ("currencyservice",'value: "7000"','value: "7001"'),
+    ])
+    def test_runtime_contract_rejects_source_service_environment_drift(service,old,new):
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:233: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+__________ test_runtime_contract_rejects_probe_port_and_ingress_drift __________
+
+    def test_runtime_contract_rejects_probe_port_and_ingress_drift():
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+_ test_runtime_contract_rejects_service_routing_drift[productcatalogservice-targetPort: 3550-targetPort: 3551-targetPort 3550] _
+
+service = 'productcatalogservice', old = 'targetPort: 3550'
+new = 'targetPort: 3551', message = 'targetPort 3550'
+
+    @pytest.mark.parametrize(("service","old","new","message"),[
+        ("productcatalogservice","targetPort: 3550","targetPort: 3551","targetPort 3550"),
+        ("frontend-service","targetPort: 8080","targetPort: 9999","targetPort 8080"),
+        ("frontend-service","port: 8080","port: 9999","exact port 8080"),
+    ])
+    def test_runtime_contract_rejects_service_routing_drift(service,old,new,message):
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:261: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+_ test_runtime_contract_rejects_service_routing_drift[frontend-service-targetPort: 8080-targetPort: 9999-targetPort 8080] _
+
+service = 'frontend-service', old = 'targetPort: 8080', new = 'targetPort: 9999'
+message = 'targetPort 8080'
+
+    @pytest.mark.parametrize(("service","old","new","message"),[
+        ("productcatalogservice","targetPort: 3550","targetPort: 3551","targetPort 3550"),
+        ("frontend-service","targetPort: 8080","targetPort: 9999","targetPort 8080"),
+        ("frontend-service","port: 8080","port: 9999","exact port 8080"),
+    ])
+    def test_runtime_contract_rejects_service_routing_drift(service,old,new,message):
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:261: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+_ test_runtime_contract_rejects_service_routing_drift[frontend-service-port: 8080-port: 9999-exact port 8080] _
+
+service = 'frontend-service', old = 'port: 8080', new = 'port: 9999'
+message = 'exact port 8080'
+
+    @pytest.mark.parametrize(("service","old","new","message"),[
+        ("productcatalogservice","targetPort: 3550","targetPort: 3551","targetPort 3550"),
+        ("frontend-service","targetPort: 8080","targetPort: 9999","targetPort 8080"),
+        ("frontend-service","port: 8080","port: 9999","exact port 8080"),
+    ])
+    def test_runtime_contract_rejects_service_routing_drift(service,old,new,message):
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:261: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+________ test_runtime_contract_rejects_ambiguous_service_workload_match ________
+
+    def test_runtime_contract_rejects_ambiguous_service_workload_match():
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:270: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+____ test_runtime_contract_rejects_ready_workload_on_wrong_service_listener ____
+
+    def test_runtime_contract_rejects_ready_workload_on_wrong_service_listener():
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:280: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+________ test_runtime_contract_rejects_udp_service_or_workload_listener ________
+
+    def test_runtime_contract_rejects_udp_service_or_workload_listener():
+        source=materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST
+>       transformed,_=materialize.transform_manifest(source.read_text(),"a"*64)
+                                                     ^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_lgtm_module.py:289: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+__ test_generated_overlays_reference_a_kustomize_base_inside_materialization ___
+
+tmp_path = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_generated_overlays_refere0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10785d400>
+
+    def test_generated_overlays_reference_a_kustomize_base_inside_materialization(tmp_path, monkeypatch):
+        monkeypatch.setattr(materialize,"verify_checkout",lambda path,commit,label:{"commit":commit})
+        monkeypatch.setattr(materialize,"verify_shared_materialization",lambda path:{"sha256":"a"*64})
+        monkeypatch.setattr(materialize,"sha256",lambda path: materialize.EXPECTED_MANIFEST_SHA256 if path==materialize.ACQUISITION_UPSTREAM/materialize.UPSTREAM_MANIFEST else "b"*64)
+        out=tmp_path/"generated"
+>       materialize.materialize(out,tmp_path/"app")
+
+tests/test_online_boutique_lgtm_module.py:838: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+modules/online-boutique-lgtm/materialize.py:642: in materialize
+    manifest, transform = transform_manifest(source_manifest.read_text(), proof["applicationMaterialization"]["sha256"])
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/aws-eks-microservices/kubernetes/local/online-boutique.yaml'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+________________ test_materialized_guards_cover_go_request_path ________________
+
+tmp_path = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_materialized_guards_cover0')
+
+    def test_materialized_guards_cover_go_request_path(tmp_path):
+        source=tmp_path/"source"
+        for relative in ("src/frontend/main.go","src/productcatalogservice/server.go","src/currencyservice/server.js"):
+>           target=source/relative; target.parent.mkdir(parents=True,exist_ok=True); shutil.copy2(materialize.UPSTREAM/relative,target)
+                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_online_boutique_module.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/shutil.py:468: in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/microservices-demo/src/frontend/main.go')
+dst = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_materialized_guards_cover0/source/src/frontend/main.go')
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/microservices-demo/src/frontend/main.go'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/shutil.py:260: FileNotFoundError
+____________ test_matrix_is_bound_to_current_authoritative_sources _____________
+
+    def test_matrix_is_bound_to_current_authoritative_sources() -> None:
+        matrix = load(MATRIX)
+        bindings = matrix["sourceBindings"]
+        assert len({row["id"] for row in bindings}) == len(bindings)
+        for binding in bindings:
+            path = ROOT / binding["path"]
+            assert path.is_file() and not path.is_symlink(), binding
+>           assert hashlib.sha256(path.read_bytes()).hexdigest() == binding["sha256"], binding
+E           AssertionError: {'id': 'otel-demo-compose', 'path': 'modules/otel-demo/deployment/compose.otel-placement.yml', 'sha256': '1dbba7a0aecd1b2e161ce7c85314f955c690a4eb3a9b2a4a93c3400749edd675'}
+E           assert 'd44acad07ee7...76e05e3b0f654' == '1dbba7a0aecd...3400749edd675'
+E             
+E             - 1dbba7a0aecd1b2e161ce7c85314f955c690a4eb3a9b2a4a93c3400749edd675
+E             + d44acad07ee7f5937c5254ba17c9d4875b288d6b0d8b59430a076e05e3b0f654
+
+tests/test_phase1_control_universe.py:117: AssertionError
+________________ test_binding_checker_accepts_an_atomic_commit _________________
+
+    def test_binding_checker_accepts_an_atomic_commit() -> None:
+        # Both the materializer and the matrix that records its digest are present with
+        # agreeing bytes: this is what a correct commit looks like.
+        document = json.loads(MATRIX.read_text(encoding="utf-8"))
+        files = {
+            binding["path"]: (ROOT / binding["path"]).read_bytes()
+            for _, binding in binding_checker.iter_bindings(document)
+        }
+>       assert binding_checker.evaluate(
+            MATRIX.read_bytes(), _synthetic_reader(files)
+        ) == []
+E       AssertionError: assert ['$.sourceBin...son together'] == []
+E         
+E         Left contains one more item: '$.sourceBindings[9] modules/otel-demo/deployment/compose.otel-placement.yml: matrix records 1dbba7a0aecd1b2e161ce7c85...4 -- commit modules/otel-demo/deployment/compose.otel-placement.yml and research/phase1-control-universe.json together'
+E         Use -v to get more diff
+
+tests/test_phase1_control_universe.py:163: AssertionError
+_____ test_binding_checker_rejects_a_split_commit_of_the_otel_materializer _____
+
+    def test_binding_checker_rejects_a_split_commit_of_the_otel_materializer() -> None:
+        # The exact hazard: the materializer's bytes move but the matrix that records
+        # their digest does not (or the reverse). Either way the binding is a lie and the
+        # commit must be blocked.
+        document = json.loads(MATRIX.read_text(encoding="utf-8"))
+        files = {
+            binding["path"]: (ROOT / binding["path"]).read_bytes()
+            for _, binding in binding_checker.iter_bindings(document)
+        }
+        files["modules/otel-demo/materialize.py"] = b"# a different materializer\n"
+        problems = binding_checker.evaluate(MATRIX.read_bytes(), _synthetic_reader(files))
+>       assert len(problems) == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len(['$.sourceBindings[8] modules/otel-demo/materialize.py: matrix records d6c2070fad67c273494dda77f4bba1ead289b1daec44c59... -- commit modules/otel-demo/deployment/compose.otel-placement.yml and research/phase1-control-universe.json together'])
+
+tests/test_phase1_control_universe.py:179: AssertionError
+______ test_binding_checker_reports_every_disagreement_not_just_the_first ______
+
+    def test_binding_checker_reports_every_disagreement_not_just_the_first() -> None:
+        document = json.loads(MATRIX.read_text(encoding="utf-8"))
+        files = {
+            binding["path"]: (ROOT / binding["path"]).read_bytes()
+            for _, binding in binding_checker.iter_bindings(document)
+        }
+        stale_matrix = _matrix_with({
+            "modules/otel-demo/materialize.py": "0" * 64,
+            "modules/otel-demo/README.md": "1" * 64,
+        })
+        problems = binding_checker.evaluate(stale_matrix, _synthetic_reader(files))
+>       assert len(problems) == 2
+E       AssertionError: assert 3 == 2
+E        +  where 3 = len(['$.sourceBindings[6] modules/otel-demo/README.md: matrix records 1111111111111111111111111111111111111111111111111111... -- commit modules/otel-demo/deployment/compose.otel-placement.yml and research/phase1-control-universe.json together'])
+
+tests/test_phase1_control_universe.py:200: AssertionError
+______________ test_binding_checker_rejects_an_absent_bound_file _______________
+
+    def test_binding_checker_rejects_an_absent_bound_file() -> None:
+        document = json.loads(MATRIX.read_text(encoding="utf-8"))
+        files = {
+            binding["path"]: (ROOT / binding["path"]).read_bytes()
+            for _, binding in binding_checker.iter_bindings(document)
+        }
+        del files["modules/otel-demo/materialize.py"]
+        problems = binding_checker.evaluate(MATRIX.read_bytes(), _synthetic_reader(files))
+>       assert problems == [
+            "$.sourceBindings[8] modules/otel-demo/materialize.py: bound file is absent"
+        ]
+E       AssertionError: assert ['$.sourceBin...son together'] == ['$.sourceBin...le is absent']
+E         
+E         Left contains one more item: '$.sourceBindings[9] modules/otel-demo/deployment/compose.otel-placement.yml: matrix records 1dbba7a0aecd1b2e161ce7c85...4 -- commit modules/otel-demo/deployment/compose.otel-placement.yml and research/phase1-control-universe.json together'
+E         Use -v to get more diff
+
+tests/test_phase1_control_universe.py:211: AssertionError
+________ test_binding_checker_worktree_mode_agrees_with_the_digest_test ________
+
+    def test_binding_checker_worktree_mode_agrees_with_the_digest_test() -> None:
+>       assert binding_checker.main(["--root", str(ROOT)]) == 0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = <function main at 0x108161da0>(['--root', '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath'])
+E        +    where <function main at 0x108161da0> = binding_checker.main
+
+tests/test_phase1_control_universe.py:217: AssertionError
+----------------------------- Captured stderr call -----------------------------
+$.sourceBindings[9] modules/otel-demo/deployment/compose.otel-placement.yml: matrix records 1dbba7a0aecd1b2e161ce7c85314f955c690a4eb3a9b2a4a93c3400749edd675 but the bytes hash to d44acad07ee7f5937c5254ba17c9d4875b288d6b0d8b59430a076e05e3b0f654 -- commit modules/otel-demo/deployment/compose.otel-placement.yml and research/phase1-control-universe.json together
+1 phase1 control-universe binding(s) disagree with the working tree
+____ test_full_v3_report_replays_v2_and_keeps_all_dangerous_authority_false ____
+
+    def test_full_v3_report_replays_v2_and_keeps_all_dangerous_authority_false() -> None:
+        report = ROUTER.validate_repository(ROOT)
+        expected_children = [
+            change_id
+            for change_id in ROUTER.CHILD_CHANGE_IDS
+            if (
+                ROOT
+                / "openspec"
+                / "changes"
+                / change_id
+                / ".openspec.yaml"
+            ).is_file()
+        ]
+    
+>       assert report["status"] == "pass", report
+E       AssertionError: {'activeChildChangeIds': ['adopt-hotel-reservation-candidate-harness', 'adopt-online-boutique-candidate-harness', 'ado...nostics': ["active markers have no root-owned route: ['admit-otel-demo-candidate-pilot-v2']"], 'epochReports': [], ...}
+E       assert 'fail' == 'pass'
+E         
+E         - pass
+E         + fail
+
+tests/test_science_epoch_router_v3.py:262: AssertionError
+________________ test_patch_is_bound_to_pin_and_applies_cleanly ________________
+
+    def test_patch_is_bound_to_pin_and_applies_cleanly():
+        manifest_path = ROOT / "modules/teastore/witness/patch-manifest.json"
+        manifest = json.loads(manifest_path.read_text())
+        patch = ROOT / manifest["patch"]["path"]
+    
+>       assert subprocess.run(
+            ["git", "-C", str(ROOT / "upstream/teastore"), "rev-parse", "HEAD"],
+            text=True, capture_output=True, check=True,
+        ).stdout.strip() == manifest["source"]["commit"] == witness.BASE_COMMIT
+E       AssertionError: assert 'cc777bb0b6f1...5d6baeb0eaae3' == '34b37f7e7be4...6922a13116749'
+E         
+E         - 34b37f7e7be433ce72d5f9455e66922a13116749
+E         + cc777bb0b6f10edb56dce2de6565d6baeb0eaae3
+
+tests/test_teastore_app_witness.py:246: AssertionError
+_____ test_manifest_kieker_api_binding_matches_the_pinned_jar_and_java_11 ______
+
+    def test_manifest_kieker_api_binding_matches_the_pinned_jar_and_java_11():
+        manifest = json.loads(V2_MANIFEST.read_text(encoding="utf-8"))
+        api = manifest["kiekerApiVerification"]
+    
+>       assert _sha(KIEKER_JAR) == api["jarSha256"]
+               ^^^^^^^^^^^^^^^^
+
+tests/test_teastore_native_bridge_patch.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_teastore_native_bridge_patch.py:20: in _sha
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+                          ^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:625: in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar'
+
+/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+_______ test_checked_in_image_inputs_pass_without_executing_a_build_tool _______
+
+    def test_checked_in_image_inputs_pass_without_executing_a_build_tool():
+        report = patched_images.validate_inputs(ROOT)
+    
+>       assert report["outcome"] == "pass", report["blockers"]
+E       AssertionError: ['checked-out TeaStore commit differs', "pinned Kieker API input is unreadable: FileNotFoundError: [Errno 2] No such f...-placement/tmp/otel-offpath/upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar'"]
+E       assert 'blocked' == 'pass'
+E         
+E         - pass
+E         + blocked
+
+tests/test_teastore_patched_images.py:162: AssertionError
+________ test_lock_and_compose_checker_passes_only_as_local_consistency ________
+
+tmp_path = PosixPath('/private/var/folders/hb/qvx2xtm175l2411v2vgtsnb00000gp/T/pytest-of-fhuebscher/pytest-3285/test_lock_and_compose_checker_0')
+
+    def test_lock_and_compose_checker_passes_only_as_local_consistency(tmp_path):
+        artifacts = _artifact_tree(tmp_path / "artifacts")
+        lock = _image_lock(artifacts)
+        lock_path = tmp_path / "image-lock.json"
+        compose_path = tmp_path / "compose.override.yaml"
+        _write_json(lock_path, lock)
+        compose_path.write_text(yaml.safe_dump(_compose(lock), sort_keys=True), encoding="utf-8")
+    
+        report = patched_images.validate_lock_and_compose(
+            artifacts, lock_path, compose_path, root=ROOT,
+        )
+    
+>       assert report["outcome"] == "pass", report["blockers"]
+E       AssertionError: ['frozen image input: checked-out TeaStore commit differs', "frozen image input: pinned Kieker API input is unreadable...-placement/tmp/otel-offpath/upstream/teastore/utilities/tools.descartes.teastore.dockerbase/kieker-2.0.0-aspectj.jar'"]
+E       assert 'blocked' == 'pass'
+E         
+E         - pass
+E         + blocked
+
+tests/test_teastore_patched_images.py:331: AssertionError
+=============================== warnings summary ===============================
+modules/online-boutique/validation/control_microtest_root.py:13
+modules/online-boutique/validation/control_microtest_root.py:13
+  /Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement/tmp/otel-offpath/modules/online-boutique/validation/control_microtest_root.py:13: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+    from jsonschema import Draft202012Validator, RefResolver
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_hotel_materialize_campaign.py::test_materialization_is_clean_pinned_and_content_addressed
+FAILED tests/test_hotel_materialize_campaign.py::test_materializer_refuses_unowned_existing_target
+FAILED tests/test_hotel_materialize_campaign.py::test_smoke_contract_accepts_only_fresh_isolated_namespace
+FAILED tests/test_hotel_materialize_campaign.py::test_smoke_recomputes_materialized_tree_and_bounds_work
+FAILED tests/test_kieker_java_wire_fixture.py::test_real_java_writer_fixture_has_reproducible_bound_provenance
+FAILED tests/test_online_boutique_lgtm_module.py::test_transform_rebinds_app_and_excludes_generators
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_source_service_environment_drift[frontend-SHOPPING_ASSISTANT_SERVICE_ADDR-UNBOUND_ASSISTANT_ADDR]
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_source_service_environment_drift[productcatalogservice-value: "3550"-value: "3551"]
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_source_service_environment_drift[currencyservice-value: "7000"-value: "7001"]
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_probe_port_and_ingress_drift
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_service_routing_drift[productcatalogservice-targetPort: 3550-targetPort: 3551-targetPort 3550]
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_service_routing_drift[frontend-service-targetPort: 8080-targetPort: 9999-targetPort 8080]
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_service_routing_drift[frontend-service-port: 8080-port: 9999-exact port 8080]
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_ambiguous_service_workload_match
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_ready_workload_on_wrong_service_listener
+FAILED tests/test_online_boutique_lgtm_module.py::test_runtime_contract_rejects_udp_service_or_workload_listener
+FAILED tests/test_online_boutique_lgtm_module.py::test_generated_overlays_reference_a_kustomize_base_inside_materialization
+FAILED tests/test_online_boutique_module.py::test_materialized_guards_cover_go_request_path
+FAILED tests/test_phase1_control_universe.py::test_matrix_is_bound_to_current_authoritative_sources
+FAILED tests/test_phase1_control_universe.py::test_binding_checker_accepts_an_atomic_commit
+FAILED tests/test_phase1_control_universe.py::test_binding_checker_rejects_a_split_commit_of_the_otel_materializer
+FAILED tests/test_phase1_control_universe.py::test_binding_checker_reports_every_disagreement_not_just_the_first
+FAILED tests/test_phase1_control_universe.py::test_binding_checker_rejects_an_absent_bound_file
+FAILED tests/test_phase1_control_universe.py::test_binding_checker_worktree_mode_agrees_with_the_digest_test
+FAILED tests/test_science_epoch_router_v3.py::test_full_v3_report_replays_v2_and_keeps_all_dangerous_authority_false
+FAILED tests/test_teastore_app_witness.py::test_patch_is_bound_to_pin_and_applies_cleanly
+FAILED tests/test_teastore_native_bridge_patch.py::test_manifest_kieker_api_binding_matches_the_pinned_jar_and_java_11
+FAILED tests/test_teastore_patched_images.py::test_checked_in_image_inputs_pass_without_executing_a_build_tool
+FAILED tests/test_teastore_patched_images.py::test_lock_and_compose_checker_passes_only_as_local_consistency
+29 failed, 2094 passed, 2 warnings in 118.34s (0:01:58)
+exit 1

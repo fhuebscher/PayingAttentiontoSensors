@@ -1,0 +1,1454 @@
+{
+ "schemaVersion": 1,
+ "sut": "hotel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+   "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-hotel-protocol",
+   "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "6897a5d921c3fd8f2df642bece7315589c426f45"
+  }
+ },
+ "extraction": {
+  "stage": "final",
+  "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+  "runId": "run1-20261014-hotel",
+  "judge": "opus (Opus 5.5)",
+  "accepted": {
+   "agreed": 65,
+   "supported": 77
+  },
+  "rebuildLog": {
+   "incomplete": [
+    {
+     "entity": "architecture",
+     "reason": "no accepted fact"
+    },
+    {
+     "entity": "service",
+     "subject": "attractions",
+     "missing": [
+      "role"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "consul",
+     "missing": [
+      "role",
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "frontend",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "jaeger",
+     "missing": [
+      "role",
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "memcached-profile",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "memcached-rate",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "memcached-reserve",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "memcached-review",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "mongodb-attractions",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "mongodb-geo",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "mongodb-profile",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "service",
+     "subject": "profile",
+     "missing": [
+      "container"
+     ]
+    },
+    {
+     "entity": "liveness",
+     "subject": [
+      "consul",
+      "serviceregister"
+     ],
+     "missing": [
+      "monitors"
+     ]
+    }
+   ],
+   "orphaned": [
+    {
+     "id": "c526a0ffb2a3190c",
+     "key": [
+      "attractions",
+      "container",
+      "attractions"
+     ]
+    },
+    {
+     "id": "1e8aed05bbfafcf2",
+     "key": [
+      "attractions",
+      "exportsTelemetryTo",
+      "jaeger"
+     ]
+    },
+    {
+     "id": "434b37fe3337cc6c",
+     "key": [
+      "attractions",
+      "registersWith",
+      "consul"
+     ]
+    },
+    {
+     "id": "23fb1608300f3c68",
+     "key": [
+      "attractions",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "f20c6809409f7c4b",
+     "key": [
+      "attractions",
+      "service",
+      "attractions"
+     ]
+    },
+    {
+     "id": "e3656361a6a96f38",
+     "key": [
+      "frontend",
+      "exportsTelemetryTo",
+      "jaeger"
+     ]
+    },
+    {
+     "id": "90f7bf1d2666ed38",
+     "key": [
+      "frontend",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "8716d440298000b5",
+     "key": [
+      "frontend",
+      "service",
+      "frontend"
+     ]
+    },
+    {
+     "id": "f913542ca4add04b",
+     "key": [
+      "profile",
+      "exportsTelemetryTo",
+      "jaeger"
+     ]
+    },
+    {
+     "id": "611598e6f4278513",
+     "key": [
+      "profile",
+      "registersWith",
+      "consul"
+     ]
+    },
+    {
+     "id": "3cf584cd6d1cc76e",
+     "key": [
+      "profile",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "9c22da21b19c9e2c",
+     "key": [
+      "profile",
+      "service",
+      "profile"
+     ]
+    },
+    {
+     "id": "e4d07fb2288b7c83",
+     "key": [
+      "attractions",
+      "emits:log",
+      "stdout"
+     ]
+    },
+    {
+     "id": "cd752a2f3ad9dd5b",
+     "key": [
+      "attractions",
+      "emits:span",
+      "mongo_cinema"
+     ]
+    },
+    {
+     "id": "dc2d730a9637c07f",
+     "key": [
+      "attractions",
+      "emits:span",
+      "mongo_museum"
+     ]
+    },
+    {
+     "id": "6615799ce27815f9",
+     "key": [
+      "attractions",
+      "emits:span",
+      "mongo_restaurant"
+     ]
+    },
+    {
+     "id": "83ad221a2838bc65",
+     "key": [
+      "attractions",
+      "emits:span",
+      "otgrpc.opentracingserverinterceptor"
+     ]
+    },
+    {
+     "id": "bc0fe3d10138bb50",
+     "key": [
+      "consul",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "ad694d9d13f6c357",
+     "key": [
+      "consul",
+      "service",
+      "consul"
+     ]
+    },
+    {
+     "id": "7dcb14b33114ec4a",
+     "key": [
+      "frontend",
+      "role",
+      "microservice"
+     ]
+    },
+    {
+     "id": "0202cf254c65de83",
+     "key": [
+      "jaeger",
+      "service",
+      "jaeger"
+     ]
+    },
+    {
+     "id": "709ccf40a4270144",
+     "key": [
+      "memcached-profile",
+      "role",
+      "cache"
+     ]
+    },
+    {
+     "id": "698f589e36761036",
+     "key": [
+      "memcached-profile",
+      "service",
+      "memcached-profile"
+     ]
+    },
+    {
+     "id": "8278100f7bb53cf5",
+     "key": [
+      "memcached-rate",
+      "role",
+      "cache"
+     ]
+    },
+    {
+     "id": "c8a54d530d97f8d3",
+     "key": [
+      "memcached-rate",
+      "service",
+      "memcached-rate"
+     ]
+    },
+    {
+     "id": "e01f1b509f587e42",
+     "key": [
+      "memcached-reserve",
+      "role",
+      "cache"
+     ]
+    },
+    {
+     "id": "91bda4df8a8a8f87",
+     "key": [
+      "memcached-reserve",
+      "service",
+      "memcached-reserve"
+     ]
+    },
+    {
+     "id": "53cc3873c6e4ed87",
+     "key": [
+      "memcached-review",
+      "role",
+      "cache"
+     ]
+    },
+    {
+     "id": "c61e1ffcb20f83b0",
+     "key": [
+      "memcached-review",
+      "service",
+      "memcached-review"
+     ]
+    },
+    {
+     "id": "3710c6b71f418de4",
+     "key": [
+      "mongodb-attractions",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "41728822de95c54c",
+     "key": [
+      "mongodb-attractions",
+      "role",
+      "datastore"
+     ]
+    },
+    {
+     "id": "c9ad72a93e948163",
+     "key": [
+      "mongodb-attractions",
+      "service",
+      "mongodb-attractions"
+     ]
+    },
+    {
+     "id": "cea20c604bf0f01e",
+     "key": [
+      "mongodb-geo",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "9664c4a267f22391",
+     "key": [
+      "mongodb-geo",
+      "role",
+      "datastore"
+     ]
+    },
+    {
+     "id": "c3d58e68cc979ea9",
+     "key": [
+      "mongodb-geo",
+      "service",
+      "mongodb-geo"
+     ]
+    },
+    {
+     "id": "4ce7d39743729615",
+     "key": [
+      "mongodb-profile",
+      "replicas",
+      "1.0"
+     ]
+    },
+    {
+     "id": "0eca27689a3bfa53",
+     "key": [
+      "mongodb-profile",
+      "role",
+      "datastore"
+     ]
+    },
+    {
+     "id": "da616406b4f6be64",
+     "key": [
+      "mongodb-profile",
+      "service",
+      "mongodb-profile"
+     ]
+    },
+    {
+     "id": "765883d7daf9753c",
+     "key": [
+      "profile",
+      "emits:span",
+      "memcached_get_profile"
+     ]
+    },
+    {
+     "id": "2042550200215609",
+     "key": [
+      "profile",
+      "emits:span",
+      "mongo_profile"
+     ]
+    },
+    {
+     "id": "02d26b64ac13afa6",
+     "key": [
+      "profile",
+      "role",
+      "microservice"
+     ]
+    },
+    {
+     "id": "4adfd4ae63b8594e",
+     "key": [
+      [
+       "consul",
+       "serviceregister"
+      ],
+      "liveness",
+      "serviceregister"
+     ]
+    }
+   ]
+  }
+ },
+ "host": {
+  "id": {
+   "value": "fb14srv4",
+   "repo": "obsplacement",
+   "sourceFile": "research/host-topology.json",
+   "line": 184,
+   "quotedToken": "\"hostId\": \"fb14srv4\"",
+   "note": "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "geo",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 81,
+    "quotedToken": "geo:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 92,
+    "quotedToken": "entrypoint: geo",
+    "note": "gRPC server started by cmd/geo/main.go; serves rpc Nearby (services/geo/proto/geo.proto:9). No outbound gRPC calls in the given files."
+   },
+   "container": {
+    "value": "geo",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 81,
+    "quotedToken": "geo:",
+    "note": "no container_name in the geo block (lines 81-100). Health check: no healthcheck key in that block and no HEALTHCHECK in hotelReservation/Dockerfile; none configured in these files. The harness overlay only overrides image and JAEGER_* env (compose.observability-placement.yml:17-21)."
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 98,
+    "quotedToken": "replicas: 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "\"jaegerAddress\": \"jaeger:6831\"",
+     "note": "traces only, via jaeger-client-go reporter with LocalAgentHostPort (tracing/tracer.go:37); BufferFlushInterval 1s (tracing/tracer.go:36, token '1 * time.Second'); sampler probabilistic, default ratio 0.01 (tracing/tracer.go:14) overridden by harness env JAEGER_SAMPLE_RATIO default 1 (compose.observability-placement.yml:20). No metrics export found. Logs: zerolog to os.Stdout (cmd/geo/main.go:21), no log shipper in these files."
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/geo/server.go",
+     "line": 81,
+     "quotedToken": "s.Registry.Register(name",
+     "note": "consul address from hotelReservation/config.json:2 (consulAddress). Registration (registry/registry.go:85-90) sets only ID, Name, Port, Address: no Check, no TTL, no heartbeat call, no deregister timeout; heartbeat interval, failure timeout and cleanup interval are not set in these files (library default, not in these files). Only Deregister on Shutdown (server.go:92). The gRPC keepalive Timeout 120s (server.go:57) is a transport setting, not a registry heartbeat."
+    }
+   ],
+   "emits": [
+    {
+     "kind": "log",
+     "id": {
+      "value": "zerolog console writer to stdout",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/geo/main.go",
+      "line": 21,
+      "quotedToken": "zerolog.ConsoleWriter{Out: os.Stdout"
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "otgrpc server interceptor (gRPC server spans)",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/geo/server.go",
+      "line": 63,
+      "quotedToken": "otgrpc.OpenTracingServerInterceptor(s.Tracer)"
+     }
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "mongodb-rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 317,
+    "quotedToken": "mongodb-rate:"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 72,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0"
+   },
+   "container": {
+    "value": "mongodb-rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 317,
+    "quotedToken": "mongodb-rate:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-rate-<n>"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 324,
+    "quotedToken": "replicas: 1"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-recommendation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 350,
+    "quotedToken": "mongodb-recommendation:"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 78,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0"
+   },
+   "container": {
+    "value": "mongodb-recommendation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 350,
+    "quotedToken": "mongodb-recommendation:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-recommendation-<n>"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 357,
+    "quotedToken": "replicas: 1"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-reservation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 361,
+    "quotedToken": "mongodb-reservation:"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 80,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0"
+   },
+   "container": {
+    "value": "mongodb-reservation",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 361,
+    "quotedToken": "mongodb-reservation:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-reservation-<n>"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 368,
+    "quotedToken": "replicas: 1"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-review",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 328,
+    "quotedToken": "mongodb-review:"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 74,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0"
+   },
+   "container": {
+    "value": "mongodb-review",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 328,
+    "quotedToken": "mongodb-review:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-review-<n>"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 335,
+    "quotedToken": "replicas: 1"
+   }
+  },
+  {
+   "name": {
+    "value": "mongodb-user",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 372,
+    "quotedToken": "mongodb-user:"
+   },
+   "role": {
+    "value": "datastore",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 82,
+    "quotedToken": "image: ${HR_MONGO_IMAGE:-mongo:5.0}",
+    "note": "stage-1 rule D1: image-only service, image mongo:5.0"
+   },
+   "container": {
+    "value": "mongodb-user",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 372,
+    "quotedToken": "mongodb-user:",
+    "note": "stage-1 rule D2: container_name not set; Compose names the container <project>-mongodb-user-<n>"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 379,
+    "quotedToken": "replicas: 1"
+   }
+  },
+  {
+   "name": {
+    "value": "rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 102,
+    "quotedToken": "rate:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/services/rate/server.go",
+    "line": 71,
+    "quotedToken": "RegisterRateServer",
+    "note": "gRPC application server implementing the Rate service"
+   },
+   "container": {
+    "value": "rate",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 102,
+    "quotedToken": "rate:",
+    "note": "container_name not set; Compose names the container <project>-rate-<n>"
+   },
+   "replicas": {
+    "value": 1,
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 120,
+    "quotedToken": "replicas: 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces to Jaeger agent, BufferFlushInterval 1s (tracing/tracer.go:36)"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/cmd/rate/main.go",
+     "line": 63,
+     "quotedToken": "registry.NewClient",
+     "note": "registers as srv-rate at services/rate/server.go:78; consul address config.json:2"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "recommendation",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 157,
+    "quotedToken": "recommendation:"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 168,
+    "quotedToken": "entrypoint: recommendation",
+    "note": "role read from the entrypoint binary built by cmd/recommendation/main.go; gRPC server on RecommendPort (config.json:18)"
+   },
+   "container": {
+    "value": "obsplacement-hotel-reservation:6ecb09706140",
+    "basis": "cited",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 43,
+    "quotedToken": "obsplacement-hotel-reservation:6ecb09706140",
+    "note": "default of HR_APP_IMAGE; upstream compose line 167 names deathstarbench/hotel-reservation:latest"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 174,
+    "quotedToken": "replicas: 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces, Jaeger agent UDP address read as jaegerAddress in cmd/recommendation/main.go:45; flush every 1 s per tracing/tracer.go:36"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/recommendation/server.go",
+     "line": 77,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "consul address consul:8500 from config.json:2; registered under name srv-recommendation (server.go:24); no Check/TTL set (registry/registry.go:85-90); heartbeat/failure-timeout/cleanup intervals not stated in these files"
+    }
+   ],
+   "emits": [
+    {
+     "kind": "log",
+     "id": {
+      "value": "zerolog console writer to stdout",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/recommendation/main.go",
+      "line": 22,
+      "quotedToken": "zerolog.ConsoleWriter{Out: os.Stdout"
+     }
+    },
+    {
+     "kind": "span",
+     "id": {
+      "value": "otgrpc server interceptor: gRPC unary server spans",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/services/recommendation/server.go",
+      "line": 60,
+      "quotedToken": "otgrpc.OpenTracingServerInterceptor(s.Tracer)"
+     }
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "reservation",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 199,
+    "quotedToken": "reservation:"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 210,
+    "quotedToken": "entrypoint: reservation",
+    "note": "gRPC server binary built from cmd/reservation; the role label itself is not stated in the files"
+   },
+   "container": {
+    "value": "reservation",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 199,
+    "quotedToken": "reservation:",
+    "note": "compose service name; container_name not set in the files. No healthcheck key appears anywhere in the compose files for this service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 217,
+    "quotedToken": "replicas: 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces: main.go:55 tracing.Init(\"reservation\", *jaegerAddr) passes this address as LocalAgentHostPort (tracer.go:37); Reporter BufferFlushInterval is 1 second (tracer.go:36); sampler probabilistic, code default ratio 0.01 (tracer.go:14) overridden by JAEGER_SAMPLE_RATIO (compose overlay line 30, default 1). No metrics or log export is stated in the files; logs go to stdout (main.go:21)"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/reservation/server.go",
+     "line": 79,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "registers as srv-reservation (server.go:26) once at startup via Consul agent API (registry.go:92 ServiceRegister) at consul:8500 (config.json:2). The AgentServiceRegistration (registry.go:85) sets only ID, Name, Port, Address: no Check, TTL, heartbeat interval, failure timeout or cleanup interval in these files; no periodic heartbeat is scheduled in this service's code"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "review",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 124,
+    "quotedToken": "review:"
+   },
+   "role": {
+    "value": "microservice",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 133,
+    "quotedToken": "entrypoint: review",
+    "note": "gRPC server started by cmd/review/main.go:91 (srv.Run()); serves rpc GetReviews (services/review/proto/review.proto:8). Registers under the consul name srv-review (services/review/server.go:34). No outbound gRPC calls in the given files."
+   },
+   "container": {
+    "value": "review",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 134,
+    "quotedToken": "container_name: 'hotel_reserv_review'",
+    "note": "Replica count: no deploy/replicas key in the review block (lines 124-139) and none in the harness overlay (compose.observability-placement.yml:47-51); not stated in these files, so no replicas fact is reported. Health check: no healthcheck key in the review block and no HEALTHCHECK in hotelReservation/Dockerfile; none configured in these files. Block sets restart: always (docker-compose.yml:139). Harness overlay only overrides image and JAEGER_* env."
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "\"jaegerAddress\": \"jaeger:6831\"",
+     "note": "traces only, via jaeger-client-go reporter with LocalAgentHostPort (tracing/tracer.go:37, called from cmd/review/main.go:67); BufferFlushInterval 1s (tracing/tracer.go:36, token '1 * time.Second'); sampler probabilistic, default ratio 0.01 (tracing/tracer.go:14) overridden by harness env JAEGER_SAMPLE_RATIO default 1 (compose.observability-placement.yml:50); JAEGER_DISABLED default false (compose.observability-placement.yml:51). No metrics export found. Logs: zerolog to os.Stdout (cmd/review/main.go:24), no log shipper in these files."
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/review/server.go",
+     "line": 84,
+     "quotedToken": "s.Registry.Register(name",
+     "note": "consul address from hotelReservation/config.json:2 (consulAddress). Registration (registry/registry.go:85-90) sets only ID, Name, Port, Address: no Check, no TTL, no heartbeat call, no deregister timeout; heartbeat interval, failure timeout and cleanup interval are not set in these files (library default, not in these files). Only Deregister on Shutdown (server.go:95). The gRPC keepalive Timeout 120s (server.go:61) is a transport setting, not a registry heartbeat."
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "search",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 61,
+    "quotedToken": "search:"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 72,
+    "quotedToken": "entrypoint: search",
+    "note": "role read from the entrypoint binary built by cmd/search/main.go; gRPC server on SearchPort (services/search/server.go:67)"
+   },
+   "container": {
+    "value": "obsplacement-hotel-reservation:6ecb09706140",
+    "basis": "cited",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 13,
+    "quotedToken": "obsplacement-hotel-reservation:6ecb09706140",
+    "note": "default of HR_APP_IMAGE; upstream compose line 71 names deathstarbench/hotel-reservation:latest"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 77,
+    "quotedToken": "replicas: 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces, Jaeger agent address read as jaegerAddress in cmd/search/main.go:42; flush every 1 s per tracing/tracer.go:36"
+    },
+    {
+     "value": "stdout",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/cmd/search/main.go",
+     "line": 22,
+     "quotedToken": "Out: os.Stdout",
+     "note": "Logs: zerolog ConsoleWriter to stdout. No log shipping and no log flush interval in these files."
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/search/server.go",
+     "line": 82,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "registered once at startup as srv-search (server.go:24); consul address consul:8500 at config.json:2; no check/heartbeat configured (registry/registry.go:85-90)"
+    }
+   ]
+  },
+  {
+   "name": {
+    "value": "user",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 178,
+    "quotedToken": "user:"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 189,
+    "quotedToken": "entrypoint: user",
+    "note": "role read from the entrypoint binary built by cmd/user/main.go; gRPC server on UserPort (services/user/server.go:67)"
+   },
+   "container": {
+    "value": "obsplacement-hotel-reservation:6ecb09706140",
+    "basis": "cited",
+    "repo": "harness",
+    "sourceFile": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+    "line": 38,
+    "quotedToken": "obsplacement-hotel-reservation:6ecb09706140",
+    "note": "default of HR_APP_IMAGE; upstream compose line 188 names deathstarbench/hotel-reservation:latest"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 195,
+    "quotedToken": "replicas: 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces, Jaeger agent address read as jaegerAddress in cmd/user/main.go:45; flush every 1 s per tracing/tracer.go:36"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/user/server.go",
+     "line": 76,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "registered once at startup as srv-user (server.go:23); consul address consul:8500 at config.json:2; no check/heartbeat configured (registry/registry.go:85-90)"
+    }
+   ],
+   "emits": [
+    {
+     "kind": "log",
+     "id": {
+      "value": "zerolog",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/cmd/user/main.go",
+      "line": 22,
+      "quotedToken": "zerolog.ConsoleWriter{Out: os.Stdout",
+      "note": "console log writer to stdout; no log exporter in these files. Level from env LOG_LEVEL (tune/setting.go:34), default info (tune/setting.go:19). Log emission frequency not stated in these files. No metric emitter stated in these files."
+     }
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "attractions",
+    "callee": "mongodb-attractions"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/cmd/attractions/db.go",
+   "line": 67,
+   "quotedToken": "mongo.Connect(context.TODO(), opts)",
+   "note": "protocol MongoDB (mongodb:// URI at db.go:63); address from config.json:14 AttractionsMongoAddress mongodb-attractions:27017"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "attractions"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 430,
+   "quotedToken": "attractionsClient.NearbyRest",
+   "note": "gRPC"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "profile"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 280,
+   "quotedToken": "profileClient.GetProfiles",
+   "note": "gRPC"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "recommendation"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 316,
+   "quotedToken": "recommendationClient.GetRecommendations",
+   "note": "gRPC"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "reservation"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 263,
+   "quotedToken": "reservationClient.CheckAvailability",
+   "note": "gRPC"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "review"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 378,
+   "quotedToken": "reviewClient.GetReviews",
+   "note": "gRPC"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "search"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 241,
+   "quotedToken": "searchClient.Nearby",
+   "note": "gRPC"
+  },
+  {
+   "value": {
+    "caller": "frontend",
+    "callee": "user"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/frontend/server.go",
+   "line": 356,
+   "quotedToken": "userClient.CheckUser",
+   "note": "gRPC"
+  },
+  {
+   "value": {
+    "caller": "profile",
+    "callee": "memcached-profile"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 9,
+   "quotedToken": "memcached-profile:11211",
+   "note": "memcached protocol via gomemcache (GetMulti at services/profile/server.go:109)"
+  },
+  {
+   "value": {
+    "caller": "profile",
+    "callee": "mongodb-profile"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 8,
+   "quotedToken": "mongodb-profile:27017",
+   "note": "MongoDB (mongodb:// URI, cmd/profile/db.go:162; FindOne at services/profile/server.go:137)"
+  },
+  {
+   "value": {
+    "caller": "rate",
+    "callee": "memcached-rate"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 17,
+   "quotedToken": "memcached-rate:11211",
+   "note": "call site services/rate/server.go:108 GetMulti; memcached client, cache not an application service"
+  },
+  {
+   "value": {
+    "caller": "rate",
+    "callee": "mongodb-rate"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 16,
+   "quotedToken": "mongodb-rate:27017",
+   "note": "call site services/rate/server.go:141 Collection(\"inventory\"); MongoDB driver, datastore not an application service"
+  },
+  {
+   "value": {
+    "caller": "reservation",
+    "callee": "memcached-reserve"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 22,
+   "quotedToken": "memcached-reserve:11211",
+   "note": "protocol: memcached via gomemcache (main.go:42 tune.NewMemCClient2(result[\"ReserveMemcAddress\"]); calls at services/reservation/server.go:123 s.MemcClient.Get)"
+  },
+  {
+   "value": {
+    "caller": "reservation",
+    "callee": "mongodb-reservation"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 21,
+   "quotedToken": "mongodb-reservation:27017",
+   "note": "protocol: MongoDB wire protocol via mongo-driver (cmd/reservation/db.go:55 mongodb://%s, db.go:59 mongo.Connect); address read at main.go:37 ReserveMongoAddress"
+  },
+  {
+   "value": {
+    "caller": "review",
+    "callee": "memcached-review"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/cmd/review/main.go",
+   "line": 50,
+   "quotedToken": "result[\"ReviewMemcAddress\"]",
+   "note": "protocol memcached (gomemcache client, tune/setting.go:89; Get at services/review/server.go:121); address memcached-review:11211 at config.json:12"
+  },
+  {
+   "value": {
+    "caller": "review",
+    "callee": "mongodb-review"
+   },
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/cmd/review/main.go",
+   "line": 41,
+   "quotedToken": "result[\"ReviewMongoAddress\"]",
+   "note": "protocol MongoDB (mongodb:// URI, cmd/review/db.go:84); address mongodb-review:27017 at config.json:11"
+  },
+  {
+   "value": {
+    "caller": "user",
+    "callee": "mongodb-user"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/cmd/user/main.go",
+   "line": 38,
+   "quotedToken": "initializeDatabase(result[\"UserMongoAddress\"])",
+   "note": "MongoDB wire protocol; address mongodb-user:27017 at config.json:25; users read once at startup (services/user/server.go:112), not per request"
+  },
+  {
+   "value": {
+    "caller": "reservation",
+    "callee": "consul"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/reservation/server.go",
+   "line": 79,
+   "quotedToken": "s.Registry.Register(",
+   "note": "startup registration call; callee address from config.json:2 consulAddress via main.go:62"
+  },
+  {
+   "value": {
+    "caller": "review",
+    "callee": "consul"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/review/server.go",
+   "line": 84,
+   "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+   "note": "HTTP agent API via consul client (registry/registry.go:92 c.Agent().ServiceRegister); HTTP is the consul client default (library default, not in these files); consul address config.json:2"
+  },
+  {
+   "value": {
+    "caller": "search",
+    "callee": "geo"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/search/server.go",
+   "line": 136,
+   "quotedToken": "s.geoClient.Nearby(ctx, &geo.Request{",
+   "note": "gRPC; client initialised at server.go:70 with consul name srv-geo"
+  },
+  {
+   "value": {
+    "caller": "search",
+    "callee": "rate"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/search/server.go",
+   "line": 149,
+   "quotedToken": "s.rateClient.GetRates(ctx, &rate.Request{",
+   "note": "gRPC; client initialised at server.go:73 with consul name srv-rate"
+  },
+  {
+   "value": {
+    "caller": "search",
+    "callee": "srv-geo"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/search/server.go",
+   "line": 70,
+   "quotedToken": "s.initGeoClient(\"srv-geo\")",
+   "note": "gRPC: geo.NewGeoClient (server.go:101), Geo.Nearby call (server.go:136, proto geo.proto:9); dialled with grpc.Dial (dialer/dialer.go:55). Callee is the Consul service name passed to the dialer; compose key is geo (docker-compose.yml:81)."
+  },
+  {
+   "value": {
+    "caller": "search",
+    "callee": "srv-rate"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/services/search/server.go",
+   "line": 73,
+   "quotedToken": "s.initRateClient(\"srv-rate\")",
+   "note": "gRPC: rate.NewRateClient (server.go:110), Rate.GetRates call (server.go:149, proto rate.proto:9). Callee is the Consul service name; compose key is rate (docker-compose.yml:102)."
+  }
+ ],
+ "coordinators": [
+  {
+   "name": {
+    "value": "consul",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/config.json",
+    "line": 2,
+    "quotedToken": "consul:8500"
+   },
+   "type": {
+    "value": "ServiceRegistry",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/registry/registry.go",
+    "line": 92,
+    "quotedToken": "c.Agent().ServiceRegister(reg)"
+   },
+   "hostedBy": {
+    "value": "consul",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 4,
+    "quotedToken": "consul:"
+   },
+   "liveness": [
+    {
+     "mechanism": {
+      "value": "no liveness check registered (registration only)",
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/registry/registry.go",
+      "line": 85,
+      "quotedToken": "consul.AgentServiceRegistration{",
+      "note": "registration struct has no Check or TTL field (registry.go:85-90); no heartbeat, no failure timeout and no cleanup interval is set in these files (library default, not in these files); Deregister exists only in Shutdown (server.go:89), which main does not call (cmd/profile/main.go:77-78)"
+     },
+     "monitors": [
+      {
+       "value": "profile",
+       "basis": "cited",
+       "repo": "upstream",
+       "sourceFile": "hotelReservation/services/profile/server.go",
+       "line": 78,
+       "quotedToken": "Register(name, s.uuid",
+       "note": "registered name is srv-profile (services/profile/server.go:25)"
+      },
+      {
+       "value": "review",
+       "basis": "cited",
+       "repo": "upstream",
+       "sourceFile": "hotelReservation/services/review/server.go",
+       "line": 84,
+       "quotedToken": "Register(name, s.uuid",
+       "note": "registered name is srv-review (server.go:34)"
+      }
+     ],
+     "healthCheckConfigured": {
+      "value": false,
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/registry/registry.go",
+      "line": 85,
+      "quotedToken": "consul.AgentServiceRegistration{",
+      "note": "no Check in the consul registration (registry.go:85-90); profile block in hotelReservation/docker-compose.yml:39-59 has no healthcheck key"
+     }
+    },
+    {
+     "mechanism": {
+      "value": "none configured for attractions: AgentServiceRegistration carries no Check",
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/registry/registry.go",
+      "line": 85,
+      "quotedToken": "reg := &consul.AgentServiceRegistration{",
+      "note": "fields ID, Name, Port, Address only (registry.go:86-89); no heartbeat/TTL/failure timeout/cleanup interval stated in these files"
+     },
+     "monitors": [
+      {
+       "value": "attractions",
+       "repo": "upstream",
+       "sourceFile": "hotelReservation/services/attractions/server.go",
+       "line": 96,
+       "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

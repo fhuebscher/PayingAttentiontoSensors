@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "run": "run1-20261014",
+    "system": "otel",
+    "service": "recommendationservice",
+    "extractor": "B",
+    "entryIndex": 63,
+    "notes": [
+      "syncEdges: caller recommendationservice, two outgoing edges read from call sites: productcatalogservice (gRPC, recommendation_server.py:95) and flagd (recommendation_server.py:126, OpenFeature flagd provider). The flagd transport protocol is a library default (openfeature-provider-flagd==0.1.5, requirements.txt:8), not in these files; the host comes from FLAGD_HOST (recommendation_server.py:131) and the port from FLAGD_PORT (recommendation_server.py:131). The incoming ListRecommendations call from frontend is not an outgoing call of this service and is not reported.",
+      "publishesTo: none stated. No producer code in recommendation_server.py, logger.py or metrics.py.",
+      "consumes: none stated. No Kafka or message-consumer code in the service files.",
+      "registersWith: none stated. No registry or discovery client in the service files, and no registry block in the deployment files.",
+      "liveness: no heartbeat, session or cleanup mechanism is configured in these files, so no heartbeat interval, failure timeout, cleanup interval or heartbeat thread placement is stated. The service exposes a gRPC health service (recommendation_server.py:166 add_HealthServicer_to_server; Check at recommendation_server.py:58-60), which is a request-served status endpoint, not a heartbeat.",
+      "health check: no healthcheck key in upstream docker-compose.yml:513-546 and none in harness compose.candidate-postures.yml:117-123. Not configured in these files.",
+      "replicas: no deploy.replicas or scale key in upstream docker-compose.yml:521-524 (deploy block sets resources.limits.memory only) or in harness compose.candidate-postures.yml:117-123. Compose default of 1; library default, not in these files.",
+      "traces: the container entrypoint is opentelemetry-instrument (src/recommendationservice/Dockerfile:43), which installs auto-instrumentation. The trace exporter is not set in the service files; OTEL_TRACES_EXPORTER is supplied by OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER (harness compose.candidate-postures.yml:121), whose value is not set in these files. Manual spans are created at recommendation_server.py:70. The batch span export interval is not stated in these files (library default).",
+      "metrics: the counter app_recommendations_counter is created at metrics.py:9 and incremented at recommendation_server.py:54. Export goes to the OTLP endpoint in OTEL_EXPORTER_OTLP_ENDPOINT (upstream .env:32, passed through at docker-compose.yml:534). Metric temporality is cumulative (.env:39 OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=cumulative, passed through at docker-compose.yml:535). Export interval not stated in these files (library default).",
+      "logs: recommendation_server.py:148 creates an OTLPLogExporter with insecure=True and no explicit endpoint, so the endpoint is taken from OTEL_EXPORTER_OTLP_ENDPOINT (.env:32). Log batching uses BatchLogRecordProcessor (recommendation_server.py:149) with the library default schedule, not stated in these files. logger.py defines getJSONLogger, but recommendation_server.py does not import it (imports at recommendation_server.py:6-37 contain no logger import); logger.py is not used by the server file.",
+      "OTEL_PYTHON_LOG_CORRELATION=true is set at docker-compose.yml:533. The harness posture variables for this service (compose.candidate-postures.yml:117-123) reference OTEL_CANDIDATE_RECOMMENDATIONSERVICE_* values that are not defined in the pinned .env; they are reported as unresolved."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "recommendationservice",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 513,
+        "quotedToken": "recommendationservice:"
+      },
+      "container": {
+        "value": "recommendation-service",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 515,
+        "quotedToken": "container_name: recommendation-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "Library default, not in these files: no deploy.replicas or scale in upstream docker-compose.yml:521-524 or harness modules/otel-demo/deployment/compose.candidate-postures.yml:117-123; Compose default 1. Sourced from the Compose documentation, not fetched."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "OTLP gRPC insecure export (recommendation_server.py:148 OTLPLogExporter(insecure=True)); endpoint from OTEL_EXPORTER_OTLP_ENDPOINT (.env:32)."
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "recommendationservice",
+        "callee": "productcatalogservice"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/recommendationservice/recommendation_server.py",
+      "line": 95,
+      "quotedToken": "cat_response = product_catalog_stub.ListProducts(demo_pb2.Empty())",
+      "note": "protocol: gRPC. Stub ProductCatalogServiceStub created at recommendation_server.py:158 on the channel for PRODUCT_CATALOG_SERVICE_ADDR (recommendation_server.py:156); ListProducts rpc declared at pb/demo.proto:72."
+    },
+    {
+      "value": {
+        "caller": "recommendationservice",
+        "callee": "flagd"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/recommendationservice/recommendation_server.py",
+      "line": 126,
+      "quotedToken": "client.get_boolean_value(",
+      "note": "protocol: OpenFeature flagd provider; transport is a library default (openfeature-provider-flagd==0.1.5, requirements.txt:8), not in these files. Host from FLAGD_HOST (recommendation_server.py:131, FlagdProvider(host=os.environ.get('FLAGD_HOST', 'flagd')); .env:129 FLAGD_HOST=flagd). Evaluated per request via check_feature_flag (recommendation_server.py:78)."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "research/ontology/EXTRACTION_PROTOCOL.md",
+    "stage": 2,
+    "system": "otel",
+    "service": "shippingservice",
+    "extractor": "B",
+    "notes": [
+      "Health: the service registers a tonic_health reporter and serves it on the gRPC server (src/shippingservice/src/main.rs:22-25 set_serving; main.rs:38 add_service(health_service)). No healthcheck is configured for the service in docker-compose.yml:549-573 (no healthcheck key in that block). src/shippingservice/Dockerfile:44-51 installs grpc_health_probe but no HEALTHCHECK instruction appears in the Dockerfile. Container-level health check: library default (no check), not in these files.",
+      "Telemetry frequency: the OTLP trace exporter is installed with install_batch(runtime::Tokio) (src/shippingservice/src/telemetry/traces_conf.rs:14-18); no batch or export interval is stated in these files; library default, not in these files.",
+      "Telemetry scope: the only OTLP exporter pipeline is traces (traces_conf.rs:14-16). No metrics exporter and no OTLP log exporter appear in src/shippingservice. Logs use simplelog SimpleLogger (src/shippingservice/src/telemetry/logs_conf.rs:6-11) and are not exported over OTLP.",
+      "Compose candidate-posture override sets OTEL_SDK_DISABLED, OTEL_TRACES_EXPORTER, OTEL_METRICS_EXPORTER and OTEL_LOGS_EXPORTER for shippingservice (modules/otel-demo/deployment/compose.candidate-postures.yml:124-130). The shippingservice sources do not read OTEL_SDK_DISABLED or the exporter-selection variables (grep of src/shippingservice finds no reference)."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "shippingservice",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 549,
+        "quotedToken": "shippingservice:"
+      },
+      "container": {
+        "value": "shipping-service",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 551,
+        "quotedToken": "container_name: shipping-service"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "No deploy.replicas or scale key in the shippingservice block at docker-compose.yml:549-573 (or in modules/otel-demo/deployment/compose.candidate-postures.yml:124-130); library default, not in these files (Compose default 1)."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol",
+          "note": "Endpoint is passed to shippingservice at docker-compose.yml:567 as OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC} (gRPC port 4317 via .env:28); traces only, see extraction.notes."
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "shippingservice",
+        "callee": "quoteservice"
+      },
+      "repo": "upstream",
+      "sourceFile": "src/shippingservice/src/shipping_service/quote.rs",
+      "line": 44,
+      "quotedToken": "http://quoteservice:8090",
+      "note": "Synchronous HTTP (reqwest) POST to the quote service's /getquote path (quote.rs:47 and quote.rs:57-60, client.post(quote_service_addr)); the default address is used when QUOTE_SERVICE_ADDR is unset (quote.rs:43-44). Callee name matches the compose service quoteservice (docker-compose.yml:485)."
+    }
+  ]
+}

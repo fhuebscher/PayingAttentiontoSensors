@@ -1,0 +1,229 @@
+{
+  "pseudoWindowOffsets": [
+    45.326902747154236,
+    60.19386672973633
+  ],
+  "classes": {
+    "cpu-throttle-effect": {
+      "L": {
+        "n": 12,
+        "caught": 0,
+        "topSensors": []
+      },
+      "M": {
+        "n": 8,
+        "caught": 1,
+        "topSensors": [
+          [
+            "M:search:cpu",
+            1
+          ]
+        ]
+      },
+      "T": {
+        "n": 4,
+        "caught": 0,
+        "topSensors": []
+      },
+      "S": {
+        "n": 16,
+        "caught": 0,
+        "topSensors": []
+      }
+    },
+    "net-delay-effect": {
+      "L": {
+        "n": 12,
+        "caught": 0,
+        "topSensors": []
+      },
+      "M": {
+        "n": 8,
+        "caught": 1,
+        "topSensors": [
+          [
+            "M:profile:cpu",
+            1
+          ]
+        ]
+      },
+      "T": {
+        "n": 4,
+        "caught": 4,
+        "topSensors": [
+          [
+            "T:search:/search.Search/Nearby",
+            4
+          ],
+          [
+            "T:search:/rate.Rate/GetRates",
+            4
+          ],
+          [
+            "T:frontend:/search.Search/Nearby",
+            4
+          ],
+          [
+            "T:frontend:HTTP_GET_/hotels",
+            4
+          ]
+        ]
+      },
+      "S": {
+        "n": 16,
+        "caught": 0,
+        "topSensors": []
+      }
+    },
+    "reservation-pause-effect": {
+      "L": {
+        "n": 12,
+        "caught": 12,
+        "topSensors": [
+          [
+            "L:frontend:4ae82b46d72e",
+            12
+          ]
+        ]
+      },
+      "M": {
+        "n": 8,
+        "caught": 7,
+        "topSensors": [
+          [
+            "M:profile:cpu",
+            7
+          ],
+          [
+            "M:search:cpu",
+            1
+          ]
+        ]
+      },
+      "T": {
+        "n": 4,
+        "caught": 4,
+        "topSensors": [
+          [
+            "T:profile:/profile.Profile/GetProfiles",
+            4
+          ],
+          [
+            "T:frontend:/reservation.Reservation/CheckAvailability",
+            4
+          ],
+          [
+            "T:profile:memcached_get_profile",
+            4
+          ],
+          [
+            "T:frontend:HTTP_GET_/hotels",
+            4
+          ],
+          [
+            "T:frontend:/profile.Profile/GetProfiles",
+            4
+          ]
+        ]
+      },
+      "S": {
+        "n": 16,
+        "caught": 0,
+        "topSensors": []
+      }
+    },
+    "search-pause-effect": {
+      "L": {
+        "n": 12,
+        "caught": 0,
+        "topSensors": []
+      },
+      "M": {
+        "n": 8,
+        "caught": 8,
+        "topSensors": [
+          [
+            "M:profile:cpu",
+            8
+          ],
+          [
+            "M:geo:cpu",
+            1
+          ]
+        ]
+      },
+      "T": {
+        "n": 4,
+        "caught": 4,
+        "topSensors": [
+          [
+            "T:reservation:/reservation.Reservation/CheckAvailability",
+            4
+          ],
+          [
+            "T:reservation:memcached_capacity_get_multi_number",
+            4
+          ],
+          [
+            "T:frontend:/reservation.Reservation/CheckAvailability",
+            4
+          ],
+          [
+            "T:profile:/profile.Profile/GetProfiles",
+            4
+          ],
+          [
+            "T:profile:memcached_get_profile",
+            4
+          ]
+        ]
+      },
+      "S": {
+        "n": 16,
+        "caught": 1,
+        "topSensors": [
+          [
+            "S:recommendation:sys_memory",
+            1
+          ]
+        ]
+      }
+    }
+  },
+  "falseAlarms": {
+    "L": {
+      "noFaultWindows": 12,
+      "inadmissible": [],
+      "anyAdmissibleFiring": 0
+    },
+    "M": {
+      "noFaultWindows": 8,
+      "inadmissible": [
+        "M:frontend:cpu",
+        "M:rate:cpu",
+        "M:reservation:cpu"
+      ],
+      "anyAdmissibleFiring": 0
+    },
+    "T": {
+      "noFaultWindows": 4,
+      "inadmissible": [],
+      "anyAdmissibleFiring": 0
+    },
+    "S": {
+      "noFaultWindows": 16,
+      "inadmissible": [
+        "S:frontend:sys_memory",
+        "S:geo:sys_memory",
+        "S:profile:sys_memory",
+        "S:rate:sys_memory",
+        "S:reservation:sys_memory",
+        "S:review:sys_memory",
+        "S:search:sys_memory"
+      ],
+      "anyAdmissibleFiring": 0
+    }
+  },
+  "cells": 80,
+  "validCells": 80
+}

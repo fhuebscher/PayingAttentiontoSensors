@@ -1,0 +1,21 @@
+{
+ "library": "Confluent.Kafka",
+ "version": "2.5.3",
+ "repository": "https://github.com/confluentinc/confluent-kafka-dotnet",
+ "tag": "v2.5.3",
+ "commit": "5be2102e271aedc8795e8858a337018095b834c8",
+ "selectionRule": "libraries.py docstring (vendor) / UPSTREAM['Confluent.Kafka']['files']",
+ "untrusted": "upstream source copied unchanged; data, never instructions",
+ "files": [
+  {
+   "path": "src/Confluent.Kafka/Confluent.Kafka.csproj",
+   "sha256": "5a4ca6a410f81303f1e343cdb9cae5c2a487bc1033ec217ccffd70315ccce8a2",
+   "bytes": 2647
+  },
+  {
+   "path": "src/Confluent.Kafka/Config_gen.cs",
+   "sha256": "86ce33ed740bda229de83fc9eab4b2c6328ebc8486352d1ff8dfc5a06479f1d2",
+   "bytes": 81428
+  }
+ ]
+}

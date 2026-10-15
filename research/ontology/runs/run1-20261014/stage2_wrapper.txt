@@ -1,0 +1,5 @@
+{PROMPT}
+
+---
+Your task is entry {index} (0-based) of the JSON list in {tasks}; read that file with the Read tool. The entry names your `system`, `service` and `extractor`; its `files` are this service's files and its `deployment` are the deployment files: read them with the Read tool and use only those. Its `stage1` file is the deterministic stage-1 output for this system (context only; do not copy its facts unless you confirm them in your files).
+Write your answer as one JSON document conforming to the JSON schema at {schema} (this service's facts only) to the entry's `out` path with the Write tool, creating its directory if needed. Do not write any other file. Then reply with exactly one line: OK <number of facts> or FAILED <reason>.

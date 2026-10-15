@@ -1,0 +1,5 @@
+repository: https://github.com/open-telemetry/opentelemetry-demo.git
+commit: 2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d
+tag: 1.12.0
+subdirectory: .
+inspection_status: clean_pinned_submodule

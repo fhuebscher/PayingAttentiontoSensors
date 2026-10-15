@@ -1,0 +1,1557 @@
+{
+ "manifestVersion": 1,
+ "system": "hotel",
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+   "commit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+   "pinnedAs": "6ecb09706140"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-hotel-protocol",
+   "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d",
+   "pinnedAs": "HEAD"
+  },
+  "obsplacement": {
+   "path": "/Users/fhuebscher/Desktop/ma_thesis/oltp-submodularity-evaluation/observability-placement",
+   "commit": "fe3d52f45a9ce5a5e574ab669cddae2ebc5bbf67",
+   "pinnedAs": "HEAD"
+  }
+ },
+ "rules": "research/ontology/inputs.py module docstring, R1-R7",
+ "deploymentFiles": [
+  {
+   "role": "compose",
+   "repo": "upstream",
+   "path": "hotelReservation/docker-compose.yml",
+   "sha256": "988b3e3d4c0c01c5032f47d6ff69db56a8245966ddb7dcaaef1b726ff641bc12",
+   "bytes": 7517
+  },
+  {
+   "role": "compose",
+   "repo": "harness",
+   "path": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+   "sha256": "800ceda4b3a94f9cc8c0f414956477232a713bb66086e5aa35b82f3d8fb22152",
+   "bytes": 3186
+  },
+  {
+   "role": "host-topology",
+   "repo": "obsplacement",
+   "path": "research/host-topology.json",
+   "sha256": "a259d0ccb0470155c032616fd2dbb7e4e8b941ce5cf2d103a5195c01faa30d15",
+   "bytes": 23283
+  }
+ ],
+ "services": {
+  "consul": {
+   "service": "consul",
+   "kind": "image-only",
+   "image": "hashicorp/consul:1.13",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "frontend": {
+   "service": "frontend",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R3e:config:server_config",
+    "R5:go-closure:hotelReservation/cmd/frontend,hotelReservation/dialer,hotelReservation/registry,hotelReservation/services/attractions/proto,hotelReservation/services/frontend,hotelReservation/services/profile/proto,hotelReservation/services/recommendation/proto,hotelReservation/services/reservation/proto,hotelReservation/services/review/proto,hotelReservation/services/search/proto,hotelReservation/services/user/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/frontend/main.go",
+     "sha256": "341703ce4eb3da3eab1d7fcb5bcb5c2efc6517d345db0ce1ebbdabe9f9ea17ec",
+     "bytes": 2048
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/dialer/dialer.go",
+     "sha256": "fbf886d052dc4a5f3c66b548c866a2e21c76b00234ccbe6f13eb11f16d8b42ab",
+     "bytes": 1701
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/attractions/proto/attractions.proto",
+     "sha256": "a80849595a31f41ad75bf906c7966589965134e1da00bd3e02e5875d78f789b8",
+     "bytes": 409
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/frontend/server.go",
+     "sha256": "453d3efeeb27c28896434cd1e7fa18f1810678b82835be909094bc629fe7764c",
+     "bytes": 18770
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/profile/proto/profile.proto",
+     "sha256": "1cf74f4c859e4cbe79fb9855ebd464643b81361de019d8e0ef61dcc574a9131c",
+     "bytes": 742
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/recommendation/proto/recommendation.proto",
+     "sha256": "86d1142ca515dbbc011df28c4a7ea9336bc3a262e5ca9f0cd9c22a25ca01c926",
+     "bytes": 486
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/reservation/proto/reservation.proto",
+     "sha256": "f76556c856178b0d9adb541a932d7627a9f204348524ea9d42cfeefb57f3465a",
+     "bytes": 606
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/review/proto/review.proto",
+     "sha256": "867ccce313d0c21eaccacfdc111ddbcd6979d8c083735a5191bc7c68481ce05e",
+     "bytes": 513
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/search/proto/search.proto",
+     "sha256": "2ceacf51c81f1444d0bed94c02971d5df16f821ecfad60a4aacb8dd6b4dbf0d6",
+     "bytes": 623
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/user/proto/user.proto",
+     "sha256": "c11eb8f0b9b63a06d8ba11679c6a30a22b63e3ebd58ae5e45848282229b06701",
+     "bytes": 374
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 18,
+   "bytes": 42480
+  },
+  "profile": {
+   "service": "profile",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R3e:config:server_config",
+    "R5:go-closure:hotelReservation/cmd/profile,hotelReservation/registry,hotelReservation/services/profile,hotelReservation/services/profile/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/profile/db.go",
+     "sha256": "cbfa8112e162e62696a28a2bdf23245368ac8f7165dd5ce5bdcd939b23da7191",
+     "bytes": 4568
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/profile/main.go",
+     "sha256": "e856f8de007d60ded49cba2ab5f8af219b7dd24fc2f8e148f913ed4d3dbaee8b",
+     "bytes": 2385
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/profile/proto/profile.proto",
+     "sha256": "1cf74f4c859e4cbe79fb9855ebd464643b81361de019d8e0ef61dcc574a9131c",
+     "bytes": 742
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/profile/server.go",
+     "sha256": "e4cf3260ef4c91c638f57b374ce142df91e75c632ba469dc46fb798388ec46fc",
+     "bytes": 4285
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 28188
+  },
+  "search": {
+   "service": "search",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R3e:config:server_config",
+    "R5:go-closure:hotelReservation/cmd/search,hotelReservation/dialer,hotelReservation/registry,hotelReservation/services/geo/proto,hotelReservation/services/rate/proto,hotelReservation/services/search,hotelReservation/services/search/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/search/main.go",
+     "sha256": "426284f8f3a946f4584bd32f29d4ff9e5b4a7d471b20a843a57df29a7ce87f9f",
+     "bytes": 2039
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/dialer/dialer.go",
+     "sha256": "fbf886d052dc4a5f3c66b548c866a2e21c76b00234ccbe6f13eb11f16d8b42ab",
+     "bytes": 1701
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/geo/proto/geo.proto",
+     "sha256": "85cc4bffede7438216811cb51cba1df94d937fc9735044b8dc7ebea88c88a01e",
+     "bytes": 415
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/rate/proto/rate.proto",
+     "sha256": "bdcc8aa65f0ad321e1835397b4d6337a75068b5cb42dfa6c777b2a636a3ee34a",
+     "bytes": 725
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/search/proto/search.proto",
+     "sha256": "2ceacf51c81f1444d0bed94c02971d5df16f821ecfad60a4aacb8dd6b4dbf0d6",
+     "bytes": 623
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/search/server.go",
+     "sha256": "a5fcee43b546d323c9dac61c28d1d558677f82e5da3c642676c92a8dcd5e616d",
+     "bytes": 4327
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 14,
+   "bytes": 26038
+  },
+  "geo": {
+   "service": "geo",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R3e:config:server_config",
+    "R5:go-closure:hotelReservation/cmd/geo,hotelReservation/registry,hotelReservation/services/geo,hotelReservation/services/geo/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/geo/db.go",
+     "sha256": "1080bc0fe779b9d2523d2289bc52ef7a90fbe9be98da2a730875617003c49219",
+     "bytes": 1465
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/geo/main.go",
+     "sha256": "07c92cf65853fa2ca5bbdfadf53defc8de806c45365e9c6c7cc4307c6908710f",
+     "bytes": 2100
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/geo/proto/geo.proto",
+     "sha256": "85cc4bffede7438216811cb51cba1df94d937fc9735044b8dc7ebea88c88a01e",
+     "bytes": 415
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/geo/server.go",
+     "sha256": "67aff7a367331795b66436c9aad41ef2e6b45bc1311e9ddff3f004eb0b0bb0df",
+     "bytes": 3886
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 24074
+  },
+  "rate": {
+   "service": "rate",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R3e:config:server_config",
+    "R5:go-closure:hotelReservation/cmd/rate,hotelReservation/registry,hotelReservation/services/rate,hotelReservation/services/rate/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/rate/db.go",
+     "sha256": "ca75806fddf2d6119321de18854672abfd60a988e3de9b7949db6db5c8d66be2",
+     "bytes": 2654
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/rate/main.go",
+     "sha256": "5ccd57848b9abfb4c18b3cdc01bee6be790ec49fb8f00ace6797f114e01ae55b",
+     "bytes": 2359
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/rate/proto/rate.proto",
+     "sha256": "bdcc8aa65f0ad321e1835397b4d6337a75068b5cb42dfa6c777b2a636a3ee34a",
+     "bytes": 725
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/rate/server.go",
+     "sha256": "7c995a65ea4b13352f08eab2734b2a7e84650d354e8ae958fda15751c405474e",
+     "bytes": 4925
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 26871
+  },
+  "review": {
+   "service": "review",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R5:go-closure:hotelReservation/cmd/review,hotelReservation/registry,hotelReservation/services/review,hotelReservation/services/review/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/review/db.go",
+     "sha256": "49bc45dd35e5caf27cdb8dcc3b7422e78f2d1db0aa0a7cef98bea17dd80cd740",
+     "bytes": 3068
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/review/main.go",
+     "sha256": "7c72297107e6d63e58855acb2f2f1ebc8266b12cb9de1d526033d661b37e4224",
+     "bytes": 2948
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/review/proto/review.proto",
+     "sha256": "867ccce313d0c21eaccacfdc111ddbcd6979d8c083735a5191bc7c68481ce05e",
+     "bytes": 513
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/review/server.go",
+     "sha256": "6f40ba8ffec8df059c9cdba97639c820f714b0f61053518c09072f60fe3a7e6e",
+     "bytes": 4590
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 27327
+  },
+  "attractions": {
+   "service": "attractions",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R5:go-closure:hotelReservation/cmd/attractions,hotelReservation/registry,hotelReservation/services/attractions,hotelReservation/services/attractions/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/attractions/db.go",
+     "sha256": "be72ded0c1cadc8c515457fda790aa936e7cde307aca2fbf4dcf4d28d0015de2",
+     "bytes": 2978
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/attractions/main.go",
+     "sha256": "aa456456d3511d61bb8c4874259d6dfe387407a636361ca53e9721a852207458",
+     "bytes": 2992
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/attractions/proto/attractions.proto",
+     "sha256": "a80849595a31f41ad75bf906c7966589965134e1da00bd3e02e5875d78f789b8",
+     "bytes": 409
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/attractions/server.go",
+     "sha256": "cc8d85213ec272438c68bff80976f392b406c10109754e574c915553a8d056ca",
+     "bytes": 11257
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 33844
+  },
+  "recommendation": {
+   "service": "recommendation",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R3e:config:server_config",
+    "R5:go-closure:hotelReservation/cmd/recommendation,hotelReservation/registry,hotelReservation/services/recommendation,hotelReservation/services/recommendation/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/recommendation/db.go",
+     "sha256": "c921b415b63e0ed69d1ccecfdfde8d8671cb268419508df95b827fd9c65899b7",
+     "bytes": 2019
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/recommendation/main.go",
+     "sha256": "ddbb7ea2076f803f1735fce787d558cc93c66f7ee0cc77fc86ecf2817b36d6f3",
+     "bytes": 2163
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/recommendation/proto/recommendation.proto",
+     "sha256": "86d1142ca515dbbc011df28c4a7ea9336bc3a262e5ca9f0cd9c22a25ca01c926",
+     "bytes": 486
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/recommendation/server.go",
+     "sha256": "a9f72561d6498c4169c0532ae51ed14edfd1c1f1024288550c6e7be3569fc9a2",
+     "bytes": 4320
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 25196
+  },
+  "user": {
+   "service": "user",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R3e:config:server_config",
+    "R5:go-closure:hotelReservation/cmd/user,hotelReservation/registry,hotelReservation/services/user,hotelReservation/services/user/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/user/db.go",
+     "sha256": "aced9202d319f1da37060e39513520ff073993572dc12b0869fc24d9dd668d1b",
+     "bytes": 1346
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/user/main.go",
+     "sha256": "53216612f141f2d056d13707f941b023e104d4394b667c0fdd5c2349f05c8581",
+     "bytes": 2132
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/user/proto/user.proto",
+     "sha256": "c11eb8f0b9b63a06d8ba11679c6a30a22b63e3ebd58ae5e45848282229b06701",
+     "bytes": 374
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/user/server.go",
+     "sha256": "b6b1c75d1da84d9e01acb07d7a70cf0985fc29e043787d635d38a86dfd50039e",
+     "bytes": 3139
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 23199
+  },
+  "reservation": {
+   "service": "reservation",
+   "kind": "built",
+   "buildContext": {
+    "repo": "upstream",
+    "path": "hotelReservation"
+   },
+   "dockerfile": {
+    "repo": "upstream",
+    "path": "hotelReservation/Dockerfile"
+   },
+   "rules": [
+    "R2:compose-build",
+    "R3b:hotelReservation/Dockerfile",
+    "R3e:config:server_config",
+    "R5:go-closure:hotelReservation/cmd/reservation,hotelReservation/registry,hotelReservation/services/reservation,hotelReservation/services/reservation/proto,hotelReservation/tls,hotelReservation/tracing,hotelReservation/tune"
+   ],
+   "files": [
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/Dockerfile",
+     "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+     "bytes": 376
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/reservation/db.go",
+     "sha256": "c4c8858fd1a6101c65ac898835da9a4a731861c8b9369100f2177e28414a013e",
+     "bytes": 1945
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/cmd/reservation/main.go",
+     "sha256": "1098b8af735a06b22468f3354a79474f0cdbcfd7833870bbfddf2d4e9d4aab72",
+     "bytes": 2401
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/config.json",
+     "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+     "bytes": 939
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/go.mod",
+     "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+     "bytes": 2695
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/registry/registry.go",
+     "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+     "bytes": 2342
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/reservation/proto/reservation.proto",
+     "sha256": "f76556c856178b0d9adb541a932d7627a9f204348524ea9d42cfeefb57f3465a",
+     "bytes": 606
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/services/reservation/server.go",
+     "sha256": "cc24f3bd38b845b0cb9fe591f811dc33abe36d02c53bc1c28f426739d26c1c0e",
+     "bytes": 12089
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tls/options.go",
+     "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+     "bytes": 4718
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/mux.go",
+     "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+     "bytes": 1582
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tracing/tracer.go",
+     "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+     "bytes": 1087
+    },
+    {
+     "repo": "upstream",
+     "path": "hotelReservation/tune/setting.go",
+     "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+     "bytes": 2469
+    }
+   ],
+   "fileCount": 12,
+   "bytes": 33249
+  },
+  "jaeger": {
+   "service": "jaeger",
+   "kind": "image-only",
+   "image": "jaegertracing/all-in-one:1.60",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "memcached-rate": {
+   "service": "memcached-rate",
+   "kind": "image-only",
+   "image": "memcached:1.6.24",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "memcached-review": {
+   "service": "memcached-review",
+   "kind": "image-only",
+   "image": "memcached:1.6.24",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "memcached-profile": {
+   "service": "memcached-profile",
+   "kind": "image-only",
+   "image": "memcached:1.6.24",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "memcached-reserve": {
+   "service": "memcached-reserve",
+   "kind": "image-only",
+   "image": "memcached:1.6.24",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "mongodb-geo": {
+   "service": "mongodb-geo",
+   "kind": "image-only",
+   "image": "mongo:5.0",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "mongodb-profile": {
+   "service": "mongodb-profile",
+   "kind": "image-only",
+   "image": "mongo:5.0",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "mongodb-rate": {
+   "service": "mongodb-rate",
+   "kind": "image-only",
+   "image": "mongo:5.0",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "mongodb-review": {
+   "service": "mongodb-review",
+   "kind": "image-only",
+   "image": "mongo:5.0",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "mongodb-attractions": {
+   "service": "mongodb-attractions",
+   "kind": "image-only",
+   "image": "mongo:5.0",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "mongodb-recommendation": {
+   "service": "mongodb-recommendation",
+   "kind": "image-only",
+   "image": "mongo:5.0",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "mongodb-reservation": {
+   "service": "mongodb-reservation",
+   "kind": "image-only",
+   "image": "mongo:5.0",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  },
+  "mongodb-user": {
+   "service": "mongodb-user",
+   "kind": "image-only",
+   "image": "mongo:5.0",
+   "rules": [
+    "R6"
+   ],
+   "files": [],
+   "fileCount": 0,
+   "bytes": 0
+  }
+ },
+ "files": [
+  {
+   "repo": "harness",
+   "path": "modules/hotel-reservation/deployment/compose.observability-placement.yml",
+   "sha256": "800ceda4b3a94f9cc8c0f414956477232a713bb66086e5aa35b82f3d8fb22152",
+   "bytes": 3186
+  },
+  {
+   "repo": "obsplacement",
+   "path": "research/host-topology.json",
+   "sha256": "a259d0ccb0470155c032616fd2dbb7e4e8b941ce5cf2d103a5195c01faa30d15",
+   "bytes": 23283
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/Dockerfile",
+   "sha256": "99651371ef0722a273bbef9c496608593257f4a2a13ec1f3246bdd1b7c048d4a",
+   "bytes": 376
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/attractions/db.go",
+   "sha256": "be72ded0c1cadc8c515457fda790aa936e7cde307aca2fbf4dcf4d28d0015de2",
+   "bytes": 2978
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/attractions/main.go",
+   "sha256": "aa456456d3511d61bb8c4874259d6dfe387407a636361ca53e9721a852207458",
+   "bytes": 2992
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/frontend/main.go",
+   "sha256": "341703ce4eb3da3eab1d7fcb5bcb5c2efc6517d345db0ce1ebbdabe9f9ea17ec",
+   "bytes": 2048
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/geo/db.go",
+   "sha256": "1080bc0fe779b9d2523d2289bc52ef7a90fbe9be98da2a730875617003c49219",
+   "bytes": 1465
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/geo/main.go",
+   "sha256": "07c92cf65853fa2ca5bbdfadf53defc8de806c45365e9c6c7cc4307c6908710f",
+   "bytes": 2100
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/profile/db.go",
+   "sha256": "cbfa8112e162e62696a28a2bdf23245368ac8f7165dd5ce5bdcd939b23da7191",
+   "bytes": 4568
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/profile/main.go",
+   "sha256": "e856f8de007d60ded49cba2ab5f8af219b7dd24fc2f8e148f913ed4d3dbaee8b",
+   "bytes": 2385
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/rate/db.go",
+   "sha256": "ca75806fddf2d6119321de18854672abfd60a988e3de9b7949db6db5c8d66be2",
+   "bytes": 2654
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/rate/main.go",
+   "sha256": "5ccd57848b9abfb4c18b3cdc01bee6be790ec49fb8f00ace6797f114e01ae55b",
+   "bytes": 2359
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/recommendation/db.go",
+   "sha256": "c921b415b63e0ed69d1ccecfdfde8d8671cb268419508df95b827fd9c65899b7",
+   "bytes": 2019
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/recommendation/main.go",
+   "sha256": "ddbb7ea2076f803f1735fce787d558cc93c66f7ee0cc77fc86ecf2817b36d6f3",
+   "bytes": 2163
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/reservation/db.go",
+   "sha256": "c4c8858fd1a6101c65ac898835da9a4a731861c8b9369100f2177e28414a013e",
+   "bytes": 1945
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/reservation/main.go",
+   "sha256": "1098b8af735a06b22468f3354a79474f0cdbcfd7833870bbfddf2d4e9d4aab72",
+   "bytes": 2401
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/review/db.go",
+   "sha256": "49bc45dd35e5caf27cdb8dcc3b7422e78f2d1db0aa0a7cef98bea17dd80cd740",
+   "bytes": 3068
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/review/main.go",
+   "sha256": "7c72297107e6d63e58855acb2f2f1ebc8266b12cb9de1d526033d661b37e4224",
+   "bytes": 2948
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/search/main.go",
+   "sha256": "426284f8f3a946f4584bd32f29d4ff9e5b4a7d471b20a843a57df29a7ce87f9f",
+   "bytes": 2039
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/user/db.go",
+   "sha256": "aced9202d319f1da37060e39513520ff073993572dc12b0869fc24d9dd668d1b",
+   "bytes": 1346
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/cmd/user/main.go",
+   "sha256": "53216612f141f2d056d13707f941b023e104d4394b667c0fdd5c2349f05c8581",
+   "bytes": 2132
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/config.json",
+   "sha256": "758febb12cf66301e91755fb4123c4dfca985a6f4a9a461c18b6a9a38bcfddaa",
+   "bytes": 939
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/dialer/dialer.go",
+   "sha256": "fbf886d052dc4a5f3c66b548c866a2e21c76b00234ccbe6f13eb11f16d8b42ab",
+   "bytes": 1701
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/docker-compose.yml",
+   "sha256": "988b3e3d4c0c01c5032f47d6ff69db56a8245966ddb7dcaaef1b726ff641bc12",
+   "bytes": 7517
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/go.mod",
+   "sha256": "a5a886b6b67cea384f09f4497cc273b1d710dbe719d9904bd9258446fa38ce90",
+   "bytes": 2695
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/registry/registry.go",
+   "sha256": "267ae21fc993be6689e0fdcceddad79afd6efffef9d1cd4de57f0c45800f7788",
+   "bytes": 2342
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/attractions/proto/attractions.proto",
+   "sha256": "a80849595a31f41ad75bf906c7966589965134e1da00bd3e02e5875d78f789b8",
+   "bytes": 409
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/attractions/server.go",
+   "sha256": "cc8d85213ec272438c68bff80976f392b406c10109754e574c915553a8d056ca",
+   "bytes": 11257
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/frontend/server.go",
+   "sha256": "453d3efeeb27c28896434cd1e7fa18f1810678b82835be909094bc629fe7764c",
+   "bytes": 18770
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/geo/proto/geo.proto",
+   "sha256": "85cc4bffede7438216811cb51cba1df94d937fc9735044b8dc7ebea88c88a01e",
+   "bytes": 415
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/geo/server.go",
+   "sha256": "67aff7a367331795b66436c9aad41ef2e6b45bc1311e9ddff3f004eb0b0bb0df",
+   "bytes": 3886
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/profile/proto/profile.proto",
+   "sha256": "1cf74f4c859e4cbe79fb9855ebd464643b81361de019d8e0ef61dcc574a9131c",
+   "bytes": 742
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/profile/server.go",
+   "sha256": "e4cf3260ef4c91c638f57b374ce142df91e75c632ba469dc46fb798388ec46fc",
+   "bytes": 4285
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/rate/proto/rate.proto",
+   "sha256": "bdcc8aa65f0ad321e1835397b4d6337a75068b5cb42dfa6c777b2a636a3ee34a",
+   "bytes": 725
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/rate/server.go",
+   "sha256": "7c995a65ea4b13352f08eab2734b2a7e84650d354e8ae958fda15751c405474e",
+   "bytes": 4925
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/recommendation/proto/recommendation.proto",
+   "sha256": "86d1142ca515dbbc011df28c4a7ea9336bc3a262e5ca9f0cd9c22a25ca01c926",
+   "bytes": 486
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/recommendation/server.go",
+   "sha256": "a9f72561d6498c4169c0532ae51ed14edfd1c1f1024288550c6e7be3569fc9a2",
+   "bytes": 4320
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/reservation/proto/reservation.proto",
+   "sha256": "f76556c856178b0d9adb541a932d7627a9f204348524ea9d42cfeefb57f3465a",
+   "bytes": 606
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/reservation/server.go",
+   "sha256": "cc24f3bd38b845b0cb9fe591f811dc33abe36d02c53bc1c28f426739d26c1c0e",
+   "bytes": 12089
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/review/proto/review.proto",
+   "sha256": "867ccce313d0c21eaccacfdc111ddbcd6979d8c083735a5191bc7c68481ce05e",
+   "bytes": 513
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/review/server.go",
+   "sha256": "6f40ba8ffec8df059c9cdba97639c820f714b0f61053518c09072f60fe3a7e6e",
+   "bytes": 4590
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/search/proto/search.proto",
+   "sha256": "2ceacf51c81f1444d0bed94c02971d5df16f821ecfad60a4aacb8dd6b4dbf0d6",
+   "bytes": 623
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/search/server.go",
+   "sha256": "a5fcee43b546d323c9dac61c28d1d558677f82e5da3c642676c92a8dcd5e616d",
+   "bytes": 4327
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/user/proto/user.proto",
+   "sha256": "c11eb8f0b9b63a06d8ba11679c6a30a22b63e3ebd58ae5e45848282229b06701",
+   "bytes": 374
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/services/user/server.go",
+   "sha256": "b6b1c75d1da84d9e01acb07d7a70cf0985fc29e043787d635d38a86dfd50039e",
+   "bytes": 3139
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/tls/options.go",
+   "sha256": "6ce508379fc402f8b1b76e18a11fda9c8f50f79dc1641b49276a5f9fc14841ae",
+   "bytes": 4718
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/tracing/mux.go",
+   "sha256": "27a3713b84e5f8b31d808021037fc109eb1561e42a29210333fc32a27d080976",
+   "bytes": 1582
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/tracing/tracer.go",
+   "sha256": "a50f0d9ddff8bf5fd1d2c4001f4396322b9a2de6113668591bfc006b12331a0c",
+   "bytes": 1087
+  },
+  {
+   "repo": "upstream",
+   "path": "hotelReservation/tune/setting.go",
+   "sha256": "c2993b74753e865fe3182faf991b2218a40d7c73d3932c12a2fbebf7ca724c51",
+   "bytes": 2469
+  }
+ ],
+ "fileCount": 49,
+ "bytes": 171986,
+ "excluded": {
+  "asset": {
+   "count": 2,
+   "files": [
+    "upstream:hotelReservation/services/frontend/static/index.html",
+    "upstream:hotelReservation/services/frontend/static/stylesheets/main.css"
+   ]
+  },
+  "generated-stub": {
+   "count": 18,
+   "files": [
+    "upstream:hotelReservation/services/attractions/proto/attractions.pb.go",
+    "upstream:hotelReservation/services/attractions/proto/attractions_grpc.pb.go",
+    "upstream:hotelReservation/services/geo/proto/geo.pb.go",
+    "upstream:hotelReservation/services/geo/proto/geo_grpc.pb.go",
+    "upstream:hotelReservation/services/profile/proto/profile.pb.go",
+    "upstream:hotelReservation/services/profile/proto/profile_grpc.pb.go",
+    "upstream:hotelReservation/services/rate/proto/rate.pb.go",
+    "upstream:hotelReservation/services/rate/proto/rate_grpc.pb.go",
+    "upstream:hotelReservation/services/recommendation/proto/recommendation.pb.go",
+    "upstream:hotelReservation/services/recommendation/proto/recommendation_grpc.pb.go",
+    "upstream:hotelReservation/services/reservation/proto/reservation.pb.go",
+    "upstream:hotelReservation/services/reservation/proto/reservation_grpc.pb.go",
+    "upstream:hotelReservation/services/review/proto/review.pb.go",
+    "upstream:hotelReservation/services/review/proto/review_grpc.pb.go",
+    "upstream:hotelReservation/services/search/proto/search.pb.go",
+    "upstream:hotelReservation/services/search/proto/search_grpc.pb.go",
+    "upstream:hotelReservation/services/user/proto/user.pb.go",
+    "upstream:hotelReservation/services/user/proto/user_grpc.pb.go"
+   ]
+  },
+  "lockfile": {
+   "count": 1,
+   "files": [
+    "upstream:hotelReservation/go.sum"
+   ]
+  },
+  "vendored": {
+   "count": 28,
+   "files": [
+    "upstream:hotelReservation/vendor/github.com/bradfitz/gomemcache/AUTHORS",
+    "upstream:hotelReservation/vendor/github.com/bradfitz/gomemcache/LICENSE",
+    "upstream:hotelReservation/vendor/github.com/golang/protobuf/AUTHORS",
+    "upstream:hotelReservation/vendor/github.com/golang/protobuf/CONTRIBUTORS",
+    "upstream:hotelReservation/vendor/github.com/golang/protobuf/LICENSE",
+    "upstream:hotelReservation/vendor/github.com/grpc-ecosystem/grpc-opentracing/LICENSE",
+    "upstream:hotelReservation/vendor/github.com/grpc-ecosystem/grpc-opentracing/PATENTS",
+    "upstream:hotelReservation/vendor/github.com/hashicorp/golang-lru/LICENSE",
+    "upstream:hotelReservation/vendor/github.com/hashicorp/serf/LICENSE",
+    "upstream:hotelReservation/vendor/github.com/opentracing-contrib/go-stdlib/LICENSE",
+    "upstream:hotelReservation/vendor/github.com/uber/jaeger-lib/LICENSE",
+    "upstream:hotelReservation/vendor/go.mongodb.org/mongo-driver/LICENSE",
+    "upstream:hotelReservation/vendor/golang.org/x/crypto/LICENSE",
+    "upstream:hotelReservation/vendor/golang.org/x/crypto/PATENTS",
+    "upstream:hotelReservation/vendor/golang.org/x/exp/LICENSE",
+    "upstream:hotelReservation/vendor/golang.org/x/exp/PATENTS",
+    "upstream:hotelReservation/vendor/golang.org/x/net/LICENSE",
+    "upstream:hotelReservation/vendor/golang.org/x/net/PATENTS",
+    "upstream:hotelReservation/vendor/golang.org/x/sync/LICENSE",
+    "upstream:hotelReservation/vendor/golang.org/x/sync/PATENTS",
+    "upstream:hotelReservation/vendor/golang.org/x/sys/LICENSE",
+    "upstream:hotelReservation/vendor/golang.org/x/sys/PATENTS",
+    "upstream:hotelReservation/vendor/golang.org/x/text/LICENSE",
+    "upstream:hotelReservation/vendor/golang.org/x/text/PATENTS",
+    "upstream:hotelReservation/vendor/google.golang.org/genproto/googleapis/rpc/LICENSE",
+    "upstream:hotelReservation/vendor/google.golang.org/protobuf/LICENSE",
+    "upstream:hotelReservation/vendor/google.golang.org/protobuf/PATENTS",
+    "upstream:hotelReservation/vendor/modules.txt"
+   ]
+  }
+ },
+ "unresolvedVariables": []
+}

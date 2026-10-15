@@ -1,0 +1,133 @@
+@prefix ops:   <http://obsplacement.example/ops#> .
+@prefix ev:    <http://obsplacement.example/evidence#> .
+@prefix omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# Operations-and-observability extension of OMSAC (research/ontology/omsac.ttl). OWL 2, Turtle. SUT-independent: no
+# individual of any system under test is declared here. Minimal by design: a term exists only because a competency
+# question in research/ontology/cq/ reads it (named in each term's comment). The namespace is a placeholder under the
+# reserved .example TLD (engineering default, recorded 2026-10-14). ABoxes are produced by research/ontology/spec_to_ttl.py
+# from an extracted spec (research/ontology/extraction.schema.json); they are not hand-written.
+
+<http://obsplacement.example/ops>
+    a owl:Ontology ;
+    owl:imports <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture> ;
+    rdfs:label "obsplacement ops extension of OMSAC" ;
+    rdfs:comment "Containers, hosts, replicas, coordinators and their liveness, messaging, telemetry, sensors and fault kinds; plus per-fact evidence records (ev: namespace)." .
+
+# =========================================================================== deployment
+ops:Container a owl:Class ; rdfs:subClassOf omsac:Infrastructure ;
+    rdfs:comment "One container (compose service instance). CQ-S1 (host shared fate)." .
+ops:Host a owl:Class ; rdfs:subClassOf omsac:Infrastructure ;
+    rdfs:comment "One physical/virtual machine. CQ-S1." .
+ops:ReplicaSet a owl:Class ;
+    rdfs:comment "The replicas of one service; replicaCount > 1 means one replica's fault is not the service's outage. CQ-B1, CQ-S1." .
+
+ops:runsIn a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:range ops:Container ;
+    rdfs:comment "A deployable component (microservice, broker, collector, data store) runs in a container. CQ-S1." .
+ops:placedOn a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:domain ops:Container ; rdfs:range ops:Host ;
+    rdfs:comment "CQ-S1." .
+ops:replicaSetOf a owl:ObjectProperty ; rdfs:domain ops:ReplicaSet ;
+    rdfs:comment "ReplicaSet -> the component it replicates. CQ-B1." .
+ops:replicaCount a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ops:ReplicaSet ; rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "CQ-B1, CQ-S1." .
+
+# =========================================================================== interaction
+ops:callsSync a owl:ObjectProperty ; rdfs:subPropertyOf omsac:interactsWith ;
+    rdfs:comment "Caller blocks on the callee's reply (HTTP/gRPC request-response). Read from code, never from traces. CQ-B1." .
+
+ops:Broker a owl:Class ; rdfs:subClassOf omsac:Message ;
+    rdfs:comment "A message broker process (e.g. Kafka). CQ-S1, CQ-B1." .
+ops:Topic a owl:Class ;
+    rdfs:comment "CQ-B1, CQ-L1 (lag lane)." .
+ops:ConsumerGroup a owl:Class ;
+    rdfs:comment "CQ-L1, CQ-C1 (membership is how a consumer is tracked by a group coordinator)." .
+ops:publishesTo a owl:ObjectProperty ; rdfs:range ops:Topic ; rdfs:comment "CQ-B1 (starved consumers), CQ-S1." .
+ops:consumesFrom a owl:ObjectProperty ; rdfs:range ops:Topic ; rdfs:comment "CQ-B1 (backed-up input), CQ-L1 (lag), CQ-S1." .
+ops:onBroker a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:domain ops:Topic ; rdfs:range ops:Broker ;
+    rdfs:comment "CQ-S1." .
+ops:memberOf a owl:ObjectProperty ; rdfs:range ops:ConsumerGroup ; rdfs:comment "CQ-L1, CQ-C1." .
+ops:coordinatedBy a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:domain ops:ConsumerGroup ; rdfs:range ops:ConsumerGroupCoordinator ;
+    rdfs:comment "CQ-C1." .
+
+# =========================================================================== coordinators and liveness
+ops:Coordinator a owl:Class ;
+    rdfs:comment "A component-external party that tracks which members are alive (group coordinator, service registry, discovery service). CQ-C1, CQ-L2, CQ-S1." .
+ops:ConsumerGroupCoordinator a owl:Class ; rdfs:subClassOf ops:Coordinator ; rdfs:comment "e.g. Kafka's GroupCoordinator inside a broker." .
+ops:ServiceRegistry a owl:Class ; rdfs:subClassOf ops:Coordinator ; rdfs:comment "Members register and renew (heartbeat) their own entry." .
+ops:DiscoveryService a owl:Class ; rdfs:subClassOf ops:Coordinator ; rdfs:comment "Members register; liveness only if a health check is configured." .
+ops:hostedBy a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:domain ops:Coordinator ;
+    rdfs:comment "The component whose process implements the coordinator (its sensors are the coordinator lane). CQ-L1, CQ-S1." .
+ops:registersWith a owl:ObjectProperty ; rdfs:range ops:Coordinator ; rdfs:comment "CQ-C1, CQ-S1." .
+
+ops:LivenessMechanism a owl:Class ;
+    rdfs:comment "How a coordinator decides a member is gone: heartbeats/session renewals or a health check. CQ-C1, CQ-L2." .
+ops:enforcedBy a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:domain ops:LivenessMechanism ; rdfs:range ops:Coordinator ;
+    rdfs:comment "CQ-C1." .
+ops:monitors a owl:ObjectProperty ; rdfs:domain ops:LivenessMechanism ;
+    rdfs:comment "The members whose liveness this mechanism decides (parameters can differ per client). CQ-C1, CQ-L2." .
+ops:heartbeatIntervalSeconds a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ops:LivenessMechanism ; rdfs:range xsd:decimal ;
+    rdfs:comment "Period of member renewals. CQ-L2 (heartbeat-phase lower bound)." .
+ops:failureTimeoutSeconds a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ops:LivenessMechanism ; rdfs:range xsd:decimal ;
+    rdfs:comment "Silence after the last renewal at which the member counts as failed. CQ-L2." .
+ops:cleanupIntervalSeconds a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ops:LivenessMechanism ; rdfs:range xsd:decimal ;
+    rdfs:comment "Period of the coordinator's sweep that acts on expired members (absent = expiry acts immediately). CQ-L2." .
+ops:heartbeatThreadIndependentOfWork a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ops:LivenessMechanism ; rdfs:range xsd:boolean ;
+    rdfs:comment "true: renewals come from a thread that keeps running while request work is slow. CQ-C1." .
+ops:healthCheckConfigured a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ops:LivenessMechanism ; rdfs:range xsd:boolean ;
+    rdfs:comment "false: members register but nothing ever expires them (e.g. a discovery registration without a check). CQ-C1." .
+
+# =========================================================================== telemetry
+ops:Collector a owl:Class ; rdfs:comment "Telemetry collector/export endpoint. CQ-S1, CQ-L1 (a lag metric counts only if collected)." .
+ops:exportsTelemetryTo a owl:ObjectProperty ; rdfs:range ops:Collector ; rdfs:comment "CQ-S1, CQ-L1." .
+ops:Sensor a owl:Class ; rdfs:comment "An observable signal a component emits. CQ-L1." .
+ops:LogTemplate a owl:Class ; rdfs:subClassOf ops:Sensor .
+ops:Span a owl:Class ; rdfs:subClassOf ops:Sensor .
+ops:Metric a owl:Class ; rdfs:subClassOf ops:Sensor .
+ops:emits a owl:ObjectProperty ; rdfs:range ops:Sensor ; rdfs:comment "CQ-L1." .
+ops:measuresLagOf a owl:ObjectProperty ; rdfs:domain ops:Metric ; rdfs:range ops:ConsumerGroup ;
+    rdfs:comment "A consumer-lag metric of a group. CQ-L1 (lag lane)." .
+
+# =========================================================================== faults
+ops:Fault a owl:Class ; rdfs:comment "An injected fault: one kind on one target. CQs take (kind, target) as parameters." .
+ops:FaultKind a owl:Class ; rdfs:comment "The four kinds the harnesses inject; their stop/slow properties are SUT-independent modelling assumptions." .
+ops:faultKind a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:domain ops:Fault ; rdfs:range ops:FaultKind .
+ops:faultTarget a owl:ObjectProperty , owl:FunctionalProperty ; rdfs:domain ops:Fault .
+ops:stopsProcess a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ops:FaultKind ; rdfs:range xsd:boolean ;
+    rdfs:comment "No thread of the target makes progress (own lane goes silent). CQ-L1." .
+ops:stopsHeartbeat a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ops:FaultKind ; rdfs:range xsd:boolean ;
+    rdfs:comment "Renewals stop whatever thread sends them. CQ-C1, CQ-L2." .
+ops:slowsWork a owl:DatatypeProperty , owl:FunctionalProperty ; rdfs:domain ops:FaultKind ; rdfs:range xsd:boolean ;
+    rdfs:comment "Work continues but slower; a work-coupled heartbeat may then stall. CQ-C1." .
+
+ops:pause a owl:NamedIndividual , ops:FaultKind ; rdfs:label "pause" ;
+    ops:stopsProcess true ; ops:stopsHeartbeat true ; ops:slowsWork false ;
+    rdfs:comment "Freezer/SIGSTOP: every thread of the process stops, the heartbeat thread included." .
+ops:crash a owl:NamedIndividual , ops:FaultKind ; rdfs:label "crash" ;
+    ops:stopsProcess true ; ops:stopsHeartbeat true ; ops:slowsWork false ;
+    rdfs:comment "Process exits; nothing renews." .
+ops:cpuThrottle a owl:NamedIndividual , ops:FaultKind ; rdfs:label "cpu-throttle" ;
+    ops:stopsProcess false ; ops:stopsHeartbeat false ; ops:slowsWork true ;
+    rdfs:comment "Assumption: the quota still leaves an independent heartbeat thread enough CPU to renew within the timeout. Whether a given quota does is not structural; a work-coupled heartbeat is classed separately in CQ-C1." .
+ops:netDelay a owl:NamedIndividual , ops:FaultKind ; rdfs:label "net-delay" ;
+    ops:stopsProcess false ; ops:stopsHeartbeat false ; ops:slowsWork true ;
+    rdfs:comment "Assumption: added delay is below failureTimeout - heartbeatInterval, so renewals still arrive in time." .
+
+# =========================================================================== evidence (one record per fact triple)
+ev:Evidence a owl:Class ;
+    rdfs:comment "Provenance of one fact triple (s, p, o) of an ABox: the source file at a pinned commit, the line, and a token quoted from it; or a documented library default. shapes.ttl requires one per fact triple." .
+ev:aboutSubject a owl:AnnotationProperty .
+ev:aboutPredicate a owl:AnnotationProperty .
+ev:aboutObject a owl:AnnotationProperty .
+ev:basis a owl:AnnotationProperty ; rdfs:comment "cited | documented-default" .
+ev:sourceRepo a owl:AnnotationProperty .
+ev:sourceCommit a owl:AnnotationProperty .
+ev:sourceFile a owl:AnnotationProperty .
+ev:sourceLine a owl:AnnotationProperty .
+ev:quotedToken a owl:AnnotationProperty .
+ev:sourceUrl a owl:AnnotationProperty .
+ev:note a owl:AnnotationProperty .
+ev:acceptance a owl:AnnotationProperty ; rdfs:comment "agreed | supported | deterministic | library: how the fact entered the final spec (EXTRACTION_PROTOCOL Amendments 2, 3); library = attached from accepted library-knowledge facts through an accepted uses-library fact; absent on a stage-1 or unjudged spec." .

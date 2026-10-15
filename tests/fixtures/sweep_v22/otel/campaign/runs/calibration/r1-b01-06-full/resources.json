@@ -1,0 +1,168 @@
+{
+  "after": {
+    "capturedAtEnd": "2026-10-04T13:23:09.740306Z",
+    "capturedAtStart": "2026-10-04T13:23:09.738613Z",
+    "counter": "docker-engine-cpu_stats.cpu_usage.total_usage",
+    "services": {
+      "accountingservice": {
+        "containerId": "cid-accountingservice",
+        "totalUsageNanoseconds": 19000000
+      },
+      "adservice": {
+        "containerId": "cid-adservice",
+        "totalUsageNanoseconds": 21000000
+      },
+      "cartservice": {
+        "containerId": "cid-cartservice",
+        "totalUsageNanoseconds": 20000000
+      },
+      "checkoutservice": {
+        "containerId": "cid-checkoutservice",
+        "totalUsageNanoseconds": 24000000
+      },
+      "currencyservice": {
+        "containerId": "cid-currencyservice",
+        "totalUsageNanoseconds": 23000000
+      },
+      "emailservice": {
+        "containerId": "cid-emailservice",
+        "totalUsageNanoseconds": 22000000
+      },
+      "flagd": {
+        "containerId": "cid-flagd",
+        "totalUsageNanoseconds": 28000000
+      },
+      "flagd-ui": {
+        "containerId": "cid-flagd-ui",
+        "totalUsageNanoseconds": 26000000
+      },
+      "frauddetectionservice": {
+        "containerId": "cid-frauddetectionservice",
+        "totalUsageNanoseconds": 27000000
+      },
+      "frontend": {
+        "containerId": "cid-frontend",
+        "totalUsageNanoseconds": 25000000
+      },
+      "frontendproxy": {
+        "containerId": "cid-frontendproxy",
+        "totalUsageNanoseconds": 31000000
+      },
+      "imageprovider": {
+        "containerId": "cid-imageprovider",
+        "totalUsageNanoseconds": 36000000
+      },
+      "kafka": {
+        "containerId": "cid-kafka",
+        "totalUsageNanoseconds": 33000000
+      },
+      "paymentservice": {
+        "containerId": "cid-paymentservice",
+        "totalUsageNanoseconds": 34000000
+      },
+      "productcatalogservice": {
+        "containerId": "cid-productcatalogservice",
+        "totalUsageNanoseconds": 29000000
+      },
+      "quoteservice": {
+        "containerId": "cid-quoteservice",
+        "totalUsageNanoseconds": 32000000
+      },
+      "recommendationservice": {
+        "containerId": "cid-recommendationservice",
+        "totalUsageNanoseconds": 30000000
+      },
+      "shippingservice": {
+        "containerId": "cid-shippingservice",
+        "totalUsageNanoseconds": 35000000
+      }
+    },
+    "totalNanoseconds": 495000000
+  },
+  "applicationCpuSeconds": 0.324,
+  "before": {
+    "capturedAtEnd": "2026-10-04T13:23:03.732374Z",
+    "capturedAtStart": "2026-10-04T13:23:03.730518Z",
+    "counter": "docker-engine-cpu_stats.cpu_usage.total_usage",
+    "services": {
+      "accountingservice": {
+        "containerId": "cid-accountingservice",
+        "totalUsageNanoseconds": 1000000
+      },
+      "adservice": {
+        "containerId": "cid-adservice",
+        "totalUsageNanoseconds": 3000000
+      },
+      "cartservice": {
+        "containerId": "cid-cartservice",
+        "totalUsageNanoseconds": 2000000
+      },
+      "checkoutservice": {
+        "containerId": "cid-checkoutservice",
+        "totalUsageNanoseconds": 4000000
+      },
+      "currencyservice": {
+        "containerId": "cid-currencyservice",
+        "totalUsageNanoseconds": 6000000
+      },
+      "emailservice": {
+        "containerId": "cid-emailservice",
+        "totalUsageNanoseconds": 5000000
+      },
+      "flagd": {
+        "containerId": "cid-flagd",
+        "totalUsageNanoseconds": 9000000
+      },
+      "flagd-ui": {
+        "containerId": "cid-flagd-ui",
+        "totalUsageNanoseconds": 10000000
+      },
+      "frauddetectionservice": {
+        "containerId": "cid-frauddetectionservice",
+        "totalUsageNanoseconds": 12000000
+      },
+      "frontend": {
+        "containerId": "cid-frontend",
+        "totalUsageNanoseconds": 7000000
+      },
+      "frontendproxy": {
+        "containerId": "cid-frontendproxy",
+        "totalUsageNanoseconds": 11000000
+      },
+      "imageprovider": {
+        "containerId": "cid-imageprovider",
+        "totalUsageNanoseconds": 8000000
+      },
+      "kafka": {
+        "containerId": "cid-kafka",
+        "totalUsageNanoseconds": 17000000
+      },
+      "paymentservice": {
+        "containerId": "cid-paymentservice",
+        "totalUsageNanoseconds": 18000000
+      },
+      "productcatalogservice": {
+        "containerId": "cid-productcatalogservice",
+        "totalUsageNanoseconds": 14000000
+      },
+      "quoteservice": {
+        "containerId": "cid-quoteservice",
+        "totalUsageNanoseconds": 15000000
+      },
+      "recommendationservice": {
+        "containerId": "cid-recommendationservice",
+        "totalUsageNanoseconds": 16000000
+      },
+      "shippingservice": {
+        "containerId": "cid-shippingservice",
+        "totalUsageNanoseconds": 13000000
+      }
+    },
+    "totalNanoseconds": 171000000
+  },
+  "claimUse": "diagnostic-only",
+  "counter": "docker-engine-cpu_stats.cpu_usage.total_usage",
+  "cpuSecondsPerOfferedRequest": 0.0018,
+  "offeredRequests": 180,
+  "schemaVersion": 1
+}

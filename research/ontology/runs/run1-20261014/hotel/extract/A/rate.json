@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "sut": "hotel",
+  "extraction": {
+    "extractor": "A",
+    "service": "rate",
+    "notes": [
+      "Sync calls: rate is a gRPC server (hotelReservation/services/rate/server.go:71 RegisterRateServer) and makes no gRPC/HTTP call to another application service in these files. Its only outbound synchronous calls are to its own datastores: memcached-rate (server.go:108 GetMulti; address config.json:17 RateMemcAddress, client tune/setting.go:43 NewMemCClient2) and mongodb-rate (server.go:141 Collection(\"inventory\"); address config.json:16 RateMongoAddress; connection cmd/rate/db.go:126 mongo.Connect). Protocols: memcached text protocol via gomemcache, MongoDB wire protocol via mongo-driver; both stated only by import (server.go:13, server.go:21), not by a protocol string.",
+      "Messages: no topics, producers, consumers or consumer groups in these files.",
+      "Registry: registers with consul. cmd/rate/main.go:63 registry.NewClient(*consulAddr), consulAddress consul:8500 (config.json:2); services/rate/server.go:78 s.Registry.Register(name, ...) with name = srv-rate (server.go:27), once in Run() before srv.Serve (server.go:84); Deregister only in Shutdown (server.go:88-90). registry/registry.go:85-90 AgentServiceRegistration sets only ID, Name, Port, Address: no Check, TTL or DeregisterCriticalServiceAfter. Heartbeat interval, failure timeout, cleanup interval: library default, not in these files (consul agent config is not among the files). No goroutine in rate code refreshes the registration, so heartbeat independence from request processing is not stated in these files.",
+      "Container: upstream docker-compose.yml:102-122 service rate, image deathstarbench/hotel-reservation:latest (line 112), entrypoint rate (line 113), replicas: 1 (line 120), restart: always (line 118). Harness compose.observability-placement.yml:22-26 overrides image (default obsplacement-hotel-reservation:6ecb09706140) and sets JAEGER_SAMPLE_RATIO default 1 and JAEGER_DISABLED default false. Health check: none in either compose file (no healthcheck key) and none in Dockerfile (lines 1-19); library default, not in these files does not apply.",
+      "Telemetry: traces only, to Jaeger agent jaeger:6831 (config.json:3; read at cmd/rate/main.go:50; tracing.Init at main.go:56; LocalAgentHostPort tracing/tracer.go:37). Reporter BufferFlushInterval 1 * time.Second (tracing/tracer.go:36). Sampler probabilistic, code default ratio 0.01 (tracer.go:14), overridden by env JAEGER_SAMPLE_RATIO (tracer.go:20) and cfg.FromEnv() (tracer.go:42). Spans: otgrpc server interceptor (server.go:61), manual spans memcached_get_multi_rate (server.go:105) and mongo_rate (server.go:137). Logs: zerolog ConsoleWriter to os.Stdout (main.go:22), no log exporter. Metrics: none stated in these files."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+      "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-hotel-protocol",
+      "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+    }
+  },
+  "services": [
+    {
+      "name": {"value": "rate", "repo": "upstream", "sourceFile": "hotelReservation/docker-compose.yml", "line": 102, "quotedToken": "rate:"},
+      "role": {"value": "microservice", "repo": "upstream", "sourceFile": "hotelReservation/services/rate/server.go", "line": 71, "quotedToken": "RegisterRateServer", "note": "gRPC application server implementing the Rate service"},
+      "container": {"value": "rate", "repo": "upstream", "sourceFile": "hotelReservation/docker-compose.yml", "line": 102, "quotedToken": "rate:", "note": "container_name not set; Compose names the container <project>-rate-<n>"},
+      "replicas": {"value": 1, "repo": "upstream", "sourceFile": "hotelReservation/docker-compose.yml", "line": 120, "quotedToken": "replicas: 1"},
+      "exportsTelemetryTo": [
+        {"value": "jaeger", "repo": "upstream", "sourceFile": "hotelReservation/config.json", "line": 3, "quotedToken": "jaeger:6831", "note": "traces to Jaeger agent, BufferFlushInterval 1s (tracing/tracer.go:36)"}
+      ],
+      "registersWith": [
+        {"value": "consul", "repo": "upstream", "sourceFile": "hotelReservation/cmd/rate/main.go", "line": 63, "quotedToken": "registry.NewClient", "note": "registers as srv-rate at services/rate/server.go:78; consul address config.json:2"}
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {"caller": "rate", "callee": "mongodb-rate"},
+      "repo": "upstream", "sourceFile": "hotelReservation/config.json", "line": 16, "quotedToken": "mongodb-rate:27017",
+      "note": "call site services/rate/server.go:141 Collection(\"inventory\"); MongoDB driver, datastore not an application service"
+    },
+    {
+      "value": {"caller": "rate", "callee": "memcached-rate"},
+      "repo": "upstream", "sourceFile": "hotelReservation/config.json", "line": 17, "quotedToken": "memcached-rate:11211",
+      "note": "call site services/rate/server.go:108 GetMulti; memcached client, cache not an application service"
+    }
+  ]
+}

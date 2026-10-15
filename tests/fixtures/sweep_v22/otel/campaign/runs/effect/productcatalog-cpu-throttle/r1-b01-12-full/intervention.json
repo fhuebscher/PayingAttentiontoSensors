@@ -1,0 +1,69 @@
+{
+  "action": "cpu-throttle",
+  "actualOffsetMonotonicOffsetSeconds": 122.71055996417999,
+  "actualOnsetMonotonicOffsetSeconds": 60.6454037502408,
+  "appliedMonotonic": 5094.763673730195,
+  "appliedMonotonicOffsetSeconds": 62.32374748215079,
+  "barrierMonotonic": 5032.439926248044,
+  "duringRouteAvailable": true,
+  "duringStateSamples": [
+    {
+      "OOMKilled": false,
+      "Paused": false,
+      "Running": true,
+      "Status": "running"
+    }
+  ],
+  "error": null,
+  "manifested": true,
+  "onsetSource": "pre-command",
+  "postState": {
+    "OOMKilled": false,
+    "Paused": false,
+    "Running": true,
+    "Status": "running"
+  },
+  "preState": {
+    "OOMKilled": false,
+    "Paused": false,
+    "Running": true,
+    "Status": "running"
+  },
+  "probes": [
+    {
+      "available": true,
+      "endMonotonic": 5094.76434500888,
+      "phase": "during-fault",
+      "startMonotonic": 5094.763794988394,
+      "status": 200
+    },
+    {
+      "available": true,
+      "endMonotonic": 5155.152027476579,
+      "phase": "post-revert",
+      "startMonotonic": 5155.151637438685,
+      "status": 200
+    }
+  ],
+  "readyAtMonotonic": 5155.152082461864,
+  "recovered": true,
+  "revertedMonotonic": 5155.150486212224,
+  "revertingMonotonic": 5153.387191221118,
+  "revertingMonotonicOffsetSeconds": 120.9472649730742,
+  "scenario": "productcatalog-cpu-throttle",
+  "scheduledHoldSeconds": 60.0,
+  "scheduledOnsetSeconds": 60.344584,
+  "service": "productcatalogservice",
+  "startedMonotonic": 5093.085329998285,
+  "successful": true,
+  "targetContainerId": "cid-productcatalogservice",
+  "targetImageId": "sha256:cc3194b34da0b8bde51f113c811969c7bcf7e44d842619e8d5124d5b11d1710b",
+  "throttle": {
+    "appliedNanoCpus": 100000000,
+    "duringNanoCpus": 100000000,
+    "hostNanoCpus": 24000000000,
+    "originalNanoCpus": 0,
+    "postNanoCpus": 24000000000,
+    "restoreNanoCpus": 24000000000
+  }
+}

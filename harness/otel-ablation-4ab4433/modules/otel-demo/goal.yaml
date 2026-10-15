@@ -1,0 +1,10 @@
+id: otel-path-cost
+required_path: [frontendproxy, frontend, recommendationservice]
+objectives:
+  maximize: [required_path_visibility]
+  minimize: [request_latency_p95, application_cpu, emitted_bytes]
+constraints:
+  source_side_disable_required: true
+  source_side_disable_status: not_yet_proven
+  current_control_level: sdk-and-proxy-disabled-target-path
+  fixed_offered_load: true

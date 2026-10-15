@@ -1,0 +1,591 @@
+{
+  "analysis": {
+    "analysisCode": "fixed by analysis v2 before any quiet cell is read (measurement repo)",
+    "analysisFreeze": "no analysis of this epoch's evidence until analysis v2 is frozen (BUDGET_CALIBRATION.md stop rule 4; research/protocol/METHODOLOGY_HARDENING.md section 4)",
+    "comparativeUnit": "rate; 10 no-fault cells per rate",
+    "forbidden": [
+      "p-value",
+      "confirmatory-interval",
+      "carryover-adjusted-effect",
+      "optimizer-front",
+      "generality-claim",
+      "observation-count-as-replication"
+    ]
+  },
+  "collection": {
+    "applicationLogTimestamps": "docker-compose-logs-timestamps (application.log, every service)",
+    "systemSamples": "cgroup-v2 system-samples.json in every cell as frozen",
+    "traces": "kieker AMQP spool and traces.json as frozen",
+    "witnessLogSecretScan": "fail-closed raw-text secret scan of auth.log and persistence.log as frozen (modules/teastore/validation/secret_scan.py), except that a JVM stack-frame source location '(<File>.java|kt|scala|groovy:<ASCII digits>)' followed by whitespace or the end of the text, with a key of at most 256 characters, is not an assignment (sweep only; TeaStore relaunch 1 cell 11, 2026-10-03); every other assignment, including a frame-shaped location with any other value or with text glued to its ')', still blocks the cell",
+    "witnessLogs": "auth.log and persistence.log as frozen (docker logs --since/--until)"
+  },
+  "continuation": {
+    "calibrationOnly": true,
+    "earlySuccessStopAllowed": false,
+    "outcomeTriggeredExtensionAllowed": false,
+    "selectedRecompilationAllowed": false,
+    "sixBlockContinuationRequiresNewPreOutcomeEpoch": true
+  },
+  "declaration": "research/traffic-sweep/DECLARATION_QUIET_TEASTORE.md (measurement repo; frozen and committed alone before the first cell)",
+  "derivedFrom": {
+    "authority": "measurement repo research/PROTOCOL_DRAFT_20261002.md decision 48 (user 2026-10-04: quiet calibration run at <= 6/h, 40 no-fault cells per system, 10 per rate x 4 rates, same cell shape as the sweep); budget and stop rule research/traffic-sweep/BUDGET_CALIBRATION.md (committed alone before the work); proposal research/traffic-sweep/NEXT_CAMPAIGNS_PROPOSAL.md section A",
+    "descriptorByteSha256": "e2aa24a4aada6c7955ab6632f03b29531d372112684ba716bc67e165f29a6a82",
+    "descriptorCanonicalSha256": "f90bd64c13075c3019c03c4aee4df3744bb1494b194645b17d246bea063b160a",
+    "descriptorPath": "pipelines/campaigns/teastore-traffic-sweep-v1.json",
+    "disposition": "the sweep epoch is not superseded: it keeps its own descriptor, plan and admission history; the quiet epoch is a separate epoch selected by modules/teastore/execution/study-epoch.json",
+    "planCanonicalSha256": "88a3017a781233a4848f7ea638b4763f82f63bc902d848514cd8ae5089529355",
+    "studyEpoch": "teastore-traffic-sweep-v1"
+  },
+  "design": {
+    "blockRule": "each-block-holds-every-rate-exactly-once",
+    "blocks": 10,
+    "cellShape": "the sweep's no-fault calibration cell (candidate_sweep.cell_timing(<sweep run ID>, 'no-fault-cost', rate)); only the pseudo window's seeded onset differs (faultOnsetPhaseOffsetSeconds, faultOnsetSeconds, scoredWindowSeconds)",
+    "cellsPerBlock": 4,
+    "coldStartEachRun": true,
+    "deploymentQueueAttemptArtifactReuse": false,
+    "episodesPerRate": 10,
+    "faultAppliedToAnyCell": false,
+    "noFaultCellsCarryPseudoWindow": true,
+    "noFaultRegimeReusesFrozenPath": "no-fault-cost: the frozen no-fault code path (performance probe, resources.json) runs unchanged; the sweep reads its cells as calibration, not cost",
+    "omittedRegimes": {
+      "auth-freeze-effect": "fault regime of the sweep; this epoch applies no fault (decision 48)",
+      "net-delay": "no mechanism without sudo: netem needs root in the target's network namespace and fb14srv5 grants the execution user no passwordless sudo; a docker sidecar sharing the netns needs an image with tc that is not provisioned or digest-pinned on fb14srv5",
+      "persistence-cpu-throttle-effect": "fault regime of the sweep; this epoch applies no fault (decision 48)"
+    },
+    "postures": [
+      "full"
+    ],
+    "purpose": "false-alarm calibration: certify a false-alarm rate <= 6/h per rate (95 %, 0 alarms: 3 / quiet hours) on no-fault time (research/PROTOCOL_DRAFT_20261002.md decision 48)",
+    "quietSecondsPerRate": 1800,
+    "rates": [
+      10.0,
+      1.0,
+      0.2,
+      0.05
+    ],
+    "regimes": [
+      {
+        "artifactRootClass": "cost",
+        "fault": null,
+        "id": "no-fault-cost",
+        "kind": "no-fault-calibration"
+      }
+    ],
+    "selectedSource": null,
+    "totalRuns": 40
+  },
+  "evidence": {
+    "canonical": false,
+    "designLabel": "method-design-only",
+    "diagnosticLabel": "smoke-validation",
+    "maximumPilotLabel": "candidate-evidence",
+    "promotionRequiresSeparateHumanGate": true
+  },
+  "faultParameters": {
+    "auth-freeze": {
+      "command": "docker compose pause auth",
+      "revert": "docker compose unpause auth",
+      "target": "auth"
+    },
+    "persistence-cpu-throttle": {
+      "command": "docker update --cpus 0.1 <persistence container>",
+      "cpus": "0.1",
+      "nanoCpus": 100000000,
+      "revert": "docker update --cpus <docker info NCPU> <persistence container>",
+      "revertRule": "docker update --cpus 0 is a no-op (Hotel LMT pilot, fb14srv4 2026-09-28), so the quota is lifted to every host CPU instead of unset; the pre-state must be unset (0) or that value",
+      "target": "persistence"
+    }
+  },
+  "groundTruth": {
+    "fault": {
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "functionalOutageWithoutContinuousWitness": null,
+      "intervalLabel": "intervention-exposure",
+      "onsetStamp": "pre-command (commandStamps.onsetCommandIssuedMonotonicOffsetSeconds)",
+      "probeStamps": "every post-revert readiness request (GET /status) is stamped in the receipt's probes list",
+      "requiredReceiptFields": [
+        "schemaVersion",
+        "scenario",
+        "service",
+        "independentOfKieker",
+        "intervalLabel",
+        "functionalOutage",
+        "measurementBarrier",
+        "requestedHoldSeconds",
+        "targetContainerId",
+        "targetImage",
+        "preState",
+        "commandVector",
+        "commandResult",
+        "actualOnsetWall",
+        "actualOnsetMonotonicOffsetSeconds",
+        "actualOffsetWall",
+        "actualOffsetMonotonicOffsetSeconds",
+        "duringStateSamples",
+        "recoveryAction",
+        "sameTargetIdentity",
+        "readiness",
+        "postState",
+        "interventionThreadJoined",
+        "laterInterventionMutationObserved",
+        "manifested",
+        "recovered",
+        "outageHeld",
+        "successful",
+        "error",
+        "operational"
+      ],
+      "scenarioContracts": [
+        {
+          "commandFamily": "docker-pause-unpause",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-paused",
+          "postPredicate": "running-and-unpaused",
+          "prePredicate": "running-and-unpaused",
+          "scenario": "auth-freeze",
+          "service": "auth"
+        },
+        {
+          "commandFamily": "docker-update-cpus",
+          "containerIdentityRule": "same-container-pre-during-post",
+          "duringPredicate": "running-and-unpaused-and-nanocpus-equal-throttle",
+          "postPredicate": "running-and-unpaused-and-nanocpus-lifted-to-host-ncpu",
+          "prePredicate": "running-and-unpaused-and-cpu-unthrottled",
+          "scenario": "persistence-cpu-throttle",
+          "service": "persistence"
+        }
+      ],
+      "source": "controller-and-target-state-probes-independent-of-kieker"
+    },
+    "path": {
+      "correlation": "pre-outcome-opaque-token-one-to-one-original-native-trace",
+      "crossTraceAssemblyAllowed": false,
+      "directEdgePredicate": "persistence.parentId == auth.spanId in same original native trace",
+      "duringFaultOpportunitiesReportedSeparately": true,
+      "executedDenominator": "independent-application-side-witness",
+      "expectedOpportunityIsExecutionProof": false,
+      "missingWitnessOrCorrelationState": "unsupported",
+      "missingWitnessOrCorrelationValue": null,
+      "noneZeroRequires": [
+        "independently-proven-executed-opportunity",
+        "terminal-complete-hash-reconciled-empty-capture"
+      ],
+      "opportunitySource": "offered-schedule-before-scored-telemetry",
+      "opportunityWorkload": "login-only-v1",
+      "requiredEdge": "auth->persistence",
+      "requiredSensors": [
+        "operation:auth",
+        "operation:persistence"
+      ],
+      "scoredPhases": [
+        "pre",
+        "post-readiness"
+      ],
+      "tokenContractFrozenBeforeOutcomes": true,
+      "tokenContractRequiredCoverage": [
+        "generation",
+        "login-request-injection",
+        "application-witness-extraction",
+        "native-trace-extraction",
+        "uniqueness",
+        "one-to-one-mapping"
+      ]
+    }
+  },
+  "id": "teastore-quiet-calibration-v1",
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "failedAttemptsRetainedAndCharged": true,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "module": "teastore",
+  "outcomes": {
+    "collectorTailUse": "diagnostic-only",
+    "costRegimeOnly": null,
+    "effectResourcesAreCostEstimates": false,
+    "emptyLatencyValue": null,
+    "latencyPopulation": "successful-journeys-only",
+    "offeredJourneysAreDenominator": true,
+    "primary": "quiet time per rate, for the false-alarm rate per hour of each detector at a common operating point (decisions 33 and 48); with 0 alarms in T quiet hours the 95 % upper bound is 3 / T per hour",
+    "primaryCostEndpoint": null,
+    "retainedTraceBytesAreWireBytes": false,
+    "windowMembership": "native-event-timestamps-clipped-to-shared-interval"
+  },
+  "postureProof": {
+    "full": {
+      "requires": [
+        "all-declared-groups-active",
+        "exact-aop-bytes",
+        "goal-and-catalog-digests"
+      ]
+    }
+  },
+  "protocolGates": {
+    "blocking": [
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "blockingNote": "F1 is evaluated in fault cells only; this epoch has none",
+    "g4ChannelScope": "ledger-only (no per-channel in-cell / total counts are recorded)",
+    "module": "modules/teastore/validation/protocol_gates.py",
+    "notEvaluated": {
+      "P0": "harness records no per-service connection counts or emitted-byte observations",
+      "R1": "harness records no per-channel recordsAfterWarmup and no per-route readiness map",
+      "R2": "fresh project and down -v are enforced by the cell producer, not recorded as a gate input"
+    },
+    "recordedNotBlocking": [
+      "R2.recovery"
+    ],
+    "stopRule": "first-invalid-cell",
+    "thresholds": {
+      "FLOOR": 0.5,
+      "G1_MIN_DISPATCHED": 1,
+      "HOLD_TOLERANCE_S": 1.0,
+      "ONSET_TOLERANCE_S": 1.0,
+      "PRE_FAIL_MAX": 0.05,
+      "SCOPE_MIN": 0.95,
+      "SCOPE_SLACK_S": 5.0
+    },
+    "vendoredFrom": "src/obsplacement/protocol_gates.py (measurement repo), byte-identical"
+  },
+  "queueProof": {
+    "manyRowsPerMessageAllowed": true,
+    "postureLabelAloneProvesMaterialization": false,
+    "requires": [
+      "purge-with-zero-consumers",
+      "zero-messages-at-measurement-barrier",
+      "exactly-one-collector",
+      "settled-drain",
+      "complete-message-sha1",
+      "complete-signature-sha1",
+      "no-redelivered-message-body",
+      "terminal-reconciliation"
+    ]
+  },
+  "runIdentity": {
+    "attemptBeginsBeforeFirstExternalMutation": true,
+    "diagnosticRerunMayRestoreComparativeEligibility": false,
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "maximumLaterDiagnosticAttempts": 1,
+    "rateCarriedBy": [
+      "runId",
+      "timing.journeysPerSecond"
+    ],
+    "retryMayReplaceCell": false,
+    "runIdShape": "{studyEpoch}/{regime}/r{rate token}/b{block}/{posture}/a01",
+    "runKeyFields": [
+      "studyEpoch",
+      "regime",
+      "block",
+      "posture",
+      "attempt"
+    ]
+  },
+  "schedule": {
+    "blocks": [
+      {
+        "block": 1,
+        "orderSha256": "4c71f17bf53954538d6b46607fc9f39cc083bbcdcae92c5c20e7d6ae02387132",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b01/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b01/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b01/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b01/full/a01"
+        ]
+      },
+      {
+        "block": 2,
+        "orderSha256": "fcd446e33b174482570c6d6a8b2f90c7f7bbe813d04fb36028818c43040411c5",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b02/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b02/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b02/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b02/full/a01"
+        ]
+      },
+      {
+        "block": 3,
+        "orderSha256": "b10db1b1275be987f9bed64eca942ddbcc7dec2ed416d2c985b3430724d6c669",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b03/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b03/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b03/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b03/full/a01"
+        ]
+      },
+      {
+        "block": 4,
+        "orderSha256": "aa275a524cbb93acd1f29319770b37ecfa0aefae0e959074a07e77aa969b1108",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b04/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b04/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b04/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b04/full/a01"
+        ]
+      },
+      {
+        "block": 5,
+        "orderSha256": "e8eb75104ea3ce927588d694fc98c863a4c5a9660d59cc9672ce79001adde705",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b05/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b05/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b05/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b05/full/a01"
+        ]
+      },
+      {
+        "block": 6,
+        "orderSha256": "176f109b14c52c36db38579dc82127cde445c7f7415375dd9fcd360791d99e96",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b06/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b06/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b06/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b06/full/a01"
+        ]
+      },
+      {
+        "block": 7,
+        "orderSha256": "275f155106537929e2ba00a1d85269066bb4ab54336feabc36ace532e1e2466d",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b07/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b07/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b07/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b07/full/a01"
+        ]
+      },
+      {
+        "block": 8,
+        "orderSha256": "6656cba24cfd1816bb4cca51f9e3c8f777d0c7d1e1e867ab5e0ab32bf41e66d4",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b08/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b08/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b08/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b08/full/a01"
+        ]
+      },
+      {
+        "block": 9,
+        "orderSha256": "3305fc532cd6ba27030cd886d7f0e79a42275504d716a11f4d2ed2dd1d2b8ed1",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b09/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b09/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b09/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b09/full/a01"
+        ]
+      },
+      {
+        "block": 10,
+        "orderSha256": "4d3bf4095c36a4c7a69a5c61e7e160193005060e19a4a8c0ea76d655657000dc",
+        "runIds": [
+          "teastore-quiet-calibration-v1/no-fault-cost/r10/b10/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p2/b10/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r1/b10/full/a01",
+          "teastore-quiet-calibration-v1/no-fault-cost/r0p05/b10/full/a01"
+        ]
+      }
+    ],
+    "drawEncoding": "UTF-8(seed || NUL || epoch || NUL || block-NN || NUL || draw-i || NUL || version)",
+    "leadCell": null,
+    "seed": 20261004,
+    "shuffle": "fisher-yates-over-rates-within-each-block-with-sha256-draws",
+    "version": "quiet-schedule-v1"
+  },
+  "schemaVersion": 1,
+  "source": {
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization",
+    "sutCommit": "34b37f7e7be433ce72d5f9455e66922a13116749"
+  },
+  "status": "method-design-only",
+  "systemSamples": {
+    "artifact": "system-samples.json",
+    "cells": "every-cell-cost-and-effect",
+    "collector": "modules/teastore/collectors/system_probe.py",
+    "faultWindowSamplesAreCostEstimates": false,
+    "intervalSeconds": 5,
+    "kind": "teastore-system-samples-v1",
+    "noFaultNullSampleAllowed": false,
+    "requiredServicesAtFirstSample": [
+      "auth",
+      "image",
+      "persistence",
+      "recommender",
+      "webui"
+    ],
+    "samplesPerRun": 37,
+    "sharedBarrierParticipant": false,
+    "source": "cgroup-v2-per-container-scope-and-docker-containerd-units",
+    "stoppedContainerValue": null,
+    "use": "detection-signal-only-in-effect-cells",
+    "windowSeconds": 180
+  },
+  "targetHost": "fb14srv5",
+  "timing": {
+    "barrierLeadSeconds": 15.0,
+    "budget": {
+      "cellOverheadLowerSeconds": 130,
+      "cellOverheadSeconds": 300,
+      "cellPeriodEstimateSeconds": 525,
+      "cleanupReserveSeconds": 300,
+      "maximumWallSeconds": 25200,
+      "measuredCellPeriodSeconds": {
+        "cells": 12,
+        "gaps": 11,
+        "maximum": 423.4,
+        "mean": 343.2,
+        "median": 330.5,
+        "minimum": 324.9,
+        "source": "teastore-traffic-sweep-v1 relaunch 2 (fb14srv5, 2026-10-04 07:53-08:57Z), consecutive runtime-journal recordedAt gaps"
+      },
+      "minimumFirstMutationRemainingSeconds": 21300,
+      "minimumFirstMutationRule": "totalRuns x cellPeriodEstimate + cleanupReserve",
+      "prepareReserveSeconds": 1800,
+      "runWindowHours": 7,
+      "runWindowRule": "ceil-to-whole-hours(minimumFirstMutationRemaining + prepareReserve)",
+      "timedSecondsPerCell": 225
+    },
+    "drainAllowanceMarginSeconds": 2.0,
+    "drainAllowanceRule": "fault cells: a journey that STARTS in [readiness, readiness + requestTimeoutSeconds + 2 s) may fail without invalidating the cell; it is recorded (count and ids in candidate-validation.json) and excluded from the zero-failure rule and from the scored population; no-fault cells have none",
+    "faultHoldSeconds": 60,
+    "faultOnsetAcceptanceSeconds": [
+      0.0,
+      1.0
+    ],
+    "faultOnsetBaseSeconds": 60,
+    "faultOnsetPhaseOffset": "seeded-stratified-within-one-inter-arrival",
+    "faultOnsetPhaseSelectorEncoding": "stratum order: UTF-8(seed || NUL || epoch || NUL || regime || NUL || rate token || NUL || onset-stratum || NUL || stratum); position: UTF-8(seed || NUL || epoch || NUL || runId || NUL || onset-phase)",
+    "faultOnsetStrata": 10,
+    "holdRule": "revert issued after the last hold sample, taken >= hold after the first post-command sample",
+    "leadCell": null,
+    "lifecycleIncludedInMinimum": false,
+    "measurementSeconds": 180,
+    "minimumActualStartsByPhaseRule": "max(1, ceil(protocol_gates.FLOOR x scheduled slots in the phase)); before = slots before onset, during = slots in [onset, onset + hold), after = slots from onset + hold + postRecoveryAllowanceSeconds",
+    "minimumTimedSeconds": 8400,
+    "offeredByRate": {
+      "0p05": 9,
+      "0p2": 36,
+      "1": 180,
+      "10": 1800
+    },
+    "offeredRule": "journeys-per-second-x-measurement-seconds-integral",
+    "operationalEstimateSeconds": {
+      "lower": 14200,
+      "upper": 21000
+    },
+    "phaseAssignmentSource": "observed-intervention-and-readiness-monotonic-times",
+    "phaseNames": [
+      "before",
+      "during",
+      "recovery",
+      "after"
+    ],
+    "postRecoveryAllowanceSeconds": 2.0,
+    "requestTimeoutSeconds": 15.0,
+    "sharedBarrierParticipants": [
+      "workload",
+      "resource-probe",
+      "collector",
+      "intervention"
+    ],
+    "traceCompleteness": {
+      "fraction": 0.01,
+      "harnessProbeOrphans": "excused as before (F-ADH-083)",
+      "incompleteJourney": "any record of the journey's native trace(s) carries a correlation error (missing or ambiguous parent, conflicting native identity), the trace has an execution-order-index gap or a repeated (message, trace, eoi/ess) identity, or it lacks the required auth->persistence edge; traces are attributed to journeys by the auth native-trace bridge",
+      "source": "research/PROTOCOL_DRAFT_20261002.md decision 25 (shared by the three sweeps)",
+      "unattributable": "an incomplete native trace no journey's bridge names is one cluster; inside window I by the logging time of all its defective records: recorded; otherwise it counts as one incomplete journey in window II",
+      "unit": "journey (one login request)",
+      "windowI": "fault cells: start in [onset command issued, readiness + drainAllowanceSeconds): recorded as fault effect, never blocking",
+      "windowII": "pre-onset, after the drain window, and every no-fault cell: block only if incomplete journeys > max(1, floor(fraction x successful journeys there))"
+    },
+    "warmupJourneysPerSecond": 10.0,
+    "warmupSeconds": 30
+  },
+  "workload": {
+    "concurrency": 240,
+    "concurrencyRule": "ceil(1.6 x max rate x request timeout)",
+    "excludedActions": [
+      "cart",
+      "checkout",
+      "confirmation",
+      "browse-home",
+      "browse-category",
+      "browse-product",
+      "return-home"
+    ],
+    "id": "login-only-v1",
+    "journeyKind": "login-only",
+    "journeyLedger": {
+      "appendOnly": true,
+      "oneRowPerOfferedJourney": true,
+      "requestRequiredFields": [
+        "sequence",
+        "step",
+        "routeId",
+        "target",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "latencyMs",
+        "statusCode",
+        "outcome",
+        "error"
+      ],
+      "requiredFields": [
+        "recordType",
+        "recordSequence",
+        "previousRecordSha256",
+        "recordSha256",
+        "planSha256",
+        "workloadId",
+        "barrierId",
+        "sequence",
+        "journeyId",
+        "opportunityId",
+        "opaqueToken",
+        "tokenAllocatedAt",
+        "scheduledAt",
+        "scheduledMonotonicOffsetSeconds",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "expectedPath",
+        "requests",
+        "requestCount",
+        "outcome",
+        "errors",
+        "terminalSettled",
+        "endedAfterNominalWindow"
+      ]
+    },
+    "journeysPerSecondLevels": [
+      10.0,
+      1.0,
+      0.2,
+      0.05
+    ],
+    "kind": "fixed-open-loop",
+    "population": "login only (one POST /loginAction per journey; the 302 to / is followed)",
+    "redirectFollowed": true,
+    "requestTimeoutSeconds": 15.0,
+    "requestTimeoutSource": "workload/fixed_load.py --timeout default (the frozen cell runner passes none)",
+    "route": "POST /tools.descartes.teastore.webui/loginAction"
+  }
+}

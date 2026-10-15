@@ -1,0 +1,641 @@
+{
+  "schemaVersion": 1,
+  "id": "hotel-reservation-selected-v1",
+  "status": "method-design-only",
+  "module": "hotel-reservation",
+  "source": {
+    "sutCommit": "6ecb09706140f8730b5385c08f1386c654c3c526",
+    "frameworkCommitPolicy": "full-clean-commit-at-materialization"
+  },
+  "workload": {
+    "id": "hotel-search-v1",
+    "kind": "fixed-open-loop",
+    "method": "GET",
+    "route": "/hotels",
+    "requestsPerSecond": 10,
+    "concurrency": 16,
+    "opportunityLedger": {
+      "appendOnly": true,
+      "oneRowPerOfferedRequest": true,
+      "allocatedBeforeTelemetry": true,
+      "requiredFields": [
+        "recordSequence",
+        "previousRecordSha256",
+        "recordSha256",
+        "planSha256",
+        "workloadId",
+        "barrierId",
+        "sequence",
+        "opportunityId",
+        "opaqueToken",
+        "scheduledAt",
+        "scheduledMonotonicOffsetSeconds",
+        "actualStartMonotonic",
+        "actualEndMonotonic",
+        "startedAt",
+        "endedAt",
+        "outcome",
+        "statusCode",
+        "error",
+        "terminalSettled"
+      ]
+    }
+  },
+  "design": {
+    "postures": [
+      "none",
+      "metrics",
+      "selected",
+      "full"
+    ],
+    "postureRoles": {
+      "none": "logs-fatal-sampler-off-tracer-disabled",
+      "metrics": "logs-info-sampler-on-tracer-disabled",
+      "selected": "logs-info-sampler-on-tracer-frontend-only",
+      "full": "logs-info-sampler-on-tracer-full-sampling"
+    },
+    "unsupportedPostures": [
+      {
+        "id": "source-off",
+        "state": "unsupported",
+        "numericValue": null
+      }
+    ],
+    "regimes": [
+      {
+        "id": "no-fault-cost",
+        "kind": "cost-characterization",
+        "fault": null,
+        "artifactRootClass": "cost"
+      },
+      {
+        "id": "search-pause-effect",
+        "kind": "effect",
+        "fault": "search-pause",
+        "artifactRootClass": "effect/search-pause"
+      },
+      {
+        "id": "reservation-pause-effect",
+        "kind": "effect",
+        "fault": "reservation-pause",
+        "artifactRootClass": "effect/reservation-pause"
+      },
+      {
+        "id": "cpu-throttle-effect",
+        "kind": "effect",
+        "fault": "profile-cpu-throttle",
+        "artifactRootClass": "effect/cpu-throttle"
+      },
+      {
+        "id": "net-delay-effect",
+        "kind": "effect",
+        "fault": "rate-net-delay",
+        "artifactRootClass": "effect/net-delay"
+      }
+    ],
+    "blocksPerRegime": 4,
+    "runsPerBlock": 4,
+    "totalRuns": 80,
+    "coldStartEachRun": true,
+    "costAndEffectPoolable": false,
+    "faultAppliedToEveryEffectCell": true
+  },
+  "timing": {
+    "warmupSeconds": 30,
+    "measurementSeconds": 120,
+    "offeredRequestsPerRun": 1200,
+    "offeredRequestsTotal": 96000,
+    "faultOnsetSeconds": 45,
+    "faultHoldSeconds": 15,
+    "minimumActualRequestStartsPerPhase": 100,
+    "nominalScheduledStartsByPhase": {
+      "pre": 450,
+      "during": 150,
+      "post-readiness": 600
+    },
+    "phaseNames": [
+      "pre",
+      "during",
+      "post-readiness"
+    ],
+    "phaseAssignmentSource": "observed-intervention-and-readiness-monotonic-times",
+    "separateArtifactRootsRequired": true,
+    "costWindowContainsFault": false,
+    "effectWindowMaySupplyCostEstimate": false,
+    "minimumTimedSeconds": 12000,
+    "windowContracts": {
+      "no-fault-cost": {
+        "kind": "single-no-fault-measurement-window",
+        "fault": null,
+        "phaseNames": [],
+        "denominator": "offered-request-ledger-rows-in-shared-window"
+      },
+      "fault-effect": {
+        "kind": "observed-intervention-phase-windows",
+        "regimes": [
+          "search-pause-effect",
+          "reservation-pause-effect",
+          "cpu-throttle-effect",
+          "net-delay-effect"
+        ],
+        "phaseNames": [
+          "pre",
+          "during",
+          "post-readiness"
+        ],
+        "denominator": "independently-witnessed-executed-opportunities-per-phase"
+      }
+    }
+  },
+  "schedule": {
+    "version": "schedule-v1",
+    "selectorEncoding": "UTF-8(epoch || NUL || regime || NUL || schedule-v1)",
+    "candidateRule": "all-4-block-1-first-position-each-posture-cyclic-rotation-within-block",
+    "collisionRule": "increment-modulo-24-until-unused",
+    "regimeOrder": [
+      "no-fault-cost",
+      "search-pause-effect",
+      "reservation-pause-effect",
+      "cpu-throttle-effect",
+      "net-delay-effect"
+    ],
+    "receipts": [
+      {
+        "regime": "no-fault-cost",
+        "selectorSha256": "5c4dda618824be375eb056d2cc5e3a38efd875b65eaffb20e5f4ae5c56f93118",
+        "initialCandidateIndex": 0,
+        "selectedCandidateIndex": 0,
+        "collisionIncrements": 0,
+        "blocks": [
+          [
+            "full",
+            "none",
+            "metrics",
+            "selected"
+          ],
+          [
+            "metrics",
+            "selected",
+            "full",
+            "none"
+          ],
+          [
+            "none",
+            "metrics",
+            "selected",
+            "full"
+          ],
+          [
+            "selected",
+            "full",
+            "none",
+            "metrics"
+          ]
+        ]
+      },
+      {
+        "regime": "search-pause-effect",
+        "selectorSha256": "66fa92951faabb479c961ef2d3497c7d0d33707bbdaed415ea06bc7837d934f7",
+        "initialCandidateIndex": 7,
+        "selectedCandidateIndex": 7,
+        "collisionIncrements": 0,
+        "blocks": [
+          [
+            "metrics",
+            "selected",
+            "full",
+            "none"
+          ],
+          [
+            "full",
+            "none",
+            "metrics",
+            "selected"
+          ],
+          [
+            "selected",
+            "full",
+            "none",
+            "metrics"
+          ],
+          [
+            "none",
+            "metrics",
+            "selected",
+            "full"
+          ]
+        ]
+      },
+      {
+        "regime": "reservation-pause-effect",
+        "selectorSha256": "ae9fc1b8f739e229ea77690b7b91f359a85d6230d3ff3301a15c9125b103cf2f",
+        "initialCandidateIndex": 7,
+        "selectedCandidateIndex": 8,
+        "collisionIncrements": 1,
+        "blocks": [
+          [
+            "metrics",
+            "selected",
+            "full",
+            "none"
+          ],
+          [
+            "none",
+            "metrics",
+            "selected",
+            "full"
+          ],
+          [
+            "full",
+            "none",
+            "metrics",
+            "selected"
+          ],
+          [
+            "selected",
+            "full",
+            "none",
+            "metrics"
+          ]
+        ]
+      },
+      {
+        "regime": "cpu-throttle-effect",
+        "selectorSha256": "738a07aedce8552d911786839423a9ad13197fdd3eb056816796289f4c136467",
+        "initialCandidateIndex": 23,
+        "selectedCandidateIndex": 23,
+        "collisionIncrements": 0,
+        "blocks": [
+          [
+            "selected",
+            "full",
+            "none",
+            "metrics"
+          ],
+          [
+            "none",
+            "metrics",
+            "selected",
+            "full"
+          ],
+          [
+            "metrics",
+            "selected",
+            "full",
+            "none"
+          ],
+          [
+            "full",
+            "none",
+            "metrics",
+            "selected"
+          ]
+        ]
+      },
+      {
+        "regime": "net-delay-effect",
+        "selectorSha256": "b937738eafbc3fdffbee2ce5ec5258aba3d9f71d361f04b70ca0ac5e3e1fbc81",
+        "initialCandidateIndex": 1,
+        "selectedCandidateIndex": 1,
+        "collisionIncrements": 0,
+        "blocks": [
+          [
+            "full",
+            "none",
+            "metrics",
+            "selected"
+          ],
+          [
+            "metrics",
+            "selected",
+            "full",
+            "none"
+          ],
+          [
+            "selected",
+            "full",
+            "none",
+            "metrics"
+          ],
+          [
+            "none",
+            "metrics",
+            "selected",
+            "full"
+          ]
+        ]
+      }
+    ]
+  },
+  "runIdentity": {
+    "fields": [
+      "studyEpoch",
+      "regime",
+      "block",
+      "posture",
+      "attempt"
+    ],
+    "initialAttempt": 1,
+    "attemptBeginsBeforeExternalMutation": true,
+    "retryMayReplaceCell": false,
+    "failedAttemptsRetainedAndCharged": true
+  },
+  "groundTruth": {
+    "fault": {
+      "source": "controller-target-state-and-route-probes-independent-of-jaeger",
+      "commandSuccessAloneEstablishesTruth": false,
+      "failedManifestationOrRecovery": "invalid-and-safety-stop",
+      "scenarioContracts": [
+        {
+          "scenario": "profile-cpu-throttle",
+          "service": "profile",
+          "prePredicate": "running-and-unthrottled",
+          "duringPredicate": "running-and-nanocpus-0.1",
+          "postPredicate": "running-and-unthrottled-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-normal-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        },
+        {
+          "scenario": "rate-net-delay",
+          "service": "rate",
+          "prePredicate": "running-and-no-qdisc",
+          "duringPredicate": "running-and-netem-delay-100ms",
+          "postPredicate": "running-and-no-qdisc-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-normal-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        },
+        {
+          "scenario": "search-pause",
+          "service": "search",
+          "prePredicate": "running-and-unpaused",
+          "duringPredicate": "running-and-paused-and-route-fails",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-search-pause-prefix-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        },
+        {
+          "scenario": "reservation-pause",
+          "service": "reservation",
+          "prePredicate": "running-and-unpaused",
+          "duringPredicate": "running-and-paused-and-route-fails",
+          "postPredicate": "running-and-unpaused-and-route-ready",
+          "prePathTruth": "hotel-search-normal-v1",
+          "duringPathTruth": "hotel-search-reservation-pause-prefix-v1",
+          "postReadinessPathTruth": "hotel-search-normal-v1"
+        }
+      ]
+    },
+    "path": {
+      "normal": {
+        "id": "hotel-search-normal-v1",
+        "requiredSensors": [
+          "span:frontend:HTTP GET /hotels",
+          "span:search:/search.Search/Nearby",
+          "span:geo:/geo.Geo/Nearby",
+          "span:rate:/rate.Rate/GetRates",
+          "span:reservation:/reservation.Reservation/CheckAvailability",
+          "span:profile:/profile.Profile/GetProfiles"
+        ],
+        "requiredServiceEdges": [
+          [
+            "frontend",
+            "search"
+          ],
+          [
+            "search",
+            "geo"
+          ],
+          [
+            "search",
+            "rate"
+          ],
+          [
+            "frontend",
+            "reservation"
+          ],
+          [
+            "frontend",
+            "profile"
+          ]
+        ],
+        "oneOriginalNativeTraceRequired": true,
+        "crossTraceAssemblyAllowed": false
+      },
+      "faultSpecific": [
+        {
+          "id": "hotel-search-search-pause-prefix-v1",
+          "fault": "search-pause",
+          "targetService": "search",
+          "requiredAttemptedPrefix": [
+            "frontend",
+            "search"
+          ],
+          "downstreamNotRequiredDuringFault": [
+            "search->geo",
+            "search->rate",
+            "frontend->reservation",
+            "frontend->profile"
+          ],
+          "nativeOperationQualification": "unsupported-until-runtime-characterization",
+          "numericValueWhenUnsupported": null
+        },
+        {
+          "id": "hotel-search-reservation-pause-prefix-v1",
+          "fault": "reservation-pause",
+          "targetService": "reservation",
+          "requiredAttemptedPrefix": [
+            "frontend",
+            "search",
+            "geo",
+            "rate",
+            "reservation"
+          ],
+          "downstreamNotRequiredDuringFault": [
+            "frontend->profile"
+          ],
+          "nativeOperationQualification": "unsupported-until-runtime-characterization",
+          "numericValueWhenUnsupported": null
+        }
+      ],
+      "opportunitySource": "offered-request-ledger-before-scored-telemetry",
+      "executedDenominator": "independent-application-side-witness",
+      "expectedOpportunityIsExecutionProof": false,
+      "correlation": "opaque-token-one-to-one-original-native-trace",
+      "tokenContractRequiredCoverage": [
+        "generation",
+        "request-injection",
+        "application-witness-extraction",
+        "native-trace-extraction",
+        "uniqueness",
+        "one-to-one-mapping"
+      ],
+      "missingWitnessOrCorrelationState": "unsupported",
+      "missingWitnessOrCorrelationValue": null,
+      "sampleZeroFalseRequires": [
+        "independently-proven-executed-opportunity",
+        "terminal-complete-empty-capture"
+      ]
+    }
+  },
+  "outcomes": {
+    "offeredRequestsAreDenominator": true,
+    "costRegimeOnly": "no-fault-cost",
+    "sourceCostComparisonState": "unsupported",
+    "sourceCostComparisonValue": null,
+    "sourceCostUnsupportedReason": "no-posture-is-source-off",
+    "retainedTraceBytesAreWireBytes": false,
+    "effectResourcesAreCostEstimates": false,
+    "emptyLatencyValue": null,
+    "windowMembership": "native-event-timestamps-clipped-to-shared-interval",
+    "collectorTailUse": "diagnostic-only"
+  },
+  "postureProof": {
+    "none": {
+      "sourceWorkDisabled": false,
+      "logLevel": "fatal",
+      "metricSampler": false,
+      "requires": [
+        "jaeger-disabled-all-declared-services",
+        "sample-ratio-zero-all-declared-services",
+        "terminal-complete-empty-capture",
+        "log-level-fatal-all-declared-services"
+      ]
+    },
+    "metrics": {
+      "sourceWorkDisabled": false,
+      "logLevel": "info",
+      "metricSampler": true,
+      "requires": [
+        "jaeger-disabled-all-declared-services",
+        "sample-ratio-zero-all-declared-services",
+        "terminal-complete-empty-capture",
+        "log-level-info-all-declared-services"
+      ]
+    },
+    "selected": {
+      "sourceWorkDisabled": false,
+      "logLevel": "info",
+      "metricSampler": true,
+      "requires": [
+        "sample-ratio-one-frontend",
+        "jaeger-disabled-other-declared-services",
+        "immutable-image-ids",
+        "log-level-info-all-declared-services"
+      ]
+    },
+    "full": {
+      "sourceWorkDisabled": false,
+      "logLevel": "info",
+      "metricSampler": true,
+      "requires": [
+        "sample-ratio-one-all-declared-services",
+        "immutable-image-ids",
+        "log-level-info-all-declared-services"
+      ]
+    }
+  },
+  "collection": {
+    "logLevelByPosture": {
+      "none": "fatal",
+      "metrics": "info",
+      "selected": "info",
+      "full": "info"
+    },
+    "metricSamplerPostures": [
+      "metrics",
+      "selected",
+      "full"
+    ],
+    "metricSamplerIntervalSeconds": 1,
+    "tracePostures": [
+      "selected",
+      "full"
+    ],
+    "tracedServicesByPosture": {
+      "none": [],
+      "metrics": [],
+      "selected": [
+        "frontend"
+      ],
+      "full": [
+        "frontend",
+        "search",
+        "geo",
+        "rate",
+        "reservation",
+        "profile",
+        "user",
+        "recommendation",
+        "review",
+        "attractions"
+      ]
+    },
+    "alwaysOn": [
+      "request-witness-stdout",
+      "docker-events-stream",
+      "system-sampler-cgroup-5s",
+      "cost-cgroup-cpu-window-edges"
+    ],
+    "costAxis": "cgroup-cpu-usage-delta-ten-app-containers-plus-docker-and-containerd",
+    "alwaysOnCostMeasured": false
+  },
+  "faultParameters": {
+    "targets": {
+      "search-pause": "search",
+      "reservation-pause": "reservation",
+      "profile-cpu-throttle": "profile",
+      "rate-net-delay": "rate"
+    },
+    "cpuThrottleCpus": "0.1",
+    "netDelayMilliseconds": 100,
+    "netDelayMechanism": "sudo-nsenter-net-tc-netem-on-eth0",
+    "cpuThrottleMechanism": "docker-update-cpus",
+    "windowEdges": "post-apply-command-to-pre-revert-command"
+  },
+  "missingness": {
+    "cellStates": [
+      "valid",
+      "invalid",
+      "aborted",
+      "not-started",
+      "missing-artifact",
+      "unsupported"
+    ],
+    "abstentionState": "unsupported",
+    "abstentionNumericValue": null,
+    "numericMissingValue": null,
+    "silentRetryAllowed": false
+  },
+  "analysis": {
+    "comparativeUnit": "complete-(regime,block)",
+    "descriptiveOnly": true,
+    "positionBalanced": true,
+    "independentSequentialBlocksClaim": false,
+    "forbidden": [
+      "source-off-claim",
+      "selected-posture-claim",
+      "source-cost-effect",
+      "p-value",
+      "confirmatory-interval",
+      "optimizer-front",
+      "observation-count-as-replication"
+    ]
+  },
+  "evidence": {
+    "designLabel": "method-design-only",
+    "maximumSupportedFutureLabel": "candidate-evidence",
+    "placementOrSourceCostEligible": false,
+    "canonical": false,
+    "promotionRequiresSeparateHumanGate": true
+  },
+  "transport": {
+    "executor": null,
+    "transport": null,
+    "runtimeAllowed": false,
+    "externalMutationAllowed": false,
+    "runtimeAdapterState": "absent-by-design"
+  }
+}

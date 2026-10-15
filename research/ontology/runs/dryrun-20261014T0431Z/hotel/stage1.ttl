@@ -1,0 +1,138 @@
+@prefix ev: <http://obsplacement.example/evidence#> .
+@prefix omsac: <http://www.semanticweb.org/ontologyOfMicroservicesArchitecture#> .
+@prefix ops: <http://obsplacement.example/ops#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sut: <http://obsplacement.example/sut/hotel#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sut:ev-149d44ee6624d0ca a ev:Evidence ;
+    ev:aboutObject ops:Container ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:ctr-search ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-search-<n>" ;
+    ev:quotedToken "search:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 61 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-260734512cf36e8c a ev:Evidence ;
+    ev:aboutObject omsac:Microservice ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:svc-search ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D1: built from the pinned tree; last FROM golang:1.21" ;
+    ev:quotedToken "golang:1.21" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/Dockerfile" ;
+    ev:sourceLine 1 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-3456b7ea9e7c6125 a ev:Evidence ;
+    ev:aboutObject ops:Host ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:host-fb14srv4 ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "bb0bfda81078614d0b34de31dbec60351d07f0b1" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-6711be49fdca3461 a ev:Evidence ;
+    ev:aboutObject sut:svc-search ;
+    ev:aboutPredicate ops:replicaSetOf ;
+    ev:aboutSubject sut:rs-search ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 77 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-6e40fbd54635aafe a ev:Evidence ;
+    ev:aboutObject sut:ctr-search ;
+    ev:aboutPredicate ops:runsIn ;
+    ev:aboutSubject sut:svc-search ;
+    ev:basis "cited" ;
+    ev:note "stage-1 rule D2: container_name not set; Compose names the container <project>-search-<n>" ;
+    ev:quotedToken "search:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 61 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9811213990276246 a ev:Evidence ;
+    ev:aboutObject ops:ReplicaSet ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:rs-search ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 77 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-9ff24c35c97fa7e5 a ev:Evidence ;
+    ev:aboutObject sut:host-fb14srv4 ;
+    ev:aboutPredicate ops:placedOn ;
+    ev:aboutSubject sut:ctr-search ;
+    ev:basis "cited" ;
+    ev:note "one host per system (EXTRACTION_PROTOCOL Stage 1); inputs.SYSTEMS host" ;
+    ev:quotedToken "\"hostId\": \"fb14srv4\"" ;
+    ev:sourceCommit "bb0bfda81078614d0b34de31dbec60351d07f0b1" ;
+    ev:sourceFile "research/host-topology.json" ;
+    ev:sourceLine 184 ;
+    ev:sourceRepo "obsplacement" .
+
+sut:ev-bbc4ef09656b5ed9 a ev:Evidence ;
+    ev:aboutObject "1"^^xsd:nonNegativeInteger ;
+    ev:aboutPredicate ops:replicaCount ;
+    ev:aboutSubject sut:rs-search ;
+    ev:basis "cited" ;
+    ev:quotedToken "replicas: 1" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 77 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-f41acb2eeabfed04 a ev:Evidence ;
+    ev:aboutObject sut:svc-search ;
+    ev:aboutPredicate omsac:isComposedOf ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:basis "cited" ;
+    ev:quotedToken "search:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 61 ;
+    ev:sourceRepo "upstream" .
+
+sut:ev-faa8b1dd4eee3f44 a ev:Evidence ;
+    ev:aboutObject omsac:MicroserviceArchitecture ;
+    ev:aboutPredicate rdf:type ;
+    ev:aboutSubject sut:arch-hotel ;
+    ev:basis "cited" ;
+    ev:note "architecture = the services of the compose files upstream:hotelReservation/docker-compose.yml, harness:modules/hotel-reservation/deployment/compose.observability-placement.yml" ;
+    ev:quotedToken "services:" ;
+    ev:sourceCommit "6ecb09706140f8730b5385c08f1386c654c3c526" ;
+    ev:sourceFile "hotelReservation/docker-compose.yml" ;
+    ev:sourceLine 3 ;
+    ev:sourceRepo "upstream" .
+
+sut:arch-hotel a omsac:MicroserviceArchitecture ;
+    omsac:isComposedOf sut:svc-search .
+
+sut:host-fb14srv4 a ops:Host .
+
+sut:rs-search a ops:ReplicaSet ;
+    ops:replicaCount "1"^^xsd:nonNegativeInteger ;
+    ops:replicaSetOf sut:svc-search .
+
+sut:ctr-search a ops:Container ;
+    ops:placedOn sut:host-fb14srv4 .
+
+sut:svc-search a omsac:Microservice ;
+    ops:runsIn sut:ctr-search .
+

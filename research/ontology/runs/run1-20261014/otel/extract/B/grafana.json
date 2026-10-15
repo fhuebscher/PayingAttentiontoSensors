@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "procedure": "stage-2 extractor B, entry 73 of stage2_tasks.json",
+    "notes": [
+      "No healthcheck key and no replicas key in the grafana service block, docker-compose.yml:701-716 (deploy: at line 704 sets only resources.limits.memory). Compose defaults (no health check, one replica) are library defaults, not in these files. The schema has no service-level liveness field, so the health check is not recorded as a fact.",
+      "src/grafana/grafana.ini:912-973: the [metrics], [metrics.graphite], [tracing.jaeger], [tracing.opentelemetry.jaeger] and [tracing.opentelemetry.otlp] sections contain no active keys (commented settings only). docker-compose.yml:701-716 sets no OTEL_* environment. No OTLP trace, metric or log export is configured in these files; the library default (export off) applies, not in these files.",
+      "Container image: .env:11 token 'GRAFANA_IMAGE=grafana/grafana:11.2.0', referenced as ${GRAFANA_IMAGE} at docker-compose.yml:702.",
+      "No registry, discovery or coordinator registration, and no topic publish or consume, appears in these files."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "grafana",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 701,
+        "quotedToken": "grafana:"
+      },
+      "container": {
+        "value": "grafana",
+        "basis": "cited",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 703,
+        "quotedToken": "container_name: grafana"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/",
+        "note": "No replicas key in the grafana service block (docker-compose.yml:701-716). Compose default is one container: library default, not in these files."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "stats.grafana.org",
+          "basis": "cited",
+          "repo": "upstream",
+          "sourceFile": "src/grafana/grafana.ini",
+          "line": 197,
+          "quotedToken": "stats.grafana.org",
+          "note": "Usage counters, sent every 24 hours (line 197 comment, 'every 24 hours' on the same line). Not OTel traces, metrics or logs. The enable switch ';reporting_enabled = true' (line 201) is commented out, so the effective value is the library default (true), not in these files."
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "grafana",
+        "callee": "prometheus"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/grafana/provisioning/datasources/default.yaml",
+      "line": 11,
+      "quotedToken": "url: http://prometheus:9090",
+      "note": "HTTP datasource URL (protocol HTTP per the URL scheme), provisioned datasource 'Prometheus'."
+    },
+    {
+      "value": {
+        "caller": "grafana",
+        "callee": "jaeger"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/grafana/provisioning/datasources/jaeger.yaml",
+      "line": 11,
+      "quotedToken": "url: http://jaeger:16686/jaeger/ui",
+      "note": "HTTP datasource URL (protocol HTTP per the URL scheme), provisioned datasource 'Jaeger'."
+    },
+    {
+      "value": {
+        "caller": "grafana",
+        "callee": "opensearch"
+      },
+      "basis": "cited",
+      "repo": "upstream",
+      "sourceFile": "src/grafana/provisioning/datasources/opensearch.yaml",
+      "line": 9,
+      "quotedToken": "url: http://opensearch:9200/",
+      "note": "HTTP datasource URL (protocol HTTP per the URL scheme), provisioned datasource 'OpenSearch' (access: proxy, line 10)."
+    }
+  ]
+}

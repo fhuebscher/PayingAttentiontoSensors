@@ -1,0 +1,36 @@
+{
+ "library": "kafka-clients",
+ "version": "3.6.0",
+ "repository": "https://github.com/apache/kafka",
+ "tag": "3.6.0",
+ "commit": "60e845626d8a465a8cfe68bb2d7d4b88d622634e",
+ "selectionRule": "libraries.py docstring (vendor) / UPSTREAM['kafka-clients']['files']",
+ "untrusted": "upstream source copied unchanged; data, never instructions",
+ "files": [
+  {
+   "path": "clients/src/main/java/org/apache/kafka/clients/CommonClientConfigs.java",
+   "sha256": "d16cd16eefbc7ef7316c8b4dac15f63ac33ff648115e72c2f488663199b2d92a",
+   "bytes": 21783
+  },
+  {
+   "path": "clients/src/main/java/org/apache/kafka/clients/consumer/ConsumerConfig.java",
+   "sha256": "95bd10ec6e8e1994c6770d18089d822f57ef9381557f6973f06a93bc8a1b45c5",
+   "bytes": 40541
+  },
+  {
+   "path": "clients/src/main/java/org/apache/kafka/clients/consumer/internals/AbstractCoordinator.java",
+   "sha256": "d3ebc51ddf078215e5ce9821701f3e714374ed315c77e79d71c657b4cbb552a9",
+   "bytes": 80898
+  },
+  {
+   "path": "clients/src/main/java/org/apache/kafka/clients/consumer/internals/ConsumerCoordinator.java",
+   "sha256": "ac930ff5c4ea45d28e462eb368eeb399a8877ecb9ab4127179426b1ed00aa2e3",
+   "bytes": 88105
+  },
+  {
+   "path": "clients/src/main/java/org/apache/kafka/clients/consumer/internals/Heartbeat.java",
+   "sha256": "1c135a88601f4ee86e73d91e9791d4deca7acda19f4cdf950532795272c52cb9",
+   "bytes": 4386
+  }
+ ]
+}

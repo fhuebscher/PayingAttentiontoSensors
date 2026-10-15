@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "sut": "otel",
+  "extraction": {
+    "stage": 2,
+    "run": "run1-20261014",
+    "system": "otel",
+    "service": "kafka",
+    "extractor": "B",
+    "entryIndex": 71,
+    "model": "haiku (Haiku 5.5)",
+    "notes": [
+      "syncEdges: none stated. The kafka files (src/kafka/Dockerfile) and the kafka block in docker-compose.yml:632-658 contain no client call target. docker-compose.yml:647 OTEL_EXPORTER_OTLP_ENDPOINT is telemetry export, not a synchronous call, and is not reported as an edge.",
+      "publishesTo and consumes: none stated. The kafka files name no topic, producer or consumer. Topic clients are other services and are not in these files.",
+      "registersWith: none stated. No registry, discovery or coordinator configuration for kafka appears in docker-compose.yml:632-658 or compose.candidate-postures.yml:145-151. Consumer-group coordination by the broker is not stated in these files and is not reported.",
+      "health check (not representable at service level in the schema, so recorded here): docker-compose.yml:652 healthcheck block, test 'nc -z kafka 9092' at line 653, start_period 10s at line 654, interval 5s at line 655, timeout 10s at line 656, retries 10 at line 657. Whether a heartbeat runs independently of request processing is not stated in these files.",
+      "replicas: no deploy.replicas or scale key in docker-compose.yml:632-658 or compose.candidate-postures.yml:145-151. Compose default of 1; library default, not in these files. The sourceUrl is not fetched in this session.",
+      "telemetry: OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP} at docker-compose.yml:647; host otelcol (.env:27), HTTP port 4318 (.env:29). src/kafka/Dockerfile:12 ADDs the OpenTelemetry Java agent (version from ARG at Dockerfile:8, 2.4.0); Dockerfile:27 sets KAFKA_OPTS with -javaagent and -Dotel.jmx.target.system=kafka-broker.",
+      "compose.candidate-postures.yml:147 overrides KAFKA_OPTS with ${OTEL_CANDIDATE_KAFKA_KAFKA_OPTS}; that value is not set in these files, so whether the agent is attached at run time is not stated. Trace, metric and log exporter values come from OTEL_CANDIDATE_KAFKA_EXPORTER at compose.candidate-postures.yml:149-151; that value is not set in these files.",
+      "telemetry export interval: not stated in these files. The OpenTelemetry Java agent export interval is a library default, not in these files."
+    ]
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+      "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-otel-protocol",
+      "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "kafka",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 632,
+        "quotedToken": "kafka:"
+      },
+      "container": {
+        "value": "kafka",
+        "repo": "upstream",
+        "sourceFile": "docker-compose.yml",
+        "line": 634,
+        "quotedToken": "container_name: kafka"
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "no deploy.replicas or scale key for kafka in upstream docker-compose.yml:632-658 or harness compose.candidate-postures.yml:145-151; Compose default 1; library default, not in these files"
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "otelcol",
+          "repo": "upstream",
+          "sourceFile": ".env",
+          "line": 27,
+          "quotedToken": "OTEL_COLLECTOR_HOST=otelcol"
+        }
+      ]
+    }
+  ]
+}

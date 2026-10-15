@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "sut": "hotel",
+  "extraction": {
+    "stage": 2,
+    "extractor": "B",
+    "model": "haiku",
+    "service": "attractions"
+  },
+  "sources": {
+    "upstream": {
+      "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+      "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+    },
+    "harness": {
+      "path": "../observability-placement-runtime-hotel-protocol",
+      "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+    }
+  },
+  "services": [
+    {
+      "name": {
+        "value": "attractions",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 141,
+        "quotedToken": "attractions:"
+      },
+      "container": {
+        "value": "hotel_reserv_attractions",
+        "repo": "upstream",
+        "sourceFile": "hotelReservation/docker-compose.yml",
+        "line": 151,
+        "quotedToken": "container_name: 'hotel_reserv_attractions'",
+        "note": "Upstream base block lines 141-155 sets container_name. Harness overlay modules/hotel-reservation/deployment/compose.observability-placement.yml:52-56 sets no container_name; whether Compose merges the overlay onto the base is not stated in these files. No healthcheck key in either compose block (upstream 141-155, harness 52-56) and no HEALTHCHECK instruction in upstream Dockerfile: no health check configured in these files; the Docker default for an absent healthcheck is library default, not in these files."
+      },
+      "replicas": {
+        "value": 1,
+        "basis": "documented-default",
+        "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+        "note": "Absent: no deploy.replicas or scale for attractions in upstream hotelReservation/docker-compose.yml:141-155 or harness compose.observability-placement.yml:52-56. Library default, not in these files."
+      },
+      "exportsTelemetryTo": [
+        {
+          "value": "jaeger",
+          "repo": "upstream",
+          "sourceFile": "hotelReservation/config.json",
+          "line": 3,
+          "quotedToken": "jaeger:6831",
+          "note": "Traces only. Server span interceptor at services/attractions/server.go:77-79; jaeger client initialised at cmd/attractions/main.go:66-67 via tracing/tracer.go:18-52 with reporter host from jaegerAddress (main.go:61; config.json:3). Sampler probabilistic, param from JAEGER_SAMPLE_RATIO (tracer.go:20-21), default 0.01 (tracer.go:14). Harness overlay sets JAEGER_SAMPLE_RATIO to ${HR_JAEGER_SAMPLE_RATIO:-1} (compose.observability-placement.yml:55), i.e. 1 when unset. Reporter BufferFlushInterval 1 s (tracer.go:36). JAEGER_DISABLED (compose.observability-placement.yml:56) is read by the jaeger client FromEnv call (tracer.go:42): library behavior, not in these files. No metrics emitted or exported in these files; no log shipping to jaeger."
+        }
+      ],
+      "registersWith": [
+        {
+          "value": "consul",
+          "repo": "upstream",
+          "sourceFile": "hotelReservation/services/attractions/server.go",
+          "line": 96,
+          "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+          "note": "Registration name 'srv-attractions' (server.go:24), id = uuid (server.go:68), address and port from Run (server.go:96); registry/registry.go:77-93 calls ServiceRegister (registry.go:92). Consul address 'consul:8500' from config.json:2, passed via main.go:56, 62, 74. No Check is set in the registration (registry.go:85-90), so no heartbeat, TTL or health check is registered by this service in these files. Heartbeat interval, failure timeout and cleanup interval: not stated in these files. Heartbeat independence from request processing: not applicable, no heartbeat in these files. Deregister exists (server.go:106-108) but main.go never calls Shutdown. Consul agent liveness defaults: library default, not in these files."
+        }
+      ],
+      "emits": [
+        {
+          "kind": "span",
+          "id": {
+            "value": "mongo_restaurant",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/services/attractions/server.go",
+            "line": 114,
+            "quotedToken": "mongo_restaurant"
+          }
+        },
+        {
+          "kind": "span",
+          "id": {
+            "value": "mongo_museum",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/services/attractions/server.go",
+            "line": 151,
+            "quotedToken": "mongo_museum"
+          }
+        },
+        {
+          "kind": "span",
+          "id": {
+            "value": "mongo_cinema",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/services/attractions/server.go",
+            "line": 188,
+            "quotedToken": "mongo_cinema"
+          }
+        },
+        {
+          "kind": "span",
+          "id": {
+            "value": "otgrpc.OpenTracingServerInterceptor",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/services/attractions/server.go",
+            "line": 78,
+            "quotedToken": "otgrpc.OpenTracingServerInterceptor(s.Tracer)",
+            "note": "Server span per gRPC call from the interceptor; span names and tags are set by the grpc-opentracing library, not in these files."
+          }
+        },
+        {
+          "kind": "log",
+          "id": {
+            "value": "stdout",
+            "repo": "upstream",
+            "sourceFile": "hotelReservation/cmd/attractions/main.go",
+            "line": 24,
+            "quotedToken": "Out: os.Stdout",
+            "note": "zerolog ConsoleWriter to stdout. Level from LOG_LEVEL; when LOG_LEVEL is unset the level is info (tune/setting.go:19, 33-34). The comment at setting.go:38 says ERROR, which applies only to an empty value."
+          }
+        }
+      ]
+    }
+  ],
+  "syncEdges": [
+    {
+      "value": {
+        "caller": "attractions",
+        "callee": "consul"
+      },
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/registry/registry.go",
+      "line": 92,
+      "quotedToken": "c.Agent().ServiceRegister(reg)",
+      "note": "Consul agent HTTP API via the hashicorp/consul/api client (registry.go:8; cfg.Address set at registry.go:15), invoked from services/attractions/server.go:96 at start-up. Transport details beyond that: library default, not in these files."
+    },
+    {
+      "value": {
+        "caller": "attractions",
+        "callee": "mongodb-attractions"
+      },
+      "repo": "upstream",
+      "sourceFile": "hotelReservation/config.json",
+      "line": 14,
+      "quotedToken": "mongodb-attractions:27017",
+      "note": "Datastore, included because the task asks for synchronous calls. Protocol: MongoDB wire protocol via go.mongodb.org/mongo-driver (cmd/attractions/db.go:7; services/attractions/server.go:17-18); the protocol is inferred from the driver import, not stated as a string. Call sites: Find on the attractions-db database at server.go:117-119, 154-156, 191-193. Address from AttractionsMongoAddress (main.go:41, config.json:14)."
+    }
+  ]
+}

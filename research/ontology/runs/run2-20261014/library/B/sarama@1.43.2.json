@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "library": "sarama",
+  "version": "1.43.2",
+  "extraction": {
+    "extractor": "B",
+    "model": "haiku",
+    "entry": 13
+  },
+  "sources": {
+    "obsplacement": {
+      "path": ".",
+      "commit": "fb6e8c4d58f48513f6ce8f660137526ac858c5b8"
+    }
+  },
+  "facts": [
+    {
+      "kind": "config-default",
+      "subject": "Consumer.Group.Session.Timeout",
+      "value": 10,
+      "unit": "s",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+      "line": 550,
+      "quotedToken": "c.Consumer.Group.Session.Timeout = 10 * time.Second",
+      "note": "Set in NewConfig. The comment at config.go line 294 also states (default 10s)."
+    },
+    {
+      "kind": "config-default",
+      "subject": "Consumer.Group.Heartbeat.Interval",
+      "value": 3,
+      "unit": "s",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+      "line": 551,
+      "quotedToken": "c.Consumer.Group.Heartbeat.Interval = 3 * time.Second",
+      "note": "Set in NewConfig. Ticker period of the heartbeat loop (consumer_group.go line 1003). The comment at config.go line 303 states (default 3s)."
+    },
+    {
+      "kind": "config-default",
+      "subject": "Consumer.Group.Rebalance.Timeout",
+      "value": 60,
+      "unit": "s",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+      "line": 553,
+      "quotedToken": "c.Consumer.Group.Rebalance.Timeout = 60 * time.Second",
+      "note": "Set in NewConfig. The comment at config.go line 321 states (default 60s)."
+    },
+    {
+      "kind": "config-default",
+      "subject": "Consumer.Group.Rebalance.Retry.Max",
+      "value": 4,
+      "unit": "count",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+      "line": 554,
+      "quotedToken": "c.Consumer.Group.Rebalance.Retry.Max = 4",
+      "note": "Set in NewConfig. Used as the retry budget for newSession (consumer_group.go line 209)."
+    },
+    {
+      "kind": "config-default",
+      "subject": "Consumer.Group.Rebalance.Retry.Backoff",
+      "value": 2,
+      "unit": "s",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+      "line": 555,
+      "quotedToken": "c.Consumer.Group.Rebalance.Retry.Backoff = 2 * time.Second",
+      "note": "Set in NewConfig. Wait before each rejoin retry (consumer_group.go line 252). The comment at config.go line 330 states (default 2s)."
+    },
+    {
+      "kind": "config-default",
+      "subject": "Metadata.RefreshFrequency",
+      "value": 600,
+      "unit": "s",
+      "scope": "group-membership",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+      "line": 522,
+      "quotedToken": "c.Metadata.RefreshFrequency = 10 * time.Minute",
+      "note": "Set in NewConfig; 10 minutes. The comment at config.go line 149 says 0 disables it. Only the group leader runs the partition-count check, which cancels the session when the count changes (consumer_group.go lines 438-439, 699, 717)."
+    },
+    {
+      "kind": "config-default",
+      "subject": "Metadata.Retry.Max",
+      "value": 3,
+      "unit": "count",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+      "line": 520,
+      "quotedToken": "c.Metadata.Retry.Max = 3",
+      "note": "Set in NewConfig. Also the retry budget of the heartbeat loop when the coordinator cannot be reached (consumer_group.go lines 1009, 1013). Shared with metadata requests."
+    },
+    {
+      "kind": "config-default",
+      "subject": "Metadata.Retry.Backoff",
+      "value": 250,
+      "unit": "ms",
+      "scope": "liveness",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+      "line": 521,
+      "quotedToken": "c.Metadata.Retry.Backoff = 250 * time.Millisecond",
+      "note": "Set in NewConfig. Also the heartbeat loop's wait between coordinator retries (consumer_group.go lines 1006, 1017). Shared with metadata requests."
+    },
+    {
+      "kind": "failure-detector",
+      "subject": "Consumer.Group.Session.Timeout",
+      "value": "group-coordinator",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/config.go",
+      "line": 292,
+      "quotedToken": "then the broker will remove this consumer from the group",
+      "note": "The file says 'the broker', not 'coordinator', on this line. Heartbeats go to the group's coordinator (consumer_group.go line 1011, client.Coordinator(groupID)), and the comment at config.go line 298 says 'consumer coordinator'. The mapping to group-coordinator is from those lines together."
+    },
+    {
+      "kind": "failure-detector",
+      "subject": "Consumer.Group.Rebalance.Timeout",
+      "value": "group-coordinator",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/consumer_group.go",
+      "line": 41,
+      "quotedToken": "is exceeded, the consumer will be removed from the group by Kafka",
+      "note": "The file says 'by Kafka' (broker side). The coordinator is not named on this line; same broker group management as the session-timeout fact."
+    },
+    {
+      "kind": "heartbeat-thread-independent",
+      "subject": "consumerGroupSession.heartbeatLoop",
+      "value": true,
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/consumer_group.go",
+      "line": 838,
+      "quotedToken": "go sess.heartbeatLoop()",
+      "note": "Started as its own goroutine in newConsumerGroupSession. The message-consuming ConsumeClaim calls run in separate goroutines (consumer_group.go lines 869-878). The heartbeat ticker waits only on pause.C or hbDying (lines 1059-1063)."
+    },
+    {
+      "kind": "removal-signal",
+      "subject": "consumerGroup client (heartbeatLoop)",
+      "value": "JoinGroup failed: group instance id %s has been fenced",
+      "signal": "log",
+      "repo": "obsplacement",
+      "sourceFile": "research/ontology/vendor/libs/sarama@1.43.2/consumer_group.go",
+      "line": 1050,
+      "quotedToken": "JoinGroup failed: group instance id %s has been fenced",
+      "note": "Logged by the client when a heartbeat returns ErrFencedInstancedId. The same text is logged at lines 335 and 402. The files do not state that the coordinator itself logs or exposes a removal, and no removal event is named for the session or rebalance timeouts."
+    }
+  ]
+}

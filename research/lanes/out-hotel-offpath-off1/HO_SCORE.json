@@ -1,0 +1,219 @@
+{
+ "episodes": 20,
+ "episodesByRegimeRate": {
+  "consul-pause-effect r1": 5,
+  "consul-pause-effect r10": 5,
+  "search-pause-effect r1": 5,
+  "search-pause-effect r10": 5
+ },
+ "episodesDeclaredPerRegimeAndRate": 5,
+ "input": {
+  "path": "research/traffic-sweep/readout-hotel-offpath-off1-v3.4/sweep_analysis_v3_4.json",
+  "predictionsSha256": "57529300012ea7d52848f10c574e8089596010c5705d01a7f9b13c8d0d743a0d",
+  "scorerSha256": "01c5d50f15bc5accf25b753664691693e27879e22f3b86b3ab571e9e264baa6e",
+  "sha256": "7cdb4caaac73f5c611f364cbfc69dd530f8ae39e92cb34ae0fb952204890b81c"
+ },
+ "label": "POST-READING SCORE of preregistered predictions (committed 8b89d43 before any hotel-offpath cell was read); rules applied by code (score_ho_v34.py), rule pins checked",
+ "readoutScriptSha256": "caad8672867b165910bbd0dc15090aee1e67ddaded0f2daffee7410cb2b3410d",
+ "rows": [
+  {
+   "evidence": {
+    "measuredLedger": {
+     "any": 10,
+     "counted": 0,
+     "episodes": 10,
+     "range": [
+      0.21,
+      1.11
+     ]
+    },
+    "measuredOwn": {
+     "any": 10,
+     "counted": 5,
+     "episodes": 10,
+     "range": [
+      0.2,
+      1.09
+     ]
+    },
+    "predicted": {
+     "CQ-B1 entry service reached": true,
+     "CQ-C1 class": "no-liveness-check",
+     "coordinatorLane": false,
+     "lagLane": false,
+     "ownLane": false
+    }
+   },
+   "id": "HO-ONT-search",
+   "items": {
+    "CQ-B1 entry reached (proxy: ledger lane)": "agree",
+    "CQ-C1 class": "not comparable",
+    "CQ-L2 window": "not comparable",
+    "lane:coordinator": "not comparable",
+    "lane:lag": "not comparable",
+    "lane:own": "disagree"
+   },
+   "label": "compare.py's rules (a lane is detected if any episode fires in any field); Hotel has no coordinator, so the coordinator-based items are not comparable; a lane:own `disagree` whose measuredOwn.counted is 0 rests on by-construction fires only (the paused target's own idle signal), not on a counted detection",
+   "verdict": "per item"
+  },
+  {
+   "evidence": {
+    "measuredLedger": {
+     "any": 1,
+     "counted": 1,
+     "episodes": 10,
+     "range": [
+      1.77,
+      1.77
+     ]
+    },
+    "measuredOwn": {
+     "any": 10,
+     "counted": 5,
+     "episodes": 10,
+     "range": [
+      1.81,
+      4.75
+     ]
+    },
+    "predicted": {
+     "CQ-B1 entry service reached": true,
+     "CQ-C1 class": "not-a-member",
+     "coordinatorLane": false,
+     "lagLane": false,
+     "ownLane": false
+    }
+   },
+   "id": "HO-ONT-consul",
+   "items": {
+    "CQ-B1 entry reached (proxy: ledger lane)": "agree",
+    "CQ-C1 class": "not comparable",
+    "CQ-L2 window": "not comparable",
+    "lane:coordinator": "not comparable",
+    "lane:lag": "not comparable",
+    "lane:own": "disagree"
+   },
+   "label": "compare.py's rules (a lane is detected if any episode fires in any field); Hotel has no coordinator, so the coordinator-based items are not comparable; a lane:own `disagree` whose measuredOwn.counted is 0 rests on by-construction fires only (the paused target's own idle signal), not on a counted detection",
+   "verdict": "per item"
+  },
+  {
+   "evidence": {
+    "coordinatorLaneInPooledLanes": "none (Hotel: structural)",
+    "coordinatorOrLagFiresInAnyEpisode": [],
+    "episodes": 20,
+    "lagLane": "none"
+   },
+   "id": "HO-C",
+   "label": "true by construction of the lane rules (V34_LANE_RULES declares no coordinator or lag lane for Hotel); a hit is the rule's, not a measurement that no service observes consul",
+   "verdict": "hit (by construction)"
+  },
+  {
+   "evidence": {
+    "detectedInEveryEpisode": true,
+    "perRate": {
+     "1": {
+      "band": [
+       0.7,
+       1.54
+      ],
+      "detected": 5,
+      "episodes": 5,
+      "inside": true,
+      "median": 0.7851135730743408
+     },
+     "10": {
+      "band": [
+       0.21,
+       0.28
+      ],
+      "detected": 5,
+      "episodes": 5,
+      "inside": true,
+      "median": 0.23223280906677246
+     }
+    },
+    "ratesWithoutBand": []
+   },
+   "id": "HO-L1",
+   "label": "bands apply because candidate_offpath.py reads the sweep's workload and pause form (judgement recorded in the docstring)",
+   "verdict": "hit"
+  },
+  {
+   "evidence": {
+    "armedOwnSensors": [
+     "metric:consul:cpu",
+     "metric:consul:sys_cpu",
+     "metric:consul:sys_io",
+     "metric:consul:sys_memory",
+     "metric:consul:sys_psi_cpu"
+    ],
+    "earliestOwnFire": 1.8139829635620117,
+    "episodes": 10,
+    "episodesWithCountedOwnFire": 5,
+    "episodesWithOwnFire": 10,
+    "ownCollectedSensorsPerEpisode": [
+     7,
+     7,
+     7,
+     7,
+     7,
+     7,
+     7,
+     7,
+     7,
+     7
+    ],
+    "ownFiringIds": [
+     "metric:consul:cpu",
+     "metric:consul:sys_cpu",
+     "metric:consul:sys_psi_cpu"
+    ]
+   },
+   "id": "HO-L2",
+   "verdict": "miss (counted field)"
+  },
+  {
+   "evidence": {
+    "ledger": [
+     {
+      "holds": true,
+      "medians": {
+       "1.0": 0.7974880784749985,
+       "10.0": 0.24273593723773956
+      },
+      "pair": [
+       1.0,
+       10.0
+      ],
+      "ratio": 0.30437563117170713
+     }
+    ],
+    "own": [
+     {
+      "holds": true,
+      "medians": {
+       "1.0": 0.7851135730743408,
+       "10.0": 0.23223280906677246
+      },
+      "pair": [
+       1.0,
+       10.0
+      ],
+      "ratio": 0.29579517796055577
+     }
+    ]
+   },
+   "id": "HO-D1",
+   "verdict": "hit"
+  },
+  {
+   "evidence": {
+    "reason": "the rule is `\u2014`: no prediction"
+   },
+   "id": "HO-D2",
+   "verdict": "\u2014"
+  }
+ ],
+ "scope": "instance",
+ "shortfall": {}
+}

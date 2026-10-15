@@ -1,0 +1,202 @@
+{
+ "stage1": {
+  "path": "research/ontology/runs/run1-20261014/hotel/stage1.json",
+  "sha256": "0ca248cbf91551c71ff2a95c791fb3f7cc57dfb1bd15698b21931b4a05d70f38"
+ },
+ "extractors": [
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/attractions.json",
+   "sha256": "c3ef3ce363e77320d4e1952d81f48eb12f93c8e18a4993ec932fdd8e9f39823d",
+   "canonicalSha256": "5e06d2d41e5ea134309016f9f642482f3d29dd316c6c567e4ac76d20606803a2"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/frontend.json",
+   "sha256": "08196332a959a810e09507d2fffeee5b064ce45265b085b07917638b6c039bce",
+   "canonicalSha256": "e09b167758d3d16d65f09db09a4fe0d4d79eb22ad2c2975bf6b4ec232aaab638"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/geo.json",
+   "sha256": "8fdbc6bf0872c9ca6baac328d27a25fdbfb14a9e3464e844bd1c8c1c7fb3c31c",
+   "canonicalSha256": "99a832648be3f4ec63a828c20f492e2493b45a8c94d9c50365ddb3bb860c5bf1"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/profile.json",
+   "sha256": "3c8fb6610dc0936a0a9afbd67df9ae3c4f6e5d218e394a9c9ba0393658235f44",
+   "canonicalSha256": "0a4f25a168122d2f4cddd7aab27efd33350b4b5935d3df45de36953b43e4b080"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/rate.json",
+   "sha256": "0ef58a4131fec376003b652f348c0bc7d186f8c99a8809de2dc28688d6740cd0",
+   "canonicalSha256": "d61c9f167950761a23b90a5e9c8712d0474821d5ce59fc817a22591fe82131c7"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/recommendation.json",
+   "sha256": "58f9f9c3905395734c19a3e87f37dcf7a0539788c8e86a2ea9eba9b749e1e8a9",
+   "canonicalSha256": "0054d670d211124e5a6a3c39dfbc54f2768cbe288ccea5bbe130e927426584c0"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/reservation.json",
+   "sha256": "146f13e247ff81478616a3cc4a6f89c25dcd5c55cc399d040eed7b34c03a6622",
+   "canonicalSha256": "f685966e99027a24ac80b1e5503cac5347dd52b9f19498a3cfd5ac760da69439"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/review.json",
+   "sha256": "27005b305653e1ba741be4a0c164c53d870e3f416f71dd0aa1c413c8f465edde",
+   "canonicalSha256": "19cdee7c583f7dd48c5b1c4180970a7a89c8e007d982f5d4b23a2856b67de4cc"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/search.json",
+   "sha256": "933a11ab4e58802dc15982afe9518596d1e3a8194138ce8765bd0788aa833100",
+   "canonicalSha256": "66ac59734f14c645606b46543206b3f57eae25757662797858c7e2d645eb8b4d"
+  },
+  {
+   "origin": "A",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/A/user.json",
+   "sha256": "673f862d1539b3fe97dd1fab0ee89249a96227359977677daa9f4f34d7885394",
+   "canonicalSha256": "ff68a002d17fa99a333c175082057487c13d359ca196046c07ecf904fdcd672e"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/attractions.json",
+   "sha256": "c1282f65e0ddb633c73c5990c2159084a6f9b945af1db5cc6d6e53d03463bea6",
+   "canonicalSha256": "b21a73f544af92a876c1fd34fea63123921a6ba768ee18aa1701570c683fb666"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/frontend.json",
+   "sha256": "095fc084bf787fdf5f1f7cddab1b5993c80836fe9ba2545f2ad1a4496b85ebd2",
+   "canonicalSha256": "6a7f9a1a5f025620ecdf558de2c393d5051e7d83d5c08b272b08bc4f5d9497d0"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/geo.json",
+   "sha256": "1c31ce414dde699c5289cbea75ed6bd61bf12d6d74160135d9e60d030b3580d1",
+   "canonicalSha256": "f28677ba0dbe5b971ef68a8b1f87e1b4ae200de1dbec7f4802796d7068948eb5"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/profile.json",
+   "sha256": "ff7c083bad12eb3341425f4ffe6c48fda22680906ad348e2d86768318d48809c",
+   "canonicalSha256": "07885bd01c438662b25762fb62b5dce1fe178beb6e85279d56d462006594ebb1"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/rate.json",
+   "sha256": "21ee8a6110b4b0db726d3242298cc1c48d29d799421c417489f76b21cf82975b",
+   "canonicalSha256": "6f946bdcd1aa7c79c6541b30b226b59c3cf2065ccea7c89b923fdf886dc468d6"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/recommendation.json",
+   "sha256": "d593df10984f795d947c4f97aaafc46dabf931d226c6fc82b370edfdaa777de5",
+   "canonicalSha256": "58961892014cc0aa6f1d8056334151aa29f904172077fde0c3004326dc6ebe6a"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/reservation.json",
+   "sha256": "25f48bb78aa48582aea6dc8e8e1279469ff72970ef04aa35d727fc59fa2713cb",
+   "canonicalSha256": "eaa5faac817f8201a8af4a771f37e6506dfddafdfc0c0e51eef477ba5ecec336"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/review.json",
+   "sha256": "b78369200e33eae7ba9424ab5e5cf5177f04650479129718ba90dcfe484ce78d",
+   "canonicalSha256": "0db95e086fd5cc95acf10774b60204c213a1e6b4bcd5462c1132df3f32a91656"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/search.json",
+   "sha256": "19b4d78712865dce9c3319b392580802463b9d9c8b112771191b8fdbfc976b94",
+   "canonicalSha256": "e46587a679ff2d95de83f509e4d76260447760c8c8f94be8cd2a4a1d738d386a"
+  },
+  {
+   "origin": "B",
+   "path": "research/ontology/runs/run1-20261014/hotel/extract/B/user.json",
+   "sha256": "cc21f470164b32f6a0c9c147132136b466ef01fb525298799380b9d651830036",
+   "canonicalSha256": "7f578eff43ece6f9aae191c552b9f62946bdec21e5b4f715607d88a0d331d3ca"
+  }
+ ],
+ "answers": {
+  "from": "research/ontology/runs/run1-20261014/hotel/judge/answers_all.jsonl",
+  "sha256": "e72181b5281eb52a1f3441b04292cd253fe4077e108d480999d14ba6f99674ca",
+  "reusedIds": [
+   "0202cf254c65de83",
+   "0a5031c2388039d4",
+   "132730011d350e5f",
+   "16995aa78b1f4694",
+   "192e1e047be747fe",
+   "196b69905e787e92",
+   "2042550200215609",
+   "24d37ff35c564d17",
+   "2c751cbaa38d1b15",
+   "2dcea107ac59ab27",
+   "2fff9dfd6db9eb9a",
+   "35544aa85d5e48c7",
+   "36166769c6b91892",
+   "3710c6b71f418de4",
+   "37dca50d0ce915e1",
+   "3ccdbd7e74976028",
+   "3f20a68dd46fb48a",
+   "43f9b302a6d9084a",
+   "4adfd4ae63b8594e",
+   "4ce7d39743729615",
+   "5343d977fa4d6487",
+   "5717165e61f2014a",
+   "5cea42aaaa5f73dd",
+   "5d4c8a9e62a5c043",
+   "6615799ce27815f9",
+   "698f589e36761036",
+   "6bb33d7cfd4b4d13",
+   "70a80c8089bfe893",
+   "765883d7daf9753c",
+   "7b1a96889b2e0fed",
+   "83ad221a2838bc65",
+   "8d4b2fac6a1b3126",
+   "9032a40fc2d0d7ae",
+   "91bda4df8a8a8f87",
+   "952618dba63fe616",
+   "973a4d1077eaf6fe",
+   "ad694d9d13f6c357",
+   "ae7aabccdbcbaca5",
+   "b0b1189733a6ad9d",
+   "b189ec87cd295641",
+   "b25d52d32c895f43",
+   "bc0fe3d10138bb50",
+   "c3291965e7106fb4",
+   "c3d58e68cc979ea9",
+   "c5ca822d1fc93d33",
+   "c61e1ffcb20f83b0",
+   "c8a54d530d97f8d3",
+   "c9ad72a93e948163",
+   "caa4697bd8524730",
+   "cd752a2f3ad9dd5b",
+   "cea20c604bf0f01e",
+   "d147621cce079dda",
+   "d72fe2daa05818d1",
+   "d80b9f295de97dac",
+   "da1c99910e981a0c",
+   "da616406b4f6be64",
+   "dc2d730a9637c07f",
+   "e4d07fb2288b7c83",
+   "ecbc2defc4149c63",
+   "f2637a6f3c6ddfc9",
+   "f26fc6c8a299ed48",
+   "f5cea201e774e36a",
+   "fbab4438c2aaa4ec",
+   "fc35a266bd108da7",
+   "fd78b96ff71d7956",
+   "ffb2c072da2009fc"
+  ],
+  "newOrChangedPackets": [],
+  "oldAnswersNotNeeded": 44
+ }
+}

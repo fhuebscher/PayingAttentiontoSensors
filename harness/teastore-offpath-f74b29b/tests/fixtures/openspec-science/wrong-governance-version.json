@@ -1,0 +1,12 @@
+{
+  "fixtureId": "wrong-governance-version",
+  "checkId": "governance-schema",
+  "expectedStatus": "fail",
+  "expectedDiagnostic": "schemaVersion: 1 was expected",
+  "mutation": {
+    "kind": "json-set",
+    "path": "openspec/changes/change-one/governance.json",
+    "keys": ["schemaVersion"],
+    "value": 2
+  }
+}

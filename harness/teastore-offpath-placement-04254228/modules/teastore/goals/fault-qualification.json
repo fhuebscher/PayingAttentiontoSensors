@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "teastore-auth-persistence-fault-qualification",
+  "logicalSensors": [
+    "operation:auth",
+    "operation:persistence"
+  ],
+  "scenarios": {
+    "auth-freeze": {
+      "targetService": "auth",
+      "requiredSensors": ["operation:auth", "operation:persistence"],
+      "requiredServiceEdges": [["auth", "persistence"]]
+    },
+    "persistence-crash": {
+      "targetService": "persistence",
+      "requiredSensors": ["operation:auth", "operation:persistence"],
+      "requiredServiceEdges": [["auth", "persistence"]]
+    }
+  },
+  "claimBoundary": "Retains declared native sensor and service-edge evidence under a proven intervention; does not by itself establish detection or RCA accuracy."
+}

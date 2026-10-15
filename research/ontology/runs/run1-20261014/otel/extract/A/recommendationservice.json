@@ -1,0 +1,106 @@
+{
+ "schemaVersion": 1,
+ "sut": "otel",
+ "extraction": {
+  "stage": 2,
+  "extractor": "A",
+  "service": "recommendationservice",
+  "notes": [
+   "No registry, discovery service, coordinator, Kafka topic or consumer group appears in this service's files; none reported. flagd is a feature-flag provider, not a registry.",
+   "No heartbeat, failure timeout or cleanup interval is stated in these files.",
+   "Health check: the gRPC Check handler exists (recommendation_server.py:58) but no healthcheck block exists for recommendationservice in docker-compose.yml:513-546 and the Dockerfile has no HEALTHCHECK; not reported as a configured health check.",
+   "Telemetry export interval: no OTEL_METRIC_EXPORT_INTERVAL or similar setting in these files; library default, not in these files. Per-signal exporters are set by compose.candidate-postures.yml:121-123 from OTEL_CANDIDATE_RECOMMENDATIONSERVICE_EXPORTER."
+  ]
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-otel-protocol/upstream/opentelemetry-demo",
+   "commit": "2d4661e4897aa7b2d2ddbb5ef8c4824ca8a1b88d"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-otel-protocol",
+   "commit": "715d57b5f06ea32d47466acccae927da8e350a2c"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "recommendationservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 537,
+    "quotedToken": "OTEL_SERVICE_NAME=recommendationservice"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 513,
+    "quotedToken": "recommendationservice:",
+    "note": "service block that builds src/recommendationservice/Dockerfile and runs recommendation_server.py (Dockerfile:43)"
+   },
+   "container": {
+    "value": "recommendation-service",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "docker-compose.yml",
+    "line": 515,
+    "quotedToken": "container_name: recommendation-service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "documented-default",
+    "sourceUrl": "https://docs.docker.com/reference/compose-file/deploy/#replicas",
+    "note": "no deploy.replicas or scale key in the recommendationservice block (docker-compose.yml:513-546, deploy block at 521-524 sets only a memory limit) or in compose.candidate-postures.yml:117-123; library default, not in these files"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": ".env",
+     "line": 32,
+     "quotedToken": "OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}",
+     "note": "traces and metrics: opentelemetry-instrument entrypoint (Dockerfile:43) reads OTEL_EXPORTER_OTLP_ENDPOINT passed at docker-compose.yml:534; OTEL_COLLECTOR_HOST=otelcol at .env:27, port 4317 at .env:28"
+    },
+    {
+     "value": "otelcol",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "src/recommendationservice/recommendation_server.py",
+     "line": 148,
+     "quotedToken": "OTLPLogExporter(insecure=True)",
+     "note": "logs: OTLP gRPC log exporter with BatchLogRecordProcessor (line 149); endpoint taken from OTEL_EXPORTER_OTLP_ENDPOINT, library default, not in these files for the batch interval"
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "recommendationservice",
+    "callee": "productcatalogservice"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/recommendationservice/recommendation_server.py",
+   "line": 158,
+   "quotedToken": "ProductCatalogServiceStub",
+   "note": "gRPC (grpc.insecure_channel line 157; ListProducts call at line 95); address from PRODUCT_CATALOG_SERVICE_ADDR (line 156), .env:107 productcatalogservice:${PRODUCT_CATALOG_SERVICE_PORT}"
+  },
+  {
+   "value": {
+    "caller": "recommendationservice",
+    "callee": "flagd"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "src/recommendationservice/recommendation_server.py",
+   "line": 131,
+   "quotedToken": "FlagdProvider(host=os.environ.get('FLAGD_HOST', 'flagd'), port=os.environ.get('FLAGD_PORT', 8013))",
+   "note": "feature-flag evaluation via openfeature flagd provider (check_feature_flag line 126); FLAGD_HOST=flagd at .env:129, FLAGD_PORT=8013 at .env:130; wire protocol is the provider library default, not in these files"
+  }
+ ]
+}

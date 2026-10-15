@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "title": "Parameter registry of analysis v3.4 (research/detection-time/sweep_analysis_v3_4.py): the values and rules v3.4 ADDS to v3.3 for the Hotel off-path epoch hotel-offpath-v1 (research/traffic-sweep/DECLARATION_HOTEL_OFFPATH.md, BUDGET_OVERNIGHT_20261014.md item 4). Admission and reporting only. parameters_v3_3.json (v3.3), parameters_v3_2.json (v3.2) and parameters_v3.json (v3.1) are not changed; v3.4 reads them as they are.",
+  "provenanceRule": "Protocol decision 37: every hyperparameter is traced to its origin. A separate file, so that parameters_v3_3.json (sha256 a85daa48..., FREEZE_V33_20261014.md) stays byte-identical. Pinned 2026-10-15 (before any cell of hotel-offpath-v1 was read; none fetched) to the committed Hotel harness observability-placement-runtime-hotel-protocol at 9ad0b98194f715b921aba187df5ed511082f1f7b (launch commit; see each entry) and the declaration DECLARATION_HOTEL_OFFPATH.md (4945293); every entry is `active`.",
+  "originTypes": [
+    "decision",
+    "literature",
+    "measured",
+    "upstream",
+    "engineering default",
+    "unknown"
+  ],
+  "parameters": [
+    {
+      "name": "V34_EPOCH_PROFILES",
+      "value": {
+        "hotel-offpath-v1": {
+          "system": "hotel",
+          "role": "offpath-hotel",
+          "shape": "hotel-sweep",
+          "noFaultRegime": "no-fault-calibration",
+          "faultRegimes": {
+            "consul-pause-effect": [
+              "consul",
+              "pause"
+            ],
+            "search-pause-effect": [
+              "search",
+              "pause"
+            ]
+          },
+          "regimeRoles": {
+            "no-fault-calibration": "no-fault",
+            "consul-pause-effect": "off-path-pause",
+            "search-pause-effect": "on-path-control"
+          },
+          "rates": [
+            10.0,
+            1.0
+          ],
+          "postures": [
+            "full"
+          ],
+          "extraCollectedServices": [
+            "consul"
+          ],
+          "design": {
+            "blocks": 5,
+            "cellsPerBlock": 6,
+            "cells": 30,
+            "episodesPerRegimeAndRate": 5,
+            "note": "informational except rates, postures and the regimes, which the reader enforces; the block number is read as 1..blocks"
+          },
+          "legacyHotelEpochs": [
+            "hotel-traffic-sweep-v1",
+            "hotel-quiet-calibration-v1"
+          ]
+        }
+      },
+      "unit": "study-epoch name -> cell profile for the Hotel reader (regimes with [target service, fault kind]); the entry is ADDED to nothing in v3.2/v3.3 (their profile tables hold OTel and TeaStore epochs only and Hotel's reader never consulted them)",
+      "origin_type": "decision",
+      "origin_ref": "BUDGET_OVERNIGHT_20261014.md item 4 (user, 2026-10-14) and DECLARATION_HOTEL_OFFPATH.md (4945293, committed alone before launch). Read-only pin to the Hotel harness worktree observability-placement-runtime-hotel-protocol at 9ad0b98194f715b921aba187df5ed511082f1f7b: modules/hotel-reservation/execution/candidate_offpath.py (EPOCH 'hotel-offpath-v1'; REGIMES no-fault-calibration, consul-pause-effect, search-pause-effect; FAULTS consul-pause, search-pause; FAULT_TARGETS {search-pause: search, consul-pause: consul}; RATES (10.0, 1.0); BLOCKS 5; CELLS_PER_BLOCK 6; TOTAL_RUNS 30; POSTURES ('full',); EXTRA_COLLECTED_SERVICES ('consul',); EXPECTED_DESCRIPTOR_SHA256 d9bf052eac10b3f74c95e25b24bc5fb46fda62173dcb2aa0c5110bd5285eae23; EXPECTED_PLAN_SHA256 90b7b621c8a1e54a92a78f813bb9c73ee829eddf4ef615e8806edd50d1df2f2a; plan_body: runKey {studyEpoch, regime, requestsPerSecond, block, posture, attempt}, the same keys as the sweep's cell-contract.json runKey, which the Hotel reader reads) and modules/hotel-reservation/faults/compose_pause.py (OFFPATH_ALLOWED {consul-pause: consul}; receipt faultKind 'pause', targetService 'consul', manifested = paused for an off-path scenario, outageObserved recorded). The Hotel cell is the traffic-sweep's layout (cell-contract.json, opportunity-ledger.jsonl, fault-receipt.json, application.log, cpu.json, system-samples.json, traces-normalized.json, docker-events.jsonl), so the existing Hotel loader (v2.4 load_or_invalid, v1.find_cells) reads it; the harness's `candidate_sweep.py` is read as a library by candidate_offpath.py and is unchanged. legacyHotelEpochs are the two epochs whose cell-contract.json runKey.studyEpoch the input cells of the committed Hotel primary readout carry (tmp/hotelsweep3-evidence/x: hotel-traffic-sweep-v1 x 64; tmp/hotelquiet1-evidence/x and tmp/hotelquiet2-evidence/x: hotel-quiet-calibration-v1 x 40 each; counted from the contracts, the readout JSON itself does not name an epoch). They are the only epochs a legacy-only run is not asked about; beside the off-path epoch every legacy cell is refused (HOTEL_EXTRA_ALONE). Both rates are on v2.4's RATES grid (10, 1, 0.2, 0.05). The epoch has 5 episodes per (regime, rate) against v2.4's EPISODES_HOTEL 4, which is NOT rebound (as for OTel E/F and the TeaStore off-path epoch): P2 and P4 verdicts of the form 'k of 4' read `—` at n = 5.",
+      "status": "active"
+    },
+    {
+      "name": "V34_ROUTE_MODEL_HOTEL",
+      "value": {
+        "pauseRegimes": {
+          "consul-pause-effect": "consul",
+          "search-pause-effect": "search"
+        },
+        "p1p2Regime": "search-pause-effect",
+        "affectedPath": {
+          "consul": [
+            "consul"
+          ]
+        },
+        "offPathRegime": "consul-pause-effect",
+        "legacyRegimes": [
+          "no-fault-calibration",
+          "search-pause-effect",
+          "cpu-throttle-effect",
+          "net-delay-effect"
+        ],
+        "manifestation": {
+          "consul-pause-effect": {
+            "rule": "off-path: the container read back as paused (fault-receipt duringState.paused, manifested) plus a docker pause event and an unpause event on the target's own container (docker-events.jsonl, service label consul); the route outage (fault-receipt outageObserved) is recorded, not required",
+            "required": [
+              "manifested",
+              "duringStatePaused",
+              "dockerPauseEvent",
+              "dockerUnpauseEvent"
+            ],
+            "recordedNotRequired": [
+              "outageObserved"
+            ]
+          }
+        }
+      },
+      "unit": "Hotel pause regimes with their explicit target services, the one regime P1 and P2 are declared for (the on-path control), the declared affected path of the off-path target, the regime sets of the legacy Hotel epochs, and the off-path manifestation record",
+      "origin_type": "engineering default",
+      "origin_ref": "research/PLAN_LANES_20261014.md S2 (the TeaStore precedent, parameters_v3_3.json V33_ROUTE_MODEL_TEASTORE): v2.4's pause_regime() asserts exactly one stopping regime per system (sweep_analysis_v2.py:2836-2839); with the Hotel off-path epoch there are two (consul pause, search pause). The reader accepts exactly this pair with these targets and refuses any other set or target (UnknownSchema); P1 and P2 stay declared for the on-path control (search-pause-effect), the only pause whose route outage is required. The affected path of consul is {consul}: consul is not a node of the project map's Hotel call graph (research/project-map/project_map.json suts.hotel.callGraph onRoute frontend, geo, profile, rate, reservation, search), so v1.path_of(consul) is {consul} without any code, and the reader checks that equality at run time instead of assuming it. The ontology's CQ-B1 blast radius for consul (sync-caller frontend, reservation, review via consul, PREDICTIONS_OVERNIGHT_20261014.json HO-ONT-consul) is a different object (who calls it) and is not a reader input. Manifestation rule: DECLARATION_HOTEL_OFFPATH.md 'Consul manifestation' and candidate_offpath._ground_truth offPathManifestation. legacyRegimes: v1 sweep_analysis.py:116-118.",
+      "status": "active"
+    },
+    {
+      "name": "V34_LANE_RULES",
+      "value": {
+        "hotel": {
+          "own": {
+            "rule": "the fire's `own` flag (decision 84: the sensor's service is the episode's target); the ledger is never a lane sensor"
+          },
+          "coordinator": null,
+          "lag": null
+        }
+      },
+      "unit": "per system: the rule that assigns a counted fire to a lane (own / coordinator / lag); ADDED to V33_LANE_RULES (otel, teastore) for Hotel",
+      "origin_type": "decision",
+      "origin_ref": "lead's brief of 2026-10-15 (Hotel off-path layer) and DECLARATION_HOTEL_OFFPATH.md 'This is the declared negative control: no coordinator observes consul, and there is no queue': Hotel has no coordinator lane (no service observes its peers' liveness: services register in consul without health checks, registry.go:77-92; research/ontology/runs/run2-20261014/hotel.ttl:415) and no lag lane (no queue). Both read `—` (JSON null, note 'no coordinator lane is declared for this system'), never 0. The own lane is every sensor of the episode's target: for consul-pause that is consul's own sensors (logs, docker stats, cgroup), for search-pause it is search's. v3.3's lane engine (lane_of, lanes_episode) is used unchanged.",
+      "status": "active"
+    },
+    {
+      "name": "V34_REPORT_RULE",
+      "value": "Hotel off-path readout (v3.4 block): (1) the epoch's cells are admitted as the Hotel sweep layout with the declared regimes, targets, rates and postures; a regime outside the epoch's declared set, a fault receipt naming another target than its regime declares, a rate outside the declared rates, a block outside 1..5, a posture other than full, an epoch the registry does not know in a run that contains the off-path epoch, and any regime outside the legacy Hotel set in any campaign (which v2.4 would drop silently as `not scored`) stop the run; (2) legacy Hotel cells of any kind beside the off-path epoch are refused (a legacy cell never collected consul and v3.1's calibration reads a fold without data as zero false alarms, so pooling it would calibrate consul's sensors on absence; legacy fault cells would also enter the calibration under another design); a (regime, rate, block) of the epoch given twice is refused; --split and --test-blocks are refused for Hotel; (3) P1 and P2 are declared for search-pause-effect only; (4) per consul-pause episode the readout records the off-path manifestation fields (receipt manifested, duringState.paused, outageObserved, and whether docker-events.jsonl carries a pause and an unpause event of service consul), none of which changes a verdict; (5) the extra collected service (consul) is reported per channel with the number of valid cells that collected it, `—` when none did (absence is not zero); (6) the declared design (episodes per regime and rate) is reported against the cells found and valid, and consul's possible listing among the never-exposed services is flagged as the exposure rule's; (7) the lanes block is v3.3's, with Hotel's rules: own = the target's sensors, coordinator and lag `—`. Scope: instance (one SUT, one host, one campaign); nothing is a mechanism claim.",
+      "unit": "rule",
+      "origin_type": "engineering default",
+      "origin_ref": "lead's brief of 2026-10-15; CLAUDE.md claims rules (absence is not zero, name the denominator, scope label); v3.3's V33_LANES_REPORT_RULE (reused for the lanes themselves).",
+      "status": "active"
+    }
+  ]
+}

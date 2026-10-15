@@ -1,0 +1,106 @@
+{
+ "schemaVersion": 1,
+ "sut": "hotel",
+ "extraction": {
+  "stage": 2,
+  "extractor": "A",
+  "service": "reservation",
+  "taskIndex": 32
+ },
+ "sources": {
+  "upstream": {
+   "path": "../observability-placement-runtime-hotel-protocol/upstream/deathstarbench",
+   "commit": "6ecb09706140f8730b5385c08f1386c654c3c526"
+  },
+  "harness": {
+   "path": "../observability-placement-runtime-hotel-protocol",
+   "commit": "e9d35f7fffcab4134b53a864cd36613cc628cb4d"
+  }
+ },
+ "services": [
+  {
+   "name": {
+    "value": "reservation",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 199,
+    "quotedToken": "reservation:"
+   },
+   "role": {
+    "value": "microservice",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 210,
+    "quotedToken": "entrypoint: reservation",
+    "note": "gRPC server binary built from cmd/reservation; the role label itself is not stated in the files"
+   },
+   "container": {
+    "value": "reservation",
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 199,
+    "quotedToken": "reservation:",
+    "note": "compose service name; container_name not set in the files. No healthcheck key appears anywhere in the compose files for this service"
+   },
+   "replicas": {
+    "value": 1,
+    "basis": "cited",
+    "repo": "upstream",
+    "sourceFile": "hotelReservation/docker-compose.yml",
+    "line": 217,
+    "quotedToken": "replicas: 1"
+   },
+   "exportsTelemetryTo": [
+    {
+     "value": "jaeger",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/config.json",
+     "line": 3,
+     "quotedToken": "jaeger:6831",
+     "note": "traces: main.go:55 tracing.Init(\"reservation\", *jaegerAddr) passes this address as LocalAgentHostPort (tracer.go:37); Reporter BufferFlushInterval is 1 second (tracer.go:36); sampler probabilistic, code default ratio 0.01 (tracer.go:14) overridden by JAEGER_SAMPLE_RATIO (compose overlay line 30, default 1). No metrics or log export is stated in the files; logs go to stdout (main.go:21)"
+    }
+   ],
+   "registersWith": [
+    {
+     "value": "consul",
+     "basis": "cited",
+     "repo": "upstream",
+     "sourceFile": "hotelReservation/services/reservation/server.go",
+     "line": 79,
+     "quotedToken": "s.Registry.Register(name, s.uuid, s.IpAddr, s.Port)",
+     "note": "registers as srv-reservation (server.go:26) once at startup via Consul agent API (registry.go:92 ServiceRegister) at consul:8500 (config.json:2). The AgentServiceRegistration (registry.go:85) sets only ID, Name, Port, Address: no Check, TTL, heartbeat interval, failure timeout or cleanup interval in these files; no periodic heartbeat is scheduled in this service's code"
+    }
+   ]
+  }
+ ],
+ "syncEdges": [
+  {
+   "value": {
+    "caller": "reservation",
+    "callee": "mongodb-reservation"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 21,
+   "quotedToken": "mongodb-reservation:27017",
+   "note": "protocol: MongoDB wire protocol via mongo-driver (cmd/reservation/db.go:55 mongodb://%s, db.go:59 mongo.Connect); address read at main.go:37 ReserveMongoAddress"
+  },
+  {
+   "value": {
+    "caller": "reservation",
+    "callee": "memcached-reserve"
+   },
+   "basis": "cited",
+   "repo": "upstream",
+   "sourceFile": "hotelReservation/config.json",
+   "line": 22,
+   "quotedToken": "memcached-reserve:11211",
+   "note": "protocol: memcached via gomemcache (main.go:42 tune.NewMemCClient2(result[\"ReserveMemcAddress\"]); calls at services/reservation/server.go:123 s.MemcClient.Get)"
+  }
+ ]
+}

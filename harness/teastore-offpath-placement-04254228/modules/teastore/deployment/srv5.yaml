@@ -1,0 +1,41 @@
+schema_version: 1
+target: fb14srv5
+experiment_user: stig
+remote_root: /home/stig/observability-placement
+project: obsplacement-teastore
+upstream_path: upstream/teastore
+ownership:
+  allowed_legacy_projects:
+    docker:
+      working_directory: /home/stig/teastore/examples/docker
+      config_files:
+        - docker-compose_monitoring_linux.yaml
+    opentelemetry-demo:
+      working_directory: /home/stig/opentelemetry-demo
+      config_files:
+        - docker-compose.yml
+        - docker-compose.stig.yml
+    hotelres:
+      working_directory: /home/stig/DeathStarBench/hotelReservation
+      config_files:
+        - docker-compose.yml
+        - docker-compose.stig.yml
+  allowed_inert_networks:
+    - name: teastore-network
+      driver: bridge
+      scope: local
+  allowed_stopped_restart_policies:
+    - "no"
+    - unless-stopped
+  preserve_unreferenced_volumes: true
+  foreign_policy: block
+  unknown_policy: block
+quiet_host:
+  permitted_running_projects: []
+  settle_seconds: 60
+  maximum_load_per_cpu: 0.10
+  minimum_root_free_gib: 80
+reset:
+  volumes: cold
+  queue: recreate
+  caches: recreate

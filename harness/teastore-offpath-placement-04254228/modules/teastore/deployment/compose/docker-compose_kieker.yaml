@@ -1,0 +1,123 @@
+version: '3'
+
+# F-ADH-075.  Kieker's ChunkingAmqpWriter treats heartbeat=0 as UNSET, not as
+# "disabled": `javap -p -c` on ChunkingAmqpWriter (agent.jar in every
+# descartesresearch/teastore-* image) shows
+#     getIntProperty(CONFIG_HEARTBEAT) -> istore_2
+#     ifne 58 ; bipush 60 ; putfield heartbeat     // hb == 0 => DEFAULT_HEARTBEAT
+# so the shipped /kieker/config/kieker.monitoring.properties line
+# `kieker.monitoring.writer.amqp.ChunkingAmqpWriter.heartbeat=0` reaches
+# setRequestedHeartbeat() as 60.  Requesting 0 is impossible by construction.
+# The RabbitMQ Java client negotiates max(client, server) when either side is 0,
+# and the broker is pinned at 0 (see docker-compose_rabbitmq.yaml), so the
+# effective timeout was max(0, 60) = 60 s -- shorter than the 150 s auth-freeze
+# pause, which is what destroyed campaign #6 and aborted campaign #7 at cell 1.
+# Inverting the request is the only lever the sentinel leaves: a *large* nonzero
+# client value survives the `ifne` and negotiates to max(0, 900) = 900 s.
+# This is deliberately a Compose-level command override, not an image rebuild,
+# so the pinned image digests do not churn.
+x-kieker-heartbeat-seconds: &kieker-heartbeat-seconds "900"
+
+# The five services below ship an identical image CMD; webui's differs only by
+# the ROOT redirect and is therefore spelled out separately.  Both prepend the
+# same rewrite, which fails the container closed if the property line is absent.
+x-kieker-heartbeat-start: &kieker-heartbeat-start
+  - /bin/sh
+  - -c
+  - |
+    sed -i "s|^kieker\.monitoring\.writer\.amqp\.ChunkingAmqpWriter\.heartbeat=.*|kieker.monitoring.writer.amqp.ChunkingAmqpWriter.heartbeat=$$KIEKER_AMQP_HEARTBEAT_SECONDS|" /kieker/config/kieker.monitoring.properties
+    grep -Fqx "kieker.monitoring.writer.amqp.ChunkingAmqpWriter.heartbeat=$$KIEKER_AMQP_HEARTBEAT_SECONDS" /kieker/config/kieker.monitoring.properties || exit 1
+    java -jar /usr/local/tomcat/bin/dockermemoryconfigurator.jar $${TOMCAT_HEAP_MEM_PERCENTAGE}; /usr/local/tomcat/bin/start.sh && /usr/local/tomcat/bin/catalina.sh run
+
+x-kieker-heartbeat-start-webui: &kieker-heartbeat-start-webui
+  - /bin/sh
+  - -c
+  - |
+    sed -i "s|^kieker\.monitoring\.writer\.amqp\.ChunkingAmqpWriter\.heartbeat=.*|kieker.monitoring.writer.amqp.ChunkingAmqpWriter.heartbeat=$$KIEKER_AMQP_HEARTBEAT_SECONDS|" /kieker/config/kieker.monitoring.properties
+    grep -Fqx "kieker.monitoring.writer.amqp.ChunkingAmqpWriter.heartbeat=$$KIEKER_AMQP_HEARTBEAT_SECONDS" /kieker/config/kieker.monitoring.properties || exit 1
+    java -jar /usr/local/tomcat/bin/dockermemoryconfigurator.jar $${TOMCAT_HEAP_MEM_PERCENTAGE}; /usr/local/tomcat/bin/start.sh && echo '<% response.sendRedirect("/tools.descartes.teastore.webui/"); %>' > /usr/local/tomcat/webapps/ROOT/index.jsp && /usr/local/tomcat/bin/catalina.sh run
+
+services:
+  registry:
+    image: descartesresearch/teastore-registry
+    expose:
+      - "8080"
+    environment:
+      KIEKER_AMQP_HEARTBEAT_SECONDS: *kieker-heartbeat-seconds
+    command: *kieker-heartbeat-start
+    networks:
+      - teastore-network
+  db:
+    image: descartesresearch/teastore-db
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    networks:
+      - teastore-network
+  persistence:
+    image: descartesresearch/teastore-persistence
+    expose:
+      - "8080"
+    environment:
+      HOST_NAME: "persistence"
+      REGISTRY_HOST: "registry"
+      DB_HOST: "db"
+      DB_PORT: "3306"
+      RABBITMQ_HOST: "rabbitmq"
+      KIEKER_AMQP_HEARTBEAT_SECONDS: *kieker-heartbeat-seconds
+    command: *kieker-heartbeat-start
+    networks:
+      - teastore-network
+  auth:
+    image: descartesresearch/teastore-auth
+    expose:
+      - "8080"
+    environment:
+      HOST_NAME: "auth"
+      REGISTRY_HOST: "registry"
+      RABBITMQ_HOST: "rabbitmq"
+      KIEKER_AMQP_HEARTBEAT_SECONDS: *kieker-heartbeat-seconds
+    command: *kieker-heartbeat-start
+    networks:
+      - teastore-network
+  image:
+    image: descartesresearch/teastore-image
+    expose:
+      - "8080"
+    environment:
+      HOST_NAME: "image"
+      REGISTRY_HOST: "registry"
+      RABBITMQ_HOST: "rabbitmq"
+      KIEKER_AMQP_HEARTBEAT_SECONDS: *kieker-heartbeat-seconds
+    command: *kieker-heartbeat-start
+    networks:
+      - teastore-network
+  recommender:
+    image: descartesresearch/teastore-recommender
+    expose:
+      - "8080"
+    environment:
+      HOST_NAME: "recommender"
+      REGISTRY_HOST: "registry"
+      RABBITMQ_HOST: "rabbitmq"
+      KIEKER_AMQP_HEARTBEAT_SECONDS: *kieker-heartbeat-seconds
+    command: *kieker-heartbeat-start
+    networks:
+      - teastore-network
+  webui:
+    image: descartesresearch/teastore-webui
+    environment:
+      HOST_NAME: "webui"
+      REGISTRY_HOST: "registry"
+      RABBITMQ_HOST: "rabbitmq"
+      KIEKER_AMQP_HEARTBEAT_SECONDS: *kieker-heartbeat-seconds
+    command: *kieker-heartbeat-start-webui
+    ports:
+      - "8080:8080"
+    networks:
+      - teastore-network
+
+networks:
+  teastore-network:
+    external: true
