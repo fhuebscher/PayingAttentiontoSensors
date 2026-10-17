@@ -80,7 +80,7 @@ uv run pytest -q
 ```
 
 The tests rebuild the readers, wrappers, CELF placement, scorers and lanes on the included fixtures and derived readouts.
-Some tests skip because an input is withheld (raw evidence, sibling harness worktrees, git history). A skip is not a pass.
+Some tests skip because an input is withheld (raw evidence, sibling harness worktrees, git history). A skip is not a pass. The vendored third-party OMSAC files are withheld too, so the OMSAC provenance-digest test skips here (in the first push of this snapshot it failed instead; fixed in the third commit).
 The tests of the harness trees are not part of this run.
 
 To recompute a verdict from the committed readouts, run the placement and the scorer. These are the commands quoted in the
